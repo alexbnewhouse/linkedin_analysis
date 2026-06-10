@@ -204,6 +204,21 @@ def test_local_llm() -> None:
     check("offline local propose safe", isinstance(local_llm.propose_local([item], dry_run=True), dict))
     # cached_panel is backend-agnostic: tolerates an empty/foreign panel
     check("cached_panel returns dict", isinstance(llm.cached_panel([item]), dict))
+    # upgraded panel: 3 disjoint families sized to where they run
+    check("jury is 3 disjoint big families",
+          local_llm.LOCAL_JURY == ("ollama/gemma3:27b", "ollama/qwen3:32b",
+                                   "ollama/phi4:14b"))
+    check("head curator defined", local_llm.LOCAL_HEAD == "ollama/gpt-oss:120b")
+    # think flags: hybrid-thinking families get think=false (clean fast JSON);
+    # everything else omits the key (Ollama rejects it on non-thinking models).
+    check("qwen3 think off",
+          local_llm.build_request(item, "ollama/qwen3:32b").get("think") is False)
+    check("deepseek think off",
+          local_llm.build_request(item, "ollama/deepseek-r1:8b").get("think") is False)
+    check("gemma has no think key",
+          "think" not in local_llm.build_request(item, "ollama/gemma3:27b"))
+    check("gpt-oss keeps default thinking",
+          "think" not in local_llm.build_request(item, "ollama/gpt-oss:120b"))
 
 
 # ------------------------------------------------------------ llm host pool
