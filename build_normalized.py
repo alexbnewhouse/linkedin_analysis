@@ -321,22 +321,32 @@ def build_functional_cluster_mapping(
     ``final_hybrid.canon_functional_cluster_value`` (SOC -> qualifier ->
     title keyword -> company brand -> description -> residue) on each.
     Descriptions are row-grain, hence a row-keyed mapping rather than a
-    value-keyed one (the pattern occupation uses)."""
+    value-keyed one (the pattern occupation uses).
+
+    Two phases on purpose: the candidate rows are materialized to a temp
+    parquet with a pure-SQL COPY (3s), then iterated with pyarrow. Streaming
+    the same query through the duckdb-python cursor (execute + fetchmany)
+    deadlocked the whole process on the full data (duckdb 1.5.3); never feed
+    a large multi-join result through the live cursor here."""
     dest = mappings["career_functional_cluster"]
+    candidates = dest.with_name(dest.name + ".candidates.tmp")
     con = _connect(threads)
     with StepTimer("career functional cluster mapping (self-employment rows)", timings):
-        cur = con.execute(f"""
-            {_CAREER_STEPS_CTE}
-            SELECT
-              s.source_table, s.linkedin_id, s.experience_idx, s.position_idx,
-              s.company, s.company_id, s.title, s.description
-            FROM steps s
-            LEFT JOIN read_parquet('{_quote(mappings["career_company"])}') company
-              ON s.company IS NOT DISTINCT FROM company.value
-            LEFT JOIN read_parquet('{_quote(mappings["career_title"])}') title
-              ON s.title IS NOT DISTINCT FROM title.value
-            WHERE {_EMPLOYMENT_TYPE_SQL} IN ('self_employed', 'business_owner')
+        con.sql(f"""
+            COPY (
+              {_CAREER_STEPS_CTE}
+              SELECT
+                s.source_table, s.linkedin_id, s.experience_idx, s.position_idx,
+                s.company, s.company_id, s.title, s.description
+              FROM steps s
+              LEFT JOIN read_parquet('{_quote(mappings["career_company"])}') company
+                ON s.company IS NOT DISTINCT FROM company.value
+              LEFT JOIN read_parquet('{_quote(mappings["career_title"])}') title
+                ON s.title IS NOT DISTINCT FROM title.value
+              WHERE {_EMPLOYMENT_TYPE_SQL} IN ('self_employed', 'business_owner')
+            ) TO '{_quote(candidates)}' (FORMAT parquet, COMPRESSION zstd)
         """)
+        con.close()
         onet_index = career_occupation.load_onet()[:2]
         keys: set[tuple] = set()
         cols: dict[str, list[Any]] = {
@@ -344,19 +354,19 @@ def build_functional_cluster_mapping(
             "position_idx": [], "functional_cluster": [],
             "functional_cluster_method": [], "functional_cluster_confidence": [],
         }
-        while True:
-            batch = cur.fetchmany(50_000)
-            if not batch:
-                break
-            for src, lid, eidx, pidx, comp, cid, title, desc in batch:
+        for batch in pq.ParquetFile(candidates).iter_batches(batch_size=50_000):
+            for row in batch.to_pylist():
+                src, lid = row["source_table"], row["linkedin_id"]
+                eidx, pidx = row["experience_idx"], row["position_idx"]
                 key = (src, lid, eidx, pidx)
                 if key in keys:  # rare duplicate parsed keys: keep-first
                     continue
                 keys.add(key)
+                cid = row["company_id"]
                 cluster, fc_method, fc_conf = career_final.canon_functional_cluster_value(
-                    company=comp, title=title,
+                    company=row["company"], title=row["title"],
                     company_id=(cid.strip() if cid and cid.strip() else None),
-                    description=desc, onet_index=onet_index,
+                    description=row["description"], onet_index=onet_index,
                 )
                 cols["source_table"].append(src)
                 cols["linkedin_id"].append(lid)
@@ -365,10 +375,10 @@ def build_functional_cluster_mapping(
                 cols["functional_cluster"].append(cluster)
                 cols["functional_cluster_method"].append(fc_method)
                 cols["functional_cluster_confidence"].append(fc_conf)
+        candidates.unlink()
         rows = _write_table(dest, cols)
         timings[-1].rows = rows
         timings[-1].path = str(dest)
-    con.close()
     gc.collect()
 
 
