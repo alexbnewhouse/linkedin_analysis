@@ -220,6 +220,34 @@ def test_local_llm() -> None:
     check("gpt-oss keeps default thinking",
           "think" not in local_llm.build_request(item, "ollama/gpt-oss:120b"))
 
+    # pool-backed firing: a fake transport proves items x models fan out across
+    # hosts in ONE pool run and land in the cache via the normal Proposal path.
+    from . import llm_pool as P
+    import json as _json
+    fired: list[tuple[str, str]] = []
+    def fake_chat(h, body):
+        fired.append((h.name, body["model"]))
+        return {"message": {"content": _json.dumps(
+            {"rationale": "test", "code": "FIN", "confidence": "low"})}}
+    fake_pool = P.HostPool(
+        [P.OllamaHost("a", "http://a", 1), P.OllamaHost("b", "http://b", 1)],
+        fetch_tags=lambda u: (["gemma3:27b", "qwen3:32b"] if u == "http://b"
+                              else ["phi4:14b"]),
+        transport=fake_chat)
+    items = [{"key": "id:pooltest", "display": "Pool Test Co"}]
+    out = local_llm.propose_local_panel(items, models=local_llm.LOCAL_JURY,
+                                        dry_run=False, pool=fake_pool)
+    check("panel fans out across hosts",
+          sorted(fired) == [("a", "phi4:14b"), ("b", "gemma3:27b"), ("b", "qwen3:32b")])
+    check("panel returns all jurors",
+          set(out.get("id:pooltest", {})) == set(local_llm.LOCAL_JURY))
+    check("votes are valid Proposals",
+          all(p.code == "FIN" for p in out["id:pooltest"].values()))
+    # the test wrote real cache entries -- prune them so the frozen cache stays clean
+    lines = [ln for ln in llm.CACHE_FILE.read_text().splitlines()
+             if '"id:pooltest"' not in ln]
+    llm.CACHE_FILE.write_text("\n".join(lines) + ("\n" if lines else ""))
+
 
 # ------------------------------------------------------------ llm host pool
 def test_llm_pool() -> None:

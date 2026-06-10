@@ -3,9 +3,9 @@
 Same jury, no cloud: this fires the panel against local open-weight models served
 by Ollama instead of the Anthropic Batch API. It is the cleanest resolution of the
 governance concern in INDUSTRY_PLAN §7.9 / LLM_JUDGE_JURY_REPORT §4.2 -- **no
-scraped profile text ever leaves the machine** -- and it gives a genuinely diverse
-PoLL panel from *disjoint model families* (Gemma / Phi / Llama), which is exactly
-what reduces intra-model bias.
+scraped profile text ever leaves the machines we own** -- and it gives a genuinely
+diverse PoLL panel from *disjoint model families* (Gemma / Qwen / Phi), which is
+exactly what reduces intra-model bias.
 
 It is deliberately interchangeable with the cloud layer (``llm.py``):
   * reuses the SAME system prompt (``llm._SYSTEM``), evidence renderer
@@ -17,10 +17,13 @@ It is deliberately interchangeable with the cloud layer (``llm.py``):
   * model strings are namespaced ``ollama/<name>`` so they are self-documenting and
     never collide with the cloud model ids in the cache.
 
-No new Python dependency: it speaks Ollama's HTTP API with the stdlib
-(``urllib``). The only "infra" is the Ollama daemon, which is already running.
-Offline (daemon down) it degrades to a pure cache read, exactly like the cloud
-layer -- the pipeline stays deterministic and runnable.
+Firing fans out across EVERY reachable Ollama host via ``llm_pool`` (this
+machine's GPU plus any tailnet boxes): all uncached (item x juror) pairs go into
+one pool run, and a juror executes wherever its model is pulled -- placement is
+``ollama pull``, not config. No new Python dependency: it speaks Ollama's HTTP
+API with the stdlib (``urllib``). The only "infra" is the Ollama daemons.
+Offline (no host reachable) it degrades to a pure cache read, exactly like the
+cloud layer -- the pipeline stays deterministic and runnable.
 
 Enum-constrained, structured output is enforced by passing the JSON schema as
 Ollama's ``format`` (constrained decoding), so a local model -- like the cloud one
@@ -31,11 +34,11 @@ from __future__ import annotations
 
 import json
 import os
-import time
 import urllib.error
 import urllib.request
 
 from . import llm
+from . import llm_pool
 from . import taxonomy as T
 
 # Where the Ollama daemon listens (override with OLLAMA_HOST in the environment).
@@ -55,13 +58,12 @@ LOCAL_HEAD = "ollama/gpt-oss:120b"  # head curator (the local Opus-analog)
 # Hybrid-thinking families: disable thinking for clean, fast, schema-shaped
 # JSON. Always-thinking models (gpt-oss) keep their default; we read only
 # message.content, never message.thinking. Non-thinking models must NOT get a
-# think key (the daemon rejects it).
+# think key (the daemon may reject or ignore it -- omit the key to be safe).
 _THINK_OFF_PREFIXES = ("qwen3", "deepseek-r1")
 
 # Local models truncate a long prompt silently if num_ctx is too small; the
 # taxonomy catalog system prompt is sizeable, so pin a generous context.
 NUM_CTX = 8192
-REQUEST_TIMEOUT = 240  # seconds per item; a slow first load can be ~30s
 
 
 def _model_name(model: str) -> str:
@@ -91,26 +93,15 @@ def build_request(item: dict, model: str) -> dict:
 # ---------------------------------------------------------------------------
 # Daemon I/O
 # ---------------------------------------------------------------------------
-def _post(path: str, body: dict, timeout: int) -> dict:
-    req = urllib.request.Request(
-        OLLAMA_HOST + path, data=json.dumps(body).encode("utf-8"),
-        headers={"Content-Type": "application/json"},
-    )
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return json.loads(r.read())
-
-
 def is_available() -> bool:
-    """True if the Ollama daemon answers (the local analog of a credential check)."""
-    try:
-        urllib.request.urlopen(OLLAMA_HOST + "/api/tags", timeout=3).read()
-        return True
-    except (urllib.error.URLError, OSError):
-        return False
+    """True if at least one pool host answers (the local analog of a credential
+    check). Prints a warning line per unreachable host as a side effect."""
+    return bool(llm_pool.HostPool().hosts)
 
 
 def list_local_models() -> list[str]:
     """Names of models the daemon has pulled (bare, e.g. ``llama3.1:8b``)."""
+    # TODO(task 6): remove once doctor uses the pool
     try:
         data = json.loads(urllib.request.urlopen(OLLAMA_HOST + "/api/tags", timeout=5).read())
         return sorted(m["name"] for m in data.get("models", []))
@@ -118,84 +109,89 @@ def list_local_models() -> list[str]:
         return []
 
 
-def _generate_one(item: dict, model: str) -> llm.Proposal | None:
-    """Fire one company at one local model -> Proposal (or None on any failure)."""
-    try:
-        out = _post("/api/chat", build_request(item, model), REQUEST_TIMEOUT)
-    except (urllib.error.URLError, OSError, json.JSONDecodeError):
-        return None
-    text = (out.get("message") or {}).get("content", "")
-    parsed = llm._parse_result_text(text)  # noqa: SLF001  validates the code vs taxonomy
-    if not parsed:
-        return None
-    return llm.Proposal(
-        key=item["key"], code=parsed["code"],
-        confidence=parsed.get("confidence", "low"),
-        rationale=parsed.get("rationale", ""),
-        model=model, input_hash=llm.cache_key(item, model),
-    )
-
-
 # ---------------------------------------------------------------------------
 # Orchestration (mirrors llm.propose / propose_panel, cache-compatible)
 # ---------------------------------------------------------------------------
-def propose_local(
-    items: list[dict], *, model: str = LOCAL_BULK, dry_run: bool = True,
-    progress_every: int = 25,
-) -> dict[str, llm.Proposal]:
-    """Resolve ``items`` against one LOCAL model, reading the frozen cache first.
-
-    Cached items return for free. With ``dry_run`` (default) or the daemon down,
-    uncached items are skipped (pure cache read -> deterministic, offline-safe).
-    Otherwise the uncached remainder is generated SERIALLY (one local GPU) and
-    appended to the SAME committed cache (``llm_proposals.jsonl``)."""
-    cache = llm.load_cache()
-    resolved: dict[str, llm.Proposal] = {}
-    pending: list[dict] = []
-    for it in items:
-        h = llm.cache_key(it, model)
-        if h in cache:
-            resolved[it["key"]] = cache[h]
-        else:
-            pending.append(it)
-
-    if not pending or dry_run or not is_available():
-        if pending and not dry_run and not is_available():
-            print(f"[local] Ollama not reachable at {OLLAMA_HOST}; "
-                  f"{len(pending)} items left uncached (start it with `ollama serve`).")
-        return resolved
-
-    print(f"[local] generating {len(pending):,} items on {model} (serial, local GPU)...")
+def _fire(pending: list[tuple[dict, str]], pool: llm_pool.HostPool) -> list[llm.Proposal]:
+    """Fire (item, model) pairs across the host pool. Successes append to the
+    frozen cache incrementally (crash-safe; the callback runs under the pool
+    lock). Returns the new Proposals."""
+    units = [
+        llm_pool.WorkUnit(model=_model_name(model),
+                          body=build_request(it, model), meta=(it, model))
+        for it, model in pending
+    ]
     new: list[llm.Proposal] = []
-    t0 = time.monotonic()
-    for i, it in enumerate(pending, 1):
-        p = _generate_one(it, model)
-        if p:
-            new.append(p)
-            resolved[p.key] = p
-        if i % progress_every == 0 or i == len(pending):
-            rate = i / max(time.monotonic() - t0, 1e-6)
-            eta = (len(pending) - i) / max(rate, 1e-6)
-            print(f"  [local] {model}: {i:,}/{len(pending):,}  "
-                  f"{rate:.1f} item/s  eta {eta/60:.1f} min  (ok={len(new):,})")
-        # flush incrementally so a long run is crash-safe and re-runs resume.
-        if len(new) >= 200:
-            llm.append_cache(new)
-            new = []
-    if new:
-        llm.append_cache(new)
-    return resolved
+    buf: list[llm.Proposal] = []
+
+    def on_result(meta: tuple[dict, str], resp: dict) -> None:  # under pool lock
+        it, model = meta
+        parsed = llm._parse_result_text(  # noqa: SLF001
+            (resp.get("message") or {}).get("content", ""))
+        if not parsed:
+            return
+        p = llm.Proposal(
+            key=it["key"], code=parsed["code"],
+            confidence=parsed.get("confidence", "low"),
+            rationale=parsed.get("rationale", ""),
+            model=model, input_hash=llm.cache_key(it, model),
+        )
+        new.append(p)
+        buf.append(p)
+        if len(buf) >= 50:           # incremental flush -> long runs are crash-safe
+            llm.append_cache(buf)
+            buf.clear()
+
+    stats = pool.run(units, on_result)
+    if buf:
+        llm.append_cache(buf)
+    print(f"[local] pool run: {stats['done']:,} ok, {stats['failed']:,} failed, "
+          f"{stats['skipped']:,} skipped (not pulled anywhere); "
+          f"{len(new):,} proposals cached")
+    return new
 
 
 def propose_local_panel(
     items: list[dict], *, models: tuple[str, ...] = LOCAL_JURY, dry_run: bool = True,
+    pool: llm_pool.HostPool | None = None,
 ) -> dict[str, dict[str, llm.Proposal]]:
     """Resolve ``items`` against a LOCAL panel -> ``{key: {model: Proposal}}``.
 
-    Fires one model at a time (Ollama swaps the resident model), so the whole panel
-    is one GPU's worth of serial work. Pair with ``jury.aggregate``."""
+    Reads the frozen cache first for every (item, model); with ``dry_run`` the
+    uncached remainder is skipped (pure cache read -> deterministic, offline-
+    safe). Otherwise ALL uncached (item, model) pairs are enqueued in ONE pool
+    run, so every host works concurrently (big jurors on the framework, phi4 on
+    the local GPU). Pair with ``jury.aggregate``."""
+    cache = llm.load_cache()
     out: dict[str, dict[str, llm.Proposal]] = {}
+    pending: list[tuple[dict, str]] = []
     for model in models:
-        for key, p in propose_local(items, model=model, dry_run=dry_run).items():
-            out.setdefault(key, {})[model] = p
+        for it in items:
+            h = llm.cache_key(it, model)
+            if h in cache:
+                out.setdefault(it["key"], {})[model] = cache[h]
+            else:
+                pending.append((it, model))
+    if not pending or dry_run:
+        return out
+    pool = pool or llm_pool.HostPool()
+    if not pool.hosts:
+        print(f"[local] no Ollama host reachable; {len(pending)} votes left uncached "
+              f"(start one with `ollama serve`, or bring up the framework).")
+        return out
+    print(f"[local] firing {len(pending):,} (item x juror) units across "
+          f"{len(pool.hosts)} host(s): {[h.name for h in pool.hosts]}")
+    for p in _fire(pending, pool):
+        out.setdefault(p.key, {})[p.model] = p
     return out
+
+
+def propose_local(
+    items: list[dict], *, model: str = LOCAL_BULK, dry_run: bool = True,
+    progress_every: int = 25,  # kept for API compat; the pool prints progress
+    pool: llm_pool.HostPool | None = None,
+) -> dict[str, llm.Proposal]:
+    """Resolve ``items`` against ONE local model via the host pool (single-model
+    case of propose_local_panel; same cache semantics)."""
+    panel = propose_local_panel(items, models=(model,), dry_run=dry_run, pool=pool)
+    return {key: votes[model] for key, votes in panel.items() if model in votes}
