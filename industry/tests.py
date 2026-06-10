@@ -154,6 +154,23 @@ def test_llm() -> None:
     sch = T.output_json_schema()
     check("schema reason-first", sch["required"][0] == "rationale"
           and list(sch["properties"])[0] == "rationale")
+    # torn trailing line (crash mid-flush) must not poison the cache load
+    import tempfile, os as _os
+    from pathlib import Path as _Path
+    _orig_cache = llm.CACHE_FILE
+    try:
+        fd, tmp = tempfile.mkstemp(suffix=".jsonl")
+        _os.close(fd)
+        llm.CACHE_FILE = _Path(tmp)
+        good = llm.Proposal(key="id:x", code="FIN", confidence="low",
+                            rationale="r", model="m", input_hash="h1")
+        llm.append_cache([good])
+        llm.CACHE_FILE.write_text(llm.CACHE_FILE.read_text() + '{"key": "id:y", "co')
+        loaded = llm.load_cache()
+        check("torn cache line skipped", list(loaded) == ["h1"])
+    finally:
+        llm.CACHE_FILE.unlink(missing_ok=True)
+        llm.CACHE_FILE = _orig_cache
 
 
 # ----------------------------------------------------------------- jury
@@ -224,29 +241,36 @@ def test_local_llm() -> None:
     # hosts in ONE pool run and land in the cache via the normal Proposal path.
     from . import llm_pool as P
     import json as _json
-    fired: list[tuple[str, str]] = []
-    def fake_chat(h, body):
-        fired.append((h.name, body["model"]))
-        return {"message": {"content": _json.dumps(
-            {"rationale": "test", "code": "FIN", "confidence": "low"})}}
-    fake_pool = P.HostPool(
-        [P.OllamaHost("a", "http://a", 1), P.OllamaHost("b", "http://b", 1)],
-        fetch_tags=lambda u: (["gemma3:27b", "qwen3:32b"] if u == "http://b"
-                              else ["phi4:14b"]),
-        transport=fake_chat)
-    items = [{"key": "id:pooltest", "display": "Pool Test Co"}]
-    out = local_llm.propose_local_panel(items, models=local_llm.LOCAL_JURY,
-                                        dry_run=False, pool=fake_pool)
-    check("panel fans out across hosts",
-          sorted(fired) == [("a", "phi4:14b"), ("b", "gemma3:27b"), ("b", "qwen3:32b")])
-    check("panel returns all jurors",
-          set(out.get("id:pooltest", {})) == set(local_llm.LOCAL_JURY))
-    check("votes are valid Proposals",
-          all(p.code == "FIN" for p in out["id:pooltest"].values()))
-    # the test wrote real cache entries -- prune them so the frozen cache stays clean
-    lines = [ln for ln in llm.CACHE_FILE.read_text().splitlines()
-             if '"id:pooltest"' not in ln]
-    llm.CACHE_FILE.write_text("\n".join(lines) + ("\n" if lines else ""))
+    import tempfile as _tempfile
+    import os as _os2
+    from pathlib import Path as _Path2
+    _orig_cache2 = llm.CACHE_FILE
+    try:
+        fd2, tmp2 = _tempfile.mkstemp(suffix=".jsonl")
+        _os2.close(fd2)
+        llm.CACHE_FILE = _Path2(tmp2)
+        fired: list[tuple[str, str]] = []
+        def fake_chat(h, body):
+            fired.append((h.name, body["model"]))
+            return {"message": {"content": _json.dumps(
+                {"rationale": "test", "code": "FIN", "confidence": "low"})}}
+        fake_pool = P.HostPool(
+            [P.OllamaHost("a", "http://a", 1), P.OllamaHost("b", "http://b", 1)],
+            fetch_tags=lambda u: (["gemma3:27b", "qwen3:32b"] if u == "http://b"
+                                  else ["phi4:14b"]),
+            transport=fake_chat)
+        items = [{"key": "id:pooltest", "display": "Pool Test Co"}]
+        out = local_llm.propose_local_panel(items, models=local_llm.LOCAL_JURY,
+                                            dry_run=False, pool=fake_pool)
+        check("panel fans out across hosts",
+              sorted(fired) == [("a", "phi4:14b"), ("b", "gemma3:27b"), ("b", "qwen3:32b")])
+        check("panel returns all jurors",
+              set(out.get("id:pooltest", {})) == set(local_llm.LOCAL_JURY))
+        check("votes are valid Proposals",
+              all(p.code == "FIN" for p in out.get("id:pooltest", {}).values()))
+    finally:
+        llm.CACHE_FILE.unlink(missing_ok=True)
+        llm.CACHE_FILE = _orig_cache2
 
 
 # ------------------------------------------------------------ llm host pool

@@ -71,7 +71,7 @@ def _model_name(model: str) -> str:
     return model.split("/", 1)[1] if model.startswith("ollama/") else model
 
 
-def build_request(item: dict, model: str) -> dict:
+def build_request(item: dict, model: str, *, schema: dict | None = None) -> dict:
     """The Ollama ``/api/chat`` body for one company (pure -- unit-testable)."""
     bare = _model_name(model)
     body = {
@@ -81,7 +81,7 @@ def build_request(item: dict, model: str) -> dict:
             {"role": "user", "content": llm.evidence_text(item)},
         ],
         "stream": False,
-        "format": T.output_json_schema(),     # enum-constrained, reason-first
+        "format": schema if schema is not None else T.output_json_schema(),     # enum-constrained, reason-first
         "keep_alive": "10m",                  # keep the model resident across items
         "options": {"temperature": 0, "seed": 7, "num_ctx": NUM_CTX},
     }
@@ -116,9 +116,10 @@ def _fire(pending: list[tuple[dict, str]], pool: llm_pool.HostPool) -> list[llm.
     """Fire (item, model) pairs across the host pool. Successes append to the
     frozen cache incrementally (crash-safe; the callback runs under the pool
     lock). Returns the new Proposals."""
+    schema = T.output_json_schema()
     units = [
         llm_pool.WorkUnit(model=_model_name(model),
-                          body=build_request(it, model), meta=(it, model))
+                          body=build_request(it, model, schema=schema), meta=(it, model))
         for it, model in pending
     ]
     new: list[llm.Proposal] = []
@@ -165,12 +166,14 @@ def propose_local_panel(
     cache = llm.load_cache()
     out: dict[str, dict[str, llm.Proposal]] = {}
     pending: list[tuple[dict, str]] = []
+    seen: set[str] = set()
     for model in models:
         for it in items:
             h = llm.cache_key(it, model)
             if h in cache:
                 out.setdefault(it["key"], {})[model] = cache[h]
-            else:
+            elif h not in seen:
+                seen.add(h)
                 pending.append((it, model))
     if not pending or dry_run:
         return out
