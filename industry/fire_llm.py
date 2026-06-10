@@ -6,9 +6,10 @@ the build stays reproducible. Defaults to a SAFE DRY-RUN preview (candidate coun
 + a cost estimate, no API call); pass ``--execute`` to submit the Batch API jobs.
 
 Modes (triage by where a jury earns its 3x cost -- LLM_JUDGE_JURY_REPORT §4.3):
-  tail       -- SINGLE cheap juror (Haiku) on the text-bearing residual the
-                deterministic stack abstained on. The bulk target; cheap.
-  jury       -- the FULL diverse panel (Haiku+Sonnet+Opus) on the top-N residual
+  tail       -- SINGLE cheap juror (Haiku / local: llama3.1:8b) on the text-bearing
+                residual the deterministic stack abstained on. The bulk target; cheap.
+  jury       -- the FULL diverse panel (cloud: Haiku+Sonnet+Opus; local:
+                gemma3:27b+qwen3:32b+phi4:14b) on the top-N residual
                 HEAD by frequency, where errors propagate to many rows and
                 ambiguity is worth resolving. Hierarchical-consensus aggregation
                 + agreement-based confidence happen at build time (jury.py).
@@ -202,7 +203,7 @@ def main() -> None:
 
     if not args.execute:
         print(f"\n[preview only] re-run with --execute to fire"
-              f"{' on the local GPU' if local else ' via the Batch API'}.")
+              f"{' on the Ollama host pool' if local else ' via the Batch API'}.")
         return
     if not items:
         print("nothing to do.")
