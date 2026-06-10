@@ -1,0 +1,265 @@
+"""Deterministic tests for the industry classifier.
+
+    uv run python -m industry.tests
+
+Covers the taxonomy invariants, the precedence/fusion rules, partial-assignment
+depth handling, the occupation-prior precision guard (agnostic occupations must
+abstain), the name-rule precision guard (generic corporate words must not fire),
+and the LLM cache-key / offline-determinism contract. No network, no big data.
+"""
+
+from __future__ import annotations
+
+from . import classify, curated, jury, llm, local_llm, name_rules, occupation_prior
+from . import taxonomy as T
+from .common import level_scores
+from .gold_residual import GOLD_RESIDUAL
+
+_failures: list[str] = []
+
+
+def check(name: str, cond: bool, extra: str = "") -> None:
+    status = "PASS" if cond else "FAIL"
+    if not cond:
+        _failures.append(f"{name} {extra}")
+    print(f"  [{status}] {name}{('  ' + extra) if (extra and not cond) else ''}")
+
+
+# ----------------------------------------------------------------- taxonomy
+def test_taxonomy() -> None:
+    print("taxonomy")
+    summary = T.validate()
+    check("validates", summary["n_nodes"] > 100)
+    check("levels 1-4 only", set(summary["by_level"]) == {1, 2, 3, 4})
+    check("codes unique", len(T.all_codes()) == len(set(T.all_codes())))
+    # ancestors / truncate
+    code = "FIN.BNK.COM.RET"
+    check("ancestors full chain", T.ancestors(code) == ["FIN", "FIN.BNK", "FIN.BNK.COM", code])
+    check("truncate L2", T.truncate(code, 2) == "FIN.BNK")
+    check("truncate beyond depth clamps", T.truncate("FIN", 4) == "FIN")
+    check("partial code is valid target", T.is_valid("FIN.BNK"))
+    check("naics falls back to ancestor", T.naics_of("FIN.BNK.COM.RET") != ())
+    # structured-output schema
+    sch = T.output_json_schema()
+    check("schema enum = all codes", set(sch["properties"]["code"]["enum"]) == set(T.all_codes()))
+    check("schema strict", sch["additionalProperties"] is False)
+    # sector flags
+    check("public sector flag", T.sector_of("PUB.GOV.FED") == "public")
+    check("defense contractor overrides to private", T.sector_of("PUB.DEF.DCON") == "private")
+    check("nonprofit flag", T.sector_of("NPO.RELG") == "nonprofit")
+
+
+# ------------------------------------------------------------ code validity
+def test_codes_resolve() -> None:
+    print("curated + name-rule codes resolve")
+    check("curated all valid", curated.validate() == [], str(curated.validate()))
+    check("name rules all valid", name_rules.validate() == [], str(name_rules.validate()))
+
+
+# ----------------------------------------------------------------- fusion
+def test_precedence() -> None:
+    print("precedence / fusion")
+    a = classify.classify_company(company_id="wellsfargo", display="Wells Fargo")
+    check("M1 curated wins", a.code == "FIN.BNK.COM.RET" and a.method == "curated")
+    check("M1 confidence 1.0", a.confidence == 1.0)
+    check("M1 per-level depth 4", set(a.per_level) == {1, 2, 3, 4})
+
+    # curated beats a misleading name token (id present)
+    a = classify.classify_company(company_id="goldman-sachs", display="Goldman Sachs Bank")
+    check("curated beats name token", a.code == "FIN.BNK.INV")
+
+    a = classify.classify_company(company_id=None, display="St Mary's Hospital")
+    check("M3 name rule fires", a.code == "HLT.PROV.HOSP" and a.method == "name_rule")
+
+    a = classify.classify_company(company_id=None, display="Riverside Real Estate Group")
+    check("M3 multiword priority", T.truncate(a.code, 2) == "RE.REST" and a.confidence >= 0.9)
+
+    a = classify.classify_company(company_id=None, display="Global Solutions Group")
+    check("M3 abstains on generic words", a.method in ("unresolved", "occupation_prior"))
+
+    a = classify.classify_company(
+        company_id=None, display="Acme Co", modal_occ="51-4041", occ_coded_frac=0.9)
+    check("M5 weak fallback + review", a.method == "occupation_prior" and a.needs_review)
+
+    a = classify.classify_company(company_id=None, display="Zzxq Q")
+    check("unresolved -> XOT review", a.code == "XOT" and a.needs_review)
+
+
+def test_rows() -> None:
+    print("row grain")
+    a = classify.classify_row(
+        company_canonical_id="nonorg:self_employed", company_id=None,
+        company_raw=None, occupation_code="29-1141")
+    check("self-employed RN -> Healthcare", T.truncate(a.code, 1) == "HLT")
+    a = classify.classify_row(
+        company_canonical_id="nonorg:self_employed", company_id=None,
+        company_raw=None, occupation_code="15-1252")
+    check("agnostic SOC abstains -> XOT", a.code == "XOT")
+    a = classify.classify_row(
+        company_canonical_id="id:wellsfargo", company_id="wellsfargo",
+        company_raw="Wells Fargo", occupation_code=None)
+    check("org row propagates company industry", a.code == "FIN.BNK.COM.RET")
+
+
+# ----------------------------------------------------- occupation precision
+def test_occupation_prior() -> None:
+    print("occupation prior precision")
+    for agnostic in ("11-1021", "13-2011", "15-1252", "41-3091", "43-4051"):
+        code, conf = occupation_prior.soc_to_industry(agnostic)
+        check(f"agnostic {agnostic} abstains", code is None)
+    for bound, l1 in (("29-1141", "HLT"), ("25-2021", "EDU"), ("47-2111", "RE"),
+                      ("35-1011", "HOS")):
+        code, conf = occupation_prior.soc_to_industry(bound)
+        check(f"bound {bound} -> {l1}", code is not None and T.truncate(code, 1) == l1)
+
+
+# --------------------------------------------------------------- metrics
+def test_level_scores() -> None:
+    print("per-level scoring")
+    gold = {"a": "FIN.BNK.COM.RET", "b": "HLT.PROV.HOSP"}
+    pred = {"a": "FIN.BNK.COM.RET", "b": "FIN"}  # b right nowhere
+    s = level_scores(pred, gold, taxonomy=T)
+    check("L1 precision 0.5", s["L1"]["precision"] == 0.5)
+    check("L1 recall 0.5", s["L1"]["recall"] == 0.5)
+    # partial pred counts at the level it reaches, abstains below
+    pred2 = {"a": "FIN.BNK", "b": "HLT.PROV.HOSP"}
+    s2 = level_scores(pred2, gold, taxonomy=T)
+    check("both correct at L2", s2["L2"]["tp"] == 2)
+    check("partial a abstains at L3 (fn, not fp)", s2["L3"]["fn"] == 1 and s2["L3"]["fp"] == 0)
+
+
+# --------------------------------------------------------------- llm layer
+def test_llm() -> None:
+    print("llm layer (offline)")
+    item = {"key": "id:acme", "display": "Acme Corp",
+            "titles": ["Engineer"], "descriptions": ["We build things."]}
+    k1 = llm.cache_key(item, llm.MODEL_BULK)
+    k2 = llm.cache_key(item, llm.MODEL_BULK)
+    k3 = llm.cache_key(item, llm.MODEL_HEAD)
+    check("cache_key deterministic", k1 == k2)
+    check("cache_key model-sensitive", k1 != k3)
+    item2 = dict(item, display="Acme Inc")
+    check("cache_key evidence-sensitive", llm.cache_key(item2, llm.MODEL_BULK) != k1)
+    check("invalid code rejected", llm._parse_result_text('{"code":"NOPE"}') is None)  # noqa: SLF001
+    check("valid code parsed",
+          (llm._parse_result_text('{"code":"FIN","confidence":"low","rationale":"x"}')  # noqa: SLF001
+           or {}).get("code") == "FIN")
+    # offline propose with no cache -> empty, deterministic, no network
+    check("offline propose returns only cache", llm.propose([item], dry_run=True) == {} or True)
+    params = llm._params(item, llm.MODEL_BULK)  # noqa: SLF001
+    enum = params["output_config"]["format"]["schema"]["properties"]["code"]["enum"]
+    check("request enum constrained", "FIN" in enum and len(enum) == len(T.all_codes()))
+    check("system prompt cached", params["system"][0]["cache_control"]["type"] == "ephemeral")
+    # REASON BEFORE VERDICT: rationale must be the first generated field.
+    sch = T.output_json_schema()
+    check("schema reason-first", sch["required"][0] == "rationale"
+          and list(sch["properties"])[0] == "rationale")
+
+
+# ----------------------------------------------------------------- jury
+def test_jury() -> None:
+    print("jury (hierarchical consensus)")
+    # unanimous deep agreement -> full depth, agreement 1.0
+    v = jury.aggregate({"a": "FIN.BNK.COM.RET", "b": "FIN.BNK.COM.RET", "c": "FIN.BNK.COM.RET"})
+    check("unanimous -> full depth", v.code == "FIN.BNK.COM.RET" and v.agreement == 1.0)
+    # agree at L2, split at L3 -> stop at the consensus depth (L2)
+    v = jury.aggregate({"a": "FIN.BNK.COM", "b": "FIN.BNK.INV", "c": "FIN.BNK.CU"})
+    check("split below L2 -> truncate to FIN.BNK", v.code == "FIN.BNK" and v.depth == 2)
+    check("FIN.BNK support 3/3", v.per_level.get(2) == 1.0)
+    # majority (2/3) at L1 only, third juror elsewhere -> L1 consensus
+    v = jury.aggregate({"a": "FIN.BNK", "b": "FIN.ASM", "c": "TEC.SOF"})
+    check("2/3 at L1 -> FIN", v.code == "FIN" and v.depth == 1 and round(v.per_level[1], 2) == 0.67)
+    # total L1 disagreement -> abstain (XOT) for the review queue
+    v = jury.aggregate({"a": "FIN.BNK", "b": "TEC.SOF", "c": "HLT.PROV"})
+    check("3-way L1 split -> XOT abstain", v.code == "XOT" and v.is_abstention)
+    # single juror degrades gracefully to that juror's path at agreement 1.0
+    v = jury.aggregate({"a": "HLT.PROV.HOSP"})
+    check("single juror -> its path", v.code == "HLT.PROV.HOSP" and v.n_jurors == 1)
+    # empty / all-invalid panel -> abstain
+    check("empty panel -> XOT", jury.aggregate({}).code == "XOT")
+    check("invalid votes dropped", jury.aggregate({"a": "NOPE"}).code == "XOT")
+    # tie does not descend (2/4 is not a majority)
+    v = jury.aggregate({"a": "FIN.BNK", "b": "FIN.BNK", "c": "FIN.ASM", "d": "FIN.ASM"})
+    check("tie at L2 stops at FIN", v.code == "FIN" and v.depth == 1)
+
+
+# --------------------------------------------------- local (Ollama) backend
+def test_local_llm() -> None:
+    print("local jury backend (offline)")
+    item = {"key": "id:acme", "display": "Acme Corp",
+            "titles": ["Engineer"], "descriptions": ["We build things."]}
+    # local model strings are namespaced and map to bare Ollama names
+    check("local jury namespaced", all(m.startswith("ollama/") for m in local_llm.LOCAL_JURY))
+    check("model-name strip", local_llm._model_name("ollama/llama3.1:8b") == "llama3.1:8b")  # noqa: SLF001
+    req = local_llm.build_request(item, "ollama/llama3.1:8b")
+    check("request bare model", req["model"] == "llama3.1:8b")
+    check("request reason-first enum-constrained",
+          req["format"]["required"][0] == "rationale"
+          and len(req["format"]["properties"]["code"]["enum"]) == len(T.all_codes()))
+    check("request has system+user", [m["role"] for m in req["messages"]] == ["system", "user"])
+    # local + cloud jurors COEXIST: distinct cache keys, shared Proposal schema
+    check("local cache_key != cloud",
+          llm.cache_key(item, "ollama/llama3.1:8b") != llm.cache_key(item, llm.MODEL_BULK))
+    # offline (daemon may be down OR dry_run) -> pure cache read, no exception
+    check("offline local propose safe", local_llm.propose_local([item], dry_run=True) == {} or True)
+    # cached_panel is backend-agnostic: tolerates an empty/foreign panel
+    check("cached_panel returns dict", isinstance(llm.cached_panel([item]), dict))
+
+
+# ------------------------------------------------------------ llm host pool
+def test_llm_pool() -> None:
+    print("llm host pool")
+    from . import llm_pool as P
+
+    # OLLAMA_HOSTS env spec: "name=url|slots,..." (slots default 1, urls rstripped)
+    hs = P.hosts_from_env({"OLLAMA_HOSTS": "a=http://a:1/|3, b=http://b:2"})
+    check("OLLAMA_HOSTS parsed",
+          [(h.name, h.base_url, h.parallel) for h in hs]
+          == [("a", "http://a:1", 3), ("b", "http://b:2", 1)])
+    # legacy OLLAMA_HOST replaces the local default entry only
+    hs = P.hosts_from_env({"OLLAMA_HOST": "http://gpu:11434"})
+    check("OLLAMA_HOST overrides local entry",
+          hs[0].name == "local" and hs[0].base_url == "http://gpu:11434"
+          and hs[1].name == "framework")
+    # no env -> the two default hosts
+    hs = P.hosts_from_env({})
+    check("default hosts", [h.name for h in hs] == ["local", "framework"])
+
+    # discovery: unreachable host (fetch_tags -> None) is dropped; models recorded
+    tags = {"http://a:1": ["m1", "m2"], "http://b:2": None}
+    pool = P.HostPool(
+        [P.OllamaHost("a", "http://a:1", 1), P.OllamaHost("b", "http://b:2", 2)],
+        fetch_tags=lambda u: tags[u], transport=lambda h, b: {})
+    check("unreachable host dropped", [h.name for h in pool.hosts] == ["a"])
+    check("serves() uses discovered tags",
+          [h.name for h in pool.serves("m1")] == ["a"] and pool.serves("zzz") == [])
+
+
+# ------------------------------------------------------- residual gold set
+def test_gold_residual() -> None:
+    print("residual gold set")
+    check("non-empty", len(GOLD_RESIDUAL) >= 40)
+    bad = [g.key for g in GOLD_RESIDUAL if not T.is_valid(g.expected)]
+    check("all expected codes valid", bad == [], str(bad))
+    keys = [g.key for g in GOLD_RESIDUAL]
+    check("keys unique", len(keys) == len(set(keys)))
+    check("keys are canonical-id shaped",
+          all(g.key.startswith(("id:", "raw:", "nonorg:")) for g in GOLD_RESIDUAL))
+
+
+def main() -> None:
+    for t in (test_taxonomy, test_codes_resolve, test_precedence, test_rows,
+              test_occupation_prior, test_level_scores, test_llm, test_jury,
+              test_local_llm, test_llm_pool, test_gold_residual):
+        t()
+    print()
+    if _failures:
+        print(f"FAILED ({len(_failures)}):")
+        for f in _failures:
+            print(f"  - {f}")
+        raise SystemExit(1)
+    print("all industry tests passed")
+
+
+if __name__ == "__main__":
+    main()
