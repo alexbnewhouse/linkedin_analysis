@@ -23,7 +23,17 @@ from career_clean.final_hybrid import (
 )
 from career_clean.occupation import load_onet
 from career_clean.occupation import canon_occupation
-from edu_clean.final_hybrid import canon_field, canon_title_value, safe_norm
+from edu_clean.final_hybrid import (
+    DEGREE_LEVEL_ORDINAL,
+    FIELD_CIP_ALIASES,
+    FIELD_CIP_OVERRIDES,
+    canon_field,
+    canon_title_value,
+    degree_field_signal,
+    parse_degree,
+    raw_id,
+    safe_norm,
+)
 
 
 def assert_equal(actual, expected, label: str) -> None:
@@ -62,6 +72,95 @@ def check_education() -> None:
     assert_equal(confidence, 1.0, "row-level school confidence")
     assert_equal(safe_norm("Universidade de Sao Paulo"), "universidade de sao paulo", "ASCII norm")
     assert_equal(safe_norm("Universidade de São Paulo"), "universidade de sao paulo", "accent fold")
+
+    # --- junk / nullish extensions (audit Finding 5) ---
+    for junk in ["4.0", "12", "A", "3.8 GPA", "12th", "9-12", "Junior", "Cum Laude", "Graduated"]:
+        assert_equal(raw_id("field_raw", junk), "field_raw:__blank__", f"junk field {junk!r}")
+    assert_not_equal(raw_id("field_raw", "A Levels"), "field_raw:__blank__", "'A Levels' is not junk")
+
+    # --- degree taxonomy tail categories (audit Finding 5) ---
+    assert_equal(parse_degree("Undergraduate")[0], "undergraduate:generic", "Undergraduate level")
+    assert_equal(parse_degree("Graduate")[0], "graduate:generic", "Graduate level")
+    assert_equal(parse_degree("Postgraduate Degree")[0], "postgraduate:generic", "Postgraduate level")
+    assert_equal(parse_degree("Minor")[0], "minor:generic", "Minor category")
+    assert_equal(parse_degree("Study Abroad")[0], "study_abroad:generic", "Study Abroad category")
+    assert_equal(parse_degree("High School Graduate")[0], "high_school:generic", "HS graduate stays HS")
+    assert_not_equal(parse_degree("Minority Leadership Program")[0], "minor:generic",
+                     "'Minority' must not parse as minor")
+    assert_equal(parse_degree("Graduated")[0], "degree_raw:__blank__", "'Graduated' is junk, not a level")
+    # ordinal sanity: HS=1 ... doctorate=7; minor/study_abroad carry no level
+    assert_equal(DEGREE_LEVEL_ORDINAL["high_school"], 1, "HS ordinal")
+    assert_equal(DEGREE_LEVEL_ORDINAL["bachelor"], 4, "bachelor ordinal")
+    assert_equal(DEGREE_LEVEL_ORDINAL["doctorate"], 7, "doctorate ordinal")
+    for lvl in ("minor", "study_abroad"):
+        if lvl in DEGREE_LEVEL_ORDINAL:
+            raise AssertionError(f"{lvl} must not carry a level ordinal")
+
+    # --- degree -> field cross-pass (audit Finding 2) ---
+    assert_equal(degree_field_signal("Computer Science"), ("11.07", True), "degree cell is a CIP title")
+    assert_equal(
+        degree_field_signal("Business Administration and Management, General"),
+        ("52.0201", True),
+        "verbatim CIP title in degree cell",
+    )
+    assert_equal(
+        degree_field_signal("Bachelor of Science in Computer Science"),
+        ("11.07", False),
+        "subject extracted from 'Bachelor of X in Y'",
+    )
+    assert_equal(degree_field_signal("Bachelor of Science - BS"), None, "plain degree has no field signal")
+    assert_equal(degree_field_signal("MBA"), None, "abbrev degree has no field signal")
+    assert_equal(parse_degree("Computer Science"),
+                 ("degree_raw:computer science", "raw", 0.5),
+                 "parse_degree itself leaves the swap to canon_degree")
+
+    # --- 2-digit CIP family admission + alias expansion (audit Finding 3) ---
+    fields = canon_field(
+        [
+            ("BUSINESS, MANAGEMENT, MARKETING, AND RELATED SUPPORT SERVICES", 1),
+            ("Social Sciences", 1),
+            ("Engineering", 1),
+            ("English Language and Literature/Letters", 1),
+            ("English Language and Literature, General", 1),
+            ("Data Science", 1),
+            ("Business Analytics", 1),
+            ("Cybersecurity", 1),
+            ("Cyber Security", 1),
+            ("English", 1),
+            ("Geology", 1),
+            ("Theatre", 1),
+            ("Theater", 1),
+        ]
+    ).mapping
+    assert_equal(
+        fields["BUSINESS, MANAGEMENT, MARKETING, AND RELATED SUPPORT SERVICES"],
+        "cip:52",
+        "verbatim CIP family title -> family code",
+    )
+    assert_equal(fields["Social Sciences"], "cip:45.01", "family must not displace token match")
+    assert_equal(fields["Engineering"], "cip:14.01", "family must not displace 'Engineering, General'")
+    assert_equal(
+        fields["English Language and Literature/Letters"],
+        fields["English Language and Literature, General"],
+        "family-23 title keeps merging with the 23.01 group (gold)",
+    )
+    assert_equal(fields["Data Science"], "cip:30.70", "CIP 2020 Data Science")
+    assert_equal(fields["Business Analytics"], "cip:30.7102", "CIP 2020 Business Analytics")
+    assert_equal(fields["Cybersecurity"], fields["Cyber Security"], "cybersecurity alias variants merge")
+    assert_equal(fields["English"], "cip:23.01", "English alias")
+    assert_equal(fields["Geology"], "cip:40.0601", "Geology alias")
+    assert_equal(fields["Theatre"], fields["Theater"], "Theatre/Theater merge")
+
+    # every curated alias/override target must exist in the CIP reference
+    import csv as _csv
+
+    from edu_clean.humanities import CIP_CSV
+
+    with CIP_CSV.open(newline="", encoding="utf-8") as fh:
+        known = {(row.get("CIPCode") or "").strip() for row in _csv.DictReader(fh)}
+    for label, code in {**FIELD_CIP_ALIASES, **FIELD_CIP_OVERRIDES}.items():
+        if code not in known:
+            raise AssertionError(f"alias/override target {code!r} for {label!r} not in cip_codes.csv")
 
 
 def check_career() -> None:
