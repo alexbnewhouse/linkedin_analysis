@@ -145,7 +145,7 @@ def test_llm() -> None:
           (llm._parse_result_text('{"code":"FIN","confidence":"low","rationale":"x"}')  # noqa: SLF001
            or {}).get("code") == "FIN")
     # offline propose with no cache -> empty, deterministic, no network
-    check("offline propose returns only cache", llm.propose([item], dry_run=True) == {} or True)
+    check("offline propose returns only cache", isinstance(llm.propose([item], dry_run=True), dict))
     params = llm._params(item, llm.MODEL_BULK)  # noqa: SLF001
     enum = params["output_config"]["format"]["schema"]["properties"]["code"]["enum"]
     check("request enum constrained", "FIN" in enum and len(enum) == len(T.all_codes()))
@@ -201,7 +201,7 @@ def test_local_llm() -> None:
     check("local cache_key != cloud",
           llm.cache_key(item, "ollama/llama3.1:8b") != llm.cache_key(item, llm.MODEL_BULK))
     # offline (daemon may be down OR dry_run) -> pure cache read, no exception
-    check("offline local propose safe", local_llm.propose_local([item], dry_run=True) == {} or True)
+    check("offline local propose safe", isinstance(local_llm.propose_local([item], dry_run=True), dict))
     # cached_panel is backend-agnostic: tolerates an empty/foreign panel
     check("cached_panel returns dict", isinstance(llm.cached_panel([item]), dict))
 
@@ -224,6 +224,15 @@ def test_llm_pool() -> None:
     # no env -> the two default hosts
     hs = P.hosts_from_env({})
     check("default hosts", [h.name for h in hs] == ["local", "framework"])
+
+    # malformed env: trailing comma ignored; missing '=' fails loudly
+    hs = P.hosts_from_env({"OLLAMA_HOSTS": "a=http://a:1,"})
+    check("trailing comma ignored", [h.name for h in hs] == ["a"])
+    try:
+        P.hosts_from_env({"OLLAMA_HOSTS": "http://a:1"})
+        check("missing '=' raises", False)
+    except ValueError:
+        check("missing '=' raises", True)
 
     # discovery: unreachable host (fetch_tags -> None) is dropped; models recorded
     tags = {"http://a:1": ["m1", "m2"], "http://b:2": None}

@@ -141,7 +141,13 @@ def hosts_from_env(env: dict[str, str] | None = None) -> list[OllamaHost]:
     if spec:
         out: list[OllamaHost] = []
         for entry in spec.split(","):
-            name, _, rest = entry.strip().partition("=")
+            entry = entry.strip()
+            if not entry:
+                continue
+            name, _, rest = entry.partition("=")
+            if not rest:
+                raise ValueError(
+                    f"bad OLLAMA_HOSTS entry: {entry!r} (expected name=url|slots)")
             url, _, slots = rest.partition("|")
             out.append(OllamaHost(name=name, base_url=url.rstrip("/"),
                                   parallel=int(slots or 1)))
