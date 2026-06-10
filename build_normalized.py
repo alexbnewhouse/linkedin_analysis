@@ -49,24 +49,6 @@ from career_clean.common import EXP, POS, ROOT, load_vocab as load_career_vocab
 from edu_clean import final_hybrid as edu_final
 from edu_clean.common import EDU, load_vocab as load_edu_vocab
 
-# Data snapshot anchor (paths/common.SNAPSHOT_DATE = 2025-02-19). Education end
-# years beyond this are expected/in-progress graduations (audit finding 5):
-# they get an `in_progress` flag instead of being silently dropped downstream.
-EDU_SNAPSHOT_YEAR = 2025
-
-# Sortable degree-level ordinal (HS=1 .. doctorate=7) rendered as a SQL CASE on
-# the degree canonical id's level prefix (audit finding 4). Single source of
-# truth: edu_clean.final_hybrid.DEGREE_LEVEL_ORDINAL.
-_DEGREE_LEVEL_CASE = (
-    "CASE split_part(degree_canonical_id, ':', 1) "
-    + " ".join(
-        f"WHEN '{lvl}' THEN {n}"
-        for lvl, n in edu_final.DEGREE_LEVEL_ORDINAL.items()
-    )
-    + " ELSE NULL END"
-)
-
-
 @dataclass
 class StepTiming:
     name: str
@@ -210,7 +192,6 @@ def build_mappings(out: Path, timings: list[StepTiming], sections: str = "all") 
     mappings.mkdir(parents=True, exist_ok=True)
     paths = {
         "edu_degree": mappings / "edu_degree.parquet",
-        "edu_degree_field": mappings / "edu_degree_field.parquet",
         "edu_school": mappings / "edu_school.parquet",
         "edu_field": mappings / "edu_field.parquet",
         "career_company": mappings / "career_company.parquet",
@@ -227,17 +208,6 @@ def build_mappings(out: Path, timings: list[StepTiming], sections: str = "all") 
             rows = _write_value_mapping(paths["edu_degree"], result)
             timings[-1].rows = rows
             timings[-1].path = str(paths["edu_degree"])
-            del result
-            gc.collect()
-
-        with StepTimer("education degree->field mapping", timings):
-            # Audit finding 2: degree cells that are actually fields of study
-            # (column swaps, "Bachelor of X in Y" subjects) emit a CIP field
-            # signal (method 'cip_from_degree') keyed by the raw degree value.
-            result = edu_final.degree_field_mapping(load_edu_vocab("degree"))
-            rows = _write_value_mapping(paths["edu_degree_field"], result)
-            timings[-1].rows = rows
-            timings[-1].path = str(paths["edu_degree_field"])
             del result
             gc.collect()
 

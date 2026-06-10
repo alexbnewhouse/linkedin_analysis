@@ -348,11 +348,96 @@ def check_self_employed_clusters() -> None:
     assert_equal(method, "unspecified", "bare Business Owner -> unspecified")
 
 
+def check_location() -> None:
+    """Finding 6: deterministic head gazetteer (country -> US state -> city/
+    metro). Precision-first: anything unrecognized stays unparsed, the raw
+    string is always preserved in career_steps."""
+    from career_clean.location import parse_location
+
+    # canonical 3-segment form
+    assert_equal(
+        parse_location("New York, New York, United States"),
+        ("US", "NY", "new york", "city_state_country", 1.0),
+        "city, state, country",
+    )
+    # 2-letter USPS code form
+    assert_equal(
+        parse_location("Chicago, IL"),
+        ("US", "IL", "chicago", "city_state", 1.0),
+        "city, 2-letter state",
+    )
+    # state spelled out, no country
+    assert_equal(
+        parse_location("Houston, Texas"),
+        ("US", "TX", "houston", "city_state", 1.0),
+        "city, full state name",
+    )
+    # '<State> Area' suffix form
+    assert_equal(
+        parse_location("Houston, Texas Area"),
+        ("US", "TX", "houston", "city_state", 1.0),
+        "city, state + Area suffix",
+    )
+    # state-only and country-only
+    assert_equal(parse_location("California, United States"),
+                 ("US", "CA", None, "state_country", 1.0), "state, country")
+    assert_equal(parse_location("New Jersey"),
+                 ("US", "NJ", None, "state", 1.0), "bare state")
+    assert_equal(parse_location("United States"),
+                 ("US", None, None, "country", 1.0), "bare country")
+    assert_equal(parse_location("India"),
+                 ("IN", None, None, "country", 1.0), "bare non-US country")
+    # metro head gazetteer
+    assert_equal(parse_location("Greater New York City Area"),
+                 ("US", "NY", "new york", "metro", 0.95), "Greater X Area")
+    assert_equal(parse_location("San Francisco Bay Area"),
+                 ("US", "CA", "san francisco", "metro", 0.95), "Bay Area")
+    assert_equal(parse_location("New York City Metropolitan Area"),
+                 ("US", "NY", "new york", "metro", 0.95), "X Metropolitan Area")
+    assert_equal(parse_location("Washington D.C. Metro Area"),
+                 ("US", "DC", "washington", "metro", 0.95), "DC metro")
+    assert_equal(parse_location("Dallas/Fort Worth Area"),
+                 ("US", "TX", "dallas-fort worth", "metro", 0.95), "DFW slash form")
+    assert_equal(parse_location("Dallas-Fort Worth Metroplex"),
+                 ("US", "TX", "dallas-fort worth", "metro", 0.95), "DFW metroplex")
+    assert_equal(parse_location("Greater Minneapolis-St. Paul Area"),
+                 ("US", "MN", "minneapolis-st. paul", "metro", 0.95), "MSP metro")
+    # the same place converges across spellings (the audit's New York example)
+    ny = {"New York, NY", "New York, New York, United States",
+          "Greater New York City Area", "New York City Metropolitan Area"}
+    assert_equal(
+        {parse_location(v)[:3] for v in ny},
+        {("US", "NY", "new york")},
+        "New York variants converge to one (country, state, city)",
+    )
+    # bare-city aliases (curated, unambiguous head only)
+    assert_equal(parse_location("NYC"),
+                 ("US", "NY", "new york", "city_alias", 0.9), "NYC alias")
+    assert_equal(parse_location("Chicago"),
+                 ("US", "IL", "chicago", "city_alias", 0.9), "bare Chicago")
+    # non-US city, country
+    assert_equal(parse_location("London, United Kingdom"),
+                 ("GB", None, "london", "city_country", 1.0), "London UK")
+    assert_equal(parse_location("Hyderabad, Telangana, India"),
+                 ("IN", None, "hyderabad", "city_country", 1.0), "Indian 3-segment")
+    # remote / empty / junk stay honest
+    assert_equal(parse_location("Remote"), (None, None, None, "remote", 1.0), "Remote")
+    assert_equal(parse_location(None), (None, None, None, "empty", 0.0), "None")
+    assert_equal(parse_location("  "), (None, None, None, "empty", 0.0), "blank")
+    assert_equal(parse_location("Somewhere Nice"),
+                 (None, None, None, "unparsed", 0.0), "unknown stays unparsed")
+    # precision guards: lowercase 2-letter words are NOT state codes; 'Georgia'
+    # the country is shadowed by the state (US-centric corpus, accepted)
+    assert_equal(parse_location("Make it, in time")[3], "unparsed",
+                 "lowercase 'in' is not Indiana")
+
+
 def main() -> None:
     check_education()
     check_career()
     check_seniority_rank_and_display()
     check_self_employed_clusters()
+    check_location()
     print("normalization regression checks passed")
 
 
