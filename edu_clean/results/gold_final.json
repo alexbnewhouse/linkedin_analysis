@@ -1,0 +1,162 @@
+{
+  "degree": {
+    "n_pairs": 43,
+    "ref_row_pct": 85.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "accuracy": 1.0,
+    "tp": 23,
+    "fp": 0,
+    "tn": 20,
+    "fn": 0,
+    "missing": 0,
+    "row_pct_by_method": {
+      "cip_from_degree": 4.5,
+      "raw": 10.5,
+      "taxonomy": 82.8,
+      "taxonomy_abbrev": 2.2
+    },
+    "per_method_pairs": {
+      "cip_from_degree+taxonomy": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 1,
+        "fn": 0,
+        "precision": null
+      },
+      "cip_from_degree+taxonomy_abbrev": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 1,
+        "fn": 0,
+        "precision": null
+      },
+      "taxonomy": {
+        "tp": 22,
+        "fp": 0,
+        "tn": 18,
+        "fn": 0,
+        "precision": 1.0
+      },
+      "taxonomy+taxonomy_abbrev": {
+        "tp": 1,
+        "fp": 0,
+        "tn": 0,
+        "fn": 0,
+        "precision": 1.0
+      }
+    },
+    "errors": []
+  },
+  "title": {
+    "n_pairs": 12,
+    "ref_row_pct": 88.2,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "accuracy": 1.0,
+    "tp": 4,
+    "fp": 0,
+    "tn": 8,
+    "fn": 0,
+    "missing": 0,
+    "row_pct_by_method": {
+      "raw": 10.7,
+      "slug": 87.0,
+      "slug_crosswalk": 0.7,
+      "typo": 1.2,
+      "typo_to_slug": 0.4
+    },
+    "per_method_pairs": {
+      "slug": {
+        "tp": 4,
+        "fp": 0,
+        "tn": 8,
+        "fn": 0,
+        "precision": 1.0
+      }
+    },
+    "errors": []
+  },
+  "field": {
+    "n_pairs": 79,
+    "ref_row_pct": 67.7,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "accuracy": 1.0,
+    "tp": 42,
+    "fp": 0,
+    "tn": 37,
+    "fn": 0,
+    "missing": 0,
+    "row_pct_by_method": {
+      "cip_alias": 10.1,
+      "cip_exact": 56.6,
+      "cip_override": 0.5,
+      "raw": 23.1,
+      "typo": 9.2,
+      "typo_to_cip": 0.4
+    },
+    "per_method_pairs": {
+      "cip_alias": {
+        "tp": 18,
+        "fp": 0,
+        "tn": 7,
+        "fn": 0,
+        "precision": 1.0
+      },
+      "cip_alias+cip_exact": {
+        "tp": 8,
+        "fp": 0,
+        "tn": 12,
+        "fn": 0,
+        "precision": 1.0
+      },
+      "cip_alias+raw": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 2,
+        "fn": 0,
+        "precision": null
+      },
+      "cip_exact": {
+        "tp": 11,
+        "fp": 0,
+        "tn": 14,
+        "fn": 0,
+        "precision": 1.0
+      },
+      "cip_exact+cip_override": {
+        "tp": 2,
+        "fp": 0,
+        "tn": 0,
+        "fn": 0,
+        "precision": 1.0
+      },
+      "cip_exact+raw": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 2,
+        "fn": 0,
+        "precision": null
+      },
+      "cip_override": {
+        "tp": 1,
+        "fp": 0,
+        "tn": 0,
+        "fn": 0,
+        "precision": 1.0
+      },
+      "raw+typo": {
+        "tp": 2,
+        "fp": 0,
+        "tn": 0,
+        "fn": 0,
+        "precision": 1.0
+      }
+    },
+    "errors": []
+  }
+}
