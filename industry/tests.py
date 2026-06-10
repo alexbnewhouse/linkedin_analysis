@@ -243,6 +243,69 @@ def test_llm_pool() -> None:
     check("serves() uses discovered tags",
           [h.name for h in pool.serves("m1")] == ["a"] and pool.serves("zzz") == [])
 
+    import time as _time
+
+    # affinity + work stealing: "big" only on b; "small" on both. Host a is
+    # slowed so b provably steals "small" after draining "big".
+    runs: list[tuple[str, str]] = []   # (host, model) per executed unit
+    def rec(h, body):
+        runs.append((h.name, body["model"]))
+        _time.sleep(0.005 if h.name == "a" else 0)
+        return {"message": {"content": "ok"}}
+    tag2 = {"http://a": ["small"], "http://b": ["small", "big"]}
+    pool = P.HostPool([P.OllamaHost("a", "http://a", 1), P.OllamaHost("b", "http://b", 1)],
+                      fetch_tags=lambda u: tag2[u], transport=rec)
+    got: list[object] = []
+    units = [P.WorkUnit("big", {"model": "big"}, meta=i) for i in range(5)] \
+          + [P.WorkUnit("small", {"model": "small"}, meta=5 + i) for i in range(40)]
+    res = pool.run(units, lambda meta, r: got.append(meta), progress_every=10**9)
+    check("pool: all units done", res == {"done": 45, "failed": 0, "skipped": 0}
+          and sorted(got) == list(range(45)))
+    check("pool: big pinned to b", {h for h, m in runs if m == "big"} == {"b"})
+    check("pool: small stolen by both", {h for h, m in runs if m == "small"} == {"a", "b"})
+
+    # unit for a model no live host serves -> skipped, not hung
+    res = pool.run([P.WorkUnit("nowhere", {"model": "nowhere"})], lambda m, r: None)
+    check("pool: unservable skipped", res == {"done": 0, "failed": 0, "skipped": 1})
+
+    # same-host retry: first call raises, second succeeds
+    calls = {"n": 0}
+    def flaky(h, body):
+        calls["n"] += 1
+        if calls["n"] == 1:
+            raise OSError("transient")
+        return {"message": {"content": "ok"}}
+    pool = P.HostPool([P.OllamaHost("a", "http://a", 1)],
+                      fetch_tags=lambda u: ["m"], transport=flaky)
+    res = pool.run([P.WorkUnit("m", {"model": "m"})], lambda m, r: None)
+    check("pool: same-host retry", res["done"] == 1 and calls["n"] == 2)
+
+    # cross-host rescue + mark-down: a always fails, b always works. All 10
+    # units must finish on b, and a must be marked down after 5 consecutive
+    # failures (bounding its wasted calls to <= 2 attempts x 5 units).
+    a_calls = {"n": 0}
+    def ab(h, body):
+        if h.name == "a":
+            a_calls["n"] += 1
+            raise OSError("a is broken")
+        return {"message": {"content": "ok"}}
+    tag3 = {"http://a": ["m"], "http://b": ["m"]}
+    pool = P.HostPool([P.OllamaHost("a", "http://a", 1), P.OllamaHost("b", "http://b", 1)],
+                      fetch_tags=lambda u: tag3[u], transport=ab)
+    res = pool.run([P.WorkUnit("m", {"model": "m"}, meta=i) for i in range(10)],
+                   lambda m, r: None)
+    check("pool: failing host's work rescued", res["done"] == 10 and res["failed"] == 0)
+    check("pool: host marked down bounds damage", a_calls["n"] <= 10)
+
+    # every host fails -> all units fail, run still terminates
+    def dead(h, body):
+        raise OSError("all dead")
+    pool = P.HostPool([P.OllamaHost("a", "http://a", 1)],
+                      fetch_tags=lambda u: ["m"], transport=dead)
+    res = pool.run([P.WorkUnit("m", {"model": "m"}, meta=i) for i in range(3)],
+                   lambda m, r: None)
+    check("pool: total failure terminates", res["done"] == 0 and res["failed"] == 3)
+
 
 # ------------------------------------------------------- residual gold set
 def test_gold_residual() -> None:

@@ -131,3 +131,106 @@ class HostPool:
 
     def serves(self, model: str) -> list[OllamaHost]:
         return [h for h in self.hosts if model in h.models]
+
+    def run(self, units: list[WorkUnit], on_result, *, progress_every: int = 25) -> dict:
+        """Run ``units`` across the live hosts. ``on_result(meta, response)`` is
+        called under the pool lock for each success (safe to append to a file).
+        Returns ``{"done": n, "failed": n, "skipped": n}``; failed/skipped units
+        are simply left uncached, so a re-run resumes them."""
+        lock = threading.Lock()
+        queues: dict[str, deque[WorkUnit]] = {}
+        skipped = 0
+        for u in units:
+            if self.serves(u.model):
+                queues.setdefault(u.model, deque()).append(u)
+            else:
+                skipped += 1
+        if skipped:
+            print(f"[pool] {skipped} unit(s) skipped -- model not pulled on any live host")
+        state = {"done": 0, "failed": 0,
+                 "outstanding": sum(len(q) for q in queues.values())}
+        down: set[str] = set()
+        fail_streak: dict[str, int] = {h.name: 0 for h in self.hosts}
+        t0 = time.monotonic()
+
+        def finish(u: WorkUnit, ok: bool) -> None:  # under lock
+            state["done" if ok else "failed"] += 1
+            state["outstanding"] -= 1
+            if ok and state["done"] % progress_every == 0:
+                rate = state["done"] / max(time.monotonic() - t0, 1e-6)
+                eta = state["outstanding"] / max(rate, 1e-6)
+                print(f"  [pool] {state['done']:,} done  {rate:.2f} item/s  "
+                      f"~{eta / 60:.0f} min left  (failed={state['failed']})")
+
+        def take(host: OllamaHost, current: str | None) -> WorkUnit | None:  # under lock
+            order = ([current] if current in queues else []) \
+                  + [m for m in queues if m != current]
+            for m in order:
+                if m in host.models and queues.get(m):
+                    u = queues[m].popleft()
+                    if not queues[m]:
+                        del queues[m]
+                    return u
+            return None
+
+        def prune_unservable() -> None:  # under lock, after a mark-down
+            for m in list(queues):
+                if not any(h.name not in down for h in self.serves(m)):
+                    for u in queues.pop(m):
+                        finish(u, ok=False)
+
+        def requeue_or_fail(u: WorkUnit, host: OllamaHost) -> None:  # under lock
+            u.tried.add(host.name)
+            alt = [h for h in self.serves(u.model)
+                   if h.name not in u.tried and h.name not in down]
+            if u.requeues < 1 and alt:
+                u.requeues += 1
+                u.attempts = 0
+                queues.setdefault(u.model, deque()).append(u)
+            else:
+                finish(u, ok=False)
+
+        def worker(host: OllamaHost) -> None:
+            current: str | None = None
+            while True:
+                with lock:
+                    if state["outstanding"] == 0 or host.name in down:
+                        return
+                    u = take(host, current)
+                if u is None:
+                    time.sleep(0.25)  # another host may yet requeue work to us
+                    continue
+                current = u.model
+                while True:
+                    u.attempts += 1
+                    try:
+                        resp = self.transport(host, u.body)
+                    except Exception:
+                        resp = None
+                    if resp is not None:
+                        with lock:
+                            fail_streak[host.name] = 0
+                            on_result(u.meta, resp)
+                            finish(u, ok=True)
+                        break
+                    if u.attempts < 2:
+                        continue  # the one same-host retry
+                    with lock:
+                        fail_streak[host.name] += 1
+                        if fail_streak[host.name] >= HOST_MAX_CONSECUTIVE_FAILURES:
+                            down.add(host.name)
+                            print(f"[pool] {host.name} marked down after "
+                                  f"{fail_streak[host.name]} consecutive failures")
+                        requeue_or_fail(u, host)
+                        if host.name in down:
+                            prune_unservable()
+                    break
+
+        threads = [threading.Thread(target=worker, args=(h,), daemon=True,
+                                    name=f"pool-{h.name}-{i}")
+                   for h in self.hosts for i in range(h.parallel)]
+        for t in threads:
+            t.start()
+        for t in threads:
+            t.join()
+        return {"done": state["done"], "failed": state["failed"], "skipped": skipped}
