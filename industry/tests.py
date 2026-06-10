@@ -306,6 +306,34 @@ def test_llm_pool() -> None:
                    lambda m, r: None)
     check("pool: total failure terminates", res["done"] == 0 and res["failed"] == 3)
 
+    # a raising on_result must not hang the run or lose accounting
+    boom = {"n": 0}
+    def bad_cb(meta, r):
+        boom["n"] += 1
+        raise OSError("disk full")
+    pool = P.HostPool([P.OllamaHost("a", "http://a", 1)],
+                      fetch_tags=lambda u: ["m"],
+                      transport=lambda h, b: {"message": {"content": "ok"}})
+    res = pool.run([P.WorkUnit("m", {"model": "m"}, meta=i) for i in range(3)],
+                   bad_cb)
+    check("pool: raising callback terminates", res["done"] == 3 and boom["n"] == 3)
+
+    # a failed unit must NOT be re-taken by the host that failed it: a is broken
+    # and sticky on "m"; b is healthy but busy on "other" first. The unit must
+    # end up done (on b), not burned by a.
+    def ab2(h, body):
+        if h.name == "a":
+            raise OSError("a is broken")
+        _time.sleep(0.002)
+        return {"message": {"content": "ok"}}
+    tag4 = {"http://a": ["m"], "http://b": ["m", "other"]}
+    pool = P.HostPool([P.OllamaHost("a", "http://a", 1), P.OllamaHost("b", "http://b", 1)],
+                      fetch_tags=lambda u: tag4[u], transport=ab2)
+    units = [P.WorkUnit("other", {"model": "other"}, meta=i) for i in range(5)] \
+          + [P.WorkUnit("m", {"model": "m"}, meta=100 + i) for i in range(2)]
+    res = pool.run(units, lambda m, r: None)
+    check("pool: tried host never re-takes", res["done"] == 7 and res["failed"] == 0)
+
 
 # ------------------------------------------------------- residual gold set
 def test_gold_residual() -> None:

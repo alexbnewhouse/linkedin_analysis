@@ -166,18 +166,36 @@ class HostPool:
             order = ([current] if current in queues else []) \
                   + [m for m in queues if m != current]
             for m in order:
-                if m in host.models and queues.get(m):
-                    u = queues[m].popleft()
-                    if not queues[m]:
+                q = queues.get(m)
+                if m not in host.models or not q:
+                    continue
+                for _ in range(len(q)):
+                    u = q.popleft()
+                    if host.name in u.tried:   # this host already failed it -> leave
+                        q.append(u)            # it for a host that hasn't
+                        continue
+                    if not q:
                         del queues[m]
                     return u
             return None
 
         def prune_unservable() -> None:  # under lock, after a mark-down
+            # A queued unit is servable only by a host that is BOTH live and has
+            # not already failed it (take() skips tried hosts); anything else
+            # would wait forever, so fail it now.
             for m in list(queues):
-                if not any(h.name not in down for h in self.serves(m)):
-                    for u in queues.pop(m):
+                q = queues[m]
+                keep = deque()
+                for u in q:
+                    if any(h.name not in down and h.name not in u.tried
+                           for h in self.serves(m)):
+                        keep.append(u)
+                    else:
                         finish(u, ok=False)
+                if keep:
+                    queues[m] = keep
+                else:
+                    del queues[m]
 
         def requeue_or_fail(u: WorkUnit, host: OllamaHost) -> None:  # under lock
             u.tried.add(host.name)
@@ -201,26 +219,35 @@ class HostPool:
                     time.sleep(0.25)  # another host may yet requeue work to us
                     continue
                 current = u.model
+                last_err: Exception | None = None
                 while True:
+                    # safe un-locked: a unit is exclusively owned by one worker between queue handoffs
                     u.attempts += 1
                     try:
                         resp = self.transport(host, u.body)
-                    except Exception:
+                    except Exception as e:
                         resp = None
+                        last_err = e
                     if resp is not None:
                         with lock:
                             fail_streak[host.name] = 0
-                            on_result(u.meta, resp)
+                            try:
+                                on_result(u.meta, resp)
+                            except Exception as e:  # a bad callback must not kill the slot
+                                print(f"[pool] on_result raised {e!r} -- unit counted done")
                             finish(u, ok=True)
                         break
-                    if u.attempts < 2:
+                    # un-locked read of `down` is a benign race: a stale miss only
+                    # costs one extra same-host attempt before the locked paths see it
+                    if u.attempts < 2 and host.name not in down:
                         continue  # the one same-host retry
                     with lock:
                         fail_streak[host.name] += 1
                         if fail_streak[host.name] >= HOST_MAX_CONSECUTIVE_FAILURES:
                             down.add(host.name)
                             print(f"[pool] {host.name} marked down after "
-                                  f"{fail_streak[host.name]} consecutive failures")
+                                  f"{fail_streak[host.name]} consecutive failures "
+                                  f"(last: {last_err!r})")
                         requeue_or_fail(u, host)
                         if host.name in down:
                             prune_unservable()
