@@ -32,17 +32,9 @@ Ollama's ``format`` (constrained decoding), so a local model -- like the cloud o
 
 from __future__ import annotations
 
-import json
-import os
-import urllib.error
-import urllib.request
-
 from . import llm
 from . import llm_pool
 from . import taxonomy as T
-
-# Where the Ollama daemon listens (override with OLLAMA_HOST in the environment).
-OLLAMA_HOST = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434").rstrip("/")
 
 # The local jury: three DISJOINT model families (the PoLL diversity that cuts
 # intra-model bias), sized to where they run -- the two big jurors live on the
@@ -113,16 +105,6 @@ def pool_plan(models: tuple[str, ...]) -> None:
         if not pool.serves(_model_name(m)):
             print(f"  [pool] WARNING: {m} not pulled on any live host -> "
                   f"`ollama pull {_model_name(m)}` (on the host that should run it)")
-
-
-def list_local_models() -> list[str]:
-    """Names of models the daemon has pulled (bare, e.g. ``llama3.1:8b``)."""
-    # TODO(task 6): remove once doctor uses the pool
-    try:
-        data = json.loads(urllib.request.urlopen(OLLAMA_HOST + "/api/tags", timeout=5).read())
-        return sorted(m["name"] for m in data.get("models", []))
-    except (urllib.error.URLError, OSError, KeyError, json.JSONDecodeError):
-        return []
 
 
 # ---------------------------------------------------------------------------
