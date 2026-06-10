@@ -99,6 +99,22 @@ def is_available() -> bool:
     return bool(llm_pool.HostPool().hosts)
 
 
+def pool_plan(models: tuple[str, ...]) -> None:
+    """Print which live host serves which of ``models`` (preview helper)."""
+    pool = llm_pool.HostPool()
+    if not pool.hosts:
+        print("  [pool] NO Ollama host reachable -- firing would be a no-op")
+        return
+    for h in pool.hosts:
+        served = [m for m in models if _model_name(m) in h.models]
+        print(f"  [pool] {h.name} {h.base_url} x{h.parallel}: "
+              f"serves {served or 'none of this panel'}")
+    for m in models:
+        if not pool.serves(_model_name(m)):
+            print(f"  [pool] WARNING: {m} not pulled on any live host -> "
+                  f"`ollama pull {_model_name(m)}` (on the host that should run it)")
+
+
 def list_local_models() -> list[str]:
     """Names of models the daemon has pulled (bare, e.g. ``llama3.1:8b``)."""
     # TODO(task 6): remove once doctor uses the pool
