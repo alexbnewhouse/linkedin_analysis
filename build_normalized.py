@@ -43,10 +43,29 @@ import pyarrow.parquet as pq
 
 from career_clean import approach_a_rules as career_rules
 from career_clean import final_hybrid as career_final
+from career_clean import location as career_location
 from career_clean import occupation as career_occupation
 from career_clean.common import EXP, POS, ROOT, load_vocab as load_career_vocab
 from edu_clean import final_hybrid as edu_final
 from edu_clean.common import EDU, load_vocab as load_edu_vocab
+
+# Data snapshot anchor (paths/common.SNAPSHOT_DATE = 2025-02-19). Education end
+# years beyond this are expected/in-progress graduations (audit finding 5):
+# they get an `in_progress` flag instead of being silently dropped downstream.
+EDU_SNAPSHOT_YEAR = 2025
+
+# Sortable degree-level ordinal (HS=1 .. doctorate=7) rendered as a SQL CASE on
+# the degree canonical id's level prefix (audit finding 4). Single source of
+# truth: edu_clean.final_hybrid.DEGREE_LEVEL_ORDINAL.
+_DEGREE_LEVEL_CASE = (
+    "CASE split_part(degree_canonical_id, ':', 1) "
+    + " ".join(
+        f"WHEN '{lvl}' THEN {n}"
+        for lvl, n in edu_final.DEGREE_LEVEL_ORDINAL.items()
+    )
+    + " ELSE NULL END"
+)
+
 
 @dataclass
 class StepTiming:
@@ -137,6 +156,34 @@ def _write_title_mapping(path: Path, result) -> int:
     )
 
 
+def _write_location_mapping(path: Path, threads: int) -> int:
+    """Finding 6: deterministic head gazetteer over the distinct raw location
+    vocabulary (country -> US state -> city/metro; ~90% of populated rows
+    parse). Value-keyed like the other mappings; the raw string stays on
+    career_steps untouched."""
+    con = _connect(threads)
+    values = [r[0] for r in con.sql(f"""
+        SELECT DISTINCT location FROM (
+          SELECT location FROM {EXP}
+          UNION ALL
+          SELECT location FROM {POS}
+        ) WHERE location IS NOT NULL AND trim(location) <> ''
+    """).fetchall()]
+    con.close()
+    parsed = [career_location.parse_location(v) for v in values]
+    return _write_table(
+        path,
+        {
+            "value": values,
+            "country": [p[0] for p in parsed],
+            "us_state": [p[1] for p in parsed],
+            "city": [p[2] for p in parsed],
+            "method": [p[3] for p in parsed],
+            "confidence": [p[4] for p in parsed],
+        },
+    )
+
+
 def _write_company_aliases(path: Path) -> int:
     rows = sorted(career_rules.ENTITY_ALIASES.items())
     return _write_table(
@@ -163,6 +210,7 @@ def build_mappings(out: Path, timings: list[StepTiming], sections: str = "all") 
     mappings.mkdir(parents=True, exist_ok=True)
     paths = {
         "edu_degree": mappings / "edu_degree.parquet",
+        "edu_degree_field": mappings / "edu_degree_field.parquet",
         "edu_school": mappings / "edu_school.parquet",
         "edu_field": mappings / "edu_field.parquet",
         "career_company": mappings / "career_company.parquet",
@@ -170,6 +218,7 @@ def build_mappings(out: Path, timings: list[StepTiming], sections: str = "all") 
         "career_title": mappings / "career_title.parquet",
         "career_occupation": mappings / "career_occupation.parquet",
         "career_functional_cluster": mappings / "career_functional_cluster.parquet",
+        "career_location": mappings / "career_location.parquet",
     }
 
     if sections in ("all", "education"):
@@ -178,6 +227,17 @@ def build_mappings(out: Path, timings: list[StepTiming], sections: str = "all") 
             rows = _write_value_mapping(paths["edu_degree"], result)
             timings[-1].rows = rows
             timings[-1].path = str(paths["edu_degree"])
+            del result
+            gc.collect()
+
+        with StepTimer("education degree->field mapping", timings):
+            # Audit finding 2: degree cells that are actually fields of study
+            # (column swaps, "Bachelor of X in Y" subjects) emit a CIP field
+            # signal (method 'cip_from_degree') keyed by the raw degree value.
+            result = edu_final.degree_field_mapping(load_edu_vocab("degree"))
+            rows = _write_value_mapping(paths["edu_degree_field"], result)
+            timings[-1].rows = rows
+            timings[-1].path = str(paths["edu_degree_field"])
             del result
             gc.collect()
 
@@ -237,6 +297,12 @@ def build_mappings(out: Path, timings: list[StepTiming], sections: str = "all") 
         timings[-1].rows = rows
         timings[-1].path = str(paths["career_occupation"])
         del result
+        gc.collect()
+
+    with StepTimer("career location mapping", timings):
+        rows = _write_location_mapping(paths["career_location"], os.cpu_count() or 1)
+        timings[-1].rows = rows
+        timings[-1].path = str(paths["career_location"])
         gc.collect()
 
     return paths
@@ -733,6 +799,12 @@ def write_career_steps(out: Path, mappings: dict[str, Path], threads: int, timin
                 fc.functional_cluster_method,
                 fc.functional_cluster_confidence,
                 s.location,
+                -- finding 6: deterministic location gazetteer (head coverage,
+                -- ~90% of populated rows); raw string above stays untouched.
+                loc.country AS location_country,
+                loc.us_state AS location_us_state,
+                loc.city AS location_city,
+                loc.method AS location_method,
                 s.start_date,
                 s.end_date,
                 s.duration,
@@ -761,6 +833,8 @@ def write_career_steps(out: Path, mappings: dict[str, Path], threads: int, timin
                AND s.linkedin_id = fc.linkedin_id
                AND s.experience_idx = fc.experience_idx
                AND s.position_idx IS NOT DISTINCT FROM fc.position_idx
+              LEFT JOIN read_parquet('{_quote(mappings["career_location"])}') loc
+                ON s.location IS NOT DISTINCT FROM loc.value
             ) TO '{_quote(tmp)}' (FORMAT parquet, COMPRESSION zstd)
         """)
         _replace(tmp, dest)
