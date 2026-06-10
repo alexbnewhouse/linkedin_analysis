@@ -60,6 +60,15 @@ class WorkUnit:
     tried: set[str] = field(default_factory=set)  # host names that failed it
 
 
+def _norm_url(url: str) -> str:
+    """Normalize a host url: Ollama's own convention allows a scheme-less
+    ``host:port`` (e.g. ``OLLAMA_HOST=127.0.0.1:11434``); urllib does not."""
+    url = url.strip().rstrip("/")
+    if url and not url.startswith(("http://", "https://")):
+        url = "http://" + url
+    return url
+
+
 def hosts_from_env(env: dict[str, str] | None = None) -> list[OllamaHost]:
     """Host set from the environment.
 
@@ -79,13 +88,13 @@ def hosts_from_env(env: dict[str, str] | None = None) -> list[OllamaHost]:
                 raise ValueError(
                     f"bad OLLAMA_HOSTS entry: {entry!r} (expected name=url|slots)")
             url, _, slots = rest.partition("|")
-            out.append(OllamaHost(name=name, base_url=url.rstrip("/"),
+            out.append(OllamaHost(name=name, base_url=_norm_url(url),
                                   parallel=int(slots or 1)))
         return out
     hosts = [OllamaHost(name=n, base_url=u, parallel=p) for n, u, p in DEFAULT_HOSTS]
     single = (e.get("OLLAMA_HOST") or "").strip()
     if single:
-        hosts[0] = OllamaHost(name="local", base_url=single.rstrip("/"),
+        hosts[0] = OllamaHost(name="local", base_url=_norm_url(single),
                               parallel=hosts[0].parallel)
     return hosts
 

@@ -300,6 +300,12 @@ def test_llm_pool() -> None:
         check("missing '=' raises", False)
     except ValueError:
         check("missing '=' raises", True)
+    # scheme-less urls (Ollama's own OLLAMA_HOST convention) get http:// prefixed
+    hs = P.hosts_from_env({"OLLAMA_HOST": "127.0.0.1:9999"})
+    check("scheme-less OLLAMA_HOST normalized", hs[0].base_url == "http://127.0.0.1:9999")
+    hs = P.hosts_from_env({"OLLAMA_HOSTS": "a=box:11434|2"})
+    check("scheme-less OLLAMA_HOSTS normalized",
+          hs[0].base_url == "http://box:11434" and hs[0].parallel == 2)
 
     # discovery: unreachable host (fetch_tags -> None) is dropped; models recorded
     tags = {"http://a:1": ["m1", "m2"], "http://b:2": None}
