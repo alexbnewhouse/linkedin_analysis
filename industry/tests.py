@@ -288,9 +288,11 @@ def test_llm_pool() -> None:
     check("OLLAMA_HOST overrides local entry",
           hs[0].name == "local" and hs[0].base_url == "http://gpu:11434"
           and hs[1].name == "framework")
-    # no env -> the two default hosts
+    # no env -> two Ollama daemons + two batched llama-server lanes
     hs = P.hosts_from_env({})
-    check("default hosts", [h.name for h in hs] == ["local", "framework"])
+    check("default hosts", [(h.name, h.api) for h in hs]
+          == [("local", "ollama"), ("framework", "ollama"),
+              ("local-srv", "llamacpp"), ("fw-srv", "llamacpp")])
 
     # malformed env: trailing comma ignored; missing '=' fails loudly
     hs = P.hosts_from_env({"OLLAMA_HOSTS": "a=http://a:1,"})

@@ -31,11 +31,15 @@ import urllib.request
 from collections import deque
 from dataclasses import dataclass, field
 
-# (name, base_url, parallel slots). Slots mirror each daemon's OLLAMA_NUM_PARALLEL
-# (framework runs OLLAMA_NUM_PARALLEL=2 / OLLAMA_MAX_LOADED_MODELS=4).
-DEFAULT_HOSTS: tuple[tuple[str, str, int], ...] = (
-    ("local", "http://127.0.0.1:11434", 1),
-    ("framework", "http://100.73.40.75:11434", 2),
+# (name, base_url, parallel slots, api). Ollama slots mirror each daemon's
+# OLLAMA_NUM_PARALLEL; llamacpp slots mirror the llama-server -np value (the
+# batched bulk lane: native-sm_120 build locally, Vulkan/RADV on the framework;
+# see ~/llm-serving/serve-*.sh watchdogs on each host). Down hosts are skipped.
+DEFAULT_HOSTS: tuple[tuple[str, str, int, str], ...] = (
+    ("local", "http://127.0.0.1:11434", 1, "ollama"),
+    ("framework", "http://100.73.40.75:11434", 2, "ollama"),
+    ("local-srv", "http://127.0.0.1:8090", 16, "llamacpp"),
+    ("fw-srv", "http://100.73.40.75:8091", 8, "llamacpp"),
 )
 TAGS_TIMEOUT = 3        # seconds: the discovery probe
 REQUEST_TIMEOUT = 600   # seconds: one generation (27-32B on Strix Halo is slow)
@@ -93,7 +97,8 @@ def hosts_from_env(env: dict[str, str] | None = None) -> list[OllamaHost]:
             out.append(OllamaHost(name=name, base_url=_norm_url(url),
                                   parallel=int(slots or 1), api=api or "ollama"))
         return out
-    hosts = [OllamaHost(name=n, base_url=u, parallel=p) for n, u, p in DEFAULT_HOSTS]
+    hosts = [OllamaHost(name=n, base_url=u, parallel=p, api=a)
+             for n, u, p, a in DEFAULT_HOSTS]
     single = (e.get("OLLAMA_HOST") or "").strip()
     if single:
         hosts[0] = OllamaHost(name="local", base_url=_norm_url(single),
@@ -118,7 +123,11 @@ def _fetch_models_openai(base_url: str) -> list[str] | None:
     try:
         with urllib.request.urlopen(base_url + "/v1/models", timeout=TAGS_TIMEOUT) as r:
             data = json.loads(r.read())
-        return [m["id"] for m in data.get("data", [])]
+        if "data" in data:    # OpenAI shape
+            return [m["id"] for m in data["data"]]
+        if "models" in data:  # llama-server builds that answer in Ollama shape
+            return [m.get("name") or m.get("model") for m in data["models"]]
+        return None
     except (urllib.error.URLError, OSError, KeyError, json.JSONDecodeError):
         return None
 

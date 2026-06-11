@@ -44,7 +44,11 @@ from . import taxonomy as T
 # model is pulled (llm_pool discovers /api/tags). Swap freely -- a juror is
 # just a string.
 LOCAL_JURY = ("ollama/gemma3:27b", "ollama/qwen3:32b", "ollama/phi4:14b")
-LOCAL_BULK = "ollama/llama3.1:8b"   # cheap juror for the bulk tail (on BOTH hosts)
+# Bulk juror: qwen3:4b via the batched llama-server lane -- measured the BEST
+# local single juror on gold (L1 .893 vs llama3.1:8b's .760) AND the fastest
+# (workload study 2026-06-10). Served on both hosts under one alias, so the
+# pool work-steals; the unchanged v3 prompt means no cache invalidation.
+LOCAL_BULK = "llamacpp/qwen3-4b-q4"
 LOCAL_HEAD = "ollama/gpt-oss:120b"  # head curator (the local Opus-analog)
 
 # Hybrid-thinking families: disable thinking for clean, fast, schema-shaped
