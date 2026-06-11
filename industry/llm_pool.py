@@ -47,7 +47,8 @@ class OllamaHost:
     name: str
     base_url: str
     parallel: int = 1
-    models: frozenset[str] = frozenset()  # bare tags from /api/tags (discovery)
+    models: frozenset[str] = frozenset()  # bare tags from discovery
+    api: str = "ollama"                   # "ollama" | "llamacpp" (llama-server)
 
 
 @dataclass
@@ -86,10 +87,11 @@ def hosts_from_env(env: dict[str, str] | None = None) -> list[OllamaHost]:
             name, _, rest = entry.partition("=")
             if not rest:
                 raise ValueError(
-                    f"bad OLLAMA_HOSTS entry: {entry!r} (expected name=url|slots)")
-            url, _, slots = rest.partition("|")
+                    f"bad OLLAMA_HOSTS entry: {entry!r} (expected name=url|slots|api)")
+            url, _, extra = rest.partition("|")
+            slots, _, api = extra.partition("|")
             out.append(OllamaHost(name=name, base_url=_norm_url(url),
-                                  parallel=int(slots or 1)))
+                                  parallel=int(slots or 1), api=api or "ollama"))
         return out
     hosts = [OllamaHost(name=n, base_url=u, parallel=p) for n, u, p in DEFAULT_HOSTS]
     single = (e.get("OLLAMA_HOST") or "").strip()
@@ -100,7 +102,7 @@ def hosts_from_env(env: dict[str, str] | None = None) -> list[OllamaHost]:
 
 
 def _fetch_tags(base_url: str) -> list[str] | None:
-    """Installed model tags on one daemon, or None if unreachable."""
+    """Installed model tags on one Ollama daemon, or None if unreachable."""
     try:
         with urllib.request.urlopen(base_url + "/api/tags", timeout=TAGS_TIMEOUT) as r:
             data = json.loads(r.read())
@@ -109,23 +111,80 @@ def _fetch_tags(base_url: str) -> list[str] | None:
         return None
 
 
+def _fetch_models_openai(base_url: str) -> list[str] | None:
+    """Model ids served by an OpenAI-compatible server (llama-server /v1/models).
+    llama-server serves ONE model; launch it with ``--alias <bare-name>`` so the
+    id here matches the juror's bare model name."""
+    try:
+        with urllib.request.urlopen(base_url + "/v1/models", timeout=TAGS_TIMEOUT) as r:
+            data = json.loads(r.read())
+        return [m["id"] for m in data.get("data", [])]
+    except (urllib.error.URLError, OSError, KeyError, json.JSONDecodeError):
+        return None
+
+
+def _openai_body(body: dict) -> dict:
+    """Adapt an Ollama ``/api/chat`` body to OpenAI ``/v1/chat/completions``.
+
+    The enum-constrained ``format`` schema becomes a strict ``json_schema``
+    response_format (llama-server compiles it to a grammar); ``cache_prompt``
+    keeps the shared 2.5k-token system prefix KV hot in each server slot.
+    Ollama-only keys (``think``, ``keep_alive``, ``stream``) are dropped."""
+    opts = body.get("options") or {}
+    return {
+        "model": body["model"],
+        "messages": body["messages"],
+        "temperature": opts.get("temperature", 0),
+        "seed": opts.get("seed", 7),
+        "max_tokens": 512,
+        "cache_prompt": True,
+        "response_format": {
+            "type": "json_schema",
+            "json_schema": {"name": "verdict", "strict": True,
+                            "schema": body["format"]},
+        },
+    }
+
+
+def _from_openai(resp: dict) -> dict:
+    """Adapt an OpenAI chat response to the Ollama shape callers parse
+    (``message.content`` + eval counters; llama-server timings are ms -> ns)."""
+    msg = (resp.get("choices") or [{}])[0].get("message") or {}
+    usage = resp.get("usage") or {}
+    timings = resp.get("timings") or {}
+    return {
+        "message": {"content": msg.get("content") or ""},
+        "eval_count": usage.get("completion_tokens"),
+        "prompt_eval_count": usage.get("prompt_tokens"),
+        "eval_duration": int(timings.get("predicted_ms", 0) * 1e6),
+        "prompt_eval_duration": int(timings.get("prompt_ms", 0) * 1e6),
+    }
+
+
 def _http_chat(host: OllamaHost, body: dict) -> dict:
+    if host.api == "llamacpp":
+        path, payload = "/v1/chat/completions", _openai_body(body)
+    else:
+        path, payload = "/api/chat", body
     req = urllib.request.Request(
-        host.base_url + "/api/chat", data=json.dumps(body).encode("utf-8"),
+        host.base_url + path, data=json.dumps(payload).encode("utf-8"),
         headers={"Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=REQUEST_TIMEOUT) as r:
-        return json.loads(r.read())
+        out = json.loads(r.read())
+    return _from_openai(out) if host.api == "llamacpp" else out
 
 
-def discover(hosts: list[OllamaHost], fetch_tags=_fetch_tags) -> list[OllamaHost]:
-    """Probe each host once; drop unreachable ones (with a warning)."""
+def discover(hosts: list[OllamaHost], fetch_tags=_fetch_tags,
+             fetch_openai=_fetch_models_openai) -> list[OllamaHost]:
+    """Probe each host once (per its api); drop unreachable ones (with a warning)."""
     live: list[OllamaHost] = []
     for h in hosts:
-        tags = fetch_tags(h.base_url)
+        probe = fetch_openai if h.api == "llamacpp" else fetch_tags
+        tags = probe(h.base_url)
         if tags is None:
             print(f"[pool] {h.name} ({h.base_url}) unreachable -- skipping")
             continue
-        live.append(OllamaHost(h.name, h.base_url, h.parallel, frozenset(tags)))
+        live.append(OllamaHost(h.name, h.base_url, h.parallel, frozenset(tags), h.api))
     return live
 
 
@@ -133,9 +192,10 @@ class HostPool:
     """Schedules WorkUnits across the discovered live hosts."""
 
     def __init__(self, hosts: list[OllamaHost] | None = None, *,
-                 fetch_tags=_fetch_tags, transport=_http_chat):
+                 fetch_tags=_fetch_tags, fetch_openai=_fetch_models_openai,
+                 transport=_http_chat):
         self.hosts = discover(hosts if hosts is not None else hosts_from_env(),
-                              fetch_tags)
+                              fetch_tags, fetch_openai)
         self.transport = transport
 
     def serves(self, model: str) -> list[OllamaHost]:

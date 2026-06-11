@@ -59,8 +59,9 @@ NUM_CTX = 8192
 
 
 def _model_name(model: str) -> str:
-    """``ollama/llama3.1:8b`` -> ``llama3.1:8b`` (the bare name the daemon wants)."""
-    return model.split("/", 1)[1] if model.startswith("ollama/") else model
+    """``ollama/llama3.1:8b`` or ``llamacpp/bulk-q4`` -> the bare name the
+    server wants (the namespace prefix only disambiguates jurors in the cache)."""
+    return model.split("/", 1)[1] if model.startswith(("ollama/", "llamacpp/")) else model
 
 
 def build_request(item: dict, model: str, *, schema: dict | None = None) -> dict:

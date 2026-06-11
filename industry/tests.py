@@ -316,6 +316,40 @@ def test_llm_pool() -> None:
     check("serves() uses discovered tags",
           [h.name for h in pool.serves("m1")] == ["a"] and pool.serves("zzz") == [])
 
+    # ---- llama-server (llama.cpp) hosts: api segment, discovery, body adapters
+    hs = P.hosts_from_env({"OLLAMA_HOSTS": "fast=http://gpu:8080|16|llamacpp, x=http://o:11434|2"})
+    check("api segment parsed",
+          (hs[0].api, hs[0].parallel) == ("llamacpp", 16) and hs[1].api == "ollama")
+    pool = P.HostPool(
+        [P.OllamaHost("srv", "http://s:8080", 4, api="llamacpp"),
+         P.OllamaHost("oll", "http://o:11434", 1)],
+        fetch_tags=lambda u: ["m-ollama"],
+        fetch_openai=lambda u: ["bulk-q4"],
+        transport=lambda h, b: {})
+    check("llamacpp discovery via /v1/models",
+          [h.name for h in pool.serves("bulk-q4")] == ["srv"]
+          and [h.name for h in pool.serves("m-ollama")] == ["oll"])
+    # body adapter: Ollama-format request -> OpenAI chat completions
+    body = {"model": "bulk-q4", "messages": [{"role": "system", "content": "s"},
+                                             {"role": "user", "content": "u"}],
+            "stream": False, "format": {"type": "object"},
+            "options": {"temperature": 0, "seed": 7, "num_ctx": 8192},
+            "think": False}
+    ob = P._openai_body(body)  # noqa: SLF001
+    check("openai body adapted",
+          ob["model"] == "bulk-q4" and ob["messages"] == body["messages"]
+          and ob["temperature"] == 0 and ob["seed"] == 7
+          and ob["response_format"]["json_schema"]["schema"] == {"type": "object"}
+          and ob["cache_prompt"] is True and "think" not in ob and "format" not in ob)
+    # response adapter: OpenAI shape -> the Ollama shape callers parse
+    oresp = {"choices": [{"message": {"content": '{"code":"FIN"}'}}],
+             "usage": {"completion_tokens": 42, "prompt_tokens": 3000},
+             "timings": {"predicted_ms": 500.0, "prompt_ms": 120.0}}
+    ar = P._from_openai(oresp)  # noqa: SLF001
+    check("openai response adapted",
+          ar["message"]["content"] == '{"code":"FIN"}' and ar["eval_count"] == 42
+          and ar["eval_duration"] == 500_000_000)
+
     import time as _time
 
     # affinity + work stealing: "big" only on b; "small" on both. Host a is
