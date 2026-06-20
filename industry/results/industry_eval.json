@@ -1,0 +1,521 @@
+{
+  "validate": {
+    "taxonomy": {
+      "n_nodes": 162,
+      "by_level": {
+        "1": 17,
+        "2": 68,
+        "3": 63,
+        "4": 14
+      }
+    },
+    "curated_entries": 90,
+    "name_rules": 214
+  },
+  "gold_companies": {
+    "per_level": {
+      "L1": {
+        "precision": 0.862,
+        "recall": 0.862,
+        "f1": 0.862,
+        "tp": 25,
+        "fp": 4,
+        "fn": 4
+      },
+      "L2": {
+        "precision": 1.0,
+        "recall": 0.828,
+        "f1": 0.906,
+        "tp": 24,
+        "fp": 0,
+        "fn": 5
+      },
+      "L3": {
+        "precision": 1.0,
+        "recall": 0.586,
+        "f1": 0.739,
+        "tp": 17,
+        "fp": 0,
+        "fn": 12
+      },
+      "L4": {
+        "precision": 1.0,
+        "recall": 0.103,
+        "f1": 0.188,
+        "tp": 3,
+        "fp": 0,
+        "fn": 26
+      }
+    },
+    "n": 29,
+    "detail": [
+      {
+        "display": "Wells Fargo",
+        "expected": "FIN.BNK.COM.RET",
+        "predicted": "FIN.BNK.COM.RET",
+        "method": "curated",
+        "confidence": 1.0,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "JPMorgan Chase & Co.",
+        "expected": "FIN.BNK.COM",
+        "predicted": "FIN.BNK.COM",
+        "method": "curated",
+        "confidence": 1.0,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Goldman Sachs",
+        "expected": "FIN.BNK.INV",
+        "predicted": "FIN.BNK.INV",
+        "method": "curated",
+        "confidence": 1.0,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Pfizer",
+        "expected": "HLT.PHRM.PHARMA",
+        "predicted": "HLT.PHRM.PHARMA",
+        "method": "curated",
+        "confidence": 1.0,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Intel Corporation",
+        "expected": "TEC.HRDW.SEMI",
+        "predicted": "TEC.HRDW.SEMI",
+        "method": "curated",
+        "confidence": 1.0,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Google",
+        "expected": "TEC.SOF.INTC.SRCH",
+        "predicted": "TEC.SOF.INTC.SRCH",
+        "method": "curated",
+        "confidence": 1.0,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "US Army",
+        "expected": "PUB.DEF.AF",
+        "predicted": "PUB.DEF.AF",
+        "method": "curated",
+        "confidence": 1.0,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Walmart",
+        "expected": "CON.RET.GEN",
+        "predicted": "CON.RET.GEN",
+        "method": "curated",
+        "confidence": 1.0,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Starbucks",
+        "expected": "HOS.FOOD",
+        "predicted": "HOS.FOOD",
+        "method": "curated",
+        "confidence": 1.0,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Lockheed Martin",
+        "expected": "PUB.DEF.DCON",
+        "predicted": "PUB.DEF.DCON",
+        "method": "curated",
+        "confidence": 1.0,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": "defense CONTRACTOR (private), not the armed forces"
+      },
+      {
+        "display": "U.S. Department of Veterans Affairs",
+        "expected": "PUB.GOV.FED",
+        "predicted": "PUB.GOV.FED",
+        "method": "curated",
+        "confidence": 1.0,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Amazon",
+        "expected": "XDV",
+        "predicted": "XDV",
+        "method": "curated",
+        "confidence": 1.0,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": "retail + cloud + media + logistics"
+      },
+      {
+        "display": "Amazon Web Services (AWS)",
+        "expected": "TEC.SOF.INFR.CLOU",
+        "predicted": "TEC.SOF.INFR.CLOU",
+        "method": "curated",
+        "confidence": 1.0,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": "separate company_id -> the right granularity for the cloud arm"
+      },
+      {
+        "display": "St. Mary's Medical Center",
+        "expected": "HLT.PROV.HOSP",
+        "predicted": "HLT.PROV.HOSP",
+        "method": "name_rule",
+        "confidence": 0.9,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Johnson & Sons Plumbing LLC",
+        "expected": "RE.CNST.TRADE",
+        "predicted": "RE.CNST.TRADE",
+        "method": "name_rule",
+        "confidence": 0.82,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "First National Bank of Springfield",
+        "expected": "FIN.BNK",
+        "predicted": "FIN.BNK",
+        "method": "name_rule",
+        "confidence": 0.82,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Springfield Public Schools",
+        "expected": "EDU.K12",
+        "predicted": "EDU.K12",
+        "method": "name_rule",
+        "confidence": 0.9,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "University of Michigan",
+        "expected": "EDU.HED.UNIV",
+        "predicted": "EDU.HED.UNIV",
+        "method": "name_rule",
+        "confidence": 0.82,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": "also runs a hospital; the parent org is Education"
+      },
+      {
+        "display": "City of Austin",
+        "expected": "PUB.GOV.SLOC",
+        "predicted": "PUB.GOV.SLOC",
+        "method": "name_rule",
+        "confidence": 0.9,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Premier Staffing Solutions",
+        "expected": "PRO.HRST",
+        "predicted": "PRO.HRST",
+        "method": "name_rule",
+        "confidence": 0.9,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Bright Smile Dentistry",
+        "expected": "HLT.PROV.DENT",
+        "predicted": "HLT.PROV.DENT",
+        "method": "name_rule",
+        "confidence": 0.82,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Miller & Associates Law Offices",
+        "expected": "PRO.LEGAL",
+        "predicted": "PRO.LEGAL",
+        "method": "name_rule",
+        "confidence": 0.9,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Tony's Italian Restaurant",
+        "expected": "HOS.FOOD",
+        "predicted": "HOS.FOOD",
+        "method": "name_rule",
+        "confidence": 0.82,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Coldwell Banker Realty",
+        "expected": "RE.REST.RES",
+        "predicted": "RE.REST.RES",
+        "method": "name_rule",
+        "confidence": 0.82,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Permian Basin Oil & Gas",
+        "expected": "ENR.OILG",
+        "predicted": "ENR.OILG",
+        "method": "name_rule",
+        "confidence": 0.9,
+        "L1_ok": true,
+        "needs_review": false,
+        "note": ""
+      },
+      {
+        "display": "Booz Allen Hamilton",
+        "expected": "PRO.CONSL",
+        "predicted": "XOT",
+        "method": "unresolved",
+        "confidence": 0.0,
+        "L1_ok": false,
+        "needs_review": true,
+        "note": "no industry token in the name"
+      },
+      {
+        "display": "Rivian",
+        "expected": "MFG.AUTO.OEM",
+        "predicted": "XOT",
+        "method": "unresolved",
+        "confidence": 0.0,
+        "L1_ok": false,
+        "needs_review": true,
+        "note": "brand name carries no industry token"
+      },
+      {
+        "display": "Chobani",
+        "expected": "CON.CPG.FNB",
+        "predicted": "XOT",
+        "method": "unresolved",
+        "confidence": 0.0,
+        "L1_ok": false,
+        "needs_review": true,
+        "note": "brand name carries no industry token"
+      },
+      {
+        "display": "Berkshire Hathaway",
+        "expected": "XDV",
+        "predicted": "XOT",
+        "method": "unresolved",
+        "confidence": 0.0,
+        "L1_ok": false,
+        "needs_review": true,
+        "note": ""
+      }
+    ]
+  },
+  "gold_rows": {
+    "n": 6,
+    "correct": 6,
+    "detail": [
+      {
+        "soc": "29-1141",
+        "expected": "HLT.PROV",
+        "predicted": "HLT.PROV",
+        "method": "occupation_prior",
+        "ok": true
+      },
+      {
+        "soc": "25-2021",
+        "expected": "EDU.K12",
+        "predicted": "EDU.K12",
+        "method": "occupation_prior",
+        "ok": true
+      },
+      {
+        "soc": "35-1011",
+        "expected": "HOS.FOOD",
+        "predicted": "HOS.FOOD",
+        "method": "occupation_prior",
+        "ok": true
+      },
+      {
+        "soc": "47-2111",
+        "expected": "RE.CNST",
+        "predicted": "RE.CNST",
+        "method": "occupation_prior",
+        "ok": true
+      },
+      {
+        "soc": "15-1252",
+        "expected": "XOT",
+        "predicted": "XOT",
+        "method": "unresolved",
+        "ok": true
+      },
+      {
+        "soc": "13-2011",
+        "expected": "XOT",
+        "predicted": "XOT",
+        "method": "unresolved",
+        "ok": true
+      }
+    ]
+  },
+  "llm_calibration": {
+    "n_cache_proposals": 2028724,
+    "n_gold_matched": 75,
+    "models_in_cache": [
+      "claude-haiku-4-5",
+      "claude-opus-4-8",
+      "claude-sonnet-4-6",
+      "llamacpp/qwen3-4b-q4",
+      "ollama/gemma3:12b",
+      "ollama/gemma3:27b",
+      "ollama/llama3.1:8b",
+      "ollama/phi4:14b",
+      "ollama/qwen3:32b"
+    ],
+    "self_confidence_precision_L1_by_model": {
+      "claude-haiku-4-5": {
+        "high": {
+          "precision": 0.986,
+          "n": 74
+        },
+        "medium": {
+          "precision": 0.0,
+          "n": 1
+        }
+      },
+      "claude-sonnet-4-6": {
+        "high": {
+          "precision": 0.973,
+          "n": 74
+        },
+        "medium": {
+          "precision": 1.0,
+          "n": 1
+        }
+      },
+      "claude-opus-4-8": {
+        "high": {
+          "precision": 0.959,
+          "n": 73
+        },
+        "medium": {
+          "precision": 0.5,
+          "n": 2
+        }
+      },
+      "ollama/gemma3:12b": {
+        "high": {
+          "precision": 0.8,
+          "n": 5
+        }
+      },
+      "ollama/phi4:14b": {
+        "high": {
+          "precision": 0.8,
+          "n": 5
+        }
+      },
+      "ollama/llama3.1:8b": {
+        "high": {
+          "precision": 0.8,
+          "n": 5
+        }
+      },
+      "llamacpp/qwen3-4b-q4": {
+        "high": {
+          "precision": 0.88,
+          "n": 75
+        }
+      }
+    },
+    "jury_per_level": {
+      "L1": {
+        "precision": 0.96,
+        "recall": 0.96,
+        "f1": 0.96,
+        "tp": 72,
+        "fp": 3,
+        "fn": 3
+      },
+      "L2": {
+        "precision": 0.904,
+        "recall": 0.88,
+        "f1": 0.892,
+        "tp": 66,
+        "fp": 7,
+        "fn": 9
+      },
+      "L3": {
+        "precision": 0.824,
+        "recall": 0.56,
+        "f1": 0.667,
+        "tp": 42,
+        "fp": 9,
+        "fn": 33
+      },
+      "L4": {
+        "precision": 0.6,
+        "recall": 0.04,
+        "f1": 0.075,
+        "tp": 3,
+        "fp": 2,
+        "fn": 72
+      }
+    },
+    "jury_agreement_precision_L1": {
+      "unanimous": {
+        "precision": 0.977,
+        "n": 43
+      },
+      "split": {
+        "precision": 0.5,
+        "n": 2
+      },
+      "majority": {
+        "precision": 0.967,
+        "n": 30
+      }
+    },
+    "predicted_l1_prevalence_pct": {
+      "PRO": 14.0,
+      "HLT": 12.7,
+      "TEC": 11.7,
+      "CON": 10.2,
+      "MED": 8.7,
+      "RE": 6.6,
+      "EDU": 6.6,
+      "MFG": 6.0
+    }
+  }
+}

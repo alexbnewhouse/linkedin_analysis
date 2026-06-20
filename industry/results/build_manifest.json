@@ -1,0 +1,20 @@
+{
+  "n_companies": 2990295,
+  "total_rows": 10636544,
+  "coverage_by_depth_row_pct": {
+    "L1": 41.9,
+    "L2": 37.7,
+    "L3": 17.3,
+    "L4": 1.4
+  },
+  "review_queue_companies": 2054803,
+  "llm_candidates": 2023456,
+  "llm_multi_juror_candidates": 12,
+  "llm_abstentions_XOT": 36728,
+  "llm_disagrees_with_deterministic_L1": 65594,
+  "cap": null,
+  "propagation": {
+    "step_rows": 10798794,
+    "L1_coverage_pct": 41.4
+  }
+}
