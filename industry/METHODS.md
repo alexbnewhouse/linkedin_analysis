@@ -440,6 +440,43 @@ The S1 strategy, chosen from a quantified workload study over three candidates:
    Full 2.03M residual ............................... ~10 days (tail is cheap value)
 ```
 
+### Outcome (run completed 2026-06-20)
+
+The run finished in **~6.2 days wall-clock** (2026-06-11 06:44 → 06-20 11:47),
+sustaining ~2.3 items/s and accelerating to ~2.7 items/s through the
+short-evidence deep tail. It auto-converged: the final full pass added 1,095 new
+votes (< 0.1%), triggering the stop and the `build_industry --propagate` merge.
+
+| Outcome | Value |
+|---|---|
+| Residual classified | **2,023,473 / 2,027,185 (99.82%)** |
+| Uncached residue | 3,712 (non-validating output → review queue, by design) |
+| Pool failures | 0 (one transient tailnet blip, self-healed, no data loss) |
+
+Jury-verdict depth distribution over the 2.02M new single-juror proposals (depth
+= how deep the evidence let the juror commit; XOT = principled abstention):
+
+| Depth | Companies | Note |
+|------:|----------:|------|
+| L1 only | 49,821 | placed but shallow |
+| L2 sector | 905,254 | the bulk |
+| L3 industry | 897,509 | |
+| L4 sub-industry | 170,890 | |
+| XOT abstain | 36,728 (1.8%) | "can't tell" → review queue |
+
+Gold calibration held after the merge — jury **L1 P 0.96 / R 0.96, L2 0.904, L3
+0.824**; agreement bands **unanimous 0.977, majority 0.967**; the bulk juror's
+self-reported confidence stayed uninformative (0.88 regardless), confirming the
+agreement band as the gate. The LLM proposes a different L1 than the deterministic
+spine on **65,594 companies** — a ready-made, high-value human-review batch. All
+2.02M votes are **propose-only** in `llm_*` columns; the deterministic spine is
+untouched (row L1 coverage 41.9%).
+
+A follow-up pass (`run_panels.sh`) then upgrades the high-frequency residual head
+from single-juror to a **3-juror consensus** (gemma3:27b + qwen3:32b + phi4:14b,
+calibrated first on gold) and runs a **gpt-oss:120b head-curator** pilot to grow
+the curated M1 backbone.
+
 ## 2.9 Reproducibility & governance summary
 
 - **Offline = pure cache read.** `build_industry` / `run_industry` only ever
@@ -473,5 +510,6 @@ The S1 strategy, chosen from a quantified workload study over three candidates:
 | `run_tail.sh` | the chunked, resumable big-run driver |
 | `doctor.py` | pre-flight: deps, data, hosts, per-model placement |
 
-*Generated 2026-06-16, mid-run (the tail run was ~54% through the residual at
-~2.3 items/s when this was written).*
+*Generated 2026-06-16 mid-run; §2.8 outcome numbers updated 2026-06-22 after the
+tail run completed (99.82% of the residual classified) and the consensus/curator
+follow-up began.*
