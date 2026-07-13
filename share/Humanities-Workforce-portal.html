@@ -9766,7 +9766,12 @@ function M(key) {
   return Object.assign({}, EDITORIAL[key], PORTAL.majors[key]);
 }
 
-/* sector rows for the h-bar renderer (the fan has its own renderer) */
+/* fan/sector rows for the h-bar renderer. The EXPLORE fan uses its own
+   renderer (renderFan, with ordering + drill-down); the Stories fan chart
+   still renders through renderHBar and needs this mapping. */
+function fanRows(m) {
+  return m.fan.map(f => ({ label: f.group, value: f.share * 100, rr: f.rr, n: f.n }));
+}
 function sectorRows(m) {
   return m.sectors.map(s => ({ label: s.sector, value: s.share * 100, rr: null, n: s.n, muted: s.sector === "Other" }));
 }
