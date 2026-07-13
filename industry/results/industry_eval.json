@@ -9,18 +9,18 @@
         "4": 14
       }
     },
-    "curated_entries": 90,
+    "curated_entries": 2075,
     "name_rules": 214
   },
   "gold_companies": {
     "per_level": {
       "L1": {
-        "precision": 0.862,
-        "recall": 0.862,
-        "f1": 0.862,
-        "tp": 25,
-        "fp": 4,
-        "fn": 4
+        "precision": 0.897,
+        "recall": 0.897,
+        "f1": 0.897,
+        "tp": 26,
+        "fp": 3,
+        "fn": 3
       },
       "L2": {
         "precision": 1.0,
@@ -332,11 +332,11 @@
       {
         "display": "Berkshire Hathaway",
         "expected": "XDV",
-        "predicted": "XOT",
-        "method": "unresolved",
-        "confidence": 0.0,
-        "L1_ok": false,
-        "needs_review": true,
+        "predicted": "XDV",
+        "method": "curated",
+        "confidence": 1.0,
+        "L1_ok": true,
+        "needs_review": false,
         "note": ""
       }
     ]
@@ -390,7 +390,7 @@
     ]
   },
   "llm_calibration": {
-    "n_cache_proposals": 2028724,
+    "n_cache_proposals": 2045782,
     "n_gold_matched": 75,
     "models_in_cache": [
       "claude-haiku-4-5",
@@ -426,12 +426,12 @@
       },
       "claude-opus-4-8": {
         "high": {
-          "precision": 0.959,
-          "n": 73
+          "precision": 0.946,
+          "n": 74
         },
         "medium": {
-          "precision": 0.5,
-          "n": 2
+          "precision": 1.0,
+          "n": 1
         }
       },
       "ollama/gemma3:12b": {
@@ -442,8 +442,8 @@
       },
       "ollama/phi4:14b": {
         "high": {
-          "precision": 0.8,
-          "n": 5
+          "precision": 0.893,
+          "n": 75
         }
       },
       "ollama/llama3.1:8b": {
@@ -457,65 +457,77 @@
           "precision": 0.88,
           "n": 75
         }
+      },
+      "ollama/gemma3:27b": {
+        "high": {
+          "precision": 0.893,
+          "n": 75
+        }
+      },
+      "ollama/qwen3:32b": {
+        "high": {
+          "precision": 0.893,
+          "n": 75
+        }
       }
     },
     "jury_per_level": {
       "L1": {
-        "precision": 0.96,
-        "recall": 0.96,
-        "f1": 0.96,
-        "tp": 72,
-        "fp": 3,
-        "fn": 3
+        "precision": 0.933,
+        "recall": 0.933,
+        "f1": 0.933,
+        "tp": 70,
+        "fp": 5,
+        "fn": 5
       },
       "L2": {
-        "precision": 0.904,
-        "recall": 0.88,
-        "f1": 0.892,
-        "tp": 66,
-        "fp": 7,
-        "fn": 9
+        "precision": 0.851,
+        "recall": 0.84,
+        "f1": 0.846,
+        "tp": 63,
+        "fp": 11,
+        "fn": 12
       },
       "L3": {
-        "precision": 0.824,
+        "precision": 0.808,
         "recall": 0.56,
-        "f1": 0.667,
+        "f1": 0.661,
         "tp": 42,
-        "fp": 9,
+        "fp": 10,
         "fn": 33
       },
       "L4": {
-        "precision": 0.6,
-        "recall": 0.04,
-        "f1": 0.075,
-        "tp": 3,
+        "precision": 0.714,
+        "recall": 0.067,
+        "f1": 0.122,
+        "tp": 5,
         "fp": 2,
-        "fn": 72
+        "fn": 70
       }
     },
     "jury_agreement_precision_L1": {
+      "majority": {
+        "precision": 0.941,
+        "n": 34
+      },
       "unanimous": {
-        "precision": 0.977,
-        "n": 43
+        "precision": 1.0,
+        "n": 24
       },
       "split": {
-        "precision": 0.5,
-        "n": 2
-      },
-      "majority": {
-        "precision": 0.967,
-        "n": 30
+        "precision": 0.824,
+        "n": 17
       }
     },
     "predicted_l1_prevalence_pct": {
       "PRO": 14.0,
       "HLT": 12.7,
-      "TEC": 11.7,
+      "TEC": 11.8,
       "CON": 10.2,
       "MED": 8.7,
-      "RE": 6.6,
       "EDU": 6.6,
-      "MFG": 6.0
+      "RE": 6.5,
+      "MFG": 6.1
     }
   }
 }
