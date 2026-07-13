@@ -1,0 +1,139 @@
+{
+  "comparison": {
+    "arts": {
+      "curve_y0_a1_only": 0.3782,
+      "curve_y0_pooled": 0.3782,
+      "curve_y10_a1_only": 0.5382,
+      "curve_y10_pooled": 0.5383,
+      "curve_y4_a1_only": 0.4194,
+      "curve_y4_pooled": 0.423,
+      "fan_share_delta_by_group": {
+        "Arts/Design/Media": -0.0031,
+        "Business & Financial": -0.0002,
+        "Education": -0.0005,
+        "Management": 0.0023,
+        "Office & Admin Support": -0.0007
+      },
+      "n_windowed_a1_only": 5345,
+      "n_windowed_pooled": 5899,
+      "unclassified_share_a1_only": 0.7716,
+      "unclassified_share_pooled": 0.7735,
+      "up_share_a1_only": 0.3406,
+      "up_share_delta": -0.0001,
+      "up_share_pooled": 0.3405
+    },
+    "baseline": {
+      "curve_y0_a1_only": 0.3331,
+      "curve_y0_pooled": 0.3384,
+      "curve_y10_a1_only": 0.5523,
+      "curve_y10_pooled": 0.5496,
+      "curve_y4_a1_only": 0.4447,
+      "curve_y4_pooled": 0.4447,
+      "fan_share_delta_by_group": {
+        "Arts/Design/Media": -0.0001,
+        "Business & Financial": 0.0003,
+        "Computer & Mathematical": -0.0012,
+        "Healthcare Practitioners": -0.0007,
+        "Management": 0.001
+      },
+      "n_windowed_a1_only": 108236,
+      "n_windowed_pooled": 120167,
+      "unclassified_share_a1_only": 0.7682,
+      "unclassified_share_pooled": 0.769,
+      "up_share_a1_only": 0.3863,
+      "up_share_delta": -0.0017,
+      "up_share_pooled": 0.3846
+    },
+    "commmedia": {
+      "curve_y0_a1_only": 0.333,
+      "curve_y0_pooled": 0.3354,
+      "curve_y10_a1_only": 0.5552,
+      "curve_y10_pooled": 0.5538,
+      "curve_y4_a1_only": 0.4406,
+      "curve_y4_pooled": 0.4392,
+      "fan_share_delta_by_group": {
+        "Arts/Design/Media": -0.0006,
+        "Business & Financial": 0.0004,
+        "Healthcare Practitioners": -0.0005,
+        "Management": 0.0007,
+        "Office & Admin Support": 0.0001
+      },
+      "n_windowed_a1_only": 5307,
+      "n_windowed_pooled": 5835,
+      "unclassified_share_a1_only": 0.7997,
+      "unclassified_share_pooled": 0.7993,
+      "up_share_a1_only": 0.3798,
+      "up_share_delta": -0.0002,
+      "up_share_pooled": 0.3796
+    },
+    "english": {
+      "curve_y0_a1_only": 0.2917,
+      "curve_y0_pooled": 0.2961,
+      "curve_y10_a1_only": 0.5241,
+      "curve_y10_pooled": 0.5215,
+      "curve_y4_a1_only": 0.3965,
+      "curve_y4_pooled": 0.3979,
+      "fan_share_delta_by_group": {
+        "Arts/Design/Media": -0.0006,
+        "Business & Financial": 0.014,
+        "Education": 0.001,
+        "Healthcare Practitioners": -0.0136,
+        "Legal": -0.001,
+        "Management": -0.0002
+      },
+      "n_windowed_a1_only": 3299,
+      "n_windowed_pooled": 3581,
+      "unclassified_share_a1_only": 0.8021,
+      "unclassified_share_pooled": 0.802,
+      "up_share_a1_only": 0.3673,
+      "up_share_delta": -0.0011,
+      "up_share_pooled": 0.3662
+    },
+    "history": {
+      "curve_y0_a1_only": 0.2746,
+      "curve_y0_pooled": 0.2778,
+      "curve_y10_a1_only": 0.536,
+      "curve_y10_pooled": 0.5334,
+      "curve_y4_a1_only": 0.3645,
+      "curve_y4_pooled": 0.3742,
+      "fan_share_delta_by_group": {
+        "Education": 0.0021,
+        "Legal": -0.0028,
+        "Management": -0.0007
+      },
+      "n_windowed_a1_only": 2091,
+      "n_windowed_pooled": 2243,
+      "unclassified_share_a1_only": 0.7762,
+      "unclassified_share_pooled": 0.778,
+      "up_share_a1_only": 0.3831,
+      "up_share_delta": 0.0,
+      "up_share_pooled": 0.3831
+    },
+    "philrel": {
+      "curve_y0_a1_only": 0.3331,
+      "curve_y0_pooled": 0.3445,
+      "curve_y10_a1_only": 0.6055,
+      "curve_y10_pooled": 0.6055,
+      "curve_y4_a1_only": 0.4633,
+      "curve_y4_pooled": 0.471,
+      "fan_share_delta_by_group": {
+        "Community & Social Service": -0.0042,
+        "Management": 0.0035
+      },
+      "n_windowed_a1_only": 976,
+      "n_windowed_pooled": 1078,
+      "unclassified_share_a1_only": 0.7602,
+      "unclassified_share_pooled": 0.7607,
+      "up_share_a1_only": 0.3947,
+      "up_share_delta": -0.0037,
+      "up_share_pooled": 0.391
+    }
+  },
+  "material_disagreements": [],
+  "materiality_bars": {
+    "fan_share_delta_points": 0.02,
+    "up_share_delta": 0.03
+  },
+  "note": "A1-only vs pooled (ANCHOR_TIERS = ['A1', 'A2']) comparison of year-10 fan/up_share/curve statistics. Curve grid has no y5 point; y4 is reported as the nearest available horizon.",
+  "verdict": "NO material disagreement found -- pooling A1+A2 is defensible."
+}

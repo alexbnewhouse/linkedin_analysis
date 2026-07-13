@@ -1,0 +1,35 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Raw input (large; licensing/PII — never commit)
+/data/
+
+# Generated outputs (large, regenerable). Manifests/JSON summaries are kept.
+/parsed/
+/normalized/*.parquet
+/normalized/mappings/
+/paths/*.parquet
+/transition_network/*.parquet
+/career_clean/results/*.parquet
+/cohorts/*.parquet
+
+# Cleaning cache (regenerable)
+/edu_clean/cache/
+/career_clean/cache/
+/industry/cache/
+
+# Industry classifier outputs (regenerable parquet; JSON summaries kept)
+/industry/results/*.parquet
+
+# Portal substrate cache (regenerable membership/panel parquet + key)
+/portal/results/_cache/
+# Portal run logs (debug debris; JSON summaries are kept)
+/portal/results/*.log

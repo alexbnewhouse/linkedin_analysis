@@ -1,0 +1,161 @@
+{
+  "comparison": {
+    "arts": {
+      "cip_source_mix_pooled": {
+        "det": 0.7869,
+        "jury": 0.2131
+      },
+      "fan_share_delta_by_group": {
+        "Architecture & Engineering": -0.0002,
+        "Arts/Design/Media": -0.0026,
+        "Business & Financial": -0.0022,
+        "Community & Social Service": -0.0004,
+        "Computer & Mathematical": 0.0024,
+        "Education": 0.0,
+        "Food Preparation & Serving": -0.0007,
+        "Healthcare Practitioners": 0.0002,
+        "Management": -0.0013,
+        "Office & Admin Support": -0.0025,
+        "Personal Care": -0.0001,
+        "Production": 0.0063,
+        "Sales": -0.0008
+      },
+      "growth": 0.2746,
+      "n_windowed_det": 5899,
+      "n_windowed_pooled": 7519,
+      "up_share_delta": -0.001,
+      "up_share_det": 0.3405,
+      "up_share_pooled": 0.3395
+    },
+    "baseline": {
+      "cip_source_mix_pooled": {
+        "det": 0.8702,
+        "jury": 0.1298
+      },
+      "fan_share_delta_by_group": {
+        "Architecture & Engineering": -0.0006,
+        "Arts/Design/Media": 0.002,
+        "Building & Grounds": 0.0,
+        "Business & Financial": -0.0009,
+        "Community & Social Service": -0.0006,
+        "Computer & Mathematical": -0.0013,
+        "Construction & Extraction": -0.0001,
+        "Education": 0.0001,
+        "Food Preparation & Serving": 0.0,
+        "Healthcare Practitioners": -0.0021,
+        "Healthcare Support": -0.0001,
+        "Installation/Maint/Repair": 0.0,
+        "Legal": 0.0001,
+        "Life/Physical/Social Science": 0.0,
+        "Management": 0.0009,
+        "Military": 0.0,
+        "Office & Admin Support": -0.0003,
+        "Personal Care": 0.0,
+        "Production": 0.0002,
+        "Protective Service": -0.0001,
+        "Sales": -0.0003,
+        "Transportation": 0.0002
+      },
+      "growth": 0.1449,
+      "n_windowed_det": 120167,
+      "n_windowed_pooled": 137574,
+      "up_share_delta": 0.0003,
+      "up_share_det": 0.3846,
+      "up_share_pooled": 0.3849
+    },
+    "commmedia": {
+      "cip_source_mix_pooled": {
+        "det": 0.817,
+        "jury": 0.183
+      },
+      "fan_share_delta_by_group": {
+        "Arts/Design/Media": 0.0076,
+        "Business & Financial": -0.0031,
+        "Community & Social Service": -0.0013,
+        "Computer & Mathematical": 0.0004,
+        "Education": -0.001,
+        "Healthcare Practitioners": -0.0007,
+        "Legal": 0.0002,
+        "Management": 0.0006,
+        "Office & Admin Support": -0.0005,
+        "Sales": -0.0013
+      },
+      "growth": 0.2074,
+      "n_windowed_det": 5835,
+      "n_windowed_pooled": 7045,
+      "up_share_delta": 0.0021,
+      "up_share_det": 0.3796,
+      "up_share_pooled": 0.3817
+    },
+    "english": {
+      "cip_source_mix_pooled": {
+        "det": 0.8279,
+        "jury": 0.1721
+      },
+      "fan_share_delta_by_group": {
+        "Arts/Design/Media": 0.0044,
+        "Business & Financial": -0.0011,
+        "Community & Social Service": 0.0006,
+        "Computer & Mathematical": -0.0008,
+        "Education": -0.0014,
+        "Healthcare Practitioners": -0.0009,
+        "Legal": 0.0009,
+        "Management": 0.0036,
+        "Office & Admin Support": -0.0001,
+        "Sales": -0.0014
+      },
+      "growth": 0.1893,
+      "n_windowed_det": 3581,
+      "n_windowed_pooled": 4259,
+      "up_share_delta": -0.0005,
+      "up_share_det": 0.3662,
+      "up_share_pooled": 0.3657
+    },
+    "history": {
+      "cip_source_mix_pooled": {
+        "det": 0.978,
+        "jury": 0.022
+      },
+      "fan_share_delta_by_group": {
+        "Arts/Design/Media": -0.0006,
+        "Business & Financial": 0.0001,
+        "Community & Social Service": 0.0004,
+        "Computer & Mathematical": -0.0004,
+        "Education": -0.001,
+        "Legal": -0.0001,
+        "Management": -0.002,
+        "Office & Admin Support": -0.0001
+      },
+      "growth": 0.021,
+      "n_windowed_det": 2243,
+      "n_windowed_pooled": 2290,
+      "up_share_delta": 0.0015,
+      "up_share_det": 0.3831,
+      "up_share_pooled": 0.3846
+    },
+    "philrel": {
+      "cip_source_mix_pooled": {
+        "det": 0.8478,
+        "jury": 0.1522
+      },
+      "fan_share_delta_by_group": {
+        "Community & Social Service": 0.0086,
+        "Education": -0.0019,
+        "Management": 0.003
+      },
+      "growth": 0.2189,
+      "n_windowed_det": 1078,
+      "n_windowed_pooled": 1314,
+      "up_share_delta": -0.0011,
+      "up_share_det": 0.391,
+      "up_share_pooled": 0.3899
+    }
+  },
+  "material_disagreements": [],
+  "materiality_bars": {
+    "fan_share_delta_points": 0.02,
+    "up_share_delta": 0.03
+  },
+  "note": "Deterministic-only vs pooled (det + llm_jury) CIP MEMBERSHIP compared on year-10 fan and up_share. Cohort growth is the intended effect; composition drift past the bars is the signal. Jury acceptance = two-model unanimity, calibrated 0.911 on held-out gold (gate 0.85; fuzzy-surface caveat documented in edu_clean/cip_anchors.py).",
+  "verdict": "NO material composition drift -- pooling det + llm_jury membership is defensible."
+}
