@@ -2,7 +2,7 @@
 
 **Date:** 2026-08-03
 **Target:** `prototype/atlas.html` only
-**Status:** implemented 2026-08-03; §4.1 records one placement change made during the build
+**Status:** implemented 2026-08-03. §4.1 records a placement change made during the build; §10 covers the paths plate, added after the first implementation landed.
 
 Adds educational background to the career atlas as *provenance* — a descriptive
 reading of who arrives at each kind of work — without adding a new argument to
@@ -385,3 +385,104 @@ Note the `py` CTE above is written once for readability; each query repeats it.
 - Light and dark themes both legible at the 0.28 alpha floor.
 - Colophon states the invented/measured split accurately.
 - The step-4 "certificate, not a master's" sentence is gone.
+
+
+---
+
+## 10. The paths plate — undergraduate + graduate combinations
+
+Added after §1–§9 landed, in the same prototype-only scope. Answers a different
+question from the per-mark figures: not *who arrives here*, but *which pairs of
+degrees lead where*.
+
+### 10.1 What was rejected first, and why it is worth recording
+
+The original request was a switch putting graduate school into career paths as a
+timed step, distinguishing archetypes that are **stopovers** on the way to a
+graduate degree from those that are **centres of gravity** afterwards. It was
+measured and set aside, because education *timing* is the thinnest thing in the
+substrate:
+
+- Only **20.6%** of master's records carry an `end_year`; **21.0%** carry both a
+  start and an end.
+- Just **8.7%** of panel persons (47,856) have any dated graduate degree.
+
+Measured on completion dates alone, the split looked strong — Tech 1.35,
+Analysts 1.31 after/before. Re-measured on true **enrolment** dates, the
+centre-of-gravity end largely evaporates (Tech 1.35 → 0.96; only Healthcare 1.10
+and Analysts 1.09 stay above 1), because "the year before the degree ended" is
+mid-degree for anyone on a two-year programme. The **stopover** end survives and
+is strong: Hospitality 0.27, Sales 0.42, Nonprofit 0.43, Administrative 0.53.
+
+Half a finding on 8.7% of the panel did not justify a switch. Recorded here so it
+is not re-derived.
+
+### 10.2 What was built instead
+
+A full-width three-column Sankey between the plate and the mark plate:
+undergraduate field → graduate field → kind of work at career year 10.
+
+**Population.** 75,561 people holding both a fielded bachelor's and a fielded
+graduate degree — 21.7% of the panel, and by construction only those who went
+back. The plate says nothing about people who did not, and its note says so.
+
+**Why it is worth a plate.** The graduate field, not the undergraduate one, does
+the work. Holding undergrad constant at English & Literature:
+
+| then a graduate degree in | leading destination at year 10 |
+|---|---|
+| Law | Legal, Policy & Research 53.2% |
+| Education | Educators & Academics 48.5% |
+| English | Educators 29.6 / Writers 23.6 |
+| Communication & journalism | Writers 29.6 / Comms 21.4 |
+| Business | Managers 24.3 / Comms 13.5 / Analysts 12.8 |
+
+Same first degree, five different first decades.
+
+**Taxonomy.** Undergraduate side uses the humanities field groups with the
+uninformative `Other` group dropped. Graduate side uses **CIP2 families** at 79.3%
+coverage — `humanities_field_group` was tried first and fails here, because it
+labels most graduate degrees (MBA, MEd, MSW, JD, MPH) as "Other", which put an
+uninformative band at the top of eight of the ten largest combinations.
+
+**Depth.** Each column keeps its largest members by name and folds the rest into an
+explicit "all other" band, so the columns still total the whole population. The
+graduate column is deliberately deep — **14 named**. A shallower nine-node column
+folded same-field continuations such as English into "other", which made the
+commonest answer for several undergraduate groups an uninformative one; the
+readout for English majors read "most often paired with All other graduate fields
+45%". Fourteen cuts the folded share from 25.5% to 11.5%.
+
+**Suppression.** Bands under 25 people are not drawn. This is a legibility cut, not
+a privacy one, and sits well above the project's n≥10 bar; 99.5% of people survive
+it on both halves.
+
+### 10.3 Interaction: drill-down, not highlighting
+
+Selecting a band **redraws the whole diagram** from the triples running through it,
+rather than dimming the others.
+
+Highlighting was built first and failed informatively: an English major's routes
+touch most of the graph, so almost nothing dimmed and the view stayed unreadable.
+Redrawing answers the question actually being asked — *where do these people go* —
+instead of showing which ribbons are technically reachable. Node **order** is
+always taken from the full data so a drill-down never reshuffles rows under the
+reader; only weights change, and empty nodes drop out.
+
+Hover previews, click holds, clicking the held node releases. All three columns
+are selectable, and each gets its own readout sentence — a generic clause builder
+produced "They and were standing in …" for the middle column, which has no "went
+back for" of its own.
+
+### 10.4 Verification
+
+- Idle draws 41 nodes (11 + 15 + 15) and 271 bands; no page errors.
+- Drill-down drops empty nodes, and the selected node reads 100% of its own
+  sub-diagram.
+- Hover does not lock; click locks; a locked selection survives `mouseleave`;
+  clicking again restores all 41 nodes.
+- All three columns selectable, each with a grammatical sentence.
+- Substance spot-check from the model, not the prose: a Law graduate degree leads
+  to Legal, Policy & Research for **68%** of those holding it.
+- §9's suites re-run green after the addition: data invariants, field shading, and
+  all 15 mark plates.
