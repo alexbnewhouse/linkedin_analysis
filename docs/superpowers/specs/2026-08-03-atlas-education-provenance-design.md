@@ -2,7 +2,7 @@
 
 **Date:** 2026-08-03
 **Target:** `prototype/atlas.html` only
-**Status:** design approved, not yet implemented
+**Status:** implemented 2026-08-03; §4.1 records one placement change made during the build
 
 Adds educational background to the career atlas as *provenance* — a descriptive
 reading of who arrives at each kind of work — without adding a new argument to
@@ -132,9 +132,22 @@ School slug coverage on the panel is **97.1%**.
 
 ### 4.1 Markpage figure — "Who arrives here"
 
-Slots into `renderMarkPage()` after the existing "Who arrives, and who moves on"
-flow figure and before "Employer landmarks". Uses the established `figure()`
-helper and `table.reg` grammar. No new CSS.
+Slots into `renderMarkPage()` as its own two-column row, immediately after the
+row holding the ladder and Employer landmarks. Uses the established `figure()`
+helper and `table.reg` grammar.
+
+**Placement, as built.** The approved design put this figure *before* Employer
+landmarks. In implementation the two education figures were kept together as one
+row instead, giving the plate: flow → ladder | employers → provenance |
+institutional. This keeps the two measured figures adjacent, keeps the two
+named-organisation registers aligned in the same column on consecutive rows, and
+avoids orphaning "Institutional landmarks" in a half-empty row. Figure numbering
+is assigned by DOM order at the end of `renderMarkPage()`, so it stays correct.
+
+**One new CSS rule was needed.** A `.mp-grid` nested inside a `.fig-body` inherited
+the section-level `margin-top` and, being a stretch grid, distributed its table
+rows to fill the taller column — the two tables rendered at different row pitches.
+Scoped fix: `.fig-body .mp-grid{margin-top:0}` and `.fig-body .mp-grid > *{align-self:start}`.
 
 ```
 Fig n   Who arrives here
@@ -178,8 +191,9 @@ Top six groups plus a rolled tail row. `Other` stays in the list (§7).
 
 ### 4.2 Markpage figure — "Institutional landmarks"
 
-Placed immediately after "Employer landmarks", deliberately mirroring it: same
-`table.reg`, same two-column register, same caption structure.
+Placed beside "Who arrives here" (see the placement note above), deliberately
+mirroring Employer landmarks: same `table.reg`, same two-column register, same
+caption structure, and sitting directly beneath it in the same column.
 
 ```
 Fig n   Institutional landmarks

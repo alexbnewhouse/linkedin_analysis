@@ -1,0 +1,2569 @@
+<title>An Atlas of Possible Careers (prototype)</title>
+<style>
+/* ============================================================ tokens */
+:root{
+  color-scheme: light dark;
+
+  --ground:#eceef2;
+  --plate:#f7f8fa;
+  --plate-2:#e3e6ec;
+  --rule:#c9cdd8;
+  --rule-soft:#dcdfe7;
+  --ink:#161925;
+  --ink-soft:#4b5165;
+  --ink-faint:#7e8498;
+
+  --word:#d9542a;
+  --care:#12a495;
+  --systems:#3f5fd0;
+  --enterprise:#a3407f;
+  --uncharted:#8b90a2;
+
+  --field-bg:#f2f3f7;
+  --field-ring:#d3d7e1;
+  --field-veil:rgba(236,238,242,.72);
+
+  --glow:0;                 /* canvas glow multiplier: off on paper */
+  --shadow:0 1px 2px rgba(22,25,37,.06), 0 8px 24px rgba(22,25,37,.06);
+
+  --display:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --body:Optima,Candara,"Gill Sans MT","Gill Sans","Trebuchet MS",system-ui,sans-serif;
+  --mono:"Iosevka","SFMono-Regular",ui-monospace,"Cascadia Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --ground:#0e1119;
+    --plate:#161a26;
+    --plate-2:#1e2333;
+    --rule:#2c3247;
+    --rule-soft:#232839;
+    --ink:#e7e9f0;
+    --ink-soft:#a7adc0;
+    --ink-faint:#767d92;
+
+    --word:#d95926;
+    --care:#199e70;
+    --systems:#6f7ce8;
+    --enterprise:#c264a0;
+    --uncharted:#6b7288;
+
+    --field-bg:#0b0e16;
+    --field-ring:#242a3d;
+    --field-veil:rgba(11,14,22,.72);
+
+    --glow:1;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0e1119; --plate:#161a26; --plate-2:#1e2333; --rule:#2c3247; --rule-soft:#232839;
+  --ink:#e7e9f0; --ink-soft:#a7adc0; --ink-faint:#767d92;
+  --word:#d95926; --care:#199e70; --systems:#6f7ce8; --enterprise:#c264a0; --uncharted:#6b7288;
+  --field-bg:#0b0e16; --field-ring:#242a3d; --field-veil:rgba(11,14,22,.72);
+  --glow:1; --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px rgba(0,0,0,.35);
+}
+:root[data-theme="light"]{
+  --ground:#eceef2; --plate:#f7f8fa; --plate-2:#e3e6ec; --rule:#c9cdd8; --rule-soft:#dcdfe7;
+  --ink:#161925; --ink-soft:#4b5165; --ink-faint:#7e8498;
+  --word:#d9542a; --care:#12a495; --systems:#3f5fd0; --enterprise:#a3407f; --uncharted:#8b90a2;
+  --field-bg:#f2f3f7; --field-ring:#d3d7e1; --field-veil:rgba(236,238,242,.72);
+  --glow:0; --shadow:0 1px 2px rgba(22,25,37,.06), 0 8px 24px rgba(22,25,37,.06);
+}
+
+/* ============================================================ base */
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--body); font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--display); font-weight:600; text-wrap:balance; margin:0;}
+.emph{font-weight:600; color:var(--ink);}
+p{margin:0;}
+a{color:inherit;}
+:focus-visible{outline:2px solid var(--systems); outline-offset:3px; border-radius:2px;}
+/* Structural label: body face, roman, one notch down, muted. Never slanted,
+   never letterspaced, never all-caps. Weight and color do the work. */
+.eyebrow{
+  font-family:var(--body); font-size:13.5px; font-weight:500; letter-spacing:.01em;
+  color:var(--ink-faint);
+}
+.eyebrow .pl{
+  font-family:var(--mono); font-variant-numeric:tabular-nums; font-weight:400;
+  color:var(--ink); padding-right:.5em;
+}
+.num{font-family:var(--mono); font-variant-numeric:tabular-nums;}
+
+/* ============================================================ masthead */
+.masthead{
+  position:relative; z-index:5;
+  border-bottom:1px solid var(--rule);
+  background:var(--ground);
+  padding:14px clamp(16px,4vw,44px);
+  display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+}
+.masthead .wordmark{
+  font-family:var(--display); font-size:19px; letter-spacing:.01em; margin-right:auto;
+}
+.masthead .wordmark span{color:var(--ink-faint);}
+.ribbon{
+  font-family:var(--body); font-size:13px; font-weight:500;
+  color:var(--ground); background:var(--ink); padding:4px 9px; border-radius:2px;
+}
+.themer{
+  font-family:var(--body); font-size:14px;
+  background:none; border:0; border-bottom:1px solid var(--rule); color:var(--ink-soft);
+  padding:5px 1px; cursor:pointer;
+}
+.themer:hover{border-color:var(--ink-faint); color:var(--ink);}
+
+/* ============================================================ opening */
+.opening{
+  padding:clamp(56px,11vh,120px) clamp(16px,4vw,44px) clamp(40px,8vh,84px);
+  max-width:1500px; margin:0 auto;
+  display:grid; gap:clamp(24px,4vw,64px); grid-template-columns:1fr;
+}
+@media (min-width:900px){ .opening{grid-template-columns:minmax(0,7fr) minmax(0,5fr); align-items:end;} }
+.opening h1{
+  font-size:clamp(38px,6.4vw,76px); line-height:1.04; letter-spacing:-.015em;
+}
+.opening h1 em{font-style:normal; color:var(--ink-soft);}
+.opening .lede{
+  font-size:clamp(17px,1.5vw,20px); color:var(--ink-soft); max-width:56ch;
+}
+.opening .lede + .lede{margin-top:16px;}
+
+/* ============================================================ plate: sticky field + scroller */
+.plate{
+  display:grid; grid-template-columns:1fr; align-items:start;
+  max-width:1500px; margin:0 auto; padding:0 clamp(16px,4vw,44px) 0;
+  border-top:1px solid var(--rule);
+}
+@media (min-width:1000px){
+  .plate{grid-template-columns:minmax(0,1fr) minmax(360px,420px); gap:clamp(24px,3vw,56px);}
+}
+
+.field-wrap{
+  position:sticky; top:0; z-index:2;
+  background:var(--ground);
+  padding:12px 0 8px;
+}
+.field{
+  position:relative;
+  height:min(58vh,520px);
+  background:var(--field-bg);
+  border:1px solid var(--rule-soft);
+  border-radius:3px;
+  overflow:hidden;
+}
+@media (min-width:1000px){ .field{height:min(78vh,760px);} }
+.field canvas{position:absolute; inset:0; width:100%; height:100%; display:block;}
+
+.station{
+  position:absolute;
+  background:none; border:0; padding:6px 7px; margin:0; cursor:pointer;
+  font-family:var(--body); font-size:12.5px; line-height:1.22; letter-spacing:.005em;
+  color:var(--ink-soft); text-align:center; width:max-content; max-width:118px;
+  transition:color .25s, opacity .3s;
+  border-radius:3px;
+}
+.station b{display:block; font-weight:600;}
+.station:hover{color:var(--ink);}
+.station:hover b, .station:focus-visible b{
+  text-decoration:underline dotted; text-underline-offset:3px; text-decoration-thickness:1px;
+}
+/* transparent hit zone over the mark itself — the label keeps the accessible name */
+.hit{
+  position:absolute; transform:translate(-50%,-50%);
+  background:none; border:0; padding:0; margin:0;
+  border-radius:50%; cursor:pointer;
+}
+.station[aria-pressed="true"]{color:var(--ink); font-weight:600;}
+.station.dim{opacity:.22;}
+.station.mute{opacity:.5;}
+
+.field-legend{
+  display:flex; flex-wrap:wrap; gap:6px 20px; align-items:center;
+  padding:10px 2px 0; font-family:var(--body); font-size:13px; font-weight:500;
+  color:var(--ink-faint);
+}
+.field-legend .key{display:inline-flex; align-items:center; gap:7px;}
+.field-legend .dot{width:8px; height:8px; border-radius:50%;}
+
+/* layout switch: words with a rule under the active one, no pills */
+.layout-switch{
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px;
+  padding:12px 2px 0;
+}
+.layout-switch .ls-label{font-size:13px; font-weight:500; color:var(--ink-faint);}
+.layout-switch .ls-second{margin-left:14px; padding-left:18px; border-left:1px solid var(--rule);}
+.layout-switch button{
+  background:none; border:0; border-bottom:1px solid transparent; cursor:pointer;
+  font-family:var(--body); font-size:14.5px; color:var(--ink-faint);
+  padding:3px 1px;
+}
+.layout-switch button:hover{color:var(--ink);}
+.layout-switch button[aria-pressed="true"]{
+  color:var(--ink); font-weight:600; border-bottom-color:var(--ink);
+}
+.layout-note{
+  padding:8px 2px 0; font-size:13px; line-height:1.5; color:var(--ink-faint);
+  max-width:62ch;
+}
+.layout-note b{font-weight:500; color:var(--ink-soft);}
+
+/* plate card overlay */
+.card{
+  position:absolute; left:12px; right:12px; bottom:12px; z-index:3;
+  max-width:calc(100% - 24px);
+  background:var(--plate); border:1px solid var(--rule);
+  box-shadow:var(--shadow); border-radius:3px;
+  padding:16px 18px 18px; max-height:min(56%,340px); overflow:auto;
+  opacity:0; visibility:hidden; transform:translateY(8px);
+  transition:opacity .28s, transform .28s, visibility 0s .28s;
+}
+@media (min-width:1000px){ .card{right:auto; width:min(380px,46%);} }
+.card.open{opacity:1; visibility:visible; transform:none;
+  transition:opacity .28s, transform .28s, visibility 0s;}
+.card h3{font-size:20px; line-height:1.2; margin:6px 0 8px;}
+.card .blurb{font-size:14.5px; color:var(--ink-soft); line-height:1.55;}
+.card .close{
+  position:absolute; top:8px; right:8px; background:none; border:0; cursor:pointer;
+  color:var(--ink-faint); font-family:var(--mono); font-size:15px; line-height:1;
+  min-width:34px; min-height:34px; display:flex; align-items:center; justify-content:center;
+  border-radius:2px;
+}
+.card .close:hover{color:var(--ink);}
+.card .sub{margin-top:14px;}
+.card .sub .eyebrow{display:block; margin-bottom:7px;}
+
+.chips{display:flex; flex-wrap:wrap; gap:5px 14px; font-size:14.5px; color:var(--ink-soft);}
+.chips span:not(:last-child)::after{content:","; color:var(--ink-faint);}
+
+table.reg{width:100%; border-collapse:collapse; font-size:14.5px; max-width:34em;}
+table.reg caption{
+  text-align:left; font-family:var(--body); font-size:13.5px; font-weight:500;
+  color:var(--ink-faint); padding-bottom:7px;
+}
+table.reg th{
+  text-align:left; font-weight:500; font-size:13px;
+  font-family:var(--body); color:var(--ink-faint);
+  border-bottom:1px solid var(--rule); padding:0 0 5px;
+}
+table.reg th.num{text-align:right;}
+table.reg td{border-bottom:1px solid var(--rule-soft); padding:6px 0; color:var(--ink);}
+table.reg td.num{
+  text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums;
+  color:var(--ink-soft); padding-left:18px; white-space:nowrap;
+}
+
+.quote{
+  font-family:var(--display); font-size:15px; line-height:1.55;
+  color:var(--ink-soft); padding-left:1.6em; text-indent:-1.6em;
+}
+.quote::before{content:"\201C"; font-style:normal; padding-right:.15em;}
+.quote::after{content:"\201D"; font-style:normal;}
+
+/* ============================================================ scroller */
+.scroller{padding:8px 0 20vh;}
+.step{
+  min-height:64vh; display:flex; flex-direction:column; justify-content:center;
+  padding:26px 0; gap:14px;
+}
+.step:first-child{min-height:auto; padding-top:8vh;}
+.step h2{font-size:clamp(25px,2.6vw,34px); line-height:1.15; letter-spacing:-.01em;}
+.step h3{font-size:19px; line-height:1.25;}
+.step p{font-size:16.5px; color:var(--ink-soft); max-width:60ch;}
+.step p strong{color:var(--ink); font-weight:600;}
+.rule{height:1px; background:var(--rule-soft); border:0; margin:0;}
+
+/* a margin note, not a boxed callout: it sits beside the column where there is room */
+.aside{
+  font-size:14px; line-height:1.5; color:var(--ink-faint);
+  border-top:1px solid var(--rule-soft); padding-top:9px;
+}
+.aside .eyebrow{display:block; font-size:13px; margin-bottom:2px;}
+/* Kept inline: a hairline and a size step separate it from the argument, which is the
+   point of a margin note. The two-column plate has no true margin to place it in. */
+
+/* journey list */
+.journeys{display:flex; flex-direction:column; gap:0;}
+.journey{
+  display:grid; grid-template-columns:34px 1fr; gap:12px; align-items:baseline;
+  text-align:left; background:none; border:0; border-top:1px solid var(--rule-soft);
+  padding:13px 2px 13px 0; cursor:pointer; font-family:var(--body); color:var(--ink);
+  transition:background .2s;
+}
+.journey:hover{background:var(--plate);}
+.journey[aria-pressed="true"]{background:var(--plate);}
+.journey[aria-pressed="true"] .t{color:var(--accent);}
+.journey .t{display:block; font-family:var(--display); font-size:17.5px; line-height:1.25;}
+.journey .m{display:block; font-size:13.5px; color:var(--ink-faint); margin-top:2px;}
+.journey .cid{
+  font-family:var(--mono); font-size:12.5px; font-variant-numeric:tabular-nums;
+  color:var(--ink-faint); align-self:start; padding-top:4px;
+}
+.journey .body{display:block;}
+
+/* waypoints */
+.waypoints{display:flex; flex-direction:column; gap:0; margin-top:4px;}
+.wp{
+  display:grid; grid-template-columns:52px 1fr; gap:14px;
+  padding:11px 0; border-top:1px solid var(--rule-soft);
+}
+.wp:first-child{border-top:0;}
+.wp .yr{
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; color:var(--ink-faint);
+  padding-top:3px; font-variant-numeric:tabular-nums;
+}
+.wp .role{font-size:15.5px; line-height:1.35;}
+.wp .role b{font-weight:600;}
+.wp .where{font-size:13.5px; color:var(--ink-faint);}
+.wp .note{font-size:13.5px; color:var(--ink-soft); margin-top:5px;}
+.wp.concurrent .role::after{
+  content:"Held alongside the row above."; display:block;
+  font-family:var(--body); font-size:13px; color:var(--ink-faint); margin-top:4px;
+}
+
+/* trace */
+.trace-pick{display:flex; flex-wrap:wrap; gap:6px;}
+.pick{
+  background:var(--plate); border:1px solid var(--rule-soft); border-radius:2px;
+  padding:6px 10px; font-family:var(--body); font-size:13.5px; color:var(--ink-soft); cursor:pointer;
+}
+.pick:hover{color:var(--ink); border-color:var(--rule);}
+.pick[aria-pressed="true"]{color:var(--ink); border-color:currentColor; background:var(--plate-2);}
+.turns{display:flex; flex-direction:column; gap:8px;}
+.turn{
+  display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:baseline;
+  border-top:1px solid var(--rule-soft); padding-top:9px;
+}
+.turn .tone{
+  font-family:var(--mono); font-size:12.5px; font-variant-numeric:tabular-nums;
+  white-space:nowrap; padding-top:3px; min-width:34px; text-align:right;
+}
+.turn .tone.worn{color:var(--ink-faint);}
+.turn .tone.all{color:var(--ink-faint); opacity:.75;}
+.turn.all{opacity:.72;}
+.turn.sig .to{font-weight:600;}
+.turn .to{font-size:15.5px;}
+.turn .note{font-size:13.5px; color:var(--ink-soft);}
+
+/* ============================================================ colophon */
+.colophon{
+  border-top:1px solid var(--rule); margin-top:8vh;
+  padding:clamp(40px,7vh,80px) clamp(16px,4vw,44px) clamp(60px,10vh,110px);
+  background:var(--plate);
+}
+.colophon .inner{max-width:1500px; margin:0 auto; display:grid; gap:clamp(20px,3vw,44px);}
+@media (min-width:900px){ .colophon .inner{grid-template-columns:repeat(3,minmax(0,1fr));} }
+.colophon h2{font-size:26px; margin-bottom:6px;}
+.colophon h3{font-size:15px; font-family:var(--body); font-weight:600; margin-bottom:6px;}
+.colophon p{font-size:14.5px; color:var(--ink-soft); max-width:46ch;}
+.colophon ul{margin:8px 0 0; padding-left:18px; font-size:14.5px; color:var(--ink-soft);}
+.colophon li{margin-bottom:5px;}
+.colophon li code{font-family:var(--mono); font-size:12.5px; color:var(--ink); overflow-wrap:anywhere;}
+.colophon .inner > div{min-width:0;}
+
+/* ---- flow diagram (single-node Sankey) ---- */
+.flow{margin-top:6px; color:var(--ink-soft);}
+.flow svg{width:100%; height:auto; display:block; overflow:visible;}
+.flow .ribbon{transition:opacity .18s; cursor:pointer;}
+.flow .ribbon.hot{opacity:.85 !important;}
+.flow .nodebar{cursor:pointer;}
+.flow .flabel{font-family:var(--body); fill:currentColor; cursor:pointer;}
+.flow .flabel.hot{fill:var(--ink); font-weight:600;}
+.flow .fshare{font-family:var(--mono); fill:var(--ink-faint);}
+.flow .fhead{font-family:var(--body); font-weight:500; fill:var(--ink-faint);}
+.flow-key{
+  display:flex; flex-wrap:wrap; gap:6px 22px; margin-top:14px;
+  font-family:var(--body); font-size:13px; font-weight:500; color:var(--ink-faint);
+}
+.flow-key .k{display:inline-flex; align-items:center; gap:8px;}
+.flow-key .sw{height:13px; border-radius:2px; background:var(--ink);}
+.flow-key .sw.strong{width:18px; opacity:.7;}
+.flow-key .sw.pale{width:38px; opacity:.16;}
+@media (max-width:760px){ .flow{display:none;} }
+
+.routes{display:grid; gap:0;}
+.route{
+  display:grid; grid-template-columns:1fr auto; gap:6px 14px; align-items:baseline;
+  border-top:1px solid var(--rule-soft); padding:10px 0; transition:background .18s;
+}
+.route:first-child{border-top:0;}
+.route.hot{background:var(--plate);}
+.route .to{font-size:15.5px;}
+.route .to a{text-decoration:none; border-bottom:1px solid var(--rule);}
+.route .to a:hover{border-color:currentColor;}
+.route .pct{font-family:var(--mono); font-size:12.5px; color:var(--ink-faint); font-variant-numeric:tabular-nums;}
+.route .note{grid-column:1/-1; font-size:13.5px; color:var(--ink-soft);}
+.route.pale .to{color:var(--ink-soft);}
+
+/* ============================================================ figure grammar
+   Borrowed deliberately: the numbered figure with a title, a one-line dek and a
+   source note under a rule (FiveThirtyEight / Distill); figures allowed to break
+   wider than the reading measure (Distill); notes set in the margin rather than
+   in boxes (gwern, Tufte). */
+.fig{margin:0 0 clamp(30px,5vh,54px);}
+.fig-head{display:grid; grid-template-columns:auto 1fr; gap:0 12px; align-items:baseline;}
+.fig-num{
+  font-family:var(--mono); font-size:12.5px; font-variant-numeric:tabular-nums;
+  color:var(--ink-faint); padding-top:6px;
+}
+.fig-title{font-family:var(--display); font-size:22px; line-height:1.2; font-weight:600;}
+.fig-dek{
+  grid-column:2; font-size:14.5px; color:var(--ink-soft); max-width:52ch;
+  margin-top:3px;
+}
+.fig-body{margin-top:16px;}
+/* ranked share rows: a hairline bar behind a tabular number, no chart chrome */
+.grank{display:grid; gap:0;}
+.grank .r{
+  display:grid; grid-template-columns:1fr auto; gap:2px 12px; align-items:baseline;
+  padding:5px 0; border-top:1px solid var(--rule-soft); position:relative;
+}
+.grank .r:first-child{border-top:0;}
+.grank .nm{font-size:14px; color:var(--ink-soft);}
+.grank .r.hi .nm{color:var(--ink); font-weight:600;}
+.grank .v{
+  font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums;
+  color:var(--ink-soft);
+}
+.grank .bar{
+  grid-column:1/-1; height:2px; background:var(--ink-faint); opacity:.35;
+  border-radius:1px; transition:width .3s;
+}
+.grank .r.hi .bar{opacity:.75;}
+
+.fig figcaption{
+  margin-top:12px; padding-top:8px; border-top:1px solid var(--rule-soft);
+  font-size:13px; color:var(--ink-faint); max-width:56ch;
+}
+.fig figcaption b{font-weight:500; color:var(--ink-soft);}
+/* a figure may break the reading measure, but never the page */
+@media (min-width:1000px){
+  .fig-wide .fig-body{margin-right:clamp(0px,-6vw,0px);}
+  .fig-wide{max-width:none;}
+}
+
+/* margin notes: beside the column where there is room, inline where there is not */
+.sidenote{
+  display:block; font-size:13.5px; line-height:1.5; color:var(--ink-faint);
+  border-top:1px solid var(--rule-soft); padding-top:8px; margin-top:14px;
+}
+
+
+/* hover preview on internal links, so a cross-reference costs no navigation */
+#preview{
+  position:absolute; z-index:40; width:290px; pointer-events:none;
+  background:var(--plate); border:1px solid var(--rule); box-shadow:var(--shadow);
+  padding:12px 14px; border-radius:2px; opacity:0; transition:opacity .14s;
+  font-size:13.5px; line-height:1.5; color:var(--ink-soft);
+}
+#preview.on{opacity:1;}
+#preview .pv-name{
+  display:flex; align-items:center; gap:8px; font-family:var(--display);
+  font-size:16px; color:var(--ink); margin-bottom:5px;
+}
+#preview .pv-dot{width:10px; height:10px; border-radius:50%; flex:none;}
+#preview .pv-fig{
+  display:block; font-family:var(--mono); font-size:12px; font-variant-numeric:tabular-nums;
+  color:var(--ink-faint); margin-top:8px;
+}
+
+/* ============================================================ mark plate (own page) */
+body[data-view="page"] .opening,
+body[data-view="page"] .plate,
+body[data-view="page"] .colophon{display:none;}
+body[data-view="atlas"] .markpage{display:none;}
+
+.markpage{
+  max-width:1180px; margin:0 auto;
+  padding:clamp(20px,4vh,40px) clamp(16px,4vw,44px) clamp(60px,10vh,110px);
+}
+.backbar{
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  padding-bottom:18px; border-bottom:1px solid var(--rule); margin-bottom:clamp(26px,5vh,52px);
+}
+.backlink{
+  background:none; border:0; border-bottom:1px solid var(--rule); cursor:pointer;
+  font-family:var(--body); font-size:14.5px; color:var(--ink-soft); padding:6px 1px;
+}
+.backlink:hover{color:var(--ink); border-color:var(--ink-faint);}
+.backlink:hover{border-color:var(--ink-faint); color:var(--ink);}
+.markpage .crumb{font-family:var(--body); font-size:13.5px; font-weight:500;
+  color:var(--ink-faint);}
+
+.mp-head{display:grid; gap:clamp(18px,3vw,40px); align-items:start;}
+@media (min-width:860px){ .mp-head{grid-template-columns:minmax(0,3fr) minmax(0,2fr);} }
+.mp-head h1{font-size:clamp(32px,5vw,54px); line-height:1.05; letter-spacing:-.015em; margin:8px 0 14px;}
+.mp-head .blurb{font-size:17.5px; color:var(--ink-soft); max-width:52ch;}
+.mp-emblem{
+  display:flex; align-items:center; gap:14px;
+  border:1px solid var(--rule-soft); border-radius:3px; background:var(--plate);
+  padding:16px 18px;
+}
+.mp-emblem .mark{width:34px; height:34px; border-radius:50%; flex:none;}
+.mp-emblem .t{font-size:14.5px; color:var(--ink-soft); line-height:1.45;}
+
+/* a reading table, not a KPI row: figures align so they can be compared down the column */
+.tiles{margin-top:24px; border-top:2px solid var(--rule); max-width:34em;}
+.tile{
+  display:grid; grid-template-columns:1fr auto; gap:16px; align-items:baseline;
+  border-bottom:1px solid var(--rule-soft); padding:7px 0;
+}
+.tile .k{font-size:14.5px; color:var(--ink-soft);}
+.tile .v{font-family:var(--mono); font-size:15px; font-variant-numeric:tabular-nums; color:var(--ink);}
+.tile .v small{font-size:13px; color:var(--ink-faint);}
+
+.mp-grid{display:grid; gap:clamp(26px,4vw,48px); margin-top:clamp(34px,6vh,60px);}
+@media (min-width:860px){ .mp-grid.two{grid-template-columns:repeat(2,minmax(0,1fr));} }
+/* a grid nested inside a figure body is a layout device, not a section break:
+   no section margin, and tables sit at the top rather than stretching their rows */
+.fig-body .mp-grid{margin-top:0; gap:clamp(20px,3vw,36px);}
+.fig-body .mp-grid > *{align-self:start;}
+.mp-sec > h2{font-size:23px; line-height:1.2; margin-bottom:4px;}
+.mp-sec > .cap{font-size:14.5px; color:var(--ink-faint); margin-bottom:14px; max-width:48ch;}
+
+.ladder{display:grid; gap:0;}
+.rung{display:grid; grid-template-columns:66px 1fr; gap:14px; padding:12px 0;
+  border-top:1px solid var(--rule-soft);}
+.rung:first-child{border-top:0;}
+.rung .yr{font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; color:var(--ink-faint); padding-top:4px;}
+.rung .titles{font-size:15px; color:var(--ink);}
+.rung .titles i{font-style:normal;}
+.rung .titles i:not(:last-child)::after{content:",\00a0"; color:var(--ink-faint);}
+
+.pathrow{display:grid; grid-template-columns:auto 1fr; gap:12px; align-items:baseline;
+  border-top:1px solid var(--rule-soft); padding:10px 0;}
+.pathrow:first-of-type{border-top:0;}
+.pathrow .tone{
+  font-family:var(--mono); font-size:12.5px; font-variant-numeric:tabular-nums;
+  white-space:nowrap; padding-top:4px; color:var(--ink-faint);
+}
+.pathrow .to{font-size:15.5px;}
+.pathrow .note{font-size:13.5px; color:var(--ink-soft);}
+.pathrow.all{opacity:.72;}
+.pathrow.sig .to{font-weight:600;}
+.pathrow a{text-decoration:none; border-bottom:1px solid var(--rule); cursor:pointer;}
+.pathrow a:hover{border-color:currentColor;}
+
+.quotes{display:flex; flex-direction:column; gap:14px;}
+.mp-sec .quote{font-size:16px;}
+.placeholder-note{
+  font-family:var(--body); font-size:13px; font-weight:500;
+  color:var(--ink-faint); margin-top:10px;
+}
+.feeds{border-top:2px solid var(--rule); padding-top:14px; margin-top:clamp(34px,6vh,64px);}
+.feeds p{font-size:14.5px; color:var(--ink-soft); max-width:70ch;}
+.feeds code{font-family:var(--mono); font-size:12.5px; color:var(--ink); overflow-wrap:anywhere;}
+
+.card .goto{
+  display:inline-block; margin-top:16px; cursor:pointer;
+  background:none; border:0; border-bottom:1px solid currentColor;
+  font-family:var(--body); font-size:14.5px; padding:6px 1px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
+}
+</style>
+
+<header class="masthead">
+  <div class="wordmark">An Atlas of Possible Careers <span>humanities graduates at work</span></div>
+  <span class="ribbon">Prototype, placeholder data</span>
+  <button class="themer" id="themer" type="button">Theme</button>
+</header>
+
+<section class="opening">
+  <h1><b>Mapping career archetypes.</b></h1>
+  <div>
+    <p class="lede">What do humanities graduates do? What are the main types of work? What are the common paths through the working world? This atlas maps fifteen kinds of working life, the institutions that turn out to be full
+    of humanities graduates, and the routes between them.</p>
+  </div>
+</section>
+
+<div class="plate">
+  <!-- ===================================================== the field -->
+  <div class="field-wrap">
+    <div class="field" id="field">
+      <canvas id="canvas" aria-hidden="true"></canvas>
+      <div id="stations"></div>
+      <div class="card" id="card" role="region" tabindex="-1" aria-label="Mark detail">
+        <button class="close" id="cardClose" type="button" aria-label="Close detail">✕</button>
+        <div id="cardBody"></div>
+      </div>
+    </div>
+    <div class="layout-switch" role="group" aria-label="Field layout">
+      <span class="ls-label">Placed by</span>
+      <button type="button" data-layout="rings" aria-pressed="true">expectation</button>
+      <button type="button" data-layout="force" aria-pressed="false">movement</button>
+      <button type="button" data-layout="language" aria-pressed="false">language</button>
+      <span class="ls-label ls-second">Routes</span>
+      <button type="button" data-edges="flow" aria-pressed="true">as movement</button>
+      <button type="button" data-edges="arcs" aria-pressed="false">as arcs</button>
+    </div>
+    <div class="field-legend">
+      <span class="key"><span class="dot" style="background:var(--word)"></span>Word &amp; image</span>
+      <span class="key"><span class="dot" style="background:var(--care)"></span>Care &amp; public life</span>
+      <span class="key"><span class="dot" style="background:var(--systems)"></span>Systems &amp; ledger</span>
+      <span class="key"><span class="dot" style="background:var(--enterprise)"></span>Enterprise &amp; room</span>
+      <span class="key">Hover a mark to isolate everything it connects to</span>
+    </div>
+    <p class="layout-note" id="layoutNote"></p>
+  </div>
+
+  <!-- ===================================================== the scroller -->
+  <div class="scroller" id="scroller">
+
+    <section class="step" data-focus="all">
+      <span class="eyebrow"><span class="pl">1</span> the field</span>
+      <h2>Fifteen kinds of working life</h2>
+      <p>Each mark is a kind of work, not a job title. Color is the family it belongs to.
+      Size is how much of a first decade is spent there.</p>
+      <p><strong>Where a mark sits depends on what you ask the field to show.</strong> By
+      default it is placed by expectation: family around the circle, and distance from the
+      expected image of a humanities career by radius, so teaching and writing sit near the
+      center while security work and portfolio practice sit out at the rim. That radius is
+      an editorial judgment. The other two arrangements are computed, and they disagree
+      with it in useful ways.</p>
+      <p>Switch between them under the field. Select any mark to open it.</p>
+    </section>
+
+    <section class="step" data-focus="domain:word">
+      <span class="eyebrow"><span class="pl">2</span> word &amp; image</span>
+      <h2>The work everyone pictures</h2>
+      <p>Writers, designers, editors, communications staff. This family is the one the
+      stereotype is built from. It is real and well-populated, but <strong>far from the whole
+      story</strong>. What is interesting about it is its shape rather than its size. More
+      of this work is freelance, concurrent, and multi-employer than in any other family on
+      the map.</p>
+      <div class="aside">
+        <span class="eyebrow">What the real data would put here</span>
+        Named employer landmarks at archetype grain. These counts were unreachable at
+        major-by-employer grain and are abundant once the majors are pooled.
+      </div>
+    </section>
+
+    <section class="step" data-focus="domain:care">
+      <span class="eyebrow"><span class="pl">3</span> care &amp; public life</span>
+      <h2>The public sector is a humanities employer</h2>
+      <p>School districts, agencies, hospitals, congressional offices, resettlement
+      nonprofits. Clinical and human services is reached mostly by way of a second credential rather
+      than a second degree.</p>
+      <p>It is also where named institutions become legible: a district, a department, a
+      committee office employs humanities graduates by the hundred, where a private firm
+      employs one or two.</p>
+    </section>
+
+    <section class="step" data-focus="domain:systems">
+      <span class="eyebrow"><span class="pl">4</span> systems &amp; ledger</span>
+      <h2>Unexpected career paths are still well represented</h2>
+      <p>Analysis, finance, technology, and the coordination work that feeds all three.
+      These marks sit far out because they contradict the expectation, not because they
+      are rare. The route to them is lateral, but it is <strong>not a shortcut</strong>:
+      analysis, finance and technology are each held by more graduate-degree holders than
+      any mark in word and image. The measured split is in <b class="emph">what people
+      studied</b>, below.</p>
+      <div class="aside">
+        <span class="eyebrow">Placeholder standing in for a real finding</span>
+        The credential ladder is measurable today and shown nowhere — project management,
+        securities licensing, security certification, UX foundations, real estate, nursing.
+      </div>
+    </section>
+
+    <section class="step" data-focus="domain:enterprise">
+      <span class="eyebrow"><span class="pl">5</span> enterprise &amp; the room</span>
+      <h2>Where the paths converge</h2>
+      <p>Management, sales, founding, service are where a great many paths end up standing. A decade of experience commonly leads to
+      responsibility for people and budgets.</p>
+      <p>One share is missing from the map on purpose. About a ninth of all person-years
+      carry a role the taxonomy cannot read: generic titles, student and member roles,
+      out-of-scope trades and uniformed service, and gaps. Those are excluded here rather
+      than drawn as a sixteenth kind of work, and every share on this page is a share of
+      the fifteen that could be read.</p>
+    </section>
+
+    <hr class="rule">
+
+    <section class="step" data-focus="background">
+      <span class="eyebrow"><span class="pl">6</span> what people studied</span>
+      <h2>The unexpected work is the credentialed work</h2>
+      <p>Every mark on this map is fed by many backgrounds, and most are fed almost
+      evenly. What separates them is not what people studied but <strong>how far they
+      took it</strong>.</p>
+      <p>The marks placed furthest from the expected image of a humanities career are
+      not reached by a shortcut. Analysis, technology and finance are held by
+      <strong>more</strong> graduate-degree holders than writing, communications or
+      creative work. The credential is doing the work the expectation assumed a
+      different degree would have to do.</p>
+      <figure class="fig" id="dlFig"></figure>
+      <p>Open any mark to see what its arrivals studied, how far they took it, and
+      which schools they came from.</p>
+    </section>
+
+    <hr class="rule">
+
+    <section class="step" data-focus="journeys">
+      <span class="eyebrow"><span class="pl">7</span> the crossings</span>
+      <h2>Six ways through</h2>
+      <p>These are composites, representative of combinations of profiles depicting common arcs of career development.
+      <p>Choose one and it draws itself across the field.</p>
+      <div class="journeys" id="journeyList"></div>
+    </section>
+
+    <section class="step" data-focus="trace">
+      <span class="eyebrow"><span class="pl">8</span> your turn</span>
+      <h2>Trace a turn of your own</h2>
+      <p>Pick where you think you are starting. The field keeps everything visible and
+      <strong>dims what that choice makes less likely</strong>. Foreclosure you can see is
+      less frightening than foreclosure you cannot.</p>
+      <div class="trace-pick" id="tracePick"></div>
+      <div class="turns" id="traceTurns"></div>
+    </section>
+
+  </div>
+</div>
+
+<section class="markpage" id="markpage" aria-label="Mark detail plate"></section>
+
+<footer class="colophon">
+  <div class="inner">
+    <div>
+      <h2>What this is</h2>
+      <p>A placeholder-data prototype for a qualitative companion to the Humanities
+      Workforce portal. The portal answers <b class="emph">how many</b>. This asks <b class="emph">what is worth
+      knowing about</b>, and is built on illustration rather than comparison.</p>
+    </div>
+    <div>
+      <h3>What is invented here</h3>
+      <ul>
+        <li>Every count, share, and employer figure, <b class="emph">except the
+            education layer below</b>.</li>
+        <li>All six people and their routes. Each is a composite, not a profile.</li>
+        <li>The radial placement, which is an editorial claim about expectation.</li>
+        <li>The movement and language arrangements are computed here, but from placeholder
+            route weights and from this page's own descriptive text.</li>
+        <li>The description quotes.</li>
+      </ul>
+      <p style="margin-top:10px">The fifteen archetype names are real project vocabulary;
+      the employer names are organizations that genuinely appear in the corpus, shown here
+      with fabricated counts.</p>
+
+      <h3 style="margin-top:18px">What is measured here</h3>
+      <ul>
+        <li>What arrivals studied, how far they took it, and the institutions they came
+            from &mdash; on every mark plate.</li>
+        <li>The graduate-degree ranking in <b class="emph">what people studied</b>, and the
+            shading it puts on the field.</li>
+      </ul>
+      <p style="margin-top:10px">These come from the 551,560-person archetype panel at
+      career year 10 &mdash; <code>person_year_archetype</code> joined to
+      <code>education_person</code>. The queries are recorded in
+      <code>docs/superpowers/specs/2026-08-03-atlas-education-provenance-design.md</code>.
+      Nothing else on this page is measured.</p>
+    </div>
+    <div>
+      <h3>What would feed it</h3>
+      <ul>
+        <li>The marks and their occupancy, from <code>person_year_archetype.parquet</code>.</li>
+        <li>The crossings, from <code>state_flows.parquet</code> and <code>job_flows.parquet</code>.</li>
+        <li>The employer landmarks, from <code>career_steps</code> joined to <code>role_archetype</code>.</li>
+        <li>What the work involved, from <code>career_steps.description</code>.</li>
+        <li>The credential ladder, from <code>parsed/certifications</code>.</li>
+      </ul>
+      <p style="margin-top:10px">Suppression, coverage badges, and the no-wage-claims rule
+      carry over unchanged. Vignettes add one rule of their own: every one is a composite.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+/* ============================================================ placeholder data */
+const DOMAINS = {
+  word:      {label:"Word & image",       varname:"--word"},
+  care:      {label:"Care & public life", varname:"--care"},
+  systems:   {label:"Systems & ledger",   varname:"--systems"},
+  enterprise:{label:"Enterprise & room",  varname:"--enterprise"},
+  uncharted: {label:"Uncharted",          varname:"--uncharted"}
+};
+
+/* ang: degrees, 0 = right, clockwise (screen coords). ring: 1 (expected) to 5+ (unexpected) */
+const STATIONS = [
+  {id:"creatives", short:"Creatives", label:"Creatives &<br>media makers", plain:"Creatives & media makers", domain:"word", ang:212, ring:1.0, share:8.0,
+   blurb:"Design, film, photography, performance, production. The most freelance-heavy work on the map, and the family most likely to be held alongside something else.",
+   quote:"Photographed and edited the museum's online collection over three years, and trained the volunteers who maintained it.",
+   employers:[["Freelance",9198],["SAG-AFTRA",286],["NBCUniversal",272],["Apple",232],["The Walt Disney Co.",224],["A regional theater",118]]},
+  {id:"writers", short:"Writers", label:"Writers, editors<br>& content", plain:"Writers, editors & content", domain:"word", ang:236, ring:1.6, share:3.6,
+   blurb:"Editorial, technical writing, content strategy, documentation. The clearest line from the degree to the desk, and the most common starting point for a later turn into product or policy.",
+   quote:"Wrote and maintained the product documentation, and revised the sections that generated the most support requests.",
+   employers:[["Freelance",5338],["Microsoft",141],["NBCUniversal",130],["Pearson",129],["Condé Nast",114],["A university press",64]]},
+  {id:"comms", short:"Comms", label:"Communications,<br>PR & marketing", plain:"Communications, PR & marketing", domain:"word", ang:255, ring:2.6, share:5.7,
+   blurb:"Brand, press, social, campaigns, internal comms. Sits one ring out because employers name it as a business function rather than a humanities one, while hiring humanities graduates for it constantly.",
+   quote:"Managed a newsroom's social media desk across two election cycles, including audience analysis and daily reporting.",
+   employers:[["Freelance",1195],["AT&T",112],["IBM",105],["Microsoft",100],["Wells Fargo",92],["A health system",58]]},
+
+  {id:"educators", short:"Educators", label:"Educators &<br>academics", plain:"Educators & academics", domain:"care", ang:286, ring:1.0, share:6.5,
+   blurb:"Classroom teaching, instruction, academic staff and faculty. The destination most often assumed to be universal. In the data, roughly one graduate in fifteen holds it at year ten.",
+   quote:"Taught four sections of English, coached the debate team, and helped write the district's revised humanities sequence.",
+   employers:[["NYC Dept. of Education",369],["New York University",257],["LA Unified School District",253],["Self-employed (tutoring)",1533],["A community college",96]]},
+  {id:"nonprofit", short:"Nonprofit", label:"Nonprofit &<br>public service", plain:"Nonprofit, public service & advocacy", domain:"care", ang:320, ring:2.4, share:0.9,
+   blurb:"Mission-sector placement across every function. The smallest mark on the map, and the most cross-cutting. Whether it is a place or an attribute is still an open question in the pipeline.",
+   quote:"Carried a caseload of resettlement households and prepared quarterly reporting for three funders.",
+   employers:[["Peace Corps",47],["American Red Cross",37],["A resettlement agency",29],["A community foundation",21]]},
+  {id:"legal", short:"Policy", label:"Legal, policy<br>& research", plain:"Legal, policy & research", domain:"care", ang:346, ring:3.4, share:5.3,
+   blurb:"Law, legislative and agency policy, social research. The strongest signature destination for history and philosophy graduates anywhere in the data, over-represented several times over.",
+   quote:"Drafted committee memoranda and analysis on education legislation across two sessions.",
+   employers:[["U.S. House of Representatives",122],["U.S. Dept. of Justice",116],["U.S. Attorneys' Offices",73],["U.S. Dept. of State",70],["A state agency",44]]},
+  {id:"healthcare", short:"Healthcare", label:"Healthcare &<br>human services", plain:"Healthcare & human services", domain:"care", ang:266, ring:4.2, share:6.2,
+   blurb:"Clinical roles, counselling, social work, community health. The least expected mark in this family, and one of the largest. It is reached overwhelmingly by a second credential rather than a career restart.",
+   quote:"Began in patient intake, completed clinical licensure while working, and now supervises the same team.",
+   employers:[["Walgreens",233],["Dept. of Veterans Affairs",202],["Kaiser Permanente",170],["CVS Pharmacy",148],["A county health dept.",61]]},
+
+  {id:"admin", short:"Coordination", label:"Administrative &<br>coordination", plain:"Administrative & coordination", domain:"systems", ang:20, ring:1.8, share:10.6,
+   blurb:"Coordination, operations support, office and program administration. The hub of the early career: more people pass through this mark on their way somewhere else than hold it at year ten.",
+   quote:"Coordinated scheduling, contracts and the grant calendar for a department of twenty-two staff.",
+   employers:[["Wells Fargo",498],["Amazon",404],["Walmart",342],["U.S. Postal Service",336],["A university",174]]},
+  {id:"analysts", short:"Analysts", label:"Analysts &<br>consultants", plain:"Business & strategy analysts / consultants", domain:"systems", ang:33, ring:3.4, share:6.9,
+   blurb:"Business analysis, strategy, consulting, research-for-hire. Reached most often from coordination work, by people who turned out to be the one who understood the process.",
+   quote:"Reviewed vendor contracts and translated requirements between the engineering and legal teams.",
+   employers:[["Self-employed",1638],["Wells Fargo",308],["Amazon",214],["Bank of America",185],["A consultancy",97]]},
+  {id:"finance", short:"Finance", label:"Finance &<br>accounting", plain:"Finance & accounting", domain:"systems", ang:53, ring:4.6, share:2.5,
+   blurb:"Financial analysis, accounting, banking, advising. Small, far out, and almost always license-mediated. The securities exams do the work a second degree would otherwise have to do.",
+   quote:"Completed the Series 7 while working in client services, then began advising clients directly.",
+   employers:[["Wells Fargo",434],["Bank of America",258],["JPMorgan Chase",194],["Citi",130],["H&R Block",121]]},
+  {id:"tech", short:"Tech", label:"Tech &<br>product", plain:"Tech & product", domain:"systems", ang:71, ring:4.9, share:4.8,
+   blurb:"Software, data, product, IT, security. The rim of the map, and the clearest counter-example to the assumption that these fields are closed. The common entry is not an intensive program but a documentation, support, or research role that became technical.",
+   quote:"Moved from technical support into security analysis after a nine-week certification and an internal transfer.",
+   employers:[["Freelance",761],["Apple",227],["IBM",201],["Microsoft",160],["AT&T",156]]},
+
+  {id:"managers", short:"Managers", label:"Managers &<br>operations leaders", plain:"Managers & operations leaders", domain:"enterprise", ang:96, ring:2.6, share:14.4,
+   blurb:"General management, operations, program leadership. The largest mark on the map and the great convergence point: nearly every family sends people here by year ten.",
+   quote:"Manages eleven staff across two programs and holds responsibility for the department budget.",
+   employers:[["Self-employed",583],["Target",288],["Walmart",265],["A hospital network",132],["A public agency",118]]},
+  {id:"sales", short:"Sales", label:"Sales & business<br>development", plain:"Sales & business development", domain:"enterprise", ang:129, ring:3.6, share:7.4,
+   blurb:"Sales, account management, partnerships, business development. Heavily populated and rarely discussed with students. The work draws directly on argument, audience analysis and negotiation.",
+   quote:"Built a client portfolio over four years, working across two employers in commercial real estate.",
+   employers:[["Keller Williams Realty",393],["Macy's",315],["Target",310],["AT&T",281],["Self-employed",444]]},
+  {id:"founders", short:"Founders", label:"Founders &<br>independent practice", plain:"Founders & independent practitioners", domain:"enterprise", ang:145, ring:2.0, share:3.4,
+   blurb:"Business owners, sole practitioners, studios, consultancies. A destination in its own right rather than a failure state, and one the employment-type field can see directly.",
+   quote:"Ran a two-person design studio for four years, then incorporated and hired a first employee.",
+   employers:[["Self-employed",3038],["A two-person studio",72],["An LLC of one",41]]},
+  {id:"hospitality", short:"Service", label:"Hospitality,<br>retail & service", plain:"Hospitality, retail & service", domain:"enterprise", ang:165, ring:1.4, share:2.4,
+   blurb:"Food, retail, events, personal service. Where a great many first years happen, often alongside the work a graduate intends to build a career in. The one-role-per-year rule upstream hides that overlap.",
+   quote:"Opened the store each morning and coordinated the events calendar for a regional chain.",
+   employers:[["Starbucks",1110],["Target",308],["Walmart",244],["McDonald's",186],["Self-employed",816]]},
+];
+
+/* Placeholder magnitudes. A built version reads these from the flow tensor; here they
+   are derived deterministically so the picture is stable between renders. */
+const WEIGHT_BASE = {all:26, worn:16, sig:12, rare:7};
+
+const JOURNEYS = [
+  {id:"ladder", title:"The coordinator's ladder", who:"History BA", cid:"Composite 01",
+   note:"One of the most common routes in the data, and one rarely described to students: coordination work as preparation for running a department.",
+   waypoints:[
+     {yr:"Year 1", role:"Program Assistant", where:"A regional arts council", station:"admin",
+      note:"Scheduling, contracts, and the grant calendar for a small arts council."},
+     {yr:"Year 3", role:"Program Coordinator", where:"City cultural affairs office", station:"admin",
+      note:"The same responsibilities at a larger budget, now with two staff."},
+     {yr:"Year 6", role:"Operations Manager", where:"A mid-sized museum", station:"managers",
+      note:"Moved from program delivery into operations, with hiring and budget responsibility."},
+     {yr:"Year 10", role:"Director of Programs", where:"A mid-sized museum", station:"managers",
+      note:"Directs the department, ten years after joining it as an assistant."}]},
+
+  {id:"statehouse", title:"From the classroom to the statehouse", who:"English BA", cid:"Composite 02",
+   note:"Teaching as a first destination that turns into policy expertise. The occupation-group fan cannot see this route, because it crosses three sectors.",
+   waypoints:[
+     {yr:"Year 1", role:"Teaching Fellow", where:"A public middle school", station:"educators",
+      note:"Two years teaching one subject to roughly four hundred students."},
+     {yr:"Year 4", role:"Curriculum Writer", where:"An education publisher", station:"writers",
+      note:"Moved into educational publishing, writing curriculum for the subject taught earlier."},
+     {yr:"Year 7", role:"Policy Analyst", where:"A state education agency", station:"legal",
+      note:"One of the few analysts in the office with classroom experience of the policy being written."},
+     {yr:"Year 11", role:"Legislative Director", where:"A statehouse committee office", station:"legal",
+      note:"Now directs legislative work for the committee that drafts the bills."}]},
+
+  {id:"portfolio", title:"The portfolio practitioner", who:"Studio Art BA", cid:"Composite 03",
+   note:"Two jobs at once for three years. The panel picks one role per person-year, so this shape is invisible in every aggregate the portal currently shows.",
+   waypoints:[
+     {yr:"Year 1", role:"Barista, opening shift", where:"A coffee chain", station:"hospitality",
+      note:"Held alongside freelance illustration; both appear in the record."},
+     {yr:"Year 1", role:"Freelance illustrator", where:"Self-employed", station:"creatives", concurrent:true,
+      note:"Six clients across the year, none on retainer."},
+     {yr:"Year 3", role:"Illustrator", where:"Self-employed, full time", station:"creatives",
+      note:"Left the shift work the month a retainer began."},
+     {yr:"Year 6", role:"Art Director", where:"A small agency", station:"creatives",
+      note:"First salaried role, with a team of three."},
+     {yr:"Year 9", role:"Founder", where:"A two-person studio", station:"founders",
+      note:"Left the agency with an established client list and a business partner."}]},
+
+  {id:"security", title:"The unexpected turn into security", who:"Philosophy BA", cid:"Composite 04",
+   note:"A certificate rather than a degree. The credential ladder is sitting in the corpus unread, and this is the route it would make visible.",
+   waypoints:[
+     {yr:"Year 1", role:"Copy Editor", where:"A trade publisher", station:"writers",
+      note:"Editing trade titles: style guides, schedules, and author queries."},
+     {yr:"Year 3", role:"Technical Writer", where:"A software company", station:"writers",
+      note:"Documented a software interface, learning to read it in the process."},
+     {yr:"Year 5", role:"Security Analyst", where:"Same company, different floor", station:"tech",
+      note:"A nine-week certification and an internal transfer into the security team."},
+     {yr:"Year 9", role:"Security Program Manager", where:"A payments firm", station:"tech",
+      note:"Hired for the writing as much as for the security background."}]},
+
+  {id:"care", title:"The long way into care", who:"Comparative Literature BA", cid:"Composite 05",
+   note:"Four sectors in ten years, each move a modest one. Step by step the changes are small; end to end the career looks entirely different.",
+   waypoints:[
+     {yr:"Year 1", role:"Admissions Counselor", where:"A small college", station:"admin",
+      note:"Reading application essays and speaking with families."},
+     {yr:"Year 3", role:"Case Manager", where:"A refugee resettlement agency", station:"nonprofit",
+      note:"A caseload of forty households, in two languages."},
+     {yr:"Year 6", role:"Clinical Social Worker", where:"A county health department", station:"healthcare",
+      note:"Completed the MSW in evening study while working."},
+     {yr:"Year 10", role:"Clinical Supervisor", where:"A county health department", station:"healthcare",
+      note:"Now supervises the caseload once carried directly."}]},
+
+  {id:"stayed", title:"The one who stayed", who:"Music BA", cid:"Composite 06",
+   note:"Not every illustrative path is a pivot. Roughly two in five people hold one kind of work across the whole decade, and a map that only shows crossings misrepresents them.",
+   waypoints:[
+     {yr:"Year 1", role:"Adjunct instructor & private teacher", where:"Two studios, one college", station:"educators",
+      note:"Four employers, one profession: two studios and a college."},
+     {yr:"Year 4", role:"Band Director", where:"A public middle school", station:"educators",
+      note:"A salaried post with benefits, a classroom, and ninety instruments."},
+     {yr:"Year 8", role:"Fine Arts Department Chair", where:"A public high school", station:"educators",
+      note:"Still teaching, with added responsibility for budget and staffing."},
+     {yr:"Year 12", role:"District Arts Coordinator", where:"A school district", station:"educators",
+      note:"The same work at the scale of a school district."}]}
+];
+
+/* Tone codes drive weight and emphasis, never on-screen labels:
+     sig  = distinctive to this start   worn = common          rare = uncommon
+     all  = happens from almost every start (management), drawn pale and never led with. */
+const TURNS = {
+  admin:      [["analysts","sig","Coordinators who know a process well are often asked to analyze and redesign it."],
+               ["legal","worn","Agency, court and committee offices hire coordinators who can write."],
+               ["healthcare","rare","Usually through a license completed alongside work, rather than a career restart."],
+               ["managers","all","Coordination into management is the most common single move in the data."]],
+  educators:  [["writers","sig","Curriculum, assessment and educational publishing, which carry the classroom's questions to a desk."],
+               ["legal","sig","Education policy work, where classroom experience of the subject is uncommon and valued."],
+               ["educators","worn","Staying is the majority outcome, and it carries its own progression."],
+               ["managers","all","Department chair, then the district office."]],
+  creatives:  [["founders","sig","An accumulated client list often becomes a studio or an independent practice."],
+               ["comms","worn","Brand and campaign work offers salaried stability alongside commissioned work."],
+               ["educators","worn","Teaching the craft, often alongside continued practice."],
+               ["tech","rare","Design tooling and then product roles, entered on the strength of a portfolio."]],
+  writers:    [["tech","sig","Documentation work is a common entry point into engineering organizations."],
+               ["comms","worn","The largest single turn out of editorial."],
+               ["legal","rare","Policy drafting and agency communications."],
+               ["managers","all","Editor, editorial director, head of content."]],
+  comms:      [["sales","sig","Campaign and account work draw on the same persuasive skills."],
+               ["analysts","worn","Campaign measurement pulls people toward analysis."],
+               ["founders","rare","Independent communications practice, sometimes growing into a small agency."],
+               ["managers","all","Marketing manager, then head of."]],
+  legal:      [["nonprofit","sig","Advocacy organizations recruit directly from agency and legislative offices."],
+               ["legal","worn","Progression here tends to run within the sector rather than across it."],
+               ["analysts","rare","Regulatory and compliance consulting."],
+               ["managers","all","Policy director, chief of staff."]],
+  healthcare: [["nonprofit","sig","Community health and social service agencies."],
+               ["healthcare","worn","Licensure tends to keep people in the field once they have entered it."],
+               ["admin","rare","Health-system operations, entered from the clinical side."],
+               ["managers","all","Clinical supervision, then program management."]],
+  nonprofit:  [["legal","sig","Advocacy work into policy roles is a well-established route."],
+               ["comms","worn","In small organizations, development and communications are often a single role."],
+               ["educators","rare","Program work into teaching, often at a community college."],
+               ["managers","all","Executive leadership of a small organization."]],
+  analysts:   [["tech","sig","Product management, which draws on much of the same work."],
+               ["finance","worn","Where the analysis was financial to begin with."],
+               ["founders","rare","Independent consulting, built on established client relationships."],
+               ["managers","all","Analysis is the standard on-ramp to running a function."]],
+  finance:    [["founders","sig","Independent practice, since the license transfers with the practitioner."],
+               ["finance","worn","Licensing anchors people in the field."],
+               ["analysts","rare","A move back toward strategy and analysis."],
+               ["managers","all","Branch and portfolio management."]],
+  tech:       [["writers","sig","Developer relations and documentation leadership, carrying the technical experience forward."],
+               ["tech","worn","People who enter this field tend to remain in it."],
+               ["founders","rare","Contract and consulting work."],
+               ["managers","all","Engineering and program management."]],
+  managers:   [["founders","sig","Experience running an organization often precedes starting one."],
+               ["nonprofit","worn","Sector moves tend to happen later in a career, and are usually described as mission-driven."],
+               ["analysts","worn","A deliberate move back into analytical work."],
+               ["admin","rare","Not every move is a promotion; lateral and downward moves are recorded too."]],
+  sales:      [["founders","sig","An established client portfolio often becomes an independent business."],
+               ["comms","worn","A move back toward campaign and message work."],
+               ["finance","rare","Where the product itself is financial."],
+               ["managers","all","Sales manager, then general manager."]],
+  founders:   [["analysts","sig","Consulting within an established firm, for steadier income."],
+               ["founders","worn","Independent practice often continues for many years."],
+               ["creatives","rare","A deliberate return to practicing the craft, with an established client list."],
+               ["managers","all","Independent practitioners who take on staff move into management."]],
+  hospitality:[["creatives","sig","Often held at the same time, and set aside once the other work becomes steady."],
+               ["admin","worn","Service work into office coordination is the most common first crossing."],
+               ["sales","rare","Retail into account work."],
+               ["managers","all","Shift lead, store manager, district."]],
+};
+
+
+/* ---- per-mark plate detail (placeholder throughout) ---------------------- */
+const DETAIL = {
+  creatives:{ladder:[["Year 1",["Production Assistant","Studio Assistant","Freelance designer"]],
+    ["Year 5",["Designer","Photographer","Producer"]],["Year 10",["Art Director","Creative Director","Studio owner"]]],
+    quotes:["Photographed and edited the museum's online collection over three years, and trained the volunteers who maintained it.",
+            "Produced a regional theater's promotional material for a full season, from concept through print."],
+    creds:["Adobe Certified Professional","Set-safety certification","UX design foundations"],
+    places:["Los Angeles","New York","Atlanta"],
+    truth:"Freelance and salaried work alternate here, so a single employer often misrepresents a portfolio career."},
+  writers:{ladder:[["Year 1",["Editorial Assistant","Copywriter","Communications Assistant"]],
+    ["Year 5",["Editor","Content Strategist","Technical Writer"]],["Year 10",["Editorial Director","Documentation Lead","Head of Content"]]],
+    quotes:["Wrote and maintained the product documentation, and revised the sections that generated the most support requests.",
+            "Maintained the editorial style guide used by four hundred contributors."],
+    creds:["Technical writing certificate","Certified ScrumMaster","Google Analytics"],
+    places:["New York","Chicago","Seattle"],
+    truth:"The strongest description signal in the corpus: these roles document their own work in unusual detail."},
+  comms:{ladder:[["Year 1",["Communications Coordinator","Social Media Associate","Marketing Assistant"]],
+    ["Year 5",["Communications Manager","Brand Manager","Account Manager"]],["Year 10",["Director of Communications","VP, Marketing"]]],
+    quotes:["Managed a newsroom's social media desk across two election cycles.",
+            "Prepared the organization's press materials and the communications plan used during a service disruption."],
+    creds:["Google Ads Search","HubSpot Inbound","Accreditation in Public Relations"],
+    places:["Washington DC","New York","Chicago"],
+    truth:"Employers file this under business, which is one reason the occupation fan under-counts humanities here."},
+  educators:{ladder:[["Year 1",["Teaching Fellow","Adjunct Instructor","Paraeducator"]],
+    ["Year 5",["Classroom Teacher","Lecturer","Instructional Coach"]],["Year 10",["Department Chair","Curriculum Director","District Coordinator"]]],
+    quotes:["Taught four sections of English, coached the debate team, and helped write the district's revised humanities sequence.",
+            "Directed a middle-school band program of ninety students and managed its annual budget."],
+    creds:["State teaching license","National Board certification","TESOL"],
+    places:["New York","Los Angeles","Boston"],
+    truth:"The destination most often assumed to be universal. In the data it accounts for a minority of graduates."},
+  nonprofit:{ladder:[["Year 1",["Program Assistant","Case Aide","Development Assistant"]],
+    ["Year 5",["Program Manager","Case Manager","Grants Manager"]],["Year 10",["Executive Director","Director of Programs"]]],
+    quotes:["Carried a caseload of forty resettlement households, working in two languages.",
+            "Prepared quarterly reporting for three funders alongside direct service work."],
+    creds:["Certified Fund Raising Executive","Nonprofit management certificate","Mental Health First Aid"],
+    places:["Washington DC","New York","Minneapolis"],
+    truth:"Industry-anchored rather than function-anchored. Whether it is a place or an attribute is still an open question upstream."},
+  legal:{ladder:[["Year 1",["Legislative Correspondent","Paralegal","Research Assistant"]],
+    ["Year 5",["Legislative Assistant","Policy Analyst","Associate"]],["Year 10",["Legislative Director","Senior Policy Advisor","Counsel"]]],
+    quotes:["Drafted committee memoranda and analysis on education legislation across two sessions.",
+            "Reviewed three hundred public comment letters and summarized them for the rulemaking record."],
+    creds:["JD","Paralegal certificate","Regulatory compliance certification"],
+    places:["Washington DC","Albany","Sacramento"],
+    truth:"The strongest signature destination for history and philosophy graduates anywhere in the data."},
+  healthcare:{ladder:[["Year 1",["Patient Services Coordinator","Behavioral Health Technician","Medical Scribe"]],
+    ["Year 5",["Case Manager","Licensed Social Worker","Registered Nurse"]],["Year 10",["Clinical Supervisor","Program Director"]]],
+    quotes:["Began in patient intake, completed clinical licensure while working, and now supervises the same team.",
+            "Coordinated care plans across a caseload of clients referred by the county."],
+    creds:["Registered Nurse","MSW and clinical licensure","Basic Life Support"],
+    places:["Houston","Phoenix","Cleveland"],
+    truth:"Reached by credential rather than by career restart, which is why the route is not visible to students considering it."},
+  admin:{ladder:[["Year 1",["Administrative Assistant","Program Assistant","Office Coordinator"]],
+    ["Year 5",["Program Coordinator","Operations Specialist","Executive Assistant"]],["Year 10",["Operations Manager","Chief of Staff","Director of Administration"]]],
+    quotes:["Coordinated scheduling, contracts and the grant calendar for a department of twenty-two staff.",
+            "Managed the executive calendar and set the agenda for the weekly leadership meeting."],
+    creds:["Notary public","Project Management Professional","Certified Administrative Professional"],
+    places:["Washington DC","New York","Dallas"],
+    truth:"The busiest junction in the data: more people pass through this work than are doing it at year ten."},
+  analysts:{ladder:[["Year 1",["Research Assistant","Business Analyst","Consulting Analyst"]],
+    ["Year 5",["Senior Analyst","Consultant","Strategy Manager"]],["Year 10",["Director of Strategy","Principal","Partner"]]],
+    quotes:["Reviewed vendor contracts and translated requirements between the engineering and legal teams.",
+            "Conducted forty stakeholder interviews and wrote the recommendations that followed."],
+    creds:["Project Management Professional","SQL and dashboard certificates","Six Sigma Green Belt"],
+    places:["New York","Chicago","San Francisco"],
+    truth:"Entered from coordination work far more often than from a business degree."},
+  finance:{ladder:[["Year 1",["Client Services Associate","Personal Banker","Analyst"]],
+    ["Year 5",["Financial Advisor","Portfolio Analyst","Accountant"]],["Year 10",["Branch Manager","Wealth Manager","Controller"]]],
+    quotes:["Completed the Series 7 while working in client services, then began advising clients directly.",
+            "Prepared portfolio reviews and explained them to clients in plain language."],
+    creds:["Series 7","Series 63","Certified Financial Planner"],
+    places:["Charlotte","New York","Phoenix"],
+    truth:"License-mediated: the qualifying exams substitute for a second degree."},
+  tech:{ladder:[["Year 1",["Technical Support","Technical Writer","QA Tester"]],
+    ["Year 5",["Security Analyst","Product Manager","Solutions Engineer"]],["Year 10",["Security Program Manager","Director of Product","Engineering Manager"]]],
+    quotes:["Moved from technical support into security analysis after a nine-week certification and an internal transfer.",
+            "Wrote the security documentation and ran the training that accompanied it."],
+    creds:["CompTIA Security+","CompTIA A+","Certified ScrumMaster"],
+    places:["Seattle","Austin","San Francisco"],
+    truth:"The clearest counter-example to the assumption that these fields are closed, and the one with the most visible credential route."},
+  managers:{ladder:[["Year 1",["Assistant Manager","Team Lead","Shift Supervisor"]],
+    ["Year 5",["Operations Manager","Program Manager","General Manager"]],["Year 10",["Director of Operations","Vice President","Executive Director"]]],
+    quotes:["Manages eleven staff across two programs and holds responsibility for the department budget.",
+            "Took on budget planning and hiring after five years in program delivery."],
+    creds:["Project Management Professional","Six Sigma","HR certification"],
+    places:["Dallas","Atlanta","Chicago"],
+    truth:"The largest mark, and a partly generic one: a title of manager alone records seniority without describing the work."},
+  sales:{ladder:[["Year 1",["Sales Associate","Account Coordinator","Leasing Agent"]],
+    ["Year 5",["Account Executive","Realtor","Business Development Manager"]],["Year 10",["Sales Director","Broker-owner","VP, Partnerships"]]],
+    quotes:["Managed accounts for twelve institutional clients and led the annual renewal process.",
+            "Built a client portfolio over four years, working across two employers."],
+    creds:["Real estate broker license","CRM platform certification","Series 6"],
+    places:["Dallas","Phoenix","Miami"],
+    truth:"Heavily populated and rarely discussed with students; the work draws directly on argument and audience analysis."},
+  founders:{ladder:[["Year 1",["Freelancer","Sole proprietor","Contract designer"]],
+    ["Year 5",["Owner","Principal","Studio partner"]],["Year 10",["Founder","Managing partner"]]],
+    quotes:["Ran a two-person design studio for four years, then incorporated and hired a first employee.",
+            "Built a client base through referrals while working under contract for two agencies."],
+    creds:["Business registration","Notary public","Trade license"],
+    places:["Los Angeles","Brooklyn","Austin"],
+    truth:"Self-employment markers dominate the employer field here: Freelance records a working arrangement rather than an organization."},
+  hospitality:{ladder:[["Year 1",["Barista","Server","Sales Associate"]],
+    ["Year 5",["Shift Supervisor","Store Manager","Events Coordinator"]],["Year 10",["District Manager","Venue Director"]]],
+    quotes:["Opened the store each morning and coordinated the events calendar for a regional chain.",
+            "Supervised a team of fourteen across two shifts and managed ordering for the site."],
+    creds:["Food handler certification","Responsible alcohol service","First aid"],
+    places:["Los Angeles","Seattle","Denver"],
+    truth:"Frequently held alongside the intended work. The one-role-per-year rule upstream hides exactly this."}
+};
+
+
+/* ---------------------------------------------- educational provenance
+   MEASURED, not placeholder. Arrivals at each mark in career year 10 of the
+   551,560-person archetype panel. dl = [below bachelor's, bachelor's,
+   graduate, not recorded]; shares close to 100. `named` is the largest
+   IDENTIFIED background with its in-list share; `exOther` is the same field's
+   share once Other fields leave the denominator, used only to rank marks
+   against each other. See docs/superpowers/specs/2026-08-03-atlas-education-
+   provenance-design.md for the queries. */
+const EDU = {
+  creatives:{dl:[9.7,65.3,20.9,4.1], n:31454, grad:20.9, nFields:22, tail:9.7,
+    named:["Fine & Performing Arts",55.0], exOther:59.5,
+    fields:[["Fine & Performing Arts",55.0], ["Communication & Media",17.4], ["Other fields",7.6], ["English & Literature",3.8], ["Humanistic Social Science",3.3], ["Psychology",3.2]],
+    schools:[["The Art Institutes",603], ["New York University",449], ["Fashion Institute of Technology",356], ["University of California-Los Angeles",305], ["School of Visual Arts",294], ["Savannah College of Art and Design",276]]},
+  writers:{dl:[3.4,58.3,35.5,2.7], n:14142, grad:35.5, nFields:22, tail:14.4,
+    named:["Communication & Media",32.8], exOther:35.3,
+    fields:[["Communication & Media",32.8], ["English & Literature",22.5], ["Fine & Performing Arts",14.2], ["Other fields",7.0], ["Humanistic Social Science",5.7], ["Psychology",3.4]],
+    schools:[["New York University",335], ["University of Southern California",171], ["Boston University",170], ["Northwestern University",164], ["University of California-Los Angeles",164], ["The University of Texas at Austin",149]]},
+  comms:{dl:[3.9,62.6,30.8,2.6], n:24101, grad:30.8, nFields:22, tail:16.5,
+    named:["Communication & Media",38.0], exOther:44.2,
+    fields:[["Communication & Media",38.0], ["Other fields",13.8], ["Fine & Performing Arts",10.0], ["Humanistic Social Science",8.7], ["English & Literature",7.5], ["Psychology",5.5]],
+    schools:[["The University of Texas at Austin",233], ["University of California-Los Angeles",221], ["New York University",213], ["Arizona State University",210], ["Boston University",196], ["University of Southern California",172]]},
+  educators:{dl:[2.5,24.2,72.1,1.3], n:27478, grad:72.1, nFields:21, tail:29.8,
+    named:["Fine & Performing Arts",9.5], exOther:13.4,
+    fields:[["Other fields",29.2], ["Fine & Performing Arts",9.5], ["Psychology",8.7], ["English & Literature",8.4], ["Humanistic Social Science",7.3], ["Biological Sciences",7.1]],
+    schools:[["University of Phoenix",208], ["University of California-Los Angeles",192], ["New York University",191], ["The University of Texas at Austin",185], ["Arizona State University",182], ["University of California-Berkeley",173]]},
+  nonprofit:{dl:[6.0,47.0,44.6,2.4], n:3493, grad:44.6, nFields:21, tail:23.7,
+    named:["Humanistic Social Science",16.7], exOther:20.7,
+    fields:[["Other fields",19.1], ["Humanistic Social Science",16.7], ["Communication & Media",14.3], ["Psychology",10.8], ["Fine & Performing Arts",8.3], ["English & Literature",7.1]],
+    schools:[["New York University",50], ["George Washington University",37], ["Arizona State University",28], ["University of California-Berkeley",27], ["American University",24], ["Columbia University in the City of New York",24]]},
+  legal:{dl:[2.2,26.5,70.1,1.2], n:20991, grad:70.1, nFields:22, tail:21.0,
+    named:["Biological Sciences",18.4], exOther:23.5,
+    fields:[["Other fields",21.8], ["Biological Sciences",18.4], ["Humanistic Social Science",14.4], ["Physical Sciences",10.5], ["Psychology",10.0], ["Communication & Media",3.9]],
+    schools:[["University of California-Berkeley",167], ["University of California-Los Angeles",149], ["University of Washington-Seattle Campus",142], ["University of Wisconsin-Madison",122], ["The University of Texas at Austin",122], ["University of California-Davis",119]]},
+  admin:{dl:[14.7,56.6,25.7,2.9], n:37134, grad:25.7, nFields:22, tail:24.0,
+    named:["Communication & Media",14.1], exOther:17.2,
+    fields:[["Other fields",17.8], ["Communication & Media",14.1], ["Psychology",13.7], ["Humanistic Social Science",11.2], ["Liberal Arts & Humanities",10.1], ["Fine & Performing Arts",9.1]],
+    schools:[["University of Phoenix",371], ["Arizona State University",267], ["San Francisco State University",226], ["University of Washington-Seattle Campus",220], ["California State University-Northridge",211], ["University of Minnesota-Twin Cities",192]]},
+  finance:{dl:[6.9,52.4,39.0,1.7], n:11423, grad:39.0, nFields:21, tail:23.9,
+    named:["Economics",15.5], exOther:21.4,
+    fields:[["Other fields",27.8], ["Economics",15.5], ["Humanistic Social Science",11.8], ["Communication & Media",8.0], ["Psychology",7.4], ["Liberal Arts & Humanities",5.6]],
+    schools:[["University of California-Los Angeles",122], ["University of Phoenix",120], ["Arizona State University",89], ["University of California-Berkeley",81], ["Rutgers University",76], ["The University of Texas at Austin",75]]},
+  managers:{dl:[6.8,51.8,38.7,2.7], n:65847, grad:38.7, nFields:22, tail:30.5,
+    named:["Communication & Media",13.2], exOther:16.4,
+    fields:[["Other fields",19.8], ["Communication & Media",13.2], ["Humanistic Social Science",11.9], ["Psychology",10.1], ["Fine & Performing Arts",8.6], ["Biological Sciences",5.9]],
+    schools:[["New York University",579], ["University of California-Los Angeles",545], ["University of Phoenix",480], ["Arizona State University",475], ["The University of Texas at Austin",435], ["University of Washington-Seattle Campus",400]]},
+  analysts:{dl:[5.8,51.6,40.7,1.9], n:31538, grad:40.7, nFields:22, tail:31.1,
+    named:["Humanistic Social Science",13.0], exOther:16.5,
+    fields:[["Other fields",20.9], ["Humanistic Social Science",13.0], ["Communication & Media",12.4], ["Psychology",10.5], ["Fine & Performing Arts",6.4], ["Economics",5.7]],
+    schools:[["University of California-Berkeley",235], ["University of Phoenix",232], ["Arizona State University",231], ["University of Washington-Seattle Campus",218], ["University of California-Los Angeles",213], ["The University of Texas at Austin",195]]},
+  tech:{dl:[7.4,51.1,39.3,2.2], n:21473, grad:39.3, nFields:22, tail:34.3,
+    named:["Math & Statistics",12.0], exOther:15.7,
+    fields:[["Other fields",23.5], ["Math & Statistics",12.0], ["Fine & Performing Arts",8.6], ["Physical Sciences",7.3], ["Humanistic Social Science",7.2], ["Communication & Media",7.1]],
+    schools:[["University of California-Berkeley",206], ["University of Minnesota-Twin Cities",173], ["University of Washington-Seattle Campus",170], ["The University of Texas at Austin",166], ["Arizona State University",164], ["University of California-Los Angeles",155]]},
+  healthcare:{dl:[6.5,31.7,60.0,1.8], n:28319, grad:60.0, nFields:22, tail:16.9,
+    named:["Psychology",20.9], exOther:31.6,
+    fields:[["Other fields",33.9], ["Psychology",20.9], ["Biological Sciences",14.4], ["Humanistic Social Science",5.7], ["Communication & Media",4.1], ["Liberal Arts & Humanities",4.1]],
+    schools:[["Liberty University",222], ["Capella University",190], ["University of Phoenix",187], ["New York University",174], ["University of Southern California",170], ["Arizona State University",167]]},
+  sales:{dl:[11.1,67.7,17.6,3.6], n:27220, grad:17.6, nFields:21, tail:27.4,
+    named:["Communication & Media",21.3], exOther:24.5,
+    fields:[["Communication & Media",21.3], ["Other fields",13.0], ["Humanistic Social Science",11.4], ["Psychology",10.5], ["Fine & Performing Arts",8.8], ["Liberal Arts & Humanities",7.6]],
+    schools:[["Arizona State University",220], ["University of Phoenix",185], ["San Diego State University",185], ["University of California-Los Angeles",178], ["California State University-Fullerton",162], ["Michigan State University",162]]},
+  hospitality:{dl:[22.8,56.3,16.0,4.9], n:6132, grad:16.0, nFields:21, tail:24.4,
+    named:["Fine & Performing Arts",16.3], exOther:19.2,
+    fields:[["Fine & Performing Arts",16.3], ["Other fields",14.8], ["Communication & Media",12.8], ["Liberal Arts & Humanities",12.6], ["Psychology",11.1], ["Humanistic Social Science",8.0]],
+    schools:[["Arizona State University",70], ["San Francisco State University",42], ["University of Phoenix",42], ["The Art Institutes",42], ["Southern New Hampshire University",38], ["University of Minnesota-Twin Cities",37]]},
+  founders:{dl:[11.4,54.3,29.4,4.8], n:15414, grad:29.4, nFields:22, tail:26.7,
+    named:["Fine & Performing Arts",20.6], exOther:24.2,
+    fields:[["Fine & Performing Arts",20.6], ["Other fields",14.8], ["Communication & Media",13.6], ["Psychology",10.1], ["Humanistic Social Science",8.7], ["Liberal Arts & Humanities",5.5]],
+    schools:[["University of California-Los Angeles",118], ["New York University",110], ["The Art Institutes",109], ["Arizona State University",99], ["The University of Texas at Austin",96], ["San Francisco State University",87]]},
+};
+const EDU_SHARPEST = "creatives", EDU_FLATTEST = "educators";
+
+
+/* ============================================================ field layouts
+   Three ways to place the same fifteen marks. Each returns normalized
+   coordinates in [-1,1]; the field maps them onto the canvas. All three are
+   computed once, deterministically, so the picture never jumps between runs. */
+
+function normalize(pts){
+  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+  pts.forEach(q => {
+    minX = Math.min(minX, q.x); maxX = Math.max(maxX, q.x);
+    minY = Math.min(minY, q.y); maxY = Math.max(maxY, q.y);
+  });
+  const sx = (maxX - minX) || 1, sy = (maxY - minY) || 1;
+  const s = 1.7 / Math.max(sx, sy);          // leave room for labels
+  const mx = (minX + maxX) / 2, my = (minY + maxY) / 2;
+  return pts.map(q => ({x:(q.x - mx) * s, y:(q.y - my) * s}));
+}
+
+/* 1. Expectation rings — the editorial layout: family by angle, distance from
+      the expected image of a humanities career by radius. */
+function layoutRings(){
+  return STATIONS.map(s => {
+    const a = s.ang * Math.PI / 180;
+    const r = 0.26 + 0.148 * (s.ring - 1);
+    return {x:Math.cos(a) * r, y:Math.sin(a) * r};
+  });
+}
+
+/* 2. ForceAtlas2 (Jacomy et al.) on the movement graph: degree-scaled repulsion,
+      linear weighted attraction along routes, gravity toward the center. */
+function layoutForceAtlas2(){
+  const n = STATIONS.length;
+  const idx = {}; STATIONS.forEach((s, i) => { idx[s.id] = i; });
+  const edges = [], deg = new Array(n).fill(0);
+  Object.keys(TURNS).forEach(from => TURNS[from].forEach(r => {
+    if (r[0] === from || idx[r[0]] === undefined || idx[from] === undefined) return;
+    const w = WEIGHT_BASE[r[1]] / 26;
+    edges.push([idx[from], idx[r[0]], w]);
+    deg[idx[from]] += w; deg[idx[r[0]]] += w;
+  }));
+
+  const px = [], py = [];
+  for (let i = 0; i < n; i++){                    // deterministic ring start
+    const a = 2 * Math.PI * i / n;
+    px[i] = Math.cos(a); py[i] = Math.sin(a);
+  }
+  const kRepel = 0.9, kAttract = 1.0, kGravity = 0.55, ITER = 900;
+  for (let it = 0; it < ITER; it++){
+    const fx = new Array(n).fill(0), fy = new Array(n).fill(0);
+    for (let i = 0; i < n; i++){
+      for (let j = i + 1; j < n; j++){
+        let dx = px[i] - px[j], dy = py[i] - py[j];
+        let d = Math.hypot(dx, dy);
+        if (d < 1e-4){ dx = (i - j) * 1e-3; dy = 1e-3; d = Math.hypot(dx, dy); }
+        const f = kRepel * (deg[i] + 1) * (deg[j] + 1) / d;
+        fx[i] += dx / d * f; fy[i] += dy / d * f;
+        fx[j] -= dx / d * f; fy[j] -= dy / d * f;
+      }
+    }
+    edges.forEach(e => {
+      const a = e[0], b = e[1];
+      const dx = px[b] - px[a], dy = py[b] - py[a];
+      const f = kAttract * e[2];
+      fx[a] += dx * f; fy[a] += dy * f;
+      fx[b] -= dx * f; fy[b] -= dy * f;
+    });
+    for (let i = 0; i < n; i++){
+      const d = Math.hypot(px[i], py[i]) || 1e-6;
+      const g = kGravity * (deg[i] + 1);
+      fx[i] -= px[i] / d * g; fy[i] -= py[i] / d * g;
+    }
+    const speed = 0.045 * (1 - it / ITER) + 0.004;   // cooling
+    for (let i = 0; i < n; i++){
+      const m = Math.hypot(fx[i], fy[i]);
+      if (m > 1e-9){
+        const step = Math.min(m, 6) * speed;
+        px[i] += fx[i] / m * step; py[i] += fy[i] / m * step;
+      }
+    }
+  }
+  return normalize(px.map((x, i) => ({x, y:py[i]})));
+}
+
+/* 3. Language — marks placed by how similarly they are DESCRIBED. Token overlap
+      (cosine over term frequencies) across each mark's own name, description,
+      job titles and caveat, then stress majorization into two dimensions.
+      Not a learned embedding: it reads the words on this page. */
+const STOPWORDS = new Set(("the a an and or of to in for with on at by from is are it its this " +
+  "that as into their they them then than which where when what who work working works role " +
+  "roles kind kinds people person year years often more most one two three own here rather " +
+  "not but also very much many some any all every each other others out up down over under " +
+  "again once because been being both few nor only same so such too until while about after " +
+  "before between during through against above below same s t can will just don should now").split(" "));
+function tokenize(text){
+  return text.toLowerCase().replace(/[^a-z\s]/g, " ").split(/\s+/)
+    .filter(w => w.length > 2 && !STOPWORDS.has(w));
+}
+function layoutLanguage(){
+  const n = STATIONS.length;
+  const vecs = STATIONS.map(s => {
+    const d = DETAIL[s.id];
+    const text = [s.plain, s.blurb,
+                  d ? d.ladder.map(r => r[1].join(" ")).join(" ") : "",
+                  d ? d.truth : "",
+                  (TURNS[s.id] || []).map(r => r[2]).join(" ")].join(" ");
+    const tf = {};
+    tokenize(text).forEach(w => { tf[w] = (tf[w] || 0) + 1; });
+    let norm = 0; Object.keys(tf).forEach(w => { norm += tf[w] * tf[w]; });
+    return {tf, norm:Math.sqrt(norm) || 1};
+  });
+  const D = [];
+  for (let i = 0; i < n; i++){
+    D[i] = [];
+    for (let j = 0; j < n; j++){
+      if (i === j){ D[i][j] = 0; continue; }
+      let dot = 0;
+      const a = vecs[i], b = vecs[j];
+      Object.keys(a.tf).forEach(w => { if (b.tf[w]) dot += a.tf[w] * b.tf[w]; });
+      const sim = dot / (a.norm * b.norm);
+      D[i][j] = 0.25 + (1 - sim) * 1.4;          // similar sits closer
+    }
+  }
+  const px = [], py = [];
+  for (let i = 0; i < n; i++){
+    const a = 2 * Math.PI * i / n;               // deterministic ring start
+    px[i] = Math.cos(a) * 1.2; py[i] = Math.sin(a) * 1.2;
+  }
+  for (let it = 0; it < 600; it++){
+    const rate = 0.25 * (1 - it / 600) + 0.02;
+    for (let i = 0; i < n; i++){
+      for (let j = i + 1; j < n; j++){
+        let dx = px[j] - px[i], dy = py[j] - py[i];
+        let d = Math.hypot(dx, dy);
+        if (d < 1e-4){ dx = 1e-3; dy = (i - j) * 1e-3; d = Math.hypot(dx, dy); }
+        const adjust = (d - D[i][j]) / d * rate * 0.5;
+        px[i] += dx * adjust; py[i] += dy * adjust;
+        px[j] -= dx * adjust; py[j] -= dy * adjust;
+      }
+    }
+  }
+  return normalize(px.map((x, i) => ({x, y:py[i]})));
+}
+
+const EDGE_META = {
+  flow:{name:"Movement",
+    note:"A sample of routes, animated, to show that the field is traffic rather than " +
+         "a seating chart."},
+  arcs:{name:"Arcs",
+    note:"Every route at once, still: bowed one hand so that a pair running both ways " +
+         "separates, width by how many people take it, color running from origin to " +
+         "destination, arrowhead at the destination."}
+};
+const LAYOUT_META = {
+  rings:{
+    name:"Expectation rings",
+    note:"Family by angle, and distance from the expected image of a humanities career " +
+         "by radius. The radius is an editorial judgment, not a measurement."},
+  force:{
+    name:"ForceAtlas2",
+    note:"The movement graph laid out by force: marks repel in proportion to how much " +
+         "traffic they carry, routes pull their endpoints together, and gravity holds " +
+         "the whole thing in. Position is an outcome of the flows, not a choice."},
+  language:{
+    name:"Language",
+    note:"Marks placed by how similarly they are described. Cosine similarity over word " +
+         "counts from each mark's own name, description, job titles and caveat, then " +
+         "stress majorization into two dimensions. Token overlap, not a learned embedding."}
+};
+let LAYOUTS = null;
+function buildLayouts(){
+  LAYOUTS = {rings:layoutRings(), force:layoutForceAtlas2(), language:layoutLanguage()};
+}
+
+/* ============================================================ setup */
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const fieldEl = document.getElementById("field");
+const stationsEl = document.getElementById("stations");
+const cardEl = document.getElementById("card");
+const cardBody = document.getElementById("cardBody");
+
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const byId = Object.fromEntries(STATIONS.map(s => [s.id, s]));
+
+let W = 0, H = 0, cx = 0, cy = 0, maxR = 0;
+let COLORS = {};
+let state = {mode:"all", domain:null, station:null, journey:null, trace:null,
+             layout:"rings", edges:"flow", shade:null};
+const STATION_INDEX = Object.fromEntries(STATIONS.map((s, i) => [s.id, i]));
+let hovered = null;
+
+/* --- theme ------------------------------------------------------- */
+function readColors(){
+  const cs = getComputedStyle(document.documentElement);
+  const g = n => cs.getPropertyValue(n).trim();
+  COLORS = {
+    word:g("--word"), care:g("--care"), systems:g("--systems"),
+    enterprise:g("--enterprise"), uncharted:g("--uncharted"),
+    ring:g("--field-ring"), ink:g("--ink"), inkFaint:g("--ink-faint"),
+    veil:g("--field-veil"), bg:g("--field-bg"),
+    glow:parseFloat(g("--glow")) || 0
+  };
+}
+function stationColor(s){ return COLORS[s.domain] || COLORS.uncharted; }
+
+document.getElementById("themer").addEventListener("click", () => {
+  const root = document.documentElement;
+  const dark = root.getAttribute("data-theme")
+    ? root.getAttribute("data-theme") === "dark"
+    : window.matchMedia("(prefers-color-scheme: dark)").matches;
+  root.setAttribute("data-theme", dark ? "light" : "dark");
+  readColors();
+});
+new MutationObserver(readColors).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", readColors);
+
+/* --- geometry ---------------------------------------------------- */
+function ringRadius(ring){ return maxR * (0.26 + 0.148 * (ring - 1)); }
+
+/* the field tweens between layouts rather than cutting, so a mark can be followed */
+let layoutFrom = null, layoutTo = null, layoutT = 1, layoutStart = 0;
+const LAYOUT_MS = 900;
+const easeInOut = u => u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
+
+function normPos(i){
+  if (!layoutFrom) return layoutTo[i];
+  if (layoutT >= 1) return layoutTo[i];
+  const e = easeInOut(layoutT);
+  return {x: layoutFrom[i].x + (layoutTo[i].x - layoutFrom[i].x) * e,
+          y: layoutFrom[i].y + (layoutTo[i].y - layoutFrom[i].y) * e};
+}
+function pos(s){
+  const q = normPos(STATION_INDEX[s.id]);
+  return {x: cx + q.x * maxR, y: cy + q.y * maxR};
+}
+function setLayout(key){
+  if (state.layout === key) return;
+  layoutFrom = STATIONS.map((s, i) => normPos(i));
+  layoutTo = LAYOUTS[key];
+  layoutT = 0;
+  layoutStart = performance.now();
+  state.layout = key;
+  document.querySelectorAll("[data-layout]").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.layout === key)));
+  updateFieldNote();
+}
+function setEdges(key){
+  if (state.edges === key) return;
+  state.edges = key;
+  document.querySelectorAll("[data-edges]").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.edges === key)));
+  updateFieldNote();
+}
+function updateFieldNote(){
+  const noteEl = document.getElementById("layoutNote");
+  if (!noteEl) return;
+  if (state.shade === "gradschool"){
+    noteEl.innerHTML = "<b>Shaded by schooling.</b> Darker marks are the ones more of " +
+      "whose arrivals hold a graduate degree \u2014 from 16% at service work to 72% among " +
+      "educators. The shading is a reading aid; the figure beside it carries the numbers.";
+    return;
+  }
+  const l = LAYOUT_META[state.layout], e = EDGE_META[state.edges];
+  noteEl.innerHTML = "<b>" + l.name + ".</b> " + l.note +
+                     " <b>" + e.name + ".</b> " + e.note;
+}
+function nodeRadius(s){ return 5 + Math.min(s.share, 15) * 0.72; }
+
+/* Continuous shading channel, used by the "what people studied" step. Maps a
+   mark's graduate-degree share across the observed range onto alpha, floored so
+   the faintest mark stays legible rather than vanishing. Shading is never the
+   only channel: the step's own figure carries every number. */
+const GRAD_LO = 16.0, GRAD_HI = 72.1, SHADE_FLOOR = 0.28;
+function shadeAlpha(s){
+  const g = (EDU[s.id] || {}).grad;
+  if (g == null) return SHADE_FLOOR;
+  const u = Math.max(0, Math.min(1, (g - GRAD_LO) / (GRAD_HI - GRAD_LO)));
+  return SHADE_FLOOR + u * (1 - SHADE_FLOOR);
+}
+
+function layout(){
+  const rect = fieldEl.getBoundingClientRect();
+  W = rect.width; H = rect.height;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = Math.round(W * dpr);
+  canvas.height = Math.round(H * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  cx = W / 2; cy = H / 2;
+  maxR = Math.min(W, H) * (W < 620 ? 0.34 : 0.435);
+  placeLabels();
+}
+
+let labelMode = null;
+function placeLabels(){
+  const wantShort = W < 620;
+  if (wantShort !== labelMode){                        // relabel only when it changes
+    labelMode = wantShort;
+    STATIONS.forEach(s => {
+      const b = document.getElementById("st-" + s.id);
+      if (b) b.innerHTML = "<b>" + (wantShort ? s.short : s.label) + "</b>";
+    });
+  }
+  STATIONS.forEach(s => {
+    const p = pos(s);
+    const btn = document.getElementById("st-" + s.id);
+    if (!btn) return;
+    // push the label away from the center of the field, anchored by its inner edge
+    let ux = p.x - cx, uy = p.y - cy;
+    const m = Math.hypot(ux, uy) || 1;
+    ux /= m; uy /= m;
+    const off = nodeRadius(s) + 13;
+    btn.style.left = (p.x + ux * off) + "px";
+    btn.style.top  = (p.y + uy * off) + "px";
+    btn.style.transform = "translate(" + (-50 + 50 * ux).toFixed(2) + "%," +
+                                          (-50 + 50 * uy).toFixed(2) + "%)";
+    btn.style.textAlign = ux > 0.35 ? "left" : (ux < -0.35 ? "right" : "center");
+    const hit = document.getElementById("hit-" + s.id);
+    const size = Math.max(44, nodeRadius(s) * 2 + 16);
+    hit.style.left = p.x + "px";
+    hit.style.top = p.y + "px";
+    hit.style.width = size + "px";
+    hit.style.height = size + "px";
+  });
+  deOverlapLabels();
+}
+
+/* Nudge colliding labels apart along whichever axis they overlap least, then clamp
+   them inside the field. The mark itself never moves, so the data is untouched. */
+function deOverlapLabels(){
+  const field = fieldEl.getBoundingClientRect();
+  const items = STATIONS.map(s => {
+    const el = document.getElementById("st-" + s.id);
+    const r = el.getBoundingClientRect();
+    return {el, dx:0, dy:0, top:r.top, bottom:r.bottom, left:r.left, right:r.right};
+  });
+  const move = (it, dx, dy) => {
+    it.dx += dx; it.dy += dy;
+    it.left += dx; it.right += dx; it.top += dy; it.bottom += dy;
+  };
+  for (let pass = 0; pass < 14; pass++){
+    let moved = false;
+    for (let i = 0; i < items.length; i++){
+      for (let j = i + 1; j < items.length; j++){
+        const a = items[i], b = items[j];
+        const ox = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+        const oy = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+        if (ox <= 0 || oy <= 0) continue;
+        if (oy <= ox){                                   // separate vertically
+          const push = oy / 2 + 0.75;
+          const d = (a.top + a.bottom) <= (b.top + b.bottom) ? -1 : 1;
+          move(a, 0, d * push); move(b, 0, -d * push);
+        } else {                                         // separate horizontally
+          const push = ox / 2 + 0.75;
+          const d = (a.left + a.right) <= (b.left + b.right) ? -1 : 1;
+          move(a, d * push, 0); move(b, -d * push, 0);
+        }
+        moved = true;
+      }
+    }
+    items.forEach(it => {                              // keep labels inside the plate
+      if (it.left < field.left + 2) move(it, field.left + 2 - it.left, 0);
+      if (it.right > field.right - 2) move(it, field.right - 2 - it.right, 0);
+      if (it.top < field.top + 2) move(it, 0, field.top + 2 - it.top);
+      if (it.bottom > field.bottom - 2) move(it, 0, field.bottom - 2 - it.bottom);
+    });
+    if (!moved) break;
+  }
+  items.forEach(it => {
+    if (!it.dx && !it.dy) return;
+    it.el.style.transform += " translate(" + it.dx.toFixed(1) + "px," + it.dy.toFixed(1) + "px)";
+  });
+}
+
+/* --- stations as real buttons (canvas stays decorative) ---------- */
+STATIONS.forEach(s => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "station";
+  b.id = "st-" + s.id;
+  b.setAttribute("aria-pressed", "false");
+  b.innerHTML = "<b>" + s.label + "</b>";
+  b.addEventListener("click", () => selectStation(s.id));
+  b.addEventListener("mouseenter", () => { hovered = s.id; });
+  b.addEventListener("mouseleave", () => { hovered = null; });
+  b.addEventListener("focus", () => { hovered = s.id; });
+  b.addEventListener("blur", () => { hovered = null; });
+  stationsEl.appendChild(b);
+
+  const hit = document.createElement("button");
+  hit.type = "button";
+  hit.className = "hit";
+  hit.id = "hit-" + s.id;
+  hit.tabIndex = -1;
+  hit.setAttribute("aria-label", s.plain);
+  hit.addEventListener("click", () => selectStation(s.id));
+  hit.addEventListener("mouseenter", () => { hovered = s.id; });
+  hit.addEventListener("mouseleave", () => { hovered = null; });
+  stationsEl.appendChild(hit);
+});
+
+/* ============================================================ drawing */
+function curve(p0, p1, lift){
+  // control point pushed perpendicular to the chord, biased away from center
+  const mx = (p0.x + p1.x) / 2, my = (p0.y + p1.y) / 2;
+  const dx = p1.x - p0.x, dy = p1.y - p0.y;
+  const len = Math.hypot(dx, dy) || 1;
+  const nx = -dy / len, ny = dx / len;
+  const side = ((mx - cx) * nx + (my - cy) * ny) >= 0 ? 1 : -1;
+  return {cxp: mx + nx * lift * side, cyp: my + ny * lift * side};
+}
+function pointOnCurve(p0, c, p1, t){
+  const u = 1 - t;
+  return {
+    x: u*u*p0.x + 2*u*t*c.cxp + t*t*p1.x,
+    y: u*u*p0.y + 2*u*t*c.cyp + t*t*p1.y
+  };
+}
+
+const AMBIENT = [
+  ["admin","managers"],["educators","managers"],["writers","comms"],["hospitality","admin"],
+  ["creatives","founders"],["analysts","managers"],["comms","sales"],["admin","analysts"],
+  ["writers","tech"],["nonprofit","managers"],["legal","managers"],["healthcare","managers"],
+  ["sales","founders"],["educators","writers"],["admin","healthcare"],
+  ["hospitality","managers"],["comms","managers"],["creatives","comms"],["admin","finance"],
+  ["writers","managers"],["founders","managers"],["educators","admin"],["analysts","finance"],
+  ["nonprofit","legal"],["healthcare","admin"],["sales","managers"],["educators","nonprofit"]
+].map((pair, i) => ({from:pair[0], to:pair[1], t: (i * 0.31) % 1, speed: 0.0012 + (i % 6) * 0.00035}));
+
+/* Every route in the table, as a directed weighted edge. The animated field samples
+   a subset; the static drawing shows all of them at once. */
+const EDGES = (() => {
+  const out = [];
+  Object.keys(TURNS).forEach(from => (TURNS[from] || []).forEach(r => {
+    if (r[0] === from || !byId[r[0]] || !byId[from]) return;
+    out.push({from, to:r[0], w:WEIGHT_BASE[r[1]]});
+  }));
+  return out.sort((a, b) => a.w - b.w);        // heavy edges drawn last, on top
+})();
+
+/* who each mark connects to, in either direction */
+const NEIGHBORS = (() => {
+  const m = {};
+  STATIONS.forEach(s => { m[s.id] = new Set(); });
+  EDGES.forEach(e => { m[e.from].add(e.to); m[e.to].add(e.from); });
+  return m;
+})();
+
+/* walk back along the curve until we clear the target mark, so the arrowhead
+   sits outside the node rather than under it */
+function tAtDistance(p0, c, p1, want){
+  let lo = 0, hi = 1;
+  for (let i = 0; i < 18; i++){
+    const mid = (lo + hi) / 2;
+    const q = pointOnCurve(p0, c, p1, mid);
+    if (Math.hypot(p1.x - q.x, p1.y - q.y) > want) lo = mid; else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
+/* Static arcs, drawn the way Gephi draws a directed graph: every edge bowed the
+   same hand so reciprocal pairs separate, width by weight, color running from
+   source to target, an arrowhead at the head. */
+function drawArcs(focus){
+  const active = focus && focus.set;
+  const dimA = focus && focus.soft ? 0.16 : 0.05;
+  EDGES.forEach(e => {
+    const a = byId[e.from], b = byId[e.to];
+    const p0 = pos(a), p1 = pos(b);
+    const dx = p1.x - p0.x, dy = p1.y - p0.y;
+    const len = Math.hypot(dx, dy) || 1;
+    const nx = -dy / len, ny = dx / len;        // left-hand normal of travel
+    const lift = Math.min(len * 0.17, maxR * 0.3);
+    const c = {cxp:(p0.x + p1.x) / 2 + nx * lift, cyp:(p0.y + p1.y) / 2 + ny * lift};
+    const ego = focus && focus.ego;
+    const on = ego ? (e.from === ego || e.to === ego)
+                   : (!active || (active.has(e.from) && active.has(e.to)));
+
+    const grad = ctx.createLinearGradient(p0.x, p0.y, p1.x, p1.y);
+    grad.addColorStop(0, stationColor(a));
+    grad.addColorStop(1, stationColor(b));
+    const lw = (0.7 + (e.w / 26) * 2.3) * (on && ego ? 1.4 : 1);
+    // The head scales with the line, and the stroke stops at its base, so a heavy
+    // route cannot swallow its own arrowhead.
+    const headLen = Math.max(8, lw * 3.6);
+    const clear = nodeRadius(b) + 5;
+    const tTip = tAtDistance(p0, c, p1, clear);
+    const tBase = tAtDistance(p0, c, p1, clear + headLen);
+    const tip = pointOnCurve(p0, c, p1, tTip);
+    const base = pointOnCurve(p0, c, p1, tBase);
+    const drawHead = tBase > 0.02 && tBase < tTip - 0.005;
+
+    ctx.save();
+    ctx.globalAlpha = on ? (ego ? 0.9 : 0.5) : (ego ? 0.045 : dimA);
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = lw;
+    ctx.lineCap = "butt";                       // a round cap would bulge into the head
+    ctx.beginPath();
+    ctx.moveTo(p0.x, p0.y);
+    const stop = drawHead ? tBase : tTip;
+    const steps = 26;
+    for (let k = 1; k <= steps; k++){
+      const q = pointOnCurve(p0, c, p1, (k / steps) * stop);
+      ctx.lineTo(q.x, q.y);
+    }
+    ctx.stroke();
+
+    if (drawHead){
+      const ang = Math.atan2(tip.y - base.y, tip.x - base.x);
+      const nx2 = -Math.sin(ang), ny2 = Math.cos(ang);
+      const half = headLen * 0.40;
+      const notch = headLen * 0.22;             // a shallow tail, so it reads as a dart
+      ctx.beginPath();
+      ctx.moveTo(tip.x, tip.y);
+      ctx.lineTo(base.x + nx2 * half, base.y + ny2 * half);
+      ctx.lineTo(base.x + Math.cos(ang) * notch, base.y + Math.sin(ang) * notch);
+      ctx.lineTo(base.x - nx2 * half, base.y - ny2 * half);
+      ctx.closePath();
+      ctx.lineJoin = "round";
+      ctx.strokeStyle = COLORS.bg;              // halo, so it separates from arcs beneath
+      ctx.lineWidth = 2.2;
+      ctx.stroke();
+      ctx.fillStyle = stationColor(b);
+      ctx.fill();
+    }
+    ctx.restore();
+  });
+}
+
+/* returns {set, soft}: soft = a peek at one mark, so the rest stays readable */
+function activeStations(){
+  // hovering (or tabbing to) a mark shows everything it connects to, unless a
+  // route or a trace is already drawn, where that drawing is the point
+  if (hovered && !state.journey && !state.trace){
+    const set = new Set([hovered]);
+    (NEIGHBORS[hovered] || []).forEach(id => set.add(id));
+    return {set, soft:true, ego:hovered};
+  }
+  if (state.journey){
+    const j = JOURNEYS.find(x => x.id === state.journey);
+    return {set:new Set(j.waypoints.map(w => w.station)), soft:false};
+  }
+  if (state.trace){
+    const set = new Set([state.trace]);
+    (TURNS[state.trace] || []).forEach(t => set.add(t[0]));
+    return {set, soft:false};
+  }
+  if (state.station) return {set:new Set([state.station]), soft:true};
+  if (state.domain) return {set:new Set(STATIONS.filter(s => s.domain === state.domain).map(s => s.id)), soft:false};
+  return null; // all
+}
+
+function draw(now){
+  ctx.clearRect(0, 0, W, H);
+  const focus = activeStations();
+  const active = focus && focus.set;
+  const dimAlpha = focus && focus.soft ? 0.42 : 0.16;
+
+  /* rings */
+  if (state.layout === "rings"){
+  ctx.save();
+  ctx.strokeStyle = COLORS.ring;
+  ctx.setLineDash([2, 6]);
+  ctx.lineWidth = 1;
+  for (let r = 1; r <= 5; r++){
+    ctx.beginPath();
+    ctx.arc(cx, cy, ringRadius(r), 0, Math.PI * 2);
+    ctx.stroke();
+  }
+  ctx.restore();
+
+  /* ring captions */
+  ctx.save();
+  ctx.fillStyle = COLORS.inkFaint;
+  ctx.font = "10px " + getComputedStyle(document.body).getPropertyValue("font-family");
+  ctx.textAlign = "center";
+  ctx.globalAlpha = .8;
+  ctx.fillText("the expected", cx, cy + ringRadius(1) + 14);
+  ctx.fillText("the unexpected", cx, cy + ringRadius(5) + 14);
+  ctx.restore();
+  }
+
+  /* routes: static arcs, or sampled motion */
+  if (state.edges === "arcs"){
+    drawArcs(focus);
+  }
+  if (state.edges === "flow" && !reduceMotion.matches && !state.journey){
+    AMBIENT.forEach(a => {
+      const s0 = byId[a.from], s1 = byId[a.to];
+      const p0 = pos(s0), p1 = pos(s1);
+      const c = curve(p0, p1, Math.hypot(p1.x - p0.x, p1.y - p0.y) * 0.18);
+      const dimmed = focus && focus.ego
+        ? (a.from !== focus.ego && a.to !== focus.ego)
+        : (active && !(active.has(a.from) && active.has(a.to)));
+      a.t = (a.t + a.speed) % 1;
+      const pt = pointOnCurve(p0, c, p1, a.t);
+      const col = stationColor(s1);
+      ctx.save();
+      ctx.globalAlpha = dimmed ? (focus.soft ? 0.2 : 0.09) : 0.38;
+      ctx.fillStyle = col;
+      if (COLORS.glow){ ctx.shadowBlur = 8; ctx.shadowColor = col; }
+      ctx.beginPath();
+      ctx.arc(pt.x, pt.y, 1.7, 0, Math.PI * 2);
+      ctx.fill();
+      // continuous trailing wake
+      for (let k = 1; k <= 9; k++){
+        const tt = a.t - k * 0.005;
+        if (tt < 0) break;
+        const q = pointOnCurve(p0, c, p1, tt);
+        ctx.globalAlpha = (dimmed ? (focus.soft ? 0.14 : 0.07) : 0.26) * (1 - k / 10);
+        ctx.beginPath();
+        ctx.arc(q.x, q.y, 1.4 * (1 - k / 13), 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    });
+  }
+
+  /* trace turns */
+  if (state.trace){
+    const from = byId[state.trace];
+    (TURNS[state.trace] || []).forEach((t, i) => {
+      const to = byId[t[0]];
+      if (to.id === from.id) return;
+      const p0 = pos(from), p1 = pos(to);
+      const c = curve(p0, p1, Math.hypot(p1.x - p0.x, p1.y - p0.y) * 0.2);
+      ctx.save();
+      ctx.strokeStyle = stationColor(to);
+      ctx.globalAlpha = t[1] === "worn" ? 0.85 : 0.4;
+      ctx.lineWidth = t[1] === "worn" ? 2.2 : 1.2;
+      if (t[1] !== "worn") ctx.setLineDash([3, 5]);
+      if (COLORS.glow){ ctx.shadowBlur = 10; ctx.shadowColor = stationColor(to); }
+      ctx.beginPath();
+      ctx.moveTo(p0.x, p0.y);
+      ctx.quadraticCurveTo(c.cxp, c.cyp, p1.x, p1.y);
+      ctx.stroke();
+      ctx.restore();
+    });
+  }
+
+  /* journey filament */
+  if (state.journey){
+    const j = JOURNEYS.find(x => x.id === state.journey);
+    const pts = j.waypoints.map(w => pos(byId[w.station]));
+    const phase = reduceMotion.matches ? 1 : Math.min(1, ((now - journeyStart) / 1400));
+    const segs = pts.length - 1;
+    for (let i = 0; i < segs; i++){
+      const p0 = pts[i], p1 = pts[i + 1];
+      const segStart = i / segs, segEnd = (i + 1) / segs;
+      if (phase <= segStart) break;
+      if (Math.hypot(p1.x - p0.x, p1.y - p0.y) < 1) continue;  // stayed put
+      const local = Math.min(1, (phase - segStart) / (segEnd - segStart));
+      const dist = Math.hypot(p1.x - p0.x, p1.y - p0.y);
+      const c = curve(p0, p1, dist * 0.22);
+      const col = stationColor(byId[j.waypoints[i + 1].station]);
+      ctx.save();
+      ctx.strokeStyle = col;
+      ctx.lineWidth = 2.6;
+      ctx.lineCap = "round";
+      if (COLORS.glow){ ctx.shadowBlur = 14; ctx.shadowColor = col; }
+      ctx.beginPath();
+      ctx.moveTo(p0.x, p0.y);
+      // partial quadratic via sampling
+      const steps = 40;
+      for (let k = 1; k <= steps * local; k++){
+        const q = pointOnCurve(p0, c, p1, k / steps);
+        ctx.lineTo(q.x, q.y);
+      }
+      ctx.stroke();
+      ctx.restore();
+    }
+  }
+
+  /* station marks */
+  STATIONS.forEach(s => {
+    const p = pos(s);
+    const r = nodeRadius(s);
+    const isActive = !active || active.has(s.id);
+    const isHot = hovered === s.id || state.station === s.id;
+    const col = stationColor(s);
+    const shaded = state.shade === "gradschool" && !hovered;
+    ctx.save();
+    ctx.globalAlpha = shaded ? shadeAlpha(s) : (isActive ? 1 : dimAlpha);
+    if (isHot){
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, r + 9, 0, Math.PI * 2);
+      ctx.strokeStyle = col;
+      ctx.globalAlpha = isActive ? 0.45 : dimAlpha * 0.6;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.globalAlpha = isActive ? 1 : dimAlpha;
+    }
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+    ctx.fillStyle = col;
+    if (COLORS.glow && isActive){ ctx.shadowBlur = isHot ? 22 : 12; ctx.shadowColor = col; }
+    ctx.globalAlpha *= 0.92;
+    ctx.fill();
+    ctx.restore();
+  });
+
+  /* label dimming mirrors the canvas */
+  const shading = state.shade === "gradschool" && !hovered;
+  STATIONS.forEach(s => {
+    const btn = document.getElementById("st-" + s.id);
+    if (shading){
+      btn.classList.remove("dim", "mute");
+      btn.style.opacity = shadeAlpha(s).toFixed(3);
+      return;
+    }
+    btn.style.opacity = "";
+    const off = !!active && !active.has(s.id);
+    btn.classList.toggle("dim", off && !(focus && focus.soft));
+    btn.classList.toggle("mute", off && !!(focus && focus.soft));
+  });
+}
+
+let journeyStart = 0;
+function frame(now){
+  if (layoutT < 1){
+    layoutT = Math.min(1, (now - layoutStart) / LAYOUT_MS);
+    placeLabels();
+  }
+  draw(now);
+  requestAnimationFrame(frame);
+}
+
+/* ============================================================ card */
+function openCard(html){
+  cardBody.innerHTML = html;
+  cardEl.classList.add("open");
+}
+/* never let the panel cover the mark that opened it */
+function placeCard(s){
+  const p = pos(s);
+  const putTop = p.y > H / 2;
+  cardEl.style.top = putTop ? "12px" : "auto";
+  cardEl.style.bottom = putTop ? "auto" : "12px";
+  if (window.innerWidth >= 1000){
+    const putLeft = p.x > W / 2;
+    cardEl.style.left = putLeft ? "12px" : "auto";
+    cardEl.style.right = putLeft ? "auto" : "12px";
+  } else {
+    cardEl.style.left = ""; cardEl.style.right = "";
+  }
+}
+function closeCard(){
+  cardEl.classList.remove("open");
+  state.station = null;
+  STATIONS.forEach(s => document.getElementById("st-" + s.id).setAttribute("aria-pressed", "false"));
+}
+document.getElementById("cardClose").addEventListener("click", () => {
+  const back = state.station;
+  closeCard();
+  if (back) document.getElementById("st-" + back).focus();
+});
+document.addEventListener("keydown", e => {
+  if (e.key !== "Escape" || !cardEl.classList.contains("open")) return;
+  const back = state.station;
+  const inside = cardEl.contains(document.activeElement);
+  closeCard();
+  if (back && inside) document.getElementById("st-" + back).focus();
+});
+/* clicking the empty field dismisses the panel */
+canvas.addEventListener("click", () => { if (cardEl.classList.contains("open")) closeCard(); });
+
+function selectStation(id){
+  const s = byId[id];
+  state.station = (state.station === id) ? null : id;
+  STATIONS.forEach(x => {
+    document.getElementById("st-" + x.id).setAttribute("aria-pressed", String(state.station === x.id));
+  });
+  if (!state.station){ closeCard(); return; }
+  placeCard(s);
+  // two frames: the panel must be painted (not visibility:hidden) before it can take focus
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    if (cardEl.classList.contains("open")) cardEl.focus({preventScroll:true});
+  }));
+
+  const col = "var(" + DOMAINS[s.domain].varname + ")";
+  const emp = s.employers.length
+    ? '<div class="sub"><span class="eyebrow">Employer landmarks, placeholder counts</span><div class="chips">' +
+      s.employers.map(e => '<span class="chip">' + e[0] + ' <span class="n">' + e[1].toLocaleString() + '</span></span>').join("") +
+      '</div></div>'
+    : '<div class="sub"><span class="eyebrow">Employer landmarks</span><p class="blurb">None — by definition. These roles never named a readable employer or function.</p></div>';
+  const quote = s.quote
+    ? '<div class="sub"><span class="eyebrow">What the work involves, composited</span><p class="quote" style="color:' + col + '">' + s.quote + '</p></div>'
+    : "";
+  const linked = JOURNEYS.filter(j => j.waypoints.some(w => w.station === s.id));
+  const links = linked.length
+    ? '<div class="sub"><span class="eyebrow">Journeys through here</span><p class="blurb">' +
+      linked.map(j => j.title).join("; ") + '</p></div>'
+    : "";
+
+  const goto = '<button class="goto" type="button" style="color:' + col + '" ' +
+               'onclick="openMarkPage(\'' + s.id + '\')">Open the full plate for this work</button>';
+  openCard(
+    '<span class="eyebrow" style="color:' + col + '">' + DOMAINS[s.domain].label + '</span>' +
+    '<h3>' + s.plain + '</h3>' +
+    '<p class="blurb">' + s.blurb + '</p>' +
+    '<div class="sub"><span class="eyebrow">Share of person-years, placeholder</span>' +
+    '<p class="blurb"><span class="num" style="font-size:20px;color:' + col + '">' + s.share.toFixed(1) + '%</span></p></div>' +
+    emp + quote + links + goto
+  );
+  bindPreviews(cardEl);
+}
+
+/* ============================================================ journeys */
+const journeyList = document.getElementById("journeyList");
+JOURNEYS.forEach(j => {
+  const accent = "var(" + DOMAINS[byId[j.waypoints[j.waypoints.length - 1].station].domain].varname + ")";
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "journey";
+  b.style.setProperty("--accent", accent);
+  b.setAttribute("aria-pressed", "false");
+  b.innerHTML = '<span class="cid">' + j.cid.replace("Composite ", "") + '</span>' +
+                '<span class="body"><span class="t">' + j.title + '</span>' +
+                '<span class="m">' + j.who + ', a composite</span></span>';
+  b.addEventListener("click", () => selectJourney(j.id));
+  journeyList.appendChild(b);
+
+  const detail = document.createElement("div");
+  detail.id = "jd-" + j.id;
+  detail.hidden = true;
+  journeyList.appendChild(detail);
+});
+
+function selectJourney(id){
+  const same = state.journey === id;
+  state.journey = same ? null : id;
+  state.station = null; state.trace = null;
+  closeCard();
+  journeyStart = performance.now();
+
+  Array.from(journeyList.querySelectorAll(".journey")).forEach((b, i) => {
+    b.setAttribute("aria-pressed", String(JOURNEYS[i].id === state.journey));
+  });
+  JOURNEYS.forEach(j => {
+    const d = document.getElementById("jd-" + j.id);
+    d.hidden = j.id !== state.journey;
+    if (j.id !== state.journey){ d.innerHTML = ""; return; }
+    d.innerHTML =
+      '<div class="aside" style="margin:10px 0 4px">' + j.note + '</div>' +
+      '<div class="waypoints">' +
+      j.waypoints.map(w => {
+        const col = "var(" + DOMAINS[byId[w.station].domain].varname + ")";
+        return '<div class="wp' + (w.concurrent ? " concurrent" : "") + '">' +
+          '<div class="yr">' + w.yr + '</div>' +
+          '<div><div class="role"><b>' + w.role + '</b></div>' +
+          '<div class="where">' + w.where + '. <span style="color:' + col + '">' + byId[w.station].plain + '</span></div>' +
+          '<div class="note">' + w.note + '</div></div></div>';
+      }).join("") +
+      '</div>';
+  });
+}
+
+/* ============================================================ trace */
+const tracePick = document.getElementById("tracePick");
+const traceTurns = document.getElementById("traceTurns");
+STATIONS.forEach(s => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "pick";
+  b.setAttribute("aria-pressed", "false");
+  b.textContent = s.short;
+  b.title = s.plain;
+  b.addEventListener("click", () => selectTrace(s.id));
+  tracePick.appendChild(b);
+});
+
+function selectTrace(id){
+  state.trace = state.trace === id ? null : id;
+  state.journey = null; state.station = null;
+  closeCard();
+  Array.from(tracePick.children).forEach((b, i) => {
+    const s = STATIONS[i];
+    b.setAttribute("aria-pressed", String(s.id === state.trace));
+  });
+  if (!state.trace){ traceTurns.innerHTML = ""; return; }
+  const from = byId[state.trace];
+  const shares = withShares(TURNS[state.trace] || [], state.trace, "out");
+  traceTurns.innerHTML =
+    '<p class="eyebrow" style="margin-top:6px">Where people go from ' + from.plain.toLowerCase() + '</p>' +
+    (TURNS[state.trace] || []).map((t, i) => {
+      const to = byId[t[0]];
+      const col = "var(" + DOMAINS[to.domain].varname + ")";
+      const share = Math.round(shares[i].share * 100);
+      return '<div class="turn ' + t[1] + '">' +
+        '<span class="tone" style="color:' + col + '">' + share + '%</span>' +
+        '<div><div class="to">' + to.plain + '</div><div class="note">' + t[2] + '</div></div></div>';
+    }).join("") +
+    '<p class="note" style="font-size:13px;color:var(--ink-faint);margin-top:12px">' +
+    'Shares are invented. The faded rows are moves that occur from almost every starting ' +
+    'point in the data. Management in particular draws people from everywhere, so the ' +
+    'list leads with the moves particular to this one. Open the full plate for the flow ' +
+    'diagram.</p>';
+}
+
+/* ============================================================ scrollytelling */
+const steps = Array.from(document.querySelectorAll(".step"));
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const focus = e.target.dataset.focus || "all";
+    const wasShading = state.shade;
+    state.shade = focus === "background" ? "gradschool" : null;
+    if (focus === "all"){ state.domain = null; state.station = null; }
+    else if (focus.startsWith("domain:")){ state.domain = focus.split(":")[1]; state.station = null; }
+    else if (focus === "background"){ state.domain = null; state.station = null; }
+    else if (focus === "journeys" || focus === "trace"){ state.domain = null; }
+    if (focus !== "journeys" && focus !== "trace" && state.journey){ selectJourney(state.journey); }
+    if (wasShading !== state.shade) updateFieldNote();
+  });
+}, {rootMargin:"-45% 0px -45% 0px", threshold:0});
+steps.forEach(s => io.observe(s));
+
+/* The "what people studied" figure: the fifteen marks ranked by the share of
+   their arrivals holding a graduate degree. Rendered from EDU so the step and
+   the mark plates cannot drift apart. The three marks the field places furthest
+   from expectation are picked out, because they are the argument. */
+(function renderDegreeFigure(){
+  const el = document.getElementById("dlFig");
+  if (!el) return;
+  const HI = new Set(["analysts", "tech", "finance"]);
+  const rows = STATIONS.map(s => ({id:s.id, nm:s.short, g:EDU[s.id].grad}))
+    .sort((a, b) => b.g - a.g);
+  const top = rows[0].g;
+  el.innerHTML =
+    '<div class="fig-head"><span class="fig-num">Fig. 1</span>' +
+    '<h2 class="fig-title">How far the arrivals took it</h2>' +
+    '<p class="fig-dek">Share of the people standing at each mark in career year 10 who ' +
+    'hold a graduate degree. Analysis, technology and finance are picked out.</p></div>' +
+    '<div class="fig-body"><div class="grank">' +
+    rows.map(r =>
+      '<div class="r' + (HI.has(r.id) ? " hi" : "") + '">' +
+        '<div class="nm">' + r.nm + '</div>' +
+        '<div class="v">' + r.g.toFixed(1) + '%</div>' +
+        '<div class="bar" style="width:' + (r.g / top * 100).toFixed(1) + '%"></div>' +
+      '</div>').join("") +
+    '</div></div>' +
+    '<figcaption><b>Measured, not placeholder.</b> The four-way split \u2014 below a ' +
+    "bachelor's, bachelor's, graduate, not recorded \u2014 is on each mark's own plate. " +
+    '<b>Source:</b> <code>person_year_archetype</code> joined to ' +
+    '<code>education_person</code>, 551,560 people at career year 10.</figcaption>';
+})();
+
+
+/* ============================================================ the mark plate */
+const TONE_RANK = {sig:0, worn:1, rare:2, all:3};
+const markpageEl = document.getElementById("markpage");
+
+/* who arrives here — derived by inverting the same turns table the atlas uses */
+function inboundTo(id){
+  const rows = [];
+  Object.keys(TURNS).forEach(from => {
+    TURNS[from].forEach(t => { if (t[0] === id && from !== id) rows.push([from, t[1], t[2]]); });
+  });
+  return rows.sort((a, b) => TONE_RANK[a[1]] - TONE_RANK[b[1]] || a[0].localeCompare(b[0]));
+}
+function flowWeight(a, b, tone){
+  let h = 0;
+  const s = a + ">" + b;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 1000;
+  return WEIGHT_BASE[tone] + (h % 9) - 4;
+}
+function withShares(rows, selfId, dir){
+  const w = rows.map(r => flowWeight(dir === "in" ? r[0] : selfId,
+                                     dir === "in" ? selfId : r[0], r[1]));
+  const total = w.reduce((a, b) => a + b, 0) || 1;
+  return rows.map((r, i) => ({id:r[0], tone:r[1], note:r[2], share:w[i] / total}));
+}
+const RIBBON_OPACITY = {sig:0.52, worn:0.36, rare:0.26, all:0.16};
+
+/* one-node Sankey: arrivals converge into this mark, departures diverge out of it */
+function renderFlow(selfId, inRows, outRows){
+  const V = 1000, PAD = 26, GAP = 9;
+  const nodes = Math.max(inRows.length, outRows.length);
+  const H = Math.max(280, nodes * 46);
+  const availH = H - PAD * 2;
+  const colL = 300, colLW = 11, colC = 490, colCW = 20, colR = 700;
+  const self = byId[selfId];
+  const selfCol = "var(" + DOMAINS[self.domain].varname + ")";
+
+  function stack(rows){
+    const gaps = GAP * Math.max(0, rows.length - 1);
+    const usable = availH - gaps;
+    let y = PAD;
+    return rows.map(r => {
+      const h = Math.max(9, r.share * usable);
+      const o = {...r, y, h};
+      y += h + GAP;
+      return o;
+    });
+  }
+  const L = stack(inRows), R = stack(outRows);
+  const centerH = availH;
+  let cyIn = PAD, cyOut = PAD;
+  const inTot = L.reduce((a, b) => a + b.h, 0) || 1, outTot = R.reduce((a, b) => a + b.h, 0) || 1;
+
+  function ribbon(x1, y1, h1, x2, y2, h2){
+    const mx = (x1 + x2) / 2;
+    return `M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2} ` +
+           `L${x2},${y2 + h2} C${mx},${y2 + h2} ${mx},${y1 + h1} ${x1},${y1 + h1} Z`;
+  }
+
+  let svg = `<svg viewBox="0 0 ${V} ${H}" role="img" aria-label="Flow of people into and out of ${self.plain}">`;
+  svg += `<text class="fhead" x="${colL + colLW}" y="12" text-anchor="end" font-size="12">Arriving from</text>`;
+  svg += `<text class="fhead" x="${colR}" y="12" font-size="12">Moving on to</text>`;
+
+  L.forEach(n => {
+    const o = byId[n.id], col = "var(" + DOMAINS[o.domain].varname + ")";
+    const h = (n.h / inTot) * centerH;
+    svg += `<path class="ribbon" data-route="in-${n.id}" fill="${col}" ` +
+           `opacity="${RIBBON_OPACITY[n.tone]}" d="${ribbon(colL + colLW, n.y, n.h, colC, cyIn, h)}">` +
+           `<title>From ${o.plain} into ${self.plain}, ${Math.round(n.share * 100)}% of arrivals</title></path>`;
+    svg += `<rect class="nodebar" data-route="in-${n.id}" x="${colL}" y="${n.y}" width="${colLW}" height="${n.h}" fill="${col}" rx="2"/>`;
+    svg += `<text class="flabel" data-route="in-${n.id}" x="${colL - 12}" y="${n.y + n.h / 2 + 5}" ` +
+           `text-anchor="end" font-size="14">${flowLabel(n.id, selfId)}</text>`;
+    svg += `<text class="fshare" x="${colL - 12}" y="${n.y + n.h / 2 + 21}" text-anchor="end" font-size="11">` +
+           `${Math.round(n.share * 100)}%</text>`;
+    cyIn += h;
+  });
+  R.forEach(n => {
+    const o = byId[n.id], col = "var(" + DOMAINS[o.domain].varname + ")";
+    const h = (n.h / outTot) * centerH;
+    svg += `<path class="ribbon" data-route="out-${n.id}" fill="${col}" ` +
+           `opacity="${RIBBON_OPACITY[n.tone]}" d="${ribbon(colC + colCW, cyOut, h, colR, n.y, n.h)}">` +
+           `<title>From ${self.plain} to ${flowLabel(n.id, selfId)}, ${Math.round(n.share * 100)}% of departures</title></path>`;
+    svg += `<rect class="nodebar" data-route="out-${n.id}" x="${colR}" y="${n.y}" width="${colLW}" height="${n.h}" fill="${col}" rx="2"/>`;
+    svg += `<text class="flabel" data-route="out-${n.id}" x="${colR + 22}" y="${n.y + n.h / 2 + 5}" font-size="14">${flowLabel(n.id, selfId)}</text>`;
+    svg += `<text class="fshare" x="${colR + 22}" y="${n.y + n.h / 2 + 21}" font-size="11">${Math.round(n.share * 100)}%</text>`;
+    cyOut += h;
+  });
+  svg += `<rect x="${colC}" y="${PAD}" width="${colCW}" height="${centerH}" fill="${selfCol}" rx="3"/>`;
+  svg += `<text class="fhead" x="${colC + colCW / 2}" y="${PAD - 10}" text-anchor="middle" font-size="12">This work</text>`;
+  svg += `</svg>`;
+  return svg;
+}
+
+function flowLabel(otherId, selfId){
+  return otherId === selfId ? "Stays in this kind of work" : byId[otherId].plain;
+}
+function routeList(rows, dir, selfId){
+  return '<div class="routes">' + rows.map(r => {
+    const o = byId[r.id];
+    const isSelf = r.id === selfId;
+    const col = "var(" + DOMAINS[o.domain].varname + ")";
+    const pale = (r.tone === "all" || r.tone === "rare") ? " pale" : "";
+    return '<div class="route' + pale + '" data-route="' + dir + '-' + r.id + '">' +
+      '<div class="to" style="color:' + col + '">' +
+        (isSelf ? '' : (dir === "in" ? "from " : "to ")) +
+        (isSelf ? flowLabel(r.id, selfId)
+                : '<a href="#/' + r.id + '">' + o.plain + '</a>') + '</div>' +
+      '<div class="pct">' + Math.round(r.share * 100) + '%</div>' +
+      '<div class="note">' + r.note + '</div></div>';
+  }).join("") + '</div>';
+}
+
+function chipList(items){
+  return '<div class="chips">' + items.map(x => '<span class="chip">' + x + '</span>').join("") + '</div>';
+}
+
+/* numbered figure: head, dek, body, source note (538 / Distill grammar) */
+let figN = 0;
+function figure(title, dek, body, source, wide){
+  figN += 1;
+  return '<figure class="fig' + (wide ? " fig-wide" : "") + '">' +
+    '<div class="fig-head"><span class="fig-num">Fig. ' + figN + '</span>' +
+    '<h2 class="fig-title">' + title + '</h2>' +
+    '<p class="fig-dek">' + dek + '</p></div>' +
+    '<div class="fig-body">' + body + '</div>' +
+    (source ? '<figcaption>' + source + '</figcaption>' : '') +
+    '</figure>';
+}
+
+/* gwern-style link previews: a cross-reference should cost no navigation */
+const previewEl = document.createElement("div");
+previewEl.id = "preview";
+document.body.appendChild(previewEl);
+function showPreview(markId, anchor){
+  const s = byId[markId];
+  if (!s) return;
+  const col = "var(" + DOMAINS[s.domain].varname + ")";
+  previewEl.innerHTML =
+    '<span class="pv-name"><span class="pv-dot" style="background:' + col + '"></span>' +
+    s.plain + '</span>' + s.blurb +
+    '<span class="pv-fig">' + s.share.toFixed(1) + '% of person-years, ring ' +
+    s.ring.toFixed(1) + ' of 5</span>';
+  const r = anchor.getBoundingClientRect();
+  const w = 290, gap = 12;
+  const left = Math.max(gap, Math.min(r.left, window.innerWidth - w - gap));
+  previewEl.style.left = (left + window.scrollX) + "px";
+  previewEl.style.top = (r.bottom + gap + window.scrollY) + "px";
+  previewEl.classList.add("on");
+  // flip above the link if it would fall below the fold
+  const h = previewEl.offsetHeight;
+  if (r.bottom + gap + h > window.innerHeight){
+    previewEl.style.top = (r.top - h - gap + window.scrollY) + "px";
+  }
+}
+function hidePreview(){ previewEl.classList.remove("on"); }
+function bindPreviews(root){
+  root.querySelectorAll('a[href^="#/"]').forEach(a => {
+    const markId = a.getAttribute("href").slice(2);
+    if (!byId[markId]) return;
+    a.addEventListener("mouseenter", () => showPreview(markId, a));
+    a.addEventListener("focus", () => showPreview(markId, a));
+    a.addEventListener("mouseleave", hidePreview);
+    a.addEventListener("blur", hidePreview);
+  });
+}
+
+
+function renderMarkPage(id){
+  figN = 0;
+  const s = byId[id], d = DETAIL[id];
+  const col = "var(" + DOMAINS[s.domain].varname + ")";
+  const inb = inboundTo(id), out = TURNS[id] || [];
+  const outRaw = out.slice();
+  if (!outRaw.some(o => o[0] === id)) outRaw.push([id, "worn",
+    "Staying is a real outcome: around two in five people hold one kind of work for the whole decade."]);
+  const inShares = withShares(inb, id, "in").sort((a, b) => b.share - a.share);
+  const outShares = withShares(outRaw, id, "out").sort((a, b) => b.share - a.share);
+  const journeys = JOURNEYS.filter(j => j.waypoints.some(w => w.station === id));
+
+  const emp = s.employers.length
+    ? figure("Employer landmarks",
+        "Organizations that turn out to be full of humanities graduates doing this kind of work.",
+        '<table class="reg">' +
+        '<thead><tr><th scope="col">Organization</th><th scope="col" class="num">Graduates</th></tr></thead>' +
+        '<tbody>' + s.employers.map(e =>
+          '<tr><td>' + e[0] + '</td><td class="num">' + e[1].toLocaleString() + '</td></tr>').join("") +
+        '</tbody></table>',
+        '<b>Note:</b> the organization names are real ones from the corpus. Every count is ' +
+        'invented. <b>Source:</b> <code>career_steps</code> joined to <code>role_archetype</code>.')
+    : figure("Employer landmarks", "None, by definition.",
+        '<p class="fig-dek">These roles never named a readable employer or function.</p>', "");
+
+  /* --- educational provenance (measured, not placeholder) --------------- */
+  const ed = EDU[id];
+  const pctCell = v => '<td class="num">' + v.toFixed(1) + '%</td>';
+  const edDek =
+    id === EDU_SHARPEST
+      ? ed.named[0] + ' accounts for ' + ed.named[1].toFixed(1) +
+        '% of arrivals here — the sharpest background signature on the map.'
+    : id === EDU_FLATTEST
+      ? ed.named[0] + ' is the largest identified background at just ' +
+        ed.named[1].toFixed(1) + '% — the flattest distribution on the map.'
+      : ed.named[0] + ' is the largest identified background at ' + ed.named[1].toFixed(1) +
+        '%, out of ' + ed.nFields + ' groups that arrive here.';
+
+  const dlRows = [["Below a bachelor's", ed.dl[0]], ["Bachelor's", ed.dl[1]],
+                  ["Graduate degree", ed.dl[2]], ["Not recorded", ed.dl[3]]];
+
+  const prov = figure("Who arrives here", edDek,
+    '<div class="mp-grid two">' +
+      '<table class="reg"><caption>What they studied</caption>' +
+      '<thead><tr><th scope="col">Background</th><th scope="col" class="num">Share</th></tr></thead>' +
+      '<tbody>' + ed.fields.map(f =>
+        '<tr><td>' + f[0] + '</td>' + pctCell(f[1]) + '</tr>').join("") +
+        '<tr><td>' + (ed.nFields - ed.fields.length) + ' further groups</td>' +
+        pctCell(ed.tail) + '</tr>' +
+      '</tbody></table>' +
+      '<table class="reg"><caption>How far they took it</caption>' +
+      '<thead><tr><th scope="col">Highest level</th><th scope="col" class="num">Share</th></tr></thead>' +
+      '<tbody>' + dlRows.map(r =>
+        '<tr><td>' + r[0] + '</td>' + pctCell(r[1]) + '</tr>').join("") +
+      '</tbody></table>' +
+    '</div>',
+    '<b>Measured, not placeholder.</b> Shares are of the ' + ed.n.toLocaleString() +
+    ' people standing at this mark in career year 10. &ldquo;Other fields&rdquo; are ' +
+    'readable but outside the humanities core, and are excluded only when ranking marks ' +
+    'against each other. <b>Source:</b> <code>person_year_archetype</code> joined to ' +
+    '<code>education_person</code>.');
+
+  const insts = figure("Institutional landmarks",
+    "Schools that turn out to be full of graduates doing this kind of work.",
+    '<table class="reg">' +
+    '<thead><tr><th scope="col">Institution</th><th scope="col" class="num">Graduates</th></tr></thead>' +
+    '<tbody>' + ed.schools.map(e =>
+      '<tr><td>' + e[0] + '</td><td class="num">' + e[1].toLocaleString() + '</td></tr>').join("") +
+    '</tbody></table>',
+    '<b>Measured, not placeholder.</b> These are the largest suppliers, not the most ' +
+    'distinctive. The same institutions top nearly every mark — UCLA appears in the top ' +
+    'ten of fourteen of the fifteen. Where a mark’s register looks different from that ' +
+    'pattern, the difference is the finding. Two entries are artifacts worth naming: ' +
+    '<i>The Art Institutes</i> is a chain collapsed to one row by the school resolver, and ' +
+    '<i>University of Phoenix</i> is a large online for-profit, which is why it ranks where ' +
+    'it does rather than because of what it teaches. <b>Source:</b> ' +
+    '<code>person_year_archetype</code> joined to <code>education_person</code>.');
+
+  const quotes = d.quotes.length
+    ? '<div class="mp-sec"><h2>What the work involves</h2>' +
+      '<p class="cap">Written in the register of a job description, which is where this detail ' +
+      'would come from. Composited and paraphrased, never lifted from a profile.</p>' +
+      '<div class="quotes">' + d.quotes.map(q =>
+        '<p class="quote" style="color:' + col + '">' + q + '</p>').join("") + '</div></div>'
+    : '';
+
+  const creds = d.creds.length
+    ? '<div class="mp-sec"><h2>Credentials that show up here</h2>' +
+      '<p class="cap">Short, low-cost credentials that connect a humanities degree to this work. ' +
+      'Measurable in the corpus today, and not yet shown anywhere.</p>' + chipList(d.creds) +
+      '<p class="placeholder-note">Placeholder selection</p></div>'
+    : '';
+
+  const places = d.places.length
+    ? '<div class="mp-sec"><h2>Where it happens</h2>' +
+      '<p class="cap">Where this work is concentrated. Location is recorded throughout the pipeline ' +
+      'and is not yet used in any analysis.</p>' +
+      chipList(d.places) + '<p class="placeholder-note">Placeholder metros</p></div>'
+    : '';
+
+  const comps = journeys.length
+    ? '<div class="mp-sec"><h2>Composites who pass through</h2>' +
+      '<p class="cap">Invented people assembled from the shape of real routes. Opening one returns ' +
+      'you to the field with the route drawn.</p>' +
+      '<div class="routes">' + journeys.map(j =>
+        '<div class="route"><div class="to"><a href="#/atlas" data-journey="' + j.id + '">' +
+        j.title + '</a></div><div class="pct">' + j.cid.replace("Composite ", "no. ") + '</div>' +
+        '<div class="note">' + j.who + ', a composite. ' + j.note + '</div></div>').join("") +
+      '</div></div>'
+    : '';
+
+  markpageEl.innerHTML =
+    '<div class="backbar">' +
+      '<button class="backlink" type="button" id="mpBack">Back to the field</button>' +
+      '<span class="crumb">' + DOMAINS[s.domain].label + '</span>' +
+    '</div>' +
+
+    '<div class="mp-head"><div>' +
+      '<span class="eyebrow" style="color:' + col + '">Mark ' +
+        (STATIONS.indexOf(s) + 1) + ' of ' + STATIONS.length + '</span>' +
+      '<h1>' + s.plain + '</h1>' +
+      '<p class="blurb">' + s.blurb + '</p>' +
+      '<div class="tiles">' +
+        '<div class="tile"><span class="k">Share of all person-years</span>' +
+          '<span class="v">' + s.share.toFixed(1) + '<small>%</small></span></div>' +
+        '<div class="tile"><span class="k">Kinds of work that feed it</span>' +
+          '<span class="v">' + inb.length + '<small> of ' + (STATIONS.length - 1) + '</small></span></div>' +
+        '<div class="tile"><span class="k">Kinds of work it feeds</span>' +
+          '<span class="v">' + out.filter(o => o[0] !== id).length +
+          '<small> of ' + (STATIONS.length - 1) + '</small></span></div>' +
+        '<div class="tile"><span class="k">Distance from the expected</span>' +
+          '<span class="v">' + s.ring.toFixed(1) + '<small> of 5</small></span></div>' +
+      '</div>' +
+    '</div>' +
+    '<div><span class="mark" style="background:' + col + ';display:inline-block;' +
+      'width:12px;height:12px;border-radius:50%;vertical-align:middle;margin-right:8px"></span>' +
+      '<span style="font-size:14.5px;color:var(--ink-soft)">' +
+      '<strong>What the data can and cannot see here.</strong> ' + d.truth + '</span></div>' +
+    '</div>' +
+
+    '<div style="margin-top:clamp(34px,6vh,60px)">' +
+    figure("Who arrives, and who moves on",
+      "Everyone passing through this kind of work in a first decade.",
+      '<div class="flow">' + renderFlow(id, inShares, outShares) + '</div>' +
+      '<div class="flow-key">' +
+        '<span class="k"><span class="sw strong"></span>Distinctive to this work</span>' +
+        '<span class="k"><span class="sw pale"></span>Happens from almost anywhere</span>' +
+      '</div>',
+      '<b>Read:</b> ribbon width is the share of moves. Arrivals are derived by inverting ' +
+      'the same routes the field draws, so the two views cannot disagree. ' +
+      '<b>Source:</b> placeholder figures throughout; a built version reads them from ' +
+      '<code>state_flows.parquet</code>.', true) +
+    '</div>' +
+
+    '<div class="mp-grid two">' +
+      '<div class="mp-sec"><h2>Arriving from</h2>' +
+        '<p class="cap">What the move usually looks like.</p>' +
+        (inShares.length ? routeList(inShares, "in", id)
+                         : '<p class="cap">Nothing on this map routes here. It is a starting point only.</p>') +
+      '</div>' +
+      '<div class="mp-sec"><h2>Moving on to</h2>' +
+        '<p class="cap">Ordered by size; the pale rows are the moves that happen from everywhere.</p>' +
+        routeList(outShares, "out", id) +
+      '</div>' +
+    '</div>' +
+
+    '<div class="mp-grid two">' +
+      figure("What the work is called",
+        "Titles at three points in a first decade. The same person often continues similar " +
+        "work under a new name.",
+        '<div class="ladder">' + d.ladder.map(r =>
+          '<div class="rung"><div class="yr">' + r[0] + '</div>' +
+          '<div class="titles">' + r[1].map(x => '<i>' + x + '</i>').join("") +
+          '</div></div>').join("") + '</div>',
+        '<b>Note:</b> placeholder titles. <b>Source:</b> role titles recorded within this mark.') +
+      '<div>' + emp + '</div>' +
+    '</div>' +
+
+    '<div class="mp-grid two">' + prov + insts + '</div>' +
+
+    '<div class="mp-grid two">' + quotes + creds + '</div>' +
+    '<div class="mp-grid two">' + places + comps + '</div>' +
+
+    '<div class="feeds"><p><strong>What would feed this plate.</strong> Occupancy and the flow ' +
+    'panels from <code>archetypes/results/state_flows.parquet</code> and ' +
+    '<code>person_year_archetype.parquet</code>; employer landmarks from ' +
+    '<code>career_steps</code> joined to <code>role_archetype</code>; the ladder from role titles ' +
+    'within the mark; the quotes from <code>career_steps.description</code>; credentials from ' +
+    '<code>parsed/certifications</code>; locations from <code>career_steps.location_*</code>. ' +
+    'The two education figures above are already measured; everything else on this plate, ' +
+    'apart from the mark name, is invented.</p></div>';
+
+  markpageEl.querySelectorAll(".fig .fig-num").forEach((el, i) => {
+    el.textContent = "Fig. " + (i + 1);
+  });
+
+  document.getElementById("mpBack").addEventListener("click", () => { location.hash = "#/atlas"; });
+
+  bindPreviews(markpageEl);
+
+  // hovering any part of a route lights every other part of it
+  const hot = (key, on) => markpageEl.querySelectorAll('[data-route="' + key + '"]')
+    .forEach(el => el.classList.toggle("hot", on));
+  markpageEl.querySelectorAll("[data-route]").forEach(el => {
+    const key = el.dataset.route;
+    el.addEventListener("mouseenter", () => hot(key, true));
+    el.addEventListener("mouseleave", () => hot(key, false));
+    if (el.classList.contains("ribbon") || el.classList.contains("nodebar") ||
+        el.classList.contains("flabel")){
+      const target = key.replace(/^(in|out)-/, "");
+      if (target !== id) el.addEventListener("click", () => { location.hash = "#/" + target; });
+    }
+  });
+  markpageEl.querySelectorAll("[data-journey]").forEach(a => {
+    a.addEventListener("click", e => {
+      e.preventDefault();
+      pendingJourney = a.dataset.journey;
+      location.hash = "#/atlas";
+    });
+  });
+}
+
+let pendingJourney = null;
+function openMarkPage(id){ location.hash = "#/" + id; }
+window.openMarkPage = openMarkPage;
+
+function route(){
+  const id = (location.hash || "").replace(/^#\//, "");
+  if (id && byId[id]){
+    closeCard();
+    document.body.dataset.view = "page";
+    renderMarkPage(id);
+    window.scrollTo(0, 0);
+    document.getElementById("mpBack").focus({preventScroll:true});
+  } else {
+    document.body.dataset.view = "atlas";
+    markpageEl.innerHTML = "";
+    layout();
+    if (pendingJourney){
+      const j = pendingJourney; pendingJourney = null;
+      state.journey = null;
+      document.querySelector("[data-focus='journeys']").scrollIntoView({block:"center"});
+      setTimeout(() => selectJourney(j), 60);
+    }
+  }
+}
+window.addEventListener("hashchange", route);
+
+/* ============================================================ go */
+readColors();
+buildLayouts();
+layoutTo = LAYOUTS.rings;
+updateFieldNote();
+document.querySelectorAll("[data-layout]").forEach(b => {
+  b.addEventListener("click", () => setLayout(b.dataset.layout));
+});
+document.querySelectorAll("[data-edges]").forEach(b => {
+  b.addEventListener("click", () => setEdges(b.dataset.edges));
+});
+if (reduceMotion.matches){                       // no motion wanted: draw it still
+  state.edges = "flow";                          // (setEdges needs a change to fire)
+  setEdges("arcs");
+}
+document.body.dataset.view = "atlas";
+layout();
+route();
+window.addEventListener("resize", layout);
+requestAnimationFrame(frame);
+</script>
