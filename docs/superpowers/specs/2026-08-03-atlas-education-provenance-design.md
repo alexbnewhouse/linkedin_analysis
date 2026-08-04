@@ -422,40 +422,59 @@ is not re-derived.
 A full-width three-column Sankey between the plate and the mark plate:
 undergraduate field → graduate field → kind of work at career year 10.
 
-**Population.** 75,561 people holding both a fielded bachelor's and a fielded
-graduate degree — 21.7% of the panel, and by construction only those who went
-back. The plate says nothing about people who did not, and its note says so.
+**Population.** 40,388 people whose **bachelor's is humanities or humanistic social
+science** and who also hold a fielded graduate degree, at career year 10.
+
+The humanities boundary is the project's own nested taxonomy at **level 2** —
+`nha_level_pooled IN (1, 2)` on the bachelor record — where L2 is defined in
+`edu_clean/HUMANITIES_CLASSIFICATION.md` as "L1 plus the humanistic/interpretive
+social sciences". That deliberately excludes psychology, economics and the natural
+sciences, which the same taxonomy places at L3. Restricting from "any non-Other
+bachelor's" to L1/L2 cut the population from 75,561 to 40,388 and removed what had
+been the five largest undergraduate nodes (Psychology 18%, Biological Sciences 12%,
+Economics 6%, Physical Sciences 5%, Math & Statistics 4%).
+
+Ten undergraduate groups carry it. Three more — library science,
+science-technology-and-society, museum studies — total 21 people between them and
+fold into the explicit "all other" node.
+
+The graduate column shifts with the population: biological sciences, physical
+sciences and engineering drop out, and library science, history and
+interdisciplinary studies take their place.
 
 **Why it is worth a plate.** The graduate field, not the undergraduate one, does
-the work. Holding undergrad constant at English & Literature:
+the work. Holding undergrad constant at English & Literature, those who went back
+for Law reach Legal, Policy & Research; for Education, Educators & Academics; for
+Business, Managers & Operations. Across the whole plate a Law graduate degree leads
+to Legal, Policy & Research for **53%** of those holding it.
 
-| then a graduate degree in | leading destination at year 10 |
-|---|---|
-| Law | Legal, Policy & Research 53.2% |
-| Education | Educators & Academics 48.5% |
-| English | Educators 29.6 / Writers 23.6 |
-| Communication & journalism | Writers 29.6 / Comms 21.4 |
-| Business | Managers 24.3 / Comms 13.5 / Analysts 12.8 |
-
-Same first degree, five different first decades.
-
-**Taxonomy.** Undergraduate side uses the humanities field groups with the
-uninformative `Other` group dropped. Graduate side uses **CIP2 families** at 79.3%
-coverage — `humanities_field_group` was tried first and fails here, because it
-labels most graduate degrees (MBA, MEd, MSW, JD, MPH) as "Other", which put an
-uninformative band at the top of eight of the ten largest combinations.
+**Taxonomy.** Undergraduate side uses the humanities field groups. Graduate side
+uses **CIP2 families** at 79.3% coverage — `humanities_field_group` was tried first
+and fails there, because it labels most graduate degrees (MBA, MEd, MSW, JD, MPH) as
+"Other", which put an uninformative band at the top of eight of the ten largest
+combinations.
 
 **Depth.** Each column keeps its largest members by name and folds the rest into an
-explicit "all other" band, so the columns still total the whole population. The
-graduate column is deliberately deep — **14 named**. A shallower nine-node column
-folded same-field continuations such as English into "other", which made the
-commonest answer for several undergraduate groups an uninformative one; the
-readout for English majors read "most often paired with All other graduate fields
-45%". Fourteen cuts the folded share from 25.5% to 11.5%.
+explicit "all other" band. The graduate column is deliberately deep — **14 named**.
+A shallower nine-node column folded same-field continuations such as English into
+"other", which made the commonest answer for several undergraduate groups an
+uninformative one; the readout for English majors read "most often paired with All
+other graduate fields 45%".
 
-**Suppression.** Bands under 25 people are not drawn. This is a legibility cut, not
-a privacy one, and sits well above the project's n≥10 bar; 99.5% of people survive
-it on both halves.
+**Suppression, and a bug it caught.** Cuts apply to **bands, never to triples**.
+`tri` is the complete set with no floor: it is an internal aggregation unit, never
+drawn on its own, and it drives node sizes and the drill-down. A drawn band must
+clear **10 people** (the project suppression bar) always, and **25** in the
+unselected view (legibility); selecting lifts the second cut so a small field shows
+its true shape.
+
+An earlier version applied the 25-person cut to triples instead, and it silently
+deleted whole destinations. Hospitality, Retail & Service has 270 people standing
+in it, but its largest single triple is 18, so no triple survived and the archetype
+vanished from the third column entirely — a reader would have concluded that no
+humanities graduate with a second degree ends up in service work. Its largest
+graduate-to-work *band* is 48. The same cut at triple grain also stripped Theology
+to 18% of its true size in drill-down.
 
 ### 10.3 Interaction: drill-down, not highlighting
 
@@ -483,6 +502,11 @@ back for" of its own.
   clicking again restores all 41 nodes.
 - All three columns selectable, each with a grammatical sentence.
 - Substance spot-check from the model, not the prose: a Law graduate degree leads
-  to Legal, Policy & Research for **68%** of those holding it.
+  to Legal, Policy & Research for **53%** of those holding it.
+- All 15 archetypes are drawn — a regression guard for the triple-cut bug above.
+- No drawn band, in any selection state, falls under the 10-person suppression bar.
+- No L3 field (psychology, economics, the sciences) appears in the undergraduate
+  column.
+- A small field (Theology, 337 people) keeps its full size and shape when selected.
 - §9's suites re-run green after the addition: data invariants, field shading, and
   all 15 mark plates.
