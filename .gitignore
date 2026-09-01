@@ -60,3 +60,4 @@ __pycache__/
 /portal/results/portal_data.json
 /share/*.html
 /share/*.zip
+/edu_clean/results/*.log
