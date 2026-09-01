@@ -39,7 +39,7 @@ wheels/
 *Zone.Identifier
 # Backup debris
 *.bak
-# Industry LLM proposal cache (2.7GB jsonl; frozen-cache contract, lives on disk)
+# Industry LLM proposal cache (would be >2GB if re-fired; never committable)
 /industry/llm_proposals.jsonl
 # Archetypes generated outputs (parquet; JSON summaries elsewhere are kept)
 /archetypes/results/
