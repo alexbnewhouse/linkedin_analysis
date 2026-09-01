@@ -42,7 +42,6 @@ def build(threads: int) -> dict:
     con.execute(f"PRAGMA threads={threads}")
     started = time.monotonic()
     steps = f"read_parquet('{_q(C.STEPS)}')"
-    trans = f"read_parquet('{_q(C.TRANSITIONS)}')"
     bls = f"read_parquet('{_q(C.BLS)}')"
     edu_person = f"read_parquet('{_q(EDU_PERSON)}')"
 

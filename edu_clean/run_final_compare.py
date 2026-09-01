@@ -13,7 +13,6 @@ from pathlib import Path
 
 from . import final_hybrid
 from .common import load_vocab, pair_scores
-from .gold import PAIRS
 from .nearest_neighbor import MODE_GLOBAL, MODE_STRICT, load_cip_anchors, run_field
 from .run_eval import error_pairs, valid_pairs
 

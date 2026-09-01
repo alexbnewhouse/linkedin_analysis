@@ -16,7 +16,6 @@ import duckdb
 
 from . import final_hybrid
 from .common import EXP, load_vocab, pair_scores
-from .gold import PAIRS
 from .run_eval import error_pairs, valid_pairs
 
 RESULTS = Path(__file__).resolve().parent / "results"

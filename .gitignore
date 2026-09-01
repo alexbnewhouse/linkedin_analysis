@@ -56,3 +56,7 @@ __pycache__/
 # Run logs in results dirs
 /career_clean/results/*.log
 /industry/results/*.log
+# Generated portal/share build outputs (regenerable via portal/run_share_build.py)
+/portal/results/portal_data.json
+/share/*.html
+/share/*.zip

@@ -11,7 +11,6 @@ consistency (L1 subset of L2 subset of L3), and RR sanity (baseline RR == 1.0).
 
 from __future__ import annotations
 
-import json
 
 import duckdb
 
