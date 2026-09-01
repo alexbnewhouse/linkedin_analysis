@@ -47,7 +47,13 @@ STATS = ROOT / "edu_clean" / "results" / "cip_tiebreak_stats.json"
 # errors (the industry jury's calibrated pairing). Served by the Framework
 # Desktop's always-on Ollama daemon -- num_ctx is set per-request by
 # cip_llm.build_request, so the 2k Ollama default trap does not apply.
-THIRD = "ollama/gemma3:27b"
+# 2026-09-01: gemma3:27b FAILED the calibration gate (0.553 on the gold
+# disagreement band vs the 0.85 bar) -- see results/cip_tiebreak_stats.json.
+# Override via CIP_TIEBREAK_JUROR to calibrate a stronger juror (votes are
+# cache-keyed per model, so nothing is refired or overwritten).
+import os as _os
+
+THIRD = _os.environ.get("CIP_TIEBREAK_JUROR", "ollama/gemma3:27b")
 OLLAMA_HOSTS = "framework=http://100.73.40.75:11434|2|ollama"
 ALL_JURORS = L.JURY + (THIRD,)
 
@@ -159,7 +165,10 @@ def cmd_calibrate(execute: bool) -> None:
     }
     print(json.dumps(report, indent=2))
     STATS.parent.mkdir(parents=True, exist_ok=True)
-    STATS.write_text(json.dumps({"calibration": report}, indent=2) + "\n")
+    prior = json.loads(STATS.read_text()) if STATS.exists() else {}
+    prior[f"calibration::{THIRD}"] = report
+    prior.setdefault("calibration", report)  # first-juror record, kept stable
+    STATS.write_text(json.dumps(prior, indent=2) + "\n")
 
 
 def cmd_fire(execute: bool) -> None:

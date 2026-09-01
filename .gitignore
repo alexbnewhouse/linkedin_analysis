@@ -61,3 +61,5 @@ __pycache__/
 /share/*.html
 /share/*.zip
 /edu_clean/results/*.log
+/.build_status
+/refresh.log
