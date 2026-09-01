@@ -46,6 +46,30 @@ FINGERPRINT_SQL = "bit_xor(hash(linkedin_id, cip_code, nha_level))"
 ADDED = ("cip2_pooled", "cip_source", "nha_level_pooled",
          "humanities_field_group_pooled")
 
+# Audit R2 (2026-09-01): subject-bearing professional degree types -> CIP2
+# family, filling ONLY where both the deterministic field coding and the jury
+# missed. The degree taxonomy already parses "MBA" -> business_admin etc.;
+# measured recovery: 119,172 rows, 32,356 persons gaining their first CIP.
+# TRAPS (verified in-data, do not "fix"):
+#   * 'philosophy' = Doctor of Philosophy (PhD, 44k rows) -- NEVER a field.
+#   * 'arts' / 'science' / 'generic' (BA/BS/degree words) carry no field.
+#   * 'applied_science' (BASc) is ambiguous -- excluded by decision.
+DEGREE_TYPE_CIP2: dict[str, str] = {
+    "business_admin": "52",
+    "law": "22",
+    "medicine": "51",
+    "education": "13",
+    "social_work": "44",
+    "public_health": "51",
+    "nursing": "51",
+    "fine_arts": "50",
+    "engineering": "14",
+    "dental": "51",
+    "public_admin": "44",
+    "commerce": "52",
+    "computer_science": "11",
+}
+
 
 def _q(p: Path) -> str:
     return str(p).replace("'", "''")
@@ -58,6 +82,7 @@ def _family_lookup(con) -> None:
         f"SELECT DISTINCT cip2 FROM read_parquet('{_q(EDUCATION)}') "
         f"WHERE cip2 IS NOT NULL "
         f"UNION SELECT DISTINCT cip2 FROM read_parquet('{_q(JURY)}')").fetchall()]
+    families = sorted(set(families) | set(DEGREE_TYPE_CIP2.values()))
     rows = []
     for fam in families:
         c = H.classify_cip(fam)
@@ -95,6 +120,9 @@ def _build_pooled(con) -> None:
 
     base = _base_relation(con)
     _family_lookup(con)
+    con.execute("CREATE OR REPLACE TEMP TABLE dt_lut (degree_type VARCHAR, dt_cip2 VARCHAR)")
+    con.executemany("INSERT INTO dt_lut VALUES (?, ?)",
+                    sorted(DEGREE_TYPE_CIP2.items()))
 
     # Two-stage so BOTH joins are pure equijoins (hash joins). Folding the
     # `cip_code IS NULL` gate into the join condition (as an earlier version did)
@@ -107,11 +135,13 @@ def _build_pooled(con) -> None:
         return f"""
           WITH p AS (
             SELECT {select_cols},
-                   coalesce(e.cip2, fj.jury_cip2)                     AS cip2_pooled,
+                   coalesce(e.cip2, fj.jury_cip2, dt.dt_cip2)         AS cip2_pooled,
                    CASE WHEN e.cip2 IS NOT NULL       THEN 'det'
-                        WHEN fj.jury_cip2 IS NOT NULL THEN 'jury' END AS cip_source
+                        WHEN fj.jury_cip2 IS NOT NULL THEN 'jury'
+                        WHEN dt.dt_cip2 IS NOT NULL   THEN 'degree_type' END AS cip_source
             FROM {base} e
             LEFT JOIN field_jury fj ON fj.field_norm = lower(trim(e.field_raw))
+            LEFT JOIN dt_lut dt ON dt.degree_type = e.degree_type
           )
           SELECT p.*,
                  CASE WHEN p.cip_code IS NOT NULL THEN p.nha_level
@@ -147,11 +177,13 @@ def _validate(con) -> dict:
         "WHERE cip2 IS NOT NULL AND cip2_pooled IS DISTINCT FROM cip2").fetchone()[0]
     assert bad == 0, f"{bad} rows where cip2_pooled overwrote a deterministic cip2"
 
-    # cip_source consistency
+    # cip_source consistency (det > jury > degree_type precedence; a source is
+    # present exactly when a pooled value is)
     bad = con.execute(
         "SELECT count(*) FROM edu_key WHERE "
         "(cip_source='det')  <> (cip2 IS NOT NULL) OR "
-        "(cip_source='jury') <> (cip2 IS NULL AND cip2_pooled IS NOT NULL)"
+        "(cip_source IS NULL) <> (cip2_pooled IS NULL) OR "
+        "(cip_source IN ('jury', 'degree_type') AND cip2 IS NOT NULL)"
     ).fetchone()[0]
     assert bad == 0, f"{bad} rows with inconsistent cip_source"
 
@@ -179,7 +211,9 @@ def _validate(con) -> dict:
 
     det_cov, pooled_cov = rate("cip_code IS NOT NULL"), rate("cip2_pooled IS NOT NULL")
     jury_rows = con.execute(
-        "SELECT count(*) FROM edu_pooled WHERE cip_source='jury'").fetchone()[0]
+        "SELECT count(*) FROM edu_key WHERE cip_source='jury'").fetchone()[0]
+    dt_rows = con.execute(
+        "SELECT count(*) FROM edu_key WHERE cip_source='degree_type'").fetchone()[0]
     l1d, l1p = tier("nha_level", [1]), tier("nha_level_pooled", [1])
     l2d, l2p = tier("nha_level", [1, 2]), tier("nha_level_pooled", [1, 2])
     l3d, l3p = tier("nha_level", [1, 2, 3]), tier("nha_level_pooled", [1, 2, 3])
@@ -189,6 +223,7 @@ def _validate(con) -> dict:
         "rows": n_new,
         "cip_coverage_pct": {"deterministic": det_cov, "pooled": pooled_cov},
         "jury_filled_rows": jury_rows,
+        "degree_type_filled_rows": dt_rows,
         "tiers_records": {
             "l1": {"det": l1d[0], "pooled": l1p[0]},
             "l2": {"det": l2d[0], "pooled": l2p[0]},
@@ -233,7 +268,8 @@ def main() -> None:
     print(f"rows: {r['rows']:,}   executed: {r['executed']}")
     print(f"CIP coverage: {r['cip_coverage_pct']['deterministic']}% (det) "
           f"-> {r['cip_coverage_pct']['pooled']}% (pooled), "
-          f"+{r['jury_filled_rows']:,} jury rows")
+          f"+{r['jury_filled_rows']:,} jury rows, "
+          f"+{r['degree_type_filled_rows']:,} degree-type rows")
     for t in ("l1", "l2", "l3"):
         rec, per = r["tiers_records"][t], r["tiers_persons"][t]
         print(f"  {t}: records {rec['det']:,} -> {rec['pooled']:,}   "

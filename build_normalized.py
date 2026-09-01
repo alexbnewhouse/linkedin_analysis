@@ -208,7 +208,10 @@ def _connect(threads: int) -> duckdb.DuckDBPyConnection:
     return con
 
 
-def build_mappings(out: Path, timings: list[StepTiming], sections: str = "all") -> dict[str, Path]:
+def build_mappings(
+    out: Path, timings: list[StepTiming], sections: str = "all",
+    skip: bool = False,
+) -> dict[str, Path]:
     mappings = out / "mappings"
     mappings.mkdir(parents=True, exist_ok=True)
     paths = {
@@ -222,7 +225,22 @@ def build_mappings(out: Path, timings: list[StepTiming], sections: str = "all") 
         "career_occupation": mappings / "career_occupation.parquet",
         "career_functional_cluster": mappings / "career_functional_cluster.parquet",
         "career_location": mappings / "career_location.parquet",
+        # Built by career_clean.run_soc_jury merge, not by this script; joined
+        # into career_steps for the pooled SOC-major axis (audit R1).
+        "role_soc_jury": mappings / "role_soc_jury.parquet",
     }
+
+    if skip:
+        # Reuse the existing calibrated mappings verbatim (they are expensive to
+        # rebuild and value-keyed, so they stay valid until the parsed vocab
+        # changes). Only the row-level tables are rebuilt.
+        missing = [str(p) for p in paths.values() if not p.exists()]
+        if missing:
+            raise SystemExit(
+                "--skip-mappings requires every mapping parquet to exist; missing:\n  "
+                + "\n  ".join(missing)
+            )
+        return paths
 
     if sections in ("all", "education"):
         with StepTimer("education degree mapping", timings):
@@ -766,6 +784,23 @@ _EMPLOYMENT_TYPE_SQL = """
 """
 
 
+# Month-name -> ordinal CASE fragment for the raw 'Mon YYYY' date strings
+# (audit R7). 86% of populated dates are 'Mon YYYY'; the rest are bare years
+# (month stays NULL) or 'Present' (year and month stay NULL, is_current=TRUE).
+_MONTH_NAMES = ("Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
+
+def _month_sql(col: str) -> str:
+    alts = "|".join(_MONTH_NAMES)
+    whens = " ".join(
+        f"WHEN '{m}' THEN {i}" for i, m in enumerate(_MONTH_NAMES, start=1)
+    )
+    return (
+        f"CAST(CASE regexp_extract({col}, '({alts})') {whens} END AS TINYINT)"
+    )
+
+
 def write_career_steps(out: Path, mappings: dict[str, Path], threads: int, timings: list[StepTiming]) -> None:
     dest = out / "career_steps.parquet"
     tmp = dest.with_name(dest.name + ".tmp")
@@ -854,6 +889,19 @@ def write_career_steps(out: Path, mappings: dict[str, Path], threads: int, timin
                 CASE WHEN starts_with(occupation.canonical_id, 'soc:') THEN substr(occupation.canonical_id, 5) ELSE NULL END AS occupation_code,
                 occupation.method AS occupation_method,
                 occupation.confidence AS occupation_confidence,
+                -- audit R1: pooled SOC-major axis. The deterministic detailed
+                -- code's major group wins; else the unanimous role->SOC-major
+                -- jury vote (career_clean.run_soc_jury, 299,787 roles).
+                -- Propose-only: no deterministic column above is altered.
+                CASE
+                  WHEN starts_with(occupation.canonical_id, 'soc:')
+                    THEN substr(occupation.canonical_id, 5, 2)
+                  ELSE rsj.soc_major
+                END AS occupation_major_pooled,
+                CASE
+                  WHEN starts_with(occupation.canonical_id, 'soc:') THEN 'det'
+                  WHEN rsj.soc_major IS NOT NULL THEN 'jury'
+                END AS occupation_source,
                 -- finding 3: SE functional cluster (SOC major group or honest
                 -- *_unspecified residue), resolved row-level for the
                 -- self-employment population only; NULL elsewhere.
@@ -869,6 +917,13 @@ def write_career_steps(out: Path, mappings: dict[str, Path], threads: int, timin
                 loc.method AS location_method,
                 s.start_date,
                 s.end_date,
+                -- audit R7: dates parsed ONCE here (the year-slip bug class
+                -- came from every consumer re-parsing the raw strings).
+                TRY_CAST(regexp_extract(s.start_date, '(19|20)[0-9][0-9]') AS SMALLINT) AS start_year,
+                {_month_sql('s.start_date')} AS start_month,
+                TRY_CAST(regexp_extract(s.end_date, '(19|20)[0-9][0-9]') AS SMALLINT) AS end_year,
+                {_month_sql('s.end_date')} AS end_month,
+                coalesce(trim(s.end_date) = 'Present', FALSE) AS is_current,
                 s.duration,
                 s.duration_short,
                 normalize_description(s.description) AS description,
@@ -890,6 +945,11 @@ def write_career_steps(out: Path, mappings: dict[str, Path], threads: int, timin
                 ON s.title IS NOT DISTINCT FROM title.value
               LEFT JOIN read_parquet('{_quote(mappings["career_occupation"])}') occupation
                 ON s.title IS NOT DISTINCT FROM occupation.value
+              LEFT JOIN read_parquet('{_quote(mappings["role_soc_jury"])}') rsj
+                ON rsj.role_canonical = CASE
+                     WHEN starts_with(title.canonical_id, 'title:')
+                     THEN regexp_extract(title.canonical_id, '^title:[^|]*\\|(.*)$', 1)
+                   END
               LEFT JOIN read_parquet('{_quote(mappings["career_functional_cluster"])}') fc
                 ON s.source_table = fc.source_table
                AND s.linkedin_id = fc.linkedin_id
@@ -953,6 +1013,12 @@ def parse_args() -> argparse.Namespace:
         "--sections", choices=("all", "career", "education"), default="all",
         help="rebuild only one side of the output (mappings + table)",
     )
+    parser.add_argument(
+        "--skip-mappings", action="store_true",
+        help="reuse the existing normalized/mappings/*.parquet verbatim and "
+             "rebuild only the row-level tables (mappings are value-keyed and "
+             "expensive; they stay valid until the parsed vocabulary changes)",
+    )
     return parser.parse_args()
 
 
@@ -963,12 +1029,32 @@ def main() -> None:
 
     started = time.monotonic()
     timings: list[StepTiming] = []
-    mappings = build_mappings(out, timings, args.sections)
+    mappings = build_mappings(out, timings, args.sections, skip=args.skip_mappings)
     if args.sections in ("all", "education"):
         write_education(out, mappings, args.threads, timings)
+        # Audit F2: the pooled passes are first-class build steps, so a fresh
+        # rebuild is complete end-to-end (write_education_person reads pooled
+        # columns; previously they only existed after four manual follow-up
+        # commands in undocumented order).
+        from edu_clean import apply_cip_pooled, apply_degree_level_pooled
+
+        with StepTimer("pooled CIP apply (det + jury + degree_type)", timings):
+            apply_cip_pooled.run(execute=True)
+        with StepTimer("pooled degree-level apply", timings):
+            apply_degree_level_pooled.run(execute=True)
         write_education_person(out, args.threads, timings)
+        try:
+            from edu_clean import apply_institution_meta
+
+            with StepTimer("institution meta apply (IPEDS)", timings):
+                apply_institution_meta.run(execute=True)
+        except SystemExit as exc:
+            # IPEDS crosswalk not built on this machine: education_person is
+            # complete without inst_* columns; keep the rebuild usable.
+            print(f"[build] institution meta skipped: {exc}", flush=True)
     if args.sections in ("all", "career"):
-        build_functional_cluster_mapping(mappings, args.threads, timings)
+        if not args.skip_mappings:
+            build_functional_cluster_mapping(mappings, args.threads, timings)
         write_career_steps(out, mappings, args.threads, timings)
     write_manifest(out, timings, started, args.threads, args.sections)
     print(f"[build] wrote {out}", flush=True)

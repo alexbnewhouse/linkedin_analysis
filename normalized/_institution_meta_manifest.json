@@ -1,22 +1,22 @@
 {
-  "generated": "2026-07-24",
+  "generated": "2026-09-01",
   "rows": 1999974,
   "institution_coverage_pct_all": 67.3,
-  "institution_coverage_pct_hum_l1": 70.9,
+  "institution_coverage_pct_hum_l1": 71.1,
   "hum_l1_control_mix": {
-    "public": 106434,
-    "private_nonprofit": 62948,
-    "private_forprofit": 5406
+    "public": 108659,
+    "private_nonprofit": 65311,
+    "private_forprofit": 5632
   },
   "hum_l1_top_carnegie": {
-    "R1_doctoral_very_high": 57683,
-    "masters_larger": 29791,
-    "R2_doctoral_high": 24857,
-    "doctoral_professional": 13149,
-    "bacc_arts_sciences": 7891,
-    "masters_medium": 5948,
-    "special_focus_4yr_arts": 4384,
-    "assoc_high_transfer_mixed": 3518
+    "R1_doctoral_very_high": 59468,
+    "masters_larger": 30668,
+    "R2_doctoral_high": 25617,
+    "doctoral_professional": 13457,
+    "bacc_arts_sciences": 7955,
+    "masters_medium": 6149,
+    "special_focus_4yr_arts": 4977,
+    "assoc_high_transfer_mixed": 3520
   },
   "executed": true
 }
