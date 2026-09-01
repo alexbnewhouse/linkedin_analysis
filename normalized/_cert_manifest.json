@@ -1,0 +1,15 @@
+{
+  "generated": "2026-09-01",
+  "runtime_s": 8.9,
+  "mapping": {
+    "distinct_titles": 530237,
+    "row_coverage_pct": 58.93,
+    "rows_total": 1673720,
+    "rows_covered": 986271
+  },
+  "persons": 545409,
+  "outputs": {
+    "mapping": "/home/alex/linkedin-analysis/normalized/mappings/cert_domain.parquet",
+    "person": "/home/alex/linkedin-analysis/normalized/certifications_person.parquet"
+  }
+}
