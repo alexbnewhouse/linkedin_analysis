@@ -1,8 +1,8 @@
 {
-  "created_at_epoch_s": 1788271964.2570236,
-  "runtime_s": 207.4,
+  "created_at_epoch_s": 1788296508.550282,
+  "runtime_s": 125.3,
   "threads": 32,
-  "sections": "all",
+  "sections": "education",
   "source": {
     "parsed_manifest": "/home/alex/linkedin-analysis/parsed/_manifest.json",
     "education": "read_parquet('/home/alex/linkedin-analysis/parsed/education/*.parquet')",
@@ -18,39 +18,33 @@
   "steps": [
     {
       "name": "normalized education table",
-      "runtime_s": 7.0,
+      "runtime_s": 6.0,
       "rows": 3577659,
       "path": "/home/alex/linkedin-analysis/normalized/education.parquet"
     },
     {
       "name": "pooled CIP apply (det + jury + degree_type)",
-      "runtime_s": 3.5,
+      "runtime_s": 2.8,
       "rows": null,
       "path": null
     },
     {
       "name": "pooled degree-level apply",
-      "runtime_s": 118.0,
+      "runtime_s": 113.6,
       "rows": null,
       "path": null
     },
     {
       "name": "normalized education_person rollup",
-      "runtime_s": 2.6,
+      "runtime_s": 2.3,
       "rows": 1999974,
       "path": "/home/alex/linkedin-analysis/normalized/education_person.parquet"
     },
     {
       "name": "institution meta apply (IPEDS)",
-      "runtime_s": 0.5,
+      "runtime_s": 0.4,
       "rows": null,
       "path": null
-    },
-    {
-      "name": "normalized career_steps table",
-      "runtime_s": 75.0,
-      "rows": 10800787,
-      "path": "/home/alex/linkedin-analysis/normalized/career_steps.parquet"
     }
   ]
 }

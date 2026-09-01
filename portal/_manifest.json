@@ -1,6 +1,6 @@
 {
-  "generated": "2026-07-21",
-  "runtime_s": 98.6,
+  "generated": "2026-09-01",
+  "runtime_s": 110.0,
   "inputs": {
     "education": "/home/alex/linkedin-analysis/normalized/education.parquet",
     "steps": "/home/alex/linkedin-analysis/paths/steps.parquet",
@@ -73,8 +73,8 @@
         "A2": 0.1155
       },
       "cip_source_mix": {
-        "det": 0.8478,
-        "jury": 0.1522
+        "jury": 0.1522,
+        "det": 0.8478
       }
     },
     "arts": {
@@ -107,8 +107,8 @@
         "A2": 0.0967
       },
       "cip_source_mix": {
-        "det": 0.817,
-        "jury": 0.183
+        "jury": 0.183,
+        "det": 0.817
       }
     },
     "baseline": {
@@ -124,8 +124,8 @@
         "A2": 0.1093
       },
       "cip_source_mix": {
-        "jury": 0.1298,
-        "det": 0.8702
+        "det": 0.8702,
+        "jury": 0.1298
       }
     }
   },

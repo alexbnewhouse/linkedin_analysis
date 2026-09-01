@@ -1,12 +1,12 @@
 {
-  "voted_strings": 24549,
-  "excluded_mixed_strings": 340,
-  "excluded_non_field": 109,
-  "accepted": 18708,
-  "disagree": 2745,
-  "abstained": 3096,
+  "voted_strings": 49318,
+  "excluded_mixed_strings": 427,
+  "excluded_non_field": 245,
+  "accepted": 37359,
+  "disagree": 5511,
+  "abstained": 6448,
   "incomplete": 0,
-  "accepted_row_coverage": 362263,
-  "voted_row_coverage": 465686,
-  "generated": "2026-07-09"
+  "accepted_row_coverage": 407376,
+  "voted_row_coverage": 524833,
+  "generated": "2026-09-01"
 }

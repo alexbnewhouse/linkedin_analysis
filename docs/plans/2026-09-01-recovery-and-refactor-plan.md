@@ -94,6 +94,12 @@ already covers **4,328,321** (join on `role_canonical`).
 > `results/cip_tiebreak_stats.json`; a retry needs a materially stronger juror
 > (mistral-medium-3.5:128b or gpt-oss:120b overnight) re-calibrated on the same
 > gold sample, or these rows stay honestly uncoded.
+> Retry attempt (later 2026-09-01): mistral-medium-3.5:128b via Ollama failed
+> OPERATIONALLY -- 469/600 requests timed out (llm_pool's timeout is too short
+> for a ~5-8 tok/s 128B model) and all 131 completed generations failed JSON
+> validation (schema/format handling differs on this model). Zero votes
+> recorded; gate untouched. A retry needs a llama-server lane for the big
+> juror, or per-model timeout + format handling in llm_pool.
 The 2026-07-09 jury discarded 2,745 disagree + 3,096 abstain strings ≈ 103k education
 rows — including plainly codeable heads: 'Information Systems' (2,996 rows, an 11-vs-52
 juror split), 'Science', 'Psychology and Sociology', 'Health Policy and Management'.
