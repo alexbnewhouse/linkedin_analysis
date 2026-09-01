@@ -1,0 +1,38 @@
+{
+  "common_window_years": 8,
+  "generation_is_proxied": true,
+  "by_generation": {
+    "Gen X": {
+      "n_profiles_full_window": 550065,
+      "moves_per_profile_first_window": 1.056,
+      "mean_dwell_months": 41.0,
+      "employer_move_share": 0.765,
+      "upward_share": 0.365
+    },
+    "Millennial": {
+      "n_profiles_full_window": 910691,
+      "moves_per_profile_first_window": 1.953,
+      "mean_dwell_months": 26.3,
+      "employer_move_share": 0.745,
+      "upward_share": 0.378
+    }
+  },
+  "humanities_vs_non_job_hopping": {
+    "non_humanities": {
+      "n_profiles_full_window": 1274188,
+      "moves_per_profile_first_window": 1.618,
+      "mean_dwell_months": 30.1,
+      "upward_share": 0.377
+    },
+    "humanities": {
+      "n_profiles_full_window": 186568,
+      "moves_per_profile_first_window": 1.594,
+      "mean_dwell_months": 28.7,
+      "upward_share": 0.357
+    }
+  },
+  "moves_per_profile_spread_across_generations": 0.897,
+  "verdict": "Only Gen X and Millennials have enough fully-observed (>=8yr) profiles. Millennials show ~2x moves/profile and shorter tenure at matched career age \u2014 but this is almost certainly a DOCUMENTATION artifact, not behaviour: matched career AGE does not fix differential documentation, because a Gen X-er's 1990s early moves are backfilled lossily from a 2025 profile while a Millennial's 2015 moves are recent and fully recorded. So our data CANNOT cleanly confirm or refute the 'job-hopping generation' claim; the apparent gap is consistent with the literature's view that raw generational differences are largely measurement/career-stage, not cohort attitudes.",
+  "caveats": "Generation is a PROXY (no birth date). Boomer cells are dropped (entry < 1990 / not fully observed); Gen Z not yet observable for 8 years. The dominant confound is RECENCY/BACKFILL (recent cohorts' early moves are better documented), which matched-career-age does not remove \u2014 only equal *calendar* observation would. Read as suggestive, leaning toward 'artifact'.",
+  "runtime_s": 0.4
+}

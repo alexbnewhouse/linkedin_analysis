@@ -1,0 +1,52 @@
+{
+  "has_revealed_scores": true,
+  "steps": 10798352,
+  "profiles": 1999961,
+  "frac_datable": 0.9925,
+  "frac_ongoing": 0.2145,
+  "bad_negative_duration": 0,
+  "bad_future_start": 0,
+  "concurrent_secondary_steps": 2538405,
+  "transitions": 6179130,
+  "transitions_with_gap": 1804630,
+  "transitions_with_overlap": 922202,
+  "transitions_typed_conf_ge_min": 4647558,
+  "frac_steps_with_seniority_score": 0.9525,
+  "transition_kinds": {
+    "move": 4600092,
+    "lateral": 980429,
+    "promotion": 205032,
+    "into_self_employment": 199005,
+    "out_of_self_employment": 104644,
+    "demotion": 55577,
+    "exit": 19883,
+    "education_entry": 14468
+  },
+  "transition_types": {
+    "employer_move_lateral": 1872963,
+    "employer_move_up": 1650606,
+    "employer_move_down": 664710,
+    "lateral": 601862,
+    "promotion": 516017,
+    "employer_move": 302490,
+    "into_self_employment": 199005,
+    "demotion": 105468,
+    "out_of_self_employment": 104644,
+    "occupation_change_up": 58393,
+    "occupation_change": 43763,
+    "occupation_change_down": 24858,
+    "exit": 19883,
+    "education_entry": 14468
+  },
+  "timings_s": {
+    "steps": 12.9,
+    "concurrency": 0.9,
+    "transitions": 6.0
+  },
+  "runtime_s": 20.1,
+  "snapshot_date": "2026-02-19",
+  "outputs": {
+    "steps": "/home/alex/linkedin-analysis/paths/steps.parquet",
+    "transitions": "/home/alex/linkedin-analysis/paths/transitions.parquet"
+  }
+}

@@ -1,0 +1,351 @@
+{
+  "model": "bge-base",
+  "global_threshold": 0.75,
+  "strict_threshold": 0.55,
+  "global_high_threshold": 0.85,
+  "strict_high_threshold": 0.8,
+  "summaries": [
+    {
+      "approach": "final_hybrid",
+      "field": "degree",
+      "n_in": 335184,
+      "n_out": 160057,
+      "reduction": 0.522,
+      "runtime_s": 4.5,
+      "reference_match_row_pct": 84.2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "tp": 20,
+      "fp": 0,
+      "tn": 10,
+      "fn": 0,
+      "missing": 0,
+      "false_merges": [],
+      "missed_merges": [],
+      "extra": {
+        "row_pct_by_method": {
+          "raw": 15.8,
+          "taxonomy": 82.0,
+          "taxonomy_abbrev": 2.2
+        }
+      }
+    },
+    {
+      "approach": "final_hybrid",
+      "field": "title",
+      "n_in": 349729,
+      "n_out": 279774,
+      "reduction": 0.2,
+      "runtime_s": 7.5,
+      "reference_match_row_pct": 88.2,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "tp": 4,
+      "fp": 0,
+      "tn": 8,
+      "fn": 0,
+      "missing": 0,
+      "false_merges": [],
+      "missed_merges": [],
+      "extra": {
+        "row_pct_by_method": {
+          "raw": 10.7,
+          "slug": 87.0,
+          "slug_crosswalk": 0.7,
+          "typo": 1.2,
+          "typo_to_slug": 0.4
+        }
+      }
+    },
+    {
+      "approach": "final_hybrid",
+      "field": "field",
+      "n_in": 445336,
+      "n_out": 305593,
+      "reduction": 0.314,
+      "runtime_s": 13.8,
+      "reference_match_row_pct": 60.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "tp": 13,
+      "fp": 0,
+      "tn": 17,
+      "fn": 0,
+      "missing": 0,
+      "false_merges": [],
+      "missed_merges": [],
+      "extra": {
+        "row_pct_by_method": {
+          "cip_alias": 4.2,
+          "cip_exact": 55.3,
+          "cip_override": 0.3,
+          "raw": 29.8,
+          "typo": 10.2,
+          "typo_to_cip": 0.2
+        }
+      }
+    },
+    {
+      "approach": "nn_global_bge-base@0.75",
+      "field": "field",
+      "n_in": 445336,
+      "n_out": 128217,
+      "reduction": 0.712,
+      "runtime_s": 113.4,
+      "reference_match_row_pct": 90.1,
+      "precision": 1.0,
+      "recall": 0.769,
+      "f1": 0.87,
+      "accuracy": 0.9,
+      "tp": 10,
+      "fp": 0,
+      "tn": 17,
+      "fn": 3,
+      "missing": 0,
+      "false_merges": [],
+      "missed_merges": [
+        [
+          "Biology, General",
+          "Biology"
+        ],
+        [
+          "English Language and Literature, General",
+          "English Language and Literature/Letters"
+        ],
+        [
+          "Biology/Biological Sciences, General",
+          "Biology, General"
+        ]
+      ],
+      "extra": {
+        "model": "bge-base",
+        "mode": "global",
+        "threshold": 0.75,
+        "reference_match_row_pct": 90.1,
+        "embed_s": 111.3,
+        "rank_s": 0.4
+      }
+    },
+    {
+      "approach": "nn_strict_bge-base@0.55",
+      "field": "field",
+      "n_in": 445336,
+      "n_out": 366133,
+      "reduction": 0.178,
+      "runtime_s": 110.2,
+      "reference_match_row_pct": 70.2,
+      "precision": 1.0,
+      "recall": 0.692,
+      "f1": 0.818,
+      "accuracy": 0.867,
+      "tp": 9,
+      "fp": 0,
+      "tn": 17,
+      "fn": 4,
+      "missing": 0,
+      "false_merges": [],
+      "missed_merges": [
+        [
+          "Biology, General",
+          "Biology"
+        ],
+        [
+          "Communication, General",
+          "Communications"
+        ],
+        [
+          "English Language and Literature, General",
+          "English Language and Literature/Letters"
+        ],
+        [
+          "Biology/Biological Sciences, General",
+          "Biology, General"
+        ]
+      ],
+      "extra": {
+        "model": "bge-base",
+        "mode": "strict",
+        "threshold": 0.55,
+        "reference_match_row_pct": 70.2,
+        "embed_s": 101.7,
+        "rank_s": 1.6
+      }
+    },
+    {
+      "approach": "nn_global_bge-base@0.85",
+      "field": "field",
+      "n_in": 445336,
+      "n_out": 317468,
+      "reduction": 0.287,
+      "runtime_s": 100.9,
+      "reference_match_row_pct": 65.0,
+      "precision": 1.0,
+      "recall": 0.615,
+      "f1": 0.762,
+      "accuracy": 0.833,
+      "tp": 8,
+      "fp": 0,
+      "tn": 17,
+      "fn": 5,
+      "missing": 0,
+      "false_merges": [],
+      "missed_merges": [
+        [
+          "Finance, General",
+          "Finance"
+        ],
+        [
+          "Biology, General",
+          "Biology"
+        ],
+        [
+          "Communication, General",
+          "Communications"
+        ],
+        [
+          "English Language and Literature, General",
+          "English Language and Literature/Letters"
+        ],
+        [
+          "Biology/Biological Sciences, General",
+          "Biology, General"
+        ]
+      ],
+      "extra": {
+        "model": "bge-base",
+        "mode": "global",
+        "threshold": 0.85,
+        "reference_match_row_pct": 65.0,
+        "embed_s": 98.1,
+        "rank_s": 0.3
+      }
+    },
+    {
+      "approach": "nn_strict_bge-base@0.8",
+      "field": "field",
+      "n_in": 445336,
+      "n_out": 368018,
+      "reduction": 0.174,
+      "runtime_s": 107.4,
+      "reference_match_row_pct": 63.7,
+      "precision": 1.0,
+      "recall": 0.615,
+      "f1": 0.762,
+      "accuracy": 0.833,
+      "tp": 8,
+      "fp": 0,
+      "tn": 17,
+      "fn": 5,
+      "missing": 0,
+      "false_merges": [],
+      "missed_merges": [
+        [
+          "Finance, General",
+          "Finance"
+        ],
+        [
+          "Biology, General",
+          "Biology"
+        ],
+        [
+          "Communication, General",
+          "Communications"
+        ],
+        [
+          "English Language and Literature, General",
+          "English Language and Literature/Letters"
+        ],
+        [
+          "Biology/Biological Sciences, General",
+          "Biology, General"
+        ]
+      ],
+      "extra": {
+        "model": "bge-base",
+        "mode": "strict",
+        "threshold": 0.8,
+        "reference_match_row_pct": 63.7,
+        "embed_s": 97.9,
+        "rank_s": 1.8
+      }
+    }
+  ],
+  "sample_assignments": {
+    "Business": {
+      "final_hybrid": "field_raw:business",
+      "nn_global_bge-base@0.75": "field_raw:business",
+      "nn_strict_bge-base@0.55": "cip:52.1302 | Business Statistics",
+      "nn_global_bge-base@0.85": "field_raw:business",
+      "nn_strict_bge-base@0.8": "field_raw:business"
+    },
+    "Business Administration": {
+      "final_hybrid": "cip:52.02 | Business Administration, Management and Operations",
+      "nn_global_bge-base@0.75": "cip:52.02 | Business Administration, Management and Operations",
+      "nn_strict_bge-base@0.55": "cip:52.02 | Business Administration, Management and Operations",
+      "nn_global_bge-base@0.85": "field_raw:business administration",
+      "nn_strict_bge-base@0.8": "cip:52.02 | Business Administration, Management and Operations"
+    },
+    "Communications": {
+      "final_hybrid": "cip:09.0100 | Communication, General",
+      "nn_global_bge-base@0.75": "cip:09.0100 | Communication, General",
+      "nn_strict_bge-base@0.55": "cip:10.03 | Graphic Communications",
+      "nn_global_bge-base@0.85": "field_raw:communications",
+      "nn_strict_bge-base@0.8": "field_raw:communications"
+    },
+    "Management": {
+      "final_hybrid": "field_raw:management",
+      "nn_global_bge-base@0.75": "cip:52.20 | Construction Management",
+      "nn_strict_bge-base@0.55": "cip:52.20 | Construction Management",
+      "nn_global_bge-base@0.85": "field_raw:management",
+      "nn_strict_bge-base@0.8": "field_raw:management"
+    },
+    "Science": {
+      "final_hybrid": "field_raw:science",
+      "nn_global_bge-base@0.75": "cip:40.08 | Physics",
+      "nn_strict_bge-base@0.55": "cip:03.0104 | Environmental Science",
+      "nn_global_bge-base@0.85": "field_raw:science",
+      "nn_strict_bge-base@0.8": "field_raw:science"
+    },
+    "4.0": {
+      "final_hybrid": "field_raw:4 0",
+      "nn_global_bge-base@0.75": "field_raw:4 0",
+      "nn_strict_bge-base@0.55": "field_raw:4 0",
+      "nn_global_bge-base@0.85": "field_raw:4 0",
+      "nn_strict_bge-base@0.8": "field_raw:4 0"
+    },
+    "General": {
+      "final_hybrid": "field_raw:general",
+      "nn_global_bge-base@0.75": "cip:23.1401 | General Literature",
+      "nn_strict_bge-base@0.55": "field_raw:general",
+      "nn_global_bge-base@0.85": "field_raw:general",
+      "nn_strict_bge-base@0.8": "field_raw:general"
+    },
+    "Computer Information Systems": {
+      "final_hybrid": "field_raw:computer information systems",
+      "nn_global_bge-base@0.75": "cip:11.01 | Computer and Information Sciences, General",
+      "nn_strict_bge-base@0.55": "cip:11.1003 | Computer and Information Systems Security/Information Assurance",
+      "nn_global_bge-base@0.85": "field_raw:computer information systems",
+      "nn_strict_bge-base@0.8": "field_raw:computer information systems"
+    },
+    "Data Science": {
+      "final_hybrid": "field_raw:data science",
+      "nn_global_bge-base@0.75": "cip:30.30 | Computational Science",
+      "nn_strict_bge-base@0.55": "field_raw:data science",
+      "nn_global_bge-base@0.85": "field_raw:data science",
+      "nn_strict_bge-base@0.8": "field_raw:data science"
+    },
+    "Cybersecurity": {
+      "final_hybrid": "field_raw:cybersecurity",
+      "nn_global_bge-base@0.75": "field_raw:cybersecurity",
+      "nn_strict_bge-base@0.55": "field_raw:cybersecurity",
+      "nn_global_bge-base@0.85": "field_raw:cybersecurity",
+      "nn_strict_bge-base@0.8": "field_raw:cybersecurity"
+    }
+  }
+}

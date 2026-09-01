@@ -610,3 +610,66 @@ lone bright dot is never a mystery.
 Tests: `portal_tests` gains a drill-down block (coverage identities, named roles
 clear `DETAIL_MIN_SUPPORT`, `group_total` matches the fan cell). Methods carry a
 new `fan_detail_note`. Share page + artifact regenerated (same URL).
+
+---
+
+## 2026-07-14 — Redesign: possibility-space comprehension + choices + myths (PORTAL_REDESIGN_PLAN.md)
+
+User direction 2026-07-13: less comparative, more *comprehension of the career
+possibility space*; serve career-anxious undergrads with snapshots and arcs; show how
+choices (double major, grad school, internships, service, military, self-employment)
+relate to the space; disrupt myths. Same honesty rails throughout.
+
+**Suppression bar loosened 40 → 10 (user directive).** `common.MIN_SUPPORT = 10` is the
+single knob; every consumer (fan cells, paths, distinctive, curve points, employer
+labels, launchboard, choices) and every test reads it; the JSON carries top-level
+`min_support` so the page renders its suppression promises dynamically. Facet floor 5
+(grad degree types / Medicine) unchanged. Effects: distinctive destinations 2/1/1/5/1 →
+12/5/2/19/15; paths 3/0/0/6/8 → 8/8/6/8/8 routes; far more named employers.
+
+**New `analyses.diversity`** (per major + baseline): effective_destinations
+(inverse-Simpson over classified fan shares), groups_reached (of 23), top_bucket_share,
+top3_classified_share. Headline: every major's top year-10 bucket is 12–24% of the
+cohort ("the plurality is a minority" holds everywhere); effective destinations 4.2
+(arts) – 8.0 (history) vs baseline 8.25.
+
+**New `portal/choices.py`** — person-level choice flags on the membership spine (no
+fan-out, tested), outcomes on the windowed y10 cohort, per-major `choices` +
+`choices_pooled` (five-major union) + `choices_not_measured` (minors, study abroad:
+free-text only) + `choices_notes` (probe-backed definitions + the causal/selection
+caveat). Definitions: double major = 2+ distinct CIP2 among non-duplicate bachelor rows;
+grad school = grad degree *started* ≤5y post-anchor (launchboard grad-track rule),
+split fans fan_grad/fan_nograd; internship = word-boundary intern title (excl.
+international/internal/internist) starting in [anchor−4, +1] — a floor, not a rate
+(LinkedIn under-reports old internships); military = service-branch employer with
+false-positive exclusions (Salvation Army, Old Navy, Navy Federal), [anchor−4, +5];
+service year = Peace Corps/AmeriCorps/TFA/Fulbright/City Year, pooled (n_any=130);
+self-employment = any post-anchor business_owner/self_employed step. Participation:
+grad school 16–38%, SE-ever 15–31%, internships 4–13%, double major 5–11%, military
+0.9–5.3% (history highest). Legible shifts: English grad fan leads Education+Legal;
+no-grad fan leads Management+Arts/Media. Baseline gets participation only.
+
+**Snapshot drill-downs** — `destination_fan_detail` extended to launchboard
+first_destinations (y1) and outlook y3/y5 fan cells (284 cells carry detail, 389 named
+roles; y1 cohorts are 6–12k so drill-downs are richer than y10). Same det-coded-subset
+semantics and DETAIL_MIN_SUPPORT=10 badge contract.
+
+**Reproducibility bug found & fixed**: employer_field labeled[].name display-name pick
+and equal-n ordering had unstable DuckDB tie-breaks (exposed by bar 10). Deterministic
+ORDER BY added; double run now byte-identical. Suite: 43 checks green.
+
+**Front end restructured twice** (per user): first to six views, then back to the
+tripartite IA — Overview | Stories & narratives | Portal | Data & methods — keeping all
+new content. Stories = six myth cards (M1–M6, every rebuttal computed at render time
+from PORTAL fields) + guided per-major walkthrough (y1 fan with drill-downs → decade
+arc → choices), amber glue carries no figures; the old invented editorial routes are
+gone. Portal = sub-tabs Possibility space (diversity band leads) / First decade
+(Y1/Y3/Y5/Y10 scrubber) / Choices. RR/baseline comparison demoted to an opt-in "Context
+vs all graduates" toggle; pillar meters retired (parity message survives as an aside in
+myth M2). Hash routing (#stories/english/2, #portal/space/english). A mid-build session
+kill left renderStories undefined + stale deep-links; the finishing agent caught these
+plus an editorial gloss contradicting the data (English "arts leads the fan" — it's
+Education at 13.2%) — fixed; 84/84 Playwright checks, both themes, zero console errors.
+
+Inspiration research for future iterations in PORTAL_INSPIRATION.md (15 exemplars:
+pause-and-explore, commit-before-reveal, pruning-not-repainting, unit-dot cohorts).

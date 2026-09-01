@@ -1,0 +1,107 @@
+{
+  "field": "field",
+  "n_distinct": 445336,
+  "n_rows": 2927592,
+  "n_gold_pairs": 30,
+  "results": [
+    {
+      "approach": "A_rules",
+      "n_in": 445336,
+      "n_out": 372197,
+      "reduction": 0.164,
+      "precision": 1.0,
+      "recall": 0.769,
+      "f1": 0.87,
+      "accuracy": 0.9,
+      "tp": 10,
+      "fp": 0,
+      "tn": 17,
+      "fn": 3,
+      "missing": 0,
+      "runtime_s": 1.4,
+      "extra": {
+        "reference_match_row_pct": 56.0
+      }
+    },
+    {
+      "approach": "B_fuzzy",
+      "n_in": 445336,
+      "n_out": 306143,
+      "reduction": 0.313,
+      "precision": 1.0,
+      "recall": 0.769,
+      "f1": 0.87,
+      "accuracy": 0.9,
+      "tp": 10,
+      "fp": 0,
+      "tn": 17,
+      "fn": 3,
+      "missing": 0,
+      "runtime_s": 2.4,
+      "extra": {
+        "n_blocks": 303159,
+        "clusters": 306143
+      }
+    },
+    {
+      "approach": "C_embed@0.88",
+      "n_in": 445336,
+      "n_out": 153026,
+      "reduction": 0.656,
+      "precision": 0.448,
+      "recall": 1.0,
+      "f1": 0.619,
+      "accuracy": 0.467,
+      "tp": 13,
+      "fp": 16,
+      "tn": 1,
+      "fn": 0,
+      "missing": 0,
+      "runtime_s": 29.4,
+      "extra": {
+        "clusters": 153026,
+        "threshold": 0.88
+      }
+    },
+    {
+      "approach": "C_embed@0.92",
+      "n_in": 445336,
+      "n_out": 230064,
+      "reduction": 0.483,
+      "precision": 0.5,
+      "recall": 0.769,
+      "f1": 0.606,
+      "accuracy": 0.567,
+      "tp": 10,
+      "fp": 10,
+      "tn": 7,
+      "fn": 3,
+      "missing": 0,
+      "runtime_s": 24.5,
+      "extra": {
+        "clusters": 230064,
+        "threshold": 0.92
+      }
+    },
+    {
+      "approach": "C_anchored@0.62",
+      "n_in": 445336,
+      "n_out": 111496,
+      "reduction": 0.75,
+      "precision": 0.8,
+      "recall": 0.615,
+      "f1": 0.696,
+      "accuracy": 0.767,
+      "tp": 8,
+      "fp": 2,
+      "tn": 15,
+      "fn": 5,
+      "missing": 0,
+      "runtime_s": 44.9,
+      "extra": {
+        "reference_match_row_pct": 92.1,
+        "clusters": 111496
+      }
+    }
+  ]
+}

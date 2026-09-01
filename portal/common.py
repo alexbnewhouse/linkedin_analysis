@@ -42,9 +42,19 @@ DATA_OUT = OUT_DIR / "portal_data.json"
 MANIFEST_OUT = ROOT / "portal" / "_manifest.json"
 
 # --- Snapshot anchor --------------------------------------------------------
-# Matches paths/common.SNAPSHOT_DATE = 2025-02-19.
-SNAPSHOT_DATE = "2025-02-19"
+# Matches paths/common.SNAPSHOT_DATE = 2026-02-19 (corrected 2026-08-05 from a
+# year-slipped 2025-02-19; see paths/common.py for the evidence).
+SNAPSHOT_DATE = "2026-02-19"
+# SNAPSHOT_YEAR here means the last FULLY observed calendar year, which is what
+# every window cut (`SNAPSHOT_YEAR - N`, equal-window discipline) and every
+# graduation-anchor bound in this package needs. Its value is unchanged by the
+# date correction: 2026 is observed only through February, so a year-N statistic
+# still requires an anchor <= 2025 - N, and a 2026 end_year is still a
+# graduation that has not happened.
 SNAPSHOT_YEAR = 2025
+# The calendar ceiling on observed steps and panel years -- the other year-grain
+# fact. Use this, NOT SNAPSHOT_YEAR, when capping a date rather than a window.
+SNAPSHOT_CAL_YEAR = 2026
 
 # --- Population policy -------------------------------------------------------
 # Analysis unit is (person, qualifying degree). A person enters a major's
@@ -113,36 +123,39 @@ CURVE_YEARS = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 FAN_YEAR = 10
 
 # --- Suppression / support thresholds --------------------------------------
-MIN_SUPPORT = 40          # suppress any reported cell with person-support < 40
+# THE single global named-cell bar. Loosened 40 -> 10 by user directive
+# (2026-07-13, PORTAL_REDESIGN_PLAN.md): every consumer -- fan cells, curve
+# points, distinctive destinations, named pathway routes, launchboard fans,
+# grad-track headline, named employers, choice-subset fans -- reads this knob;
+# no module or test may carry its own literal bar.
+MIN_SUPPORT = 10          # suppress any reported cell with person-support < MIN_SUPPORT
 BREADTH_MIN_PERSONS = 5   # a node counts toward breadth only with >=5 distinct people
 # --- Within-group occupation drill-down bar (the "what does Management mean?"
-# composition). This is DELIBERATELY below MIN_SUPPORT: a fan cell (a headline
-# share) must clear 40, but the *composition* of the ~30% of that cell which
-# carries a deterministic 6-digit role is a descriptive breakdown of a coded
-# subset, not a population estimate -- the same footing as the breadth KPI,
-# which already reports occupation-node reach at >=5 distinct people. At the 40
-# bar this drill-down is empty for nearly every humanities cell (the coded
-# slice fragments across 20-30 roles); at 10 it becomes a real, honest picture.
-# Every role below this bar folds into `other_coded_n`, and the UI badges the
-# drill-down as a coded-subset composition sitting below the 40-person bar.
+# composition). Historically DELIBERATELY below the (then-40) headline bar: the
+# composition of the ~30% of a fan cell which carries a deterministic 6-digit
+# role is a descriptive breakdown of a coded subset, not a population estimate
+# -- the same footing as the breadth KPI, which reports occupation-node reach
+# at >=5 distinct people. Since the 2026-07-13 loosening the two bars COINCIDE
+# at 10; this stays a separate knob because its rationale (coded-subset
+# composition) is independent of the headline suppression policy. Every role
+# below this bar folds into `other_coded_n`, and the UI badges the drill-down
+# as a coded-subset composition.
 DETAIL_MIN_SUPPORT = 10
 DISTINCTIVE_RR = 1.5      # RR bar for a "distinctive" destination
-DISTINCTIVE_MIN = 40      # person-support bar for a distinctive destination
+DISTINCTIVE_MIN = MIN_SUPPORT  # person-support bar for a distinctive destination
 FAN_TOP = None            # report all soc-major fan cells clearing MIN_SUPPORT
 SECTOR_TOP = 8            # top-N industry L1 sectors, rest folded into "Other"
-PATH_MIN_PERSONS = 40     # emit a named route only with >=40 distinct persons
-PATH_SUPPRESS_FLOOR = 2   # routes with support in [2, 40) are counted as suppressed
-# NOTE: at these per-major windowed cohort sizes (1-5k persons) with role_canonical
-# cardinality in the tens of thousands, NO contiguous 3-4-step exact role chain
-# reaches the 40-person bar (measured max support = 8). Named routes are therefore
-# empty by data limitation, not by bug; the suppressed count carries the signal.
-# See FINDINGS.md "Named pathways".
-# 2026-07-09: minimum stages lowered 3 -> 2 after the SOC jury expansion.
-# Even at ~2.4x classified coverage, 3-4-stage chains of DISTINCT groups with
-# unbroken classification stay under the 40-person bar (max suppressed support
-# ~30s); 2-stage group transitions clear it with real support (arts 6 routes,
-# commmedia 8, english 3; history/philrel still none -- shown as the honest
-# empty state). Routes are labeled by their stage count in the portal.
+PATH_MIN_PERSONS = MIN_SUPPORT  # emit a named route only with >= this many distinct persons
+PATH_SUPPRESS_FLOOR = 2   # routes with support in [2, PATH_MIN_PERSONS) count as suppressed
+# NOTE (historical, measured at the old 40 bar): at these per-major windowed
+# cohort sizes (1-5k persons) with role_canonical cardinality in the tens of
+# thousands, NO contiguous 3-4-step exact role chain reached 40 persons
+# (measured max support = 8) -- see FINDINGS.md "Named pathways".
+# 2026-07-09: minimum stages lowered 3 -> 2 after the SOC jury expansion;
+# 3-4-stage chains of DISTINCT groups stayed under 40 (max suppressed support
+# ~30s) while 2-stage group transitions cleared it. With the bar now at
+# MIN_SUPPORT=10 (2026-07-13), longer chains can clear again; routes remain
+# labeled by their stage count in the portal.
 PATH_MIN_STAGES = 2
 PATH_MAX_STAGES = 4
 PATH_TOP = 8              # emit at most this many named routes per major

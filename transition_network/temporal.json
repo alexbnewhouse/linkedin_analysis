@@ -1,0 +1,177 @@
+{
+  "eras": {
+    "2005-2009": {
+      "nodes": 715,
+      "edges": 8332,
+      "total_moves": 21496,
+      "top_bridges": [
+        "Chief Executives",
+        "Sales Managers",
+        "General and Operations Managers",
+        "Financial Managers",
+        "Accountants and Auditors",
+        "Producers and Directors"
+      ]
+    },
+    "2010-2014": {
+      "nodes": 745,
+      "edges": 12149,
+      "total_moves": 32087,
+      "top_bridges": [
+        "Chief Executives",
+        "General and Operations Managers",
+        "Sales Managers",
+        "Financial Managers",
+        "Accountants and Auditors",
+        "Registered Nurses"
+      ]
+    },
+    "2015-2019": {
+      "nodes": 755,
+      "edges": 16955,
+      "total_moves": 48610,
+      "top_bridges": [
+        "Chief Executives",
+        "General and Operations Managers",
+        "Sales Managers",
+        "Software Developers",
+        "Waiters and Waitresses",
+        "Medical and Health Services Managers"
+      ]
+    },
+    "2020-2025": {
+      "nodes": 772,
+      "edges": 18611,
+      "total_moves": 54522,
+      "top_bridges": [
+        "Chief Executives",
+        "General and Operations Managers",
+        "Software Developers",
+        "Sales Managers",
+        "Waiters and Waitresses",
+        "Medical and Health Services Managers"
+      ]
+    }
+  },
+  "pagerank_risers": [
+    {
+      "label": "Order Clerks",
+      "delta_pct": 0.474
+    },
+    {
+      "label": "Driver/Sales Workers",
+      "delta_pct": 0.467
+    },
+    {
+      "label": "Physical Therapist Aides",
+      "delta_pct": 0.458
+    },
+    {
+      "label": "Landscaping and Groundskeeping Workers",
+      "delta_pct": 0.442
+    },
+    {
+      "label": "Occupational Therapy Assistants",
+      "delta_pct": 0.425
+    },
+    {
+      "label": "Captains, Mates, and Pilots of Water Vessels",
+      "delta_pct": 0.408
+    },
+    {
+      "label": "Water and Wastewater Treatment Plant and System Operators",
+      "delta_pct": 0.389
+    },
+    {
+      "label": "Mental Health Counselors",
+      "delta_pct": 0.372
+    }
+  ],
+  "pagerank_fallers": [
+    {
+      "label": "Broadcast Announcers and Radio Disc Jockeys",
+      "delta_pct": -0.271
+    },
+    {
+      "label": "Musicians and Singers",
+      "delta_pct": -0.269
+    },
+    {
+      "label": "Dietetic Technicians",
+      "delta_pct": -0.25
+    },
+    {
+      "label": "Database Administrators",
+      "delta_pct": -0.246
+    },
+    {
+      "label": "Music Directors and Composers",
+      "delta_pct": -0.233
+    },
+    {
+      "label": "Directors, Religious Activities and Education",
+      "delta_pct": -0.226
+    },
+    {
+      "label": "Medical Transcriptionists",
+      "delta_pct": -0.226
+    },
+    {
+      "label": "Landscape Architects",
+      "delta_pct": -0.222
+    }
+  ],
+  "fastest_growing_flows": [
+    {
+      "from": "Engineers, All Other",
+      "to": "Software Developers",
+      "share_first": 9e-05,
+      "share_last": 0.00701
+    },
+    {
+      "from": "Registered Nurses",
+      "to": "Nurse Practitioners",
+      "share_first": 0.00298,
+      "share_last": 0.0084
+    },
+    {
+      "from": "Software Developers",
+      "to": "Engineers, All Other",
+      "share_first": 0.00028,
+      "share_last": 0.00543
+    },
+    {
+      "from": "Human Resources Specialists",
+      "to": "Human Resources Managers",
+      "share_first": 0.02121,
+      "share_last": 0.02524
+    },
+    {
+      "from": "Web Developers",
+      "to": "Software Developers",
+      "share_first": 0.00228,
+      "share_last": 0.0049
+    },
+    {
+      "from": "Human Resources Managers",
+      "to": "Human Resources Specialists",
+      "share_first": 0.01489,
+      "share_last": 0.01704
+    },
+    {
+      "from": "Sales Representatives of Services, Except Advertising, Insurance, Financial Services, and Travel",
+      "to": "Advertising and Promotions Managers",
+      "share_first": 0.00019,
+      "share_last": 0.00218
+    },
+    {
+      "from": "Software Developers",
+      "to": "Teaching Assistants, Postsecondary",
+      "share_first": 0.00019,
+      "share_last": 0.00216
+    }
+  ],
+  "drift_window": "2005-2009 -> 2020-2025",
+  "runtime_s": 0.6,
+  "output": "/home/alex/linkedin-analysis/transition_network/temporal_occupation_nodes.parquet"
+}

@@ -1,0 +1,1964 @@
+{
+  "schema_version": 1,
+  "description": "4-level industry/sector taxonomy crosswalked to NAICS. Codes are dotted ancestor paths; every node is a legal (partial) assignment target. See industry/taxonomy.py.",
+  "summary": {
+    "n_nodes": 162,
+    "by_level": {
+      "1": 17,
+      "2": 68,
+      "3": 63,
+      "4": 14
+    }
+  },
+  "nodes": [
+    {
+      "code": "TEC",
+      "level": 1,
+      "label": "Technology",
+      "parent": null,
+      "naics": [
+        "51",
+        "5415"
+      ],
+      "sector": "private",
+      "children": [
+        "TEC.SOF",
+        "TEC.HRDW",
+        "TEC.TELE"
+      ]
+    },
+    {
+      "code": "TEC.SOF",
+      "level": 2,
+      "label": "Software & IT Services",
+      "parent": "TEC",
+      "naics": [
+        "5112",
+        "5415",
+        "5182"
+      ],
+      "sector": "private",
+      "children": [
+        "TEC.SOF.APP",
+        "TEC.SOF.INFR",
+        "TEC.SOF.ITSV",
+        "TEC.SOF.INTC"
+      ]
+    },
+    {
+      "code": "TEC.SOF.APP",
+      "level": 3,
+      "label": "Application Software",
+      "parent": "TEC.SOF",
+      "naics": [
+        "513210"
+      ],
+      "sector": "private",
+      "children": [
+        "TEC.SOF.APP.SAAS",
+        "TEC.SOF.APP.CONS",
+        "TEC.SOF.APP.MOBL"
+      ]
+    },
+    {
+      "code": "TEC.SOF.APP.SAAS",
+      "level": 4,
+      "label": "SaaS / B2B Software",
+      "parent": "TEC.SOF.APP",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TEC.SOF.APP.CONS",
+      "level": 4,
+      "label": "Consumer Software & Apps",
+      "parent": "TEC.SOF.APP",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TEC.SOF.APP.MOBL",
+      "level": 4,
+      "label": "Mobile / Gaming Software",
+      "parent": "TEC.SOF.APP",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TEC.SOF.INFR",
+      "level": 3,
+      "label": "Infrastructure & Systems Software",
+      "parent": "TEC.SOF",
+      "naics": [
+        "513210"
+      ],
+      "sector": "private",
+      "children": [
+        "TEC.SOF.INFR.CLOU",
+        "TEC.SOF.INFR.SEC",
+        "TEC.SOF.INFR.DATA"
+      ]
+    },
+    {
+      "code": "TEC.SOF.INFR.CLOU",
+      "level": 4,
+      "label": "Cloud & Hosting",
+      "parent": "TEC.SOF.INFR",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TEC.SOF.INFR.SEC",
+      "level": 4,
+      "label": "Cybersecurity",
+      "parent": "TEC.SOF.INFR",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TEC.SOF.INFR.DATA",
+      "level": 4,
+      "label": "Data & Analytics Platforms",
+      "parent": "TEC.SOF.INFR",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TEC.SOF.ITSV",
+      "level": 3,
+      "label": "IT Services & Consulting",
+      "parent": "TEC.SOF",
+      "naics": [
+        "5415"
+      ],
+      "sector": "private",
+      "children": [
+        "TEC.SOF.ITSV.INTG",
+        "TEC.SOF.ITSV.MSP"
+      ]
+    },
+    {
+      "code": "TEC.SOF.ITSV.INTG",
+      "level": 4,
+      "label": "Systems Integration & IT Consulting",
+      "parent": "TEC.SOF.ITSV",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TEC.SOF.ITSV.MSP",
+      "level": 4,
+      "label": "Managed Services & IT Outsourcing",
+      "parent": "TEC.SOF.ITSV",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TEC.SOF.INTC",
+      "level": 3,
+      "label": "Internet & Digital Platforms",
+      "parent": "TEC.SOF",
+      "naics": [
+        "5182",
+        "519"
+      ],
+      "sector": "private",
+      "children": [
+        "TEC.SOF.INTC.SRCH",
+        "TEC.SOF.INTC.ECOM"
+      ]
+    },
+    {
+      "code": "TEC.SOF.INTC.SRCH",
+      "level": 4,
+      "label": "Search, Social & Marketplaces",
+      "parent": "TEC.SOF.INTC",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TEC.SOF.INTC.ECOM",
+      "level": 4,
+      "label": "E-commerce Platforms",
+      "parent": "TEC.SOF.INTC",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TEC.HRDW",
+      "level": 2,
+      "label": "Hardware & Electronics",
+      "parent": "TEC",
+      "naics": [
+        "334"
+      ],
+      "sector": "private",
+      "children": [
+        "TEC.HRDW.SEMI",
+        "TEC.HRDW.COMP",
+        "TEC.HRDW.COMM",
+        "TEC.HRDW.EDEV"
+      ]
+    },
+    {
+      "code": "TEC.HRDW.SEMI",
+      "level": 3,
+      "label": "Semiconductors",
+      "parent": "TEC.HRDW",
+      "naics": [
+        "3344"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TEC.HRDW.COMP",
+      "level": 3,
+      "label": "Computers & Peripherals",
+      "parent": "TEC.HRDW",
+      "naics": [
+        "3341"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TEC.HRDW.COMM",
+      "level": 3,
+      "label": "Communications & Networking Equipment",
+      "parent": "TEC.HRDW",
+      "naics": [
+        "3342"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TEC.HRDW.EDEV",
+      "level": 3,
+      "label": "Electronic Devices & Components",
+      "parent": "TEC.HRDW",
+      "naics": [
+        "3343",
+        "3346"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TEC.TELE",
+      "level": 2,
+      "label": "Telecommunications",
+      "parent": "TEC",
+      "naics": [
+        "517"
+      ],
+      "sector": "private",
+      "children": [
+        "TEC.TELE.WIRE",
+        "TEC.TELE.TINF"
+      ]
+    },
+    {
+      "code": "TEC.TELE.WIRE",
+      "level": 3,
+      "label": "Wireless & Wireline Carriers",
+      "parent": "TEC.TELE",
+      "naics": [
+        "5172",
+        "5171"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TEC.TELE.TINF",
+      "level": 3,
+      "label": "Telecom Infrastructure",
+      "parent": "TEC.TELE",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "FIN",
+      "level": 1,
+      "label": "Finance",
+      "parent": null,
+      "naics": [
+        "52"
+      ],
+      "sector": "private",
+      "children": [
+        "FIN.BNK",
+        "FIN.ASM",
+        "FIN.INS",
+        "FIN.FINT"
+      ]
+    },
+    {
+      "code": "FIN.BNK",
+      "level": 2,
+      "label": "Banking",
+      "parent": "FIN",
+      "naics": [
+        "522"
+      ],
+      "sector": "private",
+      "children": [
+        "FIN.BNK.COM",
+        "FIN.BNK.INV",
+        "FIN.BNK.CU"
+      ]
+    },
+    {
+      "code": "FIN.BNK.COM",
+      "level": 3,
+      "label": "Commercial Banking",
+      "parent": "FIN.BNK",
+      "naics": [
+        "52211"
+      ],
+      "sector": "private",
+      "children": [
+        "FIN.BNK.COM.RET",
+        "FIN.BNK.COM.CORP"
+      ]
+    },
+    {
+      "code": "FIN.BNK.COM.RET",
+      "level": 4,
+      "label": "Retail / Consumer Banking",
+      "parent": "FIN.BNK.COM",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "FIN.BNK.COM.CORP",
+      "level": 4,
+      "label": "Corporate / Business Banking",
+      "parent": "FIN.BNK.COM",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "FIN.BNK.INV",
+      "level": 3,
+      "label": "Investment Banking & Capital Markets",
+      "parent": "FIN.BNK",
+      "naics": [
+        "523"
+      ],
+      "sector": "private",
+      "children": [
+        "FIN.BNK.INV.MNA",
+        "FIN.BNK.INV.TRAD"
+      ]
+    },
+    {
+      "code": "FIN.BNK.INV.MNA",
+      "level": 4,
+      "label": "M&A / Advisory",
+      "parent": "FIN.BNK.INV",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "FIN.BNK.INV.TRAD",
+      "level": 4,
+      "label": "Trading & Brokerage",
+      "parent": "FIN.BNK.INV",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "FIN.BNK.CU",
+      "level": 3,
+      "label": "Credit Unions & Thrifts",
+      "parent": "FIN.BNK",
+      "naics": [
+        "52213"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "FIN.ASM",
+      "level": 2,
+      "label": "Asset & Investment Management",
+      "parent": "FIN",
+      "naics": [
+        "5239"
+      ],
+      "sector": "private",
+      "children": [
+        "FIN.ASM.AM",
+        "FIN.ASM.PE",
+        "FIN.ASM.HF",
+        "FIN.ASM.WM"
+      ]
+    },
+    {
+      "code": "FIN.ASM.AM",
+      "level": 3,
+      "label": "Asset Management & Mutual Funds",
+      "parent": "FIN.ASM",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "FIN.ASM.PE",
+      "level": 3,
+      "label": "Private Equity & Venture Capital",
+      "parent": "FIN.ASM",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "FIN.ASM.HF",
+      "level": 3,
+      "label": "Hedge Funds",
+      "parent": "FIN.ASM",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "FIN.ASM.WM",
+      "level": 3,
+      "label": "Wealth Management & Advisory",
+      "parent": "FIN.ASM",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "FIN.INS",
+      "level": 2,
+      "label": "Insurance",
+      "parent": "FIN",
+      "naics": [
+        "524"
+      ],
+      "sector": "private",
+      "children": [
+        "FIN.INS.PNC",
+        "FIN.INS.LIFE",
+        "FIN.INS.BROK"
+      ]
+    },
+    {
+      "code": "FIN.INS.PNC",
+      "level": 3,
+      "label": "Property & Casualty Insurance",
+      "parent": "FIN.INS",
+      "naics": [
+        "524126"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "FIN.INS.LIFE",
+      "level": 3,
+      "label": "Life & Health Insurance",
+      "parent": "FIN.INS",
+      "naics": [
+        "524113"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "FIN.INS.BROK",
+      "level": 3,
+      "label": "Insurance Brokerage & Agencies",
+      "parent": "FIN.INS",
+      "naics": [
+        "52421"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "FIN.FINT",
+      "level": 2,
+      "label": "Fintech & Payments",
+      "parent": "FIN",
+      "naics": [
+        "522320"
+      ],
+      "sector": "private",
+      "children": [
+        "FIN.FINT.PAY",
+        "FIN.FINT.LEND",
+        "FIN.FINT.CRYP"
+      ]
+    },
+    {
+      "code": "FIN.FINT.PAY",
+      "level": 3,
+      "label": "Payments & Processing",
+      "parent": "FIN.FINT",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "FIN.FINT.LEND",
+      "level": 3,
+      "label": "Digital Lending & Credit",
+      "parent": "FIN.FINT",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "FIN.FINT.CRYP",
+      "level": 3,
+      "label": "Crypto & Digital Assets",
+      "parent": "FIN.FINT",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "HLT",
+      "level": 1,
+      "label": "Healthcare",
+      "parent": null,
+      "naics": [
+        "62",
+        "3254",
+        "3391"
+      ],
+      "sector": "private",
+      "children": [
+        "HLT.PROV",
+        "HLT.PHRM",
+        "HLT.MDEV",
+        "HLT.HTECH",
+        "HLT.PAYR"
+      ]
+    },
+    {
+      "code": "HLT.PROV",
+      "level": 2,
+      "label": "Healthcare Providers & Services",
+      "parent": "HLT",
+      "naics": [
+        "62"
+      ],
+      "sector": "private",
+      "children": [
+        "HLT.PROV.HOSP",
+        "HLT.PROV.AMB",
+        "HLT.PROV.DENT",
+        "HLT.PROV.LTC",
+        "HLT.PROV.MHSA"
+      ]
+    },
+    {
+      "code": "HLT.PROV.HOSP",
+      "level": 3,
+      "label": "Hospitals & Health Systems",
+      "parent": "HLT.PROV",
+      "naics": [
+        "622"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "HLT.PROV.AMB",
+      "level": 3,
+      "label": "Ambulatory & Physician Practices",
+      "parent": "HLT.PROV",
+      "naics": [
+        "621"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "HLT.PROV.DENT",
+      "level": 3,
+      "label": "Dental & Vision",
+      "parent": "HLT.PROV",
+      "naics": [
+        "6212"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "HLT.PROV.LTC",
+      "level": 3,
+      "label": "Long-term & Residential Care",
+      "parent": "HLT.PROV",
+      "naics": [
+        "623"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "HLT.PROV.MHSA",
+      "level": 3,
+      "label": "Mental Health & Social Assistance",
+      "parent": "HLT.PROV",
+      "naics": [
+        "6242",
+        "623220"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "HLT.PHRM",
+      "level": 2,
+      "label": "Pharmaceuticals & Biotech",
+      "parent": "HLT",
+      "naics": [
+        "3254",
+        "5417"
+      ],
+      "sector": "private",
+      "children": [
+        "HLT.PHRM.PHARMA",
+        "HLT.PHRM.BIO"
+      ]
+    },
+    {
+      "code": "HLT.PHRM.PHARMA",
+      "level": 3,
+      "label": "Pharmaceuticals",
+      "parent": "HLT.PHRM",
+      "naics": [
+        "325412"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "HLT.PHRM.BIO",
+      "level": 3,
+      "label": "Biotechnology",
+      "parent": "HLT.PHRM",
+      "naics": [
+        "541714"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "HLT.MDEV",
+      "level": 2,
+      "label": "Medical Devices & Equipment",
+      "parent": "HLT",
+      "naics": [
+        "3391"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "HLT.HTECH",
+      "level": 2,
+      "label": "Health Tech & Digital Health",
+      "parent": "HLT",
+      "naics": [
+        "62"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "HLT.PAYR",
+      "level": 2,
+      "label": "Health Insurance & Managed Care",
+      "parent": "HLT",
+      "naics": [
+        "524114"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "EDU",
+      "level": 1,
+      "label": "Education",
+      "parent": null,
+      "naics": [
+        "61"
+      ],
+      "sector": "private",
+      "children": [
+        "EDU.K12",
+        "EDU.HED",
+        "EDU.EDTECH",
+        "EDU.TRNG"
+      ]
+    },
+    {
+      "code": "EDU.K12",
+      "level": 2,
+      "label": "K-12 Schools",
+      "parent": "EDU",
+      "naics": [
+        "6111"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "EDU.HED",
+      "level": 2,
+      "label": "Higher Education",
+      "parent": "EDU",
+      "naics": [
+        "6113"
+      ],
+      "sector": "private",
+      "children": [
+        "EDU.HED.UNIV",
+        "EDU.HED.CC"
+      ]
+    },
+    {
+      "code": "EDU.HED.UNIV",
+      "level": 3,
+      "label": "Universities & Colleges",
+      "parent": "EDU.HED",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "EDU.HED.CC",
+      "level": 3,
+      "label": "Community & Technical Colleges",
+      "parent": "EDU.HED",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "EDU.EDTECH",
+      "level": 2,
+      "label": "EdTech & Online Learning",
+      "parent": "EDU",
+      "naics": [
+        "611710"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "EDU.TRNG",
+      "level": 2,
+      "label": "Training, Tutoring & Vocational",
+      "parent": "EDU",
+      "naics": [
+        "6114",
+        "6116"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "PUB",
+      "level": 1,
+      "label": "Public Sector",
+      "parent": null,
+      "naics": [
+        "92"
+      ],
+      "sector": "public",
+      "children": [
+        "PUB.GOV",
+        "PUB.DEF",
+        "PUB.JUST",
+        "PUB.PADM"
+      ]
+    },
+    {
+      "code": "PUB.GOV",
+      "level": 2,
+      "label": "Government Administration",
+      "parent": "PUB",
+      "naics": [
+        "921"
+      ],
+      "sector": "public",
+      "children": [
+        "PUB.GOV.FED",
+        "PUB.GOV.SLOC",
+        "PUB.GOV.INTL"
+      ]
+    },
+    {
+      "code": "PUB.GOV.FED",
+      "level": 3,
+      "label": "Federal Government",
+      "parent": "PUB.GOV",
+      "naics": [],
+      "sector": "public",
+      "children": []
+    },
+    {
+      "code": "PUB.GOV.SLOC",
+      "level": 3,
+      "label": "State & Local Government",
+      "parent": "PUB.GOV",
+      "naics": [],
+      "sector": "public",
+      "children": []
+    },
+    {
+      "code": "PUB.GOV.INTL",
+      "level": 3,
+      "label": "International / Multilateral Bodies",
+      "parent": "PUB.GOV",
+      "naics": [],
+      "sector": "public",
+      "children": []
+    },
+    {
+      "code": "PUB.DEF",
+      "level": 2,
+      "label": "Defense & Military",
+      "parent": "PUB",
+      "naics": [
+        "928110"
+      ],
+      "sector": "public",
+      "children": [
+        "PUB.DEF.AF",
+        "PUB.DEF.DCON"
+      ]
+    },
+    {
+      "code": "PUB.DEF.AF",
+      "level": 3,
+      "label": "Armed Forces",
+      "parent": "PUB.DEF",
+      "naics": [],
+      "sector": "public",
+      "children": []
+    },
+    {
+      "code": "PUB.DEF.DCON",
+      "level": 3,
+      "label": "Defense Contractors",
+      "parent": "PUB.DEF",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "PUB.JUST",
+      "level": 2,
+      "label": "Justice, Public Safety & Law Enforcement",
+      "parent": "PUB",
+      "naics": [
+        "922"
+      ],
+      "sector": "public",
+      "children": []
+    },
+    {
+      "code": "PUB.PADM",
+      "level": 2,
+      "label": "Public Programs & Agencies",
+      "parent": "PUB",
+      "naics": [
+        "923",
+        "924",
+        "925",
+        "926"
+      ],
+      "sector": "public",
+      "children": []
+    },
+    {
+      "code": "MFG",
+      "level": 1,
+      "label": "Manufacturing & Industrials",
+      "parent": null,
+      "naics": [
+        "31",
+        "32",
+        "33",
+        "333"
+      ],
+      "sector": "private",
+      "children": [
+        "MFG.IND",
+        "MFG.AUTO",
+        "MFG.AERO",
+        "MFG.CHEM",
+        "MFG.CONP"
+      ]
+    },
+    {
+      "code": "MFG.IND",
+      "level": 2,
+      "label": "Industrial & Machinery",
+      "parent": "MFG",
+      "naics": [
+        "333"
+      ],
+      "sector": "private",
+      "children": [
+        "MFG.IND.MACH",
+        "MFG.IND.ELEC"
+      ]
+    },
+    {
+      "code": "MFG.IND.MACH",
+      "level": 3,
+      "label": "Industrial Machinery & Equipment",
+      "parent": "MFG.IND",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "MFG.IND.ELEC",
+      "level": 3,
+      "label": "Electrical Equipment",
+      "parent": "MFG.IND",
+      "naics": [
+        "335"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "MFG.AUTO",
+      "level": 2,
+      "label": "Automotive & Vehicles",
+      "parent": "MFG",
+      "naics": [
+        "3361",
+        "3362",
+        "3363"
+      ],
+      "sector": "private",
+      "children": [
+        "MFG.AUTO.OEM",
+        "MFG.AUTO.PARTS"
+      ]
+    },
+    {
+      "code": "MFG.AUTO.OEM",
+      "level": 3,
+      "label": "Vehicle Manufacturing",
+      "parent": "MFG.AUTO",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "MFG.AUTO.PARTS",
+      "level": 3,
+      "label": "Auto Parts & Suppliers",
+      "parent": "MFG.AUTO",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "MFG.AERO",
+      "level": 2,
+      "label": "Aerospace",
+      "parent": "MFG",
+      "naics": [
+        "3364"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "MFG.CHEM",
+      "level": 2,
+      "label": "Chemicals & Materials",
+      "parent": "MFG",
+      "naics": [
+        "325",
+        "327",
+        "331"
+      ],
+      "sector": "private",
+      "children": [
+        "MFG.CHEM.SPCH",
+        "MFG.CHEM.MATL"
+      ]
+    },
+    {
+      "code": "MFG.CHEM.SPCH",
+      "level": 3,
+      "label": "Specialty & Industrial Chemicals",
+      "parent": "MFG.CHEM",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "MFG.CHEM.MATL",
+      "level": 3,
+      "label": "Materials, Metals & Plastics",
+      "parent": "MFG.CHEM",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "MFG.CONP",
+      "level": 2,
+      "label": "Consumer & Durable Goods Manufacturing",
+      "parent": "MFG",
+      "naics": [
+        "337",
+        "339"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "CON",
+      "level": 1,
+      "label": "Consumer & Retail",
+      "parent": null,
+      "naics": [
+        "44",
+        "45",
+        "31"
+      ],
+      "sector": "private",
+      "children": [
+        "CON.RET",
+        "CON.CPG",
+        "CON.WHL"
+      ]
+    },
+    {
+      "code": "CON.RET",
+      "level": 2,
+      "label": "Retail",
+      "parent": "CON",
+      "naics": [
+        "44",
+        "45"
+      ],
+      "sector": "private",
+      "children": [
+        "CON.RET.GEN",
+        "CON.RET.GROC",
+        "CON.RET.SPEC",
+        "CON.RET.ETAIL"
+      ]
+    },
+    {
+      "code": "CON.RET.GEN",
+      "level": 3,
+      "label": "General Merchandise & Department Stores",
+      "parent": "CON.RET",
+      "naics": [
+        "452"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "CON.RET.GROC",
+      "level": 3,
+      "label": "Grocery & Food Retail",
+      "parent": "CON.RET",
+      "naics": [
+        "445"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "CON.RET.SPEC",
+      "level": 3,
+      "label": "Specialty & Apparel Retail",
+      "parent": "CON.RET",
+      "naics": [
+        "448",
+        "451"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "CON.RET.ETAIL",
+      "level": 3,
+      "label": "E-commerce & Direct-to-Consumer",
+      "parent": "CON.RET",
+      "naics": [
+        "4541"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "CON.CPG",
+      "level": 2,
+      "label": "Consumer Packaged Goods",
+      "parent": "CON",
+      "naics": [
+        "311",
+        "312",
+        "3256"
+      ],
+      "sector": "private",
+      "children": [
+        "CON.CPG.FNB",
+        "CON.CPG.HPC",
+        "CON.CPG.APPL"
+      ]
+    },
+    {
+      "code": "CON.CPG.FNB",
+      "level": 3,
+      "label": "Food & Beverage",
+      "parent": "CON.CPG",
+      "naics": [
+        "311",
+        "312"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "CON.CPG.HPC",
+      "level": 3,
+      "label": "Household & Personal Care",
+      "parent": "CON.CPG",
+      "naics": [
+        "3256"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "CON.CPG.APPL",
+      "level": 3,
+      "label": "Apparel, Footwear & Luxury",
+      "parent": "CON.CPG",
+      "naics": [
+        "315",
+        "316"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "CON.WHL",
+      "level": 2,
+      "label": "Wholesale & Distribution",
+      "parent": "CON",
+      "naics": [
+        "42"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "ENR",
+      "level": 1,
+      "label": "Energy & Utilities",
+      "parent": null,
+      "naics": [
+        "21",
+        "22",
+        "486"
+      ],
+      "sector": "private",
+      "children": [
+        "ENR.OILG",
+        "ENR.UTIL",
+        "ENR.RENW",
+        "ENR.MINE"
+      ]
+    },
+    {
+      "code": "ENR.OILG",
+      "level": 2,
+      "label": "Oil & Gas",
+      "parent": "ENR",
+      "naics": [
+        "211",
+        "213",
+        "486"
+      ],
+      "sector": "private",
+      "children": [
+        "ENR.OILG.UPST",
+        "ENR.OILG.MIDS",
+        "ENR.OILG.DOWN"
+      ]
+    },
+    {
+      "code": "ENR.OILG.UPST",
+      "level": 3,
+      "label": "Exploration & Production (Upstream)",
+      "parent": "ENR.OILG",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "ENR.OILG.MIDS",
+      "level": 3,
+      "label": "Midstream & Pipelines",
+      "parent": "ENR.OILG",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "ENR.OILG.DOWN",
+      "level": 3,
+      "label": "Refining & Marketing (Downstream)",
+      "parent": "ENR.OILG",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "ENR.UTIL",
+      "level": 2,
+      "label": "Utilities",
+      "parent": "ENR",
+      "naics": [
+        "221"
+      ],
+      "sector": "private",
+      "children": [
+        "ENR.UTIL.POWR",
+        "ENR.UTIL.WGAS"
+      ]
+    },
+    {
+      "code": "ENR.UTIL.POWR",
+      "level": 3,
+      "label": "Electric Power & Generation",
+      "parent": "ENR.UTIL",
+      "naics": [
+        "2211"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "ENR.UTIL.WGAS",
+      "level": 3,
+      "label": "Water & Gas Utilities",
+      "parent": "ENR.UTIL",
+      "naics": [
+        "2212",
+        "2213"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "ENR.RENW",
+      "level": 2,
+      "label": "Renewables & Clean Energy",
+      "parent": "ENR",
+      "naics": [
+        "221114",
+        "221115"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "ENR.MINE",
+      "level": 2,
+      "label": "Mining & Metals Extraction",
+      "parent": "ENR",
+      "naics": [
+        "212"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "MED",
+      "level": 1,
+      "label": "Media & Entertainment",
+      "parent": null,
+      "naics": [
+        "51",
+        "71",
+        "512"
+      ],
+      "sector": "private",
+      "children": [
+        "MED.PUBL",
+        "MED.BCAST",
+        "MED.FILM",
+        "MED.GAME",
+        "MED.ADV",
+        "MED.SPRT"
+      ]
+    },
+    {
+      "code": "MED.PUBL",
+      "level": 2,
+      "label": "Publishing & News",
+      "parent": "MED",
+      "naics": [
+        "511",
+        "519"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "MED.BCAST",
+      "level": 2,
+      "label": "Broadcasting & Streaming",
+      "parent": "MED",
+      "naics": [
+        "515",
+        "516",
+        "5121"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "MED.FILM",
+      "level": 2,
+      "label": "Film, Music & Production",
+      "parent": "MED",
+      "naics": [
+        "5121",
+        "5122",
+        "7111"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "MED.GAME",
+      "level": 2,
+      "label": "Gaming & Interactive Entertainment",
+      "parent": "MED",
+      "naics": [
+        "713"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "MED.ADV",
+      "level": 2,
+      "label": "Advertising, Marketing & PR",
+      "parent": "MED",
+      "naics": [
+        "5418"
+      ],
+      "sector": "private",
+      "children": [
+        "MED.ADV.AGY",
+        "MED.ADV.MKTG"
+      ]
+    },
+    {
+      "code": "MED.ADV.AGY",
+      "level": 3,
+      "label": "Advertising & Creative Agencies",
+      "parent": "MED.ADV",
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "MED.ADV.MKTG",
+      "level": 3,
+      "label": "Marketing, PR & Market Research",
+      "parent": "MED.ADV",
+      "naics": [
+        "5419"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "MED.SPRT",
+      "level": 2,
+      "label": "Sports & Recreation",
+      "parent": "MED",
+      "naics": [
+        "711211",
+        "713940"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "PRO",
+      "level": 1,
+      "label": "Professional Services",
+      "parent": null,
+      "naics": [
+        "54",
+        "55",
+        "56"
+      ],
+      "sector": "private",
+      "children": [
+        "PRO.CONSL",
+        "PRO.LEGAL",
+        "PRO.ACCT",
+        "PRO.ENGS",
+        "PRO.HRST",
+        "PRO.BPO",
+        "PRO.DSGN"
+      ]
+    },
+    {
+      "code": "PRO.CONSL",
+      "level": 2,
+      "label": "Management & Strategy Consulting",
+      "parent": "PRO",
+      "naics": [
+        "541611"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "PRO.LEGAL",
+      "level": 2,
+      "label": "Legal Services",
+      "parent": "PRO",
+      "naics": [
+        "5411"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "PRO.ACCT",
+      "level": 2,
+      "label": "Accounting, Audit & Tax",
+      "parent": "PRO",
+      "naics": [
+        "5412"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "PRO.ENGS",
+      "level": 2,
+      "label": "Engineering & Architecture Services",
+      "parent": "PRO",
+      "naics": [
+        "5413"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "PRO.HRST",
+      "level": 2,
+      "label": "Staffing, Recruiting & HR Services",
+      "parent": "PRO",
+      "naics": [
+        "5613",
+        "5614"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "PRO.BPO",
+      "level": 2,
+      "label": "Business Process & Support Services",
+      "parent": "PRO",
+      "naics": [
+        "561"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "PRO.DSGN",
+      "level": 2,
+      "label": "Design & Creative Services",
+      "parent": "PRO",
+      "naics": [
+        "5414"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "RE",
+      "level": 1,
+      "label": "Real Estate & Construction",
+      "parent": null,
+      "naics": [
+        "53",
+        "23",
+        "236"
+      ],
+      "sector": "private",
+      "children": [
+        "RE.REST",
+        "RE.CNST",
+        "RE.ARCH"
+      ]
+    },
+    {
+      "code": "RE.REST",
+      "level": 2,
+      "label": "Real Estate",
+      "parent": "RE",
+      "naics": [
+        "531"
+      ],
+      "sector": "private",
+      "children": [
+        "RE.REST.CRE",
+        "RE.REST.RES",
+        "RE.REST.PM"
+      ]
+    },
+    {
+      "code": "RE.REST.CRE",
+      "level": 3,
+      "label": "Commercial Real Estate & REITs",
+      "parent": "RE.REST",
+      "naics": [
+        "5311",
+        "525"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "RE.REST.RES",
+      "level": 3,
+      "label": "Residential Real Estate & Brokerage",
+      "parent": "RE.REST",
+      "naics": [
+        "5312"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "RE.REST.PM",
+      "level": 3,
+      "label": "Property Management",
+      "parent": "RE.REST",
+      "naics": [
+        "5313"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "RE.CNST",
+      "level": 2,
+      "label": "Construction",
+      "parent": "RE",
+      "naics": [
+        "23"
+      ],
+      "sector": "private",
+      "children": [
+        "RE.CNST.BLDG",
+        "RE.CNST.INFC",
+        "RE.CNST.TRADE"
+      ]
+    },
+    {
+      "code": "RE.CNST.BLDG",
+      "level": 3,
+      "label": "Building Construction",
+      "parent": "RE.CNST",
+      "naics": [
+        "236"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "RE.CNST.INFC",
+      "level": 3,
+      "label": "Heavy & Civil Engineering Construction",
+      "parent": "RE.CNST",
+      "naics": [
+        "237"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "RE.CNST.TRADE",
+      "level": 3,
+      "label": "Specialty Trade Contractors",
+      "parent": "RE.CNST",
+      "naics": [
+        "238"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "RE.ARCH",
+      "level": 2,
+      "label": "Architecture & Building Design",
+      "parent": "RE",
+      "naics": [
+        "5413"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TRN",
+      "level": 1,
+      "label": "Transportation & Logistics",
+      "parent": null,
+      "naics": [
+        "48",
+        "49"
+      ],
+      "sector": "private",
+      "children": [
+        "TRN.LOG",
+        "TRN.TRUCK",
+        "TRN.AIR",
+        "TRN.MAR",
+        "TRN.RAIL",
+        "TRN.PSNG"
+      ]
+    },
+    {
+      "code": "TRN.LOG",
+      "level": 2,
+      "label": "Logistics, Freight & Supply Chain",
+      "parent": "TRN",
+      "naics": [
+        "488",
+        "492",
+        "493"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TRN.TRUCK",
+      "level": 2,
+      "label": "Trucking & Ground Freight",
+      "parent": "TRN",
+      "naics": [
+        "484"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TRN.AIR",
+      "level": 2,
+      "label": "Airlines & Aviation",
+      "parent": "TRN",
+      "naics": [
+        "481"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TRN.MAR",
+      "level": 2,
+      "label": "Maritime & Shipping",
+      "parent": "TRN",
+      "naics": [
+        "483"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TRN.RAIL",
+      "level": 2,
+      "label": "Rail Transportation",
+      "parent": "TRN",
+      "naics": [
+        "482"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "TRN.PSNG",
+      "level": 2,
+      "label": "Passenger & Ride Transportation",
+      "parent": "TRN",
+      "naics": [
+        "485",
+        "4853"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "HOS",
+      "level": 1,
+      "label": "Hospitality, Travel & Food Services",
+      "parent": null,
+      "naics": [
+        "72",
+        "71"
+      ],
+      "sector": "private",
+      "children": [
+        "HOS.FOOD",
+        "HOS.LODG",
+        "HOS.TRVL",
+        "HOS.EVNT"
+      ]
+    },
+    {
+      "code": "HOS.FOOD",
+      "level": 2,
+      "label": "Restaurants & Food Service",
+      "parent": "HOS",
+      "naics": [
+        "722"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "HOS.LODG",
+      "level": 2,
+      "label": "Hotels & Lodging",
+      "parent": "HOS",
+      "naics": [
+        "721"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "HOS.TRVL",
+      "level": 2,
+      "label": "Travel, Tourism & Leisure",
+      "parent": "HOS",
+      "naics": [
+        "5615",
+        "7211"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "HOS.EVNT",
+      "level": 2,
+      "label": "Events, Catering & Venues",
+      "parent": "HOS",
+      "naics": [
+        "7223",
+        "7139"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "AGR",
+      "level": 1,
+      "label": "Agriculture & Natural Resources",
+      "parent": null,
+      "naics": [
+        "11"
+      ],
+      "sector": "private",
+      "children": [
+        "AGR.FARM",
+        "AGR.LIVE",
+        "AGR.FOR",
+        "AGR.AGSV"
+      ]
+    },
+    {
+      "code": "AGR.FARM",
+      "level": 2,
+      "label": "Farming & Crop Production",
+      "parent": "AGR",
+      "naics": [
+        "111"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "AGR.LIVE",
+      "level": 2,
+      "label": "Livestock & Animal Production",
+      "parent": "AGR",
+      "naics": [
+        "112"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "AGR.FOR",
+      "level": 2,
+      "label": "Forestry, Fishing & Hunting",
+      "parent": "AGR",
+      "naics": [
+        "113",
+        "114"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "AGR.AGSV",
+      "level": 2,
+      "label": "Agricultural Services & Support",
+      "parent": "AGR",
+      "naics": [
+        "115"
+      ],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "NPO",
+      "level": 1,
+      "label": "Nonprofit & Social Sector",
+      "parent": null,
+      "naics": [
+        "813",
+        "8132",
+        "8133"
+      ],
+      "sector": "nonprofit",
+      "children": [
+        "NPO.PHIL",
+        "NPO.SOCS",
+        "NPO.ADVO",
+        "NPO.RELG",
+        "NPO.INTD",
+        "NPO.RSCH"
+      ]
+    },
+    {
+      "code": "NPO.PHIL",
+      "level": 2,
+      "label": "Foundations & Philanthropy",
+      "parent": "NPO",
+      "naics": [
+        "813211"
+      ],
+      "sector": "nonprofit",
+      "children": []
+    },
+    {
+      "code": "NPO.SOCS",
+      "level": 2,
+      "label": "Social Services & Community",
+      "parent": "NPO",
+      "naics": [
+        "624"
+      ],
+      "sector": "nonprofit",
+      "children": []
+    },
+    {
+      "code": "NPO.ADVO",
+      "level": 2,
+      "label": "Advocacy, Civic & Membership Orgs",
+      "parent": "NPO",
+      "naics": [
+        "8133",
+        "8139"
+      ],
+      "sector": "nonprofit",
+      "children": []
+    },
+    {
+      "code": "NPO.RELG",
+      "level": 2,
+      "label": "Religious Organizations",
+      "parent": "NPO",
+      "naics": [
+        "8131"
+      ],
+      "sector": "nonprofit",
+      "children": []
+    },
+    {
+      "code": "NPO.INTD",
+      "level": 2,
+      "label": "International Development & Humanitarian",
+      "parent": "NPO",
+      "naics": [],
+      "sector": "nonprofit",
+      "children": []
+    },
+    {
+      "code": "NPO.RSCH",
+      "level": 2,
+      "label": "Research Institutes & Think Tanks",
+      "parent": "NPO",
+      "naics": [
+        "5417"
+      ],
+      "sector": "nonprofit",
+      "children": []
+    },
+    {
+      "code": "XDV",
+      "level": 1,
+      "label": "Diversified / Conglomerate",
+      "parent": null,
+      "naics": [],
+      "sector": "private",
+      "children": []
+    },
+    {
+      "code": "XOT",
+      "level": 1,
+      "label": "Other / Unknown",
+      "parent": null,
+      "naics": [],
+      "sector": "private",
+      "children": []
+    }
+  ]
+}

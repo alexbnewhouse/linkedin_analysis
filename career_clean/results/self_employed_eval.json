@@ -1,0 +1,951 @@
+{
+  "self_employment_rows": 459120,
+  "coverage": {
+    "baseline_soc_only_pct": 11.92,
+    "with_recs_pct": 40.63,
+    "lift_pp": 28.71,
+    "real_clustered_rows": 186546
+  },
+  "method_row_pct": {
+    "unspecified": 59.37,
+    "qualifier": 13.69,
+    "soc": 11.91,
+    "company_brand": 9.94,
+    "title_keyword": 5.09
+  },
+  "cluster_distribution": {
+    "business_owner_unspecified": {
+      "code": "business_owner_unspecified",
+      "rows": 189226,
+      "pct": 41.21
+    },
+    "self_employed_unspecified": {
+      "code": "self_employed_unspecified",
+      "rows": 83348,
+      "pct": 18.15
+    },
+    "Arts, Design, Entertainment, Sports & Media": {
+      "code": "27",
+      "rows": 82501,
+      "pct": 17.97
+    },
+    "Business & Financial Operations": {
+      "code": "13",
+      "rows": 21365,
+      "pct": 4.65
+    },
+    "Management": {
+      "code": "11",
+      "rows": 11938,
+      "pct": 2.6
+    },
+    "Computer & Mathematical": {
+      "code": "15",
+      "rows": 11472,
+      "pct": 2.5
+    },
+    "Personal Care & Service": {
+      "code": "39",
+      "rows": 10381,
+      "pct": 2.26
+    },
+    "Sales & Related": {
+      "code": "41",
+      "rows": 9697,
+      "pct": 2.11
+    },
+    "Education, Training & Library": {
+      "code": "25",
+      "rows": 5967,
+      "pct": 1.3
+    },
+    "Construction & Extraction": {
+      "code": "47",
+      "rows": 4911,
+      "pct": 1.07
+    },
+    "Healthcare Practitioners & Technical": {
+      "code": "29",
+      "rows": 4839,
+      "pct": 1.05
+    },
+    "Community & Social Service": {
+      "code": "21",
+      "rows": 4322,
+      "pct": 0.94
+    },
+    "Food Preparation & Serving": {
+      "code": "35",
+      "rows": 4061,
+      "pct": 0.88
+    },
+    "Legal": {
+      "code": "23",
+      "rows": 3255,
+      "pct": 0.71
+    },
+    "Office & Administrative Support": {
+      "code": "43",
+      "rows": 2042,
+      "pct": 0.44
+    },
+    "Healthcare Support": {
+      "code": "31",
+      "rows": 1985,
+      "pct": 0.43
+    },
+    "Building & Grounds Cleaning & Maintenance": {
+      "code": "37",
+      "rows": 1579,
+      "pct": 0.34
+    },
+    "Transportation & Material Moving": {
+      "code": "53",
+      "rows": 1535,
+      "pct": 0.33
+    },
+    "Farming, Fishing & Forestry": {
+      "code": "45",
+      "rows": 1298,
+      "pct": 0.28
+    },
+    "Life, Physical & Social Science": {
+      "code": "19",
+      "rows": 859,
+      "pct": 0.19
+    },
+    "Production": {
+      "code": "51",
+      "rows": 856,
+      "pct": 0.19
+    },
+    "Architecture & Engineering": {
+      "code": "17",
+      "rows": 785,
+      "pct": 0.17
+    },
+    "Installation, Maintenance & Repair": {
+      "code": "49",
+      "rows": 737,
+      "pct": 0.16
+    },
+    "Protective Service": {
+      "code": "33",
+      "rows": 161,
+      "pct": 0.04
+    }
+  },
+  "runtime_s": 185.0,
+  "samples_by_method": {
+    "unspecified": [
+      {
+        "company": "Self-employed",
+        "title": "Business Owner",
+        "freq": 719,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Self-employed",
+        "title": "Consultant",
+        "freq": 691,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Self-employed",
+        "title": "Independent Consultant",
+        "freq": 618,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Self-employed",
+        "title": "Owner",
+        "freq": 615,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Self-employed",
+        "title": "Self Employed",
+        "freq": 446,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Self Employed",
+        "title": "Consultant",
+        "freq": 325,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Self-employed",
+        "title": "Entrepreneur",
+        "freq": 324,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Self-employed",
+        "title": "Independent Contractor",
+        "freq": 257,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Independent Consultant",
+        "title": "Independent Consultant",
+        "freq": 239,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Self Employed",
+        "title": "Independent Consultant",
+        "freq": 232,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Self Employed",
+        "title": "Self Employed",
+        "freq": 219,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Freelance",
+        "title": "Consultant",
+        "freq": 215,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Self-Employed",
+        "title": "Consultant",
+        "freq": 204,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Independent Consultant",
+        "title": "Consultant",
+        "freq": 203,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Freelance",
+        "title": "Independent Consultant",
+        "freq": 193,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Self-Employed",
+        "title": "Independent Consultant",
+        "freq": 169,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Self-employed",
+        "title": "Company Owner",
+        "freq": 160,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Self-employed",
+        "title": "Small Business Owner",
+        "freq": 156,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Freelance",
+        "title": "Freelance",
+        "freq": 151,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      },
+      {
+        "company": "Self Employed",
+        "title": "Independent Contractor",
+        "freq": 143,
+        "cluster": "self_employed_unspecified",
+        "label": "",
+        "confidence": 0.5
+      }
+    ],
+    "soc": [
+      {
+        "company": "Freelance",
+        "title": "Graphic Designer",
+        "freq": 455,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 1.0
+      },
+      {
+        "company": "Freelance",
+        "title": "Freelance Writer",
+        "freq": 445,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 1.0
+      },
+      {
+        "company": "Freelance",
+        "title": "Freelance Graphic Designer",
+        "freq": 406,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 1.0
+      },
+      {
+        "company": "Self-employed",
+        "title": "Freelance Writer",
+        "freq": 383,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 1.0
+      },
+      {
+        "company": "Self-employed",
+        "title": "Private Tutor",
+        "freq": 335,
+        "cluster": "25",
+        "label": "Education, Training & Library",
+        "confidence": 1.0
+      },
+      {
+        "company": "Freelance",
+        "title": "Writer",
+        "freq": 306,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 1.0
+      },
+      {
+        "company": "Self-employed",
+        "title": "Author",
+        "freq": 299,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 1.0
+      },
+      {
+        "company": "Self-Employed",
+        "title": "Freelance Writer",
+        "freq": 284,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 1.0
+      },
+      {
+        "company": "Self-employed",
+        "title": "Freelance Graphic Designer",
+        "freq": 252,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 1.0
+      },
+      {
+        "company": "Self-employed",
+        "title": "Writer",
+        "freq": 221,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 1.0
+      },
+      {
+        "company": "Self-employed",
+        "title": "President",
+        "freq": 218,
+        "cluster": "11",
+        "label": "Management",
+        "confidence": 1.0
+      },
+      {
+        "company": "Freelance",
+        "title": "Photographer",
+        "freq": 212,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 1.0
+      },
+      {
+        "company": "Self-employed",
+        "title": "Notary Public",
+        "freq": 211,
+        "cluster": "43",
+        "label": "Office & Administrative Support",
+        "confidence": 1.0
+      },
+      {
+        "company": "Self-employed",
+        "title": "Nanny",
+        "freq": 208,
+        "cluster": "39",
+        "label": "Personal Care & Service",
+        "confidence": 1.0
+      },
+      {
+        "company": "Self Employed",
+        "title": "Nanny",
+        "freq": 197,
+        "cluster": "39",
+        "label": "Personal Care & Service",
+        "confidence": 1.0
+      },
+      {
+        "company": "Self-employed",
+        "title": "Chief Executive Officer",
+        "freq": 186,
+        "cluster": "11",
+        "label": "Management",
+        "confidence": 1.0
+      },
+      {
+        "company": "Self-employed",
+        "title": "Real Estate Investor",
+        "freq": 184,
+        "cluster": "13",
+        "label": "Business & Financial Operations",
+        "confidence": 1.0
+      },
+      {
+        "company": "Freelance",
+        "title": "Production Assistant",
+        "freq": 179,
+        "cluster": "43",
+        "label": "Office & Administrative Support",
+        "confidence": 1.0
+      },
+      {
+        "company": "Freelance",
+        "title": "Freelance Photographer",
+        "freq": 177,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 1.0
+      },
+      {
+        "company": "Self-employed",
+        "title": "Photographer",
+        "freq": 173,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 1.0
+      }
+    ],
+    "title_keyword": [
+      {
+        "company": "Self-employed",
+        "title": "Artist",
+        "freq": 288,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.7
+      },
+      {
+        "company": "Freelance",
+        "title": "Social Media Manager",
+        "freq": 147,
+        "cluster": "13",
+        "label": "Business & Financial Operations",
+        "confidence": 0.7
+      },
+      {
+        "company": "Self-employed",
+        "title": "Caregiver",
+        "freq": 128,
+        "cluster": "31",
+        "label": "Healthcare Support",
+        "confidence": 0.7
+      },
+      {
+        "company": "Freelance",
+        "title": "Editor",
+        "freq": 123,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.7
+      },
+      {
+        "company": "Freelance",
+        "title": "Artist",
+        "freq": 115,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.7
+      },
+      {
+        "company": "Self-employed",
+        "title": "Realtor",
+        "freq": 111,
+        "cluster": "41",
+        "label": "Sales & Related",
+        "confidence": 0.7
+      },
+      {
+        "company": "Self-employed",
+        "title": "Sales And Marketing Specialist",
+        "freq": 95,
+        "cluster": "13",
+        "label": "Business & Financial Operations",
+        "confidence": 0.7
+      },
+      {
+        "company": "Self Employed",
+        "title": "Caregiver",
+        "freq": 91,
+        "cluster": "31",
+        "label": "Healthcare Support",
+        "confidence": 0.7
+      },
+      {
+        "company": "Self-employed",
+        "title": "Tutor",
+        "freq": 83,
+        "cluster": "25",
+        "label": "Education, Training & Library",
+        "confidence": 0.7
+      },
+      {
+        "company": "Self Employed",
+        "title": "Artist",
+        "freq": 77,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.7
+      },
+      {
+        "company": "Freelance",
+        "title": "Creative Director",
+        "freq": 76,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.7
+      },
+      {
+        "company": "Freelance",
+        "title": "Writer and Editor",
+        "freq": 64,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.7
+      },
+      {
+        "company": "Freelance",
+        "title": "Designer",
+        "freq": 58,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.7
+      },
+      {
+        "company": "Self-employed",
+        "title": "Health And Wellness Coach",
+        "freq": 58,
+        "cluster": "39",
+        "label": "Personal Care & Service",
+        "confidence": 0.7
+      },
+      {
+        "company": "Self-employed",
+        "title": "Social Media Manager",
+        "freq": 57,
+        "cluster": "13",
+        "label": "Business & Financial Operations",
+        "confidence": 0.7
+      },
+      {
+        "company": "Self-employed",
+        "title": "Mathematics Tutor",
+        "freq": 49,
+        "cluster": "25",
+        "label": "Education, Training & Library",
+        "confidence": 0.7
+      },
+      {
+        "company": "Self-Employed",
+        "title": "Caregiver",
+        "freq": 48,
+        "cluster": "31",
+        "label": "Healthcare Support",
+        "confidence": 0.7
+      },
+      {
+        "company": "Freelance",
+        "title": "UX Designer",
+        "freq": 47,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.7
+      },
+      {
+        "company": "Self-employed",
+        "title": "Creative Director",
+        "freq": 47,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.7
+      },
+      {
+        "company": "Freelance",
+        "title": "Data Analyst",
+        "freq": 46,
+        "cluster": "15",
+        "label": "Computer & Mathematical",
+        "confidence": 0.7
+      }
+    ],
+    "qualifier": [
+      {
+        "company": "Freelance",
+        "title": "Freelance Designer",
+        "freq": 111,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.8
+      },
+      {
+        "company": "Freelance",
+        "title": "Freelance Editor",
+        "freq": 89,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.8
+      },
+      {
+        "company": "Self-employed",
+        "title": "Human Resources Consultant",
+        "freq": 84,
+        "cluster": "13",
+        "label": "Business & Financial Operations",
+        "confidence": 0.8
+      },
+      {
+        "company": "Self-employed",
+        "title": "Freelance Editor",
+        "freq": 83,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.8
+      },
+      {
+        "company": "Self-employed",
+        "title": "Freelance Designer",
+        "freq": 70,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.8
+      },
+      {
+        "company": "Freelance",
+        "title": "Digital Marketing Consultant",
+        "freq": 52,
+        "cluster": "13",
+        "label": "Business & Financial Operations",
+        "confidence": 0.8
+      },
+      {
+        "company": "Freelance",
+        "title": "Creative Consultant",
+        "freq": 47,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.8
+      },
+      {
+        "company": "Self-employed",
+        "title": "Freelance Writer and Editor",
+        "freq": 44,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.8
+      },
+      {
+        "company": "Self-Employed",
+        "title": "Freelance Editor",
+        "freq": 43,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.8
+      },
+      {
+        "company": "Self Employed",
+        "title": "Human Resources Consultant",
+        "freq": 41,
+        "cluster": "13",
+        "label": "Business & Financial Operations",
+        "confidence": 0.8
+      },
+      {
+        "company": "Self-employed",
+        "title": "Management Consultant",
+        "freq": 40,
+        "cluster": "11",
+        "label": "Management",
+        "confidence": 0.8
+      },
+      {
+        "company": "Self-Employed",
+        "title": "Freelance Writer and Editor",
+        "freq": 39,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.8
+      },
+      {
+        "company": "Self Employed",
+        "title": "Freelance Designer",
+        "freq": 38,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.8
+      },
+      {
+        "company": "Self-employed",
+        "title": "IT Consultant",
+        "freq": 38,
+        "cluster": "15",
+        "label": "Computer & Mathematical",
+        "confidence": 0.8
+      },
+      {
+        "company": "Self-employed",
+        "title": "Ecommerce Business Owner",
+        "freq": 36,
+        "cluster": "41",
+        "label": "Sales & Related",
+        "confidence": 0.8
+      },
+      {
+        "company": "Freelance",
+        "title": "Human Resources Consultant",
+        "freq": 34,
+        "cluster": "13",
+        "label": "Business & Financial Operations",
+        "confidence": 0.8
+      },
+      {
+        "company": "Self-employed",
+        "title": "Information Technology Consultant",
+        "freq": 33,
+        "cluster": "15",
+        "label": "Computer & Mathematical",
+        "confidence": 0.8
+      },
+      {
+        "company": "Self Employed",
+        "title": "IT Consultant",
+        "freq": 32,
+        "cluster": "15",
+        "label": "Computer & Mathematical",
+        "confidence": 0.8
+      },
+      {
+        "company": "Freelance",
+        "title": "Freelance Writer and Editor",
+        "freq": 30,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.8
+      },
+      {
+        "company": "Self-employed",
+        "title": "Digital Marketing Consultant",
+        "freq": 30,
+        "cluster": "13",
+        "label": "Business & Financial Operations",
+        "confidence": 0.8
+      }
+    ],
+    "company_brand": [
+      {
+        "company": "Klean Cut Lawn Care & Landscaping Services",
+        "title": "Owner",
+        "freq": 11,
+        "cluster": "37",
+        "label": "Building & Grounds Cleaning & Maintenance",
+        "confidence": 0.6
+      },
+      {
+        "company": "Slayz boutique",
+        "title": "Business owner",
+        "freq": 9,
+        "cluster": "41",
+        "label": "Sales & Related",
+        "confidence": 0.6
+      },
+      {
+        "company": "health and wellness industry",
+        "title": "Business Owner",
+        "freq": 9,
+        "cluster": "39",
+        "label": "Personal Care & Service",
+        "confidence": 0.6
+      },
+      {
+        "company": "EFI Trucking & Freight Brokerage",
+        "title": "Owner",
+        "freq": 8,
+        "cluster": "53",
+        "label": "Transportation & Material Moving",
+        "confidence": 0.6
+      },
+      {
+        "company": "COMPLETE COSMETIC CARE DENTISTRY",
+        "title": "Co-Founder",
+        "freq": 6,
+        "cluster": "29",
+        "label": "Healthcare Practitioners & Technical",
+        "confidence": 0.6
+      },
+      {
+        "company": "Dior Beauty Counter",
+        "title": "Co-Owner",
+        "freq": 6,
+        "cluster": "39",
+        "label": "Personal Care & Service",
+        "confidence": 0.6
+      },
+      {
+        "company": "Palianytsia Café",
+        "title": "Co-Founder & Managing Partner",
+        "freq": 6,
+        "cluster": "35",
+        "label": "Food Preparation & Serving",
+        "confidence": 0.6
+      },
+      {
+        "company": "Stanford Dental and Associates",
+        "title": "Co-Owner",
+        "freq": 6,
+        "cluster": "29",
+        "label": "Healthcare Practitioners & Technical",
+        "confidence": 0.6
+      },
+      {
+        "company": "Accounting Principals",
+        "title": "Contractor",
+        "freq": 5,
+        "cluster": "13",
+        "label": "Business & Financial Operations",
+        "confidence": 0.6
+      },
+      {
+        "company": "Cajun South and Danrik Construction",
+        "title": "Co-Owner",
+        "freq": 5,
+        "cluster": "47",
+        "label": "Construction & Extraction",
+        "confidence": 0.6
+      },
+      {
+        "company": "Cleaning by Cari",
+        "title": "Owner",
+        "freq": 5,
+        "cluster": "37",
+        "label": "Building & Grounds Cleaning & Maintenance",
+        "confidence": 0.6
+      },
+      {
+        "company": "Fire & Iron Media",
+        "title": "Co-Owner",
+        "freq": 5,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.6
+      },
+      {
+        "company": "New Beginnings Medical Legal Consultant",
+        "title": "Owner",
+        "freq": 5,
+        "cluster": "23",
+        "label": "Legal",
+        "confidence": 0.6
+      },
+      {
+        "company": "AMM Personal Training",
+        "title": "Small Business Owner",
+        "freq": 4,
+        "cluster": "39",
+        "label": "Personal Care & Service",
+        "confidence": 0.6
+      },
+      {
+        "company": "Ayars Times Two Music",
+        "title": "Owner",
+        "freq": 4,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.6
+      },
+      {
+        "company": "Connie Niedzwiecki Real Estate",
+        "title": "Broker/Owner",
+        "freq": 4,
+        "cluster": "41",
+        "label": "Sales & Related",
+        "confidence": 0.6
+      },
+      {
+        "company": "Creative Vision Remodeling",
+        "title": "Owner",
+        "freq": 4,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.6
+      },
+      {
+        "company": "Gabbys Barber Shop",
+        "title": "Owner",
+        "freq": 4,
+        "cluster": "39",
+        "label": "Personal Care & Service",
+        "confidence": 0.6
+      },
+      {
+        "company": "Laurie France Photography",
+        "title": "Owner",
+        "freq": 4,
+        "cluster": "27",
+        "label": "Arts, Design, Entertainment, Sports & Media",
+        "confidence": 0.6
+      },
+      {
+        "company": "Lawrenz Contracting LLC",
+        "title": "Owner",
+        "freq": 4,
+        "cluster": "47",
+        "label": "Construction & Extraction",
+        "confidence": 0.6
+      }
+    ]
+  }
+}

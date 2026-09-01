@@ -1,0 +1,217 @@
+{
+  "summaries": [
+    {
+      "approach": "final_hybrid",
+      "field": "company",
+      "n_in": 3396043,
+      "n_out": 2973932,
+      "reduction": 0.124,
+      "runtime_s": 73.9,
+      "reference_match_row_pct": 69.7,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "tp": 15,
+      "fp": 0,
+      "tn": 8,
+      "fn": 0,
+      "missing": 0,
+      "false_merges": [],
+      "missed_merges": [],
+      "method_row_pct": {
+        "company_id": 68.0,
+        "raw": 27.6,
+        "placeholder": 1.7,
+        "name_crosswalk": 1.2,
+        "typo": 1.0,
+        "typo_to_id": 0.5
+      }
+    },
+    {
+      "approach": "final_hybrid",
+      "field": "employment_type",
+      "n_in": 9337517,
+      "n_out": 11,
+      "reduction": 1.0,
+      "runtime_s": 161.8,
+      "reference_match_row_pct": 100.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "tp": 2,
+      "fp": 0,
+      "tn": 0,
+      "fn": 0,
+      "missing": 0,
+      "false_merges": [],
+      "missed_merges": [],
+      "method_row_pct": {
+        "default_employee": 94.7,
+        "title_owner_marker": 2.5,
+        "company_placeholder": 1.4,
+        "title_status": 0.8,
+        "title_solo_marker": 0.6
+      }
+    },
+    {
+      "approach": "final_hybrid",
+      "field": "title",
+      "n_in": 3507500,
+      "n_out": 2916756,
+      "reduction": 0.168,
+      "runtime_s": 118.0,
+      "reference_match_row_pct": 98.5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "tp": 9,
+      "fp": 0,
+      "tn": 9,
+      "fn": 0,
+      "missing": 0,
+      "false_merges": [],
+      "missed_merges": [],
+      "method_row_pct": {
+        "title_base": 67.9,
+        "title_leveled": 30.5,
+        "raw": 1.5,
+        "typo": 0.0,
+        "typo_to_title": 0.0
+      }
+    },
+    {
+      "approach": "final_hybrid",
+      "field": "occupation",
+      "n_in": 3507500,
+      "n_out": 3178601,
+      "reduction": 0.094,
+      "runtime_s": 166.1,
+      "reference_match_row_pct": 21.5,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "tp": 4,
+      "fp": 0,
+      "tn": 4,
+      "fn": 0,
+      "missing": 0,
+      "false_merges": [],
+      "missed_merges": [],
+      "method_row_pct": {
+        "unmatched": 75.8,
+        "onet_exact": 17.0,
+        "blocked_generic_status": 1.9,
+        "onet_deleveled_token": 1.7,
+        "onet_deleveled": 1.6,
+        "onet_token": 1.0,
+        "blocked_status": 0.8,
+        "onet_exact_status_stripped": 0.2,
+        "onet_deleveled_status_stripped": 0.0,
+        "onet_token_status_stripped": 0.0,
+        "onet_deleveled_token_status_stripped": 0.0
+      }
+    }
+  ],
+  "samples": {
+    "company": {
+      "AT&T": "id:att",
+      "AT&T Mobility": "id:att",
+      "EY": "id:ernstandyoung",
+      "Ernst & Young": "id:ernstandyoung",
+      "Citi": "id:citi",
+      "Citigroup": "id:citi",
+      "Self-employed": "nonorg:self_employed",
+      "Self Employed": "nonorg:self_employed",
+      "Freelance": "nonorg:self_employed",
+      "Citizens Bank": "id:citizens-bank",
+      "First Citizens Bank": "id:first-citizens-bank",
+      "US Army": "id:us-army",
+      "United States Army": "id:us-army"
+    },
+    "employment_type": {
+      "('Self-employed', 'Graphic Designer')": "self_employed",
+      "('Self-employed', 'Retired')": "retired",
+      "('Deloitte', 'Consultant')": "employee"
+    },
+    "title": {
+      "Software Engineer": "title:|engineersoftware",
+      "Senior Software Engineer": "title:senior|engineersoftware",
+      "Sr. Software Engineer": "title:senior|engineersoftware",
+      "VP": "title:vice|president",
+      "Vice President": "title:vice|president",
+      "VP of Sales": "title:vice|presidentsales",
+      "CEO": "title:chief,executive|officer",
+      "Chief Executive Officer": "title:chief,executive|officer",
+      "Co-Founder": "title:|cofounder",
+      "Cofounder": "title:|cofounder",
+      "Founder": "title:|founder",
+      "Project Manager": "title:|managerproject",
+      "Product Manager": "title:|managerproduct"
+    },
+    "title_combined": {
+      "Software Engineer": {
+        "literal": "title:|engineersoftware",
+        "occupation": "soc:15-1252"
+      },
+      "Senior Software Engineer": {
+        "literal": "title:senior|engineersoftware",
+        "occupation": "soc:15-1252"
+      },
+      "Sr. Software Engineer": {
+        "literal": "title:senior|engineersoftware",
+        "occupation": "soc:15-1252"
+      },
+      "VP": {
+        "literal": "title:vice|president",
+        "occupation": "soc:11-1011"
+      },
+      "Vice President": {
+        "literal": "title:vice|president",
+        "occupation": "soc:11-1011"
+      },
+      "VP of Sales": {
+        "literal": "title:vice|presidentsales",
+        "occupation": "soc:11-2022"
+      },
+      "CEO": {
+        "literal": "title:chief,executive|officer",
+        "occupation": "soc:11-1011"
+      },
+      "Chief Executive Officer": {
+        "literal": "title:chief,executive|officer",
+        "occupation": "soc:11-1011"
+      },
+      "Co-Founder": {
+        "literal": "title:|cofounder",
+        "occupation": "raw:co founder"
+      },
+      "Cofounder": {
+        "literal": "title:|cofounder",
+        "occupation": "raw:cofounder"
+      },
+      "Founder": {
+        "literal": "title:|founder",
+        "occupation": "raw:founder"
+      },
+      "Project Manager": {
+        "literal": "title:|managerproject",
+        "occupation": "raw:project manager"
+      },
+      "Product Manager": {
+        "literal": "title:|managerproduct",
+        "occupation": "soc:11-2021"
+      }
+    }
+  },
+  "description": {
+    "experience_rows": 9076606,
+    "with_description": 4169939,
+    "pct_present": 45.9,
+    "sample_n": 200000,
+    "sample_pct_changed_by_normalization": 35.3
+  }
+}

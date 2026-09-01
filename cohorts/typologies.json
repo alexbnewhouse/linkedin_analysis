@@ -1,0 +1,249 @@
+{
+  "common_window_years": 8,
+  "archetype_mix_by_cohort": {
+    "1990": {
+      "0": 0.075,
+      "1": 0.118,
+      "2": 0.222,
+      "3": 0.101,
+      "4": 0.022,
+      "5": 0.049,
+      "6": 0.019,
+      "7": 0.394
+    },
+    "1995": {
+      "0": 0.066,
+      "1": 0.195,
+      "2": 0.218,
+      "3": 0.125,
+      "4": 0.022,
+      "5": 0.054,
+      "6": 0.013,
+      "7": 0.307
+    },
+    "2000": {
+      "0": 0.053,
+      "1": 0.302,
+      "2": 0.201,
+      "3": 0.147,
+      "4": 0.021,
+      "5": 0.056,
+      "6": 0.008,
+      "7": 0.211
+    },
+    "2005": {
+      "0": 0.043,
+      "1": 0.469,
+      "2": 0.169,
+      "3": 0.158,
+      "4": 0.017,
+      "5": 0.054,
+      "6": 0.005,
+      "7": 0.085
+    },
+    "2010": {
+      "0": 0.032,
+      "1": 0.631,
+      "2": 0.128,
+      "3": 0.139,
+      "4": 0.012,
+      "5": 0.045,
+      "6": 0.002,
+      "7": 0.009
+    },
+    "2015": {
+      "0": 0.022,
+      "1": 0.804,
+      "2": 0.057,
+      "3": 0.078,
+      "4": 0.006,
+      "5": 0.03,
+      "6": 0.001
+    },
+    "2020": {
+      "0": 0.014,
+      "1": 0.918,
+      "2": 0.015,
+      "3": 0.022,
+      "4": 0.004,
+      "5": 0.026,
+      "6": 0.001
+    }
+  },
+  "transition_type_mix_first_window_by_cohort": {
+    "1990": {
+      "exit": 0.001,
+      "employer_move": 0.101,
+      "into_self_employment": 0.027,
+      "out_of_self_employment": 0.01,
+      "employer_move_up": 0.297,
+      "promotion": 0.068,
+      "occupation_change_down": 0.003,
+      "lateral": 0.076,
+      "demotion": 0.015,
+      "occupation_change_up": 0.011,
+      "occupation_change": 0.007,
+      "education_entry": 0.001,
+      "employer_move_lateral": 0.286,
+      "employer_move_down": 0.097
+    },
+    "1995": {
+      "employer_move_lateral": 0.295,
+      "employer_move_down": 0.1,
+      "demotion": 0.017,
+      "lateral": 0.085,
+      "occupation_change": 0.007,
+      "occupation_change_up": 0.01,
+      "education_entry": 0.001,
+      "employer_move": 0.092,
+      "into_self_employment": 0.028,
+      "out_of_self_employment": 0.011,
+      "occupation_change_down": 0.004,
+      "promotion": 0.073,
+      "employer_move_up": 0.278,
+      "exit": 0.0
+    },
+    "2000": {
+      "employer_move_lateral": 0.29,
+      "employer_move_down": 0.1,
+      "lateral": 0.09,
+      "demotion": 0.019,
+      "occupation_change_up": 0.01,
+      "occupation_change": 0.007,
+      "education_entry": 0.002,
+      "employer_move": 0.088,
+      "into_self_employment": 0.026,
+      "out_of_self_employment": 0.011,
+      "employer_move_up": 0.274,
+      "promotion": 0.079,
+      "occupation_change_down": 0.004,
+      "exit": 0.0
+    },
+    "2005": {
+      "employer_move_up": 0.279,
+      "promotion": 0.084,
+      "occupation_change_down": 0.004,
+      "exit": 0.001,
+      "out_of_self_employment": 0.011,
+      "employer_move": 0.083,
+      "into_self_employment": 0.025,
+      "employer_move_lateral": 0.286,
+      "employer_move_down": 0.097,
+      "lateral": 0.091,
+      "demotion": 0.019,
+      "occupation_change": 0.007,
+      "occupation_change_up": 0.01,
+      "education_entry": 0.003
+    },
+    "2010": {
+      "out_of_self_employment": 0.011,
+      "into_self_employment": 0.023,
+      "employer_move": 0.074,
+      "exit": 0.001,
+      "employer_move_lateral": 0.289,
+      "employer_move_down": 0.098,
+      "employer_move_up": 0.283,
+      "promotion": 0.086,
+      "occupation_change_down": 0.004,
+      "lateral": 0.088,
+      "demotion": 0.02,
+      "occupation_change_up": 0.012,
+      "occupation_change": 0.008,
+      "education_entry": 0.004
+    },
+    "2015": {
+      "employer_move": 0.083,
+      "into_self_employment": 0.019,
+      "out_of_self_employment": 0.011,
+      "exit": 0.001,
+      "employer_move_down": 0.101,
+      "employer_move_lateral": 0.29,
+      "employer_move_up": 0.289,
+      "promotion": 0.076,
+      "occupation_change_down": 0.005,
+      "occupation_change": 0.009,
+      "lateral": 0.08,
+      "occupation_change_up": 0.014,
+      "demotion": 0.018,
+      "education_entry": 0.006
+    },
+    "2020": {
+      "employer_move_up": 0.289,
+      "promotion": 0.062,
+      "occupation_change_down": 0.005,
+      "exit": 0.0,
+      "employer_move": 0.103,
+      "into_self_employment": 0.016,
+      "out_of_self_employment": 0.013,
+      "employer_move_lateral": 0.296,
+      "employer_move_down": 0.104,
+      "lateral": 0.066,
+      "occupation_change": 0.011,
+      "occupation_change_up": 0.014,
+      "education_entry": 0.008,
+      "demotion": 0.013
+    }
+  },
+  "upward_move_share_first_window_by_cohort": {
+    "1990": 0.376,
+    "1995": 0.361,
+    "2000": 0.363,
+    "2005": 0.373,
+    "2010": 0.381,
+    "2015": 0.379,
+    "2020": 0.365
+  },
+  "into_self_employment_share_first_window_by_cohort": {
+    "1990": 0.027,
+    "1995": 0.028,
+    "2000": 0.026,
+    "2005": 0.025,
+    "2010": 0.023,
+    "2015": 0.019,
+    "2020": 0.016
+  },
+  "humanities_vs_non_transition_mix": {
+    "humanities": {
+      "transition_mix": {
+        "employer_move_lateral": 0.293,
+        "employer_move_down": 0.101,
+        "into_self_employment": 0.039,
+        "out_of_self_employment": 0.018,
+        "employer_move": 0.088,
+        "occupation_change_down": 0.004,
+        "promotion": 0.067,
+        "employer_move_up": 0.279,
+        "exit": 0.001,
+        "occupation_change": 0.008,
+        "lateral": 0.072,
+        "education_entry": 0.004,
+        "occupation_change_up": 0.011,
+        "demotion": 0.015
+      },
+      "upward_move_share": 0.357,
+      "into_self_employment_share": 0.039
+    },
+    "non_humanities": {
+      "transition_mix": {
+        "exit": 0.001,
+        "lateral": 0.087,
+        "demotion": 0.019,
+        "occupation_change_up": 0.012,
+        "occupation_change": 0.008,
+        "education_entry": 0.004,
+        "promotion": 0.081,
+        "employer_move_up": 0.284,
+        "occupation_change_down": 0.004,
+        "employer_move_lateral": 0.289,
+        "employer_move_down": 0.099,
+        "employer_move": 0.083,
+        "into_self_employment": 0.021,
+        "out_of_self_employment": 0.01
+      },
+      "upward_move_share": 0.377,
+      "into_self_employment_share": 0.021
+    }
+  },
+  "note": "Comparison #2 (equal-window transition mix) is the fair cohort comparison; #1 (whole-career archetypes) is confounded by observation length. Even #2 carries the recency/backfill caveat: recent cohorts' early moves are better documented.",
+  "runtime_s": 0.5
+}

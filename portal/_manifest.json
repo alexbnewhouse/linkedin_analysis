@@ -1,6 +1,6 @@
 {
-  "generated": "2026-07-13",
-  "runtime_s": 194.1,
+  "generated": "2026-07-21",
+  "runtime_s": 98.6,
   "inputs": {
     "education": "/home/alex/linkedin-analysis/normalized/education.parquet",
     "steps": "/home/alex/linkedin-analysis/paths/steps.parquet",
@@ -35,8 +35,8 @@
       "anchor_drop_rate_a1": 0.8327,
       "anchor_drop_rate": 0.818,
       "anchor_method_mix": {
-        "A2": 0.0807,
-        "A1": 0.9193
+        "A1": 0.9193,
+        "A2": 0.0807
       },
       "cip_source_mix": {
         "jury": 0.1721,
@@ -52,12 +52,12 @@
       "anchor_drop_rate_a1": 0.8029,
       "anchor_drop_rate": 0.7882,
       "anchor_method_mix": {
-        "A2": 0.0692,
-        "A1": 0.9308
+        "A1": 0.9308,
+        "A2": 0.0692
       },
       "cip_source_mix": {
-        "jury": 0.022,
-        "det": 0.978
+        "det": 0.978,
+        "jury": 0.022
       }
     },
     "philrel": {
@@ -73,8 +73,8 @@
         "A2": 0.1155
       },
       "cip_source_mix": {
-        "jury": 0.1522,
-        "det": 0.8478
+        "det": 0.8478,
+        "jury": 0.1522
       }
     },
     "arts": {
@@ -90,8 +90,8 @@
         "A2": 0.1085
       },
       "cip_source_mix": {
-        "det": 0.7869,
-        "jury": 0.2131
+        "jury": 0.2131,
+        "det": 0.7869
       }
     },
     "commmedia": {
@@ -132,11 +132,13 @@
   "params": {
     "bachelor_level": 4,
     "fan_year": 10,
-    "min_support": 40,
+    "min_support": 10,
+    "min_support_note": "Global named-cell bar loosened 40 -> 10 (user directive 2026-07-13, PORTAL_REDESIGN_PLAN.md); common.MIN_SUPPORT is the single knob -- distinctive_min and path_min_persons derive from it.",
+    "detail_min_support": 10,
     "breadth_min_persons": 5,
     "distinctive_rr": 1.5,
-    "distinctive_min": 40,
-    "path_min_persons": 40,
+    "distinctive_min": 10,
+    "path_min_persons": 10,
     "curve_years": [
       0,
       2,
@@ -163,10 +165,34 @@
       "llm_jury"
     ],
     "paths_grain": "soc_major_pooled",
+    "choices": {
+      "intern_window": [
+        -4,
+        1
+      ],
+      "military_window": [
+        -4,
+        5
+      ],
+      "service_window": [
+        -1,
+        5
+      ],
+      "grad_levels": [
+        5,
+        6,
+        7
+      ],
+      "grad_horizon": 5,
+      "se_types": [
+        "business_owner",
+        "self_employed"
+      ]
+    },
     "threads": 30
   },
   "outputs": {
     "portal_data": "/home/alex/linkedin-analysis/portal/results/portal_data.json"
   },
-  "substrate": "cache"
+  "substrate": "built"
 }

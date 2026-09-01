@@ -30,9 +30,29 @@ TRANSITIONS_OUT = OUT_DIR / "transitions.parquet"
 MANIFEST_OUT = OUT_DIR / "_manifest.json"
 
 # --- Open decision #1 (CAREER_PATHS_PLAN): the "Present" anchor -------------
-# Raw snapshot files are dated 2025-02-19. Open intervals (end_date='Present')
+# Raw snapshot files are dated 2026-02-19. Open intervals (end_date='Present')
 # are closed here, NOT at "today", so ongoing roles do not silently lengthen.
-SNAPSHOT_DATE = "2025-02-19"
+#
+# Corrected 2026-08-05 from 2025-02-19, which was a year-slip: the constant was
+# written four months after the download, from `ls -l` output that had already
+# stopped printing the year. Three estimators agree on 2026-02: the file mtimes
+# (all eight, same minute), the latest posts.created_at, and the latest
+# certifications "Issued <Mon YYYY>". Under the old anchor 182,634 steps started
+# after the snapshot and were dropped from the primary timeline as
+# bad_future_start, 167,368 of them a person's most recent step.
+SNAPSHOT_DATE = "2026-02-19"
+
+# Two DIFFERENT year-grain facts derive from that date; conflating them is what
+# made the slip hard to see. Consumers must pick deliberately:
+#   SNAPSHOT_YEAR       calendar year the data reaches -- a ceiling on observed
+#                       steps/panel years (2026 is observed, but only to Feb).
+#   LAST_COMPLETE_YEAR  last FULLY observed calendar year -- the bound for
+#                       equal-window discipline (a career-year-N statistic needs
+#                       anchor <= LAST_COMPLETE_YEAR - N) and for graduation
+#                       anchors (a 2026 end_year is a graduation that has not
+#                       happened yet). This value is unchanged by the fix above.
+SNAPSHOT_YEAR = 2026
+LAST_COMPLETE_YEAR = 2025
 
 # --- Sanity bounds (CAREER_PATHS_PLAN §7) -----------------------------------
 # Profiles with absurd step counts are scrape/merge garbage, and their O(n^2)

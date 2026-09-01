@@ -1,0 +1,47 @@
+flowchart TD
+    %% Styles
+    classDef dataLayer fill:#e0f7fa,stroke:#006064,stroke-width:2px,color:#006064;
+    classDef coreLayer fill:#ede7f6,stroke:#4527a0,stroke-width:2px,color:#4527a0;
+    classDef uiLayer fill:#fce4ec,stroke:#880e4f,stroke-width:2px,color:#880e4f;
+    classDef externalLayer fill:#fff8e1,stroke:#ff8f00,stroke-width:2px,color:#ff8f00;
+
+    %% Data Sources
+    subgraph Data Processing Pipeline
+        RawData[Raw Data\nParquet / External Sources]:::externalLayer
+        DuckDB[DuckDB Processing\nData Transformation]:::dataLayer
+        DataIngestion[Ingestion Service\nUpsert Scripts]:::dataLayer
+    end
+
+    %% Live Infrastructure
+    subgraph Live Backend Infrastructure
+        LiveDB[(Live Relational Database\ne.g., PostgreSQL)]:::coreLayer
+        API[Backend API Layer\ne.g., FastAPI / Express]:::coreLayer
+        Cache[(Cache\ne.g., Redis)]:::coreLayer
+    end
+
+    %% Frontend Components
+    subgraph Frontend Portal UI
+        WebApp[Web Portal\nReact / Next.js / Vue]:::uiLayer
+        FrontendNote[Key Features:\n- Dynamic Filtering\n- Responsive Layout\n- Dark/Light Mode\n- Interactive Transitions]:::externalLayer
+        State[State Management\nClient-side Cache]:::uiLayer
+        Visuals[Interactive Dashboards\nCharts & Visualizations]:::uiLayer
+        WebApp -.-> FrontendNote
+    end
+
+    %% User
+    User((End User)):::externalLayer
+
+    %% Connections
+    RawData -->|Batch/Stream Processing| DuckDB
+    DuckDB -->|Cleaned Data Model| DataIngestion
+    DataIngestion -->|Writes/Updates| LiveDB
+    
+    LiveDB <-->|Queries| API
+    API <-->|Stores frequently accessed data| Cache
+    
+    API -->|Serves JSON Data| WebApp
+    WebApp -->|API Requests| API
+    WebApp -->|Manages Data| State
+    State -->|Propagates to UI| Visuals
+    
+    User -->|Interacts| Visuals

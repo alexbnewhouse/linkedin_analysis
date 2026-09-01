@@ -1,0 +1,59 @@
+{
+  "design": "WLS on (entry_year, career_age) cells; SE clustered by entry_year",
+  "cells": 882,
+  "max_age": 15,
+  "n_clusters": 31,
+  "headline_age_controlled": {
+    "entry_unemployment": {
+      "coef": -0.00415,
+      "se": 0.00152,
+      "p": 0.0064
+    },
+    "entry_unemployment:career_age": {
+      "coef": 0.00093,
+      "se": 0.00021,
+      "p": 0.0
+    }
+  },
+  "robustness_with_period_FE": {
+    "entry_unemployment": {
+      "coef": 0.00031,
+      "se": 0.00119,
+      "p": 0.7916
+    },
+    "entry_unemployment:career_age": {
+      "coef": -3e-05,
+      "se": 0.00012,
+      "p": 0.7862
+    },
+    "note": "period FE over-controls at cell grain (period=entry+age pins cohort)"
+  },
+  "humanities_differential_scar": {
+    "entry_unemployment": {
+      "coef": -0.00405,
+      "se": 0.00151,
+      "p": 0.0072
+    },
+    "entry_unemployment:hum": {
+      "coef": -0.00054,
+      "se": 0.00066,
+      "p": 0.4119
+    },
+    "hum": {
+      "coef": -0.01393,
+      "se": 0.00461,
+      "p": 0.0025
+    },
+    "reads_as_humanities_scarred_more": false,
+    "note": "entry_unemployment:hum is the humanities-vs-non differential in the entry-recession scar. NEGATIVE + significant => humanities grads are scarred MORE by entering in a downturn; ~0 => the scar is common to all fields. Same confound caveat as the headline; the graduation-year instrument (cleaner but only ~15% datable, so under-powered) is the documented alternative, not the default -- the module uses the full-coverage entry-year axis."
+  },
+  "interpretation": {
+    "initial_scar_per_pct_unemployment": -0.00415,
+    "fade_per_career_year": 0.00093,
+    "implied_years_until_scar_fades": 4.5,
+    "reads_as_scarring": true,
+    "note": "Age-controlled: negative initial effect + positive fade = the recession-scarring signature (worse entry depresses early seniority, converging over the implied horizon).",
+    "CONFOUND_WARNING": "This is NOT a clean causal scar. Recent cohorts have BOTH low entry-unemployment AND better-documented early careers (Phase-1 recency/backfill bias), so the negative coefficient partly reflects that recent (low-unemployment) cohorts simply record higher early seniority. Full period FE removes the effect but over-controls. Treat the magnitude as suggestive, not identified; a clean estimate needs within-cohort variation our backfill-biased snapshot cannot fully provide."
+  },
+  "runtime_s": 0.2
+}

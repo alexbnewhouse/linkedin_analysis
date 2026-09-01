@@ -1,0 +1,148 @@
+{
+  "company_placeholders": {
+    "self_employed": {
+      "rows": 123218,
+      "pct_company_rows": 1.358,
+      "distinct_spellings": 6022
+    },
+    "various": {
+      "rows": 9660,
+      "pct_company_rows": 0.106,
+      "distinct_spellings": 2911
+    },
+    "retired": {
+      "rows": 8423,
+      "pct_company_rows": 0.093,
+      "distinct_spellings": 2006
+    },
+    "none": {
+      "rows": 7118,
+      "pct_company_rows": 0.078,
+      "distinct_spellings": 53
+    },
+    "confidential": {
+      "rows": 2720,
+      "pct_company_rows": 0.03,
+      "distinct_spellings": 38
+    },
+    "unemployed": {
+      "rows": 1558,
+      "pct_company_rows": 0.017,
+      "distinct_spellings": 231
+    },
+    "stealth": {
+      "rows": 1433,
+      "pct_company_rows": 0.016,
+      "distinct_spellings": 197
+    },
+    "student": {
+      "rows": 144,
+      "pct_company_rows": 0.002,
+      "distinct_spellings": 3
+    },
+    "homemaker": {
+      "rows": 143,
+      "pct_company_rows": 0.002,
+      "distinct_spellings": 14
+    }
+  },
+  "title_markers": {
+    "consultant": {
+      "rows": 356140,
+      "pct_title_rows": 3.297
+    },
+    "owner": {
+      "rows": 186035,
+      "pct_title_rows": 1.722
+    },
+    "founder_cofounder": {
+      "rows": 95159,
+      "pct_title_rows": 0.881
+    },
+    "strong_solo_markers_union": {
+      "rows": 89031,
+      "pct_title_rows": 0.824
+    },
+    "freelance": {
+      "rows": 51790,
+      "pct_title_rows": 0.48
+    },
+    "independent": {
+      "rows": 35290,
+      "pct_title_rows": 0.327
+    },
+    "contractor": {
+      "rows": 23891,
+      "pct_title_rows": 0.221
+    },
+    "self_employed_in_title": {
+      "rows": 4744,
+      "pct_title_rows": 0.044
+    }
+  },
+  "self_employed_row_coverage": {
+    "rows": 118137,
+    "pct_title_present": 100.0,
+    "pct_start_and_end_dates": 93.2,
+    "pct_description": 47.6,
+    "pct_company_id": 14.9,
+    "pct_multi_role": 4.4
+  },
+  "occupation_recovery_examples": {
+    "Freelance Graphic Designer": {
+      "raw": null,
+      "raw_method": "unmatched",
+      "stripped_title": "graphic designer",
+      "stripped": "soc:27-1024",
+      "stripped_method": "onet_exact",
+      "final": "soc:27-1024",
+      "final_method": "onet_exact_status_stripped"
+    },
+    "Freelance Writer": {
+      "raw": "soc:27-3043",
+      "raw_method": "onet_exact",
+      "stripped_title": "writer",
+      "stripped": "soc:27-3043",
+      "stripped_method": "onet_exact",
+      "final": "soc:27-3043",
+      "final_method": "onet_exact"
+    },
+    "Freelance Artist": {
+      "raw": "soc:27-1013",
+      "raw_method": "onet_exact",
+      "stripped_title": "artist",
+      "stripped": null,
+      "stripped_method": "unmatched",
+      "final": "soc:27-1013",
+      "final_method": "onet_exact"
+    },
+    "Private Tutor": {
+      "raw": "soc:25-3041",
+      "raw_method": "onet_exact",
+      "stripped_title": "tutor",
+      "stripped": null,
+      "stripped_method": "unmatched",
+      "final": "soc:25-3041",
+      "final_method": "onet_exact"
+    },
+    "Owner": {
+      "raw": null,
+      "raw_method": "blocked_generic_status",
+      "stripped_title": "owner",
+      "stripped": null,
+      "stripped_method": "blocked_generic_status",
+      "final": null,
+      "final_method": "blocked_generic_status"
+    },
+    "Independent Consultant": {
+      "raw": null,
+      "raw_method": "blocked_generic_status",
+      "stripped_title": "consultant",
+      "stripped": null,
+      "stripped_method": "blocked_generic_status",
+      "final": null,
+      "final_method": "blocked_generic_status"
+    }
+  },
+  "job_title_source": "(\n  SELECT title AS value FROM read_parquet('/home/alex/linkedin-analysis/parsed/experience/*.parquet') t\n    WHERE title IS NOT NULL AND trim(title) <> ''\n      AND NOT EXISTS (SELECT 1 FROM read_parquet('/home/alex/linkedin-analysis/parsed/positions/*.parquet') p\n                      WHERE p.linkedin_id=t.linkedin_id\n                        AND p.experience_idx=t.experience_idx)\n  UNION ALL\n  SELECT title AS value FROM read_parquet('/home/alex/linkedin-analysis/parsed/positions/*.parquet') WHERE title IS NOT NULL AND trim(title) <> ''\n)"
+}

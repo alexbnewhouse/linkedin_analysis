@@ -1,0 +1,369 @@
+{
+  "a1": {
+    "gold_n": 203124,
+    "method": "A1",
+    "rule": "earliest usable end_year (unchanged rule)",
+    "verdict": "ACCEPTED",
+    "verdict_note": "Observed, gold by construction."
+  },
+  "a2": {
+    "by_entry_decade": {
+      "1950": {
+        "median_error": -1,
+        "n": 93,
+        "share_within_1yr": 0.8817,
+        "share_within_2yr": 0.957
+      },
+      "1960": {
+        "median_error": -1,
+        "n": 1061,
+        "share_within_1yr": 0.8021,
+        "share_within_2yr": 0.9585
+      },
+      "1970": {
+        "median_error": -1,
+        "n": 5281,
+        "share_within_1yr": 0.8269,
+        "share_within_2yr": 0.9534
+      },
+      "1980": {
+        "median_error": -1.0,
+        "n": 10954,
+        "share_within_1yr": 0.7942,
+        "share_within_2yr": 0.9514
+      },
+      "1990": {
+        "median_error": -1,
+        "n": 16421,
+        "share_within_1yr": 0.7515,
+        "share_within_2yr": 0.9323
+      },
+      "2000": {
+        "median_error": -1.0,
+        "n": 34124,
+        "share_within_1yr": 0.7921,
+        "share_within_2yr": 0.9446
+      },
+      "2010": {
+        "median_error": -1,
+        "n": 75767,
+        "share_within_1yr": 0.8069,
+        "share_within_2yr": 0.9543
+      },
+      "2020": {
+        "median_error": -1,
+        "n": 59423,
+        "share_within_1yr": 0.8205,
+        "share_within_2yr": 0.9575
+      }
+    },
+    "by_major": {
+      "arts": {
+        "median_error": -1.0,
+        "n": 8868,
+        "name": "Fine & Performing Arts",
+        "share_within_1yr": 0.808,
+        "share_within_2yr": 0.9489
+      },
+      "commmedia": {
+        "median_error": -1,
+        "n": 8913,
+        "name": "Communication & Media",
+        "share_within_1yr": 0.8185,
+        "share_within_2yr": 0.9571
+      },
+      "english": {
+        "median_error": -1,
+        "n": 4759,
+        "name": "English & Literature",
+        "share_within_1yr": 0.8275,
+        "share_within_2yr": 0.9529
+      },
+      "history": {
+        "median_error": -1.0,
+        "n": 2966,
+        "name": "History",
+        "share_within_1yr": 0.821,
+        "share_within_2yr": 0.9484
+      },
+      "philrel": {
+        "median_error": -1.0,
+        "n": 1450,
+        "name": "Philosophy & Religion",
+        "share_within_1yr": 0.8,
+        "share_within_2yr": 0.9455
+      }
+    },
+    "final_d_hat": 3,
+    "gate_threshold_within_1yr": 0.8,
+    "gold_n": 203124,
+    "gold_n_with_start_year": 203124,
+    "iterations_tried": [
+      {
+        "d_hat": 2,
+        "median_error": -2.0,
+        "n": 203124,
+        "share_within_1yr": 0.3565,
+        "share_within_2yr": 0.8508,
+        "variant": "start_year + 2"
+      },
+      {
+        "d_hat": 3,
+        "median_error": -1.0,
+        "n": 203124,
+        "share_within_1yr": 0.8037,
+        "share_within_2yr": 0.9517,
+        "variant": "start_year + 3"
+      },
+      {
+        "d_hat": 4,
+        "median_error": 0.0,
+        "n": 203124,
+        "share_within_1yr": 0.7639,
+        "share_within_2yr": 0.9353,
+        "variant": "start_year + 4"
+      },
+      {
+        "d_hat": 5,
+        "median_error": 1.0,
+        "n": 203124,
+        "share_within_1yr": 0.6197,
+        "share_within_2yr": 0.7961,
+        "variant": "start_year + 5"
+      },
+      {
+        "n": 216008,
+        "note": "no improvement over the constant offset -- rejected as unneeded complexity",
+        "share_within_1yr": 0.765,
+        "variant": "per-CIP2 median duration (in-sample)"
+      }
+    ],
+    "method": "A2",
+    "overall": {
+      "median_error": -1.0,
+      "n": 203124,
+      "share_within_1yr": 0.8037,
+      "share_within_2yr": 0.9517
+    },
+    "rule": "start_year + 3 (empirically optimal +/-1yr offset, not the median duration of 4 -- see module docstring)",
+    "verdict": "ACCEPTED",
+    "verdict_note": "Clears the +/-1yr gate at person grain (0.8037 >= 0.8); +/-2yr = 0.9517. Holds up consistently: every entry decade lands 75-88% and all five named majors land 80.0-82.8% within +/-1yr (see by_entry_decade / by_major below). ACCEPTED into the default ANCHOR_TIERS."
+  },
+  "a3": {
+    "best_constant_offset_found": {
+      "offset": 0,
+      "share_within_1yr": 0.3066,
+      "share_within_2yr": 0.4238
+    },
+    "by_entry_decade": {
+      "1950": {
+        "median_error": 14,
+        "n": 87,
+        "share_within_1yr": 0.1264,
+        "share_within_2yr": 0.1724
+      },
+      "1960": {
+        "median_error": 12.5,
+        "n": 1022,
+        "share_within_1yr": 0.1458,
+        "share_within_2yr": 0.1859
+      },
+      "1970": {
+        "median_error": 9.0,
+        "n": 5204,
+        "share_within_1yr": 0.1962,
+        "share_within_2yr": 0.2485
+      },
+      "1980": {
+        "median_error": 6.0,
+        "n": 10886,
+        "share_within_1yr": 0.2468,
+        "share_within_2yr": 0.3102
+      },
+      "1990": {
+        "median_error": 3.0,
+        "n": 16366,
+        "share_within_1yr": 0.2749,
+        "share_within_2yr": 0.3581
+      },
+      "2000": {
+        "median_error": 1,
+        "n": 33991,
+        "share_within_1yr": 0.3509,
+        "share_within_2yr": 0.4693
+      },
+      "2010": {
+        "median_error": -1,
+        "n": 75231,
+        "share_within_1yr": 0.3712,
+        "share_within_2yr": 0.5019
+      },
+      "2020": {
+        "median_error": -4.0,
+        "n": 58008,
+        "share_within_1yr": 0.23,
+        "share_within_2yr": 0.356
+      }
+    },
+    "by_major": {
+      "arts": {
+        "median_error": -1,
+        "n": 8795,
+        "name": "Fine & Performing Arts",
+        "share_within_1yr": 0.2922,
+        "share_within_2yr": 0.4213
+      },
+      "commmedia": {
+        "median_error": -1,
+        "n": 8831,
+        "name": "Communication & Media",
+        "share_within_1yr": 0.2988,
+        "share_within_2yr": 0.4233
+      },
+      "english": {
+        "median_error": 0,
+        "n": 4725,
+        "name": "English & Literature",
+        "share_within_1yr": 0.2734,
+        "share_within_2yr": 0.4002
+      },
+      "history": {
+        "median_error": 0,
+        "n": 2943,
+        "name": "History",
+        "share_within_1yr": 0.2528,
+        "share_within_2yr": 0.3707
+      },
+      "philrel": {
+        "median_error": 0.0,
+        "n": 1434,
+        "name": "Philosophy & Religion",
+        "share_within_1yr": 0.2406,
+        "share_within_2yr": 0.3319
+      }
+    },
+    "final": {
+      "coverage": 0.9885,
+      "median_error": 0,
+      "n": 200795,
+      "share_within_1yr": 0.3066,
+      "share_within_2yr": 0.4238
+    },
+    "gate_threshold_within_1yr": 0.8,
+    "gold_n": 203124,
+    "iterations_tried": [
+      {
+        "coverage": 0.9899,
+        "median_error": 0,
+        "n": 201075,
+        "share_within_1yr": 0.3066,
+        "share_within_2yr": 0.4237,
+        "variant": "v1: exclude employment_type=student + seniority_level like intern"
+      },
+      {
+        "coverage": 0.9878,
+        "median_error": 0,
+        "n": 200639,
+        "share_within_1yr": 0.309,
+        "share_within_2yr": 0.4249,
+        "variant": "v2: + exclude title_raw intern/co-op"
+      },
+      {
+        "coverage": 0.9741,
+        "median_error": 0,
+        "n": 197871,
+        "share_within_1yr": 0.3114,
+        "share_within_2yr": 0.4282,
+        "variant": "v3: employment_type='employee' only"
+      },
+      {
+        "coverage": 0.9619,
+        "median_error": 0.0,
+        "n": 195384,
+        "share_within_1yr": 0.3198,
+        "share_within_2yr": 0.4364,
+        "variant": "v4: + tenure_months >= 6"
+      },
+      {
+        "coverage": 0.9885,
+        "median_error": 0,
+        "n": 200795,
+        "share_within_1yr": 0.3066,
+        "share_within_2yr": 0.4238,
+        "variant": "v5 (chosen for anchors.py): in_workforce, seniority_ordinal NULL or >=1"
+      }
+    ],
+    "method": "A3",
+    "offset_grid_on_chosen_rule": [
+      {
+        "offset": -5,
+        "share_within_1yr": 0.16,
+        "share_within_2yr": 0.2625
+      },
+      {
+        "offset": -4,
+        "share_within_1yr": 0.1888,
+        "share_within_2yr": 0.3014
+      },
+      {
+        "offset": -3,
+        "share_within_1yr": 0.2058,
+        "share_within_2yr": 0.3208
+      },
+      {
+        "offset": -2,
+        "share_within_1yr": 0.2045,
+        "share_within_2yr": 0.4262
+      },
+      {
+        "offset": -1,
+        "share_within_1yr": 0.2894,
+        "share_within_2yr": 0.448
+      },
+      {
+        "offset": 0,
+        "share_within_1yr": 0.3066,
+        "share_within_2yr": 0.4238
+      },
+      {
+        "offset": 1,
+        "share_within_1yr": 0.2918,
+        "share_within_2yr": 0.3902
+      },
+      {
+        "offset": 2,
+        "share_within_1yr": 0.1698,
+        "share_within_2yr": 0.3545
+      },
+      {
+        "offset": 3,
+        "share_within_1yr": 0.111,
+        "share_within_2yr": 0.2176
+      },
+      {
+        "offset": 4,
+        "share_within_1yr": 0.0832,
+        "share_within_2yr": 0.1472
+      },
+      {
+        "offset": 5,
+        "share_within_1yr": 0.0636,
+        "share_within_2yr": 0.1123
+      }
+    ],
+    "rule": "Start year of the person's earliest datable, in-workforce (employee/business_owner/self_employed), non-intern (seniority_ordinal NULL or >=1) primary step.",
+    "verdict": "NOT_ACCEPTED",
+    "verdict_note": "Fails the +/-1yr gate by a wide margin (~31% vs 80% required) despite 5 filter iterations and an 11-point offset grid search (best achievable offset is 0, i.e. no shift helps). Root cause is data sparsity, not a bad rule: average absolute error is 4-7 years even for the thinnest (1-2 step) profiles -- LinkedIn profiles frequently omit early-career jobs, most severely for older cohorts (1950s gold: median error +30-40 years). REJECTED. Shipped flagged EXPERIMENTAL for provenance/completeness only; excluded from every default consumer."
+  },
+  "accepted_tiers": [
+    "A1",
+    "A2"
+  ],
+  "experimental_tiers": [
+    "A3"
+  ],
+  "gate": {
+    "rule": "a tier ships ACCEPTED only if >=80% of gold predictions land within +/-1 year",
+    "share_within_1yr_threshold": 0.8
+  }
+}

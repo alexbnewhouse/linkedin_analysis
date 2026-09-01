@@ -103,29 +103,34 @@ def destination_fan(con) -> dict:
 #   roles_shown_n = people covered by the named roles
 #   other_coded_n = coded to a role, but every remaining role is below the bar
 #   no_detail_n   = classified to the group only (jury) -- no role to show
-# Named roles clear DETAIL_MIN_SUPPORT (10), NOT the 40-person headline bar:
-# this is a descriptive composition of the coded subset, on the same footing as
-# the breadth KPI's >=5-person occupation-node reach. See common.DETAIL_MIN_SUPPORT.
-# Finer roles fold into other_coded_n rather than being listed, and the UI
-# badges the whole panel as a coded-subset composition below the 40 bar.
-def destination_fan_detail(con) -> dict:
-    """Requires fan_endpoint (built by destination_fan) and occ_nodes (with
-    label) to be registered on `con` already."""
+# Named roles clear DETAIL_MIN_SUPPORT (10; since the 2026-07-13 loosening this
+# coincides with the MIN_SUPPORT headline bar): a descriptive composition of
+# the coded subset, on the same footing as the breadth KPI's >=5-person
+# occupation-node reach. See common.DETAIL_MIN_SUPPORT. Finer roles fold into
+# other_coded_n rather than being listed, and the UI badges the whole panel as
+# a coded-subset composition.
+def destination_fan_detail(con, endpoint: str = "fan_endpoint") -> dict:
+    """Requires `endpoint` -- a temp table of (group_key, soc_major, occ_code)
+    endpoint rows: fan_endpoint (built by destination_fan, year 10) or the
+    launchboard's lb_ep snapshot endpoints (years 1/3/5) -- plus occ_nodes
+    (with label) registered on `con`. The semantics are horizon-agnostic: the
+    drill-down describes the det-coded slice of whatever endpoint the table
+    holds, under the same coverage-split honesty contract."""
     rows = con.execute(f"""
       SELECT fe.group_key, fe.soc_major, o.label AS role, count(*) AS n
-      FROM fan_endpoint fe
+      FROM {endpoint} fe
       JOIN occ_nodes o ON o.node = fe.occ_code
       WHERE fe.occ_code IS NOT NULL AND fe.soc_major IS NOT NULL
       GROUP BY 1, 2, 3
     """).fetchall()
     # deterministic (role-coded) totals per (group_key, soc_major)
-    coded = {(gk, soc): n for gk, soc, n in con.execute("""
+    coded = {(gk, soc): n for gk, soc, n in con.execute(f"""
       SELECT group_key, soc_major, count(*)
-      FROM fan_endpoint WHERE occ_code IS NOT NULL AND soc_major IS NOT NULL
+      FROM {endpoint} WHERE occ_code IS NOT NULL AND soc_major IS NOT NULL
       GROUP BY 1, 2""").fetchall()}
-    cell_total = {(gk, soc): n for gk, soc, n in con.execute("""
+    cell_total = {(gk, soc): n for gk, soc, n in con.execute(f"""
       SELECT group_key, soc_major, count(*)
-      FROM fan_endpoint WHERE soc_major IS NOT NULL
+      FROM {endpoint} WHERE soc_major IS NOT NULL
       GROUP BY 1, 2""").fetchall()}
 
     by_cell: dict[tuple, list] = {}
@@ -153,6 +158,52 @@ def destination_fan_detail(con) -> dict:
     return out
 
 
+# --- 2c. Diversity of the possibility space ----------------------------------
+# First-class diversity stats per major (and baseline) for the possibility-
+# space stat band (PORTAL_REDESIGN_PLAN.md Part 1). effective_destinations and
+# top3_classified_share are computed over the FULL classified endpoint
+# distribution (every SOC major group with n >= 1), not just cells clearing
+# MIN_SUPPORT: they are scalar aggregates that name no cell, so suppression
+# does not apply -- same footing as unclassified_share, which also aggregates
+# below-bar people. groups_reached and top_bucket_share, by contrast, restate
+# the *published* fan (cells clearing MIN_SUPPORT).
+SOC_GROUPS_OF = 23  # BLS SOC major groups (transition_network.common.SOC_MAJOR)
+
+
+def diversity(con, fan: dict) -> dict:
+    """Requires fan_endpoint (materialized by destination_fan) on `con`;
+    `fan` is destination_fan's output (for the published-cell stats)."""
+    counts_rows = con.execute("""
+      SELECT group_key, soc_major, count(*) AS n
+      FROM fan_endpoint WHERE soc_major IS NOT NULL
+      GROUP BY 1, 2""").fetchall()
+    by_g: dict[str, list[int]] = {}
+    for g, _soc, n in counts_rows:
+        by_g.setdefault(g, []).append(int(n))
+    out = {}
+    for g in ALL_GROUPS:
+        ns = sorted(by_g.get(g, []), reverse=True)
+        classified = sum(ns)
+        f = fan[g]
+        cells = f["fan"]
+        if classified:
+            simpson = sum((n / classified) ** 2 for n in ns)
+            eff = round(1.0 / simpson, 2)
+            top3 = round(sum(ns[:3]) / classified, 4)
+        else:
+            eff, top3 = None, None
+        out[g] = {
+            "classified_n": classified,
+            "unclassified_share": f["unclassified_share"],
+            "effective_destinations": eff,
+            "groups_reached": len(cells),
+            "groups_of": SOC_GROUPS_OF,
+            "top_bucket_share": cells[0]["share"] if cells else None,
+            "top3_classified_share": top3,
+        }
+    return out
+
+
 # --- 3/4. Breadth + distinctive destinations --------------------------------
 def breadth_and_distinctive(con) -> dict:
     cut = _win_cut(C.FAN_YEAR)
@@ -174,7 +225,8 @@ def breadth_and_distinctive(con) -> dict:
         f"SELECT group_key, count(*) FROM reach WHERE n_persons >= "
         f"{C.BREADTH_MIN_PERSONS} GROUP BY 1").fetchall()}
 
-    # Distinctive: year-10 endpoint occupation node with RR>=1.5 and n>=40 vs baseline.
+    # Distinctive: year-10 endpoint occupation node with RR >= DISTINCTIVE_RR
+    # and n >= DISTINCTIVE_MIN (== MIN_SUPPORT) vs baseline.
     endpoint = con.execute("""
       SELECT group_key, occ_code AS node, count(*) AS n
       FROM fan_endpoint WHERE occ_code IS NOT NULL
@@ -290,28 +342,38 @@ def sectors(con) -> dict:
 
 # --- 9. The employer field (dispersion, not a top-employers list) -----------
 # 2026-07-09 review replaced an "employer lens" that (a) quietly relaxed the
-# suppression bar to n>=10 for NAMED-employer cells -- the most identifying
-# cell type the portal could publish -- and (b) counted raw company strings.
-# The honest probe at n>=40 (canonical ids, major x employer, years 0-5)
-# found 1-3 cells per major, almost all self-employment markers: NO real
-# employer concentrates a humanities cohort. That dispersion IS the finding,
-# so the shipped feature reports it: aggregate SIZE BUCKETS (how many
-# employers hired 1 / 2 / 3-5 / ... graduates) plus names ONLY at n>=40.
-# Nothing below the bar leaves the pipeline, even anonymously.
+# suppression bar for NAMED-employer cells -- the most identifying cell type
+# the portal could publish -- and (b) counted raw company strings. The honest
+# probe at the then-40 bar (canonical ids, major x employer, years 0-5) found
+# 1-3 cells per major, almost all self-employment markers: NO real employer
+# concentrates a humanities cohort. That dispersion IS the finding, so the
+# shipped feature reports it: aggregate SIZE BUCKETS (how many employers hired
+# 1 / 2 / 3-5 / ... graduates) plus names ONLY at n >= MIN_SUPPORT (the single
+# global bar -- 10 since the 2026-07-13 loosening; the bucket edges derive from
+# it so the top bucket is exactly the named-eligible set). Nothing below the
+# bar leaves the pipeline, even anonymously.
 EMPLOYER_WINDOW_YEARS = 5
-EMPLOYER_BUCKETS = ((1, 1), (2, 2), (3, 5), (6, 10), (11, 20), (21, 39), (40, None))
+EMPLOYER_BUCKETS = ((1, 1), (2, 2), (3, 5),
+                    (6, C.MIN_SUPPORT - 1), (C.MIN_SUPPORT, None))
 
 
 def employer_field(con) -> dict:
     steps = f"read_parquet('{C.q(C.STEPS)}')"
     cut = _win_cut(EMPLOYER_WINDOW_YEARS)
+    # NOTE on determinism (byte-reproducibility bug found 2026-07-14): the
+    # display name used to be any_value(company_raw), which is thread-order-
+    # dependent in DuckDB, and `labeled` ordered by n DESC with no tie-break --
+    # both flipped between identical runs once the loosened bar surfaced many
+    # more named employers. The name is now the employer's MODAL raw string
+    # (ties broken lexicographically) and every ordering carries a total
+    # tie-break.
     con.execute(f"""
-      CREATE OR REPLACE TEMP TABLE emp_field AS
+      CREATE OR REPLACE TEMP TABLE emp_rel AS
       SELECT m.group_key,
              coalesce(s.company_canonical_id,
                       'raw:' || lower(trim(s.company_raw))) AS emp_id,
-             any_value(s.company_raw) AS emp_name,
-             count(DISTINCT m.linkedin_id) AS n
+             s.company_raw AS raw_name,
+             m.linkedin_id
       FROM membership m
       JOIN {steps} s ON s.linkedin_id = m.linkedin_id
       WHERE m.anchor <= {cut}
@@ -319,7 +381,25 @@ def employer_field(con) -> dict:
         AND year(s.start_dt) - m.anchor BETWEEN 0 AND {EMPLOYER_WINDOW_YEARS}
         AND (s.company_canonical_id IS NOT NULL
              OR (s.company_raw IS NOT NULL AND trim(s.company_raw) <> ''))
-      GROUP BY 1, 2
+    """)
+    con.execute("""
+      CREATE OR REPLACE TEMP TABLE emp_field AS
+      WITH agg AS (
+        SELECT group_key, emp_id, count(DISTINCT linkedin_id) AS n
+        FROM emp_rel GROUP BY 1, 2
+      ),
+      names AS (
+        SELECT group_key, emp_id, raw_name AS emp_name
+        FROM (
+          SELECT group_key, emp_id, raw_name, count(*) AS c
+          FROM emp_rel
+          WHERE raw_name IS NOT NULL AND trim(raw_name) <> ''
+          GROUP BY 1, 2, 3)
+        QUALIFY row_number() OVER (PARTITION BY group_key, emp_id
+                                   ORDER BY c DESC, raw_name) = 1
+      )
+      SELECT a.group_key, a.emp_id, nm.emp_name, a.n
+      FROM agg a LEFT JOIN names nm USING (group_key, emp_id)
     """)
     stats = {g: dict(zip(("n_employers", "persons", "singletons"), r)) for g, *r in
              con.execute("""
@@ -331,9 +411,14 @@ def employer_field(con) -> dict:
           PARTITION BY group_key ORDER BY n DESC, emp_id) AS rk
         FROM emp_field) WHERE rk <= 10 GROUP BY 1""").fetchall()}
     labeled = {}
+    # "Various ..." profile strings are aggregation junk, not employers -- they
+    # stay in the size buckets but are never named (Self-Employed/Freelance
+    # markers are real signals and stay).
     for g, name, n in con.execute(f"""
       SELECT group_key, emp_name, n FROM emp_field WHERE n >= {C.MIN_SUPPORT}
-      ORDER BY group_key, n DESC""").fetchall():
+      ORDER BY group_key, n DESC, emp_name, emp_id""").fetchall():
+        if name and name.strip().lower().startswith("various"):
+            continue
         labeled.setdefault(g, []).append({"name": name, "n": int(n)})
     bucket_rows = con.execute("""
       SELECT group_key, n, count(*) FROM emp_field GROUP BY 1, 2""").fetchall()

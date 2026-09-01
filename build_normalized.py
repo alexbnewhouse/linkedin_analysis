@@ -49,9 +49,12 @@ from career_clean.common import EXP, POS, ROOT, load_vocab as load_career_vocab
 from edu_clean import final_hybrid as edu_final
 from edu_clean.common import EDU, load_vocab as load_edu_vocab
 
-# Data snapshot anchor (paths/common.SNAPSHOT_DATE = 2025-02-19). Education end
-# years beyond this are expected/in-progress graduations (audit finding 5):
-# they get an `in_progress` flag instead of being silently dropped downstream.
+# Last FULLY observed graduation year (paths/common.LAST_COMPLETE_YEAR). The
+# snapshot is 2026-02-19, so a 2026 end_year is a graduation that has not
+# happened yet: education end years beyond this are expected/in-progress
+# graduations (audit finding 5) and get an `in_progress` flag instead of being
+# silently dropped downstream. The value is unchanged by the 2026-08-05 snapshot
+# correction -- it was never the snapshot's calendar year.
 EDU_SNAPSHOT_YEAR = 2025
 
 # Sortable degree-level ordinal (HS=1 .. doctorate=7) rendered as a SQL CASE on
@@ -560,6 +563,15 @@ def write_education_person(out: Path, threads: int, timings: list[StepTiming]) -
       cip_code/cip2/cip4 + nha_level/humanities_field_group  -- the *terminal*
           field of study: the CIP-coded row with the highest degree level,
           breaking ties by latest end_year
+      cip2_pooled/nha_level_pooled/humanities_field_group_pooled  -- the terminal
+          field under POOLED coverage (deterministic backbone + calibrated CIP
+          jury; see edu_clean/apply_cip_pooled.py)
+      hum_l1_any/hum_l2_any/hum_l3_any/hum_l1_bachelor_any  -- ANY-degree
+          humanities membership under pooled coverage. Use these, NOT the
+          terminal nha_level, to define the humanities population: the terminal
+          field misses ~21% of true L1 persons (History-BA-then-MBA lands on the
+          MBA). Nested (L1 => L2 => L3); the _bachelor_ variant restricts the
+          qualifying row to degree_level = 4 (the portal's membership rule).
       school_slug  -- primary institution, chosen the same way among rows
           with a slug
       n_edu_rows  -- deduplicated credential rows (is_duplicate excluded
@@ -581,9 +593,26 @@ def write_education_person(out: Path, threads: int, timings: list[StepTiming]) -
                   linkedin_id,
                   count(*) AS n_edu_rows,
                   max(degree_level) AS highest_degree_level,
+                  -- pooled highest level: uses degree_level_pooled (det backbone +
+                  -- the calibrated degree-level jury), so persons whose only
+                  -- credential sat in the null-degree tail now get a level.
+                  max(coalesce(degree_level_pooled, degree_level)) AS highest_degree_level_pooled,
                   min(end_year) FILTER (WHERE degree_level = 4) AS bachelor_end_year,
                   min(end_year) AS any_end_year_min,
-                  max(end_year) AS any_end_year_max
+                  max(end_year) AS any_end_year_max,
+                  -- ANY-degree humanities flags (pooled coverage). These fix the
+                  -- terminal-only undercount: a History-BA-then-MBA person is
+                  -- humanities by ANY row, not by the highest degree. Nested
+                  -- (L1 => L2 => L3) by construction of nha_level_pooled.
+                  coalesce(bool_or(nha_level_pooled = 1), FALSE) AS hum_l1_any,
+                  coalesce(bool_or(nha_level_pooled IN (1, 2)), FALSE) AS hum_l2_any,
+                  coalesce(bool_or(nha_level_pooled IN (1, 2, 3)), FALSE) AS hum_l3_any,
+                  coalesce(bool_or(nha_level_pooled = 1 AND degree_level = 4),
+                           FALSE) AS hum_l1_bachelor_any,
+                  -- pooled bachelor variant: bachelor rung under pooled degree level
+                  coalesce(bool_or(nha_level_pooled = 1
+                           AND coalesce(degree_level_pooled, degree_level) = 4),
+                           FALSE) AS hum_l1_bachelor_pooled_any
                 FROM e GROUP BY 1
               ),
               highest_year AS (
@@ -601,6 +630,19 @@ def write_education_person(out: Path, threads: int, timings: list[StepTiming]) -
                   ORDER BY degree_level DESC NULLS LAST, end_year DESC NULLS LAST, idx
                 ) = 1
               ),
+              terminal_pooled AS (
+                -- terminal field under POOLED coverage (det backbone + CIP jury):
+                -- the highest-degree row carrying any cip2_pooled
+                SELECT linkedin_id,
+                       cip2_pooled AS cip2_pooled,
+                       nha_level_pooled AS nha_level_pooled,
+                       humanities_field_group_pooled AS humanities_field_group_pooled
+                FROM e WHERE cip2_pooled IS NOT NULL
+                QUALIFY row_number() OVER (
+                  PARTITION BY linkedin_id
+                  ORDER BY degree_level DESC NULLS LAST, end_year DESC NULLS LAST, idx
+                ) = 1
+              ),
               school AS (
                 SELECT linkedin_id, school_slug
                 FROM e WHERE school_slug IS NOT NULL
@@ -613,6 +655,7 @@ def write_education_person(out: Path, threads: int, timings: list[StepTiming]) -
                 a.linkedin_id,
                 a.n_edu_rows,
                 a.highest_degree_level,
+                a.highest_degree_level_pooled,
                 h.highest_degree_year,
                 a.bachelor_end_year,
                 a.any_end_year_min,
@@ -622,10 +665,19 @@ def write_education_person(out: Path, threads: int, timings: list[StepTiming]) -
                 t.cip4,
                 t.nha_level,
                 t.humanities_field_group,
+                tp.cip2_pooled,
+                tp.nha_level_pooled,
+                tp.humanities_field_group_pooled,
+                a.hum_l1_any,
+                a.hum_l2_any,
+                a.hum_l3_any,
+                a.hum_l1_bachelor_any,
+                a.hum_l1_bachelor_pooled_any,
                 s.school_slug
               FROM agg a
               LEFT JOIN highest_year h USING (linkedin_id)
               LEFT JOIN terminal t USING (linkedin_id)
+              LEFT JOIN terminal_pooled tp USING (linkedin_id)
               LEFT JOIN school s USING (linkedin_id)
             ) TO '{_quote(tmp)}' (FORMAT parquet, COMPRESSION zstd)
         """)

@@ -1,0 +1,17 @@
+{
+  "axis": "occupation",
+  "exclude_overlap": false,
+  "nodes": 824,
+  "edges": 39805,
+  "self_loop_edges": 728,
+  "total_spine_transitions": 6179130,
+  "transitions_covered": 484424,
+  "axis_coverage": 0.0784,
+  "grand_total_weight": 484424,
+  "min_support": 1,
+  "runtime_s": 0.4,
+  "outputs": {
+    "edges": "/home/alex/linkedin-analysis/transition_network/occupation_edges.parquet",
+    "nodes": "/home/alex/linkedin-analysis/transition_network/occupation_nodes.parquet"
+  }
+}

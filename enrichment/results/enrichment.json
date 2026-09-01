@@ -1,0 +1,277 @@
+{
+  "humanities_pooled": {
+    "n_persons": 246482,
+    "volunteer_pct": 16.1,
+    "top_volunteer_causes": [
+      {
+        "cause": "Education",
+        "persons": 8161
+      },
+      {
+        "cause": "Children",
+        "persons": 7198
+      },
+      {
+        "cause": "Arts and Culture",
+        "persons": 4833
+      },
+      {
+        "cause": "Social Services",
+        "persons": 4171
+      },
+      {
+        "cause": "Health",
+        "persons": 3998
+      }
+    ],
+    "publications_pct": 5.6,
+    "honors_pct": 10.7,
+    "org_leadership_pct": 2.7,
+    "professional_multilingual_pct": 10.8
+  },
+  "non_humanities_baseline": {
+    "n_persons": 1753492,
+    "volunteer_pct": 13.0,
+    "top_volunteer_causes": [
+      {
+        "cause": "Children",
+        "persons": 49669
+      },
+      {
+        "cause": "Education",
+        "persons": 44774
+      },
+      {
+        "cause": "Health",
+        "persons": 30406
+      },
+      {
+        "cause": "Social Services",
+        "persons": 27896
+      },
+      {
+        "cause": "Poverty Alleviation",
+        "persons": 11209
+      }
+    ],
+    "publications_pct": 3.6,
+    "honors_pct": 8.5,
+    "org_leadership_pct": 2.6,
+    "professional_multilingual_pct": 8.7
+  },
+  "by_subfield": {
+    "Fine & Performing Arts": {
+      "n_persons": 78241,
+      "volunteer_pct": 13.7,
+      "top_volunteer_causes": [
+        {
+          "cause": "Arts and Culture",
+          "persons": 2320
+        },
+        {
+          "cause": "Children",
+          "persons": 1843
+        },
+        {
+          "cause": "Education",
+          "persons": 1698
+        },
+        {
+          "cause": "Social Services",
+          "persons": 963
+        },
+        {
+          "cause": "Health",
+          "persons": 908
+        }
+      ],
+      "publications_pct": 4.5,
+      "honors_pct": 10.8,
+      "org_leadership_pct": 2.2,
+      "professional_multilingual_pct": 9.4
+    },
+    "English & Literature": {
+      "n_persons": 33493,
+      "volunteer_pct": 16.4,
+      "top_volunteer_causes": [
+        {
+          "cause": "Education",
+          "persons": 1336
+        },
+        {
+          "cause": "Children",
+          "persons": 880
+        },
+        {
+          "cause": "Arts and Culture",
+          "persons": 631
+        },
+        {
+          "cause": "Social Services",
+          "persons": 555
+        },
+        {
+          "cause": "Health",
+          "persons": 526
+        }
+      ],
+      "publications_pct": 8.7,
+      "honors_pct": 10.0,
+      "org_leadership_pct": 2.7,
+      "professional_multilingual_pct": 8.2
+    },
+    "History": {
+      "n_persons": 13886,
+      "volunteer_pct": 14.3,
+      "top_volunteer_causes": [
+        {
+          "cause": "Education",
+          "persons": 554
+        },
+        {
+          "cause": "Children",
+          "persons": 350
+        },
+        {
+          "cause": "Arts and Culture",
+          "persons": 195
+        },
+        {
+          "cause": "Social Services",
+          "persons": 177
+        },
+        {
+          "cause": "Health",
+          "persons": 164
+        }
+      ],
+      "publications_pct": 6.4,
+      "honors_pct": 10.0,
+      "org_leadership_pct": 2.9,
+      "professional_multilingual_pct": 7.6
+    },
+    "Languages & Linguistics": {
+      "n_persons": 9034,
+      "volunteer_pct": 19.0,
+      "top_volunteer_causes": [
+        {
+          "cause": "Education",
+          "persons": 484
+        },
+        {
+          "cause": "Children",
+          "persons": 240
+        },
+        {
+          "cause": "Health",
+          "persons": 178
+        },
+        {
+          "cause": "Social Services",
+          "persons": 177
+        },
+        {
+          "cause": "Arts and Culture",
+          "persons": 161
+        }
+      ],
+      "publications_pct": 7.4,
+      "honors_pct": 11.3,
+      "org_leadership_pct": 3.3,
+      "professional_multilingual_pct": 31.2
+    },
+    "Philosophy & Religion": {
+      "n_persons": 4874,
+      "volunteer_pct": 14.5,
+      "top_volunteer_causes": [
+        {
+          "cause": "Education",
+          "persons": 157
+        },
+        {
+          "cause": "Children",
+          "persons": 112
+        },
+        {
+          "cause": "Social Services",
+          "persons": 87
+        },
+        {
+          "cause": "Health",
+          "persons": 63
+        },
+        {
+          "cause": "Poverty Alleviation",
+          "persons": 47
+        }
+      ],
+      "publications_pct": 7.6,
+      "honors_pct": 9.7,
+      "org_leadership_pct": 2.3,
+      "professional_multilingual_pct": 9.4
+    },
+    "Theology": {
+      "n_persons": 5812,
+      "volunteer_pct": 13.1,
+      "top_volunteer_causes": [
+        {
+          "cause": "Education",
+          "persons": 154
+        },
+        {
+          "cause": "Social Services",
+          "persons": 152
+        },
+        {
+          "cause": "Children",
+          "persons": 145
+        },
+        {
+          "cause": "Poverty Alleviation",
+          "persons": 62
+        },
+        {
+          "cause": "Health",
+          "persons": 48
+        }
+      ],
+      "publications_pct": 5.8,
+      "honors_pct": 6.3,
+      "org_leadership_pct": 2.1,
+      "professional_multilingual_pct": 6.3
+    },
+    "Area & Cultural Studies": {
+      "n_persons": 5010,
+      "volunteer_pct": 20.9,
+      "top_volunteer_causes": [
+        {
+          "cause": "Education",
+          "persons": 262
+        },
+        {
+          "cause": "Children",
+          "persons": 141
+        },
+        {
+          "cause": "Arts and Culture",
+          "persons": 113
+        },
+        {
+          "cause": "Social Services",
+          "persons": 101
+        },
+        {
+          "cause": "Health",
+          "persons": 96
+        }
+      ],
+      "publications_pct": 9.1,
+      "honors_pct": 14.5,
+      "org_leadership_pct": 4.5,
+      "professional_multilingual_pct": 20.8
+    }
+  },
+  "notes": "Participation = share of persons with >=1 record in the parsed enrichment table (a floor; LinkedIn under-reports). 'professional_multilingual' = >=1 language at Full/Professional-working/Native proficiency. These dimensions are OUTSIDE the paid job-title fan and are where humanities over-index. Population = any-degree L1 humanities (pooled); sub-field = terminal pooled field group.",
+  "generated": "2026-07-22",
+  "runtime_s": 0.8
+}

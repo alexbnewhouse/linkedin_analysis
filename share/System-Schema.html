@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<title>Humanities Workforce — System Schema</title>
+<style>
+  :root {
+    --accent: #4a3aa7;
+    --accent-soft: rgba(74, 58, 167, 0.08);
+    --bg: #f7f6fb;
+    --surface: #ffffff;
+    --surface-2: #f1effa;
+    --ink: #262338;
+    --muted: #6b6684;
+    --line: #dcd9ea;
+    --ok: #1e7d4f;
+    --ok-bg: rgba(30, 125, 79, 0.10);
+    --warn: #96660a;
+    --warn-bg: rgba(196, 138, 24, 0.14);
+    --shadow: 0 1px 2px rgba(38, 35, 56, 0.05), 0 8px 24px rgba(38, 35, 56, 0.07);
+    --radius: 12px;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --accent: #9085e9;
+      --accent-soft: rgba(144, 133, 233, 0.12);
+      --bg: #15141d;
+      --surface: #201e2c;
+      --surface-2: #262436;
+      --ink: #e6e4f2;
+      --muted: #a5a0bd;
+      --line: #383550;
+      --ok: #5fc490;
+      --ok-bg: rgba(95, 196, 144, 0.13);
+      --warn: #e0aa4e;
+      --warn-bg: rgba(224, 170, 78, 0.14);
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="light"] {
+    --accent: #4a3aa7;
+    --accent-soft: rgba(74, 58, 167, 0.08);
+    --bg: #f7f6fb;
+    --surface: #ffffff;
+    --surface-2: #f1effa;
+    --ink: #262338;
+    --muted: #6b6684;
+    --line: #dcd9ea;
+    --ok: #1e7d4f;
+    --ok-bg: rgba(30, 125, 79, 0.10);
+    --warn: #96660a;
+    --warn-bg: rgba(196, 138, 24, 0.14);
+    --shadow: 0 1px 2px rgba(38, 35, 56, 0.05), 0 8px 24px rgba(38, 35, 56, 0.07);
+  }
+  :root[data-theme="dark"] {
+    --accent: #9085e9;
+    --accent-soft: rgba(144, 133, 233, 0.12);
+    --bg: #15141d;
+    --surface: #201e2c;
+    --surface-2: #262436;
+    --ink: #e6e4f2;
+    --muted: #a5a0bd;
+    --line: #383550;
+    --ok: #5fc490;
+    --ok-bg: rgba(95, 196, 144, 0.13);
+    --warn: #e0aa4e;
+    --warn-bg: rgba(224, 170, 78, 0.14);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  html { background: var(--bg); }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 48px 24px 40px; }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.2; text-wrap: balance; margin: 0; }
+  h1 { font-size: 2.2rem; letter-spacing: -0.01em; }
+  h2 { font-size: 1.45rem; }
+  p { margin: 0; }
+  code, .mono { font-family: var(--mono); }
+  .eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+  }
+  .dek { color: var(--muted); max-width: 66ch; margin-top: 12px; font-size: 1.02rem; }
+  .section { margin-top: 56px; }
+  .sec-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+  .sec-sub { color: var(--muted); max-width: 72ch; margin: 0 0 24px; }
+
+  .pill {
+    display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+    vertical-align: middle;
+  }
+  .pill.ok { color: var(--ok); background: var(--ok-bg); }
+  .pill.warn { color: var(--warn); background: var(--warn-bg); }
+  .pill.acc { color: var(--accent); background: var(--accent-soft); }
+
+  /* ---------- Section 1: lineage ---------- */
+  .stage { margin: 0; }
+  .stage-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    gap: 14px;
+    align-items: start;
+  }
+  .art {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+    padding: 13px 15px; font-size: 13px;
+  }
+  .art.ref { background: var(--surface-2); box-shadow: none; }
+  .art .fname {
+    font-family: var(--mono); font-size: 12.5px; font-weight: 700;
+    color: var(--accent); word-break: normal; overflow-wrap: break-word;
+  }
+  /* let long paths wrap at separators instead of mid-word */
+  .art .fname wbr { display: inline; }
+  .art .grain { color: var(--muted); font-size: 12px; margin: 3px 0 9px; }
+  .art ul { list-style: none; margin: 0; padding: 0; font-family: var(--mono); font-size: 11.5px; }
+  .art li { padding: 2.5px 0; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
+  .art li:first-child { border-top: none; }
+  .art li .n { color: var(--muted); font-family: var(--sans); font-size: 11px; }
+  .art .foot { margin-top: 9px; font-size: 12px; color: var(--muted); }
+  .art .foot b { color: var(--ink); font-weight: 600; }
+
+  .connector {
+    width: 2px; height: 30px; background: var(--line);
+    position: relative; margin: 4px auto;
+  }
+  .connector::after {
+    content: ""; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%);
+    border-left: 6px solid transparent; border-right: 6px solid transparent;
+    border-top: 8px solid var(--line);
+  }
+
+  .gate {
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+    border: 1px solid var(--warn);
+    background: var(--warn-bg);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    margin: 4px auto;
+    max-width: 760px;
+  }
+  .gate .g-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--warn); white-space: nowrap;
+  }
+  .gate .g-body { color: var(--ink); }
+  .gate .g-body .sub { color: var(--muted); }
+
+  .fork {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start;
+  }
+  .fork .art { height: 100%; box-sizing: border-box; }
+
+  /* ---------- Section 2: ER proposal ---------- */
+  .er { display: flex; flex-direction: column; align-items: stretch; }
+  .ent {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+    padding: 13px 15px; font-size: 13px;
+  }
+  .ent.root { max-width: 460px; margin: 0 auto; width: 100%; box-sizing: border-box; border-color: var(--accent); }
+  .ent.hub { max-width: 560px; margin: 0 auto; width: 100%; box-sizing: border-box; border-color: var(--accent); }
+  .ent .ename {
+    font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--accent);
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .ent .egrain { color: var(--muted); font-size: 12px; margin: 3px 0 9px; }
+  .ent ul { list-style: none; margin: 0; padding: 0; font-family: var(--mono); font-size: 11.5px; }
+  .ent li {
+    padding: 2.5px 0; border-top: 1px solid var(--line);
+    display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
+  }
+  .ent li:first-child { border-top: none; }
+  .ent li .n { color: var(--muted); font-family: var(--sans); font-size: 11px; }
+  .k {
+    font-family: var(--sans); font-style: normal; font-size: 9px; font-weight: 700;
+    letter-spacing: 0.08em; padding: 1px 5px; border-radius: 4px;
+  }
+  .k.pk { color: var(--accent); background: var(--accent-soft); }
+  .k.fk { color: var(--muted); background: var(--surface-2); border: 1px solid var(--line); }
+  .ent .enote { margin-top: 9px; font-size: 12px; color: var(--muted); }
+
+  .children {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    gap: 14px;
+    align-items: start;
+  }
+  .fan-hint { text-align: center; color: var(--muted); font-size: 12.5px; margin: 2px 0 12px; }
+
+  .rels {
+    margin-top: 22px;
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 14px 18px;
+  }
+  .rels .r-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .rels ul { list-style: none; margin: 0; padding: 0; font-family: var(--mono); font-size: 12px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 4px 24px; }
+  .rels li { padding: 2px 0; overflow-wrap: anywhere; }
+
+  .lifecycle {
+    margin-top: 22px;
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    box-shadow: var(--shadow);
+    padding: 14px 18px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .lifecycle b { color: var(--ink); }
+
+  footer {
+    margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line);
+    color: var(--muted); font-size: 13px; text-align: center;
+  }
+
+  .scroll-x { overflow-x: auto; padding-bottom: 6px; }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 32px 16px; }
+    h1 { font-size: 1.75rem; }
+    .fork { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">NHA · Humanities Workforce</div>
+    <h1>System Schema</h1>
+    <p class="dek">
+      Technical companion to the System Map, for web developers and data
+      engineering: the real artifacts in the lineage with their grains and
+      load-bearing columns, and the proposed live-database schema derived from
+      the JSON contract. A mermaid source of both diagrams lives at
+      <code>share/system-schema.mmd</code>.
+    </p>
+  </header>
+
+  <!-- ================= SECTION 1 ================= -->
+  <section class="section">
+    <div class="sec-head">
+      <h2>1 · Data lineage — the real artifacts</h2>
+      <span class="pill ok">Built</span>
+    </div>
+    <p class="sec-sub">
+      Top to bottom: raw snapshots become parquet tables, coding fills
+      categorical columns, the portal pipeline assembles two in-memory tables,
+      and aggregation emits the one-file contract. Amber bars mark where the
+      quality gates sit.
+    </p>
+
+    <div class="stage">
+      <div class="stage-label">Source</div>
+      <div class="cards">
+        <div class="art" style="max-width: 480px;">
+          <div class="fname">LinkedIn profile snapshots</div>
+          <div class="grain">~2M profiles · new snapshots arrive periodically</div>
+          <div class="foot">Individual-level data never leaves the pipeline environment.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector"></div>
+
+    <div class="stage">
+      <div class="stage-label">Normalization spine outputs <span class="pill ok">Built</span></div>
+      <div class="cards">
+        <div class="art">
+          <div class="fname">normalized/education.parquet</div>
+          <div class="grain">grain: one education record (linkedin_id, idx)</div>
+          <ul>
+            <li>linkedin_id</li>
+            <li>degree_level</li>
+            <li>field_raw</li>
+            <li>cip_code <span class="n">· cip2</span></li>
+            <li>nha_level</li>
+            <li>start_year <span class="n">· end_year</span></li>
+            <li>in_progress</li>
+          </ul>
+        </div>
+        <div class="art">
+          <div class="fname">paths/steps.parquet</div>
+          <div class="grain">grain: one career step (row_id)</div>
+          <ul>
+            <li>row_id <span class="n">· linkedin_id</span></li>
+            <li>title_raw</li>
+            <li>role_canonical</li>
+            <li>occupation_code <span class="n">6-digit SOC, 21.5% coverage</span></li>
+            <li>seniority_score</li>
+            <li>job_zone_norm</li>
+            <li>start_dt <span class="n">· end_dt</span></li>
+            <li>tenure_months</li>
+          </ul>
+        </div>
+        <div class="art">
+          <div class="fname">paths/transitions.parquet</div>
+          <div class="grain">grain: one job-to-job edge</div>
+          <ul>
+            <li>linkedin_id</li>
+            <li>from_row_id</li>
+            <li>to_start_dt</li>
+            <li>transition_type</li>
+            <li>dwell_months</li>
+            <li>has_gap</li>
+            <li>from_role <span class="n">· to_role</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector"></div>
+
+    <div class="stage">
+      <div class="stage-label">Coding inputs — reference tables &amp; jury mappings</div>
+      <div class="cards">
+        <div class="art ref">
+          <div class="fname">reference/cip_humanities.parquet</div>
+          <div class="grain">cip_code → nha_level · 6-digit-keyed</div>
+          <div class="foot"><b>Tier boundaries come only from here.</b></div>
+        </div>
+        <div class="art ref">
+          <div class="fname">O*NET lexicon</div>
+          <div class="grain">title → SOC · deterministic</div>
+          <div class="foot">Backbone occupation coder.</div>
+        </div>
+        <div class="art ref">
+          <div class="fname">industry/taxonomy.json</div>
+          <div class="grain">industry L1 taxonomy</div>
+          <div class="foot">Sector labels for the industry coder.</div>
+        </div>
+        <div class="art">
+          <div class="fname">normalized/mappings/<wbr>role_soc_jury.parquet</div>
+          <div class="grain">LLM jury · propose-only, calibrated + gated</div>
+          <ul>
+            <li>role_canonical</li>
+            <li>soc_major</li>
+            <li>method</li>
+            <li>n_jurors <span class="n">· unanimous</span></li>
+          </ul>
+        </div>
+        <div class="art">
+          <div class="fname">normalized/mappings/<wbr>field_cip_jury.parquet</div>
+          <div class="grain">LLM jury · propose-only, calibrated + gated</div>
+          <ul>
+            <li>field_norm</li>
+            <li>cip2</li>
+            <li>method</li>
+            <li>n_jurors <span class="n">· unanimous</span></li>
+          </ul>
+        </div>
+        <div class="art">
+          <div class="fname">industry/results/<wbr>step_industry.parquet</div>
+          <div class="grain">step → industry L1</div>
+          <ul>
+            <li>l1 <span class="n">· XOT = unresolved</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="gate">
+      <span class="g-tag">Gate</span>
+      <span class="g-body">
+        <b>Jury calibration gate:</b> pre-committed accuracy bar on held-out gold
+        labels, per jury. <b>Bias checks:</b> deterministic-only vs pooled
+        aggregates compared before jury labels ship.
+        <span class="sub">Precedence rule: deterministic always wins; the jury fills NULLs only.</span>
+      </span>
+    </div>
+
+    <div class="connector"></div>
+
+    <div class="stage">
+      <div class="stage-label">Portal pipeline — DuckDB, in-memory, rebuilt each run <span class="pill ok">Built</span></div>
+      <div class="cards">
+        <div class="art">
+          <div class="fname">membership</div>
+          <div class="grain">grain: (group_key, linkedin_id) · groups = 5 majors + baseline</div>
+          <ul>
+            <li>group_key <span class="n">· linkedin_id</span></li>
+            <li>anchor</li>
+            <li>anchor_method</li>
+          </ul>
+        </div>
+        <div class="art">
+          <div class="fname">panel</div>
+          <div class="grain">grain: (linkedin_id, cal_year)</div>
+          <ul>
+            <li>soc_major</li>
+            <li>soc_source <span class="n">det | jury</span></li>
+            <li>industry_l1</li>
+            <li>seniority_score</li>
+            <li>job_zone_norm</li>
+            <li>role_canonical</li>
+            <li>tenure_months</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="gate">
+      <span class="g-tag">Gate</span>
+      <span class="g-body">
+        <b>n ≥ 40 suppression at aggregation</b> — applied before anything
+        reaches the contract or the database.
+        <span class="sub">Suppressed cells are dropped or nulled here; downstream layers never see them.</span>
+      </span>
+    </div>
+
+    <div class="connector"></div>
+
+    <div class="stage">
+      <div class="stage-label">Contract <span class="pill ok">Built</span></div>
+      <div class="cards">
+        <div class="art" style="max-width: 520px;">
+          <div class="fname">portal/results/portal_data.json</div>
+          <div class="grain">one release per file</div>
+          <ul>
+            <li>majors{} <span class="n">5 majors, keyed</span></li>
+            <li>baseline <span class="n">+ baseline_def</span></li>
+            <li>boundaries <span class="n">l1 ⊂ l2 ⊂ l3</span></li>
+            <li>generated <span class="n">· snapshot_date</span></li>
+            <li>window_rule <span class="n">+ methods notes</span></li>
+          </ul>
+          <div class="foot">This file's shape is what Section 2 normalizes into tables.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector"></div>
+
+    <div class="fork">
+      <div class="art">
+        <div class="fname">Static export <span class="pill ok">Built · today</span></div>
+        <div class="grain">portal/run_share_build.py</div>
+        <div class="foot">
+          Injects the JSON verbatim into <code>share_template.html</code> →
+          self-contained page (<code>share/Humanities-Workforce-portal.html</code>
+          + zip + hosted artifact). Remains in production, generated from any release.
+        </div>
+      </div>
+      <div class="art">
+        <div class="fname">Live aggregate DB → read API <span class="pill warn">To build · target</span></div>
+        <div class="grain">schema in Section 2 · e.g. Postgres</div>
+        <div class="foot">
+          Pipeline writes a versioned release; a thin read-only API (REST, or
+          static JSON per release) serves the portal web app. Suppression is
+          already enforced upstream.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 2 ================= -->
+  <section class="section">
+    <div class="sec-head">
+      <h2>2 · Live database schema</h2>
+      <span class="pill warn">Proposal — to build</span>
+    </div>
+    <p class="sec-sub">
+      Derived directly from the JSON contract: <code>releases</code> version
+      each pipeline run, <code>majors</code> holds per-group headline fields
+      (the baseline is just another row), and six child tables hold the chart
+      data. All relationships are one-to-many.
+    </p>
+
+    <div class="er">
+
+      <div class="ent root">
+        <div class="ename">releases <span class="pill acc">1 row / pipeline run</span></div>
+        <div class="egrain">the unit of publication and audit</div>
+        <ul>
+          <li>release_id <em class="k pk">PK</em></li>
+          <li>generated_date</li>
+          <li>snapshot_date</li>
+          <li>anchor_tiers</li>
+          <li>soc_sources <span class="n">· cip_sources</span></li>
+          <li>gate_results <span class="n">json</span></li>
+          <li>published <span class="n">bool</span></li>
+        </ul>
+      </div>
+
+      <div class="connector"></div>
+      <p class="fan-hint">1 → many</p>
+
+      <div class="ent hub">
+        <div class="ename">majors</div>
+        <div class="egrain">PK (release_id, major_key) · includes <code>'baseline'</code> as a row</div>
+        <ul>
+          <li>release_id <em class="k pk">PK</em> <em class="k fk">FK</em></li>
+          <li>major_key <em class="k pk">PK</em></li>
+          <li>name <span class="n">· cip_families · nha_tier</span></li>
+          <li>records <span class="n">· persons · persons_anchored</span></li>
+          <li>anchor_drop_rate <span class="n">· persons_windowed_y10</span></li>
+          <li>unclassified_share <span class="n">· industry_unresolved_share</span></li>
+          <li>anchor_method_mix <span class="n">json</span> · cip_source_mix <span class="n">json</span> · soc_source_mix <span class="n">json</span></li>
+          <li>kpi_breadth <span class="n">· kpi_distinctive · kpi_up_share · kpi_dwell_median_mo</span></li>
+        </ul>
+      </div>
+
+      <div class="connector"></div>
+      <p class="fan-hint">1 → many, each child keyed by (release_id, major_key)</p>
+
+      <div class="children">
+        <div class="ent">
+          <div class="ename">fan_cells</div>
+          <div class="egrain">destination-fan slices</div>
+          <ul>
+            <li>release_id <em class="k fk">FK</em> · major_key <em class="k fk">FK</em></li>
+            <li>soc_group</li>
+            <li>share <span class="n">· rr</span></li>
+            <li>n</li>
+          </ul>
+          <div class="enote">Only cells with n ≥ 40 exist.</div>
+        </div>
+
+        <div class="ent">
+          <div class="ename">sectors</div>
+          <div class="egrain">industry L1 shares</div>
+          <ul>
+            <li>release_id <em class="k fk">FK</em> · major_key <em class="k fk">FK</em></li>
+            <li>sector</li>
+            <li>share</li>
+            <li>n</li>
+          </ul>
+        </div>
+
+        <div class="ent">
+          <div class="ename">curve_points</div>
+          <div class="egrain">long-view curve</div>
+          <ul>
+            <li>release_id <em class="k fk">FK</em> · major_key <em class="k fk">FK</em></li>
+            <li>year</li>
+            <li>median_seniority <span class="n">nullable = suppressed</span></li>
+            <li>n</li>
+          </ul>
+        </div>
+
+        <div class="ent">
+          <div class="ename">pillars</div>
+          <div class="egrain">success-pillar scores</div>
+          <ul>
+            <li>release_id <em class="k fk">FK</em> · major_key <em class="k fk">FK</em></li>
+            <li>pillar <span class="n">growth | stability | skill | direction</span></li>
+            <li>score</li>
+          </ul>
+          <div class="enote">Constructed framing; 50 = parity with baseline.</div>
+        </div>
+
+        <div class="ent">
+          <div class="ename">paths</div>
+          <div class="egrain">counted pathway routes</div>
+          <ul>
+            <li>path_id <em class="k pk">PK</em></li>
+            <li>release_id <em class="k fk">FK</em> · major_key <em class="k fk">FK</em></li>
+            <li>n_persons</li>
+            <li>terminal_group</li>
+            <li>unexpected <span class="n">bool</span></li>
+            <li>grain <span class="n">'soc_major_pooled'</span></li>
+          </ul>
+        </div>
+
+        <div class="ent">
+          <div class="ename">path_stages</div>
+          <div class="egrain">ordered stops of one route</div>
+          <ul>
+            <li>path_id <em class="k fk">FK</em></li>
+            <li>position</li>
+            <li>soc_group</li>
+          </ul>
+          <div class="enote">paths 1 → many path_stages.</div>
+        </div>
+      </div>
+
+      <div class="rels">
+        <div class="r-title">Relationships (all 1-to-many)</div>
+        <ul>
+          <li>releases → majors</li>
+          <li>majors → fan_cells</li>
+          <li>majors → sectors</li>
+          <li>majors → curve_points</li>
+          <li>majors → pillars</li>
+          <li>majors → paths</li>
+          <li>paths → path_stages</li>
+        </ul>
+      </div>
+
+      <div class="lifecycle">
+        <b>Release lifecycle:</b> pipeline writes a release <b>unpublished</b> →
+        gates + human sign-off flip <b>published</b> → portal reads the latest
+        published release. Old releases are immutable and retained for audit.
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    Humanities Workforce — system schema for web devs &amp; data engineering · companion to the System Map · working document
+  </footer>
+
+</div>
+
+</body>
+</html>

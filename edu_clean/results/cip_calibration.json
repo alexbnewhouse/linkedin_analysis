@@ -1,0 +1,39 @@
+{
+  "generated": "2026-07-09",
+  "gold_n": 600,
+  "per_juror": {
+    "llamacpp/qwen3-4b-q4": {
+      "voted_non_abstain": 563,
+      "accuracy": 0.8508,
+      "abstain": 37
+    },
+    "llamacpp/bulk-moe-q4": {
+      "voted_non_abstain": 548,
+      "accuracy": 0.885,
+      "abstain": 52
+    }
+  },
+  "unanimous": {
+    "n": 504,
+    "coverage": 0.84,
+    "accuracy": 0.9107
+  },
+  "disagree": 43,
+  "abstain_any": 53,
+  "incomplete": 0,
+  "by_tercile": {
+    "1": {
+      "n": 172,
+      "accuracy": 0.9244
+    },
+    "2": {
+      "n": 161,
+      "accuracy": 0.9006
+    },
+    "3": {
+      "n": 171,
+      "accuracy": 0.9064
+    }
+  },
+  "gate_note": "Pre-committed bar: unanimous-band accuracy >= 0.85 on this gold sample, else the jury ships flagged experimental and stays out of every default consumer. Gold strings are the deterministically-codable ones (selection bias toward clean field names) -- documented, and abstention is the mitigation. Anchors come from the gold mapping itself and cannot be made fully leak-proof against the coder's fuzzy typo_to_cip surface (Jaccard >= 0.85 anchors are excluded as mitigation), so calibration may be slightly optimistic."
+}

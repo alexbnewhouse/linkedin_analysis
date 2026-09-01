@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<title>Humanities Workforce — System Map</title>
+<style>
+  :root {
+    --accent: #4a3aa7;
+    --accent-soft: rgba(74, 58, 167, 0.08);
+    --bg: #f7f6fb;
+    --surface: #ffffff;
+    --surface-2: #f1effa;
+    --ink: #262338;
+    --muted: #6b6684;
+    --line: #dcd9ea;
+    --ok: #1e7d4f;
+    --ok-bg: rgba(30, 125, 79, 0.10);
+    --warn: #96660a;
+    --warn-bg: rgba(196, 138, 24, 0.14);
+    --shadow: 0 1px 2px rgba(38, 35, 56, 0.05), 0 8px 24px rgba(38, 35, 56, 0.07);
+    --radius: 12px;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --accent: #9085e9;
+      --accent-soft: rgba(144, 133, 233, 0.12);
+      --bg: #15141d;
+      --surface: #201e2c;
+      --surface-2: #262436;
+      --ink: #e6e4f2;
+      --muted: #a5a0bd;
+      --line: #383550;
+      --ok: #5fc490;
+      --ok-bg: rgba(95, 196, 144, 0.13);
+      --warn: #e0aa4e;
+      --warn-bg: rgba(224, 170, 78, 0.14);
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="light"] {
+    --accent: #4a3aa7;
+    --accent-soft: rgba(74, 58, 167, 0.08);
+    --bg: #f7f6fb;
+    --surface: #ffffff;
+    --surface-2: #f1effa;
+    --ink: #262338;
+    --muted: #6b6684;
+    --line: #dcd9ea;
+    --ok: #1e7d4f;
+    --ok-bg: rgba(30, 125, 79, 0.10);
+    --warn: #96660a;
+    --warn-bg: rgba(196, 138, 24, 0.14);
+    --shadow: 0 1px 2px rgba(38, 35, 56, 0.05), 0 8px 24px rgba(38, 35, 56, 0.07);
+  }
+  :root[data-theme="dark"] {
+    --accent: #9085e9;
+    --accent-soft: rgba(144, 133, 233, 0.12);
+    --bg: #15141d;
+    --surface: #201e2c;
+    --surface-2: #262436;
+    --ink: #e6e4f2;
+    --muted: #a5a0bd;
+    --line: #383550;
+    --ok: #5fc490;
+    --ok-bg: rgba(95, 196, 144, 0.13);
+    --warn: #e0aa4e;
+    --warn-bg: rgba(224, 170, 78, 0.14);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  html { background: var(--bg); }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15.5px;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 24px 40px;
+  }
+  h1, h2, h3 {
+    font-family: var(--serif);
+    font-weight: 600;
+    line-height: 1.2;
+    text-wrap: balance;
+    margin: 0;
+  }
+  h1 { font-size: 2.3rem; letter-spacing: -0.01em; }
+  h2 { font-size: 1.5rem; margin: 0 0 6px; }
+  p { margin: 0; }
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .dek {
+    color: var(--muted);
+    max-width: 62ch;
+    margin-top: 12px;
+    font-size: 1.03rem;
+  }
+  .section { margin-top: 56px; }
+  .section > .sec-sub {
+    color: var(--muted);
+    max-width: 66ch;
+    margin: 0 0 24px;
+  }
+
+  /* Badges */
+  .pill {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  .pill.ok { color: var(--ok); background: var(--ok-bg); }
+  .pill.warn { color: var(--warn); background: var(--warn-bg); }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin-top: 20px;
+    align-items: center;
+    color: var(--muted);
+    font-size: 13.5px;
+  }
+  .legend span.item { display: inline-flex; align-items: center; gap: 7px; }
+
+  /* Flow diagram */
+  .flow { display: flex; flex-direction: column; align-items: stretch; }
+  .node {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px 20px;
+  }
+  .node .node-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .node .num {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    color: var(--accent);
+    min-width: 1.2em;
+  }
+  .node h3 { font-size: 1.12rem; }
+  .node .desc {
+    color: var(--muted);
+    margin-top: 6px;
+    font-size: 14.5px;
+    max-width: 70ch;
+  }
+  .node .desc strong { color: var(--ink); font-weight: 600; }
+
+  .connector {
+    align-self: center;
+    width: 2px;
+    height: 26px;
+    background: var(--line);
+    position: relative;
+  }
+  .connector::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid var(--line);
+  }
+
+  .coders {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .coder {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+  }
+  .coder b {
+    display: block;
+    font-family: var(--serif);
+    font-size: 14.5px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .coder span { color: var(--muted); }
+
+  /* Fork into two lanes */
+  .fork-label {
+    align-self: center;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    margin: 4px 0 14px;
+    max-width: 46ch;
+  }
+  .lanes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .lane {
+    display: flex;
+    flex-direction: column;
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+    padding: 18px;
+    background: transparent;
+  }
+  .lane.target { border-color: var(--accent); background: var(--accent-soft); }
+  .lane-head {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .lane.today .lane-head { color: var(--ok); }
+  .lane.target .lane-head { color: var(--accent); }
+  .lane-sub { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+  .lane .node { padding: 14px 16px; }
+  .lane .node h3 { font-size: 1.02rem; }
+  .lane .node .desc { font-size: 13.5px; }
+  .lane .connector { height: 20px; }
+
+  .merge-note {
+    margin-top: 24px;
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    box-shadow: var(--shadow);
+    padding: 14px 18px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .merge-note strong { color: var(--ink); }
+
+  /* Database table sketches */
+  .tables-scroll { overflow-x: auto; padding-bottom: 6px; }
+  .tables {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    gap: 14px;
+    min-width: 860px;
+  }
+  .dbtable {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 13px 15px;
+    font-size: 13px;
+  }
+  .dbtable .tname {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 3px;
+  }
+  .dbtable .twhat { color: var(--muted); font-size: 12.5px; margin-bottom: 9px; }
+  .dbtable ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: var(--ink);
+  }
+  .dbtable li { padding: 2.5px 0; border-top: 1px solid var(--line); }
+  .dbtable li:first-child { border-top: none; }
+  .dbtable li .col-note { color: var(--muted); font-family: var(--sans); }
+
+  /* Update cycle */
+  .cycle-scroll { overflow-x: auto; padding-bottom: 6px; }
+  .cycle {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    min-width: 900px;
+  }
+  .cstep {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+  .cstep b {
+    display: block;
+    font-family: var(--serif);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .cstep span { color: var(--muted); }
+  .cstep.gate { border-color: var(--warn); }
+  .carrow {
+    align-self: center;
+    flex: 0 0 26px;
+    height: 2px;
+    background: var(--line);
+    position: relative;
+  }
+  .carrow::after {
+    content: "";
+    position: absolute;
+    right: -1px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 8px solid var(--line);
+  }
+  .principle {
+    margin-top: 20px;
+    background: var(--accent-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .principle .who { display: block; font-family: var(--sans); font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+
+  /* Inventory table */
+  .inv-scroll {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    background: var(--surface);
+  }
+  table.inv {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 760px;
+    font-size: 13.5px;
+  }
+  table.inv th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface-2);
+  }
+  table.inv td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table.inv tr:last-child td { border-bottom: none; }
+  table.inv td.comp { font-family: var(--serif); font-weight: 600; font-size: 14.5px; white-space: nowrap; }
+  table.inv td.notes { color: var(--muted); }
+
+  /* Principles list */
+  .principles {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .principles li {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 16px 18px;
+    font-size: 14px;
+  }
+  .principles li b {
+    display: block;
+    font-family: var(--serif);
+    font-size: 15.5px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .principles li span { color: var(--muted); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+  }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 32px 16px; }
+    h1 { font-size: 1.8rem; }
+    .lanes { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow">NHA · Humanities Workforce</div>
+    <h1>System Map</h1>
+    <p class="dek">
+      How the numbers travel from raw career histories to the page —
+      what is built today, and what we build next so the portal updates
+      itself when new data arrives.
+    </p>
+    <div class="legend">
+      <span class="item"><span class="pill ok">Built</span> works today (research prototype)</span>
+      <span class="item"><span class="pill warn">To build</span> designed, needed for production</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2>The flow, end to end</h2>
+    <p class="sec-sub">
+      Four shared stages turn raw profiles into vetted aggregate numbers.
+      After that the flow forks: the left lane is how the prototype ships
+      today; the right lane is the production target that removes manual rebuilds.
+    </p>
+
+    <div class="flow">
+
+      <div class="node">
+        <div class="node-head">
+          <span class="num">1</span>
+          <h3>Data sources</h3>
+          <span class="pill ok">Built · snapshot ingest</span>
+        </div>
+        <p class="desc">
+          LinkedIn profile snapshots — roughly 2 million career histories.
+          New snapshots arrive periodically.
+        </p>
+      </div>
+
+      <div class="connector"></div>
+
+      <div class="node">
+        <div class="node-head">
+          <span class="num">2</span>
+          <h3>Normalization spine</h3>
+          <span class="pill ok">Built</span>
+        </div>
+        <p class="desc">
+          Cleans and parses raw profiles into three canonical tables:
+          education records, career steps, and job-to-job transitions.
+        </p>
+      </div>
+
+      <div class="connector"></div>
+
+      <div class="node">
+        <div class="node-head">
+          <span class="num">3</span>
+          <h3>Coding layer</h3>
+          <span class="pill ok">Built · research-grade</span>
+        </div>
+        <p class="desc">
+          Three coders turn free text ("Sr. Comms Manager") into analyzable
+          categories. Every label carries a tag saying which coder produced it.
+        </p>
+        <div class="coders">
+          <div class="coder">
+            <b>Lexicon coders</b>
+            <span>Deterministic rule lists. When they match, they always win.</span>
+          </div>
+          <div class="coder">
+            <b>Occupation jury</b>
+            <span>Calibrated LLM panel that sorts job titles into occupation groups.</span>
+          </div>
+          <div class="coder">
+            <b>Field-of-study jury</b>
+            <span>Calibrated LLM panel that sorts degree text into fields of study.</span>
+          </div>
+        </div>
+        <p class="desc" style="margin-top: 12px;">
+          <strong>Each jury must pass a pre-committed accuracy gate plus a bias
+          check</strong> before any of its labels are used.
+        </p>
+      </div>
+
+      <div class="connector"></div>
+
+      <div class="node">
+        <div class="node-head">
+          <span class="num">4</span>
+          <h3>Aggregation pipeline</h3>
+          <span class="pill ok">Built · batch scripts</span>
+        </div>
+        <p class="desc">
+          Computes every number the portal shows — cohort funnels, destination
+          fans, long-view curves, sectors, success pillars, counted pathway
+          routes — under fixed rules: equal observation windows for every
+          graduate, <strong>minimum cell size n&nbsp;≥&nbsp;40</strong> (smaller
+          cells are suppressed), and aggregates only, never individuals.
+        </p>
+      </div>
+
+      <div class="connector"></div>
+
+      <p class="fork-label">
+        The same aggregates can be delivered two ways —
+        this fork is the whole difference between prototype and production.
+      </p>
+
+      <div class="lanes">
+
+        <div class="lane today">
+          <div class="lane-head">Today · research prototype</div>
+          <p class="lane-sub">Rebuilt by hand-run scripts after each pipeline run.</p>
+
+          <div class="node">
+            <div class="node-head">
+              <h3>JSON contract</h3>
+              <span class="pill ok">Built</span>
+            </div>
+            <p class="desc">
+              One file, <strong>portal_data.json</strong>, holds every published
+              number. Its shape is the data contract — the database on the right
+              is this file, turned into tables.
+            </p>
+          </div>
+
+          <div class="connector"></div>
+
+          <div class="node">
+            <div class="node-head">
+              <span class="num">8</span>
+              <h3>Static export</h3>
+              <span class="pill ok">Built</span>
+            </div>
+            <p class="desc">
+              A build script injects the JSON verbatim into an HTML template,
+              producing one self-contained page — shared as a zip and a hosted
+              artifact. Opens in any browser, no server needed.
+              <strong>This export stays in production</strong> as an offline
+              artifact generated from any release.
+            </p>
+          </div>
+        </div>
+
+        <div class="lane target">
+          <div class="lane-head">Target · production</div>
+          <p class="lane-sub">Same pipelines, feeding a live store — no manual rebuilds.</p>
+
+          <div class="node">
+            <div class="node-head">
+              <span class="num">5</span>
+              <h3>Live aggregate database</h3>
+              <span class="pill warn">To build</span>
+            </div>
+            <p class="desc">
+              Stores <strong>only aggregates — never individual profiles</strong>.
+              Each pipeline run writes a new versioned release with its date and
+              gate results; the portal always reads the latest published release;
+              old releases are kept for audit. (e.g. Postgres — table sketch below.)
+            </p>
+          </div>
+
+          <div class="connector"></div>
+
+          <div class="node">
+            <div class="node-head">
+              <span class="num">6</span>
+              <h3>Read API</h3>
+              <span class="pill warn">To build</span>
+            </div>
+            <p class="desc">
+              Thin, read-only layer — REST endpoints, or simply static JSON files
+              per release. Suppression is enforced upstream: a cell under
+              n&nbsp;=&nbsp;40 never enters the database, so the API cannot
+              expose one.
+            </p>
+          </div>
+
+          <div class="connector"></div>
+
+          <div class="node">
+            <div class="node-head">
+              <span class="num">7</span>
+              <h3>Portal web app</h3>
+              <span class="pill ok">Prototype built</span>
+              <span class="pill warn">Production app to build</span>
+            </div>
+            <p class="desc">
+              The three-layer product the team knows:
+              <strong>Stories</strong> (guided walks; editorial routes badged
+              amber), <strong>Portal</strong> (the live explorer), and
+              <strong>Data&nbsp;&amp;&nbsp;Methods</strong> (auto-generated from
+              the release's gate results and provenance).
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="merge-note">
+        <strong>Why this matters for design:</strong> in production, nothing on
+        the page is typed in by a person. The portal displays whatever the
+        latest release contains — so every number the UI shows needs a home in
+        the release schema, and every editorial addition needs its amber badge.
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Inside the live database</h2>
+    <p class="sec-sub">
+      The core tables, sketched straight from the JSON contract. Every table
+      keys on <strong>release_id</strong>, so a whole portal state can be
+      pinned, compared, or rolled back. (Scroll sideways if needed.)
+    </p>
+    <div class="tables-scroll">
+      <div class="tables">
+
+        <div class="dbtable">
+          <div class="tname">releases</div>
+          <div class="twhat">One row per pipeline run</div>
+          <ul>
+            <li>release_id</li>
+            <li>generated_date</li>
+            <li>snapshot_date</li>
+            <li>gate_results</li>
+            <li>published <span class="col-note">— bool</span></li>
+          </ul>
+        </div>
+
+        <div class="dbtable">
+          <div class="tname">majors</div>
+          <div class="twhat">One row per major per release</div>
+          <ul>
+            <li>release_id</li>
+            <li>major</li>
+            <li>name <span class="col-note">— display label</span></li>
+            <li>persons, persons_anchored</li>
+            <li>kpi fields <span class="col-note">— breadth, dwell…</span></li>
+          </ul>
+        </div>
+
+        <div class="dbtable">
+          <div class="tname">fan_cells</div>
+          <div class="twhat">Destination fan slices</div>
+          <ul>
+            <li>release_id</li>
+            <li>major</li>
+            <li>soc_group</li>
+            <li>share, rr, n</li>
+            <li>soc_source_mix</li>
+          </ul>
+        </div>
+
+        <div class="dbtable">
+          <div class="tname">sectors</div>
+          <div class="twhat">Industry sector shares</div>
+          <ul>
+            <li>release_id</li>
+            <li>major</li>
+            <li>sector</li>
+            <li>share, n</li>
+          </ul>
+        </div>
+
+        <div class="dbtable">
+          <div class="tname">curve_points</div>
+          <div class="twhat">Long-view career curves</div>
+          <ul>
+            <li>release_id</li>
+            <li>major</li>
+            <li>years <span class="col-note">— since graduation</span></li>
+            <li>median_seniority, n</li>
+          </ul>
+        </div>
+
+        <div class="dbtable">
+          <div class="tname">pillars</div>
+          <div class="twhat">Success pillar scores</div>
+          <ul>
+            <li>release_id</li>
+            <li>major</li>
+            <li>pillar <span class="col-note">— e.g. growth</span></li>
+            <li>score</li>
+          </ul>
+        </div>
+
+        <div class="dbtable">
+          <div class="tname">paths</div>
+          <div class="twhat">Counted pathway routes</div>
+          <ul>
+            <li>release_id</li>
+            <li>major</li>
+            <li>stages <span class="col-note">— ordered groups</span></li>
+            <li>terminal_group</li>
+            <li>n_persons</li>
+          </ul>
+        </div>
+
+        <div class="dbtable">
+          <div class="tname">funnels</div>
+          <div class="twhat">Cohort funnel stages</div>
+          <ul>
+            <li>release_id</li>
+            <li>major</li>
+            <li>stage <span class="col-note">— e.g. anchored</span></li>
+            <li>persons</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>The update cycle</h2>
+    <p class="sec-sub">
+      What happens when a new data snapshot arrives. If a quality gate fails,
+      the release is held and the portal keeps showing the last good one.
+    </p>
+    <div class="cycle-scroll">
+      <div class="cycle">
+        <div class="cstep"><b>New snapshot</b><span>Fresh profiles land.</span></div>
+        <div class="carrow"></div>
+        <div class="cstep"><b>Pipelines re-run</b><span>Spine, coding, aggregation.</span></div>
+        <div class="carrow"></div>
+        <div class="cstep"><b>Juries recalibrate</b><span>LLM coders re-checked on gold labels.</span></div>
+        <div class="carrow"></div>
+        <div class="cstep gate"><b>Gates + bias checks</b><span>Pass, or the release is held.</span></div>
+        <div class="carrow"></div>
+        <div class="cstep"><b>Release published</b><span>New versioned row-set in the database.</span></div>
+        <div class="carrow"></div>
+        <div class="cstep"><b>Portal reflects it</b><span>Automatically — no rebuild, no re-typing.</span></div>
+      </div>
+    </div>
+    <div class="principle">
+      "Numbers can never drift from the pipeline — the portal displays a
+      release, never hand-entered data."
+      <span class="who">The one-sentence contract between data team and design team.</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Component inventory</h2>
+    <p class="sec-sub">Everything in the diagram, one row each, with notes aimed at web developers.</p>
+    <div class="inv-scroll">
+      <table class="inv">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>What it does</th>
+            <th>Status</th>
+            <th>Notes for web devs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="comp">Data sources</td>
+            <td>LinkedIn profile snapshots (~2M profiles); new snapshots arrive periodically.</td>
+            <td><span class="pill ok">Built</span></td>
+            <td class="notes">You never touch this layer — nothing individual-level ever leaves it.</td>
+          </tr>
+          <tr>
+            <td class="comp">Normalization spine</td>
+            <td>Cleans raw profiles into canonical tables: education, career steps, transitions.</td>
+            <td><span class="pill ok">Built</span></td>
+            <td class="notes">Batch jobs over parquet files; invisible to the front end.</td>
+          </tr>
+          <tr>
+            <td class="comp">Coding layer</td>
+            <td>Turns free text into categories: rule lexicons (always win) plus two gate-checked LLM juries.</td>
+            <td><span class="pill ok">Built</span></td>
+            <td class="notes">Research-grade. Provenance tags flow to the UI as source-mix fields — surface them, don't hide them.</td>
+          </tr>
+          <tr>
+            <td class="comp">Aggregation pipeline</td>
+            <td>Computes every portal number under fixed rules: equal windows, n ≥ 40 suppression, aggregates only.</td>
+            <td><span class="pill ok">Built</span></td>
+            <td class="notes">Batch scripts today; unchanged in production, just pointed at the database.</td>
+          </tr>
+          <tr>
+            <td class="comp">Live aggregate database</td>
+            <td>Versioned releases of aggregates only; latest published release drives the portal; old ones kept for audit.</td>
+            <td><span class="pill warn">To build</span></td>
+            <td class="notes">e.g. Postgres. Schema is essentially portal_data.json normalized into tables.</td>
+          </tr>
+          <tr>
+            <td class="comp">Read API</td>
+            <td>Read-only access to a release; suppression already enforced upstream.</td>
+            <td><span class="pill warn">To build</span></td>
+            <td class="notes">Static JSON per release is a fine v1 API — REST (e.g. FastAPI or Express) can come later; add a cache (e.g. Redis) only if load ever demands it.</td>
+          </tr>
+          <tr>
+            <td class="comp">Portal web app</td>
+            <td>Stories (guided, editorial badged amber) · Portal (explorer) · Data &amp; Methods (auto-generated).</td>
+            <td><span class="pill ok">Prototype</span> <span class="pill warn">To build</span></td>
+            <td class="notes">The prototype static page is the living design spec — keep its badge system and layer structure. Any modern stack fits (e.g. React/Next.js or Vue, React Query/SWR for release fetching, D3 or Recharts for the charts).</td>
+          </tr>
+          <tr>
+            <td class="comp">Static export</td>
+            <td>Self-contained HTML build of the portal, shared as zip and hosted artifact.</td>
+            <td><span class="pill ok">Built</span></td>
+            <td class="notes">Stays in production as an offline artifact, generated from any release.</td>
+          </tr>
+          <tr>
+            <td class="comp">Update flow</td>
+            <td>Snapshot → pipelines → recalibration → gates → publish → portal updates itself.</td>
+            <td><span class="pill warn">To automate</span></td>
+            <td class="notes">Each step runs today, but a person drives it; production wires them into one held-or-published cycle.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Front-end guidance</h2>
+    <p class="sec-sub">Consolidated from the team's UI/UX draft and the shipped prototype — one voice,
+      with the project's identity and data rules applied.</p>
+    <ul class="principles">
+      <li>
+        <b>Keep the interaction ideas</b>
+        <span>Stateful URLs (every filter change updates the URL, so sharing a link shares the exact
+          view) · one-click export of a view to PNG/PDF for slide decks · skeleton loaders shaped like
+          the layout, never spinners · smooth animated transitions when a selection changes · clear
+          hover states and fast tooltips showing the exact share, count, and source badge.</span>
+      </li>
+      <li>
+        <b>Pathway flows are now real — draw them</b>
+        <span>Counted occupation-group routes (n ≥ 40) support Sankey-style flow rendering: hovering a
+          group highlights its incoming/outgoing routes. Only published routes exist in a release, so
+          the UI can never draw an unsupported flow.</span>
+      </li>
+      <li>
+        <b>Filters select among precomputed aggregates</b>
+        <span>Major, population boundary, horizon, compare-with-baseline. A filter never queries raw
+          rows — it chooses which released, already-suppressed aggregate to display. A brand-new cut
+          (say, a new horizon) is a pipeline change that ships in the next release, not a UI feature.</span>
+      </li>
+      <li>
+        <b>The identity is already decided — and validated</b>
+        <span>Violet accent (#4a3aa7 light / #9085e9 dark), Iowan Old Style/Palatino serif display,
+          system sans body, both themes, emphasis-form charts (violet subject, gray baseline), earnest
+          evidence-forward copy. Not Inter-plus-teal, no glassmorphism — the portal should feel like a
+          research institution, not a SaaS dashboard.</span>
+      </li>
+      <li>
+        <b>What we deliberately do not build</b>
+        <span>No demographic filters or breakdowns (the pipeline holds no demographic data, and the
+          project makes no representativeness claims) · no row-level or free-form querying (aggregate-only)
+          · no unbadged figures (every number carries pipeline-green or editorial-amber).</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Design principles carried into production</h2>
+    <ul class="principles">
+      <li>
+        <b>Aggregate-only, always</b>
+        <span>No individual profile ever reaches the database, the API, or the page.</span>
+      </li>
+      <li>
+        <b>Suppression happens upstream</b>
+        <span>Cells under n = 40 never enter the database, so no UI state can leak one.</span>
+      </li>
+      <li>
+        <b>Provenance is a first-class UI element</b>
+        <span>Pipeline data (green) vs editorial (amber) badges on every figure — designers own this distinction.</span>
+      </li>
+      <li>
+        <b>Gates hold releases, humans sign off</b>
+        <span>A failed accuracy or bias check blocks publication; a person approves every release the portal shows.</span>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    Humanities Workforce — system map for the visual dialogue team · working document
+  </footer>
+
+</div>
+
+</body>
+</html>

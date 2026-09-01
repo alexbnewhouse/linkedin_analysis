@@ -1,0 +1,29 @@
+{
+  "generated": "2026-07-22",
+  "gate": 0.9,
+  "gold": {
+    "gold_rows_with_field": 2624381,
+    "field_parses_to_level": 46612,
+    "fire_rate": 0.0178,
+    "precision": 0.505,
+    "note": "precision = P(field-box level == true degree_level | field box parses to a degree). Non-circular: uses field_raw, not the degree_raw that produced degree_level."
+  },
+  "passes_gate": false,
+  "null_level_rows": 719559,
+  "rescued_rows": 9776,
+  "rescued_pct_of_null": 1.4,
+  "rescued_by_level": {
+    "1": 1821,
+    "2": 2092,
+    "3": 953,
+    "4": 1579,
+    "5": 882,
+    "6": 1846,
+    "7": 603
+  },
+  "rescued_by_method": {
+    "field_rescue": 9776
+  },
+  "humanities_l1_rescued_rows": 97,
+  "executed": false
+}

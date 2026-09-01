@@ -1,0 +1,88 @@
+{
+  "field": "title",
+  "cap": 200000,
+  "n_distinct_in_eval": 200000,
+  "n_rows_in_eval": 7244921,
+  "n_gold_pairs": 18,
+  "results": [
+    {
+      "approach": "A_rules",
+      "n_in": 200000,
+      "n_out": 146841,
+      "reduction": 0.266,
+      "precision": 1.0,
+      "recall": 0.889,
+      "f1": 0.941,
+      "accuracy": 0.944,
+      "tp": 8,
+      "fp": 0,
+      "tn": 9,
+      "fn": 1,
+      "missing": 0,
+      "runtime_s": 0.4,
+      "extra": {
+        "reference_match_row_pct": 97.8
+      }
+    },
+    {
+      "approach": "B_fuzzy",
+      "n_in": 200000,
+      "n_out": 151429,
+      "reduction": 0.243,
+      "precision": 1.0,
+      "recall": 0.333,
+      "f1": 0.5,
+      "accuracy": 0.667,
+      "tp": 3,
+      "fp": 0,
+      "tn": 9,
+      "fn": 6,
+      "missing": 0,
+      "runtime_s": 0.8,
+      "extra": {
+        "n_blocks": 148392,
+        "clusters": 151429
+      }
+    },
+    {
+      "approach": "C_embed@0.88",
+      "n_in": 200000,
+      "n_out": 63977,
+      "reduction": 0.68,
+      "precision": 0.4,
+      "recall": 0.667,
+      "f1": 0.5,
+      "accuracy": 0.333,
+      "tp": 6,
+      "fp": 9,
+      "tn": 0,
+      "fn": 3,
+      "missing": 0,
+      "runtime_s": 12.8,
+      "extra": {
+        "clusters": 63977,
+        "threshold": 0.88
+      }
+    },
+    {
+      "approach": "C_embed@0.92",
+      "n_in": 200000,
+      "n_out": 112297,
+      "reduction": 0.439,
+      "precision": 0.833,
+      "recall": 0.556,
+      "f1": 0.667,
+      "accuracy": 0.722,
+      "tp": 5,
+      "fp": 1,
+      "tn": 8,
+      "fn": 4,
+      "missing": 0,
+      "runtime_s": 8.2,
+      "extra": {
+        "clusters": 112297,
+        "threshold": 0.92
+      }
+    }
+  ]
+}

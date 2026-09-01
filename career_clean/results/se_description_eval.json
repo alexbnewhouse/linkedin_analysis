@@ -1,0 +1,1554 @@
+{
+  "self_employment_rows_scanned": 422333,
+  "overall_functional_cluster_coverage": {
+    "title_company_only_pct": 40.1,
+    "with_description_pct": 50.5,
+    "description_lift_pp": 10.4
+  },
+  "residue_rows": 252781,
+  "residue_with_description": 151097,
+  "residue_with_description_pct": 59.8,
+  "recovered_by_description": 43723,
+  "recovered_pct_of_residue": 17.3,
+  "recovered_pct_of_residue_with_desc": 28.9,
+  "desc_method_breakdown": {
+    "desc_none": 107374,
+    "desc_lead": 39889,
+    "desc_vote": 3834
+  },
+  "recovered_cluster_distribution": {
+    "Arts, Design, Entertainment, Sports & Media": {
+      "code": "27",
+      "rows": 8410
+    },
+    "Business & Financial Operations": {
+      "code": "13",
+      "rows": 6379
+    },
+    "Sales & Related": {
+      "code": "41",
+      "rows": 5871
+    },
+    "Construction & Extraction": {
+      "code": "47",
+      "rows": 3560
+    },
+    "Education, Training & Library": {
+      "code": "25",
+      "rows": 3492
+    },
+    "Personal Care & Service": {
+      "code": "39",
+      "rows": 3099
+    },
+    "Community & Social Service": {
+      "code": "21",
+      "rows": 2111
+    },
+    "Food Preparation & Serving": {
+      "code": "35",
+      "rows": 1771
+    },
+    "Computer & Mathematical": {
+      "code": "15",
+      "rows": 1743
+    },
+    "Healthcare Practitioners & Technical": {
+      "code": "29",
+      "rows": 1691
+    },
+    "Legal": {
+      "code": "23",
+      "rows": 1142
+    },
+    "Production": {
+      "code": "51",
+      "rows": 1110
+    },
+    "Transportation & Material Moving": {
+      "code": "53",
+      "rows": 1102
+    },
+    "Building & Grounds Cleaning & Maintenance": {
+      "code": "37",
+      "rows": 793
+    },
+    "Farming, Fishing & Forestry": {
+      "code": "45",
+      "rows": 612
+    },
+    "Installation, Maintenance & Repair": {
+      "code": "49",
+      "rows": 561
+    },
+    "Healthcare Support": {
+      "code": "31",
+      "rows": 276
+    }
+  },
+  "runtime_s": 79.8,
+  "samples_by_cluster": {
+    "Legal": [
+      {
+        "company": "Makumira Scholarship Fund",
+        "title": "Co-Founder",
+        "method": "desc_lead",
+        "evidence": "law",
+        "snippet": "Created this scholarship to provide private funding of law school scholarships in Tanzania, East Africa with the intent to develop legal and political leadershi"
+      },
+      {
+        "company": "Legalshield Independent Associate",
+        "title": "Independent Associate",
+        "method": "desc_lead",
+        "evidence": "legal",
+        "snippet": "Pre-paid Legal Services"
+      },
+      {
+        "company": "Product Law Hub",
+        "title": "Co-Founder",
+        "method": "desc_lead",
+        "evidence": "law",
+        "snippet": "Product Law Hub prepares lawyers to advise on modern, technology-driven products and organizations.At the center is Coach Frankie, an AI-powered product law coa"
+      },
+      {
+        "company": "Better Parenting Plan, Inc.",
+        "title": "Co-Founder",
+        "method": "desc_vote",
+        "evidence": "legal,litigation",
+        "snippet": "Mediator Gabby is an AI-driven digital mediator designed to help co-parents resolve conflict and create parenting plans outside of adversarial court processes.T"
+      },
+      {
+        "company": "ESI Flow",
+        "title": "Co-Founder",
+        "method": "desc_lead",
+        "evidence": "legal",
+        "snippet": "ESI Flow helps legal teams design and negotiate discovery protocols and protective orders directly within Microsoft Word.The platform translates complex eDiscov"
+      },
+      {
+        "company": "Spacedoc Enterprises",
+        "title": "Owner chief consultant",
+        "method": "desc_lead",
+        "evidence": "legal",
+        "snippet": "Consultant, speaker, legal expert and co-founder of Cewire2015.com, the largest virtue conference ever held with more to come. Contact for eye care consulting a"
+      },
+      {
+        "company": "LegalShield",
+        "title": "Independent Consultant",
+        "method": "desc_lead",
+        "evidence": "legal",
+        "snippet": "*Provide education to small business owners and the public on the importance of having unlimited access to the legal system. To help entrepreneurs run and grow "
+      },
+      {
+        "company": "Hurst Guardianship & Senior Services",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "attorney",
+        "snippet": "I provide professional guardianship, power of attorney, care management, and executor assistance services to people of a variety of backgrounds and needs."
+      },
+      {
+        "company": "Carrier & Associates",
+        "title": "Owner/Principal",
+        "method": "desc_lead",
+        "evidence": "law",
+        "snippet": "Founded a boutique law practice specializing in services for creative businesses, including contract drafting, contract dispute resolution, intellectual propert"
+      },
+      {
+        "company": "Zacco & Associates Reporting Services",
+        "title": "President/Owner",
+        "method": "desc_lead",
+        "evidence": "legal",
+        "snippet": "Day to day management of busy court reporting firm focusing on tailoring services to the Central Florida legal community."
+      },
+      {
+        "company": "Independent Contractor",
+        "title": "Administrative Assistant",
+        "method": "desc_lead",
+        "evidence": "law",
+        "snippet": "Clients: yoga studio, retirement center, law firm, winery, organic food company"
+      },
+      {
+        "company": "Dolyk & Zeiher Co. L.P.A.",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "law",
+        "snippet": "General Practice of law with four attorneys in two offices."
+      }
+    ],
+    "Arts, Design, Entertainment, Sports & Media": [
+      {
+        "company": "Hip Hop Royalty Co.",
+        "title": "Freelance Entertainment Manager",
+        "method": "desc_vote",
+        "evidence": "artist,music,publishing",
+        "snippet": "• Negotiate business deals, endorsements, partnerships, and other brand-building opportunities for influencer clients.STANDOUT ACHIEVEMENTS• Orchestrated copyri"
+      },
+      {
+        "company": "Paulette's Interiors",
+        "title": "Proprietor",
+        "method": "desc_lead",
+        "evidence": "designer",
+        "snippet": "INTERIOR DESIGNER SPECIALIZING IN RESIDENTIAL AND KITCHEN DESIGN.I WAS A DISTRIBUTOR FOR WOOD MODE KITCHENS FROM 1983-1996."
+      },
+      {
+        "company": "VFM Production & Media Services",
+        "title": "CEO & Founder",
+        "method": "desc_lead",
+        "evidence": "music",
+        "snippet": "As the founder and creative force behind VFM Production & Media, Jackie Menci established a dynamic platform that fused music, performance, and visual media. As"
+      },
+      {
+        "company": "Bottlewood Communications",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "writing",
+        "snippet": "Strategic marketing and donor communications, fund development, administrative management, event and volunteer management, and grant writing. Current and past c"
+      },
+      {
+        "company": "Frog's Hair Press",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "writing",
+        "snippet": "Author, Writing and Editing"
+      },
+      {
+        "company": "PHB Edits",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "graphics",
+        "snippet": "Full Production house: Post-production (video editing, graphics, etc.)Let us produce your next commercial, etc.!"
+      },
+      {
+        "company": "Itchy Dog Entertainment",
+        "title": "Independent Business Owner",
+        "method": "desc_lead",
+        "evidence": "film",
+        "snippet": "Content Creator/Writer/Producer for TV, Film, Web, and other media."
+      },
+      {
+        "company": "Freelance",
+        "title": "Singer songwriter",
+        "method": "desc_lead",
+        "evidence": "music",
+        "snippet": "Songwriting certification from Berkelee College of Music, trained in recording/production using LogicPro. Multi-instrumentalist with live performance experience"
+      },
+      {
+        "company": "JBGroup",
+        "title": "Founder",
+        "method": "desc_vote",
+        "evidence": "film,films,music",
+        "snippet": "• Create B2B platforms for Fortune 500 corporations to leverage their visibility and revenue.• Generate brand partnerships and sponsorships tailored to the clie"
+      },
+      {
+        "company": "Photos by SW",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "photography",
+        "snippet": "Family, children, baby, pregnancy, new Facebook photos and Grad Photography."
+      },
+      {
+        "company": "Self-employed",
+        "title": "Statistical Consultant",
+        "method": "desc_lead",
+        "evidence": "writing",
+        "snippet": "Consultant with expertise in statistical analyses and interpretation of data, SAS programming, medical writing including protocols and management of data qualit"
+      },
+      {
+        "company": "Scratch & Scratch Out",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "designer",
+        "snippet": "Designer of hand painted bespoke beachwear boutiques on South Padre Island, Texas"
+      }
+    ],
+    "Business & Financial Operations": [
+      {
+        "company": "Bright Knight Consulting LLC",
+        "title": "Independent Consultant Owner",
+        "method": "desc_lead",
+        "evidence": "hr",
+        "snippet": "Management Consultant (Programs, Contracts, HR, Operations)"
+      },
+      {
+        "company": "Snap Finance",
+        "title": "Talent Acquisition Leader/Co-Founder Women in FinTech ERG",
+        "method": "desc_lead",
+        "evidence": "accounting",
+        "snippet": "Specializing in the Talent Acquisition of Data Science/AI/ML, Finance and Accounting, Engineering, IT, Supply Chain, Operations, Program & Product Management, B"
+      },
+      {
+        "company": "Dynamic Business Solutions, LLC",
+        "title": "Business Owner",
+        "method": "desc_vote",
+        "evidence": "accounting,bookkeeping,tax",
+        "snippet": "Provide practical business services and solutions for small business owners enabling growth and success.• Preparation of Financial Statements• Conduct accountin"
+      },
+      {
+        "company": "Independent Contractor",
+        "title": "Independent Contractor",
+        "method": "desc_lead",
+        "evidence": "accounting",
+        "snippet": "Assisted in Accounting Projects for various companies.• Home health care industry-Reconcile company accounts• Pension administrators benefits program and ATM op"
+      },
+      {
+        "company": "Self-employed",
+        "title": "Business Owner",
+        "method": "desc_lead",
+        "evidence": "tax",
+        "snippet": "Tax specialist"
+      },
+      {
+        "company": "Self-Employed",
+        "title": "Independent Market ResearchConsultant",
+        "method": "desc_lead",
+        "evidence": "market research",
+        "snippet": "Design and conduct market research to help pharmaceutical industry clients: understand the needs of a broad array of customer types; develop strategies for meet"
+      },
+      {
+        "company": "Burney Grocery Outlet",
+        "title": "Independent Operator",
+        "method": "desc_vote",
+        "evidence": "accounting,human resources",
+        "snippet": "As an Independent Operator for Grocery Outlet, I oversaw all aspects of managing a 20,000 sq. ft. retail grocery store with a team of 17 employees, maintaining "
+      },
+      {
+        "company": "Self-employed",
+        "title": "Rachel Durfee, CPA",
+        "method": "desc_lead",
+        "evidence": "accounting",
+        "snippet": "Providing accounting services for small businesses. QBO ProAdvisor Certification"
+      },
+      {
+        "company": "Gould & Leffew, P.A.",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "accounting",
+        "snippet": "- Founded and leads a successful community accounting firm, demonstrating strong entrepreneurial skills and strategic vision in establishing and growing the bus"
+      },
+      {
+        "company": "Uplifted InC Consulting",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "digital marketing",
+        "snippet": "Specializing in entertainment and sports marketing, promotions, music licensing, digital marketing, events, casting, project management and development, media r"
+      },
+      {
+        "company": "Self-employed",
+        "title": "Independent Contractor",
+        "method": "desc_lead",
+        "evidence": "social media",
+        "snippet": "Independent contractor supporting small businesses with graphic design including full web design, marketing strategy, social media content creation and manageme"
+      },
+      {
+        "company": "Dustin's Fleet Wash",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "insurance",
+        "snippet": "Windshield RepairWork directly with large businesses and insurance companies.Set up accounts with companies that own three or more vehicles.Set up accounts with"
+      }
+    ],
+    "Construction & Extraction": [
+      {
+        "company": "WSI3 / CMAA / CPM / NOMA",
+        "title": "Business Owner/CM",
+        "method": "desc_lead",
+        "evidence": "construction",
+        "snippet": "Design / Construction / Development"
+      },
+      {
+        "company": "Carpenter-Roofer",
+        "title": "Co-Owner",
+        "method": "desc_lead",
+        "evidence": "concrete",
+        "snippet": "Built additions, placed concrete and re-roofed residential projects* Built a 3-story fire escape complying with all applicable codes."
+      },
+      {
+        "company": "Moon Doggie Exteriors",
+        "title": "Business Owner",
+        "method": "desc_lead",
+        "evidence": "roofing",
+        "snippet": "- Established roofing business with co-owner, which involved running a small business, selling roof replacements and repairs, and interfacing with customers- Co"
+      },
+      {
+        "company": "All Around Improvement Servio",
+        "title": "Business Owner",
+        "method": "desc_lead",
+        "evidence": "construction",
+        "snippet": "Home improvements and construction in all stages…. General Contractor"
+      },
+      {
+        "company": "Pueblo Precision Products, Inc.",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "welding",
+        "snippet": "Precision machining, manufacturing, fabricating, heat-treating, welding."
+      },
+      {
+        "company": "NW ReVisionary, LLC",
+        "title": "Owner and Project Manager",
+        "method": "desc_lead",
+        "evidence": "construction",
+        "snippet": "Construction company serving Lewis County.Manage construction project timelines, material purchasing, and ingoing/outgoing payments.Assess client need through d"
+      },
+      {
+        "company": "Self-employed",
+        "title": "Managed Care Payer Strategies Consultant",
+        "method": "desc_lead",
+        "evidence": "contracting",
+        "snippet": "Contract negotiations and strategic support for UHS Managed Care hospital contracting"
+      },
+      {
+        "company": "Credit Information Resources",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "landscape",
+        "snippet": "I provided credit information and expertise to various financial companies and businesses in understanding the credit score system and landscape."
+      },
+      {
+        "company": "Koala Insulation of Charlotte",
+        "title": "Co-Owner",
+        "method": "desc_vote",
+        "evidence": "builders,construction",
+        "snippet": "Koala Insulation is an insulation contractor providing high-quality insulation services to homeowners, contractors, and property owners. We work with new constr"
+      },
+      {
+        "company": "Self Employed",
+        "title": "Master Electrician",
+        "method": "desc_lead",
+        "evidence": "electrical",
+        "snippet": " Residential and commercial electrical installation and repair Cost estimation  Electrical system design"
+      },
+      {
+        "company": "Carey Sales LLC",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "construction",
+        "snippet": "Manufacturers Rep agency to the construction industry in NY. Currently representing 2 lines:Ludowici Roof Tile Hendrick Architectural"
+      },
+      {
+        "company": "Energy Pairing",
+        "title": "Business Owner",
+        "method": "desc_lead",
+        "evidence": "landscape",
+        "snippet": "I founded Energy Pairing LLC with a mission to revolutionize the recruitment landscape in this specialized field. My journey has been driven by a deep-seated co"
+      }
+    ],
+    "Healthcare Support": [
+      {
+        "company": "Caim Health",
+        "title": "Co-Founder",
+        "method": "desc_lead",
+        "evidence": "home health",
+        "snippet": "Created to acquire and grow lower-middle market home care and home health companies"
+      },
+      {
+        "company": "ILS CARE REGULATORY SOLUTIONS, Inc",
+        "title": "Founder & Compliance Strategist",
+        "method": "desc_lead",
+        "evidence": "home health",
+        "snippet": "WHAT I DO: I partner with hospice and home health agency CEOs, administrators, and directors of nursing to take compliance off their plate. My team and I delive"
+      },
+      {
+        "company": "MGM HomeCare Acquisitions, LLC",
+        "title": "Founder - Accredited Business Intermediary",
+        "method": "desc_lead",
+        "evidence": "home care",
+        "snippet": "✔ WHO ARE WE: A transaction intermediary solely focuses on the home care industry✔ WHO DO WE SERVE: Home care businesses with revenues up to $2-3M✔ HOW IT WORKS"
+      },
+      {
+        "company": "Pure Haven",
+        "title": "Independent Owner",
+        "method": "desc_lead",
+        "evidence": "home care",
+        "snippet": "I provide education on the ingredients commonly found in personal and home care products and assist in make switches to safer, nontoxic products."
+      },
+      {
+        "company": "Breckenridge Home Managers",
+        "title": "Owner/Operator",
+        "method": "desc_lead",
+        "evidence": "home care",
+        "snippet": "Home Care/Property Checks: customizable home/property check services for vacation homes, primary residences, and rental properties.Rental ManagementHome Renovat"
+      },
+      {
+        "company": "Rehab & Health Care Consultants",
+        "title": "Independent Senior Consultant",
+        "method": "desc_lead",
+        "evidence": "homecare",
+        "snippet": "Homecare & Rehab Consultant"
+      },
+      {
+        "company": "Self-employed",
+        "title": "BSN, CLMNC",
+        "method": "desc_lead",
+        "evidence": "home health",
+        "snippet": "Private Home Health/Hospice Care, Medical Legal Nurse Consultant (FL Risk Mgmt.)"
+      },
+      {
+        "company": "Sellers & Associates",
+        "title": "Owner / Investigator",
+        "method": "desc_lead",
+        "evidence": "caregiver",
+        "snippet": "Case Manager, Elder Financial Abuse Investigations, Caregiver Investigations, Claims Investigations, Surveillance"
+      },
+      {
+        "company": "Better @ Home healthcare professionals",
+        "title": "Founder",
+        "method": "desc_lead",
+        "evidence": "home health",
+        "snippet": "Simply created the best Medicare Home Health Agency in the Ocala area. Set the standards for care in Home Health and continuing that culture of caring and excel"
+      },
+      {
+        "company": "Angelic Services, LLC",
+        "title": "Owner/Administrator",
+        "method": "desc_lead",
+        "evidence": "home care",
+        "snippet": "We provide Adult Day Care and home care for seniors in Cherokee and surrounding counties."
+      },
+      {
+        "company": "Home Instead",
+        "title": "Franchise Owner",
+        "method": "desc_lead",
+        "evidence": "home care",
+        "snippet": "Organize home care services for our senior clients."
+      },
+      {
+        "company": "Always Best Care Senior Services of Chapel Hill-Durham",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "home care",
+        "snippet": "Always Best Care provides non-medical in-home care to seniors who choose to age in place in their own home. We also provide a FREE, personalized Assisted Living"
+      }
+    ],
+    "Sales & Related": [
+      {
+        "company": "Lulumar Capital Development",
+        "title": "Founder, Managing Partner",
+        "method": "desc_lead",
+        "evidence": "real estate",
+        "snippet": "Focused in the development of various Real Estate investments in the US Southeast States of turn key rental properties thru buy, renovate and rent thru Syndicat"
+      },
+      {
+        "company": "Maternal Expressions",
+        "title": "Entrepreneur/Owner",
+        "method": "desc_lead",
+        "evidence": "retail",
+        "snippet": "Operator retail outlet specializing in maternity & natural baby care productsResponsible for all aspects of operation for 3 store organizationDeveloped marketin"
+      },
+      {
+        "company": "Boomerang Kids Consignment",
+        "title": "Owner/Operator",
+        "method": "desc_lead",
+        "evidence": "retail",
+        "snippet": "Created and managed all aspects of a retail children’s consignment store, from inception through store closing, including logo, branding, acquisition of venue a"
+      },
+      {
+        "company": "Just for Little People",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "real estate",
+        "snippet": "Managed legal and financial departments of children's toy and gift catalog business, including negotiating contracts and real estate documents, corporate docume"
+      },
+      {
+        "company": "Self-employed",
+        "title": "Business Owner",
+        "method": "desc_lead",
+        "evidence": "ecommerce",
+        "snippet": "Ecommerce"
+      },
+      {
+        "company": "Will Flanagan Realty Group",
+        "title": "Founder",
+        "method": "desc_lead",
+        "evidence": "real estate",
+        "snippet": "As the founder and lead real estate strategist at Will Flanagan Realty Group, I specialize in delivering cutting-edge solutions for buyers, sellers, and investo"
+      },
+      {
+        "company": "MINXMEOW",
+        "title": "Founder",
+        "method": "desc_lead",
+        "evidence": "boutique",
+        "snippet": "In 2014 I founded a small boutique clothing brand where I was able to showcase my creative designs. My zest for comfort and wearable beauty were displayed uniqu"
+      },
+      {
+        "company": "Rayanco",
+        "title": "Co-Founder Rayanco Inc",
+        "method": "desc_lead",
+        "evidence": "ecommerce",
+        "snippet": "- Founded and scaled an eCommerce distribution business specializing in gas station and convenience store merchandise, growing company value from $50K to $10M i"
+      },
+      {
+        "company": "Delegato's Athletics",
+        "title": "Small Business Owner",
+        "method": "desc_lead",
+        "evidence": "retail",
+        "snippet": "Managed all aspects of a small retail business including hiring, training, inventory, sales, marketing, and cash."
+      },
+      {
+        "company": "🌙 Luna RGV Development LLC",
+        "title": "Co-Founder and Owner",
+        "method": "desc_lead",
+        "evidence": "real estate",
+        "snippet": "Real estate & construction business"
+      },
+      {
+        "company": "Laura's Lingerie",
+        "title": "Owner/Operator",
+        "method": "desc_lead",
+        "evidence": "retail",
+        "snippet": "Owned and operated 4 retail stores in 3 states. Was responsible for hiring, payroll, purchasing, and putting on over 1000 fashion shows during our years in busi"
+      },
+      {
+        "company": "The Olie Gathering Place",
+        "title": "Co-Owner",
+        "method": "desc_lead",
+        "evidence": "boutique",
+        "snippet": "I am the co-owner of The Olie Gathering Place, a boutique event venue in the Paseo Arts District. The venue is now fully operated by a team that manages all dai"
+      }
+    ],
+    "Building & Grounds Cleaning & Maintenance": [
+      {
+        "company": "Farmer",
+        "title": "Land Owner",
+        "method": "desc_lead",
+        "evidence": "lawn care",
+        "snippet": "Maintain and repair farming equipment and outbuildings, Maintain irrigation for fields, Tree conservation, Organic farming, Manager and buyer, Animal husbandry "
+      },
+      {
+        "company": "Pool Care Plus, LLC",
+        "title": "Small Business Owner",
+        "method": "desc_lead",
+        "evidence": "cleaning",
+        "snippet": "Founder and co-owner of successful pool, cleaning and repair company specializing in providing high-quality service to residential clients implemented strategic"
+      },
+      {
+        "company": "Pinnacle Building Services - Mansfield, Ohio",
+        "title": "Co-Owner/CFO",
+        "method": "desc_lead",
+        "evidence": "cleaning",
+        "snippet": "- Successful implementation of a start up Commercial Cleaning business now billing over $1.2M annually- Expansion of Commercial Cleaning business into that of C"
+      },
+      {
+        "company": "Self-employed",
+        "title": "Housekeeper",
+        "method": "desc_lead",
+        "evidence": "housekeeping",
+        "snippet": "Housekeeping for the Berea area and London area. General housekeeping duties and outside work."
+      },
+      {
+        "company": "THE MAIDS OF WAKE COUNTY",
+        "title": "Owner/Manager",
+        "method": "desc_lead",
+        "evidence": "cleaning",
+        "snippet": "Franchise house-cleaning company. Raleigh franchise had +150 customers. Annual revenue $350K.; Supervised 12 cleaners, 4 managers and an office manager. Develop"
+      },
+      {
+        "company": "Self-employed",
+        "title": "Business Owner",
+        "method": "desc_lead",
+        "evidence": "janitorial",
+        "snippet": "I own and operate Ouellette's Janitorial and Lawncare. I am a woman owned small business. I provide residential, airbnb, commercial and post construction cleani"
+      },
+      {
+        "company": "Signature Paver Sealing, LLC",
+        "title": "Company Owner",
+        "method": "desc_lead",
+        "evidence": "cleaning",
+        "snippet": "North Florida's expert in paver cleaning, sealing, and restoration."
+      },
+      {
+        "company": "Eagle Truck Cleaning",
+        "title": "Company Owner",
+        "method": "desc_lead",
+        "evidence": "cleaning",
+        "snippet": "At Eagle Truck Cleaning Services, we believe that your truck deserves the highest level of care and attention. Since taking ownership, I’ve worked to ensure tha"
+      },
+      {
+        "company": "Division 23",
+        "title": "Small Business Owner",
+        "method": "desc_lead",
+        "evidence": "lawn care",
+        "snippet": "Lawn care and Maintenance"
+      },
+      {
+        "company": "Happy Clean Homes",
+        "title": "Small Business Owner",
+        "method": "desc_lead",
+        "evidence": "cleaning",
+        "snippet": "House Cleaning Company."
+      },
+      {
+        "company": "Private Family Yacht",
+        "title": "Freelance Stewardess",
+        "method": "desc_lead",
+        "evidence": "cleaning",
+        "snippet": "- Daily housekeeping (interior) duties as well as cleaning of the exterior of ship. - Assisted Chef with plating and prepping meals.- Provisioned for next chart"
+      },
+      {
+        "company": "Sew Clean Tidy",
+        "title": "Business Owner",
+        "method": "desc_lead",
+        "evidence": "housekeeping",
+        "snippet": "Directed and trained a small housekeeping team, overseeing tasks and ensuring efficient operations.Effectively communicated to ensure the provided cleaning serv"
+      }
+    ],
+    "Education, Training & Library": [
+      {
+        "company": "\"Face Forward Inc. Makeup Training\"​",
+        "title": "Owner/Instructor",
+        "method": "desc_lead",
+        "evidence": "education",
+        "snippet": "Advanced Education for Cosmetologist & Estheticians"
+      },
+      {
+        "company": "Freelance",
+        "title": "Journalist Online/Print",
+        "method": "desc_lead",
+        "evidence": "education",
+        "snippet": "Produced articles on economics, education and government for various news organizations, including Patch.com (AOL/Huffington Post local news service), the Chica"
+      },
+      {
+        "company": "International Provider Services",
+        "title": "Co-Founder",
+        "method": "desc_lead",
+        "evidence": "academy",
+        "snippet": "IPS provided physicians services to Fort Carson Army Hospital, the Air Force Academy, Fitzsimmons Army Hospital, Peterson Air Force Base and Luke Air Force base"
+      },
+      {
+        "company": "Farmington DANCE and Center",
+        "title": "OWNER/ARTISTIC DIRECTOR",
+        "method": "desc_lead",
+        "evidence": "education",
+        "snippet": "Implemented successful start up business, arts education programs, outreach programs and performance company. Marketing/advertisingCustomer serviceHiring/manage"
+      },
+      {
+        "company": "BiggTime Volleyball",
+        "title": "Owner Operator",
+        "method": "desc_lead",
+        "evidence": "education",
+        "snippet": "A volleyball training company providing private lessons, small group clinics, coaches education and recruitment advice."
+      },
+      {
+        "company": "BARBAH GAMES",
+        "title": "Co-Founder",
+        "method": "desc_lead",
+        "evidence": "education",
+        "snippet": "Early cofounder of tech edutainment company, bridging the education gap between the United States and Kenya. Project-managed the first iteration of the beta app"
+      },
+      {
+        "company": "Self Employed",
+        "title": "Teacher Training Instructor",
+        "method": "desc_lead",
+        "evidence": "education",
+        "snippet": "Summer 2020, Summer 2021, Summer 2022, Summer 2023, Summer 2024Alliance for Public Waldorf Education, VirtualKentahten Institute of Waldorf Instruction Inc., On"
+      },
+      {
+        "company": "Self-employed",
+        "title": "Founder, Dolan Consult",
+        "method": "desc_lead",
+        "evidence": "educational",
+        "snippet": "My practice has centered on delivering the highest educational outcomes for students and clinicians in the classroom and professional settings. I have been a Te"
+      },
+      {
+        "company": "Freelance/Caregiver",
+        "title": "Manager",
+        "method": "desc_lead",
+        "evidence": "education",
+        "snippet": "Managed accounts payable and managed trustReviewed prospective business opportunities for family business start-upRaised young childContinuing education working"
+      },
+      {
+        "company": "Heart of Louise",
+        "title": "Founder",
+        "method": "desc_lead",
+        "evidence": "education",
+        "snippet": "Heart of Louise is an organization that assists members of the community diagnosed with Autism and developmental delays, navigate the through Individualized Edu"
+      },
+      {
+        "company": "Verbatim Strategies",
+        "title": "Founder",
+        "method": "desc_lead",
+        "evidence": "education",
+        "snippet": "Independent PR/corporate communications consultancy providing media relations, mar/com, copywriting, social responsibility, and analytics services to higher edu"
+      },
+      {
+        "company": "Self-employed English as Foreign Language Teacher",
+        "title": "English as a Foreign Language Teacher",
+        "method": "desc_lead",
+        "evidence": "tutoring",
+        "snippet": "Taught English to school-age children in Chile, South America (home-tutoring, assistant teaching and substitute positions)Also tutored students after school.Wor"
+      }
+    ],
+    "Farming, Fishing & Forestry": [
+      {
+        "company": "Tamarack Valuation Services, LLC",
+        "title": "Founder",
+        "method": "desc_lead",
+        "evidence": "agricultural",
+        "snippet": "Tamarack Valuation Services provides agricultural and commercial appraisal service throughout Michigan."
+      },
+      {
+        "company": "Wellington Risk Assessment and Valuation Group",
+        "title": "Independent Field Inspector",
+        "method": "desc_vote",
+        "evidence": "farm,ranch",
+        "snippet": "• Conducted residential (including High Value and Medium Value), farm & ranch, and commercial property risk inspections for client insurance underwriters and ad"
+      },
+      {
+        "company": "VeGrow",
+        "title": "Founder",
+        "method": "desc_vote",
+        "evidence": "agriculture,farming",
+        "snippet": "📈 Strategic Fundraising:As the visionary founder of an Agtech company, navigated and successfully raised funds in a challenging market, showcasing resilience an"
+      },
+      {
+        "company": "Energy Systems Consultants",
+        "title": "Owner",
+        "method": "desc_vote",
+        "evidence": "dairy,farm",
+        "snippet": "Created and was awarded U.S. Department of Energy grants for building a Fuel Ethanol Plant and a Fuel Methane Digester on our 100-acre dairy farm. Also erected "
+      },
+      {
+        "company": "Carbon Free UWGB",
+        "title": "Founder",
+        "method": "desc_lead",
+        "evidence": "farm",
+        "snippet": "Carbon Free UWGB is a grassroots campaign I founded while in college that aims to commit UW-Green Bay to 100% clean and renewable energy by 2045 through the ins"
+      },
+      {
+        "company": "Abundant Harvest Farms",
+        "title": "Co-Owner",
+        "method": "desc_lead",
+        "evidence": "farm",
+        "snippet": "Family owned and operated fruit farm."
+      },
+      {
+        "company": "XPLANT LABORATORY INC - Contract tissue culture lab for the Pacific Northwest",
+        "title": "Co-Owner/Founder",
+        "method": "desc_lead",
+        "evidence": "agricultural",
+        "snippet": "Created a new business from the ground up to meet the growing demand for tissue culture lab services in the nursery and agricultural industry. Designed laborato"
+      },
+      {
+        "company": "Vaughn Farms",
+        "title": "Business Owner",
+        "method": "desc_lead",
+        "evidence": "farm",
+        "snippet": "Provide leadership to staff including the scheduling and management of farmhand workforce on a 930 acre farm.Oversee all finances including $100,000 in expendit"
+      },
+      {
+        "company": "Shining Sea Aquafarms",
+        "title": "Co-Owner",
+        "method": "desc_lead",
+        "evidence": "farm",
+        "snippet": "Sustainable marine aqua farm."
+      },
+      {
+        "company": "StrathKirn Inc",
+        "title": "Founder & CEO",
+        "method": "desc_lead",
+        "evidence": "agriculture",
+        "snippet": "Over 28 years of experience as Founder and CEO of StrathKirn, working on biotechnologies and new products for the agriculture, food, and bioenergy markets. Cust"
+      },
+      {
+        "company": "Tahoe Ridge Vineyards and Winery and Marketplace",
+        "title": "Founder - Operating Owner",
+        "method": "desc_lead",
+        "evidence": "vineyard",
+        "snippet": "The winery and vineyard project was my dissertation in graduate school resulting in corporate formation July 1994."
+      },
+      {
+        "company": "Greenisen Haflingers",
+        "title": "Co Owner",
+        "method": "desc_lead",
+        "evidence": "farm",
+        "snippet": "Co manage a small Haflinger breeding farm to promote the sport horse type of Haflinger. Involved in the day to day operation including daily handlng of the foal"
+      }
+    ],
+    "Computer & Mathematical": [
+      {
+        "company": "PosterMash.Me",
+        "title": "Co-Founder",
+        "method": "desc_lead",
+        "evidence": "app",
+        "snippet": "Our easy to use app will create a huge poster of all your Facebook friends profile pictures. The best part about it's FREE as long as you share it on Facebook. "
+      },
+      {
+        "company": "Gotham Capital, LLC and Safe Technologies",
+        "title": "Founder and CEO",
+        "method": "desc_lead",
+        "evidence": "cyber",
+        "snippet": "Creator and the driving force behind this multi-million dollar technology driven software and financial services company specializing in cyber security and serv"
+      },
+      {
+        "company": "The League",
+        "title": "Founder & CEO (Acquired by Match Group $MTCH)",
+        "method": "desc_lead",
+        "evidence": "app",
+        "snippet": "A dating app for the overly ambitious. Download at theleague.com (iOS, android)Launched in November 2014 to 419 SF alpha testers, and acquired in July 2022 by M"
+      },
+      {
+        "company": "Teksilon Consulting",
+        "title": "Founder",
+        "method": "desc_lead",
+        "evidence": "computer",
+        "snippet": "Founder - Teksilon ConsultingA lifelong veteran of the computer industry with multiple patents. Experience in product development, including mechanical design, "
+      },
+      {
+        "company": "Trade Data Monitor LLC",
+        "title": "Executive Vice President and Co-Founder",
+        "method": "desc_lead",
+        "evidence": "saas",
+        "snippet": "Co-founded company & guided technical team of 8 programmers & database analysts to develop SAAS solution from inception to delivery in 18 months for company lau"
+      },
+      {
+        "company": "El3ktrify",
+        "title": "Co-Founder",
+        "method": "desc_lead",
+        "evidence": "app",
+        "snippet": "El3ktrify is an app designed to give everyone the opportunity to invest in renewable solar energy no matter where you live."
+      },
+      {
+        "company": "Pepper Networks, LLC",
+        "title": "Co-Founder",
+        "method": "desc_lead",
+        "evidence": "app",
+        "snippet": "Developer of Movie Maker 3D - an app that makes it simple for everyone to create visual stories with animated 3D movies and videos that consist of customizable "
+      },
+      {
+        "company": "Princeton Compliance, Inc.",
+        "title": "Founder & CEO",
+        "method": "desc_lead",
+        "evidence": "saas",
+        "snippet": "SaaS-based HIPAA compliance software company"
+      },
+      {
+        "company": "The Winchester Agency",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "computer",
+        "snippet": "In charge of billing, budgeting, and purchasingMaking decisions on price and contract negotiationsWorking in the field as needed performing basic computer opera"
+      },
+      {
+        "company": "The Computerisers",
+        "title": "Principal Owner",
+        "method": "desc_lead",
+        "evidence": "computer",
+        "snippet": "computer system analysis and design specializing in unusual situations especially converting mainframe businesses to the world of networked PC's"
+      },
+      {
+        "company": "BUYSELL Clothing",
+        "title": "Co-Founder",
+        "method": "desc_lead",
+        "evidence": "app",
+        "snippet": "Download \"BUYSELL Clothing\" in the app store, play store or visit buysellclothing.com. BUYSELL Clothing is a peer-to-peer resale marketplace for specialty vinta"
+      },
+      {
+        "company": "Metrodigi, Inc",
+        "title": "Founder & CEO",
+        "method": "desc_lead",
+        "evidence": "cloud",
+        "snippet": "Enterprise Cloud Digital Development Software Platform - ChaucerEd-Tech Interactivity & Assessment PlatformEnterprise Leaders in Authoring Tools & Industry Stan"
+      }
+    ],
+    "Community & Social Service": [
+      {
+        "company": "Peak Consulting",
+        "title": "Partner/Founder",
+        "method": "desc_lead",
+        "evidence": "mental health",
+        "snippet": "Worked as a mental health professional on an Indian reservation Created many grassroots/community outreach programs such as suicide prevention, parenting skills"
+      },
+      {
+        "company": "Denver Behavior Consultants",
+        "title": "Owner, Developmental Interventionist and Behavior Consultant",
+        "method": "desc_lead",
+        "evidence": "mental health",
+        "snippet": "We are dedicated to providing Early Intervention, Mental Health, Social Skills Instruction, and Parent Education using evidence-based practices such as Applied "
+      },
+      {
+        "company": "Juliette Bartley Warnke & Associates Professional Services",
+        "title": "CEO / Owner / Certified Addiction Professional, Inc.",
+        "method": "desc_lead",
+        "evidence": "counseling",
+        "snippet": "DCF Licensed out-patient Addictions Counseling Agency: Wrote policy and procedure, hired and trained staff, Developed and ordered additions curriculum. Screened"
+      },
+      {
+        "company": "Sane in the Membrane",
+        "title": "Founder-Lead Therapist",
+        "method": "desc_lead",
+        "evidence": "therapy",
+        "snippet": "Founder of a non traditional Private Therapy Practice. Utilizing a different approach to reach communities of color and creatives."
+      },
+      {
+        "company": "Self-employed",
+        "title": "Pastor Teacher",
+        "method": "desc_lead",
+        "evidence": "ministry",
+        "snippet": "Prison Ministry"
+      },
+      {
+        "company": "Icarus Theatre Ensemble",
+        "title": "Co-Founder/Managing Director",
+        "method": "desc_lead",
+        "evidence": "nonprofit",
+        "snippet": "Responsible for legally forming nonprofit corporation. Duties included delegation and oversight of theatre operation to ensure achievement of artistic mission a"
+      },
+      {
+        "company": "Ellas San Francisco",
+        "title": "Founder",
+        "method": "desc_lead",
+        "evidence": "nonprofit",
+        "snippet": "-Grassroots nonprofit that exposes the needs of the impoverished local community in San Francisco"
+      },
+      {
+        "company": "Destined Horizons",
+        "title": "Independent Contractor- Therapist",
+        "method": "desc_lead",
+        "evidence": "mental health",
+        "snippet": "Employed evidence-based therapeutic modalities, including CBT, IFS, EMDR, and Solution Focus, for thediagnosis and treatment of mental health conditionsTailored"
+      },
+      {
+        "company": "Pause with Panda",
+        "title": "CEO & Founder",
+        "method": "desc_lead",
+        "evidence": "mental health",
+        "snippet": "Pause with Panda is a new connected toy that teaches kids emotional regulation strategies to improve mental health. 1 out of 5 children suffer from a mental ill"
+      },
+      {
+        "company": "Kara Lydon Nutrition",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "counseling",
+        "snippet": "Awarded “Best of Boston Dietitian” by Boston Magazine in 2021, our nutrition counseling private practice consists of dietitians who are certified or specialized"
+      },
+      {
+        "company": "Freelance",
+        "title": "Sales & Business Development Representative",
+        "method": "desc_lead",
+        "evidence": "outreach",
+        "snippet": "As a self-employed sales professional, I have successfully generated leads, negotiated deals, and closed sales through strategic outreach and relationship-build"
+      },
+      {
+        "company": "Oncoreality",
+        "title": "Founder",
+        "method": "desc_lead",
+        "evidence": "mental health",
+        "snippet": "Oncoreality is a student-run social enterprise that aims to spread awareness about cancer, protect the mental health of cancer patients and tackle the mindset o"
+      }
+    ],
+    "Healthcare Practitioners & Technical": [
+      {
+        "company": "City of Hope",
+        "title": "Independent Consultant; Activation Specialist",
+        "method": "desc_lead",
+        "evidence": "nursing",
+        "snippet": "Provided support to Nursing staff/services and Physicians in the Ambulatory and Inpatient unit. Staff was supported with the utilizations of but not limited to "
+      },
+      {
+        "company": "Brightwell Health, LLC",
+        "title": "Principal Owner",
+        "method": "desc_lead",
+        "evidence": "nursing",
+        "snippet": "Management company for medical practices providing Remote Telehealth Services For Residents/Patients Of Nursing Homes, Skilled Nursing Facilities, Assisted Livi"
+      },
+      {
+        "company": "HAROLD MARIONEAUX, JR. D.D.S.",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "dental",
+        "snippet": "Launched and maintained 2 dental offices each with 4000+ patients of record, full-time hygienist, and 25 staff."
+      },
+      {
+        "company": "Self employed",
+        "title": "Independent Consultant Contractor",
+        "method": "desc_lead",
+        "evidence": "medical",
+        "snippet": "Established status as an independent consultant/contractor in the healthcare industry for the distribution of medical products and management consulting. Consul"
+      },
+      {
+        "company": "Clarot Consulting Group, LLC",
+        "title": "Principal and Founder",
+        "method": "desc_lead",
+        "evidence": "medical",
+        "snippet": "A consultancy providing support and solutions to the pharmaceutical, dietary supplement and medical device industries. Clarot Consulting Group, LLC assists star"
+      },
+      {
+        "company": "HEALTHY HORIZONS HYPNOSIS",
+        "title": "Founder/Director",
+        "method": "desc_lead",
+        "evidence": "medical",
+        "snippet": "Clinic Director/Board Certified Clinical and Medical Hypnotherapist."
+      },
+      {
+        "company": "Truett Quality Consulting, LLC",
+        "title": "Independent Quality Assurance Consultant",
+        "method": "desc_lead",
+        "evidence": "medical",
+        "snippet": "Established QMS for Medical Device Start-UpPerformed Quality Assurance Manager and Management Representative duties for Class IIa medical device company"
+      },
+      {
+        "company": "Atlas Medical Solutions",
+        "title": "President and Founder",
+        "method": "desc_lead",
+        "evidence": "medical",
+        "snippet": "Atlas Medical Solutions is a global provider of medical devices and healthcare consulting services. We help our clients achieve their business and financial obj"
+      },
+      {
+        "company": "cdSonography, Inc. dba Ultimate Ultrasound",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "medical",
+        "snippet": "I haved worked as a Registered Diagnostic Medical Sonographer in Atlanta since 1987 in both per diem and staff positions in Abdomen, Ob/Gyn, Urology & Vascular "
+      },
+      {
+        "company": "Staples, Etc., LLC",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "medical",
+        "snippet": "Medical and technical communications"
+      },
+      {
+        "company": "Independent Contractor @ DNA",
+        "title": "Academic Search Specialist",
+        "method": "desc_lead",
+        "evidence": "medical",
+        "snippet": "Search & recruit medical doctors on all levels within medical universities and offer opportunities for higher ranking positions from general faculty to division"
+      },
+      {
+        "company": "PetCare Solutions, LLC",
+        "title": "Founder",
+        "method": "desc_lead",
+        "evidence": "veterinary",
+        "snippet": "Owner of this sales and distribution organization providing custom pet care products and solutions to the veterinary industry. My experience running this organi"
+      }
+    ],
+    "Food Preparation & Serving": [
+      {
+        "company": "Makela's Bikini Wahine'",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "coffee",
+        "snippet": "The finest in Coffee, Espresso and Polynesian treats! Served with a beautiful smile to happy Aloha & Mahalo!"
+      },
+      {
+        "company": "AKTION Food & Beverage, LLC",
+        "title": "Founder",
+        "method": "desc_lead",
+        "evidence": "coffee",
+        "snippet": "AKTION is a Functional Food & Beverage Company and Specialty Coffee Roaster. Located on the north shore of Lake Travis, just out side of Austin, TX."
+      },
+      {
+        "company": "Azad Group,Inc",
+        "title": "Founder/Owner",
+        "method": "desc_lead",
+        "evidence": "cafe",
+        "snippet": "Founded Minneapolis based Cafe Group and Expanded Commercial RealEstate Holdings:"
+      },
+      {
+        "company": "Brewupcycle",
+        "title": "Independent Business Owner",
+        "method": "desc_lead",
+        "evidence": "coffee",
+        "snippet": "Specializing in creating unique furniture using upcycled material from local wineries, breweries and coffee roasters. If you have a space that you want somethin"
+      },
+      {
+        "company": "5 Loaves 2 Fish",
+        "title": "Founder and Creator",
+        "method": "desc_lead",
+        "evidence": "culinary",
+        "snippet": "5 Loaves 2 Fish is an online store that sells handcrafted goods assembled in the United States for the culinary professional, enthusiast, and foodie at heart. W"
+      },
+      {
+        "company": "The Steeping Giant Cold Brew Coffee",
+        "title": "Founder",
+        "method": "desc_lead",
+        "evidence": "coffee",
+        "snippet": "Developed cold brewed coffee recipes. Researched and developed coffee filtration and nitrogen infusion. Innovated cold brewing systems & protocols. Competed at "
+      },
+      {
+        "company": "Riparian",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "restaurant",
+        "snippet": "Owner and operator of a family owned Southern Cuisine restaurant."
+      },
+      {
+        "company": "Chefs For Seniors Inc",
+        "title": "Owner, Chefs for Seniors - Westchester County, NY",
+        "method": "desc_lead",
+        "evidence": "chef",
+        "snippet": "As a Chefs for Seniors owner and personal chef, I work with clients to select or customize menu choices according to client taste preference and dietary needs."
+      },
+      {
+        "company": "ECO Filters",
+        "title": "Company Owner",
+        "method": "desc_lead",
+        "evidence": "restaurant",
+        "snippet": "ECO Filters was founded over 40 years ago by two Cuban immigrants who recognized a need in Miami's vibrant restaurant industry. With a strong commitment to safe"
+      },
+      {
+        "company": "Hop Dogma Brewing Company",
+        "title": "Co-Founder, Number Cruncher",
+        "method": "desc_lead",
+        "evidence": "brewery",
+        "snippet": "Brewery and tap room where friends and family can gather to enjoy great craft beers. We are constantly in pursuit of a better beer."
+      },
+      {
+        "company": "Ad Hoc Laundry Service",
+        "title": "Co-Founder/COO",
+        "method": "desc_lead",
+        "evidence": "catering",
+        "snippet": "Launched door-to-door laundry and dry-cleaning service catering to the Dartmouth community. Achieved positive cash flow and 75% penetration of core market withi"
+      },
+      {
+        "company": "TORI BROWN THE LABEL",
+        "title": "Founder and Owner",
+        "method": "desc_lead",
+        "evidence": "catering",
+        "snippet": "Launched a $2M+ Direct-to-Consumer Lifestyle Brand catering to sophisticated, luxury shoppers.Demonstrated success in creating seasonal collections.Implemented "
+      }
+    ],
+    "Transportation & Material Moving": [
+      {
+        "company": "MyBlackCar.com Limousine & Executive Car service",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "logistics",
+        "snippet": "Group & event logistics"
+      },
+      {
+        "company": "MyBlackCar.com",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "transportation",
+        "snippet": "My chauffeured transportation career began back in 1996, I was two years out of high school and started my own company, Cypress West Transportation. In 2006 as "
+      },
+      {
+        "company": "Stockbridge Consulting Group, LLC",
+        "title": "Small Business Owner",
+        "method": "desc_lead",
+        "evidence": "logistics",
+        "snippet": "Stockbridge Consulting Group is an independent management consulting firm specializing in warehousing, distribution, logistics and international trade. As an in"
+      },
+      {
+        "company": "Charleston Southern University",
+        "title": "Contractor",
+        "method": "desc_lead",
+        "evidence": "logistics",
+        "snippet": "Multi Department Manager with main areas of responsibility consisting of Logistics, Bookstore, and Retail operations. Logistics of University mailroom including"
+      },
+      {
+        "company": "DGW LOGISTIC L.L.C.",
+        "title": "Self Employed",
+        "method": "desc_lead",
+        "evidence": "courier",
+        "snippet": "Independent Contractor Courier"
+      },
+      {
+        "company": "A&D Express",
+        "title": "Co-Owner",
+        "method": "desc_lead",
+        "evidence": "logistics",
+        "snippet": "Business to business logistics. Custom critical movement of goods. Specializing in air transport, crossline Canadian shipments and regional transport."
+      },
+      {
+        "company": "Carlie’s Tesla",
+        "title": "Business Owner",
+        "method": "desc_lead",
+        "evidence": "transportation",
+        "snippet": "Private Luxury Airport Transportation"
+      },
+      {
+        "company": "Auction Hunters Treasure Chest Inc",
+        "title": "Owner & Founder",
+        "method": "desc_lead",
+        "evidence": "logistics",
+        "snippet": "Operated a small business of acquiring contents of auctioned off storage units, processing and reselling the inventory for profitManaged the logistics of invent"
+      },
+      {
+        "company": "Rancho Santa Fe Community Center",
+        "title": "Independent Consultant- Golf Tournament Manager",
+        "method": "desc_lead",
+        "evidence": "logistics",
+        "snippet": "-Planned and executed Rancho Santa Fe’s “All Fore the Community” annual golf tournament races -Organized all event logistics including contract negotiation, sol"
+      },
+      {
+        "company": "Tails Away Pet Transport",
+        "title": "Principal Owner",
+        "method": "desc_lead",
+        "evidence": "transportation",
+        "snippet": "As the owner of a transportation company, I oversee the import and export of goods, ensuring full compliance with customs regulations, USDA guidelines, and APHI"
+      },
+      {
+        "company": "WET Destination Travel, LLC",
+        "title": "Owner / Founder",
+        "method": "desc_vote",
+        "evidence": "logistics,transportation",
+        "snippet": "A turn key meeting and vacation planner that provides all ground service based on local knowledge of their given destinations. These services can be transportat"
+      },
+      {
+        "company": "Independent Consultant",
+        "title": "Grants Consultant",
+        "method": "desc_lead",
+        "evidence": "transportation",
+        "snippet": "Independent grants consultant with extensive expertise in strategic management of Federal, State and Regional grants for transit and transportation."
+      }
+    ],
+    "Production": [
+      {
+        "company": "U.S. Department of Energy (DOE)",
+        "title": "Independent Contractor",
+        "method": "desc_lead",
+        "evidence": "manufacturing",
+        "snippet": "Evaluate investments in advanced energy projectsAssess allocations for projects that expand clean energy manufacturing and recycling and critical materials refi"
+      },
+      {
+        "company": "Laxey Engineering",
+        "title": "Owner/Process Engineer",
+        "method": "desc_lead",
+        "evidence": "manufacturing",
+        "snippet": "Providing manufacturing solutions from concept to final."
+      },
+      {
+        "company": "W. F. O'Brien & Associates",
+        "title": "President&Owner",
+        "method": "desc_lead",
+        "evidence": "manufacturing",
+        "snippet": "Quality Consulting & Training, Quality Engineering Statistics, Quality Engineering, Quality Management Systems, Lean Manufacturing, Quality Auditing"
+      },
+      {
+        "company": "Quality Consulting LLC",
+        "title": "Owner/ Engineering Consultant",
+        "method": "desc_lead",
+        "evidence": "manufacturing",
+        "snippet": "Electronic design, manufacturing, and quality service providerfor electronic component and supplier selection and qualification, PCB Layout support,Statistical "
+      },
+      {
+        "company": "Pour House Pressing",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "manufacturing",
+        "snippet": "Vinyl record manufacturing for indie bands and labels."
+      },
+      {
+        "company": "BuiltRight Industries",
+        "title": "President, Founder",
+        "method": "desc_lead",
+        "evidence": "manufacturing",
+        "snippet": "BuiltRight Industries specializes in the design and manufacturing of unique, patented products that improve the ownership experience of pickup trucks and SUVs. "
+      },
+      {
+        "company": "Visible Weather",
+        "title": "Founder",
+        "method": "desc_lead",
+        "evidence": "manufacturing",
+        "snippet": "Visible Weather is a collaborative founded in 2011 to work with partners in housing, urban planning, energy, engineering, materials science and advanced manufac"
+      },
+      {
+        "company": "Self employed",
+        "title": "Lead Trainer",
+        "method": "desc_lead",
+        "evidence": "manufacturing",
+        "snippet": "Continuous improvement, specialized for Lean manufacturing practices."
+      },
+      {
+        "company": "Head Case Hemp",
+        "title": "Company Owner",
+        "method": "desc_lead",
+        "evidence": "manufacturing",
+        "snippet": "Head Case Hemp strives to be an industry leader in hemp-derived cannabis products on all fronts, including product innovation, quality, as well as good manufact"
+      },
+      {
+        "company": "Sutton International",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "manufacturing",
+        "snippet": "Engineering and manufacturing of quality sealing systems for rotary kilns, calciners, coolers, and dryers."
+      },
+      {
+        "company": "Soccor Ball Shop",
+        "title": "Founder and CEO",
+        "method": "desc_lead",
+        "evidence": "manufacturing",
+        "snippet": "Sports and Athletic Manufacturing for the Soccer Sector"
+      },
+      {
+        "company": "Spatial Relations LLC",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "woodworking",
+        "snippet": "Spatial Relations is a bespoke woodworking studio in New York City specializing in custom furniture, fine millwork, and high-end cabinetry for the home. We work"
+      }
+    ],
+    "Personal Care & Service": [
+      {
+        "company": "Self Employed",
+        "title": "Self Employed",
+        "method": "desc_lead",
+        "evidence": "fitness",
+        "snippet": "⦁ Personal Trainer⦁ Group Fitness Trainer"
+      },
+      {
+        "company": "BeautéBabes",
+        "title": "Small Business Owner",
+        "method": "desc_vote",
+        "evidence": "beauty,wellness",
+        "snippet": "I have finally started up my dream job!!! Along with beginning my Aesthetician school journey, I have created my own business. Beauté Babes serves the purpose t"
+      },
+      {
+        "company": "Beachbody",
+        "title": "Independent Team Beachbody Coach",
+        "method": "desc_lead",
+        "evidence": "fitness",
+        "snippet": "Supports individuals with fitness, wellness and financial goals."
+      },
+      {
+        "company": "Denali Coaching",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "personal training",
+        "snippet": "Personal training, nutritional counseling and life coach"
+      },
+      {
+        "company": "Movements for Change, LLC",
+        "title": "CEO/Founder/Inner Child Healing Guide",
+        "method": "desc_lead",
+        "evidence": "wellness",
+        "snippet": "Movements for Change, LLC is a multifaceted community organization focusing on the emotional, physical and spiritual wellness of individuals, families and commu"
+      },
+      {
+        "company": "Freelance",
+        "title": "Revenue & Growth Consultant",
+        "method": "desc_lead",
+        "evidence": "fitness",
+        "snippet": "Advising founders in wellness, finance, fitness, and design sectors to identify growth opportunities.• Revenue operations, sales development, strategic partners"
+      },
+      {
+        "company": "JWL Project 360",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "fitness",
+        "snippet": "The limitless consulting company achieving the continuous progression of your business with services for Professional Golf Management, Business Consulting, and "
+      },
+      {
+        "company": "TOPTEAM Fitness Academy",
+        "title": "Owner/ Athletic Director",
+        "method": "desc_vote",
+        "evidence": "fitness,massage,personal training,wellness",
+        "snippet": "The Golf Performance Specialist. TOPTEAM Fitness Academy is currently redefining golf performance for individuals of all levels who desire to achieve overall he"
+      },
+      {
+        "company": "rejevunec",
+        "title": "Small Business Owner",
+        "method": "desc_lead",
+        "evidence": "spa",
+        "snippet": "Spa"
+      },
+      {
+        "company": "Monica Caporale LMT",
+        "title": "Small Business Owner",
+        "method": "desc_lead",
+        "evidence": "massage",
+        "snippet": "Licensed Massage Therapist"
+      },
+      {
+        "company": "Like a Boss Nutrition",
+        "title": "Founder",
+        "method": "desc_lead",
+        "evidence": "wellness",
+        "snippet": "Founded a boutique wellness brand offering personalized nutrition coaching and lifestyle products. Built strategic retail partnerships and developed innovative,"
+      },
+      {
+        "company": "Slikwax",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "grooming",
+        "snippet": "As the owner of SLIKWAX, I lead the vision and growth of a brand that is redefining men’s grooming. We're committed to delivering innovative, high-quality hair "
+      }
+    ],
+    "Installation, Maintenance & Repair": [
+      {
+        "company": "Super Shops, Inc.",
+        "title": "Corporate Office Manager and Assistant to the Owner",
+        "method": "desc_lead",
+        "evidence": "automotive",
+        "snippet": "Super Shops, Inc was a nationwide store chain selling high percision, high performance automotive parts including tires and wheels. Super Shops was a privately "
+      },
+      {
+        "company": "Devoted Detailing",
+        "title": "Business Owner",
+        "method": "desc_lead",
+        "evidence": "automotive",
+        "snippet": "Owned and operated Devoted Detailing, which is an automotive mobile detailing car detailing business stationed in the Inland Empire."
+      },
+      {
+        "company": "Mountech",
+        "title": "President, Founder",
+        "method": "desc_lead",
+        "evidence": "automotive",
+        "snippet": "Mountech specializes in innovative and high quantity gear and device mounting solutions for automotive, marine and defense applications."
+      },
+      {
+        "company": "Diamond Auto Detailing ND",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "automotive",
+        "snippet": "We provide automotive interior & exterior detailing services. We also detail watercraft, semi's, ATV's, motorcycles & more.www.diamondautodetailingnd.com"
+      },
+      {
+        "company": "Self Employed",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "mechanic",
+        "snippet": "repair computers, also mechanic work on domestic and import vehicles"
+      },
+      {
+        "company": "Driven Brands, Inc.",
+        "title": "Founder Blue Rhino Inc. CEO",
+        "method": "desc_lead",
+        "evidence": "auto repair",
+        "snippet": "Econo Lube N’ Tune and Meineke are full service auto repair businesses Served nearly 100,000 customers in nearly 8 years Developed top 10% revenue producing s"
+      },
+      {
+        "company": "Burchfield Group Inc",
+        "title": "Joint Owner",
+        "method": "desc_lead",
+        "evidence": "automotive",
+        "snippet": "Automotive accessory and customization"
+      },
+      {
+        "company": "Haas Sheet Metal",
+        "title": "Owner",
+        "method": "desc_lead",
+        "evidence": "hvac",
+        "snippet": "The company was sub-contractor of HVAC systems to building contractors and mechanical contractors."
+      },
+      {
+        "company": "VIP Auto Club",
+        "title": "Business Owner/Operator",
+        "method": "desc_lead",
+        "evidence": "automotive",
+        "snippet": "Founded and built business from startup – providing general automotive maintenance and repair to a select client base. Managed the daily scheduling and operatio"
+      },
+      {
+        "company": "Laboratory Associates LLC",
+        "title": "Partner/owner",
+        "method": "desc_lead",
+        "evidence": "automotive",
+        "snippet": "Brite Ideas provides Eco - friendly cleaning solutions for Automotive, Household (Interior & Exterior), Marine and Industrial markets."
+      },
+      {
+        "company": "Main Street Autocare",
+        "title": "Business Owner",
+        "method": "desc_lead",
+        "evidence": "automotive",
+        "snippet": "Owner operator of an automotive repair company."
+      },
+      {
+        "company": "Big O Tires",
+        "title": "Owner / Operator",
+        "method": "desc_lead",
+        "evidence": "automotive",
+        "snippet": "As the Owner of Big O Tires in Marysville, I lead all aspects of store operations, business development, and customer service for one of the nation’s most trust"
+      }
+    ]
+  }
+}

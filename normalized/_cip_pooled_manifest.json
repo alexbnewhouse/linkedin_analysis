@@ -1,0 +1,38 @@
+{
+  "cip_coverage_pct": {
+    "deterministic": 58.83,
+    "pooled": 68.95
+  },
+  "executed": true,
+  "generated": "2026-07-21",
+  "jury_filled_rows": 362263,
+  "rows": 3577659,
+  "tiers_persons": {
+    "l1": {
+      "det": 210495,
+      "pooled": 246482
+    },
+    "l2": {
+      "det": 358675,
+      "pooled": 421082
+    },
+    "l3": {
+      "det": 579325,
+      "pooled": 658824
+    }
+  },
+  "tiers_records": {
+    "l1": {
+      "det": 240277,
+      "pooled": 287071
+    },
+    "l2": {
+      "det": 415908,
+      "pooled": 498786
+    },
+    "l3": {
+      "det": 689836,
+      "pooled": 802277
+    }
+  }
+}

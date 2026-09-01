@@ -16,7 +16,7 @@ from datetime import date
 import duckdb
 
 from portal import common as C
-from portal import analyses, build, launchboard, pathways, pillars
+from portal import analyses, build, choices, launchboard, pathways, pillars
 
 
 def run(threads: int | None = None) -> dict:
@@ -31,6 +31,7 @@ def run(threads: int | None = None) -> dict:
     funnel = build.group_funnel(con)
     fan = analyses.destination_fan(con)
     fan_detail = analyses.destination_fan_detail(con)
+    div = analyses.diversity(con, fan)
     # Attach the within-group occupation drill-down to each fan cell in place
     # (majors[*]["fan"] and baseline["fan"] alias these same lists).
     for g in list(C.MAJORS) + [C.BASELINE_KEY]:
@@ -46,6 +47,7 @@ def run(threads: int | None = None) -> dict:
     paths = pathways.mine_soc(con, top5_fan)
     pil = pillars.compute(con)
     lb = launchboard.compute(con)
+    ch = choices.compute(con)
 
     majors = {}
     for key, (name, fams, tier) in C.MAJORS.items():
@@ -81,11 +83,16 @@ def run(threads: int | None = None) -> dict:
             "paths_grain": paths[key]["paths_grain"],
             "launchboard": lb[key],
             "employer_field": emp[key],
+            "diversity": div[key],
+            "choices": ch["per_group"][key],
         }
 
     payload = {
         "generated": date.today().isoformat(),
         "snapshot_date": C.SNAPSHOT_DATE,
+        # The single global named-cell suppression bar; the front end reads
+        # this to render every suppression promise dynamically.
+        "min_support": C.MIN_SUPPORT,
         "window_rule": (
             "A year-N statistic includes only persons whose graduation anchor "
             f"(qualifying bachelor's end year) is <= {C.SNAPSHOT_YEAR}-N, so every "
@@ -125,13 +132,16 @@ def run(threads: int | None = None) -> dict:
             "deterministically role-coded slice of the cell (~30%); the jury "
             "resolves the sector but no finer, so those people appear as "
             "`no_detail_n` (classified to the group only). Named roles clear a "
-            f"{C.DETAIL_MIN_SUPPORT}-person bar -- deliberately below the "
-            f"{C.MIN_SUPPORT}-person headline bar, on the same descriptive "
-            "footing as the breadth KPI's >=5-person occupation-node reach -- "
-            "because at 40 the coded slice fragments across 20-30 roles and the "
-            "drill-down is empty for nearly every humanities cell. Finer roles "
-            "fold into `other_coded_n`. The portal badges the panel as a "
-            "coded-subset composition sitting below the 40-person bar."),
+            f"{C.DETAIL_MIN_SUPPORT}-person bar (since the 2026-07-13 "
+            f"loosening this coincides with the {C.MIN_SUPPORT}-person "
+            "headline bar), on the same descriptive footing as the breadth "
+            "KPI's >=5-person occupation-node reach: a composition of the "
+            "role-coded subset, not a population estimate. Finer roles fold "
+            "into `other_coded_n`, and the portal badges the panel as a "
+            "coded-subset composition. The launchboard snapshot fans (year-1 "
+            "first destinations, year-3/5 outlook) carry the same per-cell "
+            "`detail` under the same contract, computed on each horizon's own "
+            "windowed endpoint."),
         "majors": majors,
         "baseline": {
             "records": funnel[C.BASELINE_KEY]["records"],
@@ -149,7 +159,19 @@ def run(threads: int | None = None) -> dict:
             "pillars": pil[C.BASELINE_KEY],
             "launchboard": lb[C.BASELINE_KEY],
             "employer_field": emp[C.BASELINE_KEY],
+            "diversity": div[C.BASELINE_KEY],
+            "choices": ch["per_group"][C.BASELINE_KEY],
         },
+        "choices_pooled": ch["pooled"],
+        "choices_not_measured": ch["not_measured"],
+        "choices_notes": ch["notes"],
+        "diversity_note": (
+            "diversity.effective_destinations (inverse Simpson, 1/sum(p^2)) and "
+            "top3_classified_share are computed over the FULL classified year-10 "
+            "endpoint distribution -- scalar aggregates that name no cell, so "
+            "suppression does not apply; groups_reached and top_bucket_share "
+            f"restate the published fan (cells clearing the {C.MIN_SUPPORT}-"
+            "person bar)."),
         "launchboard_notes": launchboard.NOTES,
         "anchor_tiers_note": (
             "anchor_method_mix reports the share of a group's anchored persons "
@@ -180,13 +202,28 @@ def run(threads: int | None = None) -> dict:
         "funnel": funnel,
         "params": {
             "bachelor_level": C.BACHELOR_LEVEL, "fan_year": C.FAN_YEAR,
-            "min_support": C.MIN_SUPPORT, "breadth_min_persons": C.BREADTH_MIN_PERSONS,
+            "min_support": C.MIN_SUPPORT,
+            "min_support_note": (
+                "Global named-cell bar loosened 40 -> 10 (user directive "
+                "2026-07-13, PORTAL_REDESIGN_PLAN.md); common.MIN_SUPPORT is "
+                "the single knob -- distinctive_min and path_min_persons "
+                "derive from it."),
+            "detail_min_support": C.DETAIL_MIN_SUPPORT,
+            "breadth_min_persons": C.BREADTH_MIN_PERSONS,
             "distinctive_rr": C.DISTINCTIVE_RR, "distinctive_min": C.DISTINCTIVE_MIN,
             "path_min_persons": C.PATH_MIN_PERSONS, "curve_years": C.CURVE_YEARS,
             "anchor_tiers": list(C.ANCHOR_TIERS),
             "soc_sources": list(C.SOC_SOURCES),
             "cip_sources": list(C.CIP_SOURCES),
             "paths_grain": "soc_major_pooled",
+            "choices": {
+                "intern_window": list(choices.INTERN_WINDOW),
+                "military_window": list(choices.MILITARY_WINDOW),
+                "service_window": list(choices.SERVICE_WINDOW),
+                "grad_levels": list(choices.GRAD_LEVELS),
+                "grad_horizon": choices.GRAD_HORIZON,
+                "se_types": list(choices.SE_TYPES),
+            },
         },
         "outputs": {"portal_data": str(C.DATA_OUT)},
     }

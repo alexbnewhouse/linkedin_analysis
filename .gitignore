@@ -33,3 +33,26 @@ wheels/
 /portal/results/_cache/
 # Portal run logs (debug debris; JSON summaries are kept)
 /portal/results/*.log
+
+# --- F1 hardening (2026-09-01 recovery/refactor) ---
+# Windows sidecar junk
+*Zone.Identifier
+# Backup debris
+*.bak
+# Industry LLM proposal cache (2.7GB jsonl; frozen-cache contract, lives on disk)
+/industry/llm_proposals.jsonl
+# Archetypes generated outputs (parquet; JSON summaries elsewhere are kept)
+/archetypes/results/
+# Enrichment generated outputs
+/enrichment/results/*.parquet
+# Cohorts/paths large generated parquet already covered above
+# Obsidian vault symlink (personal notes, outside the repo)
+/vault
+# Local caches
+.ruff_cache/
+__pycache__/
+# Vote caches too large for GitHub (kept on disk + backed up out of band)
+/career_clean/results/soc_votes.jsonl
+# Run logs in results dirs
+/career_clean/results/*.log
+/industry/results/*.log

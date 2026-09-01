@@ -1,0 +1,73 @@
+{
+  "event": "first upward move ('promotion', 'employer_move_up', 'occupation_change_up')",
+  "n_profiles": 1650203,
+  "event_rate": 0.618,
+  "overall_median_years_to_advance": 10.0,
+  "by_entry_cohort": {
+    "1990": {
+      "n": 154407,
+      "median_years_to_advance": 17.0,
+      "share_advanced_by_age5": 0.168
+    },
+    "1995": {
+      "n": 231787,
+      "median_years_to_advance": 15.0,
+      "share_advanced_by_age5": 0.205
+    },
+    "2000": {
+      "n": 273115,
+      "median_years_to_advance": 13.0,
+      "share_advanced_by_age5": 0.236
+    },
+    "2005": {
+      "n": 315741,
+      "median_years_to_advance": 10.0,
+      "share_advanced_by_age5": 0.297
+    },
+    "2010": {
+      "n": 327572,
+      "median_years_to_advance": 8.0,
+      "share_advanced_by_age5": 0.396
+    },
+    "2015": {
+      "n": 307045,
+      "median_years_to_advance": 6.0,
+      "share_advanced_by_age5": 0.464
+    },
+    "2020": {
+      "n": 40536,
+      "median_years_to_advance": Infinity,
+      "share_advanced_by_age5": 0.409
+    }
+  },
+  "cox_entry_unemployment": {
+    "hazard_ratio": 1.0228,
+    "p": 0.0,
+    "n": 198059,
+    "reads_as": "HR<1 => higher entry unemployment slows advancement (scarring); HR>1 => speeds it"
+  },
+  "cox_humanities": {
+    "hazard_ratio": 0.8733,
+    "p": 0.0,
+    "reads_as": "hazard ratio for advancing to first upward move, humanities vs non (adjusting for entry unemployment). HR<1 => humanities grads reach their first upward move more SLOWLY; HR>1 => faster."
+  },
+  "km_by_humanities_fully_observed": {
+    "humanities": {
+      "n": 191282,
+      "median_years_to_advance": 12.0,
+      "share_advanced_by_age5": 0.284
+    },
+    "non_humanities": {
+      "n": 1304557,
+      "median_years_to_advance": 11.0,
+      "share_advanced_by_age5": 0.302
+    }
+  },
+  "sensitivity_fully_observed_cohorts": {
+    "entry_year_max": 2017,
+    "n": 1495839,
+    "median_years_to_advance": 11.0
+  },
+  "caveats": "Right-censoring handled natively. The strong cohort gradient (median 17yr for 1990 entrants -> 6yr for 2015) is LARGELY AN ARTIFACT: recent cohorts' early careers are better documented (backfill), and observation windows differ by cohort, so recent cohorts record early upward moves that older cohorts' backfilled profiles omit. Do NOT read it as recent cohorts truly advancing faster. The near-null Cox HR (~1.0) is the more credible entry-conditions read: no robust unemployment effect on the advancement hazard once we stop comparing differently-observed cohorts. Also LEFT-TRUNCATION (older cohorts = 2025 survivors) and a noisy revealed-seniority 'up' label.",
+  "runtime_s": 1.2
+}

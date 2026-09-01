@@ -1,0 +1,162 @@
+%% Humanities Workforce — system schema (mermaid source)
+%% Companion to share/system-schema page. Two diagrams in this file:
+%%   1) erDiagram  — proposed live aggregate DB (PROPOSAL, to build)
+%%   2) flowchart  — data lineage with real artifacts (built today)
+%% Render each block separately (one diagram per mermaid parse).
+
+%% ============================================================
+%% Diagram 1 — proposed live aggregate DB (PROPOSAL)
+%% ============================================================
+
+erDiagram
+  releases {
+    string release_id PK
+    date generated_date
+    date snapshot_date
+    string anchor_tiers
+    string soc_sources
+    string cip_sources
+    json gate_results
+    bool published
+  }
+  majors {
+    string release_id PK, FK
+    string major_key PK
+    string name
+    string cip_families
+    string nha_tier
+    int records
+    int persons
+    int persons_anchored
+    float anchor_drop_rate
+    int persons_windowed_y10
+    float unclassified_share
+    float industry_unresolved_share
+    json anchor_method_mix
+    json cip_source_mix
+    json soc_source_mix
+    int kpi_breadth
+    int kpi_distinctive
+    float kpi_up_share
+    int kpi_dwell_median_mo
+  }
+  fan_cells {
+    string release_id FK
+    string major_key FK
+    string soc_group
+    float share
+    float rr
+    int n
+  }
+  sectors {
+    string release_id FK
+    string major_key FK
+    string sector
+    float share
+    int n
+  }
+  curve_points {
+    string release_id FK
+    string major_key FK
+    int year
+    float median_seniority
+    int n
+  }
+  pillars {
+    string release_id FK
+    string major_key FK
+    string pillar
+    int score
+  }
+  paths {
+    string path_id PK
+    string release_id FK
+    string major_key FK
+    int n_persons
+    string terminal_group
+    bool unexpected
+    string grain
+  }
+  path_stages {
+    string path_id FK
+    int position
+    string soc_group
+  }
+
+  releases ||--o{ majors : "versions"
+  majors ||--o{ fan_cells : "has"
+  majors ||--o{ sectors : "has"
+  majors ||--o{ curve_points : "has"
+  majors ||--o{ pillars : "has"
+  majors ||--o{ paths : "has"
+  paths ||--o{ path_stages : "ordered stops"
+
+%% Notes (not renderable in erDiagram):
+%% - majors includes 'baseline' as a row; PK is composite (release_id, major_key).
+%% - fan_cells: only cells with n >= 40 exist (suppression enforced upstream).
+%% - curve_points.median_seniority nullable = suppressed.
+%% - pillars.pillar in (growth|stability|skill|direction); constructed framing, 50 = parity.
+%% - paths.grain = 'soc_major_pooled'.
+%% - Lifecycle: pipeline writes unpublished -> gates + human sign-off flip published ->
+%%   portal reads latest published; old releases immutable for audit.
+
+%% ============================================================
+%% Diagram 2 — data lineage (built today, except where marked)
+%% ============================================================
+
+flowchart TD
+  SRC["LinkedIn profile snapshots (~2M profiles)"]
+
+  EDU["normalized/education.parquet<br>grain: education record (linkedin_id, idx)"]
+  STEPS["paths/steps.parquet<br>grain: career step (row_id)"]
+  TRANS["paths/transitions.parquet<br>grain: job-to-job edge"]
+
+  CIPREF["reference/cip_humanities.parquet<br>cip_code -> nha_level (6-digit-keyed)"]
+  ONET["O*NET lexicon<br>title -> SOC (deterministic)"]
+  TAX["industry/taxonomy.json"]
+
+  SOCJURY["normalized/mappings/role_soc_jury.parquet<br>role_canonical, soc_major, method, n_jurors, unanimous"]
+  CIPJURY["normalized/mappings/field_cip_jury.parquet<br>field_norm, cip2, method, n_jurors, unanimous"]
+  GATE1["GATE: jury calibration (pre-committed accuracy bar on held-out gold) + bias checks (det-only vs pooled)"]
+
+  IND["industry/results/step_industry.parquet<br>step -> industry l1 (XOT = unresolved)"]
+
+  MEM["membership (DuckDB, in-memory)<br>grain: (group_key, linkedin_id)<br>anchor, anchor_method"]
+  PANEL["panel (DuckDB, in-memory)<br>grain: (linkedin_id, cal_year)<br>soc_major, soc_source, industry_l1, seniority_score"]
+
+  GATE2["GATE: n >= 40 suppression at aggregation (before contract/DB)"]
+
+  CONTRACT["portal/results/portal_data.json<br>one release: majors{} + baseline + boundaries + notes"]
+
+  STATIC["Static export (TODAY, built)<br>run_share_build -> share/Humanities-Workforce-portal.html + zip"]
+  DB[("Live aggregate DB (TARGET, to build)<br>releases / majors / fan_cells / ...")]
+  API["Read API (to build)<br>REST or static JSON per release"]
+  APP["Portal web app<br>Stories / Portal / Data & Methods"]
+
+  SRC --> EDU
+  SRC --> STEPS
+  SRC --> TRANS
+
+  CIPREF -->|tier boundaries only from here| EDU
+  ONET -->|deterministic always wins| STEPS
+  CIPJURY --> GATE1
+  SOCJURY --> GATE1
+  GATE1 -->|jury fills NULLs only| EDU
+  GATE1 -->|jury fills NULLs only| STEPS
+
+  TAX --> IND
+  STEPS --> IND
+
+  EDU --> MEM
+  STEPS --> PANEL
+  TRANS --> PANEL
+  IND --> PANEL
+
+  MEM --> GATE2
+  PANEL --> GATE2
+  GATE2 --> CONTRACT
+
+  CONTRACT --> STATIC
+  CONTRACT --> DB
+  DB --> API
+  API --> APP

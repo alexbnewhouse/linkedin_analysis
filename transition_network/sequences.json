@@ -1,0 +1,435 @@
+{
+  "memory_order_test": {
+    "soc_major": {
+      "triples": 152663,
+      "states": 23,
+      "test_triples": 30438,
+      "perplexity_order1": 2.414,
+      "perplexity_order2": 2.232,
+      "perplexity_reduction_pct": 7.54,
+      "has_memory": true
+    },
+    "employment_type": {
+      "triples": 4399199,
+      "states": 11,
+      "test_triples": 879808,
+      "perplexity_order1": 1.243,
+      "perplexity_order2": 1.241,
+      "perplexity_reduction_pct": 0.19,
+      "has_memory": true
+    }
+  },
+  "path_motifs_by_lift": [
+    {
+      "path": [
+        "General and Operations Managers",
+        "Chief Executives",
+        "General and Operations Managers"
+      ],
+      "count": 43,
+      "lift": 10.8
+    },
+    {
+      "path": [
+        "Sales Managers",
+        "Chief Executives",
+        "Sales Managers"
+      ],
+      "count": 85,
+      "lift": 9.5
+    },
+    {
+      "path": [
+        "Financial Managers",
+        "Chief Executives",
+        "Financial Managers"
+      ],
+      "count": 52,
+      "lift": 7.8
+    },
+    {
+      "path": [
+        "Accountants and Auditors",
+        "First-Line Supervisors of Office and Administrative Support Workers",
+        "Accountants and Auditors"
+      ],
+      "count": 33,
+      "lift": 7.6
+    },
+    {
+      "path": [
+        "Computer Programmers",
+        "Software Developers",
+        "Computer Programmers"
+      ],
+      "count": 94,
+      "lift": 7.2
+    },
+    {
+      "path": [
+        "Software Developers",
+        "Computer Occupations, All Other",
+        "Software Developers"
+      ],
+      "count": 63,
+      "lift": 5.6
+    },
+    {
+      "path": [
+        "Chief Executives",
+        "General and Operations Managers",
+        "Chief Executives"
+      ],
+      "count": 60,
+      "lift": 5.3
+    },
+    {
+      "path": [
+        "Chief Executives",
+        "Sales Managers",
+        "Chief Executives"
+      ],
+      "count": 69,
+      "lift": 5.2
+    },
+    {
+      "path": [
+        "Advertising and Promotions Managers",
+        "Sales Managers",
+        "Advertising and Promotions Managers"
+      ],
+      "count": 65,
+      "lift": 5.0
+    },
+    {
+      "path": [
+        "General and Operations Managers",
+        "Sales Managers",
+        "General and Operations Managers"
+      ],
+      "count": 63,
+      "lift": 5.0
+    },
+    {
+      "path": [
+        "Chief Executives",
+        "Producers and Directors",
+        "Chief Executives"
+      ],
+      "count": 145,
+      "lift": 4.9
+    },
+    {
+      "path": [
+        "Legal Secretaries and Administrative Assistants",
+        "Paralegals and Legal Assistants",
+        "Legal Secretaries and Administrative Assistants"
+      ],
+      "count": 41,
+      "lift": 4.8
+    },
+    {
+      "path": [
+        "Producers and Directors",
+        "Chief Executives",
+        "Producers and Directors"
+      ],
+      "count": 63,
+      "lift": 4.8
+    },
+    {
+      "path": [
+        "Sales Managers",
+        "General and Operations Managers",
+        "Sales Managers"
+      ],
+      "count": 74,
+      "lift": 3.8
+    },
+    {
+      "path": [
+        "Bookkeeping, Accounting, and Auditing Clerks",
+        "Accountants and Auditors",
+        "Bookkeeping, Accounting, and Auditing Clerks"
+      ],
+      "count": 57,
+      "lift": 3.6
+    }
+  ],
+  "trajectory_archetypes": {
+    "k": 8,
+    "profiles": 1337321,
+    "clusters": {
+      "0": {
+        "size": 66189,
+        "means": {
+          "n_transitions": 5.05,
+          "n_employer_moves": 2.37,
+          "n_promotions": 0.01,
+          "n_demotions": 0.0,
+          "n_lateral": 0.47,
+          "n_self_emp_moves": 2.2,
+          "has_exit": 0.0,
+          "frac_with_gap": 0.31,
+          "mean_dwell_months": 52.56,
+          "span_months": 256.75
+        },
+        "mean_seniority_change": 0.454,
+        "top_soc_start_end": [
+          {
+            "start": "Management",
+            "end": "Management",
+            "n": 7877
+          },
+          {
+            "start": "Arts/Design/Media",
+            "end": "Arts/Design/Media",
+            "n": 4873
+          },
+          {
+            "start": "Business & Financial",
+            "end": "Business & Financial",
+            "n": 2194
+          }
+        ]
+      },
+      "1": {
+        "size": 548537,
+        "means": {
+          "n_transitions": 3.03,
+          "n_employer_moves": 2.59,
+          "n_promotions": 0.0,
+          "n_demotions": 0.0,
+          "n_lateral": 0.35,
+          "n_self_emp_moves": 0.08,
+          "has_exit": 0.0,
+          "frac_with_gap": 0.38,
+          "mean_dwell_months": 32.57,
+          "span_months": 109.58
+        },
+        "mean_seniority_change": 0.472,
+        "top_soc_start_end": [
+          {
+            "start": "Management",
+            "end": "Management",
+            "n": 31851
+          },
+          {
+            "start": "Computer & Mathematical",
+            "end": "Computer & Mathematical",
+            "n": 23346
+          },
+          {
+            "start": "Business & Financial",
+            "end": "Business & Financial",
+            "n": 18810
+          }
+        ]
+      },
+      "2": {
+        "size": 217201,
+        "means": {
+          "n_transitions": 6.77,
+          "n_employer_moves": 6.15,
+          "n_promotions": 0.0,
+          "n_demotions": 0.0,
+          "n_lateral": 0.54,
+          "n_self_emp_moves": 0.07,
+          "has_exit": 0.0,
+          "frac_with_gap": 0.32,
+          "mean_dwell_months": 35.79,
+          "span_months": 254.99
+        },
+        "mean_seniority_change": 0.591,
+        "top_soc_start_end": [
+          {
+            "start": "Management",
+            "end": "Management",
+            "n": 33009
+          },
+          {
+            "start": "Business & Financial",
+            "end": "Business & Financial",
+            "n": 11392
+          },
+          {
+            "start": "Computer & Mathematical",
+            "end": "Computer & Mathematical",
+            "n": 9828
+          }
+        ]
+      },
+      "3": {
+        "size": 155596,
+        "means": {
+          "n_transitions": 6.01,
+          "n_employer_moves": 2.68,
+          "n_promotions": 0.0,
+          "n_demotions": 0.0,
+          "n_lateral": 3.27,
+          "n_self_emp_moves": 0.05,
+          "has_exit": 0.0,
+          "frac_with_gap": 0.15,
+          "mean_dwell_months": 35.87,
+          "span_months": 214.21
+        },
+        "mean_seniority_change": 0.795,
+        "top_soc_start_end": [
+          {
+            "start": "Management",
+            "end": "Management",
+            "n": 18771
+          },
+          {
+            "start": "Business & Financial",
+            "end": "Business & Financial",
+            "n": 8886
+          },
+          {
+            "start": "Computer & Mathematical",
+            "end": "Computer & Mathematical",
+            "n": 6364
+          }
+        ]
+      },
+      "4": {
+        "size": 21511,
+        "means": {
+          "n_transitions": 6.3,
+          "n_employer_moves": 2.96,
+          "n_promotions": 0.42,
+          "n_demotions": 1.04,
+          "n_lateral": 1.71,
+          "n_self_emp_moves": 0.16,
+          "has_exit": 0.0,
+          "frac_with_gap": 0.16,
+          "mean_dwell_months": 44.29,
+          "span_months": 255.22
+        },
+        "mean_seniority_change": -0.066,
+        "top_soc_start_end": [
+          {
+            "start": "Management",
+            "end": "Management",
+            "n": 3760
+          },
+          {
+            "start": "Business & Financial",
+            "end": "Business & Financial",
+            "n": 800
+          },
+          {
+            "start": "Computer & Mathematical",
+            "end": "Computer & Mathematical",
+            "n": 495
+          }
+        ]
+      },
+      "5": {
+        "size": 60772,
+        "means": {
+          "n_transitions": 5.94,
+          "n_employer_moves": 3.04,
+          "n_promotions": 1.09,
+          "n_demotions": 0.0,
+          "n_lateral": 1.66,
+          "n_self_emp_moves": 0.14,
+          "has_exit": 0.0,
+          "frac_with_gap": 0.18,
+          "mean_dwell_months": 41.01,
+          "span_months": 228.49
+        },
+        "mean_seniority_change": 2.58,
+        "top_soc_start_end": [
+          {
+            "start": "Management",
+            "end": "Management",
+            "n": 9804
+          },
+          {
+            "start": "Business & Financial",
+            "end": "Business & Financial",
+            "n": 2675
+          },
+          {
+            "start": "Computer & Mathematical",
+            "end": "Computer & Mathematical",
+            "n": 2050
+          }
+        ]
+      },
+      "6": {
+        "size": 15669,
+        "means": {
+          "n_transitions": 4.8,
+          "n_employer_moves": 2.85,
+          "n_promotions": 0.04,
+          "n_demotions": 0.02,
+          "n_lateral": 0.71,
+          "n_self_emp_moves": 0.15,
+          "has_exit": 1.0,
+          "frac_with_gap": 0.25,
+          "mean_dwell_months": 82.5,
+          "span_months": 352.88
+        },
+        "mean_seniority_change": 0.228,
+        "top_soc_start_end": [
+          {
+            "start": "Management",
+            "end": "Management",
+            "n": 2966
+          },
+          {
+            "start": "Business & Financial",
+            "end": "Business & Financial",
+            "n": 521
+          },
+          {
+            "start": "Computer & Mathematical",
+            "end": "Computer & Mathematical",
+            "n": 492
+          }
+        ]
+      },
+      "7": {
+        "size": 251846,
+        "means": {
+          "n_transitions": 3.02,
+          "n_employer_moves": 2.54,
+          "n_promotions": 0.0,
+          "n_demotions": 0.0,
+          "n_lateral": 0.36,
+          "n_self_emp_moves": 0.12,
+          "has_exit": 0.0,
+          "frac_with_gap": 0.27,
+          "mean_dwell_months": 98.56,
+          "span_months": 300.66
+        },
+        "mean_seniority_change": 0.2,
+        "top_soc_start_end": [
+          {
+            "start": "Management",
+            "end": "Management",
+            "n": 32992
+          },
+          {
+            "start": "Business & Financial",
+            "end": "Business & Financial",
+            "n": 6656
+          },
+          {
+            "start": "Computer & Mathematical",
+            "end": "Computer & Mathematical",
+            "n": 5435
+          }
+        ]
+      }
+    }
+  },
+  "min_support": 30,
+  "seed": 42,
+  "runtime_s": 18.9,
+  "outputs": {
+    "trajectory_features": "/home/alex/linkedin-analysis/transition_network/trajectory_features.parquet"
+  }
+}

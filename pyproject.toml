@@ -1,0 +1,46 @@
+[project]
+name = "linkedin-analysis"
+version = "0.1.0"
+description = "Parse raw LinkedIn JSONL snapshots into an analysis-ready Parquet star schema."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "duckdb>=1.0.0",
+    "jellyfish>=1.0.0",
+    "orjson>=3.11.9",
+    "pyarrow>=24.0.0",
+    "rapidfuzz>=3.0.0",
+]
+
+[dependency-groups]
+dev = []
+embed = [
+    "numpy>=1.26",
+    "scikit-learn>=1.4",
+    "sentence-transformers>=3.0",
+    "torch>=2.7",
+]
+graph = [
+    "networkx>=3.0",
+    "scipy>=1.11",
+    "python-igraph>=0.11",
+    "leidenalg>=0.10",
+    "infomap>=2.8",
+    "pandas>=2.0",
+    "scikit-learn>=1.4",
+]
+cohort = [
+    "pandas>=2.0",
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "scikit-learn>=1.4",
+    "statsmodels>=0.14",
+    "lifelines>=0.27",
+]
+# M6 industry LLM layer (propose-only; the deterministic pipeline runs without it).
+llm = [
+    "anthropic>=0.69",
+]
+
+[tool.uv]
+package = false

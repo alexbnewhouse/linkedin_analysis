@@ -126,14 +126,18 @@ def _edu_table(con, cip_sources: tuple[str, ...]) -> str:
             "edu_clean.run_cip_jury merge")
     con.execute(f"""
       CREATE OR REPLACE TEMP TABLE edu_pooled AS
-      SELECT e.* REPLACE (coalesce(e.cip2, fj.jury_cip2) AS cip2),
+      SELECT e.* EXCLUDE (cip2_pooled, cip_source, nha_level_pooled,
+                          humanities_field_group_pooled)
+                 REPLACE (coalesce(e.cip2, fj.jury_cip2) AS cip2),
              CASE WHEN e.cip2 IS NOT NULL THEN 'det'
                   WHEN fj.jury_cip2 IS NOT NULL THEN 'jury' END AS cip_source
       FROM read_parquet('{C.q(C.EDUCATION)}') e
-      LEFT JOIN field_jury fj
-        ON e.cip_code IS NULL
-       AND e.field_raw IS NOT NULL
-       AND fj.field_norm = lower(trim(e.field_raw))
+      -- Pure equijoin so DuckDB hash-joins (the old `e.cip_code IS NULL AND ...`
+      -- in the ON clause forced a nested loop: 3.58M x 18.7k, ~minutes -> 0.1s).
+      -- Behavior-identical: field_jury has unique field_norm (no fan-out, asserted
+      -- above) and coalesce/CASE use the jury value only where cip2 (<=> cip_code)
+      -- is NULL, so matches on already-coded rows are computed-but-ignored.
+      LEFT JOIN field_jury fj ON fj.field_norm = lower(trim(e.field_raw))
     """)
     return "edu_pooled"
 
@@ -205,7 +209,7 @@ def build_panel(con, soc_sources: tuple[str, ...] = None) -> None:
       FROM {steps} s
       SEMI JOIN pop_persons p ON p.linkedin_id = s.linkedin_id
       WHERE s.datable AND NOT s.bad_negative_duration AND NOT s.bad_future_start
-        AND year(s.start_dt) <= {C.SNAPSHOT_YEAR}
+        AND year(s.start_dt) <= {C.SNAPSHOT_CAL_YEAR}
     """)
     # normalize industry L1 to top-level code (a few rows leak dotted subcodes)
     con.execute(f"""
@@ -218,7 +222,7 @@ def build_panel(con, soc_sources: tuple[str, ...] = None) -> None:
     con.execute(f"""
       CREATE OR REPLACE TEMP TABLE panel AS
       WITH expanded AS (
-        SELECT v.*, unnest(range(v.y0, least(v.y1, {C.SNAPSHOT_YEAR}) + 1)) AS cal_year
+        SELECT v.*, unnest(range(v.y0, least(v.y1, {C.SNAPSHOT_CAL_YEAR}) + 1)) AS cal_year
         FROM vstep v
       ),
       prim AS (

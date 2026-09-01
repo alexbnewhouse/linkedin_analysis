@@ -1,0 +1,63 @@
+{
+  "field": "occupation",
+  "cap": 200000,
+  "n_gold_pairs": 8,
+  "results": [
+    {
+      "approach": "A_onet",
+      "n_out": 155215,
+      "reduction": 0.224,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "tp": 4,
+      "fp": 0,
+      "tn": 4,
+      "fn": 0,
+      "missing": 0,
+      "runtime_s": 7.4,
+      "extra": {
+        "reference_match_row_pct": 30.9
+      }
+    },
+    {
+      "approach": "C_occ_anchored@0.7",
+      "n_out": 32792,
+      "reduction": 0.836,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "tp": 4,
+      "fp": 0,
+      "tn": 4,
+      "fn": 0,
+      "missing": 0,
+      "runtime_s": 28.9,
+      "extra": {
+        "reference_match_row_pct": 92.6,
+        "clusters": 32792
+      }
+    },
+    {
+      "approach": "C_occ_anchored@0.8",
+      "n_out": 89828,
+      "reduction": 0.551,
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.857,
+      "accuracy": 0.875,
+      "tp": 3,
+      "fp": 0,
+      "tn": 4,
+      "fn": 1,
+      "missing": 0,
+      "runtime_s": 21.6,
+      "extra": {
+        "reference_match_row_pct": 75.1,
+        "clusters": 89828
+      }
+    }
+  ]
+}

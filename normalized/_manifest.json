@@ -1,0 +1,62 @@
+{
+  "created_at_epoch_s": 1781120561.193984,
+  "runtime_s": 2140.0,
+  "threads": 32,
+  "sections": "career",
+  "source": {
+    "parsed_manifest": "/home/alex/linkedin-analysis/parsed/_manifest.json",
+    "education": "read_parquet('/home/alex/linkedin-analysis/parsed/education/*.parquet')",
+    "experience": "read_parquet('/home/alex/linkedin-analysis/parsed/experience/*.parquet')",
+    "positions": "read_parquet('/home/alex/linkedin-analysis/parsed/positions/*.parquet')"
+  },
+  "outputs": {
+    "education": "/home/alex/linkedin-analysis/normalized/education.parquet",
+    "education_person": "/home/alex/linkedin-analysis/normalized/education_person.parquet",
+    "career_steps": "/home/alex/linkedin-analysis/normalized/career_steps.parquet",
+    "mappings": "/home/alex/linkedin-analysis/normalized/mappings"
+  },
+  "steps": [
+    {
+      "name": "career company mapping",
+      "runtime_s": 70.6,
+      "rows": 3396043,
+      "path": "/home/alex/linkedin-analysis/normalized/mappings/career_company.parquet"
+    },
+    {
+      "name": "career company id alias mapping",
+      "runtime_s": 0.0,
+      "rows": 3,
+      "path": "/home/alex/linkedin-analysis/normalized/mappings/career_company_id_alias.parquet"
+    },
+    {
+      "name": "career title mapping",
+      "runtime_s": 215.0,
+      "rows": 3507500,
+      "path": "/home/alex/linkedin-analysis/normalized/mappings/career_title.parquet"
+    },
+    {
+      "name": "career occupation mapping",
+      "runtime_s": 165.5,
+      "rows": 3507500,
+      "path": "/home/alex/linkedin-analysis/normalized/mappings/career_occupation.parquet"
+    },
+    {
+      "name": "career location mapping",
+      "runtime_s": 1.8,
+      "rows": 557395,
+      "path": "/home/alex/linkedin-analysis/normalized/mappings/career_location.parquet"
+    },
+    {
+      "name": "career functional cluster mapping (self-employment rows)",
+      "runtime_s": 91.9,
+      "rows": 459118,
+      "path": "/home/alex/linkedin-analysis/normalized/mappings/career_functional_cluster.parquet"
+    },
+    {
+      "name": "normalized career_steps table",
+      "runtime_s": 1594.7,
+      "rows": 10800787,
+      "path": "/home/alex/linkedin-analysis/normalized/career_steps.parquet"
+    }
+  ]
+}

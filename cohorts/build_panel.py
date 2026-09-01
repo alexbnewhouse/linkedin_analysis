@@ -55,7 +55,7 @@ def build(threads: int) -> dict:
              job_zone_norm, employment_type, role_canonical, tenure_months
       FROM {steps}
       WHERE datable AND NOT bad_negative_duration AND NOT bad_future_start
-        AND year(start_dt) <= {C.SNAPSHOT_YEAR}
+        AND year(start_dt) <= {C.SNAPSHOT_CAL_YEAR}
     """)
 
     # --- per-profile cohort keys -------------------------------------------
@@ -79,6 +79,17 @@ def build(threads: int) -> dict:
                ) AS INT) AS graduation_year
         FROM {edu_person}
       ),
+      hum AS (
+        -- humanities membership on the ANY-degree POOLED flags (det backbone +
+        -- CIP jury). Uses hum_l*_any, NOT the terminal nha_level, so a
+        -- History-BA-then-MBA person is still humanities. Enables the
+        -- humanities-vs-non-humanities cohort cut the module was missing.
+        SELECT linkedin_id,
+               CASE WHEN hum_l1_any THEN 1 WHEN hum_l2_any THEN 2
+                    WHEN hum_l3_any THEN 3 END AS nha_level_any,
+               hum_l1_any, hum_l1_bachelor_any, humanities_field_group_pooled
+        FROM {edu_person}
+      ),
       base AS (
         SELECT
           linkedin_id,
@@ -87,7 +98,7 @@ def build(threads: int) -> dict:
           count(*) AS n_steps,
           arg_min(occupation_code, start_dt) AS first_occupation,
           arg_min(role_canonical, start_dt) AS first_role,
-          bool_or(end_dt >= DATE '{C.SNAPSHOT_YEAR}-01-01') AS right_censored
+          bool_or(end_dt >= DATE '{C.SNAPSHOT_CAL_YEAR}-01-01') AS right_censored
         FROM vstep GROUP BY 1
       )
       SELECT
@@ -99,9 +110,14 @@ def build(threads: int) -> dict:
         {C.generation_for_birth_year_sql(f"(b.entry_year - {C.ENTRY_AGE_PROXY})")} AS generation,
         u.unemployment_rate AS entry_unemployment,
         (b.entry_year BETWEEN {C.MIN_ENTRY_YEAR} AND {C.MAX_ENTRY_YEAR}) AS valid_cohort,
-        ({C.COHORT_BIN_YEARS} * (b.entry_year // {C.COHORT_BIN_YEARS})) AS entry_cohort_bin
+        ({C.COHORT_BIN_YEARS} * (b.entry_year // {C.COHORT_BIN_YEARS})) AS entry_cohort_bin,
+        coalesce(h.nha_level_any, 0) AS nha_level_any,
+        coalesce(h.hum_l1_any, FALSE) AS hum_l1_any,
+        coalesce(h.hum_l1_bachelor_any, FALSE) AS hum_l1_bachelor_any,
+        h.humanities_field_group_pooled AS humanities_field_group
       FROM base b
       LEFT JOIN grad g USING (linkedin_id)
+      LEFT JOIN hum h USING (linkedin_id)
       LEFT JOIN {bls} u ON u.year = b.entry_year
     """)
     con.sql(f"COPY (SELECT * FROM prof) TO '{_q(C.PROFILES_OUT)}' "
@@ -114,7 +130,7 @@ def build(threads: int) -> dict:
       COPY (
         WITH expanded AS (
           SELECT v.linkedin_id,
-                 unnest(range(v.y0, least(v.y1, {C.SNAPSHOT_YEAR}) + 1)) AS calendar_year,
+                 unnest(range(v.y0, least(v.y1, {C.SNAPSHOT_CAL_YEAR}) + 1)) AS calendar_year,
                  v.seniority_score, v.seniority_confidence, v.occupation_code,
                  v.job_zone_norm, v.employment_type, v.role_canonical, v.tenure_months
           FROM vstep v
@@ -131,6 +147,8 @@ def build(threads: int) -> dict:
           p.calendar_year - pr.entry_year AS career_age,
           pr.entry_year, pr.entry_cohort_bin, pr.entry_unemployment,
           pr.generation, pr.valid_cohort,
+          pr.nha_level_any, pr.hum_l1_any, pr.hum_l1_bachelor_any,
+          pr.humanities_field_group,
           p.seniority_score, p.seniority_confidence,
           p.occupation_code, p.job_zone_norm, p.employment_type, p.role_canonical
         FROM primary_year p

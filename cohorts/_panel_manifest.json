@@ -1,0 +1,23 @@
+{
+  "profiles": 1996210,
+  "valid_cohort_profiles": 1650203,
+  "with_graduation_year": 404627,
+  "with_entry_unemployment": 1969707,
+  "with_generation": 1990495,
+  "panel_rows": 40248993,
+  "panel_profiles": 1996210,
+  "valid_cohort_bin_sizes": {
+    "1990": 154407,
+    "1995": 231787,
+    "2000": 273115,
+    "2005": 315741,
+    "2010": 327572,
+    "2015": 307045,
+    "2020": 40536
+  },
+  "runtime_s": 20.8,
+  "outputs": {
+    "profiles": "/home/alex/linkedin-analysis/cohorts/profiles.parquet",
+    "panel": "/home/alex/linkedin-analysis/cohorts/panel.parquet"
+  }
+}

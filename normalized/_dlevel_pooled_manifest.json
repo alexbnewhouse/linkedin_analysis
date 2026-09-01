@@ -1,0 +1,19 @@
+{
+  "generated": "2026-07-22",
+  "rows": 3577659,
+  "degree_level_coverage_pct": {
+    "deterministic": 79.69,
+    "pooled": 81.91
+  },
+  "jury_filled_rows": 79449,
+  "pooled_level_dist": {
+    "1": 1436,
+    "2": 29054,
+    "3": 27418,
+    "4": 13671,
+    "5": 116,
+    "6": 5299,
+    "7": 2455
+  },
+  "executed": true
+}

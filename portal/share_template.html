@@ -76,6 +76,7 @@
   button:focus-visible, select:focus-visible, a:focus-visible, summary:focus-visible {
     outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px;
   }
+  a { color: var(--accent); }
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
   /* ---------- top bar ---------- */
@@ -85,16 +86,17 @@
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
   }
-  .topbar-inner { display: flex; align-items: center; gap: 28px; height: 60px; }
+  .topbar-inner { display: flex; align-items: center; gap: 12px; height: 60px; }
   .wordmark { display: flex; align-items: baseline; gap: 10px; }
   .wordmark .mark {
-    font-family: var(--serif); font-size: 21px; font-weight: 600; letter-spacing: .01em;
+    font-family: var(--serif); font-size: 21px; font-weight: 600; letter-spacing: .01em; white-space: nowrap;
   }
-  .wordmark .org { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-  nav.views { display: flex; gap: 4px; margin-left: auto; }
+  .wordmark .org { font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  nav.views { display: flex; gap: 2px; margin-left: auto; flex-wrap: wrap; }
   nav.views button {
-    padding: 7px 14px; border-radius: 99px; font-size: 14px; color: var(--ink-2);
+    padding: 6px 9px; border-radius: 99px; font-size: 13px; color: var(--ink-2); white-space: nowrap;
   }
+  @media (max-width: 1180px) { .wordmark .org { display: none; } }
   nav.views button:hover { background: var(--surface-2); }
   nav.views button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
 
@@ -118,7 +120,7 @@
   .view { display: none; padding: 40px 0 72px; }
   .view.active { display: block; }
 
-  /* ---------- home ---------- */
+  /* ---------- overview ---------- */
   .eyebrow {
     font-size: 11.5px; letter-spacing: .16em; text-transform: uppercase;
     color: var(--accent); font-weight: 600; margin-bottom: 14px;
@@ -132,11 +134,12 @@
   .hero .lede strong { color: var(--ink); }
   .fanwrap { position: relative; }
   .fanwrap canvas { width: 100%; height: 360px; display: block; }
-  .fanwrap .fan-caption { position: absolute; bottom: 2px; left: 0; font-size: 11.5px; color: var(--muted); }
+  .fanwrap .fan-caption { font-size: 11.5px; color: var(--muted); margin-top: 4px; }
 
   .statband {
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 36px 0 8px;
   }
+  .statband.six { grid-template-columns: repeat(3, 1fr); margin: 0 0 14px; }
   .stat {
     background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
     padding: 16px 18px; box-shadow: var(--shadow);
@@ -144,6 +147,11 @@
   .stat .v { font-size: 27px; font-weight: 650; letter-spacing: -0.01em; }
   .stat .k { font-size: 12.5px; color: var(--ink-2); margin-top: 2px; }
   .stat .badge { margin-top: 8px; }
+  .stat .pending {
+    display: inline-block; font-size: 10.5px; font-weight: 600; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--muted); background: var(--surface-2);
+    padding: 2px 8px; border-radius: 99px; margin-top: 8px;
+  }
 
   .doors { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 36px; }
   .door {
@@ -152,7 +160,7 @@
     transition: border-color .15s ease, transform .15s ease;
   }
   .door:hover { border-color: var(--accent); transform: translateY(-2px); }
-  .door .k { font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .door .k { display: block; padding-right: 40px; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
   .door h3 { font-family: var(--serif); font-size: 23px; font-weight: 600; margin: 8px 0 8px; }
   .door p { color: var(--ink-2); font-size: 14.5px; max-width: 30em; }
   .door .go { position: absolute; top: 24px; right: 24px; color: var(--accent); font-size: 20px; }
@@ -168,30 +176,7 @@
   .sect-head h2 { font-family: var(--serif); font-size: 30px; font-weight: 600; margin-bottom: 6px; text-wrap: balance; }
   .sect-head p { color: var(--ink-2); max-width: 46em; }
 
-  /* ---------- stories ---------- */
-  .crumbs { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; font-size: 13px; color: var(--muted); }
-  .crumbs .c { display: flex; align-items: center; gap: 8px; }
-  .crumbs .c.on { color: var(--accent); font-weight: 600; }
-  .crumbs .sep { color: var(--line); }
-
-  .major-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
-  .major-card {
-    text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
-    padding: 20px 18px; box-shadow: var(--shadow); transition: border-color .15s, transform .15s;
-    display: flex; flex-direction: column; gap: 6px;
-  }
-  .major-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-  .major-card h4 { font-family: var(--serif); font-size: 18px; font-weight: 600; }
-  .major-card .n { font-size: 12.5px; color: var(--muted); }
-  .major-card .quote { font-size: 13px; color: var(--ink-2); font-style: italic; font-family: var(--serif); }
-
-  .story-panel {
-    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
-    box-shadow: var(--shadow); padding: 30px; margin-top: 4px;
-  }
-  .story-panel h3 { font-family: var(--serif); font-size: 24px; font-weight: 600; margin-bottom: 4px; }
-  .story-panel .sub { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
-
+  /* ---------- gloss (editorial, amber) ---------- */
   .gloss {
     display: grid; grid-template-columns: 34px 1fr; gap: 14px; align-items: start;
     background: var(--accent-wash); border-radius: 10px; padding: 16px 18px; margin-top: 22px;
@@ -203,54 +188,17 @@
   .gloss p { font-family: var(--serif); font-size: 16px; line-height: 1.6; color: var(--ink); }
   .gloss .byline { font-family: var(--sans); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
 
-  .branches { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 24px; }
-  .branch {
-    text-align: left; border: 1px solid var(--line); border-radius: 10px; padding: 15px 16px;
-    background: var(--surface); transition: border-color .15s, background .15s;
-  }
-  .branch:hover { border-color: var(--accent); background: var(--accent-wash); }
-  .branch .bn { font-weight: 600; font-size: 14.5px; }
-  .branch .bd { font-size: 12.5px; color: var(--muted); margin-top: 3px; }
-  .branch .arrow { color: var(--accent); }
-  .branch.unex { border-style: dashed; border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
-  .branch.unex:hover { border-color: var(--accent); }
-  .pill-unex {
-    display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .08em;
-    text-transform: uppercase; color: var(--accent); background: var(--accent-soft);
-    padding: 1.5px 8px; border-radius: 99px; vertical-align: 2px;
-  }
-  .branch-divide { display: flex; align-items: center; gap: 12px; margin: 26px 0 0; }
-  .branch-divide .t { font-size: 13px; color: var(--muted); }
-  .branch-divide::after { content: ""; flex: 1; border-top: 1px dashed var(--line); }
-
-  .story-actions { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
   .btn {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 9px 18px; border-radius: 99px; font-size: 14px; font-weight: 600;
-    background: var(--accent); color: #fff; border: 1px solid transparent;
+    background: var(--accent); color: #fff; border: 1px solid transparent; text-decoration: none;
   }
-  :root[data-theme="dark"] .btn, .btn.dark-check { color: #fff; }
+  :root[data-theme="dark"] .btn { color: #fff; }
   .btn:hover { filter: brightness(1.08); }
   .btn.ghost { background: none; color: var(--accent); border-color: var(--line); }
   .btn.ghost:hover { background: var(--accent-wash); filter: none; }
 
-  /* pathway diagram */
-  .pathviz { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; margin-top: 20px; }
-  .stage { display: flex; align-items: center; }
-  .stage .chip {
-    background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px;
-    padding: 12px 16px; min-width: 128px;
-  }
-  .stage.last .chip { background: var(--accent-soft); border-color: var(--accent); }
-  .stage .chip .r { font-weight: 600; font-size: 14px; }
-  .stage .chip .d { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .stage .conn { width: 42px; height: 2px; background: var(--accent); position: relative; margin: 0 2px; flex: none; }
-  .stage .conn::after {
-    content: ""; position: absolute; right: -1px; top: -3.5px;
-    border-left: 7px solid var(--accent); border-top: 4.5px solid transparent; border-bottom: 4.5px solid transparent;
-  }
-
-  /* ---------- explore ---------- */
+  /* ---------- controls ---------- */
   .controls {
     display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
     background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
@@ -266,10 +214,10 @@
   .seg button[aria-pressed="true"] { background: var(--surface); color: var(--accent); font-weight: 600; box-shadow: var(--shadow); }
   .toggle { display: flex; align-items: center; gap: 7px; font-size: 13.5px; color: var(--ink-2); cursor: pointer; margin-left: auto; }
   .toggle input { accent-color: var(--accent); width: 15px; height: 15px; }
+  .toggle.inline { margin-left: 0; }
+  .ctl-note { flex-basis: 100%; font-size: 12px; color: var(--muted); margin: -4px 0 0; line-height: 1.45; }
 
   .popline { font-size: 13px; color: var(--ink-2); margin: 0 4px 18px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-
-  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 14px; }
 
   .panels { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .panel {
@@ -285,8 +233,8 @@
   /* h-bars */
   .hbar { display: grid; grid-template-columns: 192px 1fr; row-gap: 9px; align-items: center; }
   .hbar .lab { font-size: 13px; color: var(--ink-2); padding-right: 12px; text-align: right;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .hbar .trk { display: flex; align-items: center; gap: 8px; min-width: 0; border-radius: 6px; }
+    line-height: 1.3; overflow-wrap: anywhere; }
+  .hbar .trk { display: flex; align-items: center; gap: 4px 8px; min-width: 0; border-radius: 6px; flex-wrap: wrap; }
   .hbar .fill { height: 15px; border-radius: 0 4px 4px 0; background: var(--accent); flex: none; min-width: 2px; }
   .hbar .val { font-size: 12.5px; color: var(--ink-2); font-weight: 600; white-space: nowrap; }
   .hbar .rr {
@@ -319,8 +267,8 @@
   .drill .dsub { font-size: 12px; color: var(--muted); margin-bottom: 11px; }
   .drill .drow { display: grid; grid-template-columns: 210px 1fr; align-items: center; row-gap: 7px; column-gap: 10px; }
   .drill .drow .rl { font-size: 12.5px; color: var(--ink-2); text-align: right;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .drill .drow .rt { display: flex; align-items: center; gap: 8px; }
+    line-height: 1.3; overflow-wrap: anywhere; }
+  .drill .drow .rt { display: flex; align-items: center; gap: 4px 8px; flex-wrap: wrap; }
   .drill .drow .rf { height: 12px; border-radius: 0 3px 3px 0; background: var(--accent); flex: none; min-width: 2px; opacity: .85; }
   .drill .drow .rv { font-size: 12px; color: var(--ink-2); font-weight: 600; white-space: nowrap; }
   .drill .dfoot { font-size: 11.5px; color: var(--muted); margin-top: 11px; line-height: 1.5; }
@@ -334,19 +282,6 @@
   .fan-hint { font-size: 12.5px; color: var(--muted); }
   .drill-hint { font-size: 12px; color: var(--muted); font-style: italic; margin: 12px 0 0; }
 
-  /* meters */
-  .meters { display: grid; gap: 16px; }
-  .meter .top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
-  .meter .nm { font-weight: 600; font-size: 14px; }
-  .meter .vv { font-size: 14px; font-weight: 650; color: var(--accent); }
-  .meter .trk { height: 8px; border-radius: 99px; background: var(--accent-soft); overflow: hidden; position: relative; }
-  .meter .fl { height: 100%; border-radius: 99px; background: var(--accent); }
-  .meter .trk::after { /* parity tick at 50 */
-    content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
-    background: var(--surface); box-shadow: 0 0 0 1px var(--muted);
-  }
-  .meter .note { font-size: 12px; color: var(--muted); margin-top: 5px; }
-
   /* pathway list */
   .pathrow {
     display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 13px 4px;
@@ -359,6 +294,11 @@
   .pathrow .strength { grid-column: 1 / -1; height: 5px; background: var(--accent-soft); border-radius: 99px; overflow: hidden; }
   .pathrow .strength i { display: block; height: 100%; background: var(--accent); border-radius: 99px; }
   .suppressed { font-size: 12.5px; color: var(--muted); padding: 12px 4px 2px; font-style: italic; }
+  .pill-unex {
+    display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--accent); background: var(--accent-soft);
+    padding: 1.5px 8px; border-radius: 99px; vertical-align: 2px;
+  }
 
   /* line chart */
   .chartbox { position: relative; }
@@ -375,7 +315,7 @@
   .emp-stats .es .k { font-size: 12px; color: var(--ink-2); max-width: 22ch; }
   #emp-field-canvas { width: 100%; height: 300px; display: block; border-radius: 10px; background: var(--accent-wash); }
 
-  /* launchboard stability table */
+  /* stability table */
   table.lb-table { border-collapse: collapse; font-size: 12.5px; width: 100%; min-width: 640px; }
   table.lb-table th, table.lb-table td {
     text-align: left; padding: 6px 12px 6px 0; border-bottom: 1px solid var(--grid);
@@ -384,11 +324,11 @@
   table.lb-table th { color: var(--muted); font-weight: 600; font-size: 11px;
     letter-spacing: .04em; text-transform: uppercase; }
 
-  /* graduate-school step: professional/field program chips */
+  /* program / grad-type chips */
   .grad-types { display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 2px; }
-  .gtype { display: inline-flex; align-items: center; gap: 7px;
+  .gtype { display: inline-flex; align-items: center; gap: 4px 7px; flex-wrap: wrap;
     background: var(--accent-wash); border: 1px solid var(--line);
-    border-radius: 8px; padding: 6px 11px; font-size: 12.5px; }
+    border-radius: 8px; padding: 6px 11px; font-size: 12.5px; min-width: 0; }
   .gtype .gt-n { font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
   .gtype .gt-l { color: var(--ink-2); }
   .gtype .gt-rr { font-size: 11px; font-weight: 600; color: var(--accent);
@@ -397,11 +337,56 @@
     background: var(--illus-bg); padding: 1px 6px; border-radius: 6px; }
   .gtype.under { border-style: dashed; }
 
+  /* timeline scrubber */
+  .scrub-meta { font-size: 13px; color: var(--ink-2); margin: 10px 2px 14px; line-height: 1.55; }
+  .scrub-meta b { color: var(--ink); }
+  .scrub-note { font-size: 12px; color: var(--muted); margin: 8px 2px 0; }
+
+  /* choices */
+  .caveat {
+    display: flex; gap: 12px; align-items: baseline;
+    background: var(--illus-bg); color: var(--illus-ink); border-radius: 10px;
+    padding: 12px 16px; margin: 0 0 16px; font-size: 13.5px; line-height: 1.55;
+  }
+  .caveat .cv-k { font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: 11px; white-space: nowrap; }
+  .choice-part { display: flex; gap: 26px; flex-wrap: wrap; margin: 4px 0 12px; }
+  .choice-part .es .v { font-size: 26px; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .choice-part .es .k { font-size: 12px; color: var(--ink-2); max-width: 24ch; }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .duo h4 { font-size: 13px; font-weight: 650; margin: 4px 0 10px; color: var(--ink); }
+  .duo .dnote { font-size: 12px; color: var(--muted); margin-top: 8px; }
+  .empty {
+    border: 1.5px dashed var(--line); border-radius: 10px; padding: 14px 16px;
+    font-size: 13px; color: var(--muted); font-style: italic; line-height: 1.55;
+  }
+  .pool-head { display: flex; align-items: baseline; gap: 12px; margin: 26px 0 12px; flex-wrap: wrap; }
+  .pool-head h3 { font-family: var(--serif); font-size: 21px; font-weight: 600; }
+  .pool-head .sub { font-size: 12.5px; color: var(--muted); }
+
+  /* myths */
+  .mythgrid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .mythcard {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px 26px; box-shadow: var(--shadow);
+  }
+  .mythcard .m-q { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; margin-bottom: 12px; }
+  .mythcard .m-q h3 { font-family: var(--serif); font-style: italic; font-size: 19px; font-weight: 600; color: var(--ink-2); }
+  .mythcard .m-verdict { font-size: 15px; font-weight: 700; color: var(--ink); }
+  .mythcard .m-a { display: grid; gap: 8px; margin: 4px 0 14px; }
+  .mythcard .m-a p { font-size: 14.5px; color: var(--ink-2); max-width: 62em; }
+  .mythcard .m-a p b, .mythcard .m-a p strong { color: var(--ink); }
+  .mythcard .m-a .abadge { margin-bottom: 2px; }
+  .mythcard .m-link { font-size: 13.5px; font-weight: 600; text-decoration: none; }
+  .mythcard .m-link:hover { text-decoration: underline; }
+  .mythcard .m-partial { font-size: 12.5px; color: var(--muted); margin: -6px 0 12px; }
+
   details.tblview { margin-top: 12px; }
   details.tblview summary { font-size: 12.5px; color: var(--muted); cursor: pointer; }
   details.tblview table { margin-top: 10px; border-collapse: collapse; font-size: 13px; width: 100%; }
   details.tblview th, details.tblview td { text-align: left; padding: 5px 12px 5px 0; border-bottom: 1px solid var(--grid); font-variant-numeric: tabular-nums; }
   details.tblview th { color: var(--muted); font-weight: 600; font-size: 12px; }
+  details.tblview > div { overflow-x: auto; }
+  .scrollx { overflow-x: auto; }
 
   /* tooltip */
   #tt {
@@ -438,14 +423,50 @@
   }
   footer.site .wrap { display: flex; gap: 18px; flex-wrap: wrap; justify-content: space-between; }
 
+  /* ---------- stories ---------- */
+  .crumbs { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; font-size: 13px; color: var(--muted); }
+  .crumbs .c { display: flex; align-items: center; gap: 8px; }
+  .crumbs .c.on { color: var(--accent); font-weight: 600; }
+  .crumbs .sep { color: var(--line); }
+  .major-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+  .major-card {
+    text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px 18px; box-shadow: var(--shadow); transition: border-color .15s, transform .15s;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .major-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .major-card h4 { font-family: var(--serif); font-size: 18px; font-weight: 600; }
+  .major-card .n { font-size: 12.5px; color: var(--muted); }
+  .major-card .quote { font-size: 13px; color: var(--ink-2); font-style: italic; font-family: var(--serif); }
+  .story-panel {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+    box-shadow: var(--shadow); padding: 30px; margin-top: 4px;
+  }
+  .story-panel > h3 { font-family: var(--serif); font-size: 24px; font-weight: 600; margin-bottom: 4px; }
+  .story-panel .sub { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+  .story-actions { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
+
+  /* ---------- portal sub-navigation ---------- */
+  .subnav-row { display: flex; align-items: center; gap: 12px; margin: 2px 0 20px; flex-wrap: wrap; }
+  .subnav-row .lbl { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .subnav button { padding: 7px 16px; font-size: 13.5px; }
+  .subview { display: none; }
+  .subview.active { display: block; }
+
   /* ---------- responsive ---------- */
   @media (max-width: 880px) {
     .hero { grid-template-columns: 1fr; }
-    .statband, .kpis { grid-template-columns: repeat(2, 1fr); }
-    .doors, .panels, .m-grid { grid-template-columns: 1fr; }
-    .hbar { grid-template-columns: 132px 1fr; }
-    .topbar-inner { gap: 12px; }
-    nav.views button { padding: 7px 10px; font-size: 13px; }
+    .statband, .statband.six { grid-template-columns: repeat(2, 1fr); }
+    .doors, .panels, .m-grid, .duo, .mythgrid { grid-template-columns: 1fr; }
+    .hbar { grid-template-columns: 118px 1fr; }
+    .drill .drow { grid-template-columns: 1fr; row-gap: 3px; }
+    .drill .drow .rl { text-align: left; }
+    .drill .drow .rt { margin-bottom: 5px; }
+    .topbar-inner { gap: 10px; height: auto; padding: 8px 0; flex-wrap: wrap; }
+    nav.views button { padding: 6px 9px; font-size: 13px; }
+  }
+  @media (max-width: 1280px) {
+    .duo .hbar { grid-template-columns: 132px 1fr; }
   }
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
@@ -462,9 +483,9 @@
       <span class="org">National Humanities Alliance</span>
     </div>
     <nav class="views" aria-label="Views">
-      <button data-view="home" aria-pressed="true">Overview</button>
-      <button data-view="stories" aria-pressed="false">Stories</button>
-      <button data-view="explore" aria-pressed="false">Portal</button>
+      <button data-view="overview" aria-pressed="true">Overview</button>
+      <button data-view="stories" aria-pressed="false">Stories &amp; narratives</button>
+      <button data-view="portal" aria-pressed="false">Portal</button>
       <button data-view="methods" aria-pressed="false">Data &amp; methods</button>
     </nav>
   </div>
@@ -474,83 +495,75 @@
     <span><strong>Working build.</strong> Every figure computed <span id="gen-date"></span> by the portal pipeline. Tags:</span>
     <span class="badge real">pipeline data</span>
     <span class="badge illus">editorial</span>
-    <span>Amber marks NHA-staff narrative — story routes and glosses — not computed data.</span>
+    <span>Amber marks NHA-staff narrative — glosses and myth statements — not computed data.</span>
   </div>
 </div>
 
 <main>
 
-<!-- ============ HOME ============ -->
-<section class="view active" id="view-home">
+<!-- ============ OVERVIEW ============ -->
+<section class="view active" id="view-overview">
   <div class="wrap">
     <div class="hero">
       <div>
         <div class="eyebrow">The career possibility space</div>
-        <h1>Here is what two million real careers say is actually reachable.</h1>
-        <p class="lede">The debate about humanities majors runs on starting-salary tables and anecdotes.
-          <strong>Humanities Workforce</strong> runs on <strong>240,277 humanities degree records with
-          career trajectories attached</strong> — what people actually did over the following decades,
-          mapped as a possibility space a student can stand inside.</p>
+        <h1>There is no default job. There is a field of real destinations.</h1>
+        <p class="lede">If you are weighing a humanities major — or halfway through one and wondering
+          what happens after graduation — this site was built for you. It maps
+          <strong><span id="hero-records"></span> humanities degree records with career trajectories
+          attached</strong>: what people who started where you are actually did over the following
+          decades, counted honestly and mapped as a possibility space you can stand inside.</p>
       </div>
       <div class="fanwrap">
-        <canvas id="fan-canvas" aria-label="A fan of career paths spreading from a single starting point" role="img"></canvas>
-        <div class="fan-caption">One starting point, many observed trajectories.</div>
+        <canvas id="field-canvas" aria-label="The destination field: career lines fanning out from one starting point to the real year-10 occupation groups of the five majors' cohorts, band width proportional to each group's share" role="img"></canvas>
+        <div class="fan-caption" id="field-caption"></div>
+        <details class="tblview"><summary>View the destination field as a table</summary><div id="field-table"></div></details>
       </div>
     </div>
 
-    <div class="statband">
-      <div class="stat"><div class="v">2.0M</div><div class="k">career profiles parsed</div><span class="badge real">pipeline data</span></div>
-      <div class="stat"><div class="v">10.8M</div><div class="k">individual career steps</div><span class="badge real">pipeline data</span></div>
-      <div class="stat"><div class="v">6.0M</div><div class="k">observed job-to-job transitions</div><span class="badge real">pipeline data</span></div>
-      <div class="stat"><div class="v">240K</div><div class="k">humanities degree records (416K incl. humanistic social sciences)</div><span class="badge real">pipeline data</span></div>
-    </div>
+    <div class="statband" id="corpus-band"></div>
 
     <div class="doors">
       <button class="door" data-goto="stories">
         <span class="k">Layer one · The guided front door</span>
-        <h3>Stories</h3>
-        <p>Choose-your-own-adventure walks through a major's possibility space. Pick a degree, follow a
-          branch, see the fan of destinations and the long view — with short expert gloss written by NHA
-          staff at every step.</p>
+        <h3>Stories &amp; narratives</h3>
+        <p>Walk one major's first decade step by step — year one, the arc, the choices — and read
+          six familiar claims about humanities majors against the counted reality. Every number
+          computed; the connecting narrative badged amber.</p>
         <span class="go">→</span>
       </button>
-      <button class="door" data-goto="explore">
+      <button class="door" data-goto="portal">
         <span class="k">Layer two · The engine</span>
         <h3>Portal</h3>
-        <p>Explore the data directly. Choose a major, surface year-10 destinations, sectors, and the
-          long view, and compare against all graduates. Aggregate-only, with audited minimum
-          cell sizes and no individual profiles.</p>
+        <p>Explore the data directly: the possibility space (destinations, employers, sectors), the
+          first decade (snapshots, the long view, mobility, pathways, grad school), and the choices —
+          aggregate-only, with audited minimum cell sizes.</p>
+        <span class="go">→</span>
+      </button>
+      <button class="door" data-goto="methods">
+        <span class="k">Where the numbers come from</span>
+        <h3>Data &amp; methods</h3>
+        <p>The dataset, the cohort discipline, the suppression rules, and the limitations — public
+          by design, because credible reassurance has to be checkable.</p>
         <span class="go">→</span>
       </button>
     </div>
 
-    <p class="home-note">The two layers are one product: the portal powers the vignettes, and the vignettes
-      give the portal a guided front door. <em>Every chart in the stories is computed by the pipeline</em> —
-      the fans, the long views, the cohort counts. The named routes remain editorial, badged amber, until
-      counted routes clear the publication bar.</p>
+    <p class="home-note">One rule governs everything here: <em>what clears the evidence bar is shown;
+      what doesn't is reported, not filled in.</em> Computed numbers are badged green. The short
+      narrative glosses written by NHA staff are badged amber, and there are no invented career
+      stories anywhere on this site.</p>
   </div>
 </section>
 
-<!-- ============ STORIES ============ -->
-<section class="view" id="view-stories">
-  <div class="wrap">
-    <div class="sect-head">
-      <h2>Stories</h2>
-      <p>A guided walk through one major's possibility space — brief, branching, and grounded in data.
-        Written for students weighing a real decision, and for the advisors who support them.</p>
-    </div>
-    <div class="crumbs" id="story-crumbs"></div>
-    <div id="story-stage"></div>
-  </div>
-</section>
-
-<!-- ============ EXPLORE / PORTAL ============ -->
-<section class="view" id="view-explore">
+<!-- ============ PORTAL (one explorer, three sections) ============ -->
+<section class="view" id="view-portal">
   <div class="wrap">
     <div class="sect-head">
       <h2>Portal</h2>
-      <p>The engine behind the stories, open for direct exploration. Everything below re-renders against
-        your selection; every panel is aggregate-only with audited minimum cell sizes.</p>
+      <p>The engine behind the stories, open for direct exploration. Pick a major, then move between
+        the possibility space, the first decade, and the choices — every panel aggregate-only, with
+        audited minimum cell sizes and suppression reported in place.</p>
     </div>
 
     <div class="controls">
@@ -562,19 +575,30 @@
         <button data-b="l2" aria-pressed="false">+ Humanistic social sci.</button>
         <button data-b="l3" aria-pressed="false">Liberal arts</button>
       </div>
-      <label class="toggle"><input type="checkbox" id="cmp-toggle" checked> Compare with all graduates</label>
+      <label class="toggle"><input type="checkbox" id="ctx-toggle"> Context vs all graduates</label>
+      <p class="ctl-note">The population boundary sets which majors count as “humanities” in the definition
+        and record counts below. Per-major charts are fixed cohorts and don't change with it.</p>
     </div>
 
+    <div class="subnav-row">
+      <span class="lbl">Section</span>
+      <div class="seg subnav" id="portal-subnav" role="group" aria-label="Portal section">
+        <button data-s="space" aria-pressed="true">The possibility space</button>
+        <button data-s="decade" aria-pressed="false">The first decade</button>
+        <button data-s="choices" aria-pressed="false">Choices</button>
+      </div>
+    </div>
+
+    <div class="subview active" id="sub-space">
+    <p class="desc" style="margin:0 0 12px;">Everywhere this major's graduates actually work, a decade in —
+      how wide the field really is, and what sits inside it.</p>
     <div class="popline" id="popline"></div>
-    <div class="kpis" id="kpis"></div>
+    <div class="statband six" id="div-band"></div>
 
     <div class="panels">
       <div class="panel wide">
         <div class="panel-head"><h3 id="fan-title">Where it leads</h3><span class="badge real">pipeline data</span></div>
-        <p class="desc">Primary occupation group ten years after graduation, as a share of the full
-          year-10 cohort; cells below the n&thinsp;=&thinsp;40 support bar are suppressed.
-          <span id="fan-unclass"></span> <span id="fan-cmp-note">Chips mark <strong>distinctive
-          destinations</strong> — over-represented versus chance (relative risk, size-controlled).</span></p>
+        <p class="desc" id="fan-desc"></p>
         <p class="fan-lead" id="fan-lead"></p>
         <div class="fan-controls">
           <span class="lbl">Order by</span>
@@ -585,7 +609,8 @@
           <span class="fan-hint" id="fan-order-hint"></span>
         </div>
         <div class="hbar fan" id="fan-chart"></div>
-        <p class="drill-hint">Select any destination to open the specific roles behind it — a composition of the role-coded subset, shown below the 40-person bar.</p>
+        <p class="drill-hint" id="fan-drill-hint"></p>
+        <div id="fan-gloss"></div>
         <details class="tblview"><summary>View as table</summary><div id="fan-table"></div></details>
       </div>
 
@@ -595,49 +620,125 @@
         <div class="emp-stats" id="emp-field-stats"></div>
         <canvas id="emp-field-canvas" aria-label="Every employer of this cohort, one dot each, sized by graduates hired" role="img"></canvas>
         <p class="desc" id="emp-field-labeled" style="margin-top:10px"></p>
-        <p class="desc" style="margin-bottom:0">One dot per employer, area scaled to how many of this cohort it hired in
-          their first five years. Names appear only where at least 40 distinct graduates are behind them — the
-          suppression rule that governs every number on this site. Employer identities below that bar never leave the
-          pipeline, even anonymously: the dots are drawn from aggregate size counts.</p>
+        <p class="desc" id="emp-field-note" style="margin-bottom:0"></p>
+      </div>
+
+      <div class="panel wide">
+        <div class="panel-head"><h3>Sectors reached</h3><span class="badge real">pipeline data</span></div>
+        <p class="desc">Macro-sector of employer at the ten-year mark (17-sector schema, crosswalked to
+          NAICS). <span id="sector-unres"></span></p>
+        <div class="hbar" id="sector-chart"></div>
+        <details class="tblview"><summary>View as table</summary><div id="sector-table"></div></details>
+      </div>
+    </div>
+    </div><!-- /sub-space -->
+
+    <div class="subview" id="sub-decade">
+    <p class="desc" style="margin:0 0 12px;">The years you're probably most anxious about, one snapshot
+      at a time — then the longer arc. Equal observation windows; suppressed cells reported rather than
+      filled in.</p>
+
+    <div class="panels">
+      <div class="panel wide">
+        <div class="panel-head"><h3 id="scrub-title">Snapshots: where graduates stood</h3><span class="badge real">pipeline data</span></div>
+        <p class="desc">The same major, observed at four points. Each snapshot is its own equal-window
+          cohort — a year-N figure counts only people whose first N years are fully observed — so the
+          cohorts shrink as the horizon grows. That shrinkage is the method, not a gap.</p>
+        <div class="fan-controls">
+          <span class="lbl">Snapshot</span>
+          <div class="seg" id="scrub-seg" role="group" aria-label="Choose a snapshot year"></div>
+        </div>
+        <p class="scrub-meta" id="scrub-meta"></p>
+        <div class="hbar fan" id="scrub-chart"></div>
+        <p class="scrub-note" id="scrub-note"></p>
+        <details class="tblview"><summary>View as table</summary><div id="scrub-table"></div></details>
+      </div>
+
+      <div class="panel wide">
+        <div class="panel-head"><h3>The long view</h3><span class="badge real">pipeline data</span></div>
+        <p class="desc" id="curve-desc"></p>
+        <div class="chartbox" id="curve-chart"></div>
+        <div class="legend" id="curve-legend"></div>
+        <div id="curve-gloss"></div>
+        <details class="tblview"><summary>View as table</summary><div id="curve-table"></div></details>
+      </div>
+
+      <div class="panel wide">
+        <div class="panel-head"><h3>Mobility styles: early movers vs stayers, measured</h3><span class="badge real">pipeline data</span></div>
+        <p class="desc">Maybe your real worry isn't the first job but the churn after it. This panel
+          groups graduates by how often they changed jobs in their first three years, then measures
+          where each group stood at year five. Mover groups are self-selected — descriptions, never
+          causal claims.</p>
+        <div class="scrollx" id="stability-table"></div>
+        <p id="stability-measured" style="font-size:13.5px;color:var(--ink-2);margin:8px 0 0;"></p>
+        <p style="font-size:13.5px;color:var(--muted);margin:6px 0 0;">Also measured, and worth knowing:
+          early movers do not “settle” later — their later moves stay faster than stayers'. What changes
+          is the character of the movement: more of it is job-to-job (fewer moves through a gap), and it
+          covers more occupational ground. Movement is a style, not a phase — and neither style pays a
+          seniority penalty here.</p>
+        <div id="stability-gloss"></div>
+        <p class="desc" style="margin:12px 0 0;">Seniority understates self-employed and portfolio
+          careers, common in the arts. No wage data is used anywhere.</p>
       </div>
 
       <div class="panel">
         <div class="panel-head"><h3>Well-trodden pathways</h3><span class="badge real">pipeline data</span></div>
-        <p class="desc">Occupation-group routes walked by at least 40 distinct people, counted only
-          across fully classified consecutive years — never bridged across unknowns. Routes tagged
-          <span class="pill-unex">unexpected</span> end outside the major's top-5 destinations.
-          What clears the bar is shown; what doesn't is reported, not filled in.</p>
+        <p class="desc" id="path-desc"></p>
         <div id="path-list"></div>
         <div class="suppressed" id="path-suppressed"></div>
       </div>
 
       <div class="panel">
-        <div class="panel-head"><h3>The long view</h3><span class="badge real">pipeline data</span></div>
-        <p class="desc">Median seniority score by years since graduation (0&thinsp;=&thinsp;intern,
-          1&thinsp;=&thinsp;chief executive). Each horizon includes only people whose full window is
-          observed; points with fewer than 40 people are suppressed. This dataset contains no salary
-          information; the measure is trajectory, not pay.</p>
-        <div class="chartbox" id="curve-chart"></div>
-        <div class="legend" id="curve-legend"></div>
-        <details class="tblview"><summary>View as table</summary><div id="curve-table"></div></details>
-      </div>
-
-      <div class="panel">
-        <div class="panel-head"><h3>Sectors reached</h3><span class="badge real">pipeline data</span></div>
-        <p class="desc">Macro-sector of employer at the ten-year mark (17-sector schema, crosswalked to
-          NAICS). <span id="sector-unres"></span></p>
-        <div class="hbar" id="sector-chart"></div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-head"><h3>Career success, beyond salary</h3><span class="badge real">pipeline data</span></div>
-        <p class="desc">Four constructed pillars, scored against all graduates — the tick marks parity
-          at 50. Each pillar is computed from trajectory data, but the framework itself is a framing
-          device, not a validated measure. The finding is parity: humanities careers track close to the
-          all-graduate median on every axis.</p>
-        <div class="meters" id="pillar-meters"></div>
+        <div class="panel-head"><h3>The graduate-school step</h3><span class="badge real">pipeline data</span></div>
+        <p class="desc" id="grad-desc"></p>
+        <div class="hbar" id="grad-level-chart"></div>
+        <details class="tblview" id="grad-level-details"><summary>View as table</summary><div id="grad-level-table"></div></details>
+        <div id="grad-type-head" style="margin:16px 0 8px;font-weight:600;color:var(--ink);font-size:13px;"></div>
+        <div class="grad-types" id="grad-type-chips"></div>
+        <p class="desc" id="grad-foot" style="margin:12px 0 0;"></p>
       </div>
     </div>
+
+    <div id="decade-gloss"></div>
+    </div><!-- /sub-decade -->
+
+    <div class="subview" id="sub-choices">
+    <p class="desc" style="margin:0 0 12px;">Double major? Grad school? An internship, a service year, the
+      military, working for yourself? How each decision relates to where people landed — participation
+      first, destinations where the data can support them.</p>
+
+    <div class="caveat" id="choices-caveat"></div>
+
+    <div class="panels" id="choices-major-cards"></div>
+
+    <div class="pool-head" id="choices-pool-head"></div>
+    <div class="panels" id="choices-pooled-cards"></div>
+
+    <div class="pool-head" id="choices-nm-head"></div>
+    <div class="panels" id="choices-nm-cards"></div>
+    </div><!-- /sub-choices -->
+  </div>
+</section>
+
+<!-- ============ STORIES & NARRATIVES ============ -->
+<section class="view" id="view-stories">
+  <div class="wrap">
+    <div class="sect-head">
+      <h2>Stories &amp; narratives</h2>
+      <p>The narrative layer. Walk one major's first decade step by step — year one, the arc, the
+        choices — then read six familiar claims about humanities majors against the counted reality.
+        Every chart is pipeline data; the connecting narrative is NHA-staff editorial, badged amber.
+        There are no invented careers anywhere in these stories.</p>
+    </div>
+    <div class="crumbs" id="story-crumbs"></div>
+    <div id="story-stage"></div>
+
+    <div class="pool-head" id="myths-head" style="margin-top:44px">
+      <h3>Six things people will tell you</h3>
+      <span class="sub">Each claim answered with numbers computed at render time from the same pipeline
+        output as every chart — never typed into the page. Partial truths stated, not trimmed.</span>
+    </div>
+    <div class="mythgrid" id="myth-cards"></div>
   </div>
 </section>
 
@@ -667,12 +768,7 @@
         <div class="panel-head"><h3>Who counts as “humanities”</h3><span class="badge real">pipeline data</span></div>
         <p class="desc">Three nested boundaries, grounded in the Humanities Indicators Project, ACLS, and
           Phi Beta Kappa definitions. Every analysis states its boundary.</p>
-        <table class="facts">
-          <tr><th>Boundary</th><th>Degree records</th><th>Examples</th></tr>
-          <tr><td>Humanities (narrow)</td><td class="num">240,277</td><td>English, History, Philosophy, Classics, Art History, Music</td></tr>
-          <tr><td>+ Humanistic social sciences</td><td class="num">415,908</td><td>+ Anthropology, Communication &amp; Media, Political Science</td></tr>
-          <tr><td>Liberal arts</td><td class="num">689,836</td><td>+ Mathematics, Biology, Physics, Psychology, Economics</td></tr>
-        </table>
+        <div id="boundaries-table"></div>
       </div>
 
       <div class="panel wide">
@@ -697,6 +793,18 @@
       </div>
 
       <div class="panel wide">
+        <div class="panel-head"><h3>The evidence bar</h3><span class="badge real">pipeline data</span></div>
+        <p class="desc" id="bar-note" style="margin-bottom:0"></p>
+      </div>
+
+      <div class="panel wide">
+        <div class="panel-head"><h3>How each choice is defined</h3><span class="badge real">pipeline data</span></div>
+        <p class="desc">The Choices view counts these decisions with the definitions below, all applied
+          to the same windowed year-10 cohorts as the rest of the site.</p>
+        <div id="choice-defs"></div>
+      </div>
+
+      <div class="panel wide">
         <div class="panel-head"><h3>Honesty commitments</h3></div>
         <div class="commit">
           <div class="c-item"><span class="tick">✓</span><span><b>Aggregate only.</b> No individual profile is ever displayed or reconstructible. Cells below the minimum support threshold are suppressed, and the suppression is visible in the interface.</span></div>
@@ -704,6 +812,7 @@
           <div class="c-item"><span class="tick">✓</span><span><b>Survivorship is named on the chart.</b> Long careers appear only if their owners stayed visible. Every long-view surface carries this caveat in place, not in a footnote.</span></div>
           <div class="c-item"><span class="tick">✓</span><span><b>Gaps are unknowns.</b> A gap may be caregiving, travel, study, or a missing entry. The interface renders “gap (unknown)” — never “unemployed.”</span></div>
           <div class="c-item"><span class="tick">✓</span><span><b>No wage claims.</b> The data has no salaries. Outcomes are trajectory proxies — seniority, preparation level, transition mix — and are labeled as such.</span></div>
+          <div class="c-item"><span class="tick">✓</span><span><b>No causal claims about choices.</b> Grad school, double majors, internships, and every other decision on the Choices view are described as associations among self-selected groups — never as effects of the choice.</span></div>
           <div class="c-item"><span class="tick">✓</span><span><b>Pre-committed comparisons.</b> Where majors are compared, the comparison design is fixed in advance and we publish whatever the controlled comparison shows.</span></div>
         </div>
       </div>
@@ -716,23 +825,12 @@
           anchors use the two validated tiers — an observed end year (A1), or start year plus a fitted
           duration (A2, ≥80% of held-out gold within ±1 year); a third inferred tier failed validation
           and is excluded.</p>
-        <div id="funnel-table"></div>
+        <div class="scrollx" id="funnel-table"></div>
       </div>
 
       <div class="panel wide">
         <div class="panel-head"><h3>What's computed, and what's still editorial</h3><span class="badge real">pipeline data</span></div>
-        <p class="desc" style="margin-bottom:0">Every per-major number on this site — cohort funnels, destination fans, sectors
-          reached, long-view curves, and pillar scores — is computed from the committed data spine under equal observation
-          windows: a year-N statistic includes only people whose graduation anchor is at least N years before the snapshot,
-          and any cell supported by fewer than 40 people is suppressed. Occupation classification pools two sources: the
-          deterministic O*NET lexicon backbone (6-digit; always wins) and a calibrated LLM jury at major-group grain
-          (two-model unanimity with reference-title anchors, 88.7% agreement with held-out deterministic gold, pre-committed
-          gate 0.85; strings where the two models disagree or abstain ship nothing). A relative-risk bias check compares
-          deterministic-only and pooled fans before pooled numbers ship; each fan reports its unclassified share as its own
-          honest bucket and its source blend. The pathway routes are counted occupation-group transitions over fully
-          classified consecutive years. Two things remain <strong>editorial</strong> and are badged amber wherever they
-          appear: the named role-level routes in Stories and the narrative glosses. The four pillar scores are computed, but
-          the pillar framework itself is a framing device, not a validated measure.</p>
+        <p class="desc" id="computed-note" style="margin-bottom:0"></p>
       </div>
     </div>
   </div>
@@ -762,138 +860,241 @@ const MAJOR_ORDER = ["english", "history", "philrel", "arts", "commmedia"];
 const YEARS = PORTAL.baseline.curve.years;
 const BASE_CURVE = PORTAL.baseline.curve.median_seniority;
 
+/* The site-wide minimum-support bar. Read from the pipeline output, never
+   hard-coded: a page injected with bar-40 data says 40; bar-10 data says 10. */
+const BAR = PORTAL.min_support
+  || (((PORTAL.majors.english || {}).launchboard || {}).grad_track || {}).min_support
+  || 10;
+
 const fmt = n => n.toLocaleString("en-US");
 const pctStr = (x, d) => (x * 100).toFixed(d == null ? 1 : d) + "%";
 
 const BOUNDARY_DEFS = {
-  l1: { name: "Humanities (narrow)", def: "Strict humanities: English, history, philosophy, languages, classics, arts, religion." },
-  l2: { name: "Humanities + humanistic social sciences", def: "Adds interpretive social sciences: anthropology, communication & media, political science, sociology." },
-  l3: { name: "Liberal arts", def: "Adds mathematics and the natural sciences (Phi Beta Kappa boundary)." },
+  l1: { name: "Humanities (narrow)", def: "Strict humanities: English, history, philosophy, languages, classics, arts, religion.",
+        examples: "English, History, Philosophy, Classics, Art History, Music" },
+  l2: { name: "Humanities + humanistic social sciences", def: "Adds interpretive social sciences: anthropology, communication & media, political science, sociology.",
+        examples: "+ Anthropology, Communication & Media, Political Science" },
+  l3: { name: "Liberal arts", def: "Adds mathematics and the natural sciences (Phi Beta Kappa boundary).",
+        examples: "+ Mathematics, Biology, Physics, Psychology, Economics" },
 };
 
-const PILLAR_DEFS = [
-  ["growth", "Growth", "seniority gained over the first ten years"],
-  ["stability", "Stability", "tenure length and continuity of employment"],
-  ["skill", "Skill", "preparation level of occupations reached (O*NET job zones)"],
-  ["direction", "Direction", "share of moves that are upward or deliberate pivots"],
-];
+/* ---- Editorial layer: NHA-staff glosses (amber). No invented routes. ----
+   Every numeric, multiplier, or superlative claim in these paragraphs is
+   interpolated from PORTAL at render time — nothing numeric is hand-typed.
+   Superlatives render only when the comparison computes true across majors. */
 
-/* ---- Editorial layer: NHA-staff narrative ------------------------------
-   Glosses and illustrative story routes. These are NOT computed: the
-   counted routes in the Portal are occupation-GROUP transitions; the named
-   role-level walks below (editorial ladder, curator's path, ...) remain
-   NHA-staff illustrations of the product shape and are badged amber. */
-const EDITORIAL = {
+/* word-ish multiplier for prose: ×5.98 → "six times", ×2.55 → "two and a half times" */
+const NUM_WORDS = ["zero", "one", "two", "three", "four", "five", "six",
+  "seven", "eight", "nine", "ten", "eleven", "twelve"];
+function rrWord(rr) {
+  const half = Math.round(rr * 2) / 2;
+  const whole = Math.floor(half), isHalf = half !== whole;
+  if (whole >= NUM_WORDS.length) return "about " + (isHalf ? half.toFixed(1) : String(whole)) + " times";
+  return NUM_WORDS[whole] + (isHalf ? " and a half" : "") + " times";
+}
+
+/* group names as they read inside a sentence */
+const PROSE_GROUP = {
+  "Arts/Design/Media": "arts, design & media",
+  "Community & Social Service": "community and social service",
+  "Business & Financial": "business and financial work",
+  "Computer & Mathematical": "computer and mathematical work",
+  "Office & Admin Support": "office and administrative support",
+  "Legal": "legal occupations",
+};
+const proseGroup = g => PROSE_GROUP[g] || g.toLowerCase();
+
+/* compact display names for narrow chart-label columns (full name stays in
+   tooltips and tables; underlying data keys are never renamed) */
+const SHORT_LABEL = {
+  "Arts/Design/Media": "Arts, Design & Media",
+  "Community & Social Service": "Community & Social Svc",
+  "Computer & Mathematical": "Computer & Math",
+  "Life/Physical/Social Science": "Life, Phys. & Social Sci.",
+  "Installation/Maint/Repair": "Install., Maint. & Repair",
+  "Food Preparation & Serving": "Food Prep & Serving",
+};
+const shortLabel = g => SHORT_LABEL[g] || g;
+
+const fanByShare = m => m.fan.slice().sort((a, b) => b.share - a.share);
+const fanByRR = m => m.fan.slice().sort((a, b) =>
+  (b.rr == null ? -1 : b.rr) - (a.rr == null ? -1 : a.rr));
+
+/* true iff f(major) is strictly the maximum of f across the five majors */
+function maxAcrossMajors(key, f) {
+  const v = f(PORTAL.majors[key]);
+  if (v == null) return false;
+  return MAJOR_ORDER.every(k => k === key || (f(PORTAL.majors[k]) || -Infinity) < v);
+}
+const yIdx = yr => YEARS.indexOf(yr);
+const sen2 = v => v == null ? null : v.toFixed(2);
+/* "level" / "above" / "below" relative to the all-graduate baseline */
+function vsBaseline(v, b, eps) {
+  if (v == null || b == null) return null;
+  const e = eps == null ? 0.02 : eps;
+  return v - b > e ? "above" : b - v > e ? "below" : "level with";
+}
+
+const GLOSS = {
   english: {
-    quote: "Careers built on language and interpretation.",
-    fanGloss: "Teaching is real and well-traveled for English graduates — education draws them at nearly three times the all-graduate rate — but it is one bar among several: arts, design & media leads the fan, with management close behind. Most of this cohort holds a role our occupation coding cannot yet classify, so the fan shows only what can be counted with confidence. Even so, the destinations English graduates reach most disproportionately rarely appear in conventional accounts of the degree.",
-    longGloss: "English graduates in this data begin a step below the all-graduate baseline and close most of the gap over two decades — 0.30 versus 0.34 at graduation, 0.52 versus 0.55 at year ten, level by year twenty. Read the curve with care: it is drawn from people who remained visible on LinkedIn. But it shows what starting-salary comparisons cannot — careers unfold over decades, and the early gap does not persist.",
-    endGloss: "None of this promises any single outcome. What it shows is a possibility space: wide, real, and walked by thousands of people who started exactly where you're standing.",
-    routes: [
-      { name: "The editorial ladder", stages: ["Editorial assistant", "Editor", "Managing editor"],
-        gloss: "Publishing draws directly on what the degree develops: careful judgment about language. The entry roles are modest, but the ladder is real, and it runs on exactly the skills an English degree practices daily." },
-      { name: "The classroom", stages: ["Teacher", "Department chair", "Curriculum director"],
-        gloss: "The best-known path. What often goes untold is the second half of the story: teaching also leads into curriculum and leadership roles, not only the classroom." },
-      { name: "Content to strategy", stages: ["Copywriter", "Content strategist", "Marketing manager", "Communications director"],
-        gloss: "As organizations of every kind produce more written and digital communication, demand has grown for people who write clearly — and the titles along this route move steadily from producing content to setting its direction." },
-      { name: "English majors in tech", unexpected: true, stages: ["Technical writer", "UX writer", "Content design lead"],
-        gloss: "A route rarely presented to English majors. Software products depend on written language — documentation, interface text, help content — and technology companies hire dedicated writers for that work." },
-      { name: "Advising and client relations", unexpected: true, stages: ["Client services associate", "Relationship manager", "Wealth advisor"],
-        gloss: "Client advising depends on listening carefully, understanding people, and explaining complex material in plain language: skills the degree develops directly." },
-    ],
+    fan: m => {
+      const s = fanByShare(m), top = s[0];
+      let t = "Teaching is real and well-traveled for English graduates — " + proseGroup(top.group) +
+        " leads the fan" + (top.rr != null && top.rr >= 1.5
+          ? ", drawing them at roughly " + rrWord(top.rr) + " the all-graduate rate" : "") +
+        " — but it is one bar among several: " + proseGroup(s[1].group) + " sits just behind it, with " +
+        proseGroup(s[2].group) + " close after" +
+        (s[2].rr != null && top.rr != null && s[2].rr >= top.rr * 0.85 ? " and nearly as distinctive" : "") + ". ";
+      t += pctStr(m.unclassified_share, 0) + " of this cohort holds a role our occupation coding cannot yet " +
+        "classify, so the fan shows only what can be counted with confidence. Even so, the destinations " +
+        "English graduates reach most disproportionately rarely appear in conventional accounts of the degree.";
+      return t;
+    },
+    long: m => {
+      const c = m.curve.median_seniority, i10 = yIdx(10), iEnd = YEARS.length - 1;
+      const nums = (c[0] != null && BASE_CURVE[0] != null && c[i10] != null && BASE_CURVE[i10] != null)
+        ? " — " + sen2(c[0]) + " versus " + sen2(BASE_CURVE[0]) + " at graduation, " +
+          sen2(c[i10]) + " versus " + sen2(BASE_CURVE[i10]) + " at year ten, " +
+          vsBaseline(c[iEnd], BASE_CURVE[iEnd]) + " the baseline by year twenty"
+        : "";
+      return "English graduates in this data begin a step below the all-graduate baseline and close most " +
+        "of the gap over two decades" + nums + ". Read the curve with care: it is drawn from people who " +
+        "remained visible on LinkedIn. But it shows what starting-salary comparisons cannot — careers " +
+        "unfold over decades, and the early gap does not persist.";
+    },
+    end: "None of this promises any single outcome. What it shows is a possibility space: wide, real, and walked by thousands of people who started exactly where you're standing.",
   },
-
   history: {
-    quote: "Careers built on evidence and argument.",
-    fanGloss: "History's most distinctive destination is law: history graduates reach legal occupations at four times the all-graduate rate, the strongest signal on this chart. The daily work of the degree — weighing incomplete evidence, constructing an argument, writing it down — translates directly into legal careers. Management and education fill out the top of the fan.",
-    longGloss: "History graduates' seniority climbs steadily across two decades and finishes just above the all-graduate baseline. Much of that reflects their common destinations — education, government, and law — where advancement is gradual but reliable. The usual caveat applies: this is drawn from people who remained visible on LinkedIn. The notable finding is how steady the long arc is.",
-    endGloss: "A history degree does not point to a single job title. It opens a wide, documented network of paths — including several that rarely appear in conventional career guidance.",
-    routes: [
-      { name: "From history to law", stages: ["Paralegal", "Law school", "Attorney"],
-        gloss: "History's most distinctive destination in the data is law. The core habits carry over directly — evidence, argument, citation — and law schools have long recognized historical training." },
-      { name: "The classroom", stages: ["Teacher", "Department chair", "School administrator"],
-        gloss: "A well-traveled route, as it is for English — and movement from the classroom into department and school leadership is part of the story." },
-      { name: "Evidence to policy", stages: ["Research assistant", "Analyst", "Policy advisor"],
-        gloss: "The route into government and civic organizations, where the daily work mirrors the discipline itself — reading widely, weighing evidence, and making recommendations." },
-      { name: "History majors in finance", unexpected: true, stages: ["Credit analyst", "Risk analyst", "Risk manager"],
-        gloss: "Risk analysis calls on the historian's core training: incomplete sources, interested narrators, and judgments that must be written down and defended before the outcome is known." },
-      { name: "From archives to analytics", unexpected: true, stages: ["Data analyst", "Business intelligence analyst", "Analytics manager"],
-        gloss: "A dataset resembles an archive — it has provenance, gaps, and bias — and sound analysis begins with the questions historians are trained to ask: who recorded this, and why?" },
-    ],
+    fan: m => {
+      const r = fanByRR(m)[0];
+      const others = fanByShare(m).filter(x => x.group !== r.group).slice(0, 2);
+      const lawish = r.group === "Legal";
+      let t = "History's most distinctive destination is " + (lawish ? "law" : proseGroup(r.group)) +
+        ": history graduates reach " + proseGroup(r.group) + " at roughly " + rrWord(r.rr) +
+        " the all-graduate rate — the strongest signal in this fan. ";
+      if (lawish) t += "The daily work of the degree — weighing incomplete evidence, constructing an " +
+        "argument, writing it down — translates directly into legal careers. ";
+      t += "By head-count, " + proseGroup(others[0].group) + " and " + proseGroup(others[1].group) +
+        " fill out the top of the fan.";
+      return t;
+    },
+    long: m => {
+      const c = m.curve.median_seniority, iEnd = YEARS.length - 1;
+      const rel = vsBaseline(c[iEnd], BASE_CURVE[iEnd]);
+      const nums = (c[iEnd] != null && BASE_CURVE[iEnd] != null)
+        ? " (" + sen2(c[iEnd]) + " versus " + sen2(BASE_CURVE[iEnd]) + " at year twenty)" : "";
+      return "History graduates' seniority climbs steadily across two decades and finishes " +
+        (rel || "near") + " the all-graduate baseline" + nums + ". Much of that reflects their common " +
+        "destinations — education, government, and law — where advancement is gradual but reliable. " +
+        "The usual caveat applies: this is drawn from people who remained visible on LinkedIn. " +
+        "The notable finding is how steady the long arc is.";
+    },
+    end: "A history degree does not point to a single job title. It opens a wide, documented network of paths — including several that rarely appear in conventional career guidance.",
   },
-
   philrel: {
-    quote: "Careers built on rigorous reasoning.",
-    fanGloss: "Philosophy & Religion's signature destination is community and social service — chaplaincy, ministry, counseling, and nonprofit work — reached at eight and a half times the all-graduate rate, the strongest over-representation among these five majors. This is also the smallest cohort on the site, and the reporting bar is strict: only destinations counted with confidence appear below.",
-    longGloss: "Philosophy & Religion graduates show the steepest climb in this group, moving above the all-graduate baseline by mid-career. An honest caveat: this is a small, self-selected major and a survivor's view, so this curve deserves the most caution of the five. But the pattern is consistent across every horizon we can measure — by mid-career, these graduates' seniority is difficult to distinguish from that of graduates in explicitly professional fields.",
-    endGloss: "The data answers the familiar question about philosophy and religion graduates with a map: a wide range of occupations, a distinctive strength in work centered on people and meaning, and steady advancement within it.",
-    routes: [
-      { name: "Serving a community", stages: ["Chaplain", "Program director", "Executive director"],
-        gloss: "The signature destination in the data: community and social service, reached at eight and a half times the all-graduate rate. Chaplaincy, ministry, counseling, and nonprofit leadership all draw on the discipline's central concern — what people owe one another, and why." },
-      { name: "From philosophy to law", stages: ["Paralegal", "Law school", "Attorney"],
-        gloss: "Legal reasoning draws directly on the discipline's training in argument and analysis, and the affinity between the two fields is long recognized." },
-      { name: "The consultant's route", stages: ["Analyst", "Consultant", "Engagement manager"],
-        gloss: "Consulting rewards structured thinking about open-ended problems — the discipline's central skill applied in a commercial setting." },
-      { name: "Philosophy majors in tech", unexpected: true, stages: ["Technical writer", "Product manager", "Product lead"],
-        gloss: "Product management centers on defining problems precisely — what a product is, who it serves, and why. That is philosophical work by another name." },
-      { name: "User research", unexpected: true, stages: ["Research assistant", "UX researcher", "Research lead"],
-        gloss: "The work turns on questions the discipline has always asked: what do people actually mean, and how can we know? Technology companies have built a profession around answering them carefully." },
-    ],
+    fan: m => {
+      const r = fanByRR(m)[0];
+      const smallest = MAJOR_ORDER.every(k => k === "philrel" ||
+        PORTAL.majors[k].persons_windowed_y10 > m.persons_windowed_y10);
+      return "Philosophy & Religion's signature destination is " + proseGroup(r.group) +
+        " — chaplaincy, ministry, counseling, and nonprofit work — reached at roughly " + rrWord(r.rr) +
+        " the all-graduate rate, the strongest signal in this fan. " +
+        (smallest ? "This is also the smallest cohort on the site, and the" : "The") +
+        " reporting bar is strict: only destinations counted with confidence appear below.";
+    },
+    long: m => {
+      const c = m.curve.median_seniority, i10 = yIdx(10), iEnd = YEARS.length - 1;
+      const highestEnd = maxAcrossMajors("philrel", mm => mm.curve.median_seniority[YEARS.length - 1]);
+      const aboveMid = c[i10] != null && BASE_CURVE[i10] != null && c[i10] > BASE_CURVE[i10];
+      let t = "Philosophy & Religion graduates " +
+        (highestEnd
+          ? "finish with the highest year-twenty seniority of the five majors in this data (" +
+            sen2(c[iEnd]) + ", against " + sen2(BASE_CURVE[iEnd]) + " for all graduates)"
+          : "climb steadily across two decades") +
+        (aboveMid ? ", moving above the all-graduate baseline by mid-career. " : ". ");
+      t += "An honest caveat: this is a small, self-selected major and a survivor's view, so this curve " +
+        "deserves the most caution of the five. But the pattern holds at every horizon we can report" +
+        (aboveMid ? " — from year ten on, this cohort's measured seniority sits at or above the all-graduate line" : "") + ".";
+      return t;
+    },
+    end: "The data answers the familiar question about philosophy and religion graduates with a map: a wide range of occupations, a distinctive strength in work centered on people and meaning, and steady advancement within it.",
   },
-
   arts: {
-    quote: "Careers built on craft and creative practice.",
-    fanGloss: "A decade out, arts, design & media is where classified arts graduates concentrate — reached at more than seven times the all-graduate rate, the largest destination share of any major on this site. For a degree so often described as risky, the data shows a clear and durable professional foothold in the field itself.",
-    longGloss: "The arts curve starts level with the all-graduate baseline and stays close to it across two decades. Careers in this group involve more self-employment, shorter engagements, and more parallel projects than most, and standard seniority measures undercount a working artist's actual standing. We note that limitation directly: this line is best read as a floor, not a ceiling.",
-    endGloss: "The data does not romanticize careers in the arts — it counts them. And the count shows sustained, reachable professional work.",
-    routes: [
-      { name: "Studio to creative director", stages: ["Designer", "Senior designer", "Creative director"],
-        gloss: "The commercial backbone of the arts fan. Design careers advance on demonstrated work, and the path from staff designer to creative leadership is short and well understood." },
-      { name: "The teaching artist", stages: ["Teaching artist", "Arts educator", "Program director"],
-        gloss: "A route that sustains an artistic practice while building an institutional career — and one that leads into program leadership." },
-      { name: "The curator's path", stages: ["Gallery assistant", "Curator", "Museum director"],
-        gloss: "Small and gradual. Cultural institutions promote from deep expertise, and advancement in this field rewards sustained commitment." },
-      { name: "Stagecraft to operations", unexpected: true, stages: ["Stage manager", "Event producer", "Operations director"],
-        gloss: "Stage management is rigorous operations work: fixed deadlines, live dependencies, and no margin for error. Those habits transfer directly into corporate operations." },
-      { name: "From performance to talent development", unexpected: true, stages: ["Corporate trainer", "Learning & development manager", "Head of talent development"],
-        gloss: "Performance training develops presence, preparation, and the ability to read an audience — the same capacities corporate learning and development depends on." },
-    ],
+    fan: m => {
+      const top = fanByShare(m)[0];
+      const strongestRR = top.rr != null && maxAcrossMajors("arts", mm => fanByRR(mm)[0].rr);
+      const largestShare = maxAcrossMajors("arts", mm => fanByShare(mm)[0].share);
+      let t = "A decade out, " + proseGroup(top.group) + " is where classified arts graduates " +
+        "concentrate — " + pctStr(top.share, 0) + " of the cohort" +
+        (largestShare ? ", the largest destination share of any major on this site" : "") +
+        (top.rr != null ? ", reached at roughly " + rrWord(top.rr) + " the all-graduate rate" +
+          (strongestRR ? " — the strongest over-representation among these five majors" : "") : "") + ". ";
+      t += "For a degree so often described as risky, the data shows a clear and durable professional " +
+        "foothold in the field itself.";
+      return t;
+    },
+    long: m => {
+      const c = m.curve.median_seniority, iEnd = YEARS.length - 1;
+      const startRel = vsBaseline(c[0], BASE_CURVE[0], 0.05);
+      const endRel = vsBaseline(c[iEnd], BASE_CURVE[iEnd], 0.05);
+      const shape = (startRel === "level with" && endRel === "level with")
+        ? "starts level with the all-graduate baseline and stays close to it across two decades (" +
+          sen2(c[0]) + " versus " + sen2(BASE_CURVE[0]) + " at graduation; " +
+          sen2(c[iEnd]) + " versus " + sen2(BASE_CURVE[iEnd]) + " at year twenty)"
+        : "runs " + (startRel || "near") + " the all-graduate baseline at graduation and " +
+          (endRel || "near") + " it at year twenty";
+      return "The arts curve " + shape + ". Careers in this group involve more self-employment, shorter " +
+        "engagements, and more parallel projects than most, and standard seniority measures undercount " +
+        "a working artist's actual standing. We note that limitation directly: this line is best read " +
+        "as a floor, not a ceiling.";
+    },
+    end: "The data does not romanticize careers in the arts — it counts them. And the count shows sustained, reachable professional work.",
   },
-
   commmedia: {
-    quote: "Careers built on audience and message.",
-    fanGloss: "Communication graduates show the widest reach in this set — 122 of the network's 824 occupations, the broadest possibility space of the five majors. The fan centers on management and on arts, design & media, but its most distinctive feature is breadth itself: communication's destination profile most closely resembles the economy as a whole.",
-    longGloss: "Communication graduates climb quickly in the first decade, run level with the all-graduate baseline at nearly every horizon, and finish slightly above it. That early speed is visible in the data, and it is exactly the kind of information students deserve to see clearly.",
-    endGloss: "Communication is the connective work of nearly every organization, and the data shows communication graduates across nearly every sector. That breadth is the finding.",
-    routes: [
-      { name: "The newsroom ladder", stages: ["Reporter", "Editor", "News director"],
-        gloss: "The classic route, still active even as the industry has changed; the underlying skills transfer across outlets and formats." },
-      { name: "The agency track", stages: ["Account coordinator", "Account manager", "Account director"],
-        gloss: "Agency work draws directly on what the degree practices: audience, message, and deadline." },
-      { name: "Brand side", stages: ["Communications specialist", "Communications manager", "VP, Communications"],
-        gloss: "In-house communications, where the progression reaches the executive level. Nearly every large organization maintains this ladder." },
-      { name: "Developer relations", unexpected: true, stages: ["Community manager", "Developer relations", "Head of developer relations"],
-        gloss: "Translation work — engineers on one side, users and partners on the other — that rewards training in audience and clarity." },
-      { name: "Into people leadership", unexpected: true, stages: ["Recruiter", "HR business partner", "People director"],
-        gloss: "Many organizational challenges are, at their core, communication challenges. The route from recruiting into people leadership fits the degree more closely than it is usually given credit for." },
-    ],
+    fan: m => {
+      const d = m.diversity || {};
+      const gr = d.groups_reached != null ? d.groups_reached : m.fan.length;
+      const grOf = d.groups_of || 23;
+      const widest = maxAcrossMajors("commmedia", mm =>
+        (mm.diversity && mm.diversity.groups_reached != null) ? mm.diversity.groups_reached : mm.fan.length);
+      const s = fanByShare(m);
+      return (widest
+        ? "Communication graduates show the widest reach in this set: " + gr + " of " + grOf +
+          " occupation groups clear the reporting bar — more than any of the five majors — spanning "
+        : "Communication graduates reach " + gr + " of " + grOf +
+          " occupation groups above the reporting bar, spanning ") +
+        m.kpi.breadth + " of the network's " + (m.kpi.breadth_of || 824) +
+        " specific occupations in the first decade. The fan centers on " + proseGroup(s[0].group) +
+        " and on " + proseGroup(s[1].group) + ", but its most distinctive feature is breadth itself.";
+    },
+    long: m => {
+      const c = m.curve.median_seniority, iEnd = YEARS.length - 1;
+      const endRel = vsBaseline(c[iEnd], BASE_CURVE[iEnd]);
+      return "Communication graduates climb quickly in the first decade and track the all-graduate " +
+        "baseline at nearly every horizon, finishing " + (endRel || "near") + " it at year twenty" +
+        (c[iEnd] != null && BASE_CURVE[iEnd] != null
+          ? " (" + sen2(c[iEnd]) + " versus " + sen2(BASE_CURVE[iEnd]) + ")" : "") +
+        ". That early speed is visible in the data, and it is exactly the kind of information students " +
+        "deserve to see clearly.";
+    },
+    end: "Communication is the connective work of nearly every organization, and the data shows communication graduates across nearly every sector. That breadth is the finding.",
   },
 };
 
-/* view-model: computed numbers (PORTAL) + narrative (EDITORIAL) */
-function M(key) {
-  return Object.assign({}, EDITORIAL[key], PORTAL.majors[key]);
+/* resolve a gloss entry (string or template function over the major object) */
+function glossFor(key, kind) {
+  const g = GLOSS[key];
+  if (!g || g[kind] == null) return null;
+  return typeof g[kind] === "function" ? g[kind](PORTAL.majors[key]) : g[kind];
 }
 
-/* fan/sector rows for the h-bar renderer. The EXPLORE fan uses its own
-   renderer (renderFan, with ordering + drill-down); the Stories fan chart
-   still renders through renderHBar and needs this mapping. */
-function fanRows(m) {
-  return m.fan.map(f => ({ label: f.group, value: f.share * 100, rr: f.rr, n: f.n }));
-}
-function sectorRows(m) {
-  return m.sectors.map(s => ({ label: s.sector, value: s.share * 100, rr: null, n: s.n, muted: s.sector === "Other" }));
-}
+const STABILITY_GLOSS = "The word “unstable” does a lot of unexamined work in conversations about " +
+  "humanities careers. Counted, the picture is calmer: graduates who moved often in their first three years " +
+  "were navigating, not drifting — their moves ran between jobs rather than through gaps, crossed more " +
+  "occupational territory, and left them standing at least as tall at year five. Staying put worked too. " +
+  "The data doesn't pick a style for you; it shows that both are walked, in numbers.";
+
+function M(key) { return PORTAL.majors[key]; }
 
 /* ================= tiny dom helpers ================= */
 
@@ -906,6 +1107,23 @@ function el(tag, cls, text) {
   if (text != null) n.textContent = text;
   return n;
 }
+
+function badge(real) {
+  return el("span", "badge " + (real ? "real" : "illus"), real ? "pipeline data" : "editorial");
+}
+
+function glossBox(text) {
+  const g = el("div", "gloss");
+  const who = el("div", "who", "NHA");
+  const body = el("div");
+  const by = el("div", "byline");
+  by.append(document.createTextNode("Gloss · NHA staff · "), badge(false));
+  body.append(el("p", null, text), by);
+  g.append(who, body);
+  return g;
+}
+
+function emptyBox(text) { return el("div", "empty", text); }
 
 /* ================= tooltip ================= */
 
@@ -923,26 +1141,136 @@ function showTT(x, y, build) {
 }
 function hideTT() { tt.style.display = "none"; }
 
-/* ================= view switching ================= */
+/* ================= state + hash routing =================
+   Hierarchy: #overview | #stories[/<major>[/<step 1-3>]]
+            | #portal/<space|decade|choices>/<major> | #methods          */
 
-function goView(id) {
-  $$(".view").forEach(v => v.classList.toggle("active", v.id === "view-" + id));
-  $$("nav.views button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.view === id)));
-  window.scrollTo({ top: 0 });
-  if (id === "home") drawFan();
+const SECTIONS = ["space", "decade", "choices"];
+const state = {
+  view: "overview", section: "space", major: "english", step: 0,
+  boundary: "l1", context: false, fanOrder: "share", horizon: "y1",
+};
+
+function parseHash() {
+  const h = decodeURIComponent((location.hash || "").replace(/^#/, ""));
+  const bits = h.split("/").filter(Boolean);
+  const out = { view: "overview", section: null, major: null, step: 0 };
+  if (bits[0] === "stories") {
+    out.view = "stories";
+    if (PORTAL.majors[bits[1]]) {
+      out.major = bits[1];
+      const st = parseInt(bits[2], 10);
+      out.step = (st >= 1 && st <= 3) ? st : 1;
+    }
+  } else if (bits[0] === "portal") {
+    out.view = "portal";
+    out.section = SECTIONS.includes(bits[1]) ? bits[1] : "space";
+    if (PORTAL.majors[bits[2]]) out.major = bits[2];
+  } else if (bits[0] === "methods") {
+    out.view = "methods";
+  }
+  return out;
 }
+
+function currentHash() {
+  if (state.view === "stories")
+    return "#stories" + (state.step >= 1 ? "/" + state.major + "/" + state.step : "");
+  if (state.view === "portal") return "#portal/" + state.section + "/" + state.major;
+  if (state.view === "methods") return "#methods";
+  return "#overview";
+}
+
+function goHash(h) {
+  if (location.hash === h) applyHash();
+  else location.hash = h;                    // triggers hashchange → applyHash
+}
+function goView(view) {
+  const saved = { view: state.view };
+  state.view = view;                         // so currentHash targets the new view
+  const target = currentHash();
+  state.view = saved.view;
+  goHash(target);
+}
+
+function applyHash() {
+  const p = parseHash();
+  state.view = p.view;
+  if (p.section) state.section = p.section;
+  if (p.major) state.major = p.major;
+  if (p.view === "stories") state.step = p.step;
+  $$(".view").forEach(v => v.classList.toggle("active", v.id === "view-" + p.view));
+  $$("nav.views button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.view === p.view)));
+  syncControls();
+  renderView(p.view);
+  window.scrollTo({ top: 0 });
+}
+
+/* keep the URL current without adding history entries (select changes etc.) */
+function reflectHash() {
+  if (state.view === "portal" || (state.view === "stories" && state.step >= 1)) {
+    history.replaceState(null, "", currentHash());
+  }
+}
+
 $$("nav.views button").forEach(b => b.addEventListener("click", () => goView(b.dataset.view)));
 $$("[data-goto]").forEach(b => b.addEventListener("click", () => goView(b.dataset.goto)));
+addEventListener("hashchange", applyHash);
 
-/* ================= hero fan canvas ================= */
+function renderView(view) {
+  if (view === "overview") drawField();
+  else if (view === "stories") { renderStories(); renderMyths(); }
+  else if (view === "portal") renderPortal();
+  /* methods renders once at init */
+}
+
+function renderPortal() {
+  SECTIONS.forEach(s => {
+    const n = $("#sub-" + s);
+    if (n) n.classList.toggle("active", s === state.section);
+  });
+  $$("#portal-subnav button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.s === state.section)));
+  if (state.section === "space") renderSpace();
+  else if (state.section === "decade") renderDecade();
+  else renderChoices();
+}
+
+/* ================= theme ================= */
 
 function cssVar(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
+function redrawCanvases() {
+  if (state.view === "overview") drawField();
+  if (state.view === "portal" && state.section === "space") renderSpace();
+}
+addEventListener("resize", redrawCanvases);
+if (window.matchMedia) {
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", redrawCanvases);
+}
+new MutationObserver(redrawCanvases).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
-function drawFan() {
-  const cv = $("#fan-canvas");
+/* ================= overview: the destination field ================= */
+
+/* Pool the five majors' real year-10 fans into one destination distribution. */
+function pooledFan() {
+  const acc = new Map();
+  let windowed = 0;
+  MAJOR_ORDER.forEach(k => {
+    const m = M(k);
+    windowed += m.persons_windowed_y10;
+    m.fan.forEach(f => acc.set(f.group, (acc.get(f.group) || 0) + f.n));
+  });
+  const rows = Array.from(acc, ([group, n]) => ({ group, n, share: n / windowed }));
+  rows.sort((a, b) => b.n - a.n);
+  return { rows, windowed };
+}
+
+/* Deterministic destination-field hero: one band per real destination group,
+   band width proportional to its pooled share; rays jittered by a fixed hash. */
+function drawField() {
+  const cv = $("#field-canvas");
   if (!cv || !cv.offsetParent) return;
+  const { rows, windowed } = pooledFan();
   const dpr = window.devicePixelRatio || 1;
   const w = cv.clientWidth, h = 360;
   cv.width = w * dpr; cv.height = h * dpr;
@@ -950,58 +1278,120 @@ function drawFan() {
   ctx.scale(dpr, dpr);
   ctx.clearRect(0, 0, w, h);
 
-  const accent = cssVar("--accent");
-  const ox = 8, oy = h * 0.56;
-  const N = 44;
-  const highlights = new Set([6, 19, 33]);
+  const accent = cssVar("--accent"), ink = cssVar("--ink"), surface = cssVar("--surface");
+  const ox = 8, oy = h * 0.52;
+  const totalN = rows.reduce((a, r) => a + r.n, 0);
+  const PER = Math.max(60, Math.round(totalN / 120));   // one ray ≈ PER graduates
+  const fr = v => v - Math.floor(v);
 
-  for (let i = 0; i < N; i++) {
-    const t = i / (N - 1);
-    // pseudo-random but deterministic jitter
-    const j = Math.sin(i * 12.9898) * 0.5 + 0.5;
-    const endY = 14 + t * (h - 40) + (j - 0.5) * 10;
-    const endX = w - 6 - j * 26;
-    const midX = w * (0.38 + 0.14 * j);
-    const midY = oy + (endY - oy) * 0.28;
-    const hi = highlights.has(i);
-    ctx.beginPath();
-    ctx.moveTo(ox, oy);
-    ctx.quadraticCurveTo(midX, midY, endX, endY);
-    ctx.strokeStyle = accent;
-    ctx.globalAlpha = hi ? 0.85 : 0.07 + 0.16 * Math.abs(Math.sin(i * 7.13));
-    ctx.lineWidth = hi ? 2.2 : 1.1;
-    ctx.stroke();
-    if (hi) {
+  const top = h * 0.05, bottom = h * 0.95;
+  let cursor = top;
+  let rayIdx = 0;
+  const labels = [];
+  rows.forEach((r, gi) => {
+    const bandH = (bottom - top) * (r.n / totalN);
+    const rays = Math.max(1, Math.round(r.n / PER));
+    const major3 = gi < 3;
+    for (let k = 0; k < rays; k++) {
+      rayIdx++;
+      const j = fr(Math.sin(rayIdx * 12.9898) * 43758.5453);
+      const j2 = fr(Math.sin(rayIdx * 78.233) * 28001.8384);
+      const endY = cursor + (rays === 1 ? bandH / 2 : (k + 0.5) / rays * bandH) + (j - 0.5) * Math.min(bandH * 0.5, 8);
+      const endX = w - 8 - j2 * 22;
+      const midX = w * (0.38 + 0.14 * j);
+      const midY = oy + (endY - oy) * 0.30;
       ctx.beginPath();
-      ctx.arc(endX, endY, 4.5, 0, Math.PI * 2);
-      ctx.globalAlpha = 1;
-      ctx.fillStyle = accent;
-      ctx.fill();
+      ctx.moveTo(ox, oy);
+      ctx.quadraticCurveTo(midX, midY, endX, endY);
+      ctx.strokeStyle = accent;
+      ctx.globalAlpha = major3 ? 0.42 : 0.14;
+      ctx.lineWidth = major3 ? 1.6 : 1.0;
+      ctx.stroke();
     }
-  }
+    if (gi < 3) labels.push({ y: cursor + bandH / 2, text: r.group + " · " + pctStr(r.share, 0) });
+    cursor += bandH;
+  });
+
   // origin dot
   ctx.globalAlpha = 1;
   ctx.beginPath();
   ctx.arc(ox, oy, 6, 0, Math.PI * 2);
   ctx.fillStyle = accent;
   ctx.fill();
+
+  // labels for the three largest real destinations (legible chip in both themes)
+  ctx.font = "600 11.5px " + cssVar("--sans");
+  ctx.textAlign = "right"; ctx.textBaseline = "middle";
+  labels.forEach(L => {
+    const tw = ctx.measureText(L.text).width;
+    const lx = w - 10, ly = Math.min(Math.max(L.y, 14), h - 14);
+    ctx.globalAlpha = 0.85; ctx.fillStyle = surface;
+    ctx.beginPath();
+    if (ctx.roundRect) ctx.roundRect(lx - tw - 8, ly - 9, tw + 12, 18, 5); else ctx.rect(lx - tw - 8, ly - 9, tw + 12, 18);
+    ctx.fill();
+    ctx.globalAlpha = 1; ctx.fillStyle = ink;
+    ctx.fillText(L.text, lx - 2, ly + 0.5);
+  });
+  ctx.globalAlpha = 1;
+
+  $("#field-caption").textContent =
+    "Seeded from the pipeline's real year-10 destinations for the five majors' " +
+    fmt(windowed) + " fully observed graduates — one line ≈ " + fmt(PER) +
+    " people; band height is each occupation group's actual share.";
 }
-addEventListener("resize", drawFan);
-if (window.matchMedia) {
-  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawFan);
+
+function renderFieldTable() {
+  const box = $("#field-table");
+  box.textContent = "";
+  const { rows, windowed } = pooledFan();
+  const tbl = el("table");
+  const hd = el("tr");
+  ["Occupation group (pooled, five majors)", "People", "Share of pooled year-10 cohort"].forEach(h2 => hd.append(el("th", null, h2)));
+  tbl.append(hd);
+  rows.forEach(r => {
+    const tr = el("tr");
+    tr.append(el("td", null, r.group), el("td", null, fmt(r.n)), el("td", null, pctStr(r.share)));
+    tbl.append(tr);
+  });
+  const note = el("tr");
+  note.append(el("td", null, "Pooled fully observed year-10 cohort"), el("td", null, fmt(windowed)), el("td", null, "shares include the unclassified remainder"));
+  tbl.append(note);
+  box.append(tbl);
 }
-new MutationObserver(drawFan).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+function renderCorpusBand() {
+  const band = $("#corpus-band");
+  band.textContent = "";
+  const b1 = PORTAL.boundaries && PORTAL.boundaries.l1, b2 = PORTAL.boundaries && PORTAL.boundaries.l2;
+  const pooled = pooledFan();
+  const tiles = [
+    ["2.0M", "career profiles parsed"],
+    ["10.8M", "individual career steps"],
+    [b1 ? fmt(b1.records) : "—", "humanities degree records" + (b2 ? " (" + fmt(b2.records) + " incl. humanistic social sciences)" : "")],
+    [fmt(pooled.windowed), "graduates in the five majors' fully observed year-10 cohorts"],
+  ];
+  tiles.forEach(([v, k]) => {
+    const s = el("div", "stat");
+    s.append(el("div", "v", v), el("div", "k", k), badge(true));
+    band.append(s);
+  });
+  const b1r = b1 ? fmt(b1.records) : "—";
+  $("#hero-records").textContent = b1r;
+}
 
 /* ================= h-bar chart ================= */
 
 function renderHBar(container, rows, opts) {
   // rows: [{label, value(%), rr|null, n|null, muted?}]
+  opts = opts || {};
   container.textContent = "";
+  if (!rows.length) { container.append(emptyBox("Nothing clears the n ≥ " + BAR + " bar here.")); return; }
   const max = Math.max(...rows.map(r => r.value));
-  const showRR = opts && opts.showRR;
+  const showRR = opts.showRR;
+  const popLabel = opts.popLabel || "of the year-10 cohort";
   rows.forEach(({ label, value, rr, n, muted }) => {
     const hit = el("div", "row-hit");
-    const lab = el("div", "lab", label);
+    const lab = el("div", "lab", shortLabel(label));
     const trk = el("div", "trk");
     const fill = el("div", "fill");
     fill.style.width = (value / max * 72) + "%";
@@ -1009,18 +1399,17 @@ function renderHBar(container, rows, opts) {
     const val = el("span", "val", value.toFixed(1) + "%");
     trk.append(fill, val);
     if (showRR && rr != null && rr >= 1.5) {
-      trk.append(el("span", "rr", "×" + rr.toFixed(1) + " vs chance"));
+      trk.append(el("span", "rr", "×" + rr.toFixed(1) + " vs all graduates"));
     }
     hit.append(lab, trk);
     const enter = ev => showTT(ev.clientX, ev.clientY, t => {
       t.append(el("div", "t-title", label));
       const r1 = el("div", "t-row");
-      r1.append(el("span", "t-val", value.toFixed(1) + "%"),
-                el("span", "t-sub", "of the year-10 cohort"));
+      r1.append(el("span", "t-val", value.toFixed(1) + "%"), el("span", "t-sub", popLabel));
       t.append(r1);
       if (n != null) t.append(el("div", "t-sub", fmt(n) + " people"));
-      if (rr != null) {
-        t.append(el("div", "t-sub", rr >= 1 ? "×" + rr.toFixed(1) + " more common than chance" : "×" + rr.toFixed(1) + " vs chance (under-represented)"));
+      if (showRR && rr != null) {
+        t.append(el("div", "t-sub", rr >= 1 ? "×" + rr.toFixed(1) + " more common than among all graduates" : "×" + rr.toFixed(1) + " vs all graduates (under-represented)"));
       }
     });
     [lab, trk].forEach(nd => {
@@ -1031,11 +1420,34 @@ function renderHBar(container, rows, opts) {
   });
 }
 
+/* generic share-table twin for any fan-shaped block */
+function shareTable(box, fanRows, opts) {
+  opts = opts || {};
+  box.textContent = "";
+  const tbl = el("table");
+  const hd = el("tr");
+  const cols = [opts.labelHead || "Occupation group", opts.shareHead || "Share", "vs all graduates", "People"];
+  cols.forEach(h2 => hd.append(el("th", null, h2)));
+  tbl.append(hd);
+  fanRows.forEach(f => {
+    const tr = el("tr");
+    tr.append(el("td", null, f.group || f.sector || f.label),
+              el("td", null, pctStr(f.share)),
+              el("td", null, f.rr == null ? "—" : "×" + f.rr.toFixed(1)),
+              el("td", null, f.n == null ? "—" : fmt(f.n)));
+    tbl.append(tr);
+  });
+  if (opts.unclassified != null) {
+    const tr = el("tr");
+    tr.append(el("td", null, "No codable occupation at this horizon"),
+              el("td", null, pctStr(opts.unclassified)), el("td", null, "—"), el("td", null, "—"));
+    tbl.append(tr);
+  }
+  box.append(tbl);
+}
+
 /* ============ destination fan (ordered + drill-down) ============ */
 
-// Build one drill-down panel for a fan cell: the specific 6-digit roles behind
-// a big SOC major group, with an honest coverage footnote. Returns null when
-// there is nothing truthful to expand into.
 function buildDrill(cell, groupLabel, majorName) {
   const d = cell.detail;
   if (!d || !d.group_total) return null;
@@ -1044,12 +1456,13 @@ function buildDrill(cell, groupLabel, majorName) {
   const box = el("div", "drill");
   box.append(el("div", "dh", "Inside " + groupLabel + ": what " + majorName + " graduates actually do"));
   box.append(el("div", "dwarn",
-    "Composition of the role-coded subset — a descriptive breakdown below the site's 40-person reporting bar."));
+    "Composition of the role-coded subset — a descriptive breakdown below the site's " + BAR + "-person reporting bar."));
+  const detailBar = 10;
   if (roles.length) {
     box.append(el("div", "dsub",
       "The specific roles behind this group, among the " + fmt(d.detail_coded) +
       " people we could code to one. Shares are of all " + fmt(d.group_total) +
-      " in the group; each role shown is held by at least 10."));
+      " in the group; each role shown is held by at least " + detailBar + "."));
     const grid = el("div", "drow");
     const maxShare = Math.max(...roles.map(r => r.share_of_group));
     roles.forEach(r => {
@@ -1064,13 +1477,12 @@ function buildDrill(cell, groupLabel, majorName) {
     box.append(grid);
   } else {
     box.append(el("div", "dsub",
-      "No single role clears even the 10-person mark here — within the coded slice, this group is "
+      "No single role clears even the " + detailBar + "-person mark here — within the coded slice, this group is "
       + "itself a scatter of many smaller occupations, which is its own finding."));
   }
-  // honest coverage footnote
   const parts = [];
   if (d.other_coded_n > 0)
-    parts.push(fmt(d.other_coded_n) + " more hold a specific role below the 10-person mark");
+    parts.push(fmt(d.other_coded_n) + " more hold a specific role below the " + detailBar + "-person mark");
   if (d.no_detail_n > 0)
     parts.push(fmt(d.no_detail_n) + " were classified to the group but not to a specific role (calibrated LLM-jury, which resolves the sector only)");
   if (parts.length)
@@ -1079,23 +1491,27 @@ function buildDrill(cell, groupLabel, majorName) {
   return box;
 }
 
-function renderFan(container, m, order, compare) {
+/* fan: rows [{group, n, share, rr, detail?}]; order 'share'|'rr'; context gates RR */
+function renderFan(container, fan, name, order, context, popLabel) {
   container.textContent = "";
   container.classList.add("fan");
-  // rows carry share, rr, n, and the drill-down detail
-  let rows = m.fan.map(f => ({
+  if (!fan || !fan.length) {
+    container.append(emptyBox("No destination group clears the n ≥ " + BAR + " bar in this cohort."));
+    return;
+  }
+  popLabel = popLabel || "of the year-10 cohort";
+  let rows = fan.map(f => ({
     label: f.group, share: f.share * 100, rr: f.rr, n: f.n, detail: f.detail,
   }));
   const byRR = order === "rr";
   if (byRR) rows = rows.slice().sort((a, b) => (b.rr == null ? -1 : b.rr) - (a.rr == null ? -1 : a.rr));
-  // bar magnitude: share% in common mode, RR (capped) in distinctive mode
   const RR_CAP = 8;
   const mag = r => byRR ? (r.rr == null ? 0 : Math.min(r.rr, RR_CAP)) : r.share;
   const max = Math.max(...rows.map(mag), byRR ? 1 : 0.001);
 
   rows.forEach(r => {
     const hit = el("div", "row-hit");
-    const lab = el("div", "lab", r.label);
+    const lab = el("div", "lab", shortLabel(r.label));
     const trk = el("div", "trk");
     const fill = el("div", "fill");
     fill.style.width = (mag(r) / max * 72) + "%";
@@ -1105,16 +1521,14 @@ function renderFan(container, m, order, compare) {
       ? (r.rr == null ? "—" : "×" + r.rr.toFixed(1))
       : r.share.toFixed(1) + "%");
     trk.append(fill, val);
-    // secondary chip: in common mode, flag distinctive; in RR mode, show share
     if (byRR) {
       trk.append(el("span", "rr" + (under ? " under" : ""), r.share.toFixed(1) + "% of cohort"));
-    } else if (compare && r.rr != null && r.rr >= 1.5) {
-      trk.append(el("span", "rr", "×" + r.rr.toFixed(1) + " vs chance"));
+    } else if (context && r.rr != null && r.rr >= 1.5) {
+      trk.append(el("span", "rr", "×" + r.rr.toFixed(1) + " vs all graduates"));
     }
     hit.append(lab, trk);
 
-    // drill-down: expandable when the group has role detail to show
-    const drill = buildDrill(r, r.label, m.name);
+    const drill = buildDrill(r, r.label, name);
     if (drill) {
       hit.classList.add("expandable");
       drill.style.display = "none";
@@ -1128,6 +1542,7 @@ function renderFan(container, m, order, compare) {
       lab.setAttribute("aria-expanded", "false");
       lab.addEventListener("click", () => {
         toggle();
+        hideTT();
         lab.setAttribute("aria-expanded", String(hit.classList.contains("open")));
       });
       lab.addEventListener("keydown", ev => {
@@ -1138,14 +1553,16 @@ function renderFan(container, m, order, compare) {
     const enter = ev => showTT(ev.clientX, ev.clientY, t => {
       t.append(el("div", "t-title", r.label));
       const r1 = el("div", "t-row");
-      r1.append(el("span", "t-val", r.share.toFixed(1) + "%"), el("span", "t-sub", "of the year-10 cohort"));
+      r1.append(el("span", "t-val", r.share.toFixed(1) + "%"), el("span", "t-sub", popLabel));
       t.append(r1, el("div", "t-sub", fmt(r.n) + " people"));
-      if (r.rr != null)
+      if ((context || byRR) && r.rr != null)
         t.append(el("div", "t-sub", r.rr >= 1
-          ? "×" + r.rr.toFixed(1) + " more common than chance"
-          : "×" + r.rr.toFixed(1) + " vs chance (under-represented)"));
+          ? "×" + r.rr.toFixed(1) + " more common than among all graduates"
+          : "×" + r.rr.toFixed(1) + " vs all graduates (under-represented)"));
       if (r.detail && (r.detail.roles || []).length)
-        t.append(el("div", "t-sub", "Select to see the roles inside this group."));
+        t.append(el("div", "t-sub", hit.classList.contains("open")
+          ? "Select to close."
+          : "Select to see the roles inside this group."));
     });
     [lab, trk].forEach(nd => {
       nd.addEventListener("pointermove", enter);
@@ -1155,6 +1572,34 @@ function renderFan(container, m, order, compare) {
     container.append(hit);
     if (drill) container.append(drill);
   });
+}
+
+function renderFanTable(box, major) {
+  box.textContent = "";
+  const tbl = el("table");
+  const hd = el("tr");
+  ["Occupation group", "Share at year 10", "vs all graduates", "People", "Roles inside (coded subset)"]
+    .forEach(h2 => hd.append(el("th", null, h2)));
+  tbl.append(hd);
+  major.fan.forEach(f => {
+    const roles = (f.detail && f.detail.roles) || [];
+    const rolesTxt = roles.length
+      ? roles.map(r => r.role + " (" + fmt(r.n) + ")").join("; ")
+      : "—";
+    const tr = el("tr");
+    tr.append(el("td", null, f.group),
+              el("td", null, pctStr(f.share)),
+              el("td", null, f.rr == null ? "—" : "×" + f.rr.toFixed(1)),
+              el("td", null, fmt(f.n)),
+              el("td", null, rolesTxt));
+    tbl.append(tr);
+  });
+  const tr = el("tr");
+  tr.append(el("td", null, "No codable occupation at this horizon"),
+            el("td", null, pctStr(major.unclassified_share)),
+            el("td", null, "—"), el("td", null, "—"), el("td", null, "—"));
+  tbl.append(tr);
+  box.append(tbl);
 }
 
 /* ================= line chart (long view) ================= */
@@ -1179,16 +1624,13 @@ function renderCurve(container, legendBox, major, compare) {
     return n;
   };
 
-  // gridlines + y labels
   [0.2, 0.4, 0.6, 0.8].forEach(v => {
     svg.append(mk("line", { x1: padL, x2: W - padR, y1: Y(v), y2: Y(v), stroke: "var(--grid)", "stroke-width": 1 }));
     const t = mk("text", { x: padL - 8, y: Y(v) + 4, "text-anchor": "end", "font-size": 11, fill: "var(--muted)" });
     t.textContent = v.toFixed(1);
     svg.append(t);
   });
-  // baseline axis
   svg.append(mk("line", { x1: padL, x2: W - padR, y1: Y(0), y2: Y(0), stroke: "var(--line)", "stroke-width": 1 }));
-  // x labels
   [0, 5, 10, 15, 20].forEach(yr => {
     const x = padL + (yr / 20) * (W - padL - padR);
     const t = mk("text", { x, y: H - 12, "text-anchor": "middle", "font-size": 11, fill: "var(--muted)" });
@@ -1196,7 +1638,7 @@ function renderCurve(container, legendBox, major, compare) {
     svg.append(t);
   });
 
-  // null-tolerant: suppressed points (n < 40) break the line
+  // null-tolerant: suppressed points (n < BAR) break the line
   const pathFor = data => {
     let d = "", pen = false;
     data.forEach((v, i) => {
@@ -1220,7 +1662,6 @@ function renderCurve(container, legendBox, major, compare) {
     }
   });
 
-  // crosshair + hover
   const cross = mk("line", { y1: padT, y2: H - padB, stroke: "var(--line)", "stroke-width": 1, visibility: "hidden" });
   svg.append(cross);
   svg.style.touchAction = "pan-y";
@@ -1239,7 +1680,7 @@ function renderCurve(container, legendBox, major, compare) {
       series.slice().reverse().forEach(s => {
         const row = el("div", "t-row");
         row.append(el("span", "t-key" + (s.gray ? " gray" : "")),
-                   el("span", "t-val", s.data[best] == null ? "suppressed (n < 40)" : s.data[best].toFixed(2)),
+                   el("span", "t-val", s.data[best] == null ? "suppressed (n < " + BAR + ")" : s.data[best].toFixed(2)),
                    el("span", "t-sub", s.name));
         t.append(row);
       });
@@ -1259,43 +1700,13 @@ function renderCurve(container, legendBox, major, compare) {
   legendBox.append(cav);
 }
 
-/* ================= tables (a11y twins) ================= */
-
-function renderFanTable(box, major) {
-  box.textContent = "";
-  const tbl = el("table");
-  const hd = el("tr");
-  ["Occupation group", "Share at year 10", "vs chance", "People", "Roles inside (coded subset, ≥ 10)"]
-    .forEach(h => hd.append(el("th", null, h)));
-  tbl.append(hd);
-  major.fan.forEach(f => {
-    const roles = (f.detail && f.detail.roles) || [];
-    const rolesTxt = roles.length
-      ? roles.map(r => r.role + " (" + fmt(r.n) + ")").join("; ")
-      : "—";
-    const tr = el("tr");
-    tr.append(el("td", null, f.group),
-              el("td", null, pctStr(f.share)),
-              el("td", null, f.rr == null ? "—" : "×" + f.rr.toFixed(1)),
-              el("td", null, fmt(f.n)),
-              el("td", null, rolesTxt));
-    tbl.append(tr);
-  });
-  const tr = el("tr");
-  tr.append(el("td", null, "No codable occupation at this horizon"),
-            el("td", null, pctStr(major.unclassified_share)),
-            el("td", null, "—"), el("td", null, "—"), el("td", null, "—"));
-  tbl.append(tr);
-  box.append(tbl);
-}
-
 function renderCurveTable(box, major, compare) {
   box.textContent = "";
   const tbl = el("table");
   const hd = el("tr");
   const cols = ["Years since graduation", major.name, "n"];
   if (compare) cols.push("All graduates");
-  cols.forEach(h => hd.append(el("th", null, h)));
+  cols.forEach(h2 => hd.append(el("th", null, h2)));
   tbl.append(hd);
   const med = major.curve.median_seniority, ns = major.curve.n;
   YEARS.forEach((yr, i) => {
@@ -1309,19 +1720,41 @@ function renderCurveTable(box, major, compare) {
   box.append(tbl);
 }
 
-/* ================= explore ================= */
+/* ================= shared controls ================= */
 
-const exploreState = { major: "english", boundary: "l1", compare: true, fanOrder: "share" };
-
-function badge(real) {
-  const b = el("span", "badge " + (real ? "real" : "illus"), real ? "pipeline data" : "editorial");
-  return b;
+function populateMajorSelect(selectEl) {
+  MAJOR_ORDER.forEach(k => {
+    const o = el("option", null, M(k).name);
+    o.value = k;
+    selectEl.append(o);
+  });
+  selectEl.addEventListener("change", () => {
+    state.major = selectEl.value;
+    syncControls();
+    reflectHash();
+    renderView(state.view);
+  });
 }
 
-function renderExplore() {
-  const m = M(exploreState.major);
-  const b = BOUNDARY_DEFS[exploreState.boundary];
-  const bc = PORTAL.boundaries[exploreState.boundary];
+function syncControls() {
+  const sel = $("#major-select");
+  if (sel && sel.value !== state.major) sel.value = state.major;
+  const ct = $("#ctx-toggle");
+  if (ct) ct.checked = state.context;
+  const st = $("#story-ctx-toggle");
+  if (st) st.checked = state.context;
+  $$("#boundary-seg button").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.b === state.boundary)));
+  $$("#fan-order-seg button").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.o === state.fanOrder)));
+  $$("#portal-subnav button").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.s === state.section)));
+}
+
+/* ================= the possibility space ================= */
+
+function renderSpace() {
+  const m = M(state.major);
+  const b = BOUNDARY_DEFS[state.boundary];
+  const bc = PORTAL.boundaries[state.boundary];
+  const ctx = state.context;
 
   // population line: boundary + the honest cohort funnel
   const pop = $("#popline");
@@ -1336,33 +1769,63 @@ function renderExplore() {
     (m.nha_tier === "L2" ? " This major sits in the wider L2 boundary (humanistic social sciences)." : ""));
   pop.append(funnel, badge(true));
 
-  // KPIs
-  const kp = $("#kpis");
-  kp.textContent = "";
-  const tiles = [
-    [fmt(m.persons_windowed_y10), "people in the fully observed year-10 cohort", true],
-    [m.kpi.breadth + " of 824", "occupations reached in the first decade (breadth)", true],
-    [String(m.kpi.distinctive), "distinctive year-10 destinations (≥1.5× vs chance, n ≥ 40)", true],
-    [Math.round(m.kpi.up_share * 100) + "%", "of moves are upward (all graduates: " +
-      Math.round(PORTAL.baseline.up_share * 100) + "%)", true],
-  ];
-  tiles.forEach(([v, k, real]) => {
+  // diversity stat band: how wide is this field
+  const band = $("#div-band");
+  band.textContent = "";
+  const div = m.diversity;
+  const ef = m.employer_field;
+  const tile = (v, k, opts) => {
     const s = el("div", "stat");
-    s.append(el("div", "v", v), el("div", "k", k), badge(real));
-    kp.append(s);
-  });
+    s.append(el("div", "v", v), el("div", "k", k));
+    if (opts && opts.pending) s.append(el("span", "pending", "not yet computed"));
+    else s.append(badge(true));
+    band.append(s);
+  };
+  if (div && div.effective_destinations != null) {
+    tile(String(div.effective_destinations), "effective destinations — the year-10 fan behaves like this many equally common landing places (how this is computed: Data & methods)");
+  } else {
+    tile("—", "effective destinations — the pipeline hasn't shipped this diversity statistic yet; nothing is estimated in its place", { pending: true });
+  }
+  if (div && div.groups_reached != null) {
+    tile(String(div.groups_reached) + " of " + (div.groups_of || 23), "occupation groups reached above the n ≥ " + BAR + " bar");
+  } else {
+    tile(String(m.fan.length) + " of 23", "occupation groups clearing the n ≥ " + BAR + " bar in the year-10 fan");
+  }
+  tile(m.kpi.breadth + " of " + (m.kpi.breadth_of || 824), "specific occupations reached in the first decade");
+  const topShare = (div && div.top_bucket_share != null) ? div.top_bucket_share : (m.fan.length ? m.fan[0].share : null);
+  if (topShare != null) tile(pctStr(1 - topShare, 0), "of the cohort is outside its single biggest destination at year 10");
+  if (ef) {
+    tile(pctStr(ef.singleton_employer_share, 0), "of this cohort's employers hired exactly one graduate");
+    tile(pctStr(ef.top10_share_of_cohort, 1), "share of the cohort held by the ten largest employers combined");
+  }
 
   // fan
   $("#fan-title").textContent = "Where " + m.name + " leads";
-  $("#fan-unclass").textContent = pctStr(m.unclassified_share) +
-    " of the cohort has no codable occupation at this horizon and is counted as its own bucket, never redistributed." +
-    (m.soc_source_mix && m.soc_source_mix.jury
-      ? " Of the classified, " + pctStr(m.soc_source_mix.det, 0) + " carry a deterministic O*NET code and " +
-        pctStr(m.soc_source_mix.jury, 0) + " a calibrated LLM-jury major group (two-model unanimity, 88.7% gold agreement)."
-      : "");
-  // Lead: the single largest destination is still a minority -- the plurality
-  // is not the norm. Computed from the real fan; no editorial number.
-  const top = m.fan.length ? m.fan.reduce((a, b) => (b.share > a.share ? b : a)) : null;
+  const fd = $("#fan-desc");
+  fd.textContent = "";
+  fd.append(document.createTextNode(
+    "Primary occupation group ten years after graduation, as a share of the full year-10 cohort; " +
+    "cells below the n = " + BAR + " support bar are suppressed. " +
+    pctStr(m.unclassified_share) + " of the cohort has no codable occupation at this horizon and is " +
+    "counted as its own bucket, never redistributed."));
+  if (m.soc_source_mix && m.soc_source_mix.jury) {
+    fd.append(document.createTextNode(
+      " Of the classified, " + pctStr(m.soc_source_mix.det, 0) + " were matched directly from a " +
+      "recognized job title and " + pctStr(m.soc_source_mix.jury, 0) + " by a calibrated, audited " +
+      "review step — "));
+    const a = el("a", null, "Data & methods");
+    a.href = "#methods";
+    fd.append(a, document.createTextNode(" explains both."));
+  }
+  if (ctx) {
+    const s = el("span");
+    s.append(document.createTextNode(" Chips mark "), el("strong", null, "distinctive destinations"),
+             document.createTextNode(" — reached more often than by all graduates."));
+    fd.append(s);
+  }
+
+  // computed lead: the plurality is a minority
+  const top = m.fan.length ? m.fan.reduce((a, b2) => (b2.share > a.share ? b2 : a)) : null;
   const lead = $("#fan-lead");
   lead.textContent = "";
   if (top) {
@@ -1372,81 +1835,29 @@ function renderExplore() {
       el("strong", null, pctStr(top.share, 0)),
       document.createTextNode(" of the cohort — so ten years out, "),
       el("strong", null, elsewhere + "%"),
-      document.createTextNode(" of " + m.name + " graduates are working somewhere else. There is no default job."));
+      document.createTextNode(" are somewhere other than the single most common destination. There is no default job."));
   }
-  $("#fan-order-hint").textContent = exploreState.fanOrder === "rr"
+  $("#fan-order-hint").textContent = state.fanOrder === "rr"
     ? "Ranked by how much more likely this cohort is to land there than graduates at large."
-    : "Ranked by share of the cohort. The biggest groups are common across all majors — switch to distinctiveness to see what sets this one apart.";
-  renderFan($("#fan-chart"), m, exploreState.fanOrder, exploreState.compare);
+    : "Ranked by share of the cohort — the descriptive view. “Most distinctive” re-ranks by what sets this major apart.";
+  renderFan($("#fan-chart"), m.fan, m.name, state.fanOrder, ctx);
+  $("#fan-drill-hint").textContent =
+    "Select any destination to open the specific roles behind it — a composition of the role-coded subset, shown below the " + BAR + "-person bar.";
+  const fg = $("#fan-gloss");
+  fg.textContent = "";
+  const fanGloss = glossFor(state.major, "fan");
+  if (fanGloss) fg.append(glossBox(fanGloss));
   renderFanTable($("#fan-table"), m);
-  $("#fan-cmp-note").style.display = exploreState.compare ? "" : "none";
-
-  // pathways — reported honestly: nothing clears the n >= 40 bar today
-  const pl = $("#path-list");
-  pl.textContent = "";
-  if (!m.paths.length) {
-    const p1 = el("p", null,
-      "No occupation-group route clears the 40-person bar in this cohort — it is one of the " +
-      "smaller cohorts on the site, and routes must be walked by 40 distinct people in fully " +
-      "classified consecutive years before they are shown.");
-    p1.style.cssText = "font-size:13.5px;color:var(--ink-2);margin:6px 0 10px;";
-    const p2 = el("p", null,
-      "Rather than lower the bar or fill the panel in, we report that plainly. The Stories layer " +
-      "walks recognizable routes as editorial illustrations, badged amber.");
-    p2.style.cssText = "font-size:13.5px;color:var(--muted);margin:0;";
-    pl.append(p1, p2);
-    $("#path-suppressed").textContent = m.paths_suppressed_count > 0
-      ? m.paths_suppressed_count + " route" + (m.paths_suppressed_count === 1 ? "" : "s") +
-        " observed with 2–39 people — suppressed below the display threshold."
-      : "No route reaches even the 2-person reporting floor in this cohort.";
-  } else {
-    const maxN = Math.max(...m.paths.map(p => p.n_persons));
-    m.paths.forEach(p => {
-      const stageNames = p.stages.map(s => s.group || s.role);
-      const row = el("div", "pathrow");
-      const left = el("div");
-      const pn = el("div", "pn", (p.name || stageNames.join(" → ")) + " ");
-      if (p.unexpected) pn.append(el("span", "pill-unex", "unexpected"));
-      left.append(pn, el("div", "stops",
-        stageNames.length + "-stage occupation-group route · fully classified consecutive years"));
-      const n = el("div", "n", fmt(p.n_persons) + " people");
-      const st = el("div", "strength");
-      const i = el("i");
-      i.style.width = Math.round(p.n_persons / maxN * 100) + "%";
-      st.append(i);
-      row.append(left, n, st);
-      pl.append(row);
-    });
-    $("#path-suppressed").textContent = m.paths_suppressed_count +
-      " more routes observed — suppressed below the n = 40 display threshold.";
-  }
-
-  // curve
-  renderCurve($("#curve-chart"), $("#curve-legend"), m, exploreState.compare);
-  renderCurveTable($("#curve-table"), m, exploreState.compare);
 
   // sectors
   $("#sector-unres").textContent = pctStr(m.industry_unresolved_share) +
-    " of this cohort has no resolved employer sector at year 10 and is excluded from the bars.";
-  renderHBar($("#sector-chart"), sectorRows(m), {});
+    " of this cohort has no resolved employer sector at year 10 and is shown as no bar, not redistributed.";
+  renderHBar($("#sector-chart"),
+    m.sectors.map(s => ({ label: s.sector, value: s.share * 100, rr: null, n: s.n, muted: s.sector === "Other" })),
+    { popLabel: "of the year-10 cohort" });
+  shareTable($("#sector-table"), m.sectors, { labelHead: "Sector", shareHead: "Share at year 10" });
 
-  // pillars
-  const pm = $("#pillar-meters");
-  pm.textContent = "";
-  PILLAR_DEFS.forEach(([key, name, note]) => {
-    const v = m.pillars[key];
-    const w = el("div", "meter");
-    const top = el("div", "top");
-    top.append(el("span", "nm", name), el("span", "vv", v == null ? "—" : String(v)));
-    const trk = el("div", "trk");
-    const fl = el("div", "fl");
-    fl.style.width = (v == null ? 0 : v) + "%";
-    trk.append(fl);
-    w.append(top, trk, el("div", "note", note));
-    pm.append(w);
-  });
-
-  // The employer field (dispersion; drawn from aggregate size buckets only)
+  // employer field
   renderEmployerField(m);
 }
 
@@ -1457,7 +1868,7 @@ function renderEmployerField(m) {
   panel.style.display = "";
   $("#emp-field-title").textContent = "The employer field — where " + m.name + " graduates actually worked";
   $("#emp-field-desc").textContent =
-    "There is no single employer of " + m.name.toLowerCase() + " graduates. In their first five years, this cohort held " +
+    "There is no single employer of " + m.name + " graduates. In their first five years, this cohort held " +
     fmt(ef.employer_relationships) + " employer relationships across " + fmt(ef.n_employers) +
     " different employers — a field, not a funnel.";
 
@@ -1473,18 +1884,20 @@ function renderEmployerField(m) {
     });
 
   const labeled = ef.labeled || [];
+  const shown = labeled.slice(0, 8);
+  const selfLeads = labeled.length && /free|self/i.test(labeled[0].name);
   $("#emp-field-labeled").textContent = labeled.length
-    ? "Large enough to name (≥ 40 graduates): " +
-      labeled.map(c => c.name + " (" + fmt(c.n) + ")").join(" · ") +
-      " — self-employment and freelancing lead, which is its own finding."
-    : "No employer clears the 40-graduate naming bar in this cohort.";
+    ? "Large enough to name (≥ " + BAR + " graduates): " +
+      shown.map(c => c.name + " (" + fmt(c.n) + ")").join(" · ") +
+      (labeled.length > shown.length ? " · and " + fmt(labeled.length - shown.length) + " more" : "") +
+      (selfLeads ? " — self-employment and freelancing lead, which is its own finding." : ".")
+    : "No employer clears the " + BAR + "-graduate naming bar in this cohort.";
+  $("#emp-field-note").textContent =
+    "One dot per employer, area scaled to how many of this cohort it hired in their first five years. " +
+    "Names appear only where at least " + BAR + " distinct graduates are behind them — the suppression rule " +
+    "that governs every number on this site. Employer identities below that bar never leave the pipeline, " +
+    "even anonymously: the dots are drawn from aggregate size counts.";
 
-  // The field: one dot per employer, drawn from aggregate bucket counts
-  // (deterministic layout). 96%+ of employers hired exactly one graduate, so
-  // the picture should read as an even, centre-less scatter -- that dispersion
-  // IS the finding. Employers below the 40-graduate naming bar are the "mist";
-  // the rare named employers are drawn last as labelled anchors so the lone
-  // bright dot is never a mystery.
   const cv = $("#emp-field-canvas");
   if (!cv.offsetParent) return;
   const dpr = window.devicePixelRatio || 1;
@@ -1493,20 +1906,19 @@ function renderEmployerField(m) {
   const ctx = cv.getContext("2d");
   ctx.scale(dpr, dpr);
   ctx.clearRect(0, 0, w, h);
-  const cssv = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-  const accent = cssv("--accent"), ink = cssv("--ink"), surface = cssv("--surface");
+  const accent = cssVar("--accent"), ink = cssVar("--ink"), surface = cssVar("--surface");
   const fr = v => v - Math.floor(v);
   let i = 0;
   const CAP = 16000;
   const total = ef.size_buckets.reduce((a, b) => a + b.employers, 0);
   const scale = total > CAP ? CAP / total : 1;
 
-  // 1) the mist -- every employer below the naming bar, as a legible stipple
+  // 1) the mist — every employer below the naming bar, as a legible stipple
   ctx.fillStyle = accent;
   ef.size_buckets.forEach(b => {
-    if (b.size_min >= 40) return;                    // named markers drawn below
+    if (b.size_min >= BAR) return;                   // named markers drawn below
     const size = b.size_max == null ? b.size_min : (b.size_min + b.size_max) / 2;
-    const r = 1.5 + Math.sqrt(Math.max(size - 1, 0)) * 0.7;  // singleton -> 1.5px
+    const r = 1.5 + Math.sqrt(Math.max(size - 1, 0)) * 0.7;
     const count = Math.round(b.employers * scale);
     ctx.globalAlpha = size <= 1 ? 0.5 : 0.7;
     for (let k = 0; k < count; k++) {
@@ -1520,21 +1932,21 @@ function renderEmployerField(m) {
     }
   });
 
-  // 2) named employers (>= 40 graduates) -- labelled anchor dots on a band
+  // 2) named employers (≥ BAR graduates) — labelled anchor dots on a band
   const named = ef.labeled || [];
   ctx.textAlign = "center";
-  ctx.font = "600 12px " + cssv("--sans");
-  named.forEach((c, idx) => {
-    const x = w * (idx + 1) / (named.length + 1);
+  ctx.font = "600 12px " + cssVar("--sans");
+  named.slice(0, 6).forEach((c, idx, arr) => {
+    const x = w * (idx + 1) / (arr.length + 1);
     const y = h * 0.46;
-    const r = Math.min(7 + Math.sqrt(Math.max(c.n - 40, 1)) * 0.9, 18);
+    const r = Math.min(7 + Math.sqrt(Math.max(c.n - BAR, 1)) * 0.9, 18);
     ctx.globalAlpha = 1; ctx.fillStyle = accent;
     ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
     ctx.globalAlpha = 0.55; ctx.lineWidth = 1.5; ctx.strokeStyle = accent;
     ctx.beginPath(); ctx.arc(x, y, r + 5, 0, Math.PI * 2); ctx.stroke();
-    // label chip for legibility over the mist
     const txt = c.name + " · " + fmt(c.n);
-    const tw = ctx.measureText(txt).width, ly = y + r + 9;
+    // stagger label rows so long neighboring names don't collide
+    const tw = ctx.measureText(txt).width, ly = y + r + 9 + (idx % 2) * 22;
     ctx.globalAlpha = 0.85; ctx.fillStyle = surface;
     ctx.beginPath();
     if (ctx.roundRect) ctx.roundRect(x - tw / 2 - 6, ly - 2, tw + 12, 18, 5);
@@ -1546,216 +1958,104 @@ function renderEmployerField(m) {
   ctx.globalAlpha = 1;
 }
 
-// controls
-const sel = $("#major-select");
-MAJOR_ORDER.forEach(k => {
-  const o = el("option", null, PORTAL.majors[k].name);
-  o.value = k;
-  sel.append(o);
-});
-sel.addEventListener("change", () => { exploreState.major = sel.value; renderExplore(); });
-$$("#boundary-seg button").forEach(btn => btn.addEventListener("click", () => {
-  exploreState.boundary = btn.dataset.b;
-  $$("#boundary-seg button").forEach(x => x.setAttribute("aria-pressed", String(x === btn)));
-  renderExplore();
-}));
-$("#cmp-toggle").addEventListener("change", ev => { exploreState.compare = ev.target.checked; renderExplore(); });
-$$("#fan-order-seg button").forEach(btn => btn.addEventListener("click", () => {
-  exploreState.fanOrder = btn.dataset.o;
-  $$("#fan-order-seg button").forEach(x => x.setAttribute("aria-pressed", String(x === btn)));
-  renderExplore();
-}));
+/* ================= the first decade ================= */
 
-/* ================= stories ================= */
+const SNAPSHOTS = [
+  { key: "y1", label: "Year 1", n: 1 },
+  { key: "y3", label: "Year 3", n: 3 },
+  { key: "y5", label: "Year 5", n: 5 },
+  { key: "y10", label: "Year 10", n: 10 },
+];
 
-const story = { major: null, step: 0, path: null };
+function snapshotBlock(m, key) {
+  const lb = m.launchboard || {};
+  if (key === "y1" && lb.first_destinations) {
+    return { fan: lb.first_destinations.fan, cohort: lb.first_destinations.cohort,
+             unclassified: lb.first_destinations.unclassified_share,
+             note: "First classified destination within the first year after graduation. Early titles are the hardest to code, so the unclassified share is highest here." };
+  }
+  if ((key === "y3" || key === "y5") && lb.outlook && lb.outlook[key]) {
+    const o = lb.outlook[key];
+    return { fan: o.fan, cohort: o.cohort, unclassified: o.unclassified_share,
+             note: "Primary occupation group " + (key === "y3" ? "three" : "five") + " years out, under the same cohort discipline." };
+  }
+  if (key === "y10") {
+    return { fan: m.fan, cohort: m.persons_windowed_y10, unclassified: m.unclassified_share,
+             note: "Primary occupation group ten years out — the site's headline fan." };
+  }
+  return null;
+}
 
-function crumb() {
-  const box = $("#story-crumbs");
-  box.textContent = "";
-  const items = [["Choose a major", 0]];
-  if (story.major) items.push([PORTAL.majors[story.major].name, 1]);
-  if (story.step === 5) items.push(["The career launchboard", 5]);
-  if (story.path != null) items.push([EDITORIAL[story.major].routes[story.path].name, 2]);
-  if (story.step >= 3 && story.step !== 5) items.push(["The long view", 3]);
-  if (story.step >= 4 && story.step !== 5) items.push(["Where you stand", 4]);
-  items.forEach(([label, stepIdx], i) => {
-    if (i) box.append(el("span", "sep", "›"));
-    const c = el("span", "c" + (i === items.length - 1 ? " on" : ""), label);
-    box.append(c);
+function renderDecade() {
+  const m = M(state.major);
+  const ctx = state.context;
+  const lb = m.launchboard || {};
+  const blb = (PORTAL.baseline || {}).launchboard || {};
+
+  // --- timeline scrubber
+  $("#scrub-title").textContent = "Snapshots: where " + m.name + " graduates stood";
+  const seg = $("#scrub-seg");
+  seg.textContent = "";
+  SNAPSHOTS.forEach(s => {
+    const btn = el("button", null, s.label);
+    btn.setAttribute("aria-pressed", String(state.horizon === s.key));
+    btn.addEventListener("click", () => {
+      state.horizon = s.key;
+      renderDecade();
+    });
+    seg.append(btn);
   });
-}
-
-function glossBox(text) {
-  const g = el("div", "gloss");
-  const who = el("div", "who", "NHA");
-  const body = el("div");
-  body.append(el("p", null, text), el("div", "byline", "Gloss · NHA staff"));
-  g.append(who, body);
-  return g;
-}
-
-function renderStory() {
-  crumb();
-  const stage = $("#story-stage");
-  stage.textContent = "";
-
-  // Step 0 — choose a major
-  if (story.step === 0) {
-    const grid = el("div", "major-grid");
-    MAJOR_ORDER.forEach(k => {
-      const m = M(k);
-      const card = el("button", "major-card");
-      card.append(el("h4", null, m.name),
-                  el("div", "n", fmt(m.records) + " degree records · " + fmt(m.persons_windowed_y10) + " in the year-10 cohort"),
-                  el("div", "quote", m.quote));
-      card.addEventListener("click", () => { story.major = k; story.step = 1; story.path = null; renderStory(); });
-      grid.append(card);
-    });
-    stage.append(grid);
-    return;
+  const snap = snapshotBlock(m, state.horizon);
+  const meta = $("#scrub-meta");
+  meta.textContent = "";
+  if (snap && snap.fan) {
+    const hn = SNAPSHOTS.find(s => s.key === state.horizon);
+    meta.append(el("b", null, hn.label + ": "),
+      document.createTextNode(fmt(snap.cohort) + " graduates with their first " + hn.n +
+        (hn.n === 1 ? " year" : " years") + " fully observed. "),
+      document.createTextNode(pctStr(snap.unclassified) +
+        " hold no codable occupation at this horizon — counted as its own bucket, never redistributed."));
+    renderFan($("#scrub-chart"), snap.fan, m.name, "share", ctx,
+      "of the year-" + hn.n + " cohort");
+    $("#scrub-note").textContent = snap.note +
+      (snap.fan.some(f => f.detail) ? " Open any destination (›) to see the specific roles behind it at this horizon." : "") +
+      " A year-N snapshot includes only graduates whose " +
+      "anchor is at least N years before the data snapshot, so each horizon is a fully observed, equal window.";
+    shareTable($("#scrub-table"), snap.fan, { shareHead: "Share at " + hn.label.toLowerCase(), unclassified: snap.unclassified });
+  } else {
+    meta.append(document.createTextNode("This snapshot has not been computed by the pipeline yet."));
+    $("#scrub-chart").textContent = "";
+    $("#scrub-chart").append(emptyBox("Awaiting pipeline output for this horizon — nothing is estimated in its place."));
+    $("#scrub-note").textContent = "";
+    $("#scrub-table").textContent = "";
   }
 
-  const m = M(story.major);
-  const panel = el("div", "story-panel");
+  // --- long view
+  $("#curve-desc").textContent =
+    "Median seniority score by years since graduation (0 = intern, 1 = chief executive). Each horizon " +
+    "includes only people whose full window is observed; points with fewer than " + BAR + " people are " +
+    "suppressed. This dataset contains no salary information; the measure is trajectory, not pay." +
+    (ctx ? "" : " Turn on “Context vs all graduates” above to overlay the all-graduate baseline.");
+  renderCurve($("#curve-chart"), $("#curve-legend"), m, ctx);
+  renderCurveTable($("#curve-table"), m, ctx);
+  const cg = $("#curve-gloss");
+  cg.textContent = "";
+  const longGloss = glossFor(state.major, "long");
+  if (longGloss) cg.append(glossBox(longGloss));
 
-  // Step 1 — the fan
-  if (story.step === 1) {
-    panel.append(el("h3", null, "The fan: where " + m.name + " leads"));
-    panel.append(el("div", "sub", "Primary occupation group ten years after graduation · pipeline data · " +
-      pctStr(m.unclassified_share) + " of the cohort has no codable occupation at this horizon"));
-    const chart = el("div", "hbar");
-    panel.append(chart);
-    renderHBar(chart, fanRows(m), { showRR: true });
-    panel.append(glossBox(m.fanGloss));
-
-    const branchCard = (p, i) => {
-      const b = el("button", "branch" + (p.unexpected ? " unex" : ""));
-      const bn = el("div", "bn", p.name + " ");
-      if (p.unexpected) bn.append(el("span", "pill-unex", "unexpected"));
-      b.append(bn,
-               el("div", "bd", p.stages.join(" → ") + " · editorial route"));
-      b.addEventListener("click", () => { story.path = i; story.step = 2; renderStory(); });
-      return b;
-    };
-
-    const bh = el("div", "sub");
-    bh.style.margin = "26px 0 0";
-    bh.textContent = "Pick a route to walk (editorial illustrations — see Data & methods):";
-    panel.append(bh);
-    const br = el("div", "branches");
-    m.routes.forEach((p, i) => { if (!p.unexpected) br.append(branchCard(p, i)); });
-    panel.append(br);
-
-    const dv = el("div", "branch-divide");
-    dv.append(el("span", "t", "…or follow a less expected route:"));
-    panel.append(dv);
-    const br2 = el("div", "branches");
-    m.routes.forEach((p, i) => { if (p.unexpected) br2.append(branchCard(p, i)); });
-    panel.append(br2);
-
-    const acts = el("div", "story-actions");
-    const lbBtn = el("button", "btn", "Open the career launchboard →");
-    lbBtn.addEventListener("click", () => { story.step = 5; renderStory(); });
-    const back = el("button", "btn ghost", "← Choose a different major");
-    back.addEventListener("click", () => { story.step = 0; story.major = null; renderStory(); });
-    acts.append(lbBtn, back);
-    panel.append(acts);
-  }
-
-  // Step 5 — the career launchboard (pipeline data + one editorial gloss)
-  if (story.step === 5) {
-    const lb = m.launchboard;
-    const blb = PORTAL.baseline.launchboard;
-    panel.append(el("h3", null, "The career launchboard"));
-    panel.append(el("div", "sub",
-      "What " + m.name + " graduates were actually doing one, three, and five years out — " +
-      "and what the moves in between meant · pipeline data"));
-
-    const lbRows = blk => blk.fan.map(f => ({ label: f.group, value: f.share * 100, rr: f.rr, n: f.n }));
-    const mkHead = (txt) => { const h = el("div", "sub"); h.style.margin = "22px 0 6px";
-      h.style.fontWeight = "600"; h.style.color = "var(--ink)"; h.textContent = txt; return h; };
-
-    // A — at graduation
-    panel.append(mkHead("At graduation — first classified destination, one year out (" +
-      fmt(lb.first_destinations.cohort) + " graduates)"));
-    const chartA = el("div", "hbar");
-    panel.append(chartA);
-    renderHBar(chartA, lbRows(lb.first_destinations), { showRR: true });
-    panel.append(el("div", "sub", pctStr(lb.first_destinations.unclassified_share) +
-      " not yet classifiable at this horizon — early titles are the hardest to code."));
-
-    // B — outlook toggle
-    panel.append(mkHead("The outlook — same cohort discipline, three and five years out"));
-    const seg = el("div", "seg");
-    const chartB = el("div", "hbar");
-    let horizon = "y3";
-    const draw = () => renderHBar(chartB, lbRows(lb.outlook[horizon]), { showRR: true });
-    ["y3", "y5"].forEach(h => {
-      const b = el("button", null, h === "y3" ? "3 years" : "5 years");
-      b.setAttribute("aria-pressed", String(h === horizon));
-      b.addEventListener("click", () => {
-        horizon = h;
-        Array.from(seg.children).forEach(x => x.setAttribute("aria-pressed", String(x === b)));
-        draw();
-      });
-      seg.append(b);
-    });
-    panel.append(seg, chartB);
-    draw();
-
-    // D — the graduate-school step (the early move the job fan cannot see)
-    const gt = lb.grad_track, bgt = blb.grad_track;
-    if (gt && gt.any) {
-      panel.append(mkHead("The graduate-school step — the move the job data misses"));
-      const gsub = el("div", "sub");
-      gsub.style.margin = "0 0 12px";
-      gsub.append(
-        document.createTextNode("Within five years of graduating, "),
-        el("strong", null, pctStr(gt.any.share, 0)),
-        document.createTextNode(" of " + m.name + " graduates enrolled in a graduate or professional degree" +
-          (bgt && bgt.any ? " — against " + pctStr(bgt.any.share, 0) + " of all graduates" : "") +
-          (gt.any.rr != null && gt.any.rr >= 1.1 ? " (×" + gt.any.rr.toFixed(1) + " the all-graduate rate)" : "") +
-          ". A full-time student with no job on file otherwise lands in the fan's “unclassified” bucket — this is that hidden step, surfaced."));
-      panel.append(gsub);
-      if (gt.by_level.length) {
-        const chartG = el("div", "hbar");
-        panel.append(chartG);
-        renderHBar(chartG, gt.by_level.map(l =>
-          ({ label: l.level, value: l.share * 100, rr: l.rr, n: l.n })), { showRR: true });
-      }
-      if (gt.by_type.length) {
-        const th = el("div", "sub");
-        th.style.cssText = "margin:16px 0 8px;font-weight:600;color:var(--ink)";
-        th.textContent = "By program — professional and field degrees";
-        panel.append(th);
-        const wrap = el("div", "grad-types");
-        gt.by_type.forEach(t => {
-          const chip = el("div", "gtype" + (t.below_bar ? " under" : ""));
-          chip.append(el("span", "gt-n", fmt(t.n)), el("span", "gt-l", t.type));
-          if (t.rr != null && t.rr >= 1.5) chip.append(el("span", "gt-rr", "×" + t.rr.toFixed(1)));
-          if (t.below_bar) chip.append(el("span", "gt-badge", "below 40-person bar"));
-          wrap.append(chip);
-        });
-        panel.append(wrap);
-        panel.append(el("div", "sub",
-          "Counted per person, five years out; programs are not mutually exclusive (a JD and an MBA count in both). " +
-          "Enrollment, not completion — someone still in a program is counted as enrolled, never as a failure to finish. " +
-          "Cells below the 40-person reporting bar are shown for completeness and marked; Medicine (MD) is included even where thin."));
-      }
-    }
-
-    // C — the stability question (computed comparison + data table + editorial gloss)
-    panel.append(mkHead("The stability question — early movers vs stayers, measured"));
-    const tbl = el("table");
-    tbl.className = "lb-table";
+  // --- mobility styles
+  const stab = lb.stability;
+  const stBox = $("#stability-table");
+  stBox.textContent = "";
+  if (stab) {
+    const tbl = el("table", "lb-table");
     const hd = el("tr");
     ["Moves in years 0–3", "People", "Year-5 seniority (median)", "Gain since graduation",
-     "Later moves: median months in role", "Later moves through a gap", "Occupation groups touched by year 5"]
-      .forEach(h => hd.append(el("th", null, h)));
+     "Later moves: median months in role", "Later moves through a gap", "Distinct occupation groups by year 5 (avg)"]
+      .forEach(h2 => hd.append(el("th", null, h2)));
     tbl.append(hd);
     ["0", "1", "2+"].forEach(cls => {
-      const s = lb.stability[cls] || {};
+      const s = stab[cls] || {};
       const tr = el("tr");
       tr.append(el("td", null, cls === "0" ? "None (stayers)" : cls));
       tr.append(el("td", null, s.n_y5 != null ? fmt(s.n_y5) : "—"));
@@ -1766,149 +2066,977 @@ function renderStory() {
       tr.append(el("td", null, s.avg_occupation_groups_y0_5 != null ? String(s.avg_occupation_groups_y0_5) : "—"));
       tbl.append(tr);
     });
-    const tblWrap = el("div");
-    tblWrap.style.cssText = "overflow-x:auto;margin:6px 0 4px;";
-    tblWrap.append(tbl);
-    panel.append(tblWrap);
+    stBox.append(tbl);
 
-    // computed comparison line (pipeline-derived, not editorial)
     const prem = grp => {
-      const a = grp.stability["2+"], b0 = grp.stability["0"];
+      const a = grp && grp["2+"], b0 = grp && grp["0"];
       return (a && b0 && a.median_seniority_y5 != null && b0.median_seniority_y5 != null)
         ? a.median_seniority_y5 - b0.median_seniority_y5 : null;
     };
-    const pm = prem(lb), pb = prem(blb);
-    if (pm != null && pb != null) {
-      const rel = pm - pb;
-      const wording = pm < 0.02
+    const pm = prem(stab), pb = prem(blb.stability);
+    const line = $("#stability-measured");
+    line.textContent = "";
+    if (pm != null) {
+      let wording = pm < 0.02
         ? "frequent movers ended year five level with stayers — while gaining far more ground from a lower start"
-        : "frequent movers ended year five above stayers" +
-          (rel > 0.02 ? ", a premium LARGER than the all-graduates mover premium"
-           : rel < -0.02 ? ", a premium smaller than the all-graduates mover premium"
-           : ", a premium in line with all graduates");
-      const line = el("p", null, "Measured for " + m.name + ": " + wording +
-        " (+" + pm.toFixed(2) + " vs +" + pb.toFixed(2) + " baseline).");
-      line.style.cssText = "font-size:13.5px;color:var(--ink-2);margin:8px 0 0;";
-      panel.append(line);
+        : "frequent movers ended year five above stayers";
+      let txt = "Measured for " + m.name + ": " + wording + " (+" + pm.toFixed(2) + ")";
+      if (ctx && pb != null) {
+        const rel = pm - pb;
+        const cmp = rel > 0.02 ? "larger than" : rel < -0.02 ? "smaller than" : "in line with";
+        txt += " — a mover premium " + cmp + " the all-graduates premium (+" + pb.toFixed(2) + ")";
+      }
+      line.textContent = txt + ".";
     }
-    const neg = el("p", null, "Also measured, and worth knowing: early movers do not “settle” later — " +
-      "their later moves stay faster than stayers'. What changes is the character of the movement: " +
-      "more of it is job-to-job (fewer moves through a gap), and it covers more occupational ground. " +
-      "Movement is a style, not a phase — and neither style pays a seniority penalty here.");
-    neg.style.cssText = "font-size:13.5px;color:var(--muted);margin:6px 0 0;";
-    panel.append(neg);
-
-    panel.append(glossBox("The word “unstable” does a lot of unexamined work in conversations about " +
-      "humanities careers. Counted, the picture is calmer: graduates who moved often in their first three years " +
-      "were navigating, not drifting — their moves ran between jobs rather than through gaps, crossed more " +
-      "occupational territory, and left them standing at least as tall at year five. Staying put worked too. " +
-      "The data doesn't pick a style for you; it shows that both are walked, in numbers."));
-    panel.append(el("div", "sub",
-      "Mover groups are self-selected — these are descriptions, not causal claims. Seniority understates " +
-      "self-employed and portfolio careers, common in the arts. No wage data is used anywhere."));
-
-    const acts = el("div", "story-actions");
-    const next = el("button", "btn", "See the long view →");
-    next.addEventListener("click", () => { story.step = 3; renderStory(); });
-    const back = el("button", "btn ghost", "← Back to the fan");
-    back.addEventListener("click", () => { story.step = 1; renderStory(); });
-    acts.append(next, back);
-    panel.append(acts);
+  } else {
+    stBox.append(emptyBox("Mobility-style measures have not been computed for this cohort yet."));
+    $("#stability-measured").textContent = "";
   }
+  const sg = $("#stability-gloss");
+  sg.textContent = "";
+  sg.append(glossBox(STABILITY_GLOSS));
 
-  // Step 2 — walk a route (editorial)
-  if (story.step === 2) {
-    const p = m.routes[story.path];
-    const h3 = el("h3", null, p.name + " ");
-    if (p.unexpected) h3.append(el("span", "pill-unex", "unexpected"));
-    h3.append(el("span", "badge illus", "editorial"));
-    panel.append(h3);
-    panel.append(el("div", "sub", "An editorial walk through a recognizable route" +
-      (p.unexpected ? " — a less expected one" : "") +
-      " · role-level ladders like this one are NHA-staff illustrations; the counted, group-level routes live in the Portal's pathways panel"));
-    const viz = el("div", "pathviz");
-    p.stages.forEach((s, i) => {
-      const stg = el("div", "stage" + (i === p.stages.length - 1 ? " last" : ""));
-      const chip = el("div", "chip");
-      chip.append(el("div", "r", s));
-      stg.append(chip);
-      if (i < p.stages.length - 1) stg.append(el("div", "conn"));
-      viz.append(stg);
+  // --- pathways
+  $("#path-desc").textContent =
+    "Occupation-group routes walked by at least " + BAR + " distinct people, counted only across fully " +
+    "classified consecutive years — never bridged across unknowns. Routes tagged unexpected end outside " +
+    "the major's top-5 destinations. What clears the bar is shown; what doesn't is reported, not filled in.";
+  const pl = $("#path-list");
+  pl.textContent = "";
+  if (!m.paths.length) {
+    const p1 = el("p", null,
+      "No occupation-group route clears the " + BAR + "-person bar in this cohort — it is one of the " +
+      "smaller cohorts on the site, and routes must be walked by " + BAR + " distinct people in fully " +
+      "classified consecutive years before they are shown.");
+    p1.style.cssText = "font-size:13.5px;color:var(--ink-2);margin:6px 0 10px;";
+    const p2 = el("p", null,
+      "Rather than lower the bar or fill the panel in, we report that plainly.");
+    p2.style.cssText = "font-size:13.5px;color:var(--muted);margin:0;";
+    pl.append(p1, p2);
+    $("#path-suppressed").textContent = m.paths_suppressed_count > 0
+      ? m.paths_suppressed_count + " route" + (m.paths_suppressed_count === 1 ? "" : "s") +
+        " observed with fewer people — suppressed below the display threshold."
+      : "No route reaches even the 2-person reporting floor in this cohort.";
+  } else {
+    const maxN = Math.max(...m.paths.map(p => p.n_persons));
+    m.paths.forEach(p => {
+      const stageNames = p.stages.map(s => s.group || s.role);
+      const row = el("div", "pathrow");
+      const left = el("div");
+      const pn = el("div", "pn", (p.name || stageNames.join(" → ")) + " ");
+      if (p.unexpected) pn.append(el("span", "pill-unex", "unexpected"));
+      left.append(pn);
+      const n = el("div", "n", fmt(p.n_persons) + " people");
+      const st = el("div", "strength");
+      const i = el("i");
+      i.style.width = Math.round(p.n_persons / maxN * 100) + "%";
+      st.append(i);
+      row.append(left, n, st);
+      pl.append(row);
     });
-    panel.append(viz);
-    panel.append(glossBox(p.gloss));
-
-    const acts = el("div", "story-actions");
-    const next = el("button", "btn", "See the long view →");
-    next.addEventListener("click", () => { story.step = 3; renderStory(); });
-    const back = el("button", "btn ghost", "← Try a different path");
-    back.addEventListener("click", () => { story.step = 1; story.path = null; renderStory(); });
-    acts.append(next, back);
-    panel.append(acts);
+    $("#path-suppressed").textContent = m.paths_suppressed_count +
+      " more routes observed — suppressed below the n = " + BAR + " display threshold.";
   }
 
-  // Step 3 — the long view
-  if (story.step === 3) {
-    panel.append(el("h3", null, "The long view"));
-    panel.append(el("div", "sub", "Median seniority score over twenty years, compared with all graduates · this dataset contains no salary information"));
-    const box = el("div", "chartbox");
-    const leg = el("div", "legend");
-    panel.append(box, leg);
-    renderCurve(box, leg, m, true);
-    panel.append(glossBox(m.longGloss));
-
-    const acts = el("div", "story-actions");
-    const next = el("button", "btn", "Where does that leave you? →");
-    next.addEventListener("click", () => { story.step = 4; renderStory(); });
-    const back = el("button", "btn ghost", "← Back to the path");
-    back.addEventListener("click", () => { story.step = 2; renderStory(); });
-    acts.append(next, back);
-    panel.append(acts);
+  // --- graduate-school step
+  const gt = lb.grad_track, bgt = blb.grad_track;
+  const gd = $("#grad-desc");
+  gd.textContent = "";
+  const glc = $("#grad-level-chart"), gld = $("#grad-level-details"),
+        gth = $("#grad-type-head"), gtc = $("#grad-type-chips"), gf = $("#grad-foot");
+  [glc, gtc].forEach(x => x.textContent = "");
+  gth.textContent = ""; gf.textContent = "";
+  if (gt && gt.any) {
+    gld.style.display = "";
+    gd.append(document.createTextNode("Maybe you're weighing grad school too. Within " +
+      (gt.horizon || 5) + " years of graduating, "),
+      el("strong", null, pctStr(gt.any.share, 0)),
+      document.createTextNode(" of " + m.name + " graduates enrolled in a graduate or professional degree" +
+        (ctx && bgt && bgt.any ? " — against " + pctStr(bgt.any.share, 0) + " of all graduates" : "") +
+        (ctx && gt.any.rr != null && gt.any.rr >= 1.1 ? " (×" + gt.any.rr.toFixed(1) + " the all-graduate rate)" : "") +
+        ". A full-time student with no job on file otherwise lands in the fan's “unclassified” bucket — this is that hidden step, surfaced. Enrollment, not completion."));
+    if ((gt.by_level || []).length) {
+      renderHBar(glc, gt.by_level.map(l =>
+        ({ label: l.level, value: l.share * 100, rr: l.rr, n: l.n })), { showRR: ctx, popLabel: "of the year-" + (gt.horizon || 5) + " cohort" });
+      shareTable($("#grad-level-table"),
+        gt.by_level.map(l => ({ group: l.level, share: l.share, rr: l.rr, n: l.n })),
+        { labelHead: "Level", shareHead: "Share enrolled within " + (gt.horizon || 5) + " years" });
+    } else {
+      gld.style.display = "none";
+    }
+    if ((gt.by_type || []).length) {
+      gth.textContent = "By program — professional and field degrees";
+      gt.by_type.forEach(t => {
+        const chip = el("div", "gtype" + (t.below_bar ? " under" : ""));
+        chip.append(el("span", "gt-n", fmt(t.n)), el("span", "gt-l", t.type));
+        if (ctx && t.rr != null && t.rr >= 1.5) chip.append(el("span", "gt-rr", "×" + t.rr.toFixed(1)));
+        if (t.below_bar) chip.append(el("span", "gt-badge", "below " + (gt.min_support || BAR) + "-person bar"));
+        gtc.append(chip);
+      });
+      gf.textContent =
+        "Counted per person, " + (gt.horizon || 5) + " years out; programs are not mutually exclusive (a JD and an MBA count in both). " +
+        "Enrollment, not completion — someone still in a program is counted as enrolled, never as a failure to finish. " +
+        "Cells below the " + (gt.min_support || BAR) + "-person reporting bar are shown for completeness and marked; Medicine (MD) is included even where thin.";
+    }
+  } else {
+    gld.style.display = "none";
+    gd.textContent = "Graduate-track figures have not been computed for this cohort yet.";
+    glc.append(emptyBox("Awaiting pipeline output."));
   }
 
-  // Step 4 — ending
-  if (story.step === 4) {
-    panel.append(el("h3", null, "Where you stand"));
-    panel.append(el("div", "sub", m.name + " · the possibility space in brief"));
-    const grid = el("div", "kpis");
-    grid.style.margin = "18px 0 4px";
-    [[m.kpi.breadth + " of 824", "occupations reached in the first decade"],
-     [String(m.kpi.distinctive), "destinations reached far more often than chance"],
-     [Math.round(m.kpi.up_share * 100) + "%", "of observed moves go upward"],
-     [fmt(m.persons_windowed_y10), "real people whose fully observed decade drew this map"]].forEach(([v, k]) => {
-      const s = el("div", "stat");
-      s.append(el("div", "v", v), el("div", "k", k));
-      grid.append(s);
-    });
-    panel.append(grid);
-    panel.append(glossBox(m.endGloss));
-
-    const acts = el("div", "story-actions");
-    const open = el("button", "btn", "Open " + m.name + " in the portal →");
-    open.addEventListener("click", () => {
-      exploreState.major = story.major;
-      sel.value = story.major;
-      renderExplore();
-      goView("explore");
-    });
-    const again = el("button", "btn ghost", "Start over with another major");
-    again.addEventListener("click", () => { story.step = 0; story.major = null; story.path = null; renderStory(); });
-    acts.append(open, again);
-    panel.append(acts);
-  }
-
-  stage.append(panel);
+  // closing gloss
+  const dg = $("#decade-gloss");
+  dg.textContent = "";
+  const endGloss = glossFor(state.major, "end");
+  if (endGloss) dg.append(glossBox(endGloss));
 }
 
-/* ================= methods: funnel table ================= */
+/* ================= choices ================= */
+
+function choicePanel(title, wide) {
+  const p = el("div", "panel" + (wide ? " wide" : ""));
+  const head = el("div", "panel-head");
+  head.append(el("h3", null, title), badge(true));
+  p.append(head);
+  return p;
+}
+
+function choiceStats(pairs) {
+  const w = el("div", "choice-part");
+  pairs.forEach(([v, k]) => {
+    const s = el("div", "es");
+    s.append(el("div", "v", v), el("div", "k", k));
+    w.append(s);
+  });
+  return w;
+}
+
+/* pipeline windows arrive as [start, end] years relative to the degree anchor */
+function windowText(w) {
+  if (Array.isArray(w) && w.length === 2)
+    return "steps starting in years " + w[0] + " to +" + w[1] + " relative to graduation";
+  return w ? String(w) : null;
+}
+
+const sentenceCase = s => (s && s === s.toUpperCase()) ? s[0] + s.slice(1).toLowerCase() : s;
+const an = s => (/^[aeiou]/i.test(s) ? "an " : "a ") + s;
+
+/* friendly display names for pooled double-major partner fields (CIP2 codes);
+   unmapped codes fall back to the sentence-cased pipeline label */
+const CIP_DISPLAY = {
+  "51": "Health professions", "52": "Business & marketing", "13": "Education",
+  "45": "Social sciences", "42": "Psychology", "50": "Visual & performing arts",
+  "09": "Communication & journalism", "23": "English", "11": "Computer science",
+  "16": "Foreign languages",
+};
+const cipDisplay = t => CIP_DISPLAY[t.cip2] || sentenceCase(t.label);
+
+const FALLBACK_CAVEAT = "Every number on this page is a descriptive association among " +
+  "LinkedIn-visible careers. People choose these paths for reasons the data cannot see, so none " +
+  "of these differences is the effect of the choice itself.";
+
+function choiceFan(parent, fan, opts) {
+  opts = opts || {};
+  if (fan && fan.length) {
+    const chart = el("div", "hbar");
+    parent.append(chart);
+    renderHBar(chart, fan.map(f => ({ label: f.group, value: f.share * 100, rr: f.rr, n: f.n })),
+      { showRR: state.context, popLabel: opts.popLabel });
+    const notes = [];
+    if (opts.unclassified != null)
+      notes.push(pctStr(opts.unclassified) + " of this subset has no codable occupation at year 10 — its own bucket, never redistributed");
+    if (opts.suppressedCells)
+      notes.push(fmt(opts.suppressedCells) + " more destination cell" + (opts.suppressedCells === 1 ? " sits" : "s sit") +
+        " below the n ≥ " + BAR + " bar — suppressed, not zero");
+    if (notes.length) {
+      const u = el("p", "desc");
+      u.style.margin = "10px 0 0";
+      u.textContent = notes.join(". ") + ".";
+      parent.append(u);
+    }
+    const det = el("details", "tblview");
+    det.append(el("summary", null, "View as table"));
+    const tb = el("div");
+    det.append(tb);
+    shareTable(tb, fan, { shareHead: "Share of subset", unclassified: opts.unclassified });
+    parent.append(det);
+  } else {
+    parent.append(opts.emptyNode || emptyBox(opts.emptyText ||
+      ("This subset's year-10 fan does not clear the n ≥ " + BAR + " bar and is suppressed rather than shown thin.")));
+  }
+}
+
+/* reference to the pooled cross-major card: plain text inside the Portal's
+   Choices view (where the card sits below), a link from Stories step 3 */
+function pooledCardRef(inPortal) {
+  if (inPortal) return document.createTextNode("the pooled card below");
+  const a = el("a", null, "the pooled card in the Portal's Choices view");
+  a.href = "#portal/choices/" + state.major;
+  return a;
+}
+
+/* render a pipeline note, linkifying "the pooled card" outside the Portal */
+function noteWithPooledRef(text, inPortal) {
+  const p = el("p", "desc");
+  p.style.margin = "10px 0 0";
+  const marker = "the pooled card";
+  const idx = text.indexOf(marker);
+  if (inPortal || idx === -1) { p.textContent = text; return p; }
+  const a = el("a", null, "the pooled card in the Portal's Choices view");
+  a.href = "#portal/choices/" + state.major;
+  const after = text.slice(idx + marker.length).replace(/^ in the Portal'?s Choices view/, "");
+  p.append(document.createTextNode(text.slice(0, idx)), a, document.createTextNode(after));
+  return p;
+}
+
+/* with the context toggle on, add the same-definition all-graduate rate */
+function ctxShareLine(parent, share, label) {
+  if (!state.context || share == null) return;
+  const p = el("p", "desc");
+  p.style.margin = "0 0 10px";
+  p.textContent = "Context: " + pctStr(share, 1) + " of all graduates " + label + ".";
+  parent.append(p);
+}
+
+/* per-major choice cards, rendered into `container` — used by the Portal's
+   Choices section (opts.inPortal) AND by Stories step 3. */
+function buildChoiceCards(m, container, opts) {
+  const inPortal = !!(opts && opts.inPortal);
+  const ch = m.choices;
+  const bch = ((PORTAL.baseline || {}).choices) || {};
+  if (!ch) {
+    const p = el("div", "panel wide");
+    const head = el("div", "panel-head");
+    head.append(el("h3", null, "Choice figures for " + m.name));
+    p.append(head);
+    p.append(emptyBox(
+      "The choices pipeline hasn't shipped its numbers yet. This surface will show, per major: double-major " +
+      "participation, grad-school destination fans (with and without), internship, military and service-year " +
+      "steps, and self-employment — each computed on the same windowed cohorts as the rest of the site, and " +
+      "suppressed below the n ≥ " + BAR + " bar rather than estimated. Nothing is shown in the meantime."));
+    container.append(p);
+    return;
+  }
+  const cohort = ch.cohort || m.persons_windowed_y10;
+
+  // --- double major
+  const dm = ch.double_major;
+  if (dm) {
+    const p = choicePanel("Double majoring", true);
+    p.append(el("p", "desc", "Graduates of " + m.name + " who completed a second bachelor's field alongside it."));
+    p.append(choiceStats([
+      [pctStr(dm.participation_share, 1), "of the cohort of " + fmt(cohort) + " double-majored"],
+      [fmt(dm.n_windowed), "double-majors in the windowed cohort"],
+    ]));
+    ctxShareLine(p, (bch.double_major || {}).participation_share, "double-majored, same definition");
+    const dmEmpty = el("div", "empty");
+    dmEmpty.append(document.createTextNode(
+      "A per-major destination fan for double-majors does not clear the n ≥ " + BAR + " bar; "),
+      pooledCardRef(inPortal), document.createTextNode(" shows the pooled fan."));
+    choiceFan(p, dm.fan, {
+      popLabel: "of double-majors", unclassified: dm.unclassified_share,
+      suppressedCells: dm.fan_suppressed_cells,
+      emptyNode: dmEmpty,
+    });
+    if (dm.note) p.append(noteWithPooledRef(dm.note, inPortal));
+    container.append(p);
+  }
+
+  // --- grad school
+  const gs = ch.grad_school;
+  if (gs) {
+    const p = choicePanel("Grad school: the fan, with and without", true);
+    p.append(el("p", "desc",
+      "Year-10 destinations for graduates who started a graduate or professional degree within five years, " +
+      "beside those who didn't. Timing and program mix live in the first decade's graduate-school panel."));
+    p.append(choiceStats([
+      [pctStr(gs.participation_share, 0), "started a graduate or professional degree within five years"],
+    ]));
+    ctxShareLine(p, (bch.grad_school || {}).participation_share, "started one, same definition");
+    const duo = el("div", "duo");
+    const mkSide = (label, n, fan, unc, suppressed) => {
+      const side = el("div");
+      side.append(el("h4", null, label + (n != null ? " · " + fmt(n) + " people" : "")));
+      choiceFan(side, fan, { popLabel: "of this subset", unclassified: fan ? unc : null, suppressedCells: suppressed });
+      return side;
+    };
+    duo.append(mkSide("Went to grad school", gs.n_grad, gs.fan_grad, gs.unclassified_share_grad, gs.fan_grad_suppressed_cells),
+               mkSide("Went straight to work", gs.n_nograd, gs.fan_nograd, gs.unclassified_share_nograd, gs.fan_nograd_suppressed_cells));
+    p.append(duo);
+    const dn = el("p", "desc");
+    dn.style.margin = "12px 0 0";
+    dn.textContent = "Who goes to grad school is heavily self-selected; read these side by side as two real populations, not as a payoff estimate.";
+    p.append(dn);
+    container.append(p);
+  }
+
+  // --- internship
+  const it = ch.internship;
+  if (it) {
+    const p = choicePanel("Internships");
+    const wt = windowText(it.window);
+    p.append(el("p", "desc", "Graduates with an internship step near graduation" + (wt ? " (" + wt + ")" : "") + "."));
+    p.append(choiceStats([
+      [pctStr(it.participation_share, 1), "of the windowed cohort held an internship"],
+      [fmt(it.n_windowed), "graduates with an internship step"],
+    ]));
+    ctxShareLine(p, (bch.internship || {}).participation_share, "held one, same definition");
+    choiceFan(p, it.fan, { popLabel: "of interns", unclassified: it.unclassified_share, suppressedCells: it.fan_suppressed_cells });
+    container.append(p);
+  }
+
+  // --- military
+  const mil = ch.military;
+  if (mil) {
+    const p = choicePanel("Military service");
+    const wt = windowText(mil.window);
+    p.append(el("p", "desc", "Graduates with a service-branch step near graduation" + (wt ? " (" + wt + ")" : "") + "."));
+    p.append(choiceStats([
+      [pctStr(mil.participation_share, 1), "of the windowed cohort served"],
+      [fmt(mil.n_windowed), "graduates with a military step"],
+    ]));
+    ctxShareLine(p, (bch.military || {}).participation_share, "served, same definition");
+    choiceFan(p, mil.fan, {
+      popLabel: "of those who served", unclassified: mil.unclassified_share, suppressedCells: mil.fan_suppressed_cells,
+      emptyText: "With " + fmt(mil.n_windowed) + " people in this subset, its year-10 fan does not clear the n ≥ " +
+        BAR + " bar and is suppressed rather than shown thin.",
+    });
+    container.append(p);
+  }
+
+  // --- service year (per-major participation; destination fans are pooled-only)
+  if ("service_year" in ch) {
+    const sy = ch.service_year;
+    const p = choicePanel("A service year");
+    p.append(el("p", "desc", "Peace Corps, AmeriCorps, Teach For America, Fulbright, City Year" +
+      (sy && windowText(sy.window) ? " (" + windowText(sy.window) + ")" : "") + "."));
+    if (sy) {
+      p.append(choiceStats([
+        [pctStr(sy.participation_share, 1), "of the windowed cohort did a service year"],
+        [fmt(sy.n_windowed), "graduates with a service-year step"],
+      ]));
+      ctxShareLine(p, (bch.service_year || {}).participation_share, "did one, same definition");
+      const b = el("div", "empty");
+      b.append(document.createTextNode(
+        "These programs are small, so destination fans are counted pooled across the five majors — see "),
+        pooledCardRef(inPortal), document.createTextNode("."));
+      p.append(b);
+    } else {
+      const b = el("div", "empty");
+      b.append(document.createTextNode("Too few " + m.name + " graduates took a service year to report per-major figures above the n ≥ " +
+        BAR + " bar — suppressed, not zero. "));
+      const ref = pooledCardRef(inPortal);
+      if (inPortal) b.append(document.createTextNode("The pooled card below counts them across the five majors."));
+      else b.append(document.createTextNode("They are counted across the five majors on "), ref, document.createTextNode("."));
+      p.append(b);
+    }
+    container.append(p);
+  }
+
+  // --- self-employment
+  const se = ch.self_employment;
+  if (se) {
+    const p = choicePanel("Working for yourself");
+    p.append(el("p", "desc", "Any post-graduation step marked self-employed or business owner."));
+    p.append(choiceStats([
+      [pctStr(se.ever_share, 1), "of the windowed cohort has ever been self-employed"],
+      [se.median_years_to_first != null ? String(se.median_years_to_first) + " yrs" : "—",
+       "median time from graduation to the first self-employed step"],
+      [fmt(se.n_windowed), "graduates with a self-employed step"],
+    ]));
+    ctxShareLine(p, (bch.self_employment || {}).ever_share, "have ever been self-employed");
+    container.append(p);
+  }
+}
+
+function renderChoices() {
+  const m = M(state.major);
+  const pooled = PORTAL.choices_pooled;
+  const notes = PORTAL.choices_notes;
+  const nm = PORTAL.choices_not_measured;
+
+  // persistent selection-effect caveat
+  const cav = $("#choices-caveat");
+  cav.textContent = "";
+  cav.append(el("span", "cv-k", "Read first"));
+  cav.append(el("span", null, (notes && notes.causal_caveat) || FALLBACK_CAVEAT));
+
+  const cards = $("#choices-major-cards");
+  cards.textContent = "";
+  buildChoiceCards(m, cards, { inPortal: true });
+  const ch = m.choices;
+
+  // ---- pooled cards
+  const ph = $("#choices-pool-head");
+  const pc = $("#choices-pooled-cards");
+  ph.textContent = ""; pc.textContent = "";
+  if (pooled) {
+    ph.append(el("h3", null, "Across the five majors together"));
+    ph.append(el("span", "sub", (pooled.population_def || "") + " " +
+      (pooled.n_windowed ? fmt(pooled.n_windowed) + " people." : "")));
+
+    const dmp = pooled.double_major;
+    if (dmp) {
+      const p = choicePanel("Double majoring — pooled", true);
+      p.append(choiceStats([
+        [pctStr(dmp.participation_share, 1), "of the pooled cohort double-majored"],
+        [fmt(dmp.n), "double-majors"],
+      ]));
+      if ((dmp.top_partners || []).length) {
+        const gh = el("p", "desc");
+        gh.style.margin = "4px 0 8px";
+        gh.textContent = "Most common second fields:";
+        p.append(gh);
+        const wrapC = el("div", "grad-types");
+        dmp.top_partners.forEach(t => {
+          const chip = el("div", "gtype");
+          chip.append(el("span", "gt-n", fmt(t.n)), el("span", "gt-l", cipDisplay(t)));
+          wrapC.append(chip);
+        });
+        p.append(wrapC);
+      }
+      choiceFan(p, dmp.fan, {
+        popLabel: "of pooled double-majors", unclassified: dmp.unclassified_share,
+        suppressedCells: dmp.fan_suppressed_cells,
+      });
+      pc.append(p);
+    }
+
+    const sy = pooled.service_year;
+    if (sy) {
+      const p = choicePanel("A service year — pooled", true);
+      const wt = windowText(sy.window);
+      p.append(el("p", "desc",
+        "Peace Corps, AmeriCorps, Teach For America, Fulbright, City Year" + (wt ? " (" + wt + ")" : "") +
+        ". These programs are small enough that per-major fans would fall below the bar, so they are " +
+        "counted pooled across the five majors" + (sy.pooled_only ? " — pooled only, by design" : "") + "."));
+      if ((sy.programs || []).length) {
+        const wrapC = el("div", "grad-types");
+        sy.programs.forEach(t => {
+          const chip = el("div", "gtype");
+          chip.append(el("span", "gt-n", fmt(t.n)), el("span", "gt-l", t.name));
+          wrapC.append(chip);
+        });
+        if (sy.programs_suppressed) {
+          const chip = el("div", "gtype under");
+          chip.append(el("span", "gt-n", String(sy.programs_suppressed)),
+                      el("span", "gt-l", "more program" + (sy.programs_suppressed === 1 ? "" : "s") + " below the " + BAR + "-person bar"));
+          wrapC.append(chip);
+        }
+        p.append(wrapC);
+      }
+      if (sy.n_any != null) {
+        const gh = el("p", "desc");
+        gh.style.margin = "10px 0 8px";
+        gh.textContent = fmt(sy.n_any) + " graduates across the five majors did a service year" +
+          (sy.participation_share != null ? " (" + pctStr(sy.participation_share, 1) + " of the pooled cohort)" : "") +
+          ". Where they stood at year 10:";
+        p.append(gh);
+      }
+      choiceFan(p, sy.fan, {
+        popLabel: "of service-year alumni", unclassified: sy.unclassified_share,
+        suppressedCells: sy.fan_suppressed_cells,
+      });
+      pc.append(p);
+    }
+
+    const sep = pooled.self_employment;
+    if (sep) {
+      const p = choicePanel("Working for yourself — pooled", true);
+      p.append(choiceStats([
+        [pctStr(sep.ever_share, 1), "of the pooled cohort has ever been self-employed"],
+        [fmt(sep.n), "graduates with a self-employed step"],
+        [sep.median_years_to_first != null ? String(sep.median_years_to_first) + " yrs" : "—",
+         "median time to the first self-employed step"],
+      ]));
+      if ((sep.top_groups || []).length) {
+        const gh = el("p", "desc");
+        gh.style.margin = "4px 0 8px";
+        gh.textContent = "What the first self-employed step is, where it can be classified" +
+          (sep.first_se_classified_share != null
+            ? " (" + pctStr(sep.first_se_classified_share, 0) + " of first steps carry a codable occupation; shares below are of that classified slice)" : "") + ":";
+        p.append(gh);
+        const wrapC = el("div", "grad-types");
+        sep.top_groups.forEach(t => {
+          const chip = el("div", "gtype");
+          chip.append(el("span", "gt-n", pctStr(t.share, 0)), el("span", "gt-l", t.group + (t.n != null ? " · " + fmt(t.n) : "")));
+          wrapC.append(chip);
+        });
+        p.append(wrapC);
+      }
+      pc.append(p);
+    }
+  } else if (ch) {
+    ph.append(el("h3", null, "Across the five majors together"));
+    const p = el("div", "panel wide");
+    p.append(emptyBox("Pooled choice figures (double-major partners, service-year programs) haven't shipped yet."));
+    pc.append(p);
+  }
+
+  // ---- not measurable yet
+  const nh = $("#choices-nm-head");
+  const nc = $("#choices-nm-cards");
+  nh.textContent = ""; nc.textContent = "";
+  if (nm) {
+    nh.append(el("h3", null, "Not measurable yet — and we say so"));
+    const mkNM = (title, blk) => {
+      const p = el("div", "panel");
+      const head = el("div", "panel-head");
+      head.append(el("h3", null, title), badge(true));
+      p.append(head);
+      if (blk.persons_mentioning != null) {
+        p.append(choiceStats([[fmt(blk.persons_mentioning), "profiles mention it in free text"]]));
+      }
+      p.append(emptyBox(blk.note || "Free-text only; cannot be counted at the site's evidence bar."));
+      return p;
+    };
+    if (nm.minors) nc.append(mkNM("Minors", nm.minors));
+    if (nm.study_abroad) nc.append(mkNM("Study abroad", nm.study_abroad));
+  }
+}
+
+/* ================= stories & narratives ================= */
+
+/* Amber connective tissue for the guided walkthrough — editorial glue only.
+   Every number in the walkthrough is rendered by the green computed panels;
+   these paragraphs carry no figures and invent no careers. */
+const STORY_GLUE = {
+  intro: "If you are weighing one of these majors — or partway through one and wondering how it " +
+    "ends — pick it below. We'll walk its first decade in three short steps: where graduates " +
+    "actually stood one year out, how the arc bends across twenty years, and how the choices " +
+    "people layer onto the degree relate to where they landed. Every chart is computed from real " +
+    "careers and badged green; the connecting words are ours and badged amber; and nothing on " +
+    "this walk is invented.",
+  step1: "The first year after graduation is the one students worry about most, and the hardest " +
+    "to see from inside a classroom. Here it is, counted: not a single default job, but a first " +
+    "fan of real destinations. Some of it can't be classified yet — early job titles are the " +
+    "messiest in the data — and we show that plainly rather than smooth it over. Open any bar " +
+    "to see the actual roles inside it.",
+  step2: "One year is a snapshot; a career is an arc. Starting-salary tables can't see past the " +
+    "first rung, but trajectory data can — and the long view is where humanities careers make " +
+    "their case. Read it with the caveat printed on the chart: it is drawn from people who " +
+    "stayed visible on LinkedIn.",
+  step3: "Around the degree sit the decisions people actually ask about: a second major, grad " +
+    "school, an internship, a service year, the military, working for yourself. Below is how " +
+    "each one sat alongside this major's outcomes — participation first, destinations where the " +
+    "data can support them. These are honest counts of self-selected paths, not verdicts on " +
+    "what you should do.",
+};
+
+const STORY_STEPS = [
+  { n: 1, crumb: "1 · The first year" },
+  { n: 2, crumb: "2 · The decade arc" },
+  { n: 3, crumb: "3 · The choices" },
+];
+
+function storyActions(panel, items) {
+  const row = el("div", "story-actions");
+  items.forEach(it => {
+    const b = el("button", "btn" + (it.primary ? "" : " ghost"), it.label);
+    b.addEventListener("click", () => goHash(it.hash));
+    row.append(b);
+  });
+  panel.append(row);
+}
+
+function storyPanel(title, sub) {
+  const p = el("div", "story-panel");
+  p.append(el("h3", null, title));
+  const s = el("div", "sub");
+  s.append(document.createTextNode(sub + " · computed panels below are "), badge(true));
+  p.append(s);
+  return p;
+}
+
+function renderStoryChooser(stage) {
+  stage.append(glossBox(STORY_GLUE.intro));
+  const grid = el("div", "major-grid");
+  grid.style.marginTop = "22px";
+  MAJOR_ORDER.forEach(k => {
+    const m = M(k);
+    const card = el("button", "major-card");
+    card.append(el("h4", null, m.name));
+    card.append(el("div", "n", fmt(m.persons_windowed_y10) +
+      " graduates in the fully observed year-10 cohort"));
+    const top = m.fan && m.fan.length ? m.fan[0] : null;
+    if (top) {
+      card.append(el("div", "quote", "Most common destination ten years out: " + top.group +
+        " (" + pctStr(top.share, 0) + " of the cohort)."));
+    }
+    card.addEventListener("click", () => goHash("#stories/" + k + "/1"));
+    grid.append(card);
+  });
+  stage.append(grid);
+}
+
+function storyStep1(stage, m) {
+  const p = storyPanel("Year one: where " + m.name + " graduates actually started",
+    "Step 1 of 3 · first classified destination within a year of graduation · equal observation windows");
+  p.append(glossBox(STORY_GLUE.step1));
+  const fd = (m.launchboard || {}).first_destinations;
+  if (fd && fd.fan && fd.fan.length) {
+    const meta = el("p", "scrub-meta");
+    meta.append(el("b", null, fmt(fd.cohort) + " graduates"),
+      document.createTextNode(" with their first year fully observed. " +
+        pctStr(fd.unclassified_share) + " hold no codable occupation this early — counted as " +
+        "its own bucket, never redistributed. Cells below the n ≥ " + BAR + " bar are suppressed. "));
+    meta.append(badge(true));
+    p.append(meta);
+    const chart = el("div", "hbar");
+    p.append(chart);
+    renderFan(chart, fd.fan, m.name, "share", state.context, "of the year-1 cohort");
+    p.append(el("p", "drill-hint",
+      "Select any destination (›) to open the specific roles behind it — the named jobs people held in year one."));
+  } else {
+    p.append(emptyBox("Year-one destinations have not been computed for this cohort — nothing is estimated in their place."));
+  }
+  storyActions(p, [
+    { label: "← Choose a different major", hash: "#stories" },
+    { label: "Next: the decade arc →", hash: "#stories/" + state.major + "/2", primary: true },
+  ]);
+  stage.append(p);
+}
+
+function storyStep2(stage, m) {
+  const p = storyPanel("The decade arc: how " + m.name + " careers unfold",
+    "Step 2 of 3 · median seniority, graduation to year 20 · survivor's view · no wage data");
+  p.append(glossBox(STORY_GLUE.step2));
+  const desc = el("p", "desc");
+  desc.style.margin = "18px 0 10px";
+  desc.textContent = "Median seniority score by years since graduation (0 = intern, 1 = chief " +
+    "executive); points with fewer than " + BAR + " people are suppressed and break the line." +
+    (state.context ? " The gray line is the all-graduate baseline." : "");
+  p.append(desc);
+  const ctlRow = el("div", "fan-controls");
+  const tog = el("label", "toggle inline");
+  const cb = el("input");
+  cb.type = "checkbox";
+  cb.id = "story-ctx-toggle";
+  cb.checked = state.context;
+  cb.addEventListener("change", () => {
+    state.context = cb.checked;
+    syncControls();               // the Portal's checkbox reflects the same state
+    renderView(state.view);
+  });
+  tog.append(cb, document.createTextNode(" Show the all-graduate baseline"));
+  ctlRow.append(tog);
+  p.append(ctlRow);
+  const chart = el("div", "chartbox");
+  const legend = el("div", "legend");
+  p.append(chart, legend);
+  renderCurve(chart, legend, m, state.context);
+  const longGloss = glossFor(state.major, "long");
+  if (longGloss) p.append(glossBox(longGloss));
+  storyActions(p, [
+    { label: "← Back: year one", hash: "#stories/" + state.major + "/1" },
+    { label: "Next: the choices →", hash: "#stories/" + state.major + "/3", primary: true },
+  ]);
+  stage.append(p);
+}
+
+function storyStep3(stage, m) {
+  const p = storyPanel("The choices around " + an(m.name) + " degree",
+    "Step 3 of 3 · participation and destinations for six decisions · descriptive, never causal");
+  const cav = el("div", "caveat");
+  cav.style.margin = "16px 0 0";
+  cav.append(el("span", "cv-k", "Read first"),
+    el("span", null, (PORTAL.choices_notes && PORTAL.choices_notes.causal_caveat) || FALLBACK_CAVEAT));
+  p.append(cav);
+  p.append(glossBox(STORY_GLUE.step3));
+  const cards = el("div", "panels");
+  cards.style.marginTop = "18px";
+  buildChoiceCards(m, cards, { inPortal: false });
+  p.append(cards);
+  const endGloss = glossFor(state.major, "end");
+  if (endGloss) p.append(glossBox(endGloss));
+  storyActions(p, [
+    { label: "← Back: the decade arc", hash: "#stories/" + state.major + "/2" },
+    { label: "Explore this major in the Portal →", hash: "#portal/choices/" + state.major, primary: true },
+    { label: "Choose another major", hash: "#stories" },
+  ]);
+  stage.append(p);
+}
+
+function renderStories() {
+  const crumbs = $("#story-crumbs");
+  const stage = $("#story-stage");
+  crumbs.textContent = "";
+  stage.textContent = "";
+  const step = state.view === "stories" ? state.step : 0;
+  const m = M(state.major);
+
+  const crumbBtn = (label, on, hash) => {
+    const b = el("button", "c" + (on ? " on" : ""), label);
+    b.setAttribute("aria-current", on ? "step" : "false");
+    b.addEventListener("click", () => goHash(hash));
+    return b;
+  };
+  crumbs.append(crumbBtn("Choose a major", step === 0, "#stories"));
+  if (step >= 1) {
+    crumbs.append(el("span", "sep", "›"));
+    crumbs.append(el("span", "c", m.name));
+    STORY_STEPS.forEach(s => {
+      crumbs.append(el("span", "sep", "›"));
+      crumbs.append(crumbBtn(s.crumb, step === s.n, "#stories/" + state.major + "/" + s.n));
+    });
+  }
+
+  if (step === 0) renderStoryChooser(stage);
+  else if (step === 1) storyStep1(stage, m);
+  else if (step === 2) storyStep2(stage, m);
+  else storyStep3(stage, m);
+}
+
+/* ================= myths ================= */
+
+function mythCard(mythText, verdict, buildAnswer, link, linkLabel, partialNote) {
+  const card = el("div", "mythcard");
+  const q = el("div", "m-q");
+  q.append(badge(false), el("h3", null, "“" + mythText + "”"));
+  card.append(q);
+  const a = el("div", "m-a");
+  const ab = el("div", "abadge");
+  ab.append(badge(true));
+  a.append(ab);
+  const paras = buildAnswer();
+  if (paras && paras.length) {
+    if (verdict) a.append(el("p", "m-verdict", verdict));
+    paras.forEach(node => {
+      if (typeof node === "string") a.append(el("p", null, node));
+      else a.append(node);
+    });
+  } else {
+    a.append(emptyBox("The fields this rebuttal reads from haven't been computed yet — nothing is estimated in their place."));
+  }
+  card.append(a);
+  if (partialNote) card.append(el("p", "m-partial", partialNote));
+  const lk = el("a", "m-link", linkLabel + " →");
+  lk.href = link;
+  card.append(lk);
+  return card;
+}
+
+function majorsList(f) {
+  return MAJOR_ORDER.map(k => f(M(k), k)).filter(x => x != null);
+}
+
+function renderMyths() {
+  const box = $("#myth-cards");
+  box.textContent = "";
+  const bl = PORTAL.baseline;
+
+  // M1 — one default job
+  box.append(mythCard(
+    "A humanities degree funnels you into one default job.",
+    "Counted: no.",
+    () => {
+      const tops = majorsList(m => ({ name: m.name, top: m.fan[0] })).filter(t => t.top);
+      if (!tops.length) return null;
+      const maxT = tops.reduce((a, b) => (b.top.share > a.top.share ? b : a));
+      const gr = majorsList(m => (m.diversity && m.diversity.groups_reached) || m.fan.length);
+      const grMin = Math.min(...gr), grMax = Math.max(...gr);
+      const p1 = el("p");
+      p1.append(document.createTextNode("Counted across the five majors, the single most common destination never holds more than "),
+        el("strong", null, pctStr(maxT.top.share, 0)),
+        document.createTextNode(" of a cohort — that's " + maxT.name + ", where it's " + maxT.top.group +
+          ". Which means even in the most concentrated case, "),
+        el("strong", null, Math.round((1 - maxT.top.share) * 100) + "%"),
+        document.createTextNode(" of graduates are somewhere else ten years out."));
+      const p2 = el("p");
+      p2.append(document.createTextNode("Each major's classified graduates spread across "),
+        el("strong", null, grMin === grMax ? String(grMin) : grMin + "–" + grMax),
+        document.createTextNode(" occupation groups big enough to clear the site's reporting bar. Teaching is real and well-traveled — and it is one bar in a fan."));
+      return [p1, p2];
+    },
+    "#portal/space/" + state.major, "See the full fan in The possibility space"));
+
+  // M2 — you won't advance
+  box.append(mythCard(
+    "You won't advance — humanities careers plateau early.",
+    "Counted: no.",
+    () => {
+      const li = YEARS.length - 1;
+      const baseEnd = BASE_CURVE[li];
+      const ends = majorsList(m => {
+        const v = m.curve.median_seniority[li];
+        return v == null ? null : { name: m.name, v };
+      });
+      if (!ends.length || baseEnd == null) return null;
+      const atOrNear = ends.filter(e => e.v >= baseEnd - 0.05).length;
+      const p1 = el("p");
+      p1.append(document.createTextNode("Median seniority at year " + YEARS[li] + ": "),
+        el("strong", null, ends.map(e => e.name + " " + e.v.toFixed(2)).join(", ")),
+        document.createTextNode(" against " + baseEnd.toFixed(2) + " for all graduates — "),
+        el("strong", null, atOrNear + " of " + ends.length),
+        document.createTextNode(" majors finish within 0.05 of the all-graduate line or above it. Most start lower; the gap closes over the decades, not the other way around."));
+      const p2 = el("p");
+      const ups = majorsList(m => m.kpi && m.kpi.up_share != null ? m.kpi.up_share : null);
+      if (ups.length && bl.up_share != null) {
+        p2.append(document.createTextNode("Upward moves: "),
+          el("strong", null, Math.round(Math.min(...ups) * 100) + "–" + Math.round(Math.max(...ups) * 100) + "%"),
+          document.createTextNode(" of these majors' observed job changes go up, against " +
+            Math.round(bl.up_share * 100) + "% for all graduates — in the same band as all graduates."));
+      }
+      const out = [p1];
+      if (p2.childNodes.length) out.push(p2);
+      return out;
+    },
+    "#portal/decade/" + state.major, "See the long view in The first decade"));
+
+  // M3 — unstable drifting
+  box.append(mythCard(
+    "Humanities careers are unstable drifting.",
+    "Counted: no.",
+    () => {
+      const rows = majorsList(m => {
+        const s = m.launchboard && m.launchboard.stability;
+        if (!s || !s["2+"] || !s["0"]) return null;
+        return { name: m.name, mv: s["2+"], st: s["0"] };
+      });
+      if (!rows.length) return null;
+      const atOrAbove = rows.filter(r => r.mv.median_seniority_y5 != null && r.st.median_seniority_y5 != null &&
+        r.mv.median_seniority_y5 >= r.st.median_seniority_y5 - 0.005).length;
+      const gapLower = rows.filter(r => r.mv.late_move_gap_share != null && r.st.late_move_gap_share != null &&
+        r.mv.late_move_gap_share < r.st.late_move_gap_share).length;
+      const p1 = el("p");
+      p1.append(document.createTextNode("Graduates who changed jobs twice or more in their first three years ended year five at or above the seniority of those who never moved in "),
+        el("strong", null, atOrAbove + " of " + rows.length),
+        document.createTextNode(" majors measured. And in "),
+        el("strong", null, gapLower + " of " + rows.length),
+        document.createTextNode(" majors, those early movers' later moves ran through an employment gap less often than stayers' did — the movement is navigation, not drift."));
+      return [p1, "Movement is a style, not a phase: early movers keep moving faster later, and neither style pays a seniority penalty here."];
+    },
+    "#portal/decade/" + state.major, "See mobility styles in The first decade"));
+
+  // M4 — only useful with grad school
+  box.append(mythCard(
+    "The degree only works if you add grad school.",
+    "Counted: no.",
+    () => {
+      const rows = majorsList(m => {
+        const gt = m.launchboard && m.launchboard.grad_track;
+        return gt && gt.any ? { name: m.name, share: gt.any.share } : null;
+      });
+      if (!rows.length) return null;
+      const mn = Math.min(...rows.map(r => r.share)), mx = Math.max(...rows.map(r => r.share));
+      const maxR = rows.reduce((a, b) => (b.share > a.share ? b : a));
+      const p1 = el("p");
+      p1.append(document.createTextNode("Within five years of graduating, "),
+        el("strong", null, pctStr(mn, 0) + "–" + pctStr(mx, 0)),
+        document.createTextNode(" of these majors' graduates started a graduate or professional degree" +
+          (bl.launchboard && bl.launchboard.grad_track && bl.launchboard.grad_track.any
+            ? " (all graduates: " + pctStr(bl.launchboard.grad_track.any.share, 0) + ")" : "") +
+          ". Even at the highest — " + pctStr(maxR.share, 0) + ", for " + maxR.name + " — "),
+        el("strong", null, "a majority went to work without one"),
+        document.createTextNode(", and the destination fans are drawn from those working careers."));
+      return [p1, "Grad school is a real and common step — the data shows it honestly, including which programs — but it is a choice, not a requirement built into the degree."];
+    },
+    "#portal/decade/" + state.major, "See the graduate-school step in The first decade"));
+
+  // M5 — narrow niche
+  box.append(mythCard(
+    "You'll end up boxed into a narrow niche.",
+    "Counted: no.",
+    () => {
+      const effs = majorsList(m => m.diversity && m.diversity.effective_destinations != null ? m.diversity.effective_destinations : null);
+      const brs = majorsList(m => m.kpi && m.kpi.breadth != null ? m.kpi.breadth : null);
+      const sing = majorsList(m => m.employer_field ? m.employer_field.singleton_employer_share : null);
+      if (!brs.length && !effs.length) return null;
+      const out = [];
+      if (effs.length) {
+        const p0 = el("p");
+        p0.append(document.createTextNode("Statistically, each major's year-10 fan behaves like "),
+          el("strong", null, Math.min(...effs) + "–" + Math.max(...effs)),
+          document.createTextNode(" equally common destinations, not one."));
+        out.push(p0);
+      }
+      if (brs.length) {
+        const p1 = el("p");
+        p1.append(document.createTextNode("In their first decade alone, each of these cohorts reaches "),
+          el("strong", null, Math.min(...brs) + "–" + Math.max(...brs)),
+          document.createTextNode(" of the 824 occupations in the transition network."));
+        out.push(p1);
+      }
+      if (sing.length) {
+        out.push("The employer field is just as scattered: " + pctStr(Math.min(...sing), 0) + "–" + pctStr(Math.max(...sing), 0) +
+          " of each cohort's employers hired exactly one graduate — a field, not a funnel.");
+      }
+      if (!effs.length) {
+        out.push("A per-major “effective destinations” diversity statistic is queued in the pipeline and will render here when it ships — nothing is estimated in its place.");
+      }
+      return out;
+    },
+    "#portal/space/" + state.major, "See the whole field in The possibility space"));
+
+  // M6 — locked out of business and tech
+  box.append(mythCard(
+    "You're locked out of business and tech.",
+    "Counted: mostly no.",
+    () => {
+      const groups = ["Management", "Business & Financial", "Computer & Mathematical"];
+      const found = groups.map(gname => {
+        const per = majorsList(m => {
+          const f = m.fan.find(x => x.group === gname);
+          return f ? { name: m.name, share: f.share, rr: f.rr } : null;
+        });
+        return { gname, per };
+      });
+      if (!found.some(f => f.per.length)) return null;
+      const out = [];
+      const p1 = el("p");
+      const bits = [];
+      found.forEach(f => {
+        if (!f.per.length) return;
+        const mn = Math.min(...f.per.map(x => x.share)), mx = Math.max(...f.per.map(x => x.share));
+        bits.push(f.gname + " holds " + (f.per.length === 1
+          ? pctStr(mn, 1) + " of the " + f.per[0].name + " cohort"
+          : pctStr(mn, 1) + "–" + pctStr(mx, 1) + " of a cohort, depending on major"));
+      });
+      p1.append(document.createTextNode("Ten years out, these doors are visibly open: "),
+        el("strong", null, bits.join("; ")),
+        document.createTextNode(". Management is a top-three destination for several of these majors."));
+      out.push(p1);
+      const mgmt = found[0].per;
+      const under = mgmt.filter(x => x.rr != null && x.rr < 1).length;
+      if (under > 0) {
+        out.push("Honestly noted: relative to all graduates, Management is still under-represented (relative risk below 1) in " +
+          under + " of " + mgmt.length + " majors, and Computer & Mathematical more so. Open door, not a tilted floor — the myth says locked, and the count says neither locked nor favored.");
+      }
+      const missing = MAJOR_ORDER.length - Math.max(...found.map(f => f.per.length));
+      if (missing > 0) {
+        out.push("Where a cell is missing above, it sits below the n ≥ " + BAR + " reporting bar in a smaller cohort and is suppressed, not zero.");
+      }
+      return out;
+    },
+    "#portal/space/" + state.major, "Compare destinations in The possibility space",
+    "This card includes an against-us number on purpose: partial truths are stated, not trimmed."));
+}
+
+/* ================= methods ================= */
+
+function renderBoundariesTable() {
+  const box = $("#boundaries-table");
+  box.textContent = "";
+  const tbl = el("table", "facts");
+  const hd = el("tr");
+  ["Boundary", "Degree records", "Examples"].forEach(h2 => hd.append(el("th", null, h2)));
+  tbl.append(hd);
+  ["l1", "l2", "l3"].forEach(k => {
+    const bd = PORTAL.boundaries[k], def = BOUNDARY_DEFS[k];
+    const tr = el("tr");
+    tr.append(el("td", null, def.name), el("td", "num", fmt(bd.records)), el("td", null, def.examples));
+    tbl.append(tr);
+  });
+  box.append(tbl);
+}
 
 function renderFunnelTable() {
   const box = $("#funnel-table");
-  if (!box) return;
+  box.textContent = "";
   const tbl = el("table", "facts");
   const hd = el("tr");
   ["Group", "Degree records", "People", "Usable anchor", "Year-10 cohort", "Anchor mix"]
-    .forEach(h => hd.append(el("th", null, h)));
+    .forEach(h2 => hd.append(el("th", null, h2)));
   tbl.append(hd);
   const row = (name, g) => {
     const mix = Object.keys(g.anchor_method_mix).sort()
@@ -1920,18 +3048,108 @@ function renderFunnelTable() {
     tr.append(el("td", null, mix));
     return tr;
   };
-  MAJOR_ORDER.forEach(k => tbl.append(row(PORTAL.majors[k].name, PORTAL.majors[k])));
+  MAJOR_ORDER.forEach(k => tbl.append(row(M(k).name, M(k))));
   tbl.append(row("All graduates (baseline)", PORTAL.baseline));
   box.append(tbl);
+}
+
+function renderChoiceDefs() {
+  const box = $("#choice-defs");
+  box.textContent = "";
+  const notes = PORTAL.choices_notes;
+  if (!notes) {
+    box.append(emptyBox("The choices pipeline hasn't shipped yet; its definitions and windows will render here " +
+      "verbatim from the pipeline output when it does."));
+    return;
+  }
+  const LABELS = {
+    double_major: "Double major", grad_school: "Grad school", internship: "Internship",
+    military: "Military service", service_year: "Service year", self_employment: "Self-employment",
+    minors: "Minors", study_abroad: "Study abroad", population: "Population rule",
+  };
+  const tbl = el("table", "facts");
+  const hd = el("tr");
+  ["Choice", "Definition (verbatim from the pipeline)"].forEach(h2 => hd.append(el("th", null, h2)));
+  tbl.append(hd);
+  Object.keys(notes).forEach(k => {
+    if (k === "causal_caveat") return;
+    const tr = el("tr");
+    tr.append(el("td", null, LABELS[k] || k), el("td", null, String(notes[k])));
+    tbl.append(tr);
+  });
+  box.append(tbl);
+  if (notes.causal_caveat) {
+    const p = el("p", "desc");
+    p.style.margin = "12px 0 0";
+    p.textContent = "Selection caveat, carried on every choices surface: " + notes.causal_caveat;
+    box.append(p);
+  }
+}
+
+function renderMethodsStatic() {
+  $("#bar-note").textContent =
+    "Every named cell on this site — fan destinations, pathway routes, curve points, choice-subset fans, " +
+    "named employers, program counts — must be supported by at least " + BAR + " distinct people " +
+    "(n ≥ " + BAR + "). Cells below the bar are suppressed and the suppression is reported in place; " +
+    "we never show a thinner bar or interpolate. One deliberate exception is marked wherever it appears: " +
+    "inside an already-cleared fan cell, the role-level drill-down and the graduate program chips " +
+    "describe the composition of that cell at a 10-person floor, labelled as such. The bar's value is " +
+    "read from the pipeline output, so this page cannot promise a different threshold than the one the " +
+    "numbers were computed under.";
+  $("#computed-note").textContent =
+    "Every number on this site — cohort funnels, destination fans and snapshots, sectors, long-view " +
+    "curves, mobility styles, graduate-track counts, choice participation and subset fans, diversity " +
+    "statistics (“effective destinations” is the inverse-Simpson diversity of the classified year-10 " +
+    "endpoints), and every figure quoted on the Myths cards — is computed from the committed data spine " +
+    "under equal observation windows: a year-N statistic includes only people whose graduation anchor is " +
+    "at least N years before the snapshot, and any cell supported by fewer than " + BAR + " people is " +
+    "suppressed. Occupation classification pools two sources: the deterministic O*NET lexicon backbone " +
+    "(6-digit; always wins) and a calibrated LLM jury at major-group grain (two-model unanimity with " +
+    "reference-title anchors, 88.7% agreement with held-out deterministic gold, pre-committed gate 0.85; " +
+    "strings where the two models disagree or abstain ship nothing). A relative-risk bias check compares " +
+    "deterministic-only and pooled fans before pooled numbers ship; each fan reports its unclassified " +
+    "share as its own honest bucket and its source blend. Myth-card rebuttals are rendered from the same " +
+    "injected pipeline output at page load — no number in that copy is typed by hand. One thing remains " +
+    "editorial and is badged amber wherever it appears: the short narrative glosses written by NHA staff, " +
+    "including the myth statements themselves.";
+}
+
+/* ================= wire controls ================= */
+
+populateMajorSelect($("#major-select"));
+
+$$("#boundary-seg button").forEach(btn => btn.addEventListener("click", () => {
+  state.boundary = btn.dataset.b;
+  syncControls();
+  if (state.section === "space") renderSpace();
+}));
+$$("#fan-order-seg button").forEach(btn => btn.addEventListener("click", () => {
+  state.fanOrder = btn.dataset.o;
+  syncControls();
+  if (state.section === "space") renderSpace();
+}));
+$$("#portal-subnav button").forEach(btn => btn.addEventListener("click", () => {
+  goHash("#portal/" + btn.dataset.s + "/" + state.major);
+}));
+{
+  const n = $("#ctx-toggle");
+  if (n) n.addEventListener("change", ev => {
+    state.context = ev.target.checked;
+    syncControls();
+    renderView(state.view);
+  });
 }
 
 /* ================= init ================= */
 
 $("#gen-date").textContent = PORTAL.generated + " (snapshot " + PORTAL.snapshot_date + ")";
+renderCorpusBand();
+renderFieldTable();
+renderBoundariesTable();
 renderFunnelTable();
-renderExplore();
-renderStory();
-drawFan();
+renderChoiceDefs();
+renderMethodsStatic();
+applyHash();
 </script>
 
 </body>

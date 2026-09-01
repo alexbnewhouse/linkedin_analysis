@@ -1,0 +1,119 @@
+{
+  "summary": {
+    "axis": "occupation",
+    "alpha": 0.05,
+    "nodes": 824,
+    "edges_nonself": 39077,
+    "backbone_edges": 1526,
+    "infomap": {
+      "n_communities": 24,
+      "largest": 210,
+      "singletons": 0
+    },
+    "leiden": {
+      "n_communities": 34,
+      "largest": 354,
+      "singletons": 6
+    },
+    "runtime_s": 0.6,
+    "mean_infomap_soc_purity": 0.574
+  },
+  "example_infomap_modules": {
+    "4": {
+      "size": 210,
+      "soc_majors": {
+        "Production": 35,
+        "Transportation": 28,
+        "Office & Admin Support": 24,
+        "Personal Care": 19
+      },
+      "top_nodes": [
+        "Waiters and Waitresses",
+        "Health Technologists and Technicians, All Other",
+        "Medical Assistants",
+        "Retail Salespersons",
+        "Bartenders"
+      ]
+    },
+    "1": {
+      "size": 168,
+      "soc_majors": {
+        "Business & Financial": 25,
+        "Management": 23,
+        "Office & Admin Support": 20,
+        "Arts/Design/Media": 20
+      },
+      "top_nodes": [
+        "Chief Executives",
+        "Sales Managers",
+        "Producers and Directors",
+        "General and Operations Managers",
+        "Advertising and Promotions Managers"
+      ]
+    },
+    "11": {
+      "size": 106,
+      "soc_majors": {
+        "Installation/Maint/Repair": 30,
+        "Construction & Extraction": 28,
+        "Production": 23,
+        "Transportation": 8
+      },
+      "top_nodes": [
+        "First-Line Supervisors of Construction Trades and Extraction Workers",
+        "Construction Managers",
+        "Electricians",
+        "First-Line Supervisors of Mechanics, Installers, and Repairers",
+        "Plumbers, Pipefitters, and Steamfitters"
+      ]
+    },
+    "2": {
+      "size": 62,
+      "soc_majors": {
+        "Computer & Mathematical": 17,
+        "Architecture & Engineering": 17,
+        "Production": 8,
+        "Installation/Maint/Repair": 5
+      },
+      "top_nodes": [
+        "Software Developers",
+        "Computer Occupations, All Other",
+        "Computer Programmers",
+        "Computer User Support Specialists",
+        "Computer and Information Systems Managers"
+      ]
+    },
+    "8": {
+      "size": 53,
+      "soc_majors": {
+        "Life/Physical/Social Science": 26,
+        "Education": 12,
+        "Healthcare Practitioners": 4,
+        "Production": 4
+      },
+      "top_nodes": [
+        "Natural Sciences Managers",
+        "Teaching Assistants, Postsecondary",
+        "Chemists",
+        "Medical and Clinical Laboratory Technologists",
+        "Life, Physical, and Social Science Technicians, All Other"
+      ]
+    },
+    "5": {
+      "size": 46,
+      "soc_majors": {
+        "Healthcare Practitioners": 33,
+        "Healthcare Support": 4,
+        "Life/Physical/Social Science": 2,
+        "Management": 2
+      },
+      "top_nodes": [
+        "Registered Nurses",
+        "Medical and Health Services Managers",
+        "Nurse Practitioners",
+        "Health Education Specialists",
+        "Physicians, All Other"
+      ]
+    }
+  }
+}

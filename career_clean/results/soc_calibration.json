@@ -1,0 +1,39 @@
+{
+  "generated": "2026-07-08",
+  "gold_n": 600,
+  "per_juror": {
+    "llamacpp/qwen3-4b-q4": {
+      "voted_non_abstain": 600,
+      "accuracy": 0.8183,
+      "abstain": 0
+    },
+    "llamacpp/bulk-moe-q4": {
+      "voted_non_abstain": 596,
+      "accuracy": 0.8188,
+      "abstain": 4
+    }
+  },
+  "unanimous": {
+    "n": 522,
+    "coverage": 0.87,
+    "accuracy": 0.887
+  },
+  "disagree": 74,
+  "abstain_any": 4,
+  "incomplete": 0,
+  "by_tercile": {
+    "1": {
+      "n": 167,
+      "accuracy": 0.8743
+    },
+    "2": {
+      "n": 170,
+      "accuracy": 0.9059
+    },
+    "3": {
+      "n": 185,
+      "accuracy": 0.8811
+    }
+  },
+  "gate_note": "Pre-committed bar: unanimous-band accuracy >= 0.85 on this gold sample, else the jury ships flagged experimental and stays out of every default consumer. Gold strings are the deterministically-codable ones (selection bias toward easy titles) -- documented, and abstention is the mitigation."
+}

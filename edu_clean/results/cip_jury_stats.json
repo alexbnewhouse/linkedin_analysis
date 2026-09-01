@@ -1,0 +1,12 @@
+{
+  "voted_strings": 24549,
+  "excluded_mixed_strings": 340,
+  "excluded_non_field": 109,
+  "accepted": 18708,
+  "disagree": 2745,
+  "abstained": 3096,
+  "incomplete": 0,
+  "accepted_row_coverage": 362263,
+  "voted_row_coverage": 465686,
+  "generated": "2026-07-09"
+}

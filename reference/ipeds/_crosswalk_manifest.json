@@ -1,0 +1,337 @@
+{
+  "generated": "2026-07-22",
+  "matched_slugs": 3734,
+  "total_slugs": 39634,
+  "slug_coverage_pct": 9.4,
+  "matched_persons": 1964012,
+  "total_persons": 2889977,
+  "person_coverage_pct": 68.0,
+  "by_method": {
+    "exact": 3688,
+    "curated_flagship": 9,
+    "core": 37
+  },
+  "top40_matches": [
+    {
+      "slug": "penn-state-university",
+      "persons": 14824,
+      "method": "curated_flagship",
+      "instnm": "Pennsylvania State University-Main Campus",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "new-york-university",
+      "persons": 13675,
+      "method": "exact",
+      "instnm": "New York University",
+      "control": "private_nonprofit",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "ucla",
+      "persons": 13225,
+      "method": "exact",
+      "instnm": "University of California-Los Angeles",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "theuniversityoftexasataustin-",
+      "persons": 13134,
+      "method": "exact",
+      "instnm": "The University of Texas at Austin",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "uc-berkeley",
+      "persons": 13094,
+      "method": "exact",
+      "instnm": "University of California-Berkeley",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "university-of-southern-california",
+      "persons": 11229,
+      "method": "exact",
+      "instnm": "University of Southern California",
+      "control": "private_nonprofit",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "western-governors-university",
+      "persons": 11015,
+      "method": "exact",
+      "instnm": "Western Governors University",
+      "control": "private_nonprofit",
+      "carnegie": "masters_larger"
+    },
+    {
+      "slug": "university-of-maryland",
+      "persons": 10885,
+      "method": "curated_flagship",
+      "instnm": "University of Maryland-College Park",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "university-of-washington",
+      "persons": 10698,
+      "method": "curated_flagship",
+      "instnm": "University of Washington-Seattle Campus",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "michigan-state-university",
+      "persons": 10526,
+      "method": "exact",
+      "instnm": "Michigan State University",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "university-of-minnesota",
+      "persons": 10514,
+      "method": "curated_flagship",
+      "instnm": "University of Minnesota-Twin Cities",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "uflorida",
+      "persons": 10275,
+      "method": "exact",
+      "instnm": "University of Florida",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "university-of-illinois-urbana-champaign",
+      "persons": 10113,
+      "method": "exact",
+      "instnm": "University of Illinois Urbana-Champaign",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "university-of-michigan",
+      "persons": 10031,
+      "method": "curated_flagship",
+      "instnm": "University of Michigan-Ann Arbor",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "san-diego-state-university",
+      "persons": 9807,
+      "method": "exact",
+      "instnm": "San Diego State University",
+      "control": "public",
+      "carnegie": "R2_doctoral_high"
+    },
+    {
+      "slug": "uwmadison",
+      "persons": 9807,
+      "method": "exact",
+      "instnm": "University of Wisconsin-Madison",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "texas-a&m-university",
+      "persons": 9596,
+      "method": "exact",
+      "instnm": "Texas A & M University-College Station",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "snhu",
+      "persons": 9120,
+      "method": "exact",
+      "instnm": "Southern New Hampshire University",
+      "control": "private_nonprofit",
+      "carnegie": "masters_larger"
+    },
+    {
+      "slug": "purdue-university",
+      "persons": 8943,
+      "method": "curated_flagship",
+      "instnm": "Purdue University-Main Campus",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "indiana-university-bloomington",
+      "persons": 8894,
+      "method": "exact",
+      "instnm": "Indiana University-Bloomington",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "boston-university",
+      "persons": 8800,
+      "method": "exact",
+      "instnm": "Boston University",
+      "control": "private_nonprofit",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "san-jose-state-university",
+      "persons": 8614,
+      "method": "exact",
+      "instnm": "San Jose State University",
+      "control": "public",
+      "carnegie": "masters_larger"
+    },
+    {
+      "slug": "university-of-central-florida",
+      "persons": 8590,
+      "method": "exact",
+      "instnm": "University of Central Florida",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "usouthflorida",
+      "persons": 8386,
+      "method": "exact",
+      "instnm": "University of South Florida",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "northtexas",
+      "persons": 8352,
+      "method": "exact",
+      "instnm": "University of North Texas",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "florida-state-university",
+      "persons": 8225,
+      "method": "exact",
+      "instnm": "Florida State University",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "cornell-university",
+      "persons": 8084,
+      "method": "exact",
+      "instnm": "Cornell University",
+      "control": "private_nonprofit",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "university-of-houston",
+      "persons": 8035,
+      "method": "exact",
+      "instnm": "University of Houston",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "northeastern-university",
+      "persons": 7937,
+      "method": "exact",
+      "instnm": "Northeastern University",
+      "control": "private_nonprofit",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "california-state-university-northridge",
+      "persons": 7536,
+      "method": "exact",
+      "instnm": "California State University-Northridge",
+      "control": "public",
+      "carnegie": "masters_larger"
+    },
+    {
+      "slug": "san-francisco-state-university",
+      "persons": 7532,
+      "method": "exact",
+      "instnm": "San Francisco State University",
+      "control": "public",
+      "carnegie": "R2_doctoral_high"
+    },
+    {
+      "slug": "california-state-university-long-beach",
+      "persons": 7511,
+      "method": "exact",
+      "instnm": "California State University-Long Beach",
+      "control": "public",
+      "carnegie": "R2_doctoral_high"
+    },
+    {
+      "slug": "california-state-university-fullerton",
+      "persons": 7372,
+      "method": "exact",
+      "instnm": "California State University-Fullerton",
+      "control": "public",
+      "carnegie": "R2_doctoral_high"
+    },
+    {
+      "slug": "uarizona",
+      "persons": 7278,
+      "method": "exact",
+      "instnm": "University of Arizona",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "columbia-university",
+      "persons": 7160,
+      "method": "exact",
+      "instnm": "Columbia University in the City of New York",
+      "control": "private_nonprofit",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "liberty-university",
+      "persons": 6990,
+      "method": "exact",
+      "instnm": "Liberty University",
+      "control": "private_nonprofit",
+      "carnegie": "doctoral_professional"
+    },
+    {
+      "slug": "umassamherst",
+      "persons": 6779,
+      "method": "exact",
+      "instnm": "University of Massachusetts-Amherst",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "florida-international-university",
+      "persons": 6612,
+      "method": "exact",
+      "instnm": "Florida International University",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "uc-davis",
+      "persons": 6610,
+      "method": "exact",
+      "instnm": "University of California-Davis",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    },
+    {
+      "slug": "cuboulder",
+      "persons": 6514,
+      "method": "exact",
+      "instnm": "University of Colorado Boulder",
+      "control": "public",
+      "carnegie": "R1_doctoral_very_high"
+    }
+  ],
+  "executed": true
+}

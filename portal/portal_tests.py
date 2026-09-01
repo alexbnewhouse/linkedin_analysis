@@ -77,7 +77,8 @@ def main() -> None:
     """)
     tiny_fan = analyses.destination_fan(con)
     tiny_cells = tiny_fan.get("_tiny", {}).get("fan", [])
-    check("suppression: 3-person group emits no fan cell (all < 40)",
+    check(f"suppression: 3-person group emits no fan cell (all < MIN_SUPPORT="
+          f"{C.MIN_SUPPORT})",
           all(c["n"] >= C.MIN_SUPPORT for c in tiny_cells) and len(tiny_cells) == 0)
     con.execute("DELETE FROM membership WHERE group_key = '_tiny'")
 
@@ -342,6 +343,30 @@ def main() -> None:
     check("launchboard: grad-track headline clears MIN_SUPPORT, facet clears its "
           "bar, no bucket exceeds any-grad count", gt_ok)
 
+    # snapshot fan drill-down (y1 first destinations + y3/y5 outlook): the same
+    # coverage identities as the y10 fan detail, on each horizon's own endpoint
+    sd_ok, sd_cells, sd_named = True, 0, 0
+    for g in C.MAJORS:
+        snap_fans = ([lb[g]["first_destinations"]]
+                     + [lb[g]["outlook"][k] for k in sorted(lb[g]["outlook"])])
+        for blk in snap_fans:
+            for cell in blk["fan"]:
+                d = cell.get("detail")
+                if d is None:
+                    continue
+                sd_cells += 1
+                sd_ok = sd_ok and (d["detail_coded"] + d["no_detail_n"]
+                                   == d["group_total"] == cell["n"])
+                sd_ok = sd_ok and (d["roles_shown_n"] + d["other_coded_n"]
+                                   == d["detail_coded"])
+                sd_ok = sd_ok and all(
+                    r["n"] >= C.DETAIL_MIN_SUPPORT for r in d["roles"])
+                sd_ok = sd_ok and d["roles_shown_n"] == sum(r["n"] for r in d["roles"])
+                sd_named += len(d["roles"])
+    check("launchboard: snapshot fan detail identities hold on y1/y3/y5 "
+          f"(cells with detail={sd_cells}, named roles={sd_named})",
+          sd_ok and sd_cells > 0)
+
     # --- employer field ---------------------------------------------------------
     ef = analyses.employer_field(con)
     ef_ok = True
@@ -353,8 +378,8 @@ def main() -> None:
         singles = next(b["employers"] for b in d["size_buckets"] if b["size_min"] == 1 and b["size_max"] == 1)
         ef_ok = ef_ok and abs(singles / d["n_employers"] - d["singleton_employer_share"]) < 1e-3
         ef_ok = ef_ok and 0 <= d["top10_share_of_cohort"] <= 1
-    check("employer field: buckets partition employers, names only at n >= 40, "
-          "shares consistent", ef_ok)
+    check("employer field: buckets partition employers, names only at "
+          "n >= MIN_SUPPORT, shares consistent", ef_ok)
 
     # --- within-group occupation drill-down ------------------------------------
     fan3 = analyses.destination_fan(con)          # refresh fan_endpoint
@@ -366,8 +391,9 @@ def main() -> None:
             # coverage identities: coded + jury-only = total; named + tail = coded
             dd_ok = dd_ok and d["detail_coded"] + d["no_detail_n"] == d["group_total"]
             dd_ok = dd_ok and d["roles_shown_n"] + d["other_coded_n"] == d["detail_coded"]
-            # named roles clear the drill-down bar (coded-subset composition,
-            # deliberately below the 40 headline bar; see DETAIL_MIN_SUPPORT)
+            # named roles clear the drill-down bar (coded-subset composition;
+            # coincides with the headline bar since the 2026-07-13 loosening
+            # -- see DETAIL_MIN_SUPPORT)
             dd_ok = dd_ok and all(r["n"] >= C.DETAIL_MIN_SUPPORT for r in d["roles"])
             dd_ok = dd_ok and d["roles_shown_n"] == sum(r["n"] for r in d["roles"])
             # the composition never claims more people than the cell holds
@@ -376,8 +402,111 @@ def main() -> None:
             if soc in cells:
                 dd_ok = dd_ok and d["group_total"] == cells[soc]["n"]
             dd_named += len(d["roles"])
-    check("fan detail: coverage identities hold, named roles clear MIN_SUPPORT, "
-          f"group_total matches fan cell (named roles surfaced={dd_named})", dd_ok)
+    check("fan detail: coverage identities hold, named roles clear "
+          "DETAIL_MIN_SUPPORT, group_total matches fan cell "
+          f"(named roles surfaced={dd_named})", dd_ok)
+
+    # --- diversity block ---------------------------------------------------------
+    div = analyses.diversity(con, fan3)   # fan_endpoint fresh from fan3
+    groups_classified = {g: int(n) for g, n in con.execute("""
+      SELECT group_key, count(DISTINCT soc_major) FROM fan_endpoint
+      WHERE soc_major IS NOT NULL GROUP BY 1""").fetchall()}
+    div_ok = True
+    for g in list(C.MAJORS) + [C.BASELINE_KEY]:
+        d = div[g]
+        gc = groups_classified.get(g, 0)
+        # inverse Simpson is bounded by the number of classified categories
+        div_ok = div_ok and (d["effective_destinations"] is None
+                             or 1.0 <= d["effective_destinations"] <= gc + 1e-9)
+        div_ok = div_ok and d["groups_reached"] == len(fan3[g]["fan"]) <= d["groups_of"]
+        cells = fan3[g]["fan"]
+        div_ok = div_ok and d["top_bucket_share"] == (cells[0]["share"] if cells else None)
+        div_ok = div_ok and (d["top3_classified_share"] is None
+                             or 0.0 <= d["top3_classified_share"] <= 1.0)
+        div_ok = div_ok and d["classified_n"] <= fan3[g]["denom"]
+    check("diversity: effective_destinations <= classified groups, "
+          "groups_reached == published fan, top_bucket == fan[0].share, "
+          "baseline present", div_ok and set(div) == set(list(C.MAJORS) + [C.BASELINE_KEY]))
+
+    # --- choices ------------------------------------------------------------------
+    from portal import choices
+    ch = choices.compute(con)
+    cut10 = C.SNAPSHOT_YEAR - C.FAN_YEAR
+
+    # (a) window discipline + spine integrity: the choices cohort is exactly
+    # the windowed membership; flag join produced one row per (group, person).
+    leak = con.execute(
+        f"SELECT count(*) FROM ch_cohort WHERE anchor > {cut10}").fetchone()[0]
+    rows, dedup, cohort = con.execute("""
+      SELECT (SELECT count(*) FROM ch_flags),
+             (SELECT count(DISTINCT (group_key, linkedin_id)) FROM ch_flags),
+             (SELECT count(*) FROM ch_cohort)""").fetchone()
+    check("choices: windowed cohort respects the y10 window; flag join has no "
+          "fan-out and partitions the cohort",
+          leak == 0 and rows == dedup == cohort)
+    pool_dup = con.execute(
+        "SELECT count(*) - count(DISTINCT linkedin_id) FROM ch_pool_flags"
+    ).fetchone()[0]
+    se_dup = con.execute(
+        "SELECT count(*) - count(DISTINCT linkedin_id) FROM ch_first_se"
+    ).fetchone()[0]
+    check("choices: pooled flags and first-SE-step are one row per person",
+          pool_dup == 0 and se_dup == 0)
+
+    # (b) participation shares in [0, 1]; grad split partitions the cohort
+    def _shares_ok(block):
+        ok = True
+        for key in ("double_major", "grad_school", "internship", "military",
+                    "service_year", "self_employment"):
+            b = block.get(key)
+            if b is None:
+                continue
+            s = b.get("participation_share", b.get("ever_share"))
+            ok = ok and (s is None or 0.0 <= s <= 1.0)
+        return ok
+
+    part_ok, grad_ok = True, True
+    for g, block in ch["per_group"].items():
+        part_ok = part_ok and _shares_ok(block)
+        gs = block["grad_school"]
+        grad_ok = grad_ok and gs["n_grad"] + gs["n_nograd"] == block["cohort"]
+    part_ok = part_ok and 0.0 <= ch["pooled"]["double_major"]["participation_share"] <= 1.0
+    part_ok = part_ok and 0.0 <= ch["pooled"]["service_year"]["participation_share"] <= 1.0
+    part_ok = part_ok and 0.0 <= ch["pooled"]["self_employment"]["ever_share"] <= 1.0
+    check("choices: participation shares in [0,1] everywhere (incl. pooled)", part_ok)
+    check("choices: grad/no-grad split partitions each windowed cohort", grad_ok)
+
+    # (c) suppression: every named cell in ANY choices fan/list clears
+    # MIN_SUPPORT; fans are null (never a thinner list) when nothing clears
+    def _fan_ok(fan):
+        if fan is None:
+            return True
+        return len(fan) > 0 and all(c["n"] >= C.MIN_SUPPORT for c in fan)
+
+    sup_ok = True
+    for g, block in ch["per_group"].items():
+        for key in ("double_major", "internship", "military"):
+            sup_ok = sup_ok and _fan_ok(block[key].get("fan"))
+        sup_ok = sup_ok and _fan_ok(block["grad_school"].get("fan_grad"))
+        sup_ok = sup_ok and _fan_ok(block["grad_school"].get("fan_nograd"))
+        sv = block["service_year"]
+        sup_ok = sup_ok and (sv is None or sv["n_windowed"] >= C.MIN_SUPPORT)
+    pl = ch["pooled"]
+    sup_ok = sup_ok and _fan_ok(pl["double_major"]["fan"])
+    sup_ok = sup_ok and _fan_ok(pl["service_year"]["fan"])
+    sup_ok = sup_ok and all(p["n"] >= C.MIN_SUPPORT for p in pl["service_year"]["programs"])
+    sup_ok = sup_ok and all(p["n"] >= C.MIN_SUPPORT for p in pl["double_major"]["top_partners"])
+    sup_ok = sup_ok and all(t["n"] >= C.MIN_SUPPORT for t in pl["self_employment"]["top_groups"])
+    check("choices: every named cell (fans, programs, partners, SE groups) "
+          "clears MIN_SUPPORT; unsupported fans ship null", sup_ok)
+
+    # (d) baseline gets participation stats only -- no destination fans
+    base_block = ch["per_group"][C.BASELINE_KEY]
+    base_ok = ("fan" not in base_block["double_major"]
+               and "fan_grad" not in base_block["grad_school"]
+               and "fan" not in base_block["internship"]
+               and "fan" not in base_block["military"])
+    check("choices: baseline block is participation-only (no fans)", base_ok)
 
     con.close()
     print("\nAll portal tests passed.")

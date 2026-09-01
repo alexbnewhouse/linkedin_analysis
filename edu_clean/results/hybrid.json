@@ -1,0 +1,60 @@
+{
+  "field": {
+    "n_in": 445336,
+    "n_out": 303539,
+    "reduction": 0.318,
+    "runtime_s": 58.4,
+    "precision": 1.0,
+    "recall": 0.769,
+    "f1": 0.87,
+    "accuracy": 0.9,
+    "tp": 10,
+    "fp": 0,
+    "tn": 17,
+    "fn": 3,
+    "missing": 0,
+    "row_pct_by_method": {
+      "cip_exact": 56.0,
+      "cip_anchor": 11.5,
+      "typo": 32.5
+    }
+  },
+  "degree": {
+    "n_in": 335184,
+    "n_out": 159875,
+    "reduction": 0.523,
+    "runtime_s": 1.2,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "accuracy": 1.0,
+    "tp": 20,
+    "fp": 0,
+    "tn": 10,
+    "fn": 0,
+    "missing": 0,
+    "row_pct_by_method": {
+      "taxonomy": 83.8,
+      "raw": 16.2
+    }
+  },
+  "title": {
+    "n_in": 349729,
+    "n_out": 285077,
+    "reduction": 0.185,
+    "runtime_s": 3.5,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "accuracy": 1.0,
+    "tp": 4,
+    "fp": 0,
+    "tn": 8,
+    "fn": 0,
+    "missing": 0,
+    "row_pct_by_method": {
+      "slug": 87.7,
+      "typo": 12.3
+    }
+  }
+}

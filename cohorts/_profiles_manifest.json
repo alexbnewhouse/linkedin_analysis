@@ -1,0 +1,129 @@
+{
+  "common_window_years": 8,
+  "seniority_at_entry_by_cohort": {
+    "1990": {
+      "mean_seniority": 0.391,
+      "n": 154407
+    },
+    "1995": {
+      "mean_seniority": 0.3902,
+      "n": 231787
+    },
+    "2000": {
+      "mean_seniority": 0.3788,
+      "n": 273115
+    },
+    "2005": {
+      "mean_seniority": 0.3536,
+      "n": 315741
+    },
+    "2010": {
+      "mean_seniority": 0.3338,
+      "n": 327572
+    },
+    "2015": {
+      "mean_seniority": 0.3276,
+      "n": 307045
+    },
+    "2020": {
+      "mean_seniority": 0.3596,
+      "n": 40536
+    }
+  },
+  "seniority_at_age_5_by_cohort": {
+    "1990": {
+      "mean_seniority": 0.4604,
+      "n": 148349
+    },
+    "1995": {
+      "mean_seniority": 0.4687,
+      "n": 221877
+    },
+    "2000": {
+      "mean_seniority": 0.467,
+      "n": 262414
+    },
+    "2005": {
+      "mean_seniority": 0.4667,
+      "n": 300606
+    },
+    "2010": {
+      "mean_seniority": 0.4836,
+      "n": 311760
+    },
+    "2015": {
+      "mean_seniority": 0.514,
+      "n": 288408
+    },
+    "2020": {
+      "mean_seniority": 0.527,
+      "n": 35465
+    }
+  },
+  "seniority_at_age_8_by_cohort": {
+    "1990": {
+      "mean_seniority": 0.5028,
+      "n": 145683
+    },
+    "1995": {
+      "mean_seniority": 0.5082,
+      "n": 219752
+    },
+    "2000": {
+      "mean_seniority": 0.5107,
+      "n": 260104
+    },
+    "2005": {
+      "mean_seniority": 0.5222,
+      "n": 299353
+    },
+    "2010": {
+      "mean_seniority": 0.5491,
+      "n": 309823
+    },
+    "2015": {
+      "mean_seniority": 0.5688,
+      "n": 177782
+    }
+  },
+  "entry_seniority_spread_across_cohorts": 0.0634,
+  "humanities_vs_non_seniority": {
+    "age_0": {
+      "humanities": {
+        "mean_seniority": 0.341,
+        "n": 208141
+      },
+      "non_humanities": {
+        "mean_seniority": 0.3603,
+        "n": 1442062
+      },
+      "gap": -0.0193
+    },
+    "age_5": {
+      "humanities": {
+        "mean_seniority": 0.4635,
+        "n": 196719
+      },
+      "non_humanities": {
+        "mean_seniority": 0.4822,
+        "n": 1372160
+      },
+      "gap": -0.0187
+    },
+    "age_8": {
+      "humanities": {
+        "mean_seniority": 0.512,
+        "n": 179620
+      },
+      "non_humanities": {
+        "mean_seniority": 0.5299,
+        "n": 1232877
+      },
+      "gap": -0.0179
+    }
+  },
+  "humanities_note": "hum_group='humanities' = any L1-humanities degree (pooled any-degree flag). Gap = humanities mean seniority - non-humanities, at equal career age (pooled over cohorts). Survivorship caveat applies equally to both groups, so the GAP is more trustworthy than either level.",
+  "survivorship_note": "At equal career age, older cohorts are observed only through members still active on LinkedIn in 2025 (survivors). A monotone seniority gap favouring older cohorts at the SAME age is therefore survivorship, not necessarily a cohort effect \u2014 interpret cross-cohort levels with this in mind; prefer the within-cohort scarring design (Phase 2).",
+  "runtime_s": 2.7,
+  "output": "/home/alex/linkedin-analysis/cohorts/age_profiles.parquet"
+}

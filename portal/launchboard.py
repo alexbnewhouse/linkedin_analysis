@@ -28,6 +28,7 @@ claims, revealed "down" is near-chance so no downward framing.
 
 from __future__ import annotations
 
+from portal import analyses
 from portal import common as C
 
 HORIZONS = (1, 3, 5)          # first destinations + outlooks
@@ -62,7 +63,7 @@ GRAD_TYPE_LABELS = {
 }
 # Medicine (MD) is reported even where thin, per the advocacy brief: it is the
 # rarest and most stereotype-breaking humanities->professional path, so it is
-# shown down to a small privacy-safe floor and badged below the 40-person bar.
+# shown down to a small privacy-safe floor and badged below the headline bar.
 # Every other facet uses the drill-down's DETAIL_MIN_SUPPORT and is likewise
 # badged when under MIN_SUPPORT. Headline (any / master's / doctorate) still
 # clears MIN_SUPPORT the normal way.
@@ -154,11 +155,16 @@ def _grad_track(con) -> dict:
 def _fan_at(con, horizon: int) -> dict:
     """Destination fan at `horizon` years post-anchor (same rules as the
     year-10 fan: share of the full windowed cohort, RR vs baseline at the
-    SAME horizon, cells under MIN_SUPPORT suppressed)."""
+    SAME horizon, cells under MIN_SUPPORT suppressed). Each emitted cell
+    carries the same `detail` occupation drill-down as the year-10 fan
+    (analyses.destination_fan_detail over this horizon's endpoint: det-coded
+    subset only, roles clearing DETAIL_MIN_SUPPORT, honest coverage split).
+    Requires occ_nodes registered on `con` (analyses.register_occ_nodes)."""
     cut = C.SNAPSHOT_YEAR - horizon
     con.execute(f"""
       CREATE OR REPLACE TEMP TABLE lb_ep AS
-      SELECT m.group_key, m.linkedin_id, p.soc_major
+      SELECT m.group_key, m.linkedin_id, p.soc_major,
+             p.occupation_code AS occ_code
       FROM membership m
       LEFT JOIN panel p ON p.linkedin_id = m.linkedin_id
                        AND p.cal_year = m.anchor + {horizon}
@@ -188,6 +194,12 @@ def _fan_at(con, horizon: int) -> dict:
         fan.sort(key=lambda r: (-r["share"], r["group"]))
         out[g] = {"cohort": d, "fan": fan,
                   "unclassified_share": round(unclass.get(g, 0) / d, 4) if d else None}
+    # attach the within-cell occupation drill-down (same machinery and honesty
+    # contract as the year-10 fan; a cell without any coded role ships null)
+    detail = analyses.destination_fan_detail(con, endpoint="lb_ep")
+    for g in ALL_GROUPS:
+        for cell in out[g]["fan"]:
+            cell["detail"] = detail[g].get(cell["group"])
     return out
 
 
@@ -307,10 +319,16 @@ NOTES = (
     "Graduate-school step: enrollment in a graduate/professional degree within "
     "5 years of the bachelor anchor (a start-dated event, so equal-window; "
     "distinct-person counts, no multi-degree fan-out). 'Any', master's and "
-    "doctorate cells clear the 40-person bar; the professional/field facet "
-    "(Law, Medicine, Business, ...) is a coded breakdown shown at the 10-person "
-    "drill-down bar and badged below 40 -- Medicine (MD) is reported down to a "
+    f"doctorate cells clear the {C.MIN_SUPPORT}-person suppression bar; the "
+    "professional/field facet (Law, Medicine, Business, ...) is a coded "
+    f"breakdown shown at the {C.DETAIL_MIN_SUPPORT}-person drill-down bar and "
+    "badged when under the headline bar -- Medicine (MD) is reported down to a "
     "small floor even where thin, the rarest humanities->professional path. "
     "Enrollment only, not completion: a recent bachelor mid-degree at the "
-    "snapshot is still counted as enrolled, never as a failure to finish."
+    "snapshot is still counted as enrolled, never as a failure to finish. "
+    "Snapshot fans (year-1 first destinations, year-3/5 outlook) carry the "
+    "same per-cell `detail` occupation drill-down as the year-10 fan: it "
+    "describes only the deterministically role-coded slice of the cell, "
+    f"named roles clear the {C.DETAIL_MIN_SUPPORT}-person drill-down bar, and "
+    "the coverage split (detail_coded / no_detail_n) ships with every cell."
 )
