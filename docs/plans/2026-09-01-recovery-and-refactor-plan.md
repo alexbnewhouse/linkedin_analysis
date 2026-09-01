@@ -85,6 +85,15 @@ already covers **4,328,321** (join on `role_canonical`).
 - Acceptance: person cip2_pooled 86.95% → ≈88.6%; no change to rows that already had CIP.
 
 ### R3. CIP jury: tiebreak the disagreements `[deep-lane]`
+> **OUTCOME (2026-09-01): attempted, measured, REJECTED at calibration.** The
+> driver (`edu_clean/run_cip_tiebreak.py`) fired gemma3:27b on the 600-string
+> gold sample: solo accuracy 0.768; on the 60 gold disagree/partial strings the
+> 2-of-3 rule resolved 38 at **0.553 accuracy** — far under the pre-committed
+> 0.85 bar. The disagreement band is genuinely ambiguous, not a juror-family
+> artifact. NOT merged. Votes are cached (`results/cip_votes.jsonl`), stats in
+> `results/cip_tiebreak_stats.json`; a retry needs a materially stronger juror
+> (mistral-medium-3.5:128b or gpt-oss:120b overnight) re-calibrated on the same
+> gold sample, or these rows stay honestly uncoded.
 The 2026-07-09 jury discarded 2,745 disagree + 3,096 abstain strings ≈ 103k education
 rows — including plainly codeable heads: 'Information Systems' (2,996 rows, an 11-vs-52
 juror split), 'Science', 'Psychology and Sociology', 'Health Policy and Management'.
