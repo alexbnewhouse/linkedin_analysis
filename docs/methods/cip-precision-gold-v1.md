@@ -81,7 +81,19 @@ Two candidates were tested on the same gold (`frontier_gold_v1_knn_sweep.json`,
 
 Any future local juror should be calibrated the same way before it is
 trusted: `uv run python -m edu_clean.gold_v1 calibrate ollama/<model> "<hosts>"`.
-Calibration lines for gemma3:12b and phi4:14b are appended below as they land.
+Three local jurors, solo, on the same gold (strict / lenient among voted
+strings; vote rate on graded strings):
+
+| juror | residual | frontier band | knn_head | vote rate (residual) |
+|---|---|---|---|---|
+| qwen3-4b-q4 (incumbent lane) | 0.65 / 0.81 | 0.29 / 0.48 | 0.81 / 0.91 | 82% |
+| gemma3:12b (disjoint family) | 0.63 / 0.78 | 0.36 / 0.64 | 0.80 / 0.92 | 82% |
+| phi4:14b (disjoint family) | 0.69 / 0.86 | 0.66 / 0.78 | 0.80 / 0.91 | 77% |
+
+phi4:14b is the strongest of the three and still 20 points short of the bar on
+the residual. No juror at this size closes the tail; the frontier band in
+particular needed a frontier model (phi4 reaches 0.66 where the others sit at
+0.29–0.36).
 
 ## Limits
 

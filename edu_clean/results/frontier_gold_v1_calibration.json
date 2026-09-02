@@ -106,5 +106,221 @@
     }
    }
   }
+ },
+ "ollama/gemma3:12b": {
+  "model": "ollama/gemma3:12b",
+  "hosts": "local=http://127.0.0.1:11434|2|ollama",
+  "generated": "2026-09-01",
+  "fire": {
+   "items": 399,
+   "jurors": 1,
+   "pending_units": 399,
+   "cached_units": 0,
+   "approx_prompt_tokens_per_unit": 931,
+   "done": 399,
+   "failed": 0,
+   "skipped": 0,
+   "parse_failures": 0
+  },
+  "tiers": {
+   "det": {
+    "n": 60,
+    "graded": 46,
+    "fired": 60,
+    "voted": 45,
+    "vote_rate": 0.978,
+    "strict": 0.844,
+    "lenient": 0.933,
+    "level": 0.956,
+    "gold_xun": {
+     "abstain": 7,
+     "coded": 7,
+     "unfired": 0
+    }
+   },
+   "jury_llm": {
+    "n": 60,
+    "graded": 59,
+    "fired": 60,
+    "voted": 58,
+    "vote_rate": 0.983,
+    "strict": 0.897,
+    "lenient": 0.948,
+    "level": 0.966,
+    "gold_xun": {
+     "abstain": 0,
+     "coded": 1,
+     "unfired": 0
+    }
+   },
+   "frontier": {
+    "n": 60,
+    "graded": 58,
+    "fired": 60,
+    "voted": 47,
+    "vote_rate": 0.81,
+    "strict": 0.362,
+    "lenient": 0.638,
+    "level": 0.617,
+    "gold_xun": {
+     "abstain": 1,
+     "coded": 1,
+     "unfired": 0
+    }
+   },
+   "knn_head": {
+    "n": 60,
+    "graded": 60,
+    "fired": 60,
+    "voted": 49,
+    "vote_rate": 0.817,
+    "strict": 0.796,
+    "lenient": 0.918,
+    "level": 0.857,
+    "gold_xun": {
+     "abstain": 0,
+     "coded": 0,
+     "unfired": 0
+    }
+   },
+   "degree_type": {
+    "n": 60,
+    "graded": 54,
+    "fired": 60,
+    "voted": 52,
+    "vote_rate": 0.963,
+    "strict": 0.808,
+    "lenient": 0.865,
+    "level": 0.942,
+    "gold_xun": {
+     "abstain": 1,
+     "coded": 5,
+     "unfired": 0
+    }
+   },
+   "residual": {
+    "n": 100,
+    "graded": 85,
+    "fired": 100,
+    "voted": 82,
+    "vote_rate": 0.965,
+    "strict": 0.634,
+    "lenient": 0.78,
+    "level": 0.805,
+    "gold_xun": {
+     "abstain": 6,
+     "coded": 9,
+     "unfired": 0
+    }
+   }
+  }
+ },
+ "ollama/phi4:14b": {
+  "model": "ollama/phi4:14b",
+  "hosts": "local=http://127.0.0.1:11434|2|ollama",
+  "generated": "2026-09-02",
+  "fire": {
+   "items": 399,
+   "jurors": 1,
+   "pending_units": 399,
+   "cached_units": 0,
+   "approx_prompt_tokens_per_unit": 931,
+   "done": 399,
+   "failed": 0,
+   "skipped": 0,
+   "parse_failures": 0
+  },
+  "tiers": {
+   "det": {
+    "n": 60,
+    "graded": 46,
+    "fired": 60,
+    "voted": 44,
+    "vote_rate": 0.957,
+    "strict": 0.841,
+    "lenient": 0.909,
+    "level": 0.955,
+    "gold_xun": {
+     "abstain": 11,
+     "coded": 3,
+     "unfired": 0
+    }
+   },
+   "jury_llm": {
+    "n": 60,
+    "graded": 59,
+    "fired": 60,
+    "voted": 57,
+    "vote_rate": 0.966,
+    "strict": 0.93,
+    "lenient": 0.965,
+    "level": 0.965,
+    "gold_xun": {
+     "abstain": 0,
+     "coded": 1,
+     "unfired": 0
+    }
+   },
+   "frontier": {
+    "n": 60,
+    "graded": 58,
+    "fired": 60,
+    "voted": 41,
+    "vote_rate": 0.707,
+    "strict": 0.659,
+    "lenient": 0.78,
+    "level": 0.878,
+    "gold_xun": {
+     "abstain": 1,
+     "coded": 1,
+     "unfired": 0
+    }
+   },
+   "knn_head": {
+    "n": 60,
+    "graded": 60,
+    "fired": 60,
+    "voted": 45,
+    "vote_rate": 0.75,
+    "strict": 0.8,
+    "lenient": 0.911,
+    "level": 0.889,
+    "gold_xun": {
+     "abstain": 0,
+     "coded": 0,
+     "unfired": 0
+    }
+   },
+   "degree_type": {
+    "n": 60,
+    "graded": 54,
+    "fired": 60,
+    "voted": 52,
+    "vote_rate": 0.963,
+    "strict": 0.865,
+    "lenient": 0.904,
+    "level": 0.962,
+    "gold_xun": {
+     "abstain": 1,
+     "coded": 5,
+     "unfired": 0
+    }
+   },
+   "residual": {
+    "n": 100,
+    "graded": 85,
+    "fired": 100,
+    "voted": 77,
+    "vote_rate": 0.906,
+    "strict": 0.688,
+    "lenient": 0.857,
+    "level": 0.818,
+    "gold_xun": {
+     "abstain": 6,
+     "coded": 9,
+     "unfired": 0
+    }
+   }
+  }
  }
 }
