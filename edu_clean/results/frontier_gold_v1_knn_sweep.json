@@ -1,0 +1,3831 @@
+{
+ "generated": "2026-09-01",
+ "taus": {
+  "0.8": {
+   "det": {
+    "n": 60,
+    "covered": 46,
+    "graded": 43,
+    "strict": 0.86,
+    "lenient": 0.907,
+    "level": 0.953,
+    "gold_xun_coded": 3
+   },
+   "jury_llm": {
+    "n": 60,
+    "covered": 57,
+    "graded": 56,
+    "strict": 0.964,
+    "lenient": 0.964,
+    "level": 1.0,
+    "gold_xun_coded": 1
+   },
+   "frontier": {
+    "n": 60,
+    "covered": 56,
+    "graded": 54,
+    "strict": 0.778,
+    "lenient": 0.833,
+    "level": 0.926,
+    "gold_xun_coded": 2
+   },
+   "knn_head": {
+    "n": 60,
+    "covered": 60,
+    "graded": 60,
+    "strict": 0.933,
+    "lenient": 0.967,
+    "level": 0.967,
+    "gold_xun_coded": 0
+   },
+   "degree_type": {
+    "n": 60,
+    "covered": 53,
+    "graded": 49,
+    "strict": 0.776,
+    "lenient": 0.837,
+    "level": 0.939,
+    "gold_xun_coded": 4
+   },
+   "residual": {
+    "n": 100,
+    "covered": 72,
+    "graded": 66,
+    "strict": 0.667,
+    "lenient": 0.803,
+    "level": 0.833,
+    "gold_xun_coded": 6
+   }
+  },
+  "0.85": {
+   "det": {
+    "n": 60,
+    "covered": 42,
+    "graded": 41,
+    "strict": 0.878,
+    "lenient": 0.927,
+    "level": 0.976,
+    "gold_xun_coded": 1
+   },
+   "jury_llm": {
+    "n": 60,
+    "covered": 56,
+    "graded": 55,
+    "strict": 0.964,
+    "lenient": 0.964,
+    "level": 1.0,
+    "gold_xun_coded": 1
+   },
+   "frontier": {
+    "n": 60,
+    "covered": 50,
+    "graded": 49,
+    "strict": 0.796,
+    "lenient": 0.857,
+    "level": 0.918,
+    "gold_xun_coded": 1
+   },
+   "knn_head": {
+    "n": 60,
+    "covered": 60,
+    "graded": 60,
+    "strict": 0.933,
+    "lenient": 0.967,
+    "level": 0.967,
+    "gold_xun_coded": 0
+   },
+   "degree_type": {
+    "n": 60,
+    "covered": 39,
+    "graded": 37,
+    "strict": 0.811,
+    "lenient": 0.865,
+    "level": 0.946,
+    "gold_xun_coded": 2
+   },
+   "residual": {
+    "n": 100,
+    "covered": 49,
+    "graded": 47,
+    "strict": 0.66,
+    "lenient": 0.809,
+    "level": 0.872,
+    "gold_xun_coded": 2
+   }
+  },
+  "0.9": {
+   "det": {
+    "n": 60,
+    "covered": 41,
+    "graded": 40,
+    "strict": 0.875,
+    "lenient": 0.925,
+    "level": 0.975,
+    "gold_xun_coded": 1
+   },
+   "jury_llm": {
+    "n": 60,
+    "covered": 52,
+    "graded": 52,
+    "strict": 0.962,
+    "lenient": 0.962,
+    "level": 1.0,
+    "gold_xun_coded": 0
+   },
+   "frontier": {
+    "n": 60,
+    "covered": 39,
+    "graded": 39,
+    "strict": 0.872,
+    "lenient": 0.949,
+    "level": 0.974,
+    "gold_xun_coded": 0
+   },
+   "knn_head": {
+    "n": 60,
+    "covered": 60,
+    "graded": 60,
+    "strict": 0.933,
+    "lenient": 0.967,
+    "level": 0.967,
+    "gold_xun_coded": 0
+   },
+   "degree_type": {
+    "n": 60,
+    "covered": 21,
+    "graded": 20,
+    "strict": 0.85,
+    "lenient": 0.9,
+    "level": 1.0,
+    "gold_xun_coded": 1
+   },
+   "residual": {
+    "n": 100,
+    "covered": 27,
+    "graded": 26,
+    "strict": 0.654,
+    "lenient": 0.846,
+    "level": 0.808,
+    "gold_xun_coded": 1
+   }
+  },
+  "0.95": {
+   "det": {
+    "n": 60,
+    "covered": 29,
+    "graded": 29,
+    "strict": 0.897,
+    "lenient": 0.931,
+    "level": 1.0,
+    "gold_xun_coded": 0
+   },
+   "jury_llm": {
+    "n": 60,
+    "covered": 45,
+    "graded": 45,
+    "strict": 0.978,
+    "lenient": 0.978,
+    "level": 1.0,
+    "gold_xun_coded": 0
+   },
+   "frontier": {
+    "n": 60,
+    "covered": 32,
+    "graded": 32,
+    "strict": 0.906,
+    "lenient": 0.969,
+    "level": 1.0,
+    "gold_xun_coded": 0
+   },
+   "knn_head": {
+    "n": 60,
+    "covered": 60,
+    "graded": 60,
+    "strict": 0.933,
+    "lenient": 0.967,
+    "level": 0.967,
+    "gold_xun_coded": 0
+   },
+   "degree_type": {
+    "n": 60,
+    "covered": 8,
+    "graded": 8,
+    "strict": 1.0,
+    "lenient": 1.0,
+    "level": 1.0,
+    "gold_xun_coded": 0
+   },
+   "residual": {
+    "n": 100,
+    "covered": 11,
+    "graded": 11,
+    "strict": 0.636,
+    "lenient": 0.909,
+    "level": 0.818,
+    "gold_xun_coded": 0
+   }
+  }
+ },
+ "by_string": [
+  {
+   "idx": 0,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.9036,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 1,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.751,
+   "knn_cip2": "24",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 2,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8492,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 3,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.8429,
+   "knn_cip2": "15",
+   "gold": "15",
+   "gold_secondary": "46"
+  },
+  {
+   "idx": 4,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "40",
+   "gold": "40",
+   "gold_secondary": "13"
+  },
+  {
+   "idx": 5,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 1.0,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": null
+  },
+  {
+   "idx": 6,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.8194,
+   "knn_cip2": "24",
+   "gold": "52",
+   "gold_secondary": "01"
+  },
+  {
+   "idx": 7,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8628,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 8,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": null
+  },
+  {
+   "idx": 9,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8102,
+   "knn_cip2": "46",
+   "gold": "46",
+   "gold_secondary": "47"
+  },
+  {
+   "idx": 10,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7361,
+   "knn_cip2": "60",
+   "gold": "01",
+   "gold_secondary": "26"
+  },
+  {
+   "idx": 11,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "30",
+   "gold": "30",
+   "gold_secondary": "51"
+  },
+  {
+   "idx": 12,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8318,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 13,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8806,
+   "knn_cip2": "23",
+   "gold": "24",
+   "gold_secondary": "40"
+  },
+  {
+   "idx": 14,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.88,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": null
+  },
+  {
+   "idx": 15,
+   "tier": "det",
+   "method": "head_knn",
+   "sim": 0.6972,
+   "knn_cip2": "16",
+   "gold": "16",
+   "gold_secondary": null
+  },
+  {
+   "idx": 16,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8083,
+   "knn_cip2": "38",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 17,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.6604,
+   "knn_cip2": "53",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 18,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8257,
+   "knn_cip2": "22",
+   "gold": "22",
+   "gold_secondary": null
+  },
+  {
+   "idx": 19,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7097,
+   "knn_cip2": "45",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 20,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 21,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9925,
+   "knn_cip2": "15",
+   "gold": "15",
+   "gold_secondary": null
+  },
+  {
+   "idx": 22,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "23",
+   "gold": "23",
+   "gold_secondary": null
+  },
+  {
+   "idx": 23,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8699,
+   "knn_cip2": "13",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 24,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 25,
+   "tier": "degree_type",
+   "method": "head_knn",
+   "sim": 0.9747,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 26,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 27,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.931,
+   "knn_cip2": "15",
+   "gold": "11",
+   "gold_secondary": null
+  },
+  {
+   "idx": 28,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": "42"
+  },
+  {
+   "idx": 29,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 30,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7914,
+   "knn_cip2": "26",
+   "gold": "19",
+   "gold_secondary": "51"
+  },
+  {
+   "idx": 31,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.885,
+   "knn_cip2": "44",
+   "gold": "14",
+   "gold_secondary": "01"
+  },
+  {
+   "idx": 32,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8202,
+   "knn_cip2": "11",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 33,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.953,
+   "knn_cip2": "14",
+   "gold": "14",
+   "gold_secondary": "11"
+  },
+  {
+   "idx": 34,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8834,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 35,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.7305,
+   "knn_cip2": "14",
+   "gold": "14",
+   "gold_secondary": null
+  },
+  {
+   "idx": 36,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.955,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": null
+  },
+  {
+   "idx": 37,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 38,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 39,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.8319,
+   "knn_cip2": "50",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 40,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.9249,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 41,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "23",
+   "gold": "23",
+   "gold_secondary": null
+  },
+  {
+   "idx": 42,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 43,
+   "tier": "degree_type",
+   "method": "head_knn",
+   "sim": 0.7902,
+   "knn_cip2": "05",
+   "gold": "44",
+   "gold_secondary": "05"
+  },
+  {
+   "idx": 44,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8227,
+   "knn_cip2": "13",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 45,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8871,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 46,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.7776,
+   "knn_cip2": "52",
+   "gold": "51",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 47,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.7233,
+   "knn_cip2": "52",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 48,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.8503,
+   "knn_cip2": "44",
+   "gold": "43",
+   "gold_secondary": null
+  },
+  {
+   "idx": 49,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9751,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 50,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8232,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 51,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "14"
+  },
+  {
+   "idx": 52,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.925,
+   "knn_cip2": "50",
+   "gold": "19",
+   "gold_secondary": "50"
+  },
+  {
+   "idx": 53,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8093,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 54,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": "45"
+  },
+  {
+   "idx": 55,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.688,
+   "knn_cip2": "44",
+   "gold": "44",
+   "gold_secondary": null
+  },
+  {
+   "idx": 56,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "23",
+   "gold": "23",
+   "gold_secondary": "50"
+  },
+  {
+   "idx": 57,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "19",
+   "gold": "19",
+   "gold_secondary": null
+  },
+  {
+   "idx": 58,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.8392,
+   "knn_cip2": "24",
+   "gold": "24",
+   "gold_secondary": null
+  },
+  {
+   "idx": 59,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": null
+  },
+  {
+   "idx": 60,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.7835,
+   "knn_cip2": "04",
+   "gold": "22",
+   "gold_secondary": null
+  },
+  {
+   "idx": 61,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9007,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 62,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.7596,
+   "knn_cip2": "50",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 63,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "11",
+   "gold": "11",
+   "gold_secondary": null
+  },
+  {
+   "idx": 64,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8204,
+   "knn_cip2": "52",
+   "gold": "XUN",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 65,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "11",
+   "gold": "11",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 66,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9633,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 67,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": null
+  },
+  {
+   "idx": 68,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": "09"
+  },
+  {
+   "idx": 69,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9151,
+   "knn_cip2": "26",
+   "gold": "38",
+   "gold_secondary": null
+  },
+  {
+   "idx": 70,
+   "tier": "degree_type",
+   "method": "head_knn",
+   "sim": 0.8595,
+   "knn_cip2": "14",
+   "gold": "14",
+   "gold_secondary": null
+  },
+  {
+   "idx": 71,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9545,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 72,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.7993,
+   "knn_cip2": "11",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 73,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.8255,
+   "knn_cip2": "11",
+   "gold": "11",
+   "gold_secondary": null
+  },
+  {
+   "idx": 74,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 75,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.8842,
+   "knn_cip2": "44",
+   "gold": "44",
+   "gold_secondary": null
+  },
+  {
+   "idx": 76,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "53",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 77,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": "42"
+  },
+  {
+   "idx": 78,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "42",
+   "gold": "42",
+   "gold_secondary": "44"
+  },
+  {
+   "idx": 79,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.9343,
+   "knn_cip2": "47",
+   "gold": "47",
+   "gold_secondary": "15"
+  },
+  {
+   "idx": 80,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": "27"
+  },
+  {
+   "idx": 81,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.936,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 82,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.6631,
+   "knn_cip2": "22",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 83,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.7155,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "43"
+  },
+  {
+   "idx": 84,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8723,
+   "knn_cip2": "12",
+   "gold": "12",
+   "gold_secondary": null
+  },
+  {
+   "idx": 85,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9457,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 86,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8809,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 87,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.7886,
+   "knn_cip2": "14",
+   "gold": "46",
+   "gold_secondary": null
+  },
+  {
+   "idx": 88,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 89,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.853,
+   "knn_cip2": "04",
+   "gold": "04",
+   "gold_secondary": null
+  },
+  {
+   "idx": 90,
+   "tier": "degree_type",
+   "method": "head_knn",
+   "sim": 0.8242,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 91,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.7903,
+   "knn_cip2": "11",
+   "gold": "11",
+   "gold_secondary": null
+  },
+  {
+   "idx": 92,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 93,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9101,
+   "knn_cip2": "13",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 94,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 95,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": null
+  },
+  {
+   "idx": 96,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.7844,
+   "knn_cip2": "44",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 97,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": null
+  },
+  {
+   "idx": 98,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9448,
+   "knn_cip2": "04",
+   "gold": "04",
+   "gold_secondary": null
+  },
+  {
+   "idx": 99,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7024,
+   "knn_cip2": "12",
+   "gold": "12",
+   "gold_secondary": null
+  },
+  {
+   "idx": 100,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "40",
+   "gold": "40",
+   "gold_secondary": null
+  },
+  {
+   "idx": 101,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 102,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "27",
+   "gold": "27",
+   "gold_secondary": "45"
+  },
+  {
+   "idx": 103,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": "13"
+  },
+  {
+   "idx": 104,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "05"
+  },
+  {
+   "idx": 105,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9745,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 106,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": "16"
+  },
+  {
+   "idx": 107,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 108,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9153,
+   "knn_cip2": "52",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 109,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9235,
+   "knn_cip2": "14",
+   "gold": "14",
+   "gold_secondary": null
+  },
+  {
+   "idx": 110,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.602,
+   "knn_cip2": "43",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 111,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.8422,
+   "knn_cip2": "11",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 112,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 113,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.9928,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": "50"
+  },
+  {
+   "idx": 114,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.6532,
+   "knn_cip2": "53",
+   "gold": "11",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 115,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9459,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 116,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "16",
+   "gold": "16",
+   "gold_secondary": "26"
+  },
+  {
+   "idx": 117,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "11",
+   "gold": "11",
+   "gold_secondary": null
+  },
+  {
+   "idx": 118,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.7683,
+   "knn_cip2": "42",
+   "gold": "03",
+   "gold_secondary": "38"
+  },
+  {
+   "idx": 119,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9765,
+   "knn_cip2": "01",
+   "gold": "01",
+   "gold_secondary": "03"
+  },
+  {
+   "idx": 120,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": "38"
+  },
+  {
+   "idx": 121,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9923,
+   "knn_cip2": "26",
+   "gold": "26",
+   "gold_secondary": "42"
+  },
+  {
+   "idx": 122,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8168,
+   "knn_cip2": "23",
+   "gold": "09",
+   "gold_secondary": "50"
+  },
+  {
+   "idx": 123,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "26",
+   "gold": "26",
+   "gold_secondary": "13"
+  },
+  {
+   "idx": 124,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.974,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 125,
+   "tier": "degree_type",
+   "method": "head_knn",
+   "sim": 0.8551,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": "26"
+  },
+  {
+   "idx": 126,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9433,
+   "knn_cip2": "26",
+   "gold": "26",
+   "gold_secondary": "31"
+  },
+  {
+   "idx": 127,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "22",
+   "gold": "22",
+   "gold_secondary": null
+  },
+  {
+   "idx": 128,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "14",
+   "gold": "14",
+   "gold_secondary": null
+  },
+  {
+   "idx": 129,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.8639,
+   "knn_cip2": "04",
+   "gold": "04",
+   "gold_secondary": null
+  },
+  {
+   "idx": 130,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8353,
+   "knn_cip2": "14",
+   "gold": "53",
+   "gold_secondary": "XUN"
+  },
+  {
+   "idx": 131,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.7126,
+   "knn_cip2": "44",
+   "gold": "53",
+   "gold_secondary": "40"
+  },
+  {
+   "idx": 132,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.6961,
+   "knn_cip2": "52",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 133,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.9066,
+   "knn_cip2": "03",
+   "gold": "52",
+   "gold_secondary": "03"
+  },
+  {
+   "idx": 134,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.7964,
+   "knn_cip2": "50",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 135,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8131,
+   "knn_cip2": "52",
+   "gold": "XUN",
+   "gold_secondary": "50"
+  },
+  {
+   "idx": 136,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9317,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 137,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9597,
+   "knn_cip2": "10",
+   "gold": "10",
+   "gold_secondary": "09"
+  },
+  {
+   "idx": 138,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8221,
+   "knn_cip2": "52",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 139,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": "23"
+  },
+  {
+   "idx": 140,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 141,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": null
+  },
+  {
+   "idx": 142,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9361,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 143,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.86,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 144,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": "19"
+  },
+  {
+   "idx": 145,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8505,
+   "knn_cip2": "47",
+   "gold": "48",
+   "gold_secondary": "15"
+  },
+  {
+   "idx": 146,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.9326,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": "10"
+  },
+  {
+   "idx": 147,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.8811,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 148,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": "23"
+  },
+  {
+   "idx": 149,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8568,
+   "knn_cip2": "09",
+   "gold": "50",
+   "gold_secondary": null
+  },
+  {
+   "idx": 150,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.9239,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 151,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "23",
+   "gold": "23",
+   "gold_secondary": null
+  },
+  {
+   "idx": 152,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8745,
+   "knn_cip2": "03",
+   "gold": "51",
+   "gold_secondary": "15"
+  },
+  {
+   "idx": 153,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.9383,
+   "knn_cip2": "25",
+   "gold": "25",
+   "gold_secondary": null
+  },
+  {
+   "idx": 154,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": "42"
+  },
+  {
+   "idx": 155,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9003,
+   "knn_cip2": "14",
+   "gold": "14",
+   "gold_secondary": null
+  },
+  {
+   "idx": 156,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": null
+  },
+  {
+   "idx": 157,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.791,
+   "knn_cip2": "14",
+   "gold": "12",
+   "gold_secondary": "51"
+  },
+  {
+   "idx": 158,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7742,
+   "knn_cip2": "52",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 159,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8455,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 160,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9658,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 161,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9558,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 162,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8018,
+   "knn_cip2": "26",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 163,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.7904,
+   "knn_cip2": "24",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 164,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8456,
+   "knn_cip2": "30",
+   "gold": "45",
+   "gold_secondary": null
+  },
+  {
+   "idx": 165,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8388,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": null
+  },
+  {
+   "idx": 166,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9582,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 167,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "23",
+   "gold": "23",
+   "gold_secondary": "09"
+  },
+  {
+   "idx": 168,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9841,
+   "knn_cip2": "14",
+   "gold": "14",
+   "gold_secondary": null
+  },
+  {
+   "idx": 169,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9115,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 170,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.912,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 171,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "04",
+   "gold": "04",
+   "gold_secondary": null
+  },
+  {
+   "idx": 172,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8191,
+   "knn_cip2": "30",
+   "gold": "XUN",
+   "gold_secondary": "29"
+  },
+  {
+   "idx": 173,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 174,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": "54"
+  },
+  {
+   "idx": 175,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": "42"
+  },
+  {
+   "idx": 176,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9403,
+   "knn_cip2": "19",
+   "gold": "19",
+   "gold_secondary": null
+  },
+  {
+   "idx": 177,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "11"
+  },
+  {
+   "idx": 178,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9538,
+   "knn_cip2": "51",
+   "gold": "12",
+   "gold_secondary": null
+  },
+  {
+   "idx": 179,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9219,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 180,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8811,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 181,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8224,
+   "knn_cip2": "29",
+   "gold": "29",
+   "gold_secondary": null
+  },
+  {
+   "idx": 182,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.6512,
+   "knn_cip2": "29",
+   "gold": "29",
+   "gold_secondary": "XUN"
+  },
+  {
+   "idx": 183,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9301,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": null
+  },
+  {
+   "idx": 184,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9835,
+   "knn_cip2": "24",
+   "gold": "24",
+   "gold_secondary": null
+  },
+  {
+   "idx": 185,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8664,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 186,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7628,
+   "knn_cip2": "53",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 187,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.978,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": null
+  },
+  {
+   "idx": 188,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 189,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8619,
+   "knn_cip2": "09",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 190,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9444,
+   "knn_cip2": "15",
+   "gold": "14",
+   "gold_secondary": null
+  },
+  {
+   "idx": 191,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 192,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8942,
+   "knn_cip2": "15",
+   "gold": "15",
+   "gold_secondary": null
+  },
+  {
+   "idx": 193,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8137,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": "50"
+  },
+  {
+   "idx": 194,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9006,
+   "knn_cip2": "19",
+   "gold": "19",
+   "gold_secondary": "53"
+  },
+  {
+   "idx": 195,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8715,
+   "knn_cip2": "30",
+   "gold": "24",
+   "gold_secondary": "40"
+  },
+  {
+   "idx": 196,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8638,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": null
+  },
+  {
+   "idx": 197,
+   "tier": "degree_type",
+   "method": "head_knn",
+   "sim": 0.8795,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": null
+  },
+  {
+   "idx": 198,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9457,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": "10"
+  },
+  {
+   "idx": 199,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8651,
+   "knn_cip2": "11",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 200,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8699,
+   "knn_cip2": "15",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 201,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "42"
+  },
+  {
+   "idx": 202,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 203,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9188,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": "60"
+  },
+  {
+   "idx": 204,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9673,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 205,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7022,
+   "knn_cip2": "42",
+   "gold": "XUN",
+   "gold_secondary": "42"
+  },
+  {
+   "idx": 206,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.7966,
+   "knn_cip2": "50",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 207,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 208,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8857,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": "45"
+  },
+  {
+   "idx": 209,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "44",
+   "gold": "50",
+   "gold_secondary": null
+  },
+  {
+   "idx": 210,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9681,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": null
+  },
+  {
+   "idx": 211,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": "10"
+  },
+  {
+   "idx": 212,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9948,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 213,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7593,
+   "knn_cip2": "50",
+   "gold": "09",
+   "gold_secondary": "10"
+  },
+  {
+   "idx": 214,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "45"
+  },
+  {
+   "idx": 215,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9637,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 216,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9555,
+   "knn_cip2": "09",
+   "gold": "52",
+   "gold_secondary": "09"
+  },
+  {
+   "idx": 217,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "42",
+   "gold": "42",
+   "gold_secondary": "44"
+  },
+  {
+   "idx": 218,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8862,
+   "knn_cip2": "15",
+   "gold": "41",
+   "gold_secondary": "15"
+  },
+  {
+   "idx": 219,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "11"
+  },
+  {
+   "idx": 220,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9727,
+   "knn_cip2": "44",
+   "gold": "44",
+   "gold_secondary": "03"
+  },
+  {
+   "idx": 221,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9176,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": null
+  },
+  {
+   "idx": 222,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": "13"
+  },
+  {
+   "idx": 223,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8628,
+   "knn_cip2": "14",
+   "gold": "14",
+   "gold_secondary": "26"
+  },
+  {
+   "idx": 224,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9182,
+   "knn_cip2": "30",
+   "gold": "53",
+   "gold_secondary": "27"
+  },
+  {
+   "idx": 225,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8431,
+   "knn_cip2": "43",
+   "gold": "43",
+   "gold_secondary": null
+  },
+  {
+   "idx": 226,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "26",
+   "gold": "26",
+   "gold_secondary": null
+  },
+  {
+   "idx": 227,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9277,
+   "knn_cip2": "13",
+   "gold": "XUN",
+   "gold_secondary": "13"
+  },
+  {
+   "idx": 228,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7636,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": null
+  },
+  {
+   "idx": 229,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9839,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": null
+  },
+  {
+   "idx": 230,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": "11"
+  },
+  {
+   "idx": 231,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8493,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 232,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8671,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 233,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8562,
+   "knn_cip2": "52",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 234,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "26",
+   "gold": "26",
+   "gold_secondary": null
+  },
+  {
+   "idx": 235,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8659,
+   "knn_cip2": "05",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 236,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "42",
+   "gold": "42",
+   "gold_secondary": "23"
+  },
+  {
+   "idx": 237,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.836,
+   "knn_cip2": "45",
+   "gold": "16",
+   "gold_secondary": "45"
+  },
+  {
+   "idx": 238,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 239,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "44"
+  },
+  {
+   "idx": 240,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9358,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 241,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.9507,
+   "knn_cip2": "11",
+   "gold": "43",
+   "gold_secondary": "11"
+  },
+  {
+   "idx": 242,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "04",
+   "gold": "01",
+   "gold_secondary": "04"
+  },
+  {
+   "idx": 243,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 244,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.7025,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": "42"
+  },
+  {
+   "idx": 245,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.9328,
+   "knn_cip2": "22",
+   "gold": "22",
+   "gold_secondary": null
+  },
+  {
+   "idx": 246,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9894,
+   "knn_cip2": "26",
+   "gold": "26",
+   "gold_secondary": null
+  },
+  {
+   "idx": 247,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.8121,
+   "knn_cip2": "11",
+   "gold": "11",
+   "gold_secondary": null
+  },
+  {
+   "idx": 248,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.8455,
+   "knn_cip2": "11",
+   "gold": "11",
+   "gold_secondary": null
+  },
+  {
+   "idx": 249,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 250,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9434,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 251,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8174,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 252,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8207,
+   "knn_cip2": "26",
+   "gold": "26",
+   "gold_secondary": null
+  },
+  {
+   "idx": 253,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9922,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 254,
+   "tier": "degree_type",
+   "method": "head_knn",
+   "sim": 0.8244,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": "51"
+  },
+  {
+   "idx": 255,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.8755,
+   "knn_cip2": "26",
+   "gold": "26",
+   "gold_secondary": null
+  },
+  {
+   "idx": 256,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "44",
+   "gold": "44",
+   "gold_secondary": null
+  },
+  {
+   "idx": 257,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 258,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.8927,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 259,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8455,
+   "knn_cip2": "45",
+   "gold": "44",
+   "gold_secondary": "45"
+  },
+  {
+   "idx": 260,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8103,
+   "knn_cip2": "52",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 261,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 262,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "26",
+   "gold": "26",
+   "gold_secondary": "14"
+  },
+  {
+   "idx": 263,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": null
+  },
+  {
+   "idx": 264,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "11",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 265,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.858,
+   "knn_cip2": "03",
+   "gold": "03",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 266,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7924,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 267,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "30",
+   "gold": "30",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 268,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.899,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 269,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": "05"
+  },
+  {
+   "idx": 270,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 271,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9351,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 272,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "23",
+   "gold": "23",
+   "gold_secondary": "54"
+  },
+  {
+   "idx": 273,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9214,
+   "knn_cip2": "42",
+   "gold": "42",
+   "gold_secondary": null
+  },
+  {
+   "idx": 274,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.9796,
+   "knn_cip2": "15",
+   "gold": "14",
+   "gold_secondary": "15"
+  },
+  {
+   "idx": 275,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9033,
+   "knn_cip2": "46",
+   "gold": "XUN",
+   "gold_secondary": "46"
+  },
+  {
+   "idx": 276,
+   "tier": "jury_llm",
+   "method": "head_knn",
+   "sim": 0.9115,
+   "knn_cip2": "29",
+   "gold": "29",
+   "gold_secondary": null
+  },
+  {
+   "idx": 277,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 278,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8923,
+   "knn_cip2": "51",
+   "gold": "44",
+   "gold_secondary": "51"
+  },
+  {
+   "idx": 279,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8068,
+   "knn_cip2": "60",
+   "gold": "51",
+   "gold_secondary": "60"
+  },
+  {
+   "idx": 280,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 281,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": "13"
+  },
+  {
+   "idx": 282,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "27",
+   "gold": "27",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 283,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 284,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.9689,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 285,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.634,
+   "knn_cip2": "22",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 286,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "45"
+  },
+  {
+   "idx": 287,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9413,
+   "knn_cip2": "43",
+   "gold": "43",
+   "gold_secondary": null
+  },
+  {
+   "idx": 288,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9771,
+   "knn_cip2": "31",
+   "gold": "31",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 289,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.9865,
+   "knn_cip2": "24",
+   "gold": "24",
+   "gold_secondary": "38"
+  },
+  {
+   "idx": 290,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9832,
+   "knn_cip2": "22",
+   "gold": "22",
+   "gold_secondary": null
+  },
+  {
+   "idx": 291,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.6989,
+   "knn_cip2": "11",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 292,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8653,
+   "knn_cip2": "47",
+   "gold": "47",
+   "gold_secondary": null
+  },
+  {
+   "idx": 293,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8487,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 294,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": null
+  },
+  {
+   "idx": 295,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9307,
+   "knn_cip2": "22",
+   "gold": "22",
+   "gold_secondary": null
+  },
+  {
+   "idx": 296,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9738,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": null
+  },
+  {
+   "idx": 297,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9099,
+   "knn_cip2": "30",
+   "gold": "11",
+   "gold_secondary": "30"
+  },
+  {
+   "idx": 298,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.6917,
+   "knn_cip2": "23",
+   "gold": "53",
+   "gold_secondary": "XUN"
+  },
+  {
+   "idx": 299,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "09"
+  },
+  {
+   "idx": 300,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8625,
+   "knn_cip2": "26",
+   "gold": "26",
+   "gold_secondary": null
+  },
+  {
+   "idx": 301,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.7699,
+   "knn_cip2": "26",
+   "gold": "45",
+   "gold_secondary": "26"
+  },
+  {
+   "idx": 302,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7069,
+   "knn_cip2": "22",
+   "gold": "XUN",
+   "gold_secondary": "09"
+  },
+  {
+   "idx": 303,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9799,
+   "knn_cip2": "14",
+   "gold": "11",
+   "gold_secondary": null
+  },
+  {
+   "idx": 304,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.9807,
+   "knn_cip2": "13",
+   "gold": "31",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 305,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": null
+  },
+  {
+   "idx": 306,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 307,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 308,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": null
+  },
+  {
+   "idx": 309,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 310,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": "50"
+  },
+  {
+   "idx": 311,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8728,
+   "knn_cip2": "52",
+   "gold": "13",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 312,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 1.0,
+   "knn_cip2": "14",
+   "gold": "14",
+   "gold_secondary": null
+  },
+  {
+   "idx": 313,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": null
+  },
+  {
+   "idx": 314,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": "38"
+  },
+  {
+   "idx": 315,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.8016,
+   "knn_cip2": "50",
+   "gold": "53",
+   "gold_secondary": "XUN"
+  },
+  {
+   "idx": 316,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9454,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": null
+  },
+  {
+   "idx": 317,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "44",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 318,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.9018,
+   "knn_cip2": "13",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 319,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7191,
+   "knn_cip2": "50",
+   "gold": "53",
+   "gold_secondary": "XUN"
+  },
+  {
+   "idx": 320,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.7995,
+   "knn_cip2": "52",
+   "gold": "22",
+   "gold_secondary": null
+  },
+  {
+   "idx": 321,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": null
+  },
+  {
+   "idx": 322,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "11"
+  },
+  {
+   "idx": 323,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.7472,
+   "knn_cip2": "16",
+   "gold": "XUN",
+   "gold_secondary": "22"
+  },
+  {
+   "idx": 324,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9076,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 325,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.8637,
+   "knn_cip2": "24",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 326,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "09"
+  },
+  {
+   "idx": 327,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9128,
+   "knn_cip2": "19",
+   "gold": "13",
+   "gold_secondary": "42"
+  },
+  {
+   "idx": 328,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": null
+  },
+  {
+   "idx": 329,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9032,
+   "knn_cip2": "60",
+   "gold": "51",
+   "gold_secondary": "60"
+  },
+  {
+   "idx": 330,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8904,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 331,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.7638,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": null
+  },
+  {
+   "idx": 332,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7554,
+   "knn_cip2": "51",
+   "gold": "XUN",
+   "gold_secondary": "29"
+  },
+  {
+   "idx": 333,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9507,
+   "knn_cip2": "44",
+   "gold": "44",
+   "gold_secondary": null
+  },
+  {
+   "idx": 334,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.7421,
+   "knn_cip2": "52",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 335,
+   "tier": "degree_type",
+   "method": "head_knn",
+   "sim": 0.9224,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": "13"
+  },
+  {
+   "idx": 336,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": "23"
+  },
+  {
+   "idx": 337,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 338,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "14",
+   "gold": "14",
+   "gold_secondary": null
+  },
+  {
+   "idx": 339,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.9752,
+   "knn_cip2": "24",
+   "gold": "24",
+   "gold_secondary": "45"
+  },
+  {
+   "idx": 340,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8905,
+   "knn_cip2": "30",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 341,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "14",
+   "gold": "14",
+   "gold_secondary": "40"
+  },
+  {
+   "idx": 342,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8984,
+   "knn_cip2": "22",
+   "gold": "22",
+   "gold_secondary": null
+  },
+  {
+   "idx": 343,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "27",
+   "gold": "27",
+   "gold_secondary": "51"
+  },
+  {
+   "idx": 344,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9552,
+   "knn_cip2": "15",
+   "gold": "14",
+   "gold_secondary": null
+  },
+  {
+   "idx": 345,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8701,
+   "knn_cip2": "51",
+   "gold": "XUN",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 346,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 347,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "23",
+   "gold": "23",
+   "gold_secondary": "09"
+  },
+  {
+   "idx": 348,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8938,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": "10"
+  },
+  {
+   "idx": 349,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.9392,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": null
+  },
+  {
+   "idx": 350,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8341,
+   "knn_cip2": "43",
+   "gold": "43",
+   "gold_secondary": "51"
+  },
+  {
+   "idx": 351,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9558,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 352,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7422,
+   "knn_cip2": "43",
+   "gold": "43",
+   "gold_secondary": null
+  },
+  {
+   "idx": 353,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 354,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "54",
+   "gold": "54",
+   "gold_secondary": "09"
+  },
+  {
+   "idx": 355,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9465,
+   "knn_cip2": "14",
+   "gold": "14",
+   "gold_secondary": null
+  },
+  {
+   "idx": 356,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8791,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 357,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9038,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": null
+  },
+  {
+   "idx": 358,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7375,
+   "knn_cip2": "39",
+   "gold": "39",
+   "gold_secondary": "49"
+  },
+  {
+   "idx": 359,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "11",
+   "gold": "11",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 360,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 361,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8698,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "03"
+  },
+  {
+   "idx": 362,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.8303,
+   "knn_cip2": "16",
+   "gold": "16",
+   "gold_secondary": null
+  },
+  {
+   "idx": 363,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9596,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": "31"
+  },
+  {
+   "idx": 364,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "19"
+  },
+  {
+   "idx": 365,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9592,
+   "knn_cip2": "51",
+   "gold": "44",
+   "gold_secondary": null
+  },
+  {
+   "idx": 366,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8795,
+   "knn_cip2": "51",
+   "gold": "44",
+   "gold_secondary": null
+  },
+  {
+   "idx": 367,
+   "tier": "degree_type",
+   "method": "head_knn",
+   "sim": 0.8676,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 368,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": null
+  },
+  {
+   "idx": 369,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "11",
+   "gold": "11",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 370,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "30",
+   "gold": "45",
+   "gold_secondary": "30"
+  },
+  {
+   "idx": 371,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.7164,
+   "knn_cip2": "53",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 372,
+   "tier": "residual",
+   "method": "head_knn",
+   "sim": 0.8834,
+   "knn_cip2": "24",
+   "gold": "24",
+   "gold_secondary": "52"
+  },
+  {
+   "idx": 373,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8973,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 374,
+   "tier": "frontier",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": "40"
+  },
+  {
+   "idx": 375,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8119,
+   "knn_cip2": "52",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 376,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9655,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": null
+  },
+  {
+   "idx": 377,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "10"
+  },
+  {
+   "idx": 378,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7904,
+   "knn_cip2": "26",
+   "gold": "26",
+   "gold_secondary": "53"
+  },
+  {
+   "idx": 379,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8675,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": "27"
+  },
+  {
+   "idx": 380,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.9475,
+   "knn_cip2": "12",
+   "gold": "52",
+   "gold_secondary": "12"
+  },
+  {
+   "idx": 381,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.922,
+   "knn_cip2": "24",
+   "gold": "16",
+   "gold_secondary": null
+  },
+  {
+   "idx": 382,
+   "tier": "degree_type",
+   "method": "knn",
+   "sim": 0.8186,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 383,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.9721,
+   "knn_cip2": "09",
+   "gold": "23",
+   "gold_secondary": "09"
+  },
+  {
+   "idx": 384,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.6471,
+   "knn_cip2": "53",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 385,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.9707,
+   "knn_cip2": "14",
+   "gold": "14",
+   "gold_secondary": "40"
+  },
+  {
+   "idx": 386,
+   "tier": "frontier",
+   "method": "knn",
+   "sim": 0.8389,
+   "knn_cip2": "01",
+   "gold": "12",
+   "gold_secondary": null
+  },
+  {
+   "idx": 387,
+   "tier": "jury_llm",
+   "method": "knn",
+   "sim": 0.9761,
+   "knn_cip2": "15",
+   "gold": "15",
+   "gold_secondary": null
+  },
+  {
+   "idx": 388,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.7983,
+   "knn_cip2": "51",
+   "gold": "51",
+   "gold_secondary": null
+  },
+  {
+   "idx": 389,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.7015,
+   "knn_cip2": "24",
+   "gold": "XUN",
+   "gold_secondary": "45"
+  },
+  {
+   "idx": 390,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 391,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "52",
+   "gold": "52",
+   "gold_secondary": null
+  },
+  {
+   "idx": 392,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": "53"
+  },
+  {
+   "idx": 393,
+   "tier": "det",
+   "method": "knn",
+   "sim": 0.723,
+   "knn_cip2": "24",
+   "gold": "XUN",
+   "gold_secondary": null
+  },
+  {
+   "idx": 394,
+   "tier": "residual",
+   "method": "knn",
+   "sim": 0.8216,
+   "knn_cip2": "30",
+   "gold": "03",
+   "gold_secondary": null
+  },
+  {
+   "idx": 395,
+   "tier": "jury_llm",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "13",
+   "gold": "13",
+   "gold_secondary": null
+  },
+  {
+   "idx": 396,
+   "tier": "degree_type",
+   "method": "head_knn",
+   "sim": 0.8119,
+   "knn_cip2": "50",
+   "gold": "50",
+   "gold_secondary": "30"
+  },
+  {
+   "idx": 397,
+   "tier": "det",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "23",
+   "gold": "23",
+   "gold_secondary": null
+  },
+  {
+   "idx": 398,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "45",
+   "gold": "45",
+   "gold_secondary": null
+  },
+  {
+   "idx": 399,
+   "tier": "knn_head",
+   "method": "head_exact",
+   "sim": 1.0,
+   "knn_cip2": "09",
+   "gold": "09",
+   "gold_secondary": null
+  }
+ ]
+}

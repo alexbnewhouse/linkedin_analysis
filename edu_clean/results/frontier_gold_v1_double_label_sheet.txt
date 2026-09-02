@@ -1,0 +1,158 @@
+BLIND DOUBLE-LABEL SHEET -- CIP 2-digit family for each field-of-study string
+
+How: for each line write your code in the last column. Format per line:
+  <idx> <code>            e.g.  17 52
+  <idx> <code>/<second>   a defensible second code (lenient credit)
+  <idx> <code>?           you are unsure
+  <idx> XUN               the field string carries no field signal
+                          (GPA, honors, placeholder, institution name).
+Rules used by the first labeler (apply the same ones):
+  * compound strings ('X and Y', 'X, Y', 'X/Y') -> code the FIRST-listed field
+  * judge the field string; the degree line is context, not the answer
+  * a high-school diploma row with a real field ('mathematics') -> 53
+Score with:  uv run python -m edu_clean.gold_v1 agree YOUR_FILE.txt
+
+CODE KEY
+  01  AGRICULTURE, AGRICULTURE OPERATIONS, AND RELATED SCIENCES
+  03  NATURAL RESOURCES AND CONSERVATION
+  04  ARCHITECTURE AND RELATED SERVICES
+  05  AREA, ETHNIC, CULTURAL, GENDER, AND GROUP STUDIES
+  09  COMMUNICATION, JOURNALISM, AND RELATED PROGRAMS
+  10  COMMUNICATIONS TECHNOLOGIES/TECHNICIANS AND SUPPORT SERVICES
+  11  COMPUTER AND INFORMATION SCIENCES AND SUPPORT SERVICES
+  12  PERSONAL AND CULINARY SERVICES
+  13  EDUCATION
+  14  ENGINEERING
+  15  ENGINEERING TECHNOLOGIES AND ENGINEERING-RELATED FIELDS
+  16  FOREIGN LANGUAGES, LITERATURES, AND LINGUISTICS
+  19  FAMILY AND CONSUMER SCIENCES/HUMAN SCIENCES
+  21  TECHNOLOGY EDUCATION/INDUSTRIAL ARTS
+  22  LEGAL PROFESSIONS AND STUDIES
+  23  ENGLISH LANGUAGE AND LITERATURE/LETTERS
+  24  LIBERAL ARTS AND SCIENCES, GENERAL STUDIES AND HUMANITIES
+  25  LIBRARY SCIENCE
+  26  BIOLOGICAL AND BIOMEDICAL SCIENCES
+  27  MATHEMATICS AND STATISTICS
+  29  MILITARY TECHNOLOGIES AND APPLIED SCIENCES
+  30  MULTI/INTERDISCIPLINARY STUDIES
+  31  PARKS, RECREATION, LEISURE, AND FITNESS STUDIES
+  38  PHILOSOPHY AND RELIGIOUS STUDIES
+  39  THEOLOGY AND RELIGIOUS VOCATIONS
+  40  PHYSICAL SCIENCES
+  41  SCIENCE TECHNOLOGIES/TECHNICIANS
+  42  PSYCHOLOGY
+  43  HOMELAND SECURITY, LAW ENFORCEMENT, FIREFIGHTING AND RELATED PROTECTIVE SERVICES
+  44  PUBLIC ADMINISTRATION AND SOCIAL SERVICE PROFESSIONS
+  45  SOCIAL SCIENCES
+  46  CONSTRUCTION TRADES
+  47  MECHANIC AND REPAIR TECHNOLOGIES/TECHNICIANS
+  48  PRECISION PRODUCTION
+  49  TRANSPORTATION AND MATERIALS MOVING
+  50  VISUAL AND PERFORMING ARTS
+  51  HEALTH PROFESSIONS AND RELATED PROGRAMS
+  52  BUSINESS, MANAGEMENT, MARKETING, AND RELATED SUPPORT SERVICES
+  53  HIGH SCHOOL/SECONDARY DIPLOMAS AND CERTIFICATES
+  54  HISTORY
+  60  RESIDENCY PROGRAMS
+
+ idx	field of study                                                          	modal degree line           	 rows	code
+ 380	Hospitality/ Culinary Arts /Food Beverage/Restaurant Management         	Associates of Applied Busine	    1	
+ 377	Business / Media Technology                                             	Associate of Arts (A.A.)    	    1	
+ 237	Arabic and International Economics                                      	Bachelor of Arts - BA       	    1	
+ 265	Environmental Mgmt & Sustainability                                     	Master of Science           	    1	
+ 131	Mpc                                                                     	Intermediate                	   22	
+ 334	100.53%                                                                 	Cyber Security              	    1	
+  51	Commerce and Engineering                                                	Bachelor of Science (B.S.)  	   15	
+   6	SPECIAL STUDIES CONTINUED IN TECHNICAL,,BUSINESS MANAGEMENT,AGRONOMY AND	GENERAL                     	    1	
+ 138	Cum Laude (GPA: 3.51/4.00)                                              	BACHELOR OF SCIENCE (B.S.), 	    1	
+ 207	HR, Marketing                                                           	Master of Business Administr	    3	
+  74	Business Administration (Finance & Strategy)                            	Bachelor’s Degree           	    1	
+  63	Computer Systems Networking and Technology                              	Associate's degree          	    2	
+  88	Business / International                                                	MBA                         	    1	
+ 329	Anesthesiology                                                          	MMSc                        	   41	
+  78	psychology and social work                                              	BA, MSW                     	    1	
+ 116	Spanish and Biology                                                     	Bachelor of Arts            	    6	
+ 231	CPA License                                                             	Currently studying for CPA e	    1	
+  95	International Economics, International Relations                        	Master of Arts (M.A.)       	    3	
+  64	Weatherhead School of Management                                        	Master of Business Administr	    1	
+ 204	,Retail Management                                                      	BS-Marketing                	    1	
+  18	General LL.M.                                                           	Master of Laws - LLM        	    1	
+  33	Computer And Information Systems Engineering                            	BE                          	    1	
+ 178	Beauty/Wellness                                                         	Certified                   	    1	
+ 379	Actuary                                                                 	Bachelor's Degree           	    4	
+ 313	Criminology and Sociology                                               	Bachelor of Arts - BA       	   27	
+  37	Hr & Marketing                                                          	Mba                         	    2	
+ 282	Applied Mathematics and Finance                                         	Master in Statistics        	   11	
+ 105	Master of Business Administration (M.B.A.),                             	Master of Business Administr	    1	
+ 181	Naval Surface Warfare                                                   	Master of Weapon Systems Eng	    1	
+ 143	Doctor en Medicine - MD                                                 	Doctor of Medicine - MD     	    1	
+ 209	Social Innovation, Service Design, Design Leadership                    	Master of Design            	    1	
+  42	Business, Marketing and Masters in Business Education                   	BS and MS                   	    1	
+ 155	Studies in Mechanical Enineering                                        	68 Units Completed          	    1	
+ 117	Artificial Intelligence - Machine Learning                              	Postgraduate Certification  	    2	
+  19	University of Illinois                                                  	Webster University          	    1	
+ 230	Anthropology, Computer Science                                          	AB                          	    4	
+  17	96-100                                                                  	Early Childhood Education an	    1	
+ 246	Biomathematics, Bioinformatics and Computational Biology                	Ph.D                        	    1	
+ 227	The Institute for Educational Managemnt                                 	Graduate School of Education	    1	
+ 385	Science and Engineering                                                 	Bachelor's degree           	   29	
+ 205	Temperament                                                             	Certified Temperament Specia	    1	
+ 289	Liberal Arts Honors -Plan II Program, Philosophy                        	Bachelor's Degree           	    1	
+  20	Special Education and Elementary Education                              	Bachelor's degree           	   55	
+ 395	Education - Elementary Education and Physical Education                 	Bachelor of Science         	    1	
+ 185	Service Sector Operations                                               	MBA                         	    1	
+  47	Delhi Institute of Managment and Services                               	Diploma                     	    1	
+ 319	4.79 Weighted GPA                                                       	High School Diploma         	    1	
+ 336	English as a Second Language (ESL)/ English as a Foreign Language (EFL) 	Program Certification       	    1	
+ 146	Music Engineering Technology                                            	Bachelor of Science (B.S.)  	    4	
+  39	GPA 3.86                                                                	Environmental Resource Manag	    5	
+ 243	International FInance and Marketing                                     	Bachelors in Business Admini	    1	
+  38	Business Administration; Finance and Real Estate Development            	Master                      	    1	
+   7	Hoteleria                                                               	Associate in Hospitality and	    1	
+  43	American Indian/Alaskan Native Communities, Policy Specialization       	Master's of Social Work     	    1	
+ 255	Immunolgy                                                               	Ph.D.                       	    1	
+  80	economics and statistics                                                	Bachelor's degree           	    1	
+ 368	Music/Theater                                                           	BA                          	    3	
+  94	Business, Marketing, Entrepreneurship                                   	Quarter in Florence, Italy  	    2	
+ 304	Sports leadership                                                       	Bachelor of Arts (B.A.)     	    2	
+ 215	Postsecondary Administration Student Affairs                            	Master of Education (M.Ed.) 	    1	
+ 122	Storytelling for Social Change                                          	Certificate                 	    1	
+ 245	Judicial Reporting                                                      	Associate's degree          	    5	
+  68	Political Science; Communications (Journalism)                          	B.A                         	    1	
+ 107	Health Information/Medical Records Technology/Technician                	Associate's degree          	 1048	
+ 291	Mas                                                                     	Master of Business Administr	    1	
+ 343	Math, Chemistry, Psychology, Homeopathy                                 	DI Hom (pract)              	    1	
+ 133	Sustainability And Environmental Compliance                             	Master of Business Administr	    1	
+ 157	Electrology, Dermatology, Endicrinology, Bacteriology                   	Certificate of Medical Elect	    1	
+ 134	GPA 3.67                                                                	Business Administration, Man	    3	
+ 219	Business; Information Systems                                           	B.S. Business Administration	    1	
+ 273	Counseling psychlogy                                                    	Master of Arts (MA)         	    1	
+ 364	Fashion Merchandising and Textiles                                      	Bachelor of Arts - BA       	    4	
+ 314	Anthropology and Philosophy                                             	Bachelor’s Degree           	    9	
+ 365	Clinical Medical Social Work                                            	Master's degree             	    1	
+ 191	Accounting, Entreprenuership                                            	Bachelor of Science - Busine	    1	
+ 268	K-12 PE                                                                 	BS of Education             	    1	
+ 372	Generl Studies w/emphasis in Human Resources, Organizational Behavior   	Bachelor's degree           	    1	
+ 286	International business and management & Economics                       	Bachelor of Arts (BA)       	    1	
+ 308	Strategic Communications, Sports Media                                  	Bachelor of Science (B.S.)  	    1	
+ 194	child care service                                                      	High School Diploma         	    1	
+  36	Voice Over                                                              	Bachelor's degree           	   10	
+ 162	Brain                                                                   	Big bwain power and smart   	    1	
+ 394	Sustainable Development in Costa Rica                                   	Study Abroad                	    1	
+ 302	Henry Woodward Sackett Scholar in 1st Amendment Law                     	MS Journalism               	    1	
+ 201	Business Management and Psychology - Dual Major                         	Bachelor's degree           	    1	
+ 253	Media and Instructional Technology                                      	M.Ed.                       	    2	
+ 208	Pre-Dentistry, Biological Anthropology                                  	Bachelor of Arts in Anthropo	    1	
+  90	Competitive Intelligence & Analytics                                    	Master of Business Administr	    1	
+ 211	Music Engineering & Technology                                          	MS                          	    1	
+ 391	Business, General                                                       	Associate of Arts - AA      	   25	
+ 119	Soil and Environmental Sciences                                         	Master of Science honors deg	    3	
+ 353	International Business, Marketing and Finance                           	M.B.A.                      	    1	
+ 332	Military Occupational Specialist                                        	Tradevsman School           	    1	
+ 228	Journalistic Ethical Decision Making                                    	Fellowship                  	    1	
+ 261	Education / General Business Minor                                      	Bachelor’s Degree           	    1	
+ 340	Specializing in Marketing Data Analytics                                	Master of Business Administr	    1	
+ 113	Television, Radio and Film Production                                   	BS                          	    5	
+ 176	Family, Child and Cosumer Science                                       	Bachelor's degree           	    1	
+  98	Archtectural Design                                                     	MFA                         	    1	
+  50	Industrial Organization                                                 	Master's Degree             	    5	

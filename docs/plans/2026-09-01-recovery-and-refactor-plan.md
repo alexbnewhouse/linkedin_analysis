@@ -141,6 +141,16 @@ already covers **4,328,321** (join on `role_canonical`).
 > empty degree too) + 207k with text over 166k strings; the top 5k residual strings
 > cover only 20% of those rows and the head is GPA/honors/"General". A further
 > frontier tranche would land < 1% of rows -- stop here.
+> **Gold in use (same night):** `edu_clean/cip_tests.py::test_gold_v1_floor` gates
+> every landed tier at >= 0.90 lenient/level on the fixed sample (`make test-data`);
+> `gold_v1 calibrate MODEL HOSTS` fires any local juror on the 400 strings through the
+> frozen vote cache and scores it per tier (qwen3-4b-q4 solo: residual 0.65 strict,
+> frontier band 0.29 -- a 4B juror cannot code the tail); `gold_v1 knn` sweeps the
+> embedding paths (residual 0.64-0.67 strict at every tau: propose-only stays);
+> `gold_v1 report` writes the methods numbers (row-weighted 0.90 strict / 0.96
+> lenient / 0.98 level, recall bound 4.7% of rows) -> `docs/methods/cip-precision-gold-v1.md`;
+> `gold_v1 sheet` / `agree FILE` give the second annotator a 100-string blind sheet
+> and Cohen's kappa. Notion: methods page + double-label task in the Ship Room.
 The 2026-07-09 jury discarded 2,745 disagree + 3,096 abstain strings ≈ 103k education
 rows — including plainly codeable heads: 'Information Systems' (2,996 rows, an 11-vs-52
 juror split), 'Science', 'Psychology and Sociology', 'Health Policy and Management'.

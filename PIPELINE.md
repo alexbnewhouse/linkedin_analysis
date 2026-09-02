@@ -56,6 +56,8 @@ pooled applies ~2 min, person rollup 3s, career_steps 75s.
 | CIP disagreement band, frontier adjudication | `uv run python -m edu_clean.frontier_merge add CHUNK.txt` / `merge --execute` | same, method `frontier_v1` |
 | CIP long tail, embedding-kNN (head_exact lands) | `uv run --group embed python -m edu_clean.knn_tail` | `mappings/field_cip_knn.parquet` -> `cip_source='knn_head'` |
 | CIP blind gold (held out; re-score after any tier change) | `uv run python -m edu_clean.gold_v1 score` | `edu_clean/results/frontier_gold_v1{,_score}.{parquet,json}` |
+| CIP juror calibration on the gold (any local model) | `uv run python -m edu_clean.gold_v1 calibrate ollama/<model> "<name>=<url>\|<slots>\|ollama"` | `edu_clean/results/frontier_gold_v1_calibration.json` |
+| CIP precision report + kNN threshold sweep | `uv run python -m edu_clean.gold_v1 report` / `uv run --group embed python -m edu_clean.gold_v1 knn` | `frontier_gold_v1_{report,knn_sweep}.json`; prose in `docs/methods/cip-precision-gold-v1.md` |
 | Degree level tail | `uv run python -m edu_clean.run_dlevel_jury` | `mappings/degree_level_jury.parquet` |
 | SOC role tail | `uv run python -m career_clean.run_soc_jury` | `mappings/role_soc_jury.parquet` |
 | Industry | `uv run python -m industry.fire_llm` | see `industry/SETUP.md` |

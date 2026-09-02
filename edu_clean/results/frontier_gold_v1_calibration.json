@@ -1,0 +1,110 @@
+{
+ "llamacpp/qwen3-4b-q4": {
+  "model": "llamacpp/qwen3-4b-q4",
+  "hosts": "local5080=http://127.0.0.1:8090|16|llamacpp",
+  "generated": "2026-09-01",
+  "fire": {
+   "items": 399,
+   "jurors": 1,
+   "pending_units": 276,
+   "cached_units": 123,
+   "approx_prompt_tokens_per_unit": 926,
+   "done": 276,
+   "failed": 0,
+   "skipped": 0,
+   "parse_failures": 0
+  },
+  "tiers": {
+   "det": {
+    "n": 60,
+    "graded": 46,
+    "fired": 60,
+    "voted": 45,
+    "vote_rate": 0.978,
+    "strict": 0.844,
+    "lenient": 0.911,
+    "level": 0.978,
+    "gold_xun": {
+     "abstain": 10,
+     "coded": 4,
+     "unfired": 0
+    }
+   },
+   "jury_llm": {
+    "n": 60,
+    "graded": 59,
+    "fired": 60,
+    "voted": 59,
+    "vote_rate": 1.0,
+    "strict": 0.932,
+    "lenient": 0.966,
+    "level": 0.983,
+    "gold_xun": {
+     "abstain": 0,
+     "coded": 1,
+     "unfired": 0
+    }
+   },
+   "frontier": {
+    "n": 60,
+    "graded": 58,
+    "fired": 60,
+    "voted": 58,
+    "vote_rate": 1.0,
+    "strict": 0.293,
+    "lenient": 0.483,
+    "level": 0.655,
+    "gold_xun": {
+     "abstain": 0,
+     "coded": 2,
+     "unfired": 0
+    }
+   },
+   "knn_head": {
+    "n": 60,
+    "graded": 60,
+    "fired": 60,
+    "voted": 58,
+    "vote_rate": 0.967,
+    "strict": 0.81,
+    "lenient": 0.914,
+    "level": 0.828,
+    "gold_xun": {
+     "abstain": 0,
+     "coded": 0,
+     "unfired": 0
+    }
+   },
+   "degree_type": {
+    "n": 60,
+    "graded": 54,
+    "fired": 60,
+    "voted": 51,
+    "vote_rate": 0.944,
+    "strict": 0.824,
+    "lenient": 0.902,
+    "level": 0.961,
+    "gold_xun": {
+     "abstain": 0,
+     "coded": 6,
+     "unfired": 0
+    }
+   },
+   "residual": {
+    "n": 100,
+    "graded": 85,
+    "fired": 100,
+    "voted": 82,
+    "vote_rate": 0.965,
+    "strict": 0.646,
+    "lenient": 0.805,
+    "level": 0.829,
+    "gold_xun": {
+     "abstain": 3,
+     "coded": 12,
+     "unfired": 0
+    }
+   }
+  }
+ }
+}
