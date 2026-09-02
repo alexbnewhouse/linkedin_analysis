@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from datetime import date
 from pathlib import Path
 
@@ -51,9 +52,7 @@ STATS = ROOT / "edu_clean" / "results" / "cip_tiebreak_stats.json"
 # disagreement band vs the 0.85 bar) -- see results/cip_tiebreak_stats.json.
 # Override via CIP_TIEBREAK_JUROR to calibrate a stronger juror (votes are
 # cache-keyed per model, so nothing is refired or overwritten).
-import os as _os
-
-THIRD = _os.environ.get("CIP_TIEBREAK_JUROR", "ollama/gemma3:27b")
+THIRD = os.environ.get("CIP_TIEBREAK_JUROR", "ollama/gemma3:27b")
 OLLAMA_HOSTS = "framework=http://100.73.40.75:11434|2|ollama"
 ALL_JURORS = L.JURY + (THIRD,)
 

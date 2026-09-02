@@ -21,7 +21,7 @@ import duckdb
 from edu_clean import cip_taxonomy as T
 
 ROOT = Path(__file__).resolve().parent.parent
-KEYS = Path("/tmp/claude-1000/-home-alex-linkedin-analysis/75f1b68a-4d86-43a1-ae5f-ca08d45f96d5/scratchpad/target_band_keys.json")
+KEYS = ROOT / "edu_clean" / "results" / "frontier_band_keys.json"
 OUT = ROOT / "edu_clean" / "results" / "frontier_adjudication.jsonl"
 JURY = ROOT / "normalized" / "mappings" / "field_cip_jury.parquet"
 
