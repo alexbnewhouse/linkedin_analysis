@@ -100,6 +100,23 @@ already covers **4,328,321** (join on `role_canonical`).
 > validation (schema/format handling differs on this model). Zero votes
 > recorded; gate untouched. A retry needs a llama-server lane for the big
 > juror, or per-model timeout + format handling in llm_pool.
+> **RESOLUTION (2026-09-01, evening): the band was adjudicated by the frontier
+> session itself, not a local juror.** Diagnosis first: an oracle bound showed a
+> *perfect* tiebreaker could reach only 0.86 on the disagreement band (gold is one
+> of the two votes in 37/43 cases) and 0.53 on the partial-abstain band, and every
+> zero-LLM rule (confidence, anchors) scored 0.35-0.60 -- the band is genuinely
+> multi-family, so the 0.85 gate was unattainable by construction. Fable 5.1
+> labeled the 60-string gold band blind at 0.81 CIP2 / 0.91 humanities-level
+> accuracy (0.85 on clean disagree strings = the ceiling), then adjudicated all
+> 4,961 target strings (first-listed field rule for compounds; HS-diploma rows ->
+> 53; placeholders -> XUN). Landed via `edu_clean/frontier_merge.py` as
+> method `frontier_v1`. See `results/frontier_adjudication.jsonl`.
+> **Bonus (R4 replacement): `edu_clean/knn_tail.py`** -- an embedding-kNN
+> classifier seeded by every labeled string. Its deterministic `head_exact`
+> path (compound string whose first component is itself a labeled string) was
+> judged 60/60 strict and is landed as `cip_source='knn_head'`; the
+> embedding-nearest paths (0.80-0.83 judged) stay propose-only. Judgments in
+> `results/knn_tail_judgment_v{1,2,3}.json`.
 The 2026-07-09 jury discarded 2,745 disagree + 3,096 abstain strings ≈ 103k education
 rows — including plainly codeable heads: 'Information Systems' (2,996 rows, an 11-vs-52
 juror split), 'Science', 'Psychology and Sociology', 'Health Policy and Management'.

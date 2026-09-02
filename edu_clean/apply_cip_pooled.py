@@ -36,6 +36,11 @@ from edu_clean import humanities as H
 ROOT = Path(__file__).resolve().parent.parent
 EDUCATION = ROOT / "normalized" / "education.parquet"
 JURY = ROOT / "normalized" / "mappings" / "field_cip_jury.parquet"
+# Audit R3/R4 follow-up (2026-09-01): embedding-kNN tail classifier. Only the
+# deterministic 'head_exact' path lands (compound string whose first-listed
+# component is itself a labeled string) -- judged 60/60 strict on a random
+# sample; the embedding-nearest paths (0.80-0.83) stay propose-only.
+KNN = ROOT / "normalized" / "mappings" / "field_cip_knn.parquet"
 MANIFEST = ROOT / "normalized" / "_cip_pooled_manifest.json"
 
 # The deterministic columns whose content must not change. We assert a content
@@ -82,6 +87,9 @@ def _family_lookup(con) -> None:
         f"SELECT DISTINCT cip2 FROM read_parquet('{_q(EDUCATION)}') "
         f"WHERE cip2 IS NOT NULL "
         f"UNION SELECT DISTINCT cip2 FROM read_parquet('{_q(JURY)}')").fetchall()]
+    if KNN.exists():
+        families += [r[0] for r in con.execute(
+            f"SELECT DISTINCT cip2 FROM read_parquet('{_q(KNN)}') WHERE method='head_exact'").fetchall()]
     families = sorted(set(families) | set(DEGREE_TYPE_CIP2.values()))
     rows = []
     for fam in families:
@@ -120,6 +128,12 @@ def _build_pooled(con) -> None:
 
     base = _base_relation(con)
     _family_lookup(con)
+    if KNN.exists():
+        con.execute(f"""CREATE OR REPLACE TEMP TABLE knn_head AS
+            SELECT field_norm, any_value(cip2) AS knn_cip2 FROM read_parquet('{_q(KNN)}')
+            WHERE method = 'head_exact' GROUP BY field_norm""")
+    else:
+        con.execute("CREATE OR REPLACE TEMP TABLE knn_head (field_norm VARCHAR, knn_cip2 VARCHAR)")
     con.execute("CREATE OR REPLACE TEMP TABLE dt_lut (degree_type VARCHAR, dt_cip2 VARCHAR)")
     con.executemany("INSERT INTO dt_lut VALUES (?, ?)",
                     sorted(DEGREE_TYPE_CIP2.items()))
@@ -135,12 +149,14 @@ def _build_pooled(con) -> None:
         return f"""
           WITH p AS (
             SELECT {select_cols},
-                   coalesce(e.cip2, fj.jury_cip2, dt.dt_cip2)         AS cip2_pooled,
+                   coalesce(e.cip2, fj.jury_cip2, kh.knn_cip2, dt.dt_cip2) AS cip2_pooled,
                    CASE WHEN e.cip2 IS NOT NULL       THEN 'det'
                         WHEN fj.jury_cip2 IS NOT NULL THEN 'jury'
+                        WHEN kh.knn_cip2 IS NOT NULL  THEN 'knn_head'
                         WHEN dt.dt_cip2 IS NOT NULL   THEN 'degree_type' END AS cip_source
             FROM {base} e
             LEFT JOIN field_jury fj ON fj.field_norm = lower(trim(e.field_raw))
+            LEFT JOIN knn_head kh ON kh.field_norm = lower(trim(e.field_raw))
             LEFT JOIN dt_lut dt ON dt.degree_type = e.degree_type
           )
           SELECT p.*,
@@ -183,7 +199,7 @@ def _validate(con) -> dict:
         "SELECT count(*) FROM edu_key WHERE "
         "(cip_source='det')  <> (cip2 IS NOT NULL) OR "
         "(cip_source IS NULL) <> (cip2_pooled IS NULL) OR "
-        "(cip_source IN ('jury', 'degree_type') AND cip2 IS NOT NULL)"
+        "(cip_source IN ('jury', 'knn_head', 'degree_type') AND cip2 IS NOT NULL)"
     ).fetchone()[0]
     assert bad == 0, f"{bad} rows with inconsistent cip_source"
 
@@ -214,6 +230,8 @@ def _validate(con) -> dict:
         "SELECT count(*) FROM edu_key WHERE cip_source='jury'").fetchone()[0]
     dt_rows = con.execute(
         "SELECT count(*) FROM edu_key WHERE cip_source='degree_type'").fetchone()[0]
+    kh_rows = con.execute(
+        "SELECT count(*) FROM edu_key WHERE cip_source='knn_head'").fetchone()[0]
     l1d, l1p = tier("nha_level", [1]), tier("nha_level_pooled", [1])
     l2d, l2p = tier("nha_level", [1, 2]), tier("nha_level_pooled", [1, 2])
     l3d, l3p = tier("nha_level", [1, 2, 3]), tier("nha_level_pooled", [1, 2, 3])
@@ -224,6 +242,7 @@ def _validate(con) -> dict:
         "cip_coverage_pct": {"deterministic": det_cov, "pooled": pooled_cov},
         "jury_filled_rows": jury_rows,
         "degree_type_filled_rows": dt_rows,
+        "knn_head_filled_rows": kh_rows,
         "tiers_records": {
             "l1": {"det": l1d[0], "pooled": l1p[0]},
             "l2": {"det": l2d[0], "pooled": l2p[0]},
@@ -269,7 +288,8 @@ def main() -> None:
     print(f"CIP coverage: {r['cip_coverage_pct']['deterministic']}% (det) "
           f"-> {r['cip_coverage_pct']['pooled']}% (pooled), "
           f"+{r['jury_filled_rows']:,} jury rows, "
-          f"+{r['degree_type_filled_rows']:,} degree-type rows")
+          f"+{r['degree_type_filled_rows']:,} degree-type rows, "
+          f"+{r['knn_head_filled_rows']:,} knn-head rows")
     for t in ("l1", "l2", "l3"):
         rec, per = r["tiers_records"][t], r["tiers_persons"][t]
         print(f"  {t}: records {rec['det']:,} -> {rec['pooled']:,}   "
