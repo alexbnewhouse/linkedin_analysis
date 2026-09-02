@@ -1,0 +1,225 @@
+{
+ "generated": "2026-09-02",
+ "runs": [
+  {
+   "run": "R1 haiku A B25 c1",
+   "model": "claude-haiku-4-5-20251001",
+   "alias": "haiku",
+   "strings": 200,
+   "batch": 25,
+   "concurrency": 1,
+   "calls": 8,
+   "parsed": 200,
+   "wall_s": 328.3,
+   "call_s_mean": 35.8,
+   "tok_in": 30462,
+   "tok_out": 27044,
+   "cost_usd": 0.268,
+   "per_string": {
+    "tok_in": 152.3,
+    "tok_out": 135.2,
+    "cost_usd": 0.00134,
+    "wall_s": 1.642
+   }
+  },
+  {
+   "run": "R3 sonnet A B25 c1",
+   "model": "claude-sonnet-5",
+   "alias": "sonnet",
+   "strings": 200,
+   "batch": 25,
+   "concurrency": 1,
+   "calls": 8,
+   "parsed": 200,
+   "wall_s": 173.3,
+   "call_s_mean": 21.7,
+   "tok_in": 28,
+   "tok_out": 20725,
+   "cost_usd": 0.4464,
+   "per_string": {
+    "tok_in": 0.1,
+    "tok_out": 103.6,
+    "cost_usd": 0.00223,
+    "wall_s": 0.867
+   }
+  },
+  {
+   "run": "R4 opus band(A) B25 c1",
+   "model": "claude-opus-5",
+   "alias": "opus",
+   "strings": 66,
+   "batch": 25,
+   "concurrency": 1,
+   "calls": 3,
+   "parsed": 66,
+   "wall_s": 72.1,
+   "call_s_mean": 24.0,
+   "tok_in": 8,
+   "tok_out": 5808,
+   "cost_usd": 0.3484,
+   "per_string": {
+    "tok_in": 0.1,
+    "tok_out": 88.0,
+    "cost_usd": 0.00528,
+    "wall_s": 1.093
+   }
+  },
+  {
+   "run": "R5 haiku C B25 c4",
+   "model": "claude-haiku-4-5-20251001",
+   "alias": "haiku",
+   "strings": 200,
+   "batch": 25,
+   "concurrency": 4,
+   "calls": 8,
+   "parsed": 200,
+   "wall_s": 150.3,
+   "call_s_mean": 36.3,
+   "tok_in": 27596,
+   "tok_out": 28373,
+   "cost_usd": 0.2712,
+   "per_string": {
+    "tok_in": 138.0,
+    "tok_out": 141.9,
+    "cost_usd": 0.00136,
+    "wall_s": 0.751
+   }
+  },
+  {
+   "run": "R8 sonnet B B25 c4",
+   "model": "claude-sonnet-5",
+   "alias": "sonnet",
+   "strings": 200,
+   "batch": 25,
+   "concurrency": 4,
+   "calls": 8,
+   "parsed": 200,
+   "wall_s": 54.8,
+   "call_s_mean": 20.1,
+   "tok_in": 24,
+   "tok_out": 17942,
+   "cost_usd": 0.4041,
+   "per_string": {
+    "tok_in": 0.1,
+    "tok_out": 89.7,
+    "cost_usd": 0.00202,
+    "wall_s": 0.274
+   }
+  },
+  {
+   "run": "R6 haiku gold B25 c2",
+   "model": "claude-haiku-4-5-20251001",
+   "alias": "haiku",
+   "strings": 100,
+   "batch": 25,
+   "concurrency": 2,
+   "calls": 4,
+   "parsed": 100,
+   "wall_s": 74.3,
+   "call_s_mean": 34.3,
+   "tok_in": 15149,
+   "tok_out": 13929,
+   "cost_usd": 0.1467,
+   "per_string": {
+    "tok_in": 151.5,
+    "tok_out": 139.3,
+    "cost_usd": 0.00147,
+    "wall_s": 0.743
+   }
+  },
+  {
+   "run": "R7 sonnet gold B25 c2",
+   "model": "claude-sonnet-5",
+   "alias": "sonnet",
+   "strings": 100,
+   "batch": 25,
+   "concurrency": 2,
+   "calls": 4,
+   "parsed": 100,
+   "wall_s": 36.7,
+   "call_s_mean": 18.3,
+   "tok_in": 12,
+   "tok_out": 8813,
+   "cost_usd": 0.1892,
+   "per_string": {
+    "tok_in": 0.1,
+    "tok_out": 88.1,
+    "cost_usd": 0.00189,
+    "wall_s": 0.367
+   }
+  }
+ ],
+ "band": {
+  "n": 200,
+  "unanimous": 104,
+  "both_abstain": 30,
+  "band": 66,
+  "unparsed": 0,
+  "band_share": 0.33,
+  "opus_resolved_2of3": 36
+ },
+ "gold": {
+  "haiku": {
+   "n": 100,
+   "voted": 95,
+   "accuracy": 0.895
+  },
+  "sonnet": {
+   "n": 100,
+   "voted": 98,
+   "accuracy": 0.878
+  },
+  "unanimous": {
+   "n": 89,
+   "accuracy": 0.921,
+   "share": 0.89
+  }
+ },
+ "extrapolation": {
+  "tail_strings": 2285581,
+  "band_share": 0.33,
+  "speedup_c4": 2.18,
+  "rows": [
+   {
+    "N": 5000,
+    "cost_voters": 17.26,
+    "cost_opus": 8.71,
+    "total_usd": 25.97,
+    "calls": 466,
+    "hours_c1": 3.56,
+    "hours_c4": 1.63,
+    "tokens": 2046369
+   },
+   {
+    "N": 25000,
+    "cost_voters": 86.28,
+    "cost_opus": 43.55,
+    "total_usd": 129.83,
+    "calls": 2330,
+    "hours_c1": 17.78,
+    "hours_c4": 8.14,
+    "tokens": 10231849
+   },
+   {
+    "N": 100000,
+    "cost_voters": 345.12,
+    "cost_opus": 174.2,
+    "total_usd": 519.32,
+    "calls": 9320,
+    "hours_c1": 71.11,
+    "hours_c4": 32.56,
+    "tokens": 40927399
+   },
+   {
+    "N": 2285581,
+    "cost_voters": 7888.0,
+    "cost_opus": 3981.48,
+    "total_usd": 11869.48,
+    "calls": 213016,
+    "hours_c1": 1625.3,
+    "hours_c4": 744.08,
+    "tokens": 935428878
+   }
+  ]
+ }
+}
