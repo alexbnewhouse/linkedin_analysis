@@ -117,6 +117,30 @@ already covers **4,328,321** (join on `role_canonical`).
 > judged 60/60 strict and is landed as `cip_source='knn_head'`; the
 > embedding-nearest paths (0.80-0.83 judged) stay propose-only. Judgments in
 > `results/knn_tail_judgment_v{1,2,3}.json`.
+> **Blind gold v1 (2026-09-01, late): `edu_clean/gold_v1.py`.** A held-out,
+> source-stratified gold set (60 strings per landed tier + 100 residual, drawn by
+> salted hash; labeled blind by Fable 5.1 with primary/secondary/unsure) measured
+> every tier for the first time. Per-tier string precision on the modal-degree row
+> (strict / lenient / humanities-level; `results/frontier_gold_v1_score.json`):
+> det 0.89/0.96/0.98, jury 0.93/0.97/0.98, frontier 0.93/0.98/0.98,
+> knn_head 0.93/0.97/0.97, degree_type 0.89/0.96/0.93. All clear the 0.90 lenient
+> bar; nothing was un-landed. Two defects surfaced and were fixed in
+> `apply_cip_pooled.py`: (1) honors/GPA placeholders ("Summa Cum Laude Graduate",
+> "High Honors") carried a *string-level* 53 from their modal HS row, wrong on the
+> same string's BBA/JD rows -- string-level 53 labels are now gated on the row's
+> pooled degree level (dropped for associate..doctorate; 770 rows demoted to the
+> degree-type tier); (2) HS-diploma rows with placeholder or empty fields got
+> nothing because no degree_type maps to 53 -- a row-level `degree_level` tier
+> (pooled level 1 -> 53) closes it (56,929 rows). The degree-level apply now runs
+> before the CIP apply so the gate reads the pooled level. Pooled row coverage
+> 80.95% -> 82.53%; person-level 95.97% -> 96.29% (95.96% excluding the HS tier).
+> Scorer semantics worth keeping: a gold of XUN means "the field string carries no
+> signal"; rows of such strings coded from the degree line (det swap, degree_type,
+> degree_level) are correct, rows coded by a string-keyed tier are errors.
+> **Residual is flat:** 681k uncoded rows = 474k with an empty field (208k with an
+> empty degree too) + 207k with text over 166k strings; the top 5k residual strings
+> cover only 20% of those rows and the head is GPA/honors/"General". A further
+> frontier tranche would land < 1% of rows -- stop here.
 The 2026-07-09 jury discarded 2,745 disagree + 3,096 abstain strings ≈ 103k education
 rows — including plainly codeable heads: 'Information Systems' (2,996 rows, an 11-vs-52
 juror split), 'Science', 'Psychology and Sociology', 'Health Policy and Management'.

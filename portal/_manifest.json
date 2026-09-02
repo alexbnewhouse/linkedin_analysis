@@ -1,6 +1,6 @@
 {
   "generated": "2026-09-01",
-  "runtime_s": 110.0,
+  "runtime_s": 101.7,
   "inputs": {
     "education": "/home/alex/linkedin-analysis/normalized/education.parquet",
     "steps": "/home/alex/linkedin-analysis/paths/steps.parquet",
@@ -27,105 +27,105 @@
   },
   "funnel": {
     "english": {
-      "records": 35923,
-      "persons": 35069,
-      "persons_anchored_a1": 5868,
-      "persons_anchored": 6383,
-      "persons_windowed_y10": 4259,
-      "anchor_drop_rate_a1": 0.8327,
-      "anchor_drop_rate": 0.818,
+      "records": 39393,
+      "persons": 38450,
+      "persons_anchored_a1": 6284,
+      "persons_anchored": 6831,
+      "persons_windowed_y10": 4612,
+      "anchor_drop_rate_a1": 0.8366,
+      "anchor_drop_rate": 0.8223,
       "anchor_method_mix": {
-        "A1": 0.9193,
-        "A2": 0.0807
+        "A1": 0.9199,
+        "A2": 0.0801
       },
       "cip_source_mix": {
-        "jury": 0.1721,
-        "det": 0.8279
+        "det": 0.7551,
+        "jury": 0.2449
       }
     },
     "history": {
-      "records": 16151,
-      "persons": 15831,
-      "persons_anchored_a1": 3121,
-      "persons_anchored": 3353,
-      "persons_windowed_y10": 2290,
-      "anchor_drop_rate_a1": 0.8029,
-      "anchor_drop_rate": 0.7882,
+      "records": 17523,
+      "persons": 17187,
+      "persons_anchored_a1": 3335,
+      "persons_anchored": 3584,
+      "persons_windowed_y10": 2465,
+      "anchor_drop_rate_a1": 0.806,
+      "anchor_drop_rate": 0.7915,
       "anchor_method_mix": {
-        "A1": 0.9308,
-        "A2": 0.0692
+        "A1": 0.9305,
+        "A2": 0.0695
       },
       "cip_source_mix": {
-        "det": 0.978,
-        "jury": 0.022
+        "det": 0.9009,
+        "jury": 0.0991
       }
     },
     "philrel": {
-      "records": 7818,
-      "persons": 7636,
-      "persons_anchored_a1": 1853,
-      "persons_anchored": 2095,
-      "persons_windowed_y10": 1314,
-      "anchor_drop_rate_a1": 0.7573,
-      "anchor_drop_rate": 0.7256,
+      "records": 8607,
+      "persons": 8398,
+      "persons_anchored_a1": 2029,
+      "persons_anchored": 2287,
+      "persons_windowed_y10": 1446,
+      "anchor_drop_rate_a1": 0.7584,
+      "anchor_drop_rate": 0.7277,
       "anchor_method_mix": {
-        "A1": 0.8845,
-        "A2": 0.1155
+        "A1": 0.8872,
+        "A2": 0.1128
       },
       "cip_source_mix": {
-        "jury": 0.1522,
-        "det": 0.8478
+        "jury": 0.2291,
+        "det": 0.7709
       }
     },
     "arts": {
-      "records": 60760,
-      "persons": 58658,
-      "persons_anchored_a1": 11540,
-      "persons_anchored": 12944,
-      "persons_windowed_y10": 7519,
-      "anchor_drop_rate_a1": 0.8033,
-      "anchor_drop_rate": 0.7793,
+      "records": 64240,
+      "persons": 61975,
+      "persons_anchored_a1": 12146,
+      "persons_anchored": 13598,
+      "persons_windowed_y10": 7915,
+      "anchor_drop_rate_a1": 0.804,
+      "anchor_drop_rate": 0.7806,
       "anchor_method_mix": {
-        "A1": 0.8915,
-        "A2": 0.1085
+        "A1": 0.8932,
+        "A2": 0.1068
       },
       "cip_source_mix": {
-        "jury": 0.2131,
-        "det": 0.7869
+        "jury": 0.2552,
+        "det": 0.7448
       }
     },
     "commmedia": {
-      "records": 81613,
-      "persons": 79541,
-      "persons_anchored_a1": 10876,
-      "persons_anchored": 12040,
-      "persons_windowed_y10": 7045,
-      "anchor_drop_rate_a1": 0.8633,
-      "anchor_drop_rate": 0.8486,
+      "records": 87040,
+      "persons": 84814,
+      "persons_anchored_a1": 11424,
+      "persons_anchored": 12647,
+      "persons_windowed_y10": 7459,
+      "anchor_drop_rate_a1": 0.8653,
+      "anchor_drop_rate": 0.8509,
       "anchor_method_mix": {
         "A1": 0.9033,
         "A2": 0.0967
       },
       "cip_source_mix": {
-        "jury": 0.183,
-        "det": 0.817
+        "det": 0.7662,
+        "jury": 0.2338
       }
     },
     "baseline": {
-      "records": 1261409,
-      "persons": 1198065,
-      "persons_anchored_a1": 230539,
-      "persons_anchored": 258842,
-      "persons_windowed_y10": 137574,
-      "anchor_drop_rate_a1": 0.8076,
-      "anchor_drop_rate": 0.7839,
+      "records": 1322352,
+      "persons": 1254934,
+      "persons_anchored_a1": 240087,
+      "persons_anchored": 269207,
+      "persons_windowed_y10": 144045,
+      "anchor_drop_rate_a1": 0.8087,
+      "anchor_drop_rate": 0.7855,
       "anchor_method_mix": {
-        "A1": 0.8907,
-        "A2": 0.1093
+        "A1": 0.8918,
+        "A2": 0.1082
       },
       "cip_source_mix": {
-        "det": 0.8702,
-        "jury": 0.1298
+        "det": 0.8308,
+        "jury": 0.1692
       }
     }
   },

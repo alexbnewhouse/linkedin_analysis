@@ -1038,10 +1038,12 @@ def main() -> None:
         # commands in undocumented order).
         from edu_clean import apply_cip_pooled, apply_degree_level_pooled
 
-        with StepTimer("pooled CIP apply (det + jury + degree_type)", timings):
-            apply_cip_pooled.run(execute=True)
+        # Degree level first: the CIP apply gates string-level 53 labels and
+        # its 'degree_level' tier on the pooled row level.
         with StepTimer("pooled degree-level apply", timings):
             apply_degree_level_pooled.run(execute=True)
+        with StepTimer("pooled CIP apply (det + jury + knn_head + degree_type + degree_level)", timings):
+            apply_cip_pooled.run(execute=True)
         write_education_person(out, args.threads, timings)
         try:
             from edu_clean import apply_institution_meta

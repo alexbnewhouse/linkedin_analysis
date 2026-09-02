@@ -39,11 +39,11 @@
     "education_entry": 14468
   },
   "timings_s": {
-    "steps": 17.4,
-    "concurrency": 1.2,
-    "transitions": 8.4
+    "steps": 12.9,
+    "concurrency": 1.0,
+    "transitions": 6.5
   },
-  "runtime_s": 27.4,
+  "runtime_s": 20.7,
   "snapshot_date": "2026-02-19",
   "outputs": {
     "steps": "/home/alex/linkedin-analysis/paths/steps.parquet",

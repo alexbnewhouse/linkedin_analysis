@@ -31,8 +31,9 @@ uv run --with numpy python build_normalized.py [--sections all|education|career]
 ```
 
 Order of steps (education): value mappings → `education.parquet` →
-**pooled applies** (CIP: deterministic > jury/frontier > knn_head > degree-type;
-degree-level jury) →
+**pooled applies** (degree-level jury first, then CIP: deterministic >
+jury/frontier > knn_head > degree-type > degree-level; string-level 53 labels
+are gated on the row's degree level, and uncoded high-school rows get 53) →
 `education_person.parquet` → institution meta (IPEDS; skipped with a warning if
 the crosswalk isn't built). Career: value mappings → functional-cluster rows →
 `career_steps.parquet` (carries `occupation_major_pooled` from the SOC jury and
@@ -54,6 +55,7 @@ pooled applies ~2 min, person rollup 3s, career_steps 75s.
 | CIP disagreement tiebreak (local juror; FAILED gate) | `uv run python -m edu_clean.run_cip_tiebreak` | same, method `llm_jury_v1_tb` |
 | CIP disagreement band, frontier adjudication | `uv run python -m edu_clean.frontier_merge add CHUNK.txt` / `merge --execute` | same, method `frontier_v1` |
 | CIP long tail, embedding-kNN (head_exact lands) | `uv run --group embed python -m edu_clean.knn_tail` | `mappings/field_cip_knn.parquet` -> `cip_source='knn_head'` |
+| CIP blind gold (held out; re-score after any tier change) | `uv run python -m edu_clean.gold_v1 score` | `edu_clean/results/frontier_gold_v1{,_score}.{parquet,json}` |
 | Degree level tail | `uv run python -m edu_clean.run_dlevel_jury` | `mappings/degree_level_jury.parquet` |
 | SOC role tail | `uv run python -m career_clean.run_soc_jury` | `mappings/role_soc_jury.parquet` |
 | Industry | `uv run python -m industry.fire_llm` | see `industry/SETUP.md` |

@@ -9,7 +9,7 @@
   "axis_coverage": 0.0784,
   "grand_total_weight": 484426,
   "min_support": 1,
-  "runtime_s": 0.5,
+  "runtime_s": 0.4,
   "outputs": {
     "edges": "/home/alex/linkedin-analysis/transition_network/occupation_edges.parquet",
     "nodes": "/home/alex/linkedin-analysis/transition_network/occupation_nodes.parquet"

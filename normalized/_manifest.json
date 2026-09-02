@@ -1,6 +1,6 @@
 {
-  "created_at_epoch_s": 1788318552.5786266,
-  "runtime_s": 122.4,
+  "created_at_epoch_s": 1788319677.0490894,
+  "runtime_s": 125.7,
   "threads": 32,
   "sections": "education",
   "source": {
@@ -18,25 +18,25 @@
   "steps": [
     {
       "name": "normalized education table",
-      "runtime_s": 6.9,
+      "runtime_s": 6.0,
       "rows": 3577659,
       "path": "/home/alex/linkedin-analysis/normalized/education.parquet"
     },
     {
-      "name": "pooled CIP apply (det + jury + degree_type)",
-      "runtime_s": 3.1,
+      "name": "pooled degree-level apply",
+      "runtime_s": 113.6,
       "rows": null,
       "path": null
     },
     {
-      "name": "pooled degree-level apply",
-      "runtime_s": 109.4,
+      "name": "pooled CIP apply (det + jury + knn_head + degree_type + degree_level)",
+      "runtime_s": 3.2,
       "rows": null,
       "path": null
     },
     {
       "name": "normalized education_person rollup",
-      "runtime_s": 2.4,
+      "runtime_s": 2.3,
       "rows": 1999974,
       "path": "/home/alex/linkedin-analysis/normalized/education_person.parquet"
     },

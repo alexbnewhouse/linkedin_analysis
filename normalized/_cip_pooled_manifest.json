@@ -1,40 +1,42 @@
 {
   "cip_coverage_pct": {
     "deterministic": 58.83,
-    "pooled": 80.95
+    "pooled": 82.53
   },
-  "degree_type_filled_rows": 85655,
+  "degree_level_filled_rows": 56929,
+  "degree_type_filled_rows": 85742,
   "executed": true,
   "generated": "2026-09-01",
-  "jury_filled_rows": 491798,
-  "knn_head_filled_rows": 214141,
+  "jury_filled_rows": 491063,
+  "knn_head_filled_rows": 214106,
+  "placeholder_53_demoted_rows": 770,
   "rows": 3577659,
   "tiers_persons": {
     "l1": {
       "det": 210495,
-      "pooled": 293804
+      "pooled": 293808
     },
     "l2": {
       "det": 358675,
-      "pooled": 510302
+      "pooled": 510306
     },
     "l3": {
       "det": 579325,
-      "pooled": 776765
+      "pooled": 776769
     }
   },
   "tiers_records": {
     "l1": {
       "det": 240277,
-      "pooled": 349236
+      "pooled": 349240
     },
     "l2": {
       "det": 415908,
-      "pooled": 617661
+      "pooled": 617665
     },
     "l3": {
       "det": 689836,
-      "pooled": 968086
+      "pooled": 968090
     }
   }
 }

@@ -4,13 +4,13 @@
   "institution_coverage_pct_all": 67.3,
   "institution_coverage_pct_hum_l1": 71.0,
   "hum_l1_control_mix": {
-    "public": 124787,
-    "private_nonprofit": 77820,
+    "public": 124788,
+    "private_nonprofit": 77821,
     "private_forprofit": 6023
   },
   "hum_l1_top_carnegie": {
     "R1_doctoral_very_high": 70745,
-    "masters_larger": 35035,
+    "masters_larger": 35037,
     "R2_doctoral_high": 29933,
     "doctoral_professional": 15891,
     "bacc_arts_sciences": 10221,
