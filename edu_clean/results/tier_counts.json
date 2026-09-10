@@ -6,17 +6,17 @@
     "total_rows": 3577659
   },
   "cip_coverage_pooled": {
-    "coded_rows": 2466955,
-    "rate": 0.6895,
-    "rate_pct_1dp": 69.0,
+    "coded_rows": 2952532,
+    "rate": 0.8253,
+    "rate_pct_1dp": 82.5,
     "total_rows": 3577659
   },
-  "generated": "2026-07-21",
+  "generated": "2026-09-01",
   "input_fingerprint": {
-    "content_hash": "4221908514026303365",
+    "content_hash": "8622607898187537147",
     "content_hash_method": "bit_xor(hash(linkedin_id, cip_code, nha_level, cip2_pooled, nha_level_pooled))",
     "file": "normalized/education.parquet",
-    "file_size_bytes": 255606540,
+    "file_size_bytes": 258495162,
     "row_count": 3577659
   },
   "source": "edu_clean.run_tier_counts (re-derives from normalized/education.parquet)",
@@ -36,16 +36,16 @@
   },
   "tiers_pooled": {
     "l1": {
-      "persons": 246482,
-      "records": 287071
+      "persons": 293808,
+      "records": 349240
     },
     "l2": {
-      "persons": 421082,
-      "records": 498786
+      "persons": 510306,
+      "records": 617665
     },
     "l3": {
-      "persons": 658824,
-      "records": 802277
+      "persons": 776769,
+      "records": 968090
     }
   }
 }

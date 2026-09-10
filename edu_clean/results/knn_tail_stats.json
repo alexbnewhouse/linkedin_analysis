@@ -1,0 +1,21 @@
+{
+ "generated": "2026-09-01",
+ "version": 2,
+ "tau": 0.95,
+ "k": 5,
+ "by_method": {
+  "head_exact": {
+   "strings": 195497,
+   "rows": 214141
+  },
+  "knn": {
+   "strings": 16923,
+   "rows": 18979
+  },
+  "head_knn": {
+   "strings": 4965,
+   "rows": 5059
+  }
+ },
+ "labeled_seeds": 66948
+}

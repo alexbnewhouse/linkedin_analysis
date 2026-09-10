@@ -14,7 +14,6 @@ import pyarrow.parquet as pq
 
 import duckdb
 
-from paths import common as C
 from paths.build_spine import STEPS_SQL, CONCURRENCY_SQL, TRANSITIONS_SQL, _ranks_values
 
 _COLS = [

@@ -1,5 +1,5 @@
 {
-  "n_companies": 2990295,
+  "n_companies": 2990297,
   "total_rows": 10636544,
   "coverage_by_depth_row_pct": {
     "L1": 53.6,
@@ -7,11 +7,11 @@
     "L3": 23.7,
     "L4": 2.0
   },
-  "review_queue_companies": 2052818,
-  "llm_candidates": 2021473,
-  "llm_multi_juror_candidates": 2028,
-  "llm_abstentions_XOT": 36928,
-  "llm_disagrees_with_deterministic_L1": 65593,
+  "review_queue_companies": 2052821,
+  "llm_candidates": 0,
+  "llm_multi_juror_candidates": 0,
+  "llm_abstentions_XOT": 0,
+  "llm_disagrees_with_deterministic_L1": 0,
   "cap": null,
   "propagation": {
     "step_rows": 10798794,

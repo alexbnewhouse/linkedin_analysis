@@ -51,6 +51,11 @@ NON_FIELD_LITERALS = {
     "unknown", "other", "misc", "miscellaneous",
     # enrollment-status words that name no field
     "undeclared", "undecided", "minor", "major", "double major",
+    # class-year / enrollment words (audit R4, 2026-09-01: observed in the
+    # uncoded tail -- 'Senior' 366 rows, 'Study Abroad' etc.)
+    "senior", "junior", "sophomore", "freshman", "freshmen",
+    "graduate", "undergraduate", "student", "gpa",
+    "study abroad", "exchange program", "exchange student", "semester abroad",
     # honors/grade phrases (grades are also caught by the numeric rule)
     "cum laude", "magna cum laude", "summa cum laude",
     "with honors", "with honours", "honors", "honours",

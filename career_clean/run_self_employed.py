@@ -14,7 +14,6 @@ from __future__ import annotations
 
 import json
 from collections import Counter, defaultdict
-from pathlib import Path
 
 from . import approach_a_rules as A
 from . import occupation as O
@@ -95,11 +94,11 @@ def main() -> None:
 
     cov = report["coverage"]
     print(f"self-employment rows: {se_rows:,}")
-    print(f"functional-cluster coverage:")
+    print("functional-cluster coverage:")
     print(f"  baseline (SOC only): {cov['baseline_soc_only_pct']}%")
     print(f"  with 3 recs        : {cov['with_recs_pct']}%   (+{cov['lift_pp']}pp)")
     print(f"\nmethod by row %: {report['method_row_pct']}")
-    print(f"\ntop clusters:")
+    print("\ntop clusters:")
     for label, d in list(report["cluster_distribution"].items())[:14]:
         print(f"  {d['code']:>3s} {label:48s} {d['rows']:>9,} ({d['pct']}%)")
     print(f"\nruntime {report['runtime_s']}s   wrote {OUT}")

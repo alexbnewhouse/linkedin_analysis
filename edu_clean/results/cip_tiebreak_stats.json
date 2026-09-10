@@ -1,0 +1,28 @@
+{
+  "calibration": {
+    "generated": "2026-09-01",
+    "third_juror": "ollama/gemma3:27b",
+    "solo_accuracy": 0.7684,
+    "solo_voted": 583,
+    "solo_abstain": 16,
+    "tiebreak_band": {
+      "gold_disagree_or_partial": 60,
+      "resolved": 38,
+      "accuracy": 0.5526
+    },
+    "gate": "merge only if tiebreak accuracy >= 0.85 (solo accuracy is secondary evidence when the band is small)"
+  },
+  "calibration::ollama/mistral-medium-3.5:128b": {
+    "generated": "2026-09-01",
+    "third_juror": "ollama/mistral-medium-3.5:128b",
+    "solo_accuracy": null,
+    "solo_voted": 0,
+    "solo_abstain": 0,
+    "tiebreak_band": {
+      "gold_disagree_or_partial": 0,
+      "resolved": 0,
+      "accuracy": null
+    },
+    "gate": "merge only if tiebreak accuracy >= 0.85 (solo accuracy is secondary evidence when the band is small)"
+  }
+}

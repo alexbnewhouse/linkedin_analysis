@@ -85,6 +85,72 @@ already covers **4,328,321** (join on `role_canonical`).
 - Acceptance: person cip2_pooled 86.95% → ≈88.6%; no change to rows that already had CIP.
 
 ### R3. CIP jury: tiebreak the disagreements `[deep-lane]`
+> **OUTCOME (2026-09-01): attempted, measured, REJECTED at calibration.** The
+> driver (`edu_clean/run_cip_tiebreak.py`) fired gemma3:27b on the 600-string
+> gold sample: solo accuracy 0.768; on the 60 gold disagree/partial strings the
+> 2-of-3 rule resolved 38 at **0.553 accuracy** — far under the pre-committed
+> 0.85 bar. The disagreement band is genuinely ambiguous, not a juror-family
+> artifact. NOT merged. Votes are cached (`results/cip_votes.jsonl`), stats in
+> `results/cip_tiebreak_stats.json`; a retry needs a materially stronger juror
+> (mistral-medium-3.5:128b or gpt-oss:120b overnight) re-calibrated on the same
+> gold sample, or these rows stay honestly uncoded.
+> Retry attempt (later 2026-09-01): mistral-medium-3.5:128b via Ollama failed
+> OPERATIONALLY -- 469/600 requests timed out (llm_pool's timeout is too short
+> for a ~5-8 tok/s 128B model) and all 131 completed generations failed JSON
+> validation (schema/format handling differs on this model). Zero votes
+> recorded; gate untouched. A retry needs a llama-server lane for the big
+> juror, or per-model timeout + format handling in llm_pool.
+> **RESOLUTION (2026-09-01, evening): the band was adjudicated by the frontier
+> session itself, not a local juror.** Diagnosis first: an oracle bound showed a
+> *perfect* tiebreaker could reach only 0.86 on the disagreement band (gold is one
+> of the two votes in 37/43 cases) and 0.53 on the partial-abstain band, and every
+> zero-LLM rule (confidence, anchors) scored 0.35-0.60 -- the band is genuinely
+> multi-family, so the 0.85 gate was unattainable by construction. Fable 5.1
+> labeled the 60-string gold band blind at 0.81 CIP2 / 0.91 humanities-level
+> accuracy (0.85 on clean disagree strings = the ceiling), then adjudicated all
+> 4,961 target strings (first-listed field rule for compounds; HS-diploma rows ->
+> 53; placeholders -> XUN). Landed via `edu_clean/frontier_merge.py` as
+> method `frontier_v1`. See `results/frontier_adjudication.jsonl`.
+> **Bonus (R4 replacement): `edu_clean/knn_tail.py`** -- an embedding-kNN
+> classifier seeded by every labeled string. Its deterministic `head_exact`
+> path (compound string whose first component is itself a labeled string) was
+> judged 60/60 strict and is landed as `cip_source='knn_head'`; the
+> embedding-nearest paths (0.80-0.83 judged) stay propose-only. Judgments in
+> `results/knn_tail_judgment_v{1,2,3}.json`.
+> **Blind gold v1 (2026-09-01, late): `edu_clean/gold_v1.py`.** A held-out,
+> source-stratified gold set (60 strings per landed tier + 100 residual, drawn by
+> salted hash; labeled blind by Fable 5.1 with primary/secondary/unsure) measured
+> every tier for the first time. Per-tier string precision on the modal-degree row
+> (strict / lenient / humanities-level; `results/frontier_gold_v1_score.json`):
+> det 0.89/0.96/0.98, jury 0.93/0.97/0.98, frontier 0.93/0.98/0.98,
+> knn_head 0.93/0.97/0.97, degree_type 0.89/0.96/0.93. All clear the 0.90 lenient
+> bar; nothing was un-landed. Two defects surfaced and were fixed in
+> `apply_cip_pooled.py`: (1) honors/GPA placeholders ("Summa Cum Laude Graduate",
+> "High Honors") carried a *string-level* 53 from their modal HS row, wrong on the
+> same string's BBA/JD rows -- string-level 53 labels are now gated on the row's
+> pooled degree level (dropped for associate..doctorate; 770 rows demoted to the
+> degree-type tier); (2) HS-diploma rows with placeholder or empty fields got
+> nothing because no degree_type maps to 53 -- a row-level `degree_level` tier
+> (pooled level 1 -> 53) closes it (56,929 rows). The degree-level apply now runs
+> before the CIP apply so the gate reads the pooled level. Pooled row coverage
+> 80.95% -> 82.53%; person-level 95.97% -> 96.29% (95.96% excluding the HS tier).
+> Scorer semantics worth keeping: a gold of XUN means "the field string carries no
+> signal"; rows of such strings coded from the degree line (det swap, degree_type,
+> degree_level) are correct, rows coded by a string-keyed tier are errors.
+> **Residual is flat:** 681k uncoded rows = 474k with an empty field (208k with an
+> empty degree too) + 207k with text over 166k strings; the top 5k residual strings
+> cover only 20% of those rows and the head is GPA/honors/"General". A further
+> frontier tranche would land < 1% of rows -- stop here.
+> **Gold in use (same night):** `edu_clean/cip_tests.py::test_gold_v1_floor` gates
+> every landed tier at >= 0.90 lenient/level on the fixed sample (`make test-data`);
+> `gold_v1 calibrate MODEL HOSTS` fires any local juror on the 400 strings through the
+> frozen vote cache and scores it per tier (qwen3-4b-q4 solo: residual 0.65 strict,
+> frontier band 0.29 -- a 4B juror cannot code the tail); `gold_v1 knn` sweeps the
+> embedding paths (residual 0.64-0.67 strict at every tau: propose-only stays);
+> `gold_v1 report` writes the methods numbers (row-weighted 0.90 strict / 0.96
+> lenient / 0.98 level, recall bound 4.7% of rows) -> `docs/methods/cip-precision-gold-v1.md`;
+> `gold_v1 sheet` / `agree FILE` give the second annotator a 100-string blind sheet
+> and Cohen's kappa. Notion: methods page + double-label task in the Ship Room.
 The 2026-07-09 jury discarded 2,745 disagree + 3,096 abstain strings ≈ 103k education
 rows — including plainly codeable heads: 'Information Systems' (2,996 rows, an 11-vs-52
 juror split), 'Science', 'Psychology and Sociology', 'Health Policy and Management'.

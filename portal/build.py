@@ -194,7 +194,7 @@ def build_panel(con, soc_sources: tuple[str, ...] = None) -> None:
     else:
         con.execute("CREATE OR REPLACE TEMP TABLE role_jury "
                     "(role_canonical VARCHAR, jury_code VARCHAR)")
-    con.execute(f"""
+    con.execute("""
       CREATE OR REPLACE TEMP TABLE pop_persons AS
       SELECT DISTINCT linkedin_id FROM membership
     """)

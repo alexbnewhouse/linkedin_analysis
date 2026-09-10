@@ -30,7 +30,6 @@ import json
 import time
 
 import duckdb
-import numpy as np
 import statsmodels.formula.api as smf
 
 from cohorts import common as C

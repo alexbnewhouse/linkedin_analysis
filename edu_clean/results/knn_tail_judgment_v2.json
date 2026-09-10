@@ -1,0 +1,43 @@
+{
+ "sample": "knn2_sample.json (hash-ordered; 60 head_exact, 40 head_knn, 40 knn @tau0.90)",
+ "judge": "Fable 5.1, 2026-09-01",
+ "strict": {
+  "head_exact": 0.8833333333333333,
+  "head_knn": 0.775,
+  "knn": 0.775
+ },
+ "wrong_idx": {
+  "head_exact": [
+   9,
+   12,
+   13,
+   29,
+   32,
+   37,
+   53
+  ],
+  "head_knn": [
+   63,
+   66,
+   68,
+   76,
+   82,
+   84,
+   86,
+   95,
+   96
+  ],
+  "knn": [
+   107,
+   112,
+   118,
+   121,
+   124,
+   125,
+   126,
+   131,
+   133
+  ]
+ },
+ "diagnosis": "head_exact misses = single-word context-laden frontier labels used as heads (commercial->53, international->52) + degree-word heads; kNN paths at 0.90 too loose"
+}

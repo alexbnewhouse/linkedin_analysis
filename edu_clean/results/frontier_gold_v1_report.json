@@ -1,0 +1,188 @@
+{
+ "generated": "2026-09-01",
+ "rows_total": 3577659,
+ "rows_coded": 2952532,
+ "coverage_pct": 82.53,
+ "tiers": {
+  "det": {
+   "rows": 2104692,
+   "row_share_of_coded": 0.7128,
+   "graded": 46,
+   "strict": 0.891,
+   "strict_ci95": [
+    0.77,
+    0.953
+   ],
+   "lenient": 0.957,
+   "lenient_ci95": [
+    0.855,
+    0.988
+   ],
+   "level": 0.978,
+   "level_ci95": [
+    0.887,
+    0.996
+   ],
+   "ambiguity_gap": 0.066
+  },
+  "jury_llm": {
+   "rows": 407265,
+   "row_share_of_coded": 0.1379,
+   "graded": 59,
+   "strict": 0.932,
+   "strict_ci95": [
+    0.838,
+    0.973
+   ],
+   "lenient": 0.966,
+   "lenient_ci95": [
+    0.885,
+    0.991
+   ],
+   "level": 0.983,
+   "level_ci95": [
+    0.91,
+    0.997
+   ],
+   "ambiguity_gap": 0.034
+  },
+  "frontier": {
+   "rows": 83798,
+   "row_share_of_coded": 0.0284,
+   "graded": 58,
+   "strict": 0.931,
+   "strict_ci95": [
+    0.836,
+    0.973
+   ],
+   "lenient": 0.983,
+   "lenient_ci95": [
+    0.909,
+    0.997
+   ],
+   "level": 0.983,
+   "level_ci95": [
+    0.909,
+    0.997
+   ],
+   "ambiguity_gap": 0.052
+  },
+  "knn_head": {
+   "rows": 214106,
+   "row_share_of_coded": 0.0725,
+   "graded": 60,
+   "strict": 0.933,
+   "strict_ci95": [
+    0.841,
+    0.974
+   ],
+   "lenient": 0.967,
+   "lenient_ci95": [
+    0.886,
+    0.991
+   ],
+   "level": 0.967,
+   "level_ci95": [
+    0.886,
+    0.991
+   ],
+   "ambiguity_gap": 0.034
+  },
+  "degree_type": {
+   "rows": 85742,
+   "row_share_of_coded": 0.029,
+   "graded": 54,
+   "strict": 0.889,
+   "strict_ci95": [
+    0.778,
+    0.948
+   ],
+   "lenient": 0.963,
+   "lenient_ci95": [
+    0.875,
+    0.99
+   ],
+   "level": 0.926,
+   "level_ci95": [
+    0.824,
+    0.971
+   ],
+   "ambiguity_gap": 0.074
+  },
+  "degree_level": {
+   "rows": 56929,
+   "row_share_of_coded": 0.0193,
+   "note": "by construction: uncoded high-school rows -> 53; not sampled"
+  }
+ },
+ "overall_row_weighted_over_measured_tiers": {
+  "strict": 0.901,
+  "lenient": 0.9599,
+  "level": 0.9765
+ },
+ "measured_rows": 2895603,
+ "ambiguity_pairs": [
+  [
+   "14~11",
+   1
+  ],
+  [
+   "51~52",
+   1
+  ],
+  [
+   "51~15",
+   1
+  ],
+  [
+   "53~27",
+   1
+  ],
+  [
+   "43~11",
+   1
+  ],
+  [
+   "01~04",
+   1
+  ],
+  [
+   "13~51",
+   1
+  ],
+  [
+   "11~52",
+   1
+  ],
+  [
+   "45~26",
+   1
+  ],
+  [
+   "51~60",
+   1
+  ],
+  [
+   "51~13",
+   1
+  ],
+  [
+   "45~30",
+   1
+  ]
+ ],
+ "recall_bound": {
+  "uncoded_rows": 625127,
+  "uncoded_with_field_text": 195777,
+  "residual_codeable_share": 0.85,
+  "recoverable_rows_upper_bound": 166606,
+  "recoverable_share_of_all_rows_pct": 4.66
+ },
+ "labeling": {
+  "annotators": 1,
+  "strings": 400,
+  "secondary_labels": 154,
+  "unsure": 21,
+  "double_label_sheet": "edu_clean/results/frontier_gold_v1_double_label_sheet.txt"
+ }
+}

@@ -1,0 +1,239 @@
+{
+ "generated": "2026-09-01",
+ "n": 400,
+ "tiers": {
+  "det": {
+   "n": 60,
+   "graded": 46,
+   "strict": 0.891,
+   "lenient": 0.957,
+   "level": 0.978,
+   "row_weighted_strict": 0.996,
+   "gold_xun_strings": {
+    "abstain": 1,
+    "degree_line": 13,
+    "string_label": 0
+   },
+   "gold_xun_rows": {
+    "abstain": 16,
+    "degree_line": 21,
+    "string_label": 0
+   },
+   "xun_string_label_errors": [],
+   "lenient_misses": [
+    [
+     "Business and General Education",
+     "det",
+     "13",
+     "53",
+     "52"
+    ],
+    [
+     "Clinical Medical Social Work",
+     "det",
+     "51",
+     "44",
+     null
+    ]
+   ],
+   "top_confusions": [
+    [
+     "53->13",
+     1
+    ],
+    [
+     "44->51",
+     1
+    ]
+   ]
+  },
+  "jury_llm": {
+   "n": 60,
+   "graded": 59,
+   "strict": 0.932,
+   "lenient": 0.966,
+   "level": 0.983,
+   "row_weighted_strict": 0.964,
+   "gold_xun_strings": {
+    "abstain": 0,
+    "degree_line": 0,
+    "string_label": 1
+   },
+   "gold_xun_rows": {
+    "abstain": 0,
+    "degree_line": 0,
+    "string_label": 2
+   },
+   "xun_string_label_errors": [
+    [
+     "all studies",
+     "jury",
+     "24"
+    ]
+   ],
+   "lenient_misses": [
+    [
+     "Networks and Telecommunications",
+     "jury",
+     "14",
+     "11",
+     null
+    ],
+    [
+     "Concentration in Public Management",
+     "jury",
+     "52",
+     "44",
+     null
+    ]
+   ],
+   "top_confusions": [
+    [
+     "11->14",
+     1
+    ],
+    [
+     "44->52",
+     1
+    ]
+   ]
+  },
+  "frontier": {
+   "n": 60,
+   "graded": 58,
+   "strict": 0.931,
+   "lenient": 0.983,
+   "level": 0.983,
+   "row_weighted_strict": 0.916,
+   "gold_xun_strings": {
+    "abstain": 0,
+    "degree_line": 1,
+    "string_label": 1
+   },
+   "gold_xun_rows": {
+    "abstain": 0,
+    "degree_line": 1,
+    "string_label": 2
+   },
+   "xun_string_label_errors": [
+    [
+     "MARINE CORPS",
+     "jury",
+     "29"
+    ]
+   ],
+   "lenient_misses": [
+    [
+     "SCIENCE",
+     "jury",
+     "30",
+     "24",
+     "40"
+    ]
+   ],
+   "top_confusions": [
+    [
+     "24->30",
+     1
+    ]
+   ]
+  },
+  "knn_head": {
+   "n": 60,
+   "graded": 60,
+   "strict": 0.933,
+   "lenient": 0.967,
+   "level": 0.967,
+   "row_weighted_strict": 0.935,
+   "gold_xun_strings": {
+    "abstain": 0,
+    "degree_line": 0,
+    "string_label": 0
+   },
+   "gold_xun_rows": {
+    "abstain": 0,
+    "degree_line": 0,
+    "string_label": 0
+   },
+   "xun_string_label_errors": [],
+   "lenient_misses": [
+    [
+     "Social Innovation, Service Design, Design Leadership",
+     "knn_head",
+     "44",
+     "50",
+     null
+    ],
+    [
+     "Education Policy, Leadership & Organization",
+     "knn_head",
+     "44",
+     "13",
+     null
+    ]
+   ],
+   "top_confusions": [
+    [
+     "50->44",
+     1
+    ],
+    [
+     "13->44",
+     1
+    ]
+   ]
+  },
+  "degree_type": {
+   "n": 60,
+   "graded": 54,
+   "strict": 0.889,
+   "lenient": 0.963,
+   "level": 0.926,
+   "row_weighted_strict": 0.435,
+   "gold_xun_strings": {
+    "abstain": 2,
+    "degree_line": 4,
+    "string_label": 0
+   },
+   "gold_xun_rows": {
+    "abstain": 4,
+    "degree_line": 8,
+    "string_label": 0
+   },
+   "xun_string_label_errors": [],
+   "lenient_misses": [
+    [
+     "Archtectural Design",
+     "degree_type",
+     "50",
+     "04",
+     null
+    ],
+    [
+     "Studied journalism at Univ. of Houston",
+     "degree_type",
+     "22",
+     "09",
+     null
+    ]
+   ],
+   "top_confusions": [
+    [
+     "04->50",
+     1
+    ],
+    [
+     "09->22",
+     1
+    ]
+   ]
+  },
+  "residual": {
+   "n": 100,
+   "codeable_strings": 85,
+   "codeable_share": 0.85,
+   "codeable_row_share": 0.851,
+   "now_coded_strings": 3
+  }
+ }
+}

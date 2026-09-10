@@ -1,0 +1,28 @@
+{
+ "sample": "knn3_sample.json (60 head_exact, 30 head_knn, 30 knn @tau0.95)",
+ "judge": "Fable 5.1, 2026-09-01",
+ "strict": {
+  "head_exact": 1.0,
+  "head_knn": 0.8333333333333334,
+  "knn": 0.8
+ },
+ "wrong_idx": {
+  "head_exact": [],
+  "head_knn": [
+   67,
+   71,
+   81,
+   82,
+   87
+  ],
+  "knn": [
+   90,
+   93,
+   102,
+   103,
+   107,
+   111
+  ]
+ },
+ "decision": "LAND head_exact only (cip_source='knn_head'); head_knn/knn remain propose-only"
+}

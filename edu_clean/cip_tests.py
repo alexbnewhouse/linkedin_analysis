@@ -145,6 +145,27 @@ def test_gold_dominance() -> None:
     ok(f"gold: dominance >= 0.9 enforced over {lo[1]:,} rows")
 
 
+def test_gold_v1_floor() -> None:
+    """Blind gold v1 (2026-09-01) regression gate: every landed CIP tier must
+    keep >= 0.90 lenient and >= 0.90 humanities-level precision on the fixed
+    held-out sample, and string-keyed tiers must not label placeholders beyond
+    the recorded baseline (one string each in jury and frontier)."""
+    from edu_clean import gold_v1 as G
+    if not (G.OUT.exists() and G.EDU.exists()):
+        print("  -- skipped: gold v1 or normalized/education.parquet not built")
+        return
+    out = G.score(verbose=False, write=False)
+    for tier in G.LANDED:
+        d = out["tiers"][tier]
+        if d["graded"] < 30:
+            continue
+        assert d["lenient"] >= 0.90, f"gold v1: {tier} lenient {d['lenient']} < 0.90"
+        assert d["level"] >= 0.90, f"gold v1: {tier} level {d['level']} < 0.90"
+        assert len(d["xun_string_label_errors"]) <= 1, \
+            f"gold v1: {tier} labels placeholders: {d['xun_string_label_errors']}"
+    ok("gold v1: all landed tiers >= 0.90 lenient/level on the held-out sample")
+
+
 def main() -> None:
     test_taxonomy()
     test_taxonomy_matches_data()
@@ -154,6 +175,7 @@ def main() -> None:
     test_build_request_pure()
     test_non_field_rule()
     test_gold_dominance()
+    test_gold_v1_floor()
     print("All CIP jury tests passed.")
 
 

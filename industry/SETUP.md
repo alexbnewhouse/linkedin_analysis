@@ -20,6 +20,14 @@ uv run python -m industry.tests          # deterministic unit tests (taxonomy, f
 uv run python -m industry.run_industry   # gold eval (per-level P/R) + OFFLINE LLM calibration
 ```
 
+> **2026-09-01: `llm_proposals.jsonl` is gone.** The frozen proposal cache was
+> destroyed during the GitHub history migration (see PR #1 and
+> docs/plans/2026-09-01-recovery-and-refactor-plan.md). Production outputs
+> (`results/company_industry.parquet`, `curated_promoted.py`, calibration JSONs)
+> are intact. Offline calibration replay and extending the jury require
+> re-firing (`fire_llm`, resumable); until then the commands below that read the
+> cache will report it missing.
+
 `run_industry` reads the committed `llm_proposals.jsonl` cache directly, so it
 reports LLM/jury calibration against the gold sets **without firing anything**.
 

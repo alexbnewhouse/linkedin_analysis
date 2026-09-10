@@ -155,7 +155,8 @@ def test_llm() -> None:
     check("schema reason-first", sch["required"][0] == "rationale"
           and list(sch["properties"])[0] == "rationale")
     # torn trailing line (crash mid-flush) must not poison the cache load
-    import tempfile, os as _os
+    import tempfile
+    import os as _os
     from pathlib import Path as _Path
     _orig_cache = llm.CACHE_FILE
     try:
