@@ -1,0 +1,17 @@
+{
+  "axis": "soc_major",
+  "exclude_overlap": false,
+  "nodes": 23,
+  "edges": 529,
+  "self_loop_edges": 23,
+  "total_spine_transitions": 6180324,
+  "transitions_covered": 2620737,
+  "axis_coverage": 0.424,
+  "grand_total_weight": 2620737,
+  "min_support": 1,
+  "runtime_s": 0.3,
+  "outputs": {
+    "edges": "/home/alex/linkedin-analysis/transition_network/soc_major_edges.parquet",
+    "nodes": "/home/alex/linkedin-analysis/transition_network/soc_major_nodes.parquet"
+  }
+}

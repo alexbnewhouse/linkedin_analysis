@@ -84,7 +84,7 @@ WORKFORCE_TYPES = ("employee", "business_owner", "self_employed")
 # Self-employment axis: entering/leaving these is a first-class transition kind.
 SELF_EMPLOYED_TYPES = ("self_employed", "business_owner")
 # Terminal / out-of-workforce destinations -> classified as 'exit'.
-EXIT_TYPES = ("retired", "unemployed", "homemaker")
+EXIT_TYPES = ("retired", "unemployed", "homemaker", "career_break")
 
 # --- Seniority ordinal ------------------------------------------------------
 # career_clean emits TWO comma-joined *sorted sets* of seniority tokens per

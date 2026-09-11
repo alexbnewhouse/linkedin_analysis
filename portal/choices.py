@@ -124,7 +124,7 @@ def _fan_cells(counts: list[tuple[str | None, int]], base_share: dict[str, float
 
 def _materialize(con) -> None:
     """Build every choices temp table on `con`. Requires membership + panel."""
-    cut = C.SNAPSHOT_YEAR - C.FAN_YEAR
+    cut = C.LAST_COMPLETE_YEAR - C.FAN_YEAR
     steps = f"read_parquet('{C.q(C.STEPS)}')"
     edu_raw = f"read_parquet('{C.q(C.EDUCATION)}')"
 
@@ -147,7 +147,8 @@ def _materialize(con) -> None:
       SELECT s.linkedin_id, s.row_id, year(s.start_dt) AS sy,
              lower(coalesce(s.title_raw, '')) AS title,
              lower(coalesce(s.company_raw, '')) AS comp,
-             s.employment_type, s.occupation_code, s.role_canonical
+             s.employment_type, s.occupation_code, s.role_canonical,
+             s.soc_major, s.soc_source
       FROM {steps} s
       SEMI JOIN (SELECT DISTINCT linkedin_id FROM ch_cohort) p
         ON p.linkedin_id = s.linkedin_id
@@ -209,7 +210,7 @@ def _materialize(con) -> None:
       JOIN {edu_raw} e ON e.linkedin_id = c.linkedin_id
       WHERE e.degree_level IN ({levels})
         AND e.start_year IS NOT NULL
-        AND e.start_year BETWEEN {C.MIN_ANCHOR_YEAR} AND {C.SNAPSHOT_YEAR}
+        AND e.start_year BETWEEN {C.MIN_ANCHOR_YEAR} AND {C.LAST_COMPLETE_YEAR}
         AND e.start_year >= c.anchor
         AND e.start_year - c.anchor <= {GRAD_HORIZON}
     """)
@@ -232,29 +233,16 @@ def _materialize(con) -> None:
 
     # first post-anchor self-employment step per POOLED person, classified at
     # SOC major-group grain with the same det-wins / jury-fills pooling as the
-    # panel (build.build_panel); jury read directly from the calibrated parquet
-    # because the substrate cache does not recreate the role_jury temp table.
-    use_jury = "llm_jury" in C.SOC_SOURCES and C.ROLE_SOC_JURY.exists()
-    if use_jury:
-        con.execute(f"""
-          CREATE OR REPLACE TEMP TABLE ch_role_jury AS
-          SELECT role_canonical, soc_major AS jury_code
-          FROM read_parquet('{C.q(C.ROLE_SOC_JURY)}')
-        """)
-    else:
-        con.execute("CREATE OR REPLACE TEMP TABLE ch_role_jury "
-                    "(role_canonical VARCHAR, jury_code VARCHAR)")
+    # panel (build.build_panel), read from the spine's pooled column.
+    use_jury = "llm_jury" in C.SOC_SOURCES
     con.execute(f"""
       CREATE OR REPLACE TEMP TABLE ch_first_se AS
       SELECT c.linkedin_id, s.sy - c.anchor AS yrs,
-             CASE WHEN s.occupation_code IS NOT NULL
-                    THEN {C.soc_major_case('s.occupation_code')}
-                  ELSE {C.soc_major_label_case('rj.jury_code')}
+             CASE WHEN s.soc_source = 'det' OR (s.soc_source = 'jury' AND {str(use_jury).upper()})
+                    THEN {C.soc_major_label_case('s.soc_major')}
              END AS soc_major
       FROM ch_pool c
       JOIN ch_steps s ON s.linkedin_id = c.linkedin_id
-      LEFT JOIN ch_role_jury rj
-        ON s.occupation_code IS NULL AND rj.role_canonical = s.role_canonical
       WHERE s.employment_type IN ({_se_list()}) AND s.sy >= c.anchor
       QUALIFY row_number() OVER (PARTITION BY c.linkedin_id
                                  ORDER BY s.sy, s.row_id) = 1
@@ -514,7 +502,7 @@ def compute(con) -> dict:
             "service, and self-employment for reasons the data cannot see."),
         "population": (
             "All outcomes are computed on the year-10 cohort: everyone "
-            f"graduated by {C.SNAPSHOT_YEAR - C.FAN_YEAR}, so each person has "
+            f"graduated by {C.LAST_COMPLETE_YEAR - C.FAN_YEAR}, so each person has "
             "a full ten-year window. Choice flags are matched person by "
             f"person. Named cells clear the {C.MIN_SUPPORT}-person reporting "
             "bar; a breakdown that cannot meet it is withheld and counted, "

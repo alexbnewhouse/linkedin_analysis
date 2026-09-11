@@ -84,7 +84,7 @@ def build(threads: int = 8, cox_sample: int = 200_000, seed: int = 42) -> dict:
 
     # KM split: time-to-first-advancement, humanities vs non (fully-observed cohorts
     # only, so the backfill gradient doesn't dominate the comparison)
-    fully_km = df[df["entry_year"] <= C.SNAPSHOT_YEAR - C.COMMON_WINDOW_YEARS]
+    fully_km = df[df["entry_year"] <= C.LAST_COMPLETE_YEAR - C.COMMON_WINDOW_YEARS]
     by_hum = {}
     for hv, label in ((1, "humanities"), (0, "non_humanities")):
         g = fully_km[fully_km["hum"] == hv]
@@ -95,7 +95,7 @@ def build(threads: int = 8, cox_sample: int = 200_000, seed: int = 42) -> dict:
                              "share_advanced_by_age5": round(1 - float(k.predict(5)), 3)}
 
     # sensitivity: cohorts old enough to be fully observed over the common window
-    fully = df[df["entry_year"] <= C.SNAPSHOT_YEAR - C.COMMON_WINDOW_YEARS]
+    fully = df[df["entry_year"] <= C.LAST_COMPLETE_YEAR - C.COMMON_WINDOW_YEARS]
     kf = KaplanMeierFitter().fit(fully["duration"], fully["event"])
 
     summary = {
@@ -117,7 +117,7 @@ def build(threads: int = 8, cox_sample: int = 200_000, seed: int = 42) -> dict:
         },
         "km_by_humanities_fully_observed": by_hum,
         "sensitivity_fully_observed_cohorts": {
-            "entry_year_max": C.SNAPSHOT_YEAR - C.COMMON_WINDOW_YEARS,
+            "entry_year_max": C.LAST_COMPLETE_YEAR - C.COMMON_WINDOW_YEARS,
             "n": int(len(fully)),
             "median_years_to_advance": float(kf.median_survival_time_),
         },

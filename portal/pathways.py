@@ -50,7 +50,7 @@ def mine_soc(con, top5_fan: dict[str, list[str]]) -> dict:
     coverage grows exactly as occupation coding grows. Emits 3-4-stage chains
     with >= PATH_MIN_PERSONS distinct persons; ``unexpected`` = terminal group
     outside the major's top-5 fan destinations."""
-    cut = C.SNAPSHOT_YEAR - C.FAN_YEAR
+    cut = C.LAST_COMPLETE_YEAR - C.FAN_YEAR
     rows_by_group: dict[str, list] = {g: [] for g in C.MAJORS}
     data = con.execute(f"""
       SELECT m.group_key, m.linkedin_id, p.cal_year - m.anchor AS rel_year,
@@ -116,7 +116,7 @@ def mine_soc(con, top5_fan: dict[str, list[str]]) -> dict:
 
 def mine(con, top5_fan: dict[str, list[str]]) -> dict:
     """top5_fan: group_key -> list of that group's top-5 fan SOC major labels."""
-    cut = C.SNAPSHOT_YEAR - C.FAN_YEAR
+    cut = C.LAST_COMPLETE_YEAR - C.FAN_YEAR
     trans = f"read_parquet('{C.q(C.TRANSITIONS)}')"
     role_soc = _role_soc_major(con)
     role_dwell = _role_dwell(con)

@@ -122,6 +122,10 @@ COPY (
     t.seniority_level,
     sen.seniority_ordinal,
     t.occupation_code,
+    -- pooled SOC-major axis (deterministic prefix, else the calibrated jury
+    -- major; audit 2026-09-02 H6 -- the spine used the 21% detailed code only)
+    t.occupation_major_pooled AS soc_major,
+    t.occupation_source       AS soc_source,
     t.location,
     -- Layer 3b: fused seniority_score in [0,1] = confidence-weighted mean of the
     -- three layers present (A lexical within-role, C revealed cross-role, B Job
@@ -246,6 +250,7 @@ COPY (
       seniority_score           AS from_sen_score,
       seniority_confidence      AS from_sen_conf,
       occupation_code           AS from_occupation, location AS from_location,
+      soc_major                 AS from_soc_major,
       lead(seniority_score)      OVER w AS to_sen_score,
       lead(seniority_confidence) OVER w AS to_sen_conf,
       lead(start_dt)             OVER w AS to_start_dt,
@@ -256,6 +261,7 @@ COPY (
       lead(seniority_level)      OVER w AS to_seniority,
       lead(seniority_ordinal)    OVER w AS to_seniority_ordinal,
       lead(occupation_code)      OVER w AS to_occupation,
+      lead(soc_major)            OVER w AS to_soc_major,
       lead(location)             OVER w AS to_location
     FROM prim
     WINDOW w AS (PARTITION BY linkedin_id ORDER BY start_dt, end_dt, row_id)
@@ -315,9 +321,8 @@ COPY (
        AND to_employment_type   IN {C.sql_in_list(C.SELF_EMPLOYED_TYPES)} THEN 'into_self_employment'
       WHEN from_employment_type IN {C.sql_in_list(C.SELF_EMPLOYED_TYPES)}
        AND to_employment_type   NOT IN {C.sql_in_list(C.SELF_EMPLOYED_TYPES)} THEN 'out_of_self_employment'
-      WHEN from_occupation IS NOT NULL AND to_occupation IS NOT NULL
-       AND substr(from_occupation, 1, {C.SOC_MAJOR_LEN})
-         <> substr(to_occupation, 1, {C.SOC_MAJOR_LEN}) THEN
+      WHEN from_soc_major IS NOT NULL AND to_soc_major IS NOT NULL
+       AND from_soc_major <> to_soc_major THEN
         CASE WHEN sen_conf >= {C.CONF_MIN} AND delta_sen >  {C.TAU_UP}   THEN 'occupation_change_up'
              WHEN sen_conf >= {C.CONF_MIN} AND delta_sen < -{C.TAU_DOWN} THEN 'occupation_change_down'
              ELSE 'occupation_change' END
@@ -353,6 +358,7 @@ COPY (
     from_seniority_ordinal, to_seniority_ordinal,
     from_sen_score, to_sen_score,
     from_occupation, to_occupation,
+    from_soc_major, to_soc_major,
     from_location, to_location
   FROM paired
 ) TO '{{trans_out}}' (FORMAT parquet, COMPRESSION zstd)

@@ -59,7 +59,7 @@ MIN_ANCHOR_YEAR = 1950
 # snapshot's calendar year. The snapshot is 2026-02-19, so admitting a 2026
 # end_year would count an unearned degree as an observed anchor. Unchanged by
 # the 2026-08-05 snapshot-date correction.
-SNAPSHOT_YEAR = 2025
+LAST_COMPLETE_YEAR = 2025  # == paths.common.LAST_COMPLETE_YEAR (audit 2026-09-02 M7 rename)
 BACHELOR_LEVEL = 4
 
 # --- A2: empirically fit duration offset ------------------------------------
@@ -91,7 +91,7 @@ def q(p) -> str:
 
 def a1_predicate_sql(alias: str = "e") -> str:
     """A1 usability predicate for one education row (unchanged rule)."""
-    return (f"{alias}.end_year BETWEEN {MIN_ANCHOR_YEAR} AND {SNAPSHOT_YEAR} "
+    return (f"{alias}.end_year BETWEEN {MIN_ANCHOR_YEAR} AND {LAST_COMPLETE_YEAR} "
             f"AND NOT coalesce({alias}.in_progress, FALSE)")
 
 
@@ -104,8 +104,8 @@ def a2_candidate_sql(alias: str = "e", degree_level: int = BACHELOR_LEVEL) -> st
     return (
         f"CASE WHEN {alias}.end_year IS NULL "
         f"AND NOT coalesce({alias}.in_progress, FALSE) "
-        f"AND {alias}.start_year BETWEEN 1900 AND {SNAPSHOT_YEAR} "
-        f"AND {alias}.start_year + {d_hat} <= {SNAPSHOT_YEAR} "
+        f"AND {alias}.start_year BETWEEN 1900 AND {LAST_COMPLETE_YEAR} "
+        f"AND {alias}.start_year + {d_hat} <= {LAST_COMPLETE_YEAR} "
         f"THEN {alias}.start_year + {d_hat} END"
     )
 
@@ -127,7 +127,7 @@ def register_a3_onset(con) -> None:
       WHERE datable AND NOT bad_negative_duration AND NOT bad_future_start
         AND in_workforce
         AND (seniority_ordinal IS NULL OR seniority_ordinal >= 1)
-        AND year(start_dt) BETWEEN {MIN_ANCHOR_YEAR} AND {SNAPSHOT_YEAR}
+        AND year(start_dt) BETWEEN {MIN_ANCHOR_YEAR} AND {LAST_COMPLETE_YEAR}
       GROUP BY 1
     """)
 

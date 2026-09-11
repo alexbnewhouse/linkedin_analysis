@@ -70,6 +70,21 @@ _PLACEHOLDER_EXACT = {
     "stealth": "stealth",
     "stealth startup": "stealth",
     "stealth mode startup": "stealth",
+    # audit 2026-09-02 (red C1/M5): bare status words that had acquired
+    # LinkedIn company_ids through modal-id inheritance and became "employers"
+    # ("Independent" 2,324 rows, "Home" 1,938, "Consultant" 1,742).
+    "independent": "self_employed",
+    "consultant": "self_employed",
+    "consulting": "self_employed",
+    "contractor": "self_employed",
+    "contract": "self_employed",
+    "myself": "self_employed",
+    "me": "self_employed",
+    "own business": "self_employed",
+    "my own business": "self_employed",
+    "entrepreneur": "self_employed",
+    "home": "none",
+    "tbd": "none",
 }
 _PLACEHOLDER_RE = [
     (re.compile(r"^self.?employ"), "self_employed"),
@@ -86,6 +101,56 @@ _PLACEHOLDER_RE = [
     (re.compile(r"^unemployed\b"), "unemployed"),
     (re.compile(r"^stealth\b"), "stealth"),
     (re.compile(r"^various\b"), "various"),
+    # -- status strings that topped the unresolved industry head (2026-09-02):
+    # "Stay at Home Mom" (453 rows), "self-emplyed", "In Transition", "Private
+    # Company" (841), "Profesional independiente" (312).  Anchored, and the
+    # organisations sharing a prefix (Seeking Alpha, Independent Artist Group,
+    # Volunteer State CC, Private Equity Partners) are pinned in company_tests.
+    (re.compile(r"^stay at home(?! llc\b)"), "homemaker"),
+    (re.compile(r"^sah[md]$"), "homemaker"),
+    (re.compile(r"^full time (mom|dad|mother|father|parent|mum)\b"), "homemaker"),
+    (re.compile(r"^house ?(wife|husband)$"), "homemaker"),
+    (re.compile(r"^home ?maker( mom| dad| and .*)?$"), "homemaker"),
+    (re.compile(r"^(mom|mother|dad|father|parent|mum|mommy)$"), "homemaker"),
+    (re.compile(r"^self ?empl"), "self_employed"),            # emplyed, emplyoed, emploed ...
+    (re.compile(r"^profesional independiente\b"), "self_employed"),
+    (re.compile(r"^independent professional$"), "self_employed"),
+    (re.compile(r"^independent (artist|writer|filmmaker|musician|researcher|scholar|author|producer|"
+                r"designer|photographer|creator|journalist|curator|composer|illustrator)$"), "self_employed"),
+    (re.compile(r"^(author|writer|poet|novelist|self published author|independent author|published author|"
+                r"freelance author|artist|fine artist|visual artist|working artist|musician|singer songwriter|"
+                r"photographer|filmmaker|illustrator|composer)$"), "self_employed"),
+    (re.compile(r"^(my )?own (company|business|firm|practice|studio)\b"), "self_employed"),
+    (re.compile(r"^myself\b"), "self_employed"),
+    (re.compile(r"^solopreneur\b"), "self_employed"),
+    (re.compile(r"^personal (projects?|business|work)$"), "self_employed"),
+    (re.compile(r"^in transition\b"), "career_break"),
+    (re.compile(r"^career break\b"), "career_break"),
+    (re.compile(r"^(on )?sabbatical\b"), "career_break"),
+    (re.compile(r"^(actively )?seeking (a |my )?(new|next|employment|work|jobs?|positions?|opportunit|"
+                r"full time|part time|other|re employment|gainful)"), "unemployed"),
+    (re.compile(r"^looking for (a |my )?(new|next|jobs?|work|employment|opportunit|opporunit|positions?|"
+                r"full time|part time)"), "unemployed"),
+    (re.compile(r"^open to (work|opportunities|new opportunit|a new|new roles|roles)"), "unemployed"),
+    (re.compile(r"^between (jobs|positions|opportunities|roles|gigs)\b"), "unemployed"),
+    (re.compile(r"^job seek(er|ing)\b"), "unemployed"),
+    (re.compile(r"^not (currently )?(employed|working)\b"), "unemployed"),
+    (re.compile(r"^currently (unemployed|not (working|employed)|seeking|looking|between)\b"), "unemployed"),
+    (re.compile(r"^retiree$|^none retired\b"), "retired"),
+    (re.compile(r"^none\b|^not applicable\b|^not available\b|^personal$"), "none"),
+    (re.compile(r"^(at home|my home|home office|work from home|working from home|home based|from home)$"), "none"),
+    (re.compile(r"^multiple (compan(y|ies)|organi[sz]ations|clients|locations|agencies|employers|firms|families|"
+                r"schools|hospitals|businesses|positions|jobs|projects|contracts|universities|colleges|districts|"
+                r"practices|restaurants|sites)\b"), "various"),
+    (re.compile(r"^misc(ellaneous)?$"), "various"),
+    (re.compile(r"^confidential$|^confidential (company|clients?|jobs?|family( office)?|employer|organi[sz]ation|"
+                r"firm|startup|position|project|at this time|for now|until)\b"), "confidential"),
+    (re.compile(r"^anonymous$"), "confidential"),
+    (re.compile(r"^private (compan(y|ies)|firm|employer|business|organi[sz]ation|sector|clients?|individuals?|"
+                r"investors?|consulting|owner|party|group|corporation)$"), "confidential"),
+    (re.compile(r"^private (famil(y|ies)|households?|homes?|residences?|family home|family household|house|estate)$"),
+     "private_household"),
+    (re.compile(r"^volunteer$|^volunteer (work|positions?|activities|services?|experience|roles?)$"), "volunteer"),
 ]
 
 
@@ -112,6 +177,9 @@ _BUCKET_TO_EMPLOYMENT = {
     "various": "various",
     "confidential": "confidential",
     "stealth": "stealth",
+    "private_household": "employee",   # nannies, drivers, estate staff: employed by a household (NAICS 814)
+    "career_break": "career_break",
+    "volunteer": "volunteer",
 }
 _TITLE_STATUS_EXACT = {
     "retired": "retired",
@@ -247,6 +315,25 @@ ENTITY_ALIASES = {
 def canonical_company_id(cid: str) -> str:
     """Apply curated cross-id entity equivalences (Facebook->Meta, etc.)."""
     return ENTITY_ALIASES.get(cid, cid)
+
+
+# LinkedIn links university EMPLOYERS to ``/school/<slug>`` pages and leaves
+# ``company_id`` blank, so 454k experience rows (299k persons) had no stable
+# key (audit 2026-09-02 green E1). The slug is the same namespace as
+# ``company_id`` (on id-bearing rows the ``/company/<slug>`` URL equals the id
+# 99.8% of the time), so it is used verbatim as ``id:<slug>``. RE2 syntax, used
+# by both the Python helper and the DuckDB ``regexp_extract`` in
+# build_normalized (company_tests asserts they agree).
+SCHOOL_URL_RE = r"linkedin\.com/school/([^/?#]+)"
+_SCHOOL_URL = re.compile(SCHOOL_URL_RE)
+
+
+def school_slug(url: str | None) -> str | None:
+    """``id``-namespace slug from a linkedin.com/school/<slug> URL, else None."""
+    if not url:
+        return None
+    m = _SCHOOL_URL.search(url)
+    return m.group(1).lower() if m else None
 
 
 def _name_to_id_crosswalk(vocab: list[tuple]) -> dict[str, str]:

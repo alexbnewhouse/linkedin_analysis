@@ -85,9 +85,48 @@ def _cache_fresh(path: Path) -> bool:
     return path.stat().st_mtime >= MANIFEST.stat().st_mtime
 
 
+# Support a company STRING needs before its id-less rows may inherit the modal
+# company_id of its id-bearing rows (audit 2026-09-02 red C1: with no gate,
+# 631k rows inherited ids from one or two stray rows -- "University of
+# Michigan" became a chronic-disease center, "Independent" an area agency on
+# aging). Rows that carry their own company_id are unaffected.
+MIN_ID_ROWS = 3
+MIN_ID_SHARE = 0.5
+
+
+def company_vocab_sql(source: str, out: Path) -> str:
+    """The company-vocab COPY statement over ``source`` (a relation with
+    ``company`` and ``company_id`` columns). ``modal_id`` is NULL unless the
+    id-bearing rows reach both support floors; ``id_rows`` is kept for audit."""
+    return f"""
+        COPY (
+          WITH base AS (
+            SELECT company AS value, nullif(trim(company_id), '') AS company_id
+            FROM {source} WHERE company IS NOT NULL AND trim(company) <> ''
+          ),
+          idc AS (
+            SELECT value, company_id, count(*) c FROM base
+            WHERE company_id IS NOT NULL GROUP BY 1, 2
+          ),
+          modal AS (
+            SELECT value, arg_max(company_id, c) AS modal_id, sum(c) AS id_rows
+            FROM idc GROUP BY 1
+          )
+          SELECT b.value, count(*) AS freq,
+                 CASE WHEN coalesce(any_value(m.id_rows), 0) >= {MIN_ID_ROWS}
+                       AND coalesce(any_value(m.id_rows), 0) >= {MIN_ID_SHARE} * count(*)
+                      THEN any_value(m.modal_id) END AS modal_id,
+                 coalesce(any_value(m.id_rows), 0) AS id_rows
+          FROM base b LEFT JOIN modal m USING (value)
+          GROUP BY b.value
+        ) TO '{out}' (FORMAT parquet)
+    """
+
+
 def export_vocab(name: str, force: bool = False) -> Path:
     """Cache distinct values + frequency for a field to parquet. For `company`
-    we also attach the modal ``company_id`` (best canonical organization key)."""
+    we also attach the modal ``company_id`` (best canonical organization key),
+    gated on support (see ``company_vocab_sql``)."""
     out = CACHE / f"vocab_{name}.parquet"
     if not force and _cache_fresh(out):
         return out
@@ -95,24 +134,7 @@ def export_vocab(name: str, force: bool = False) -> Path:
         out.unlink()
     con = _con()
     if name == "company":
-        con.sql(f"""
-            COPY (
-              WITH base AS (
-                SELECT company AS value, company_id
-                FROM {EXP} WHERE company IS NOT NULL AND trim(company) <> ''
-              ),
-              idc AS (
-                SELECT value, company_id, count(*) c FROM base
-                WHERE company_id IS NOT NULL GROUP BY 1, 2
-              ),
-              modal AS (
-                SELECT value, arg_max(company_id, c) AS modal_id FROM idc GROUP BY 1
-              )
-              SELECT b.value, count(*) AS freq, any_value(m.modal_id) AS modal_id
-              FROM base b LEFT JOIN modal m USING (value)
-              GROUP BY b.value
-            ) TO '{out}' (FORMAT parquet)
-        """)
+        con.sql(company_vocab_sql(EXP, out))
     elif name == "title":
         con.sql(f"""
             COPY (

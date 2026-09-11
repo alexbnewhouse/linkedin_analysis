@@ -34,6 +34,17 @@ def main() -> None:
           con.sql(f"SELECT count(*) FROM {p} WHERE job_zone_norm < 0 OR job_zone_norm > 1").fetchone()[0] == 0)
     check("panel: seniority_score in [0,1] or NULL",
           con.sql(f"SELECT count(*) FROM {p} WHERE seniority_score < 0 OR seniority_score > 1").fetchone()[0] == 0)
+    # pooled SOC-major axis (audit 2026-09-02 H6): present, and it must cover
+    # more person-years than the deterministic 6-digit code alone
+    det_cov, pooled_cov = con.sql(f"""
+        SELECT avg((occupation_code IS NOT NULL)::INT), avg((soc_major IS NOT NULL)::INT)
+        FROM {p}""").fetchone()
+    check("panel: pooled soc_major covers more than the deterministic code",
+          pooled_cov > det_cov)
+    check("panel: soc_source is det/jury/NULL only",
+          con.sql(f"SELECT count(*) FROM {p} WHERE soc_source NOT IN ('det', 'jury')").fetchone()[0] == 0)
+    check("profiles: first_soc_major present",
+          con.sql(f"SELECT count(*) FROM {pr} WHERE first_soc_major IS NOT NULL").fetchone()[0] > 0)
 
     # --- profiles integrity ---
     bad_valid = con.sql(f"""SELECT count(*) FROM {pr}
@@ -55,7 +66,7 @@ def main() -> None:
     # Cohorts old enough to be fully observed (entry <= snapshot - window) must
     # actually reach the common window; the very recent bins (e.g. 2020) cannot,
     # which is why equal-window comparisons must restrict to the observable set.
-    fully_obs_max_entry = C.SNAPSHOT_YEAR - C.COMMON_WINDOW_YEARS
+    fully_obs_max_entry = C.LAST_COMPLETE_YEAR - C.COMMON_WINDOW_YEARS
     min_obs = con.sql(f"""
         SELECT min(mx) FROM (
           SELECT entry_cohort_bin, max(career_age) mx FROM {p}

@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from datetime import date
 
 import duckdb
@@ -45,17 +46,34 @@ from career_clean import soc_taxonomy as T
 EMPLOYMENT_FORMS = {
     "internship", "apprenticeship", "volunteer", "volunteering",
     "work study", "temp", "temporary", "seasonal", "part time", "full time",
+    "student", "students", "extern", "externship", "trainee", "apprentice",
+    "intern",
 }
+# Head-noun forms (audit 2026-09-02 red H4): "Nursing Student", "PhD Student",
+# "Legal Extern" name a person's STATUS in a field, not an occupation -- the
+# jury coded "Student" as Education (12,452 rows) and nursing / medical
+# students as practitioners. "Student Teacher" / "Student Assistant" keep a
+# role head noun and stay. The clinical trainee list covers the one common
+# inversion ("Student Nurse" = nursing student).
+_STATUS_HEAD_RE = re.compile(
+    r"(?:^|\s)(?:student|students|extern|externs|trainee|trainees|apprentice|apprentices)$")
+_CLINICAL_TRAINEE_RE = re.compile(
+    r"^student (?:nurse|nurses|physical therapist|athletic trainer|clinician|"
+    r"physician assistant|pharmacist|midwife|dietitian|occupational therapist|"
+    r"physician|doctor|dentist|optometrist|veterinarian)\b")
 
 
 def _non_occupation(role_display: str | None) -> bool:
     """True when the string carries no occupational content: de-leveling
-    leaves an empty base (pure level tokens like 'Intern', 'Senior'), or the
-    whole string is an employment-form noun."""
+    leaves an empty base (pure level tokens like 'Intern', 'Senior'), the
+    whole string is an employment-form noun, or its head noun is a status
+    (student / extern / trainee / apprentice)."""
     if not role_display:
         return True
     norm = CC.normalize(role_display)
     if norm in EMPLOYMENT_FORMS:
+        return True
+    if _STATUS_HEAD_RE.search(norm) or _CLINICAL_TRAINEE_RE.match(norm):
         return True
     _lvl, base = R.parse_title(role_display)
     return not base.strip()

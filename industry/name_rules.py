@@ -26,25 +26,64 @@ from . import taxonomy as T
 # deliberately absent because they span every sector.
 _RULES: list[tuple[str, str]] = [
     # ---- multiword phrases (highest precision) ----
-    ("real estate", "RE.REST"),
-    ("credit union", "FIN.BNK.CU"),
-    ("law firm", "PRO.LEGAL"),
-    ("law offices", "PRO.LEGAL"),
-    ("law office", "PRO.LEGAL"),
+    # A leading "^" anchors the phrase to the START of the normalized name
+    # (audit 2026-09-02 red C2: "Columbia University in the City of New York"
+    # and "Museum of the City of New York" are not municipalities).
+    ("medical center", "HLT.PROV.HOSP"),
+    ("health system", "HLT.PROV.HOSP"),
+    ("city of hope", "HLT.PROV.HOSP"),
+    ("health plan", "HLT.PAYR"),
+    ("health insurance", "HLT.PAYR"),
+    ("blood bank", "HLT.PROV"),
+    ("nursing homes", "HLT.PROV.LTC"),
+    ("nursing home", "HLT.PROV.LTC"),
+    ("home health", "HLT.PROV.LTC"),
+    ("home care", "HLT.PROV.LTC"),
+    ("assisted living", "HLT.PROV.LTC"),
+    ("dental care", "HLT.PROV.DENT"),
+    ("animal hospital", "HLT.PROV"),
+    # graduate / professional schools are higher education, not K-12 or clinics
+    ("school of medicine", "EDU.HED"),
+    ("medical school", "EDU.HED"),
+    ("medical university", "EDU.HED.UNIV"),
+    ("medical college", "EDU.HED"),
+    ("medical campus", "EDU.HED"),
+    ("business school", "EDU.HED"),
+    ("school of business", "EDU.HED"),
+    ("school of management", "EDU.HED"),
+    ("law school", "EDU.HED"),
+    ("school of law", "EDU.HED"),
+    ("school of nursing", "EDU.HED"),
+    ("school of public health", "EDU.HED"),
+    ("school of engineering", "EDU.HED"),
+    ("graduate school", "EDU.HED"),
+    ("community college", "EDU.HED.CC"),
+    ("naval academy", "EDU.HED"),
+    ("military academy", "EDU.HED"),
+    ("air force academy", "EDU.HED"),
+    ("coast guard academy", "EDU.HED"),
+    ("police academy", "PUB.JUST"),
+    ("academy sports", "CON.RET.SPEC"),
     ("public schools", "EDU.K12"),
     ("school district", "EDU.K12"),
     ("high school", "EDU.K12"),
     ("elementary school", "EDU.K12"),
     ("middle school", "EDU.K12"),
-    ("community college", "EDU.HED.CC"),
-    ("medical center", "HLT.PROV.HOSP"),
-    ("health system", "HLT.PROV.HOSP"),
-    ("home health", "HLT.PROV.LTC"),
-    ("home care", "HLT.PROV.LTC"),
-    ("nursing home", "HLT.PROV.LTC"),
-    ("assisted living", "HLT.PROV.LTC"),
-    ("dental care", "HLT.PROV.DENT"),
-    ("animal hospital", "HLT.PROV"),
+    ("real estate", "RE.REST"),
+    ("credit union", "FIN.BNK.CU"),
+    ("food bank", "NPO.SOCS"),
+    ("goodwill", "NPO.SOCS"),
+    ("state farm", "FIN.INS"),
+    ("farm bureau", "FIN.INS"),
+    ("farm credit", "FIN.BNK"),
+    ("capital management", "FIN.ASM"),
+    ("capital partners", "FIN.ASM.PE"),
+    ("capital markets", "FIN.BNK.INV"),
+    ("capital group", "FIN.ASM"),
+    ("capital advisors", "FIN.ASM.WM"),
+    ("law firm", "PRO.LEGAL"),
+    ("law offices", "PRO.LEGAL"),
+    ("law office", "PRO.LEGAL"),
     ("auto repair", "TRN"),  # ambiguous between repair shop and dealer -> keep shallow
     ("auto group", "CON.RET.SPEC"),
     ("property management", "RE.REST.PM"),
@@ -59,26 +98,43 @@ _RULES: list[tuple[str, str]] = [
     ("web design", "TEC.SOF"),
     ("software solutions", "TEC.SOF"),
     ("oil and gas", "ENR.OILG"),
-    ("oil & gas", "ENR.OILG"),
+    # electric utilities (audit C2: bare "electric" sent PG&E, Schneider,
+    # Westinghouse and AEP to construction trades; the token is retired)
+    ("electric power", "ENR.UTIL.POWR"),
+    ("electric company", "ENR.UTIL.POWR"),
+    ("electric cooperative", "ENR.UTIL.POWR"),
+    ("electric coop", "ENR.UTIL.POWR"),
+    ("electric utility", "ENR.UTIL.POWR"),
+    ("gas and electric", "ENR.UTIL"),
+    ("electric and gas", "ENR.UTIL"),
+    ("power and light", "ENR.UTIL.POWR"),
+    ("power company", "ENR.UTIL.POWR"),
     ("heating and cooling", "RE.CNST.TRADE"),
     ("lawn care", "RE.CNST.TRADE"),
     ("pest control", "PRO.BPO"),
-    ("city of", "PUB.GOV.SLOC"),
-    ("county of", "PUB.GOV.SLOC"),
-    ("department of", "PUB.GOV"),
+    # government (specific before generic)
+    ("department of defense", "PUB.DEF"),
+    ("national science foundation", "PUB.GOV.FED"),
+    ("transportation security administration", "PUB.GOV.FED"),
     ("us department", "PUB.GOV.FED"),
     ("united states army", "PUB.DEF.AF"),
     ("united states navy", "PUB.DEF.AF"),
     ("united states air force", "PUB.DEF.AF"),
+    ("fire department", "PUB.JUST"),
+    # ---- institution tokens that must beat generic tokens below ----
+    ("hospital", "HLT.PROV.HOSP"),
+    ("hospice", "HLT.PROV.LTC"),
+    ("university", "EDU.HED.UNIV"),
+    ("college", "EDU.HED"),
+    ("^city of", "PUB.GOV.SLOC"),
+    ("^county of", "PUB.GOV.SLOC"),
+    ("department of", "PUB.GOV"),
     # ---- finance ----
     ("bancorp", "FIN.BNK"),
     ("bancshares", "FIN.BNK"),
     ("bank", "FIN.BNK"),
     ("savings", "FIN.BNK"),
     ("mortgage", "FIN.FINT.LEND"),
-    ("capital", "FIN.ASM"),
-    ("ventures", "FIN.ASM.PE"),
-    ("equity", "FIN.ASM.PE"),
     ("securities", "FIN.BNK.INV"),
     ("financial", "FIN"),
     ("finance", "FIN"),
@@ -86,7 +142,6 @@ _RULES: list[tuple[str, str]] = [
     ("assurance", "FIN.INS"),
     ("payments", "FIN.FINT.PAY"),
     # ---- healthcare ----
-    ("hospital", "HLT.PROV.HOSP"),
     ("healthcare", "HLT.PROV"),
     ("health", "HLT.PROV"),
     ("clinic", "HLT.PROV.AMB"),
@@ -100,10 +155,7 @@ _RULES: list[tuple[str, str]] = [
     ("biotech", "HLT.PHRM.BIO"),
     ("therapeutics", "HLT.PHRM.PHARMA"),
     ("veterinary", "HLT.PROV"),
-    ("hospice", "HLT.PROV.LTC"),
     # ---- education ----
-    ("university", "EDU.HED.UNIV"),
-    ("college", "EDU.HED"),
     ("academy", "EDU.K12"),
     ("schools", "EDU.K12"),
     ("school", "EDU.K12"),
@@ -117,7 +169,6 @@ _RULES: list[tuple[str, str]] = [
     ("township", "PUB.GOV.SLOC"),
     ("police", "PUB.JUST"),
     ("sheriff", "PUB.JUST"),
-    ("fire department", "PUB.JUST"),
     # ---- real estate / construction ----
     ("realty", "RE.REST.RES"),
     ("realtors", "RE.REST.RES"),
@@ -129,7 +180,6 @@ _RULES: list[tuple[str, str]] = [
     ("contracting", "RE.CNST.TRADE"),
     ("roofing", "RE.CNST.TRADE"),
     ("plumbing", "RE.CNST.TRADE"),
-    ("electric", "RE.CNST.TRADE"),
     ("electrical", "RE.CNST.TRADE"),
     ("hvac", "RE.CNST.TRADE"),
     ("landscaping", "RE.CNST.TRADE"),
@@ -159,7 +209,6 @@ _RULES: list[tuple[str, str]] = [
     ("software", "TEC.SOF"),
     ("technologies", "TEC"),
     ("technology", "TEC"),
-    ("systems", "TEC.SOF.ITSV"),
     ("cybersecurity", "TEC.SOF.INFR.SEC"),
     ("semiconductor", "TEC.HRDW.SEMI"),
     ("robotics", "TEC.HRDW"),
@@ -173,7 +222,6 @@ _RULES: list[tuple[str, str]] = [
     ("studios", "MED.FILM"),
     ("productions", "MED.FILM"),
     ("publishing", "MED.PUBL"),
-    ("records", "MED.FILM"),
     ("photography", "PRO.DSGN"),
     ("films", "MED.FILM"),
     # ---- energy / utilities / resources ----
@@ -181,12 +229,10 @@ _RULES: list[tuple[str, str]] = [
     ("energy", "ENR"),
     ("solar", "ENR.RENW"),
     ("utilities", "ENR.UTIL"),
-    ("electric power", "ENR.UTIL.POWR"),
     ("mining", "ENR.MINE"),
     ("drilling", "ENR.OILG.UPST"),
     # ---- manufacturing / industrials ----
     ("manufacturing", "MFG"),
-    ("industries", "MFG.IND"),
     ("steel", "MFG.CHEM.MATL"),
     ("plastics", "MFG.CHEM.MATL"),
     ("chemical", "MFG.CHEM"),
@@ -222,11 +268,9 @@ _RULES: list[tuple[str, str]] = [
     ("tours", "HOS.TRVL"),
     # ---- agriculture ----
     ("farms", "AGR.FARM"),
-    ("farm", "AGR.FARM"),
     ("agriculture", "AGR"),
     ("agricultural", "AGR"),
     ("ranch", "AGR.LIVE"),
-    ("dairy", "AGR.LIVE"),
     ("vineyards", "AGR.FARM"),
     ("orchards", "AGR.FARM"),
     ("nursery", "AGR.AGSV"),
@@ -244,18 +288,33 @@ _RULES: list[tuple[str, str]] = [
     ("realtor", "RE.REST.RES"),
     ("boutique", "CON.RET.SPEC"),
     ("jewelers", "CON.RET.SPEC"),
-    ("motors", "CON.RET.SPEC"),
     ("dealership", "CON.RET.SPEC"),
     ("grocery", "CON.RET.GROC"),
     ("supermarket", "CON.RET.GROC"),
     ("wholesale", "CON.WHL"),
     ("distributors", "CON.WHL"),
     ("distribution", "CON.WHL"),
-    ("salon", "PRO.BPO"),  # personal-care storefront; keep cross-cutting & shallow-ish
     ("spa", "HOS.TRVL"),
     ("fitness", "HOS.TRVL"),
     ("gym", "HOS.TRVL"),
 ]
+
+# Retired tokens (audit 2026-09-02, red C2). Each was measured on
+# company_industry.matched and fired mostly on the wrong sector; the named
+# companies below are curated-tier material (they carry company_ids), not rule
+# material. Do not re-add a bare token without a negative fixture in tests.py.
+#   electric   -> PG&E, Schneider, Westinghouse, AEP (utilities/manufacturers)
+#   farm       -> State Farm, Perdue, Pepperidge Farm, Knott's Berry Farm
+#   dairy      -> Dairy Queen
+#   motors     -> Lucid, Kia, Peterbilt, Tata (OEMs, not dealerships)
+#   ventures   -> Red Ventures, Pepsi Bottling Ventures, "X Ventures LLC"
+#   equity     -> Equity Residential (REIT), Actors' Equity (union)
+#   records    -> National Archives and Records Administration
+#   industries -> Goodwill (nonprofit), ABM (services), Medline (distribution)
+#   systems    -> BAE Systems, GD Mission Systems (defense), Apex (staffing)
+#   salon      -> mapped to business-process outsourcing (nonsense)
+#   capital    -> Capital University, Capital Health, Capital One (bank)
+#   oil & gas  -> unreachable: the normalizer rewrites "&" as "and"
 
 
 def validate() -> list[str]:
@@ -263,8 +322,15 @@ def validate() -> list[str]:
     return [f"{kw!r} -> {code}" for kw, code in _RULES if not T.is_valid(code)]
 
 
+def _compile(kw: str) -> re.Pattern:
+    """Word-boundary phrase match; a leading "^" anchors to the name start."""
+    if kw.startswith("^"):
+        return re.compile(rf"^{re.escape(kw[1:])}\b")
+    return re.compile(rf"\b{re.escape(kw)}\b")
+
+
 _PATTERNS: list[tuple[re.Pattern, str, str]] = [
-    (re.compile(rf"\b{re.escape(kw)}\b"), kw, code) for kw, code in _RULES
+    (_compile(kw), kw, code) for kw, code in _RULES
 ]
 
 

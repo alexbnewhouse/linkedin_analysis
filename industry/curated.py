@@ -132,11 +132,63 @@ CURATED: dict[str, str] = {
                                   # contaminated by HomeServices agents on the parent id
 }
 
+# Audit 2026-09-02 (red C1): the 2026-07-07 promotion pass labeled some ids by a
+# DISPLAY they had inherited from id-less rows (career_clean's modal-id
+# inheritance, since gated). Corrections below are keyed on what the id itself
+# is; retractions are ids whose own rows are too few or too vague to label.
+_CORRECTIONS: dict[str, str] = {
+    "ucsdhealth": "HLT.PROV.HOSP",                 # UC San Diego Health, not the university
+    "uc-irvine-medical-center": "HLT.PROV.HOSP",   # a hospital, not the university
+    "kpn": "TEC.TELE",                              # Dutch telecom; "Wang Laboratories" was inherited
+    "kentucky-department-of-education": "PUB.GOV.SLOC",  # a state agency; "Education" was inherited
+}
+RETRACTED: frozenset[str] = frozenset({
+    "consultant_66",      # a "Consultant" placeholder that acquired an id
+    "thebeach2",          # labeled from an inherited "Volunteer" display
+    "integris-for-banks",  # labeled from inherited "Caltech" rows
+    "berkeley-rha",       # labeled from inherited "UC Berkeley" rows
+})
+CURATED.update(_CORRECTIONS)
+
 # Agreement-gated LLM-curator promotions (see curated_promoted.py for the gate and
-# provenance). Hand-curated entries above win on any key conflict.
+# provenance) and the frontier-labeled head (curated_head.py). Precedence on a
+# key conflict: hand-curated entries above > HEAD > PROMOTED.
+from .curated_head import HEAD  # noqa: E402
 from .curated_promoted import PROMOTED  # noqa: E402
 
-CURATED = {**PROMOTED, **CURATED}
+_HAND = frozenset(CURATED)
+_HEAD = frozenset(HEAD) - _HAND
+CURATED = {k: v for k, v in {**PROMOTED, **HEAD, **CURATED}.items() if k not in RETRACTED}
+
+# Per-tier confidence for the deterministic spine: hand entries are reviewed
+# one by one; the two machine/frontier tiers carry their measured gate
+# precision (promotion: unanimous 1.0 n=24 / majority 0.941 n=34; head: the
+# blind second-pass gate), not 1.0.
+_TIER_CONFIDENCE = {"hand": 1.0, "head": 0.95, "promoted": 0.95}
+
+
+def provenance(company_id: str | None) -> str | None:
+    """Which tier a landed company_id comes from: 'hand' | 'head' | 'promoted',
+    or None when the id is not curated (or retracted)."""
+    if not company_id or company_id in RETRACTED:
+        return None
+    if company_id in _HAND:
+        return "hand"
+    if company_id in _HEAD:
+        return "head"
+    if company_id in PROMOTED:
+        return "promoted"
+    return None
+
+
+def confidence_of(company_id: str | None) -> float:
+    return _TIER_CONFIDENCE.get(provenance(company_id) or "", 0.0)
+
+
+def is_promoted(company_id: str | None) -> bool:
+    """True when the entry comes from the machine-promotion pass rather than a
+    hand-curated line."""
+    return provenance(company_id) == "promoted"
 
 
 def validate() -> list[str]:

@@ -36,6 +36,10 @@ class Axis:
 AXES: dict[str, Axis] = {
     "occupation": Axis("occupation", "from_occupation", "to_occupation",
                        label_ref="onet"),
+    # SOC major-group grain on the POOLED column (deterministic prefix + jury):
+    # covers ~5x the transitions of the 6-digit axis (audit 2026-09-02 H6).
+    "soc_major": Axis("soc_major", "from_soc_major", "to_soc_major",
+                      label_ref="soc_major"),
     "role": Axis("role", "from_role", "to_role"),
     "company": Axis("company", "from_company", "to_company", label_strip="id:"),
     "employment_type": Axis("employment_type", "from_employment_type",

@@ -1,14 +1,14 @@
 {
   "axis": "role",
   "alpha": 0.05,
-  "nodes": 1947515,
-  "edges_nonself": 4318913,
-  "backbone_edges": 2263296,
+  "nodes": 1947652,
+  "edges_nonself": 4319547,
+  "backbone_edges": 2263506,
   "infomap": {
     "skipped": "grain too large"
   },
   "leiden": {
     "skipped": "grain too large"
   },
-  "runtime_s": 116.6
+  "runtime_s": 82.8
 }

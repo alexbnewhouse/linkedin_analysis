@@ -55,7 +55,7 @@ from edu_clean.common import EDU, load_vocab as load_edu_vocab
 # graduations (audit finding 5) and get an `in_progress` flag instead of being
 # silently dropped downstream. The value is unchanged by the 2026-08-05 snapshot
 # correction -- it was never the snapshot's calendar year.
-EDU_SNAPSHOT_YEAR = 2025
+EDU_LAST_COMPLETE_YEAR = 2025
 
 # Sortable degree-level ordinal (HS=1 .. doctorate=7) rendered as a SQL CASE on
 # the degree canonical id's level prefix (audit finding 4). Single source of
@@ -202,6 +202,25 @@ def _quote(path: Path) -> str:
     return str(path).replace("'", "''")
 
 
+# Mappings that a build may run WITHOUT: they are produced by propose-only jury
+# drivers downstream of the tables they enrich (career_steps -> paths -> SOC
+# jury -> role_soc_jury -> career_steps), so the first build of a fresh clone
+# cannot have them. The join reads an empty relation and warns.
+OPTIONAL_MAPPINGS: frozenset[str] = frozenset({"role_soc_jury"})
+
+
+def _optional_mapping_relation(path: Path, schema: str) -> str:
+    """SQL relation for an optional mapping: ``read_parquet(...)`` when the file
+    exists, else an EMPTY relation with the given column schema (and a loud
+    warning), so the LEFT JOIN yields NULLs instead of failing."""
+    if path.exists():
+        return f"read_parquet('{_quote(path)}')"
+    print(f"WARNING: optional mapping {path.name} missing -- its columns will be "
+          f"NULL (run the jury driver and rebuild to populate them)", flush=True)
+    cols = ", ".join(f"NULL::{c.split()[1]} AS {c.split()[0]}" for c in schema.split(","))
+    return f"(SELECT {cols} WHERE FALSE)"
+
+
 def _connect(threads: int) -> duckdb.DuckDBPyConnection:
     con = duckdb.connect()
     con.execute(f"PRAGMA threads={threads}")
@@ -233,8 +252,11 @@ def build_mappings(
     if skip:
         # Reuse the existing calibrated mappings verbatim (they are expensive to
         # rebuild and value-keyed, so they stay valid until the parsed vocab
-        # changes). Only the row-level tables are rebuilt.
-        missing = [str(p) for p in paths.values() if not p.exists()]
+        # changes). Only the row-level tables are rebuilt. Propose-only jury
+        # mappings are OPTIONAL (audit 2026-09-02 H8: a fresh clone must build
+        # career_steps before the SOC jury has ever run).
+        missing = [str(p) for k, p in paths.items()
+                   if k not in OPTIONAL_MAPPINGS and not p.exists()]
         if missing:
             raise SystemExit(
                 "--skip-mappings requires every mapping parquet to exist; missing:\n  "
@@ -544,7 +566,7 @@ def write_education(out: Path, mappings: dict[str, Path], threads: int, timings:
                 nha.humanities_field_group,
                 f.start_year,
                 f.end_year,
-                coalesce(f.end_year > {EDU_SNAPSHOT_YEAR}, FALSE) AS in_progress,
+                coalesce(f.end_year > {EDU_LAST_COMPLETE_YEAR}, FALSE) AS in_progress,
                 -- finding 5: exact within-profile repeats, keep-first
                 (row_number() OVER (
                    PARTITION BY f.linkedin_id, f.school_raw, f.degree_raw,
@@ -718,7 +740,8 @@ _CAREER_STEPS_CTE = f"""
                   linkedin_id,
                   experience_idx,
                   any_value(company) AS company,
-                  any_value(company_id) AS company_id
+                  any_value(company_id) AS company_id,
+                  any_value(url) AS url
                 FROM {EXP}
                 GROUP BY 1, 2
               ),
@@ -730,6 +753,7 @@ _CAREER_STEPS_CTE = f"""
                   CAST(NULL AS BIGINT) AS position_idx,
                   e.company,
                   e.company_id,
+                  lower(nullif(regexp_extract(e.url, '{career_rules.SCHOOL_URL_RE}', 1), '')) AS school_slug,
                   e.title,
                   e.location,
                   e.start_date,
@@ -751,6 +775,7 @@ _CAREER_STEPS_CTE = f"""
                   p.position_idx,
                   e.company,
                   e.company_id,
+                  lower(nullif(regexp_extract(e.url, '{career_rules.SCHOOL_URL_RE}', 1), '')) AS school_slug,
                   p.title,
                   p.location,
                   p.start_date,
@@ -771,11 +796,19 @@ _CAREER_STEPS_CTE = f"""
 # company placeholder -> solo marker -> owner marker -> employee) and was
 # verified bit-identical on all 9,337,517 distinct (company, title) pairs.
 # Expects the join aliases `company` and `title`.
-_EMPLOYMENT_TYPE_SQL = """
+# The placeholder bucket -> employment overrides (none -> unknown,
+# private_household -> employee, ...) come from career_rules._BUCKET_TO_EMPLOYMENT
+# so the SQL cannot drift from placeholder_to_employment().
+_BUCKET_OVERRIDE_SQL = " ".join(
+    f"WHEN company.canonical_id = 'nonorg:{bucket}' THEN '{emp}'"
+    for bucket, emp in career_rules._BUCKET_TO_EMPLOYMENT.items()  # noqa: SLF001
+    if emp != bucket
+)
+_EMPLOYMENT_TYPE_SQL = f"""
                 CASE
                   WHEN title.employment_status IS NOT NULL THEN title.employment_status
                   WHEN company.method = 'placeholder' THEN
-                    CASE WHEN company.canonical_id = 'nonorg:none' THEN 'unknown'
+                    CASE {_BUCKET_OVERRIDE_SQL}
                          ELSE substr(company.canonical_id, 8) END
                   WHEN coalesce(title.employment_solo, FALSE) THEN 'self_employed'
                   WHEN coalesce(title.employment_owner, FALSE) THEN 'business_owner'
@@ -831,27 +864,35 @@ def write_career_steps(out: Path, mappings: dict[str, Path], threads: int, timin
                 s.position_idx,
                 s.company AS company_raw,
                 s.company_id AS company_id_raw,
+                -- company key precedence: placeholder > the row's own
+                -- company_id > a linkedin.com/school/<slug> employer URL (audit
+                -- 2026-09-02 green E1: universities have no company_id) > the
+                -- value-level mapping (support-gated modal id, typo, raw).
                 CASE
                   WHEN company.method = 'placeholder' THEN company.canonical_id
                   WHEN NULLIF(trim(s.company_id), '') IS NOT NULL
                     THEN 'id:' || coalesce(alias.canonical_company_id, s.company_id)
+                  WHEN s.school_slug IS NOT NULL THEN 'id:' || s.school_slug
                   ELSE company.canonical_id
                 END AS company_canonical_id,
                 CASE
                   WHEN company.method = 'placeholder' THEN NULL
                   WHEN NULLIF(trim(s.company_id), '') IS NOT NULL
                     THEN coalesce(alias.canonical_company_id, s.company_id)
+                  WHEN s.school_slug IS NOT NULL THEN s.school_slug
                   WHEN starts_with(company.canonical_id, 'id:') THEN substr(company.canonical_id, 4)
                   ELSE NULL
                 END AS company_id_canonical,
                 CASE
                   WHEN company.method = 'placeholder' THEN 'placeholder'
                   WHEN NULLIF(trim(s.company_id), '') IS NOT NULL THEN 'company_id'
+                  WHEN s.school_slug IS NOT NULL THEN 'school_url'
                   ELSE company.method
                 END AS company_method,
                 CASE
                   WHEN company.method = 'placeholder' THEN 1.0
                   WHEN NULLIF(trim(s.company_id), '') IS NOT NULL THEN 1.0
+                  WHEN s.school_slug IS NOT NULL THEN 0.98
                   ELSE company.confidence
                 END AS company_confidence,
                 -- employment axis: resolved inline (finding 7), see
@@ -945,7 +986,7 @@ def write_career_steps(out: Path, mappings: dict[str, Path], threads: int, timin
                 ON s.title IS NOT DISTINCT FROM title.value
               LEFT JOIN read_parquet('{_quote(mappings["career_occupation"])}') occupation
                 ON s.title IS NOT DISTINCT FROM occupation.value
-              LEFT JOIN read_parquet('{_quote(mappings["role_soc_jury"])}') rsj
+              LEFT JOIN {_optional_mapping_relation(mappings["role_soc_jury"], "role_canonical VARCHAR, soc_major VARCHAR")} rsj
                 ON rsj.role_canonical = CASE
                      WHEN starts_with(title.canonical_id, 'title:')
                      THEN regexp_extract(title.canonical_id, '^title:[^|]*\\|(.*)$', 1)

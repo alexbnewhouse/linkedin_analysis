@@ -21,12 +21,12 @@ PROFILES_OUT = OUT_DIR / "profiles.parquet"
 
 # Snapshot anchor years (matches paths/common.SNAPSHOT_DATE = 2026-02-19,
 # corrected 2026-08-05 from a year-slipped 2025-02-19).
-# SNAPSHOT_YEAR is the last FULLY observed calendar year -- what every window cut
-# (`SNAPSHOT_YEAR - COMMON_WINDOW_YEARS`) and every graduation-year bound needs;
+# LAST_COMPLETE_YEAR is the last FULLY observed calendar year -- what every window cut
+# (`LAST_COMPLETE_YEAR - COMMON_WINDOW_YEARS`) and every graduation-year bound needs;
 # its value is unchanged by the correction, because 2026 is observed only through
 # February. SNAPSHOT_CAL_YEAR is the calendar ceiling on observed steps and panel
 # years: use it when capping a date rather than a window.
-SNAPSHOT_YEAR = 2025
+LAST_COMPLETE_YEAR = 2025  # == paths.common.LAST_COMPLETE_YEAR (audit 2026-09-02 M7 rename)
 SNAPSHOT_CAL_YEAR = 2026
 
 # --- Valid-cohort bounds ----------------------------------------------------

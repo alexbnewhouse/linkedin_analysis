@@ -56,6 +56,81 @@ def test_codes_resolve() -> None:
     check("name rules all valid", name_rules.validate() == [], str(name_rules.validate()))
 
 
+# ------------------------------------------------------- name-rule precision
+def test_name_rule_precision() -> None:
+    """Audit 2026-09-02 red C2: the ordered token list shadowed specific rules
+    and fired on household names it should never touch. Every rule must be
+    reachable on its own keyword, and these displays (all real, all measured
+    misfires) must resolve to the right L1 or abstain."""
+    print("name-rule precision (audit C2)")
+    # reachability: a rule that can never be the first match is dead
+    for kw, code in name_rules._RULES:  # noqa: SLF001
+        probe = kw.lstrip("^")
+        got_code, got_kw = name_rules.match(probe)
+        check(f"rule reachable: {kw!r}", got_kw == kw and got_code == code,
+              f"got {got_kw!r} -> {got_code}")
+
+    def l1(display):
+        code, _ = name_rules.match(display)
+        return T.truncate(code, 1) if code else None
+
+    def code_of(display):
+        return name_rules.match(display)[0]
+
+    # utilities and manufacturers are not construction trades
+    check("PG&E -> ENR", l1("Pacific Gas and Electric Company") == "ENR")
+    check("American Electric Power -> ENR", l1("American Electric Power") == "ENR")
+    check("Schneider Electric not RE", l1("Schneider Electric") != "RE")
+    check("Westinghouse Electric not RE", l1("Westinghouse Electric Company") != "RE")
+    check("ABC Electrical Contractors still RE", l1("ABC Electrical Contractors") == "RE")
+    # universities and professional schools
+    check("Columbia in the City of New York -> EDU",
+          l1("Columbia University in the City of New York") == "EDU")
+    check("Museum of the City of New York not PUB", l1("Museum of the City of New York") != "PUB")
+    check("City of Austin -> PUB.GOV.SLOC", code_of("City of Austin") == "PUB.GOV.SLOC")
+    check("City of Hope -> HLT", l1("City of Hope") == "HLT")
+    check("Harvard Business School -> EDU.HED", code_of("Harvard Business School") == "EDU.HED")
+    check("Icahn School of Medicine -> EDU.HED",
+          code_of("Icahn School of Medicine at Mount Sinai") == "EDU.HED")
+    check("Lincoln High School -> EDU.K12", code_of("Lincoln High School") == "EDU.K12")
+    check("Medical University of South Carolina -> EDU",
+          l1("Medical University of South Carolina") == "EDU")
+    check("U of Rochester Medical Center -> HLT.PROV.HOSP",
+          code_of("University of Rochester Medical Center") == "HLT.PROV.HOSP")
+    check("University Hospital -> HLT", l1("University Hospital") == "HLT")
+    check("Capital University -> EDU", l1("Capital University") == "EDU")
+    check("US Naval Academy -> EDU.HED", code_of("United States Naval Academy") == "EDU.HED")
+    check("Christian Academy -> EDU.K12", code_of("Lincoln Christian Academy") == "EDU.K12")
+    check("Academy Sports not EDU", l1("Academy Sports + Outdoors") != "EDU")
+    # government
+    check("Dept of Defense -> PUB.DEF", code_of("United States Department of Defense") == "PUB.DEF")
+    check("Dept of Transportation -> PUB.GOV", code_of("Department of Transportation") == "PUB.GOV")
+    check("NSF -> PUB", l1("National Science Foundation") == "PUB")
+    check("TSA -> PUB", l1("Transportation Security Administration") == "PUB")
+    check("Gates Foundation -> NPO.PHIL", code_of("Bill & Melinda Gates Foundation") == "NPO.PHIL")
+    # banks that are not banks; industries that are not manufacturers
+    check("Food Bank -> NPO", l1("Atlanta Community Food Bank") == "NPO")
+    check("Blood Bank -> HLT", l1("Community Blood Bank") == "HLT")
+    check("First National Bank -> FIN.BNK", code_of("First National Bank") == "FIN.BNK")
+    check("Goodwill Industries -> NPO", l1("Goodwill Industries International") == "NPO")
+    check("Acme Industries abstains", code_of("Acme Industries") is None)
+    # brands caught by generic tokens
+    check("State Farm not AGR", l1("State Farm") != "AGR")
+    check("Family Farms -> AGR", l1("Smith Family Farms") == "AGR")
+    check("Dairy Queen not AGR", l1("Dairy Queen") != "AGR")
+    check("BAE Systems not TEC", l1("BAE Systems") != "TEC")
+    check("Lucid Motors not CON", l1("Lucid Motors") != "CON")
+    check("Equity Residential not FIN", l1("Equity Residential") != "FIN")
+    check("Red Ventures not FIN", l1("Red Ventures") != "FIN")
+    check("Capital One raw not FIN.ASM", code_of("Capital One") != "FIN.ASM")
+    check("Capital Management -> FIN.ASM", code_of("Acme Capital Management") == "FIN.ASM")
+    check("Records not MED", l1("National Archives and Records Administration") != "MED")
+    check("Salon abstains", code_of("Bella Hair Salon") is None)
+    # payers are not providers
+    check("Health Plan -> HLT.PAYR", code_of("Blue Cross Health Plan") == "HLT.PAYR")
+    check("St Mary's Hospital -> HLT.PROV.HOSP", code_of("St. Mary's Hospital") == "HLT.PROV.HOSP")
+
+
 # ----------------------------------------------------------------- fusion
 def test_precedence() -> None:
     print("precedence / fusion")
@@ -111,6 +186,115 @@ def test_occupation_prior() -> None:
                       ("35-1011", "HOS")):
         code, conf = occupation_prior.soc_to_industry(bound)
         check(f"bound {bound} -> {l1}", code is not None and T.truncate(code, 1) == l1)
+
+
+# ------------------------------------------------ audit 2026-09-02 guards
+def test_audit_guards() -> None:
+    """Red-team H1/H3/M4 + green I1/I5: XOT carries no sector; the company-grain
+    occupation prior needs real support; machine-promoted curated keys are not
+    precision 1.0; the contaminated promotions are corrected or retracted."""
+    print("audit guards (sector, prior support, curated provenance)")
+    check("XOT has no sector", classify._unresolved().sector is None)  # noqa: SLF001
+    # major group 27 (designers / PR / producers) spans every sector -> abstain
+    check("27-1024 abstains", occupation_prior.soc_to_industry("27-1024")[0] is None)
+    check("27-2012 abstains", occupation_prior.soc_to_industry("27-2012")[0] is None)
+    # company-grain prior: one person's title is not a workforce
+    code, _ = occupation_prior.company_occupation_prior("29-1141", 1.0, freq=1)
+    check("freq 1 abstains", code is None)
+    code, _ = occupation_prior.company_occupation_prior("29-1141", 1.0, freq=3)
+    check("freq 3 fires", code is not None)
+    code, _ = occupation_prior.company_occupation_prior("29", 0.9, freq=10, modal_share=0.5)
+    check("modal share 0.5 abstains", code is None)
+    code, _ = occupation_prior.company_occupation_prior("29", 0.9, freq=10, modal_share=0.6)
+    check("2-digit pooled major fires at share 0.6", code is not None and T.truncate(code, 1) == "HLT")
+    a = classify.classify_company(company_id=None, display="Acme Co",
+                                  modal_occ="29", occ_coded_frac=0.9, freq=2)
+    check("classify_company passes freq to the prior", a.method != "occupation_prior")
+    # curated provenance
+    a = classify.classify_company(company_id="wellsfargo", display="Wells Fargo")
+    check("hand-curated confidence 1.0", a.confidence == 1.0)
+    a = classify.classify_company(company_id="upmc", display="UPMC")
+    check("promoted confidence < 1.0", a.method == "curated" and a.confidence == 0.95)
+    check("consultant_66 retracted", curated.lookup("consultant_66") is None)
+    check("thebeach2 retracted", curated.lookup("thebeach2") is None)
+    check("integris-for-banks retracted", curated.lookup("integris-for-banks") is None)
+    check("berkeley-rha retracted", curated.lookup("berkeley-rha") is None)
+    check("ucsdhealth is a health system", curated.lookup("ucsdhealth") == "HLT.PROV.HOSP")
+    check("uc-irvine-medical-center is a hospital",
+          curated.lookup("uc-irvine-medical-center") == "HLT.PROV.HOSP")
+    check("kpn is a telecom", curated.lookup("kpn") == "TEC.TELE")
+    check("kentucky dept of education is state government",
+          curated.lookup("kentucky-department-of-education") == "PUB.GOV.SLOC")
+    # scoring: an XOT prediction is an abstention, never a false positive
+    s = level_scores({"a": "XOT"}, {"a": "FIN.BNK"}, taxonomy=T)
+    check("XOT scored as abstain", s["L1"]["fp"] == 0 and s["L1"]["fn"] == 1)
+    # curated provenance tiers: hand > head (frontier-labeled, blind-gated) >
+    # promoted (machine); every landed key reports which tier it came from
+    check("hand provenance", curated.provenance("wellsfargo") == "hand")
+    check("promoted provenance", curated.provenance("upmc") == "promoted")
+    check("unknown provenance", curated.provenance("no-such-company") is None)
+    from . import curated_head
+    check("head module exports HEAD + METHOD", isinstance(curated_head.HEAD, dict)
+          and isinstance(curated_head.METHOD, str))
+    check("head codes valid", all(T.is_valid(c) for c in curated_head.HEAD.values()))
+    for cid in curated_head.HEAD:
+        check(f"head key {cid} not retracted/hand", cid not in curated.RETRACTED)
+        break
+
+
+def test_propagation() -> None:
+    """Red-team H1/H2: propagate_to_steps must emit one row per career step
+    (NULL keys and companies missing from the table included), never leak a
+    dotted code into l1, and carry the prior's sector."""
+    print("propagation (temp dir)")
+    import tempfile
+    from pathlib import Path as _Path
+
+    import duckdb
+
+    from . import build_industry
+
+    with tempfile.TemporaryDirectory() as d:
+        d = _Path(d)
+        con = duckdb.connect()
+        con.execute("""
+          CREATE TABLE steps AS SELECT * FROM (VALUES
+            ('p1', 0, NULL, 'experience', 'id:wellsfargo', NULL, NULL),
+            ('p2', 0, NULL, 'experience', NULL, '29-1141', '29'),
+            ('p3', 0, NULL, 'experience', 'nonorg:self_employed', '11-1021', '11'),
+            ('p4', 0, NULL, 'experience', 'nonorg:self_employed', '55-1011', '55'),
+            ('p5', 0, NULL, 'experience', 'id:missing-from-table', NULL, NULL)
+          ) t(linkedin_id, experience_idx, position_idx, source_table,
+              company_canonical_id, occupation_code, occupation_major_pooled)
+        """)
+        con.execute(f"COPY steps TO '{d / 'steps.parquet'}' (FORMAT parquet)")
+        con.execute("""
+          CREATE TABLE comp AS SELECT * FROM (VALUES
+            ('id:wellsfargo', 'FIN.BNK.COM.RET', 'FIN', 'FIN.BNK', 'FIN.BNK.COM',
+             'FIN.BNK.COM.RET', 4, 'curated', 1.0, 'private', FALSE)
+          ) t(key, industry_code, l1, l2, l3, l4, depth, method, confidence,
+              sector, needs_review)
+        """)
+        con.execute(f"COPY comp TO '{d / 'comp.parquet'}' (FORMAT parquet)")
+        out = d / "step_industry.parquet"
+        _path, m = build_industry.propagate_to_steps(
+            steps_path=d / "steps.parquet", company_path=d / "comp.parquet", out_path=out)
+        rows = {r[0]: r for r in con.execute(f"""
+            SELECT linkedin_id, industry_code, l1, l2, l3, depth, method, sector
+            FROM read_parquet('{out}') ORDER BY 1""").fetchall()}
+        check("one output row per step", len(rows) == 5 and m["step_rows"] == 5)
+        check("NULL key kept as unresolved",
+              rows.get("p2") is not None and rows["p2"][2] == "HLT")
+        check("nonorg prior l1 has no dot", rows["p2"][2] == "HLT" and rows["p2"][3] == "HLT.PROV")
+        check("nonorg prior depth is code depth", rows["p2"][5] == 2)
+        check("agnostic nonorg -> XOT, no sector",
+              rows["p3"][1] == "XOT" and rows["p3"][7] is None)
+        check("military prior carries public sector",
+              rows["p4"][2] == "PUB" and rows["p4"][4] == "PUB.DEF.AF" and rows["p4"][7] == "public")
+        check("company missing from table -> unresolved, not dropped",
+              rows["p5"][1] == "XOT" and rows["p5"][6] == "unresolved")
+        check("manifest counts null keys", m.get("null_key_rows") == 1)
+        check("manifest counts nonorg rows", m.get("nonorg_rows") == 2)
 
 
 # --------------------------------------------------------------- metrics
@@ -457,10 +641,79 @@ def test_gold_residual() -> None:
           all(g.key.startswith(("id:", "raw:", "nonorg:")) for g in GOLD_RESIDUAL))
 
 
+# ---------------------------------------------------------------- head gate
+def test_head_gate() -> None:
+    """The blind-gate scorer: L1/L2/exact agreement between the frontier head
+    labels and an independent reviewer, abstentions excluded, invalid reviewer
+    codes reported, and the 0.90 L1 bar enforced by `passes`."""
+    from . import head_gate
+    key = [
+        {"n": 1, "company_id": "a", "display": "A", "head_code": "HLT.PROV.HOSP"},
+        {"n": 2, "company_id": "b", "display": "B", "head_code": "FIN.BNK"},
+        {"n": 3, "company_id": "c", "display": "C", "head_code": "MED.PUBL"},
+        {"n": 4, "company_id": "d", "display": "D", "head_code": "NPO"},
+        {"n": 5, "company_id": "e", "display": "E", "head_code": "TEC.SOF"},
+    ]
+    review = [
+        {"n": 1, "code": "HLT.PROV.HOSP"},   # exact
+        {"n": 2, "code": "FIN.INS"},         # L1 agree, L2 disagree
+        {"n": 3, "code": "NPO"},             # L1 disagree
+        {"n": 4, "code": "SKIP"},            # abstain -> not scored
+        {"n": 5, "code": "TEC.NOPE"},        # invalid reviewer code
+    ]
+    r = head_gate.score(key, review)
+    check("gate: abstentions excluded", r["n_scored"] == 3, str(r))
+    check("gate: invalid reviewer codes reported", r["invalid"] == [(5, "TEC.NOPE")], str(r["invalid"]))
+    check("gate: L1 agreement", abs(r["l1_agree"] - 2 / 3) < 1e-9, str(r["l1_agree"]))
+    check("gate: L2 agreement counts only pairs with depth >= 2 on both sides",
+          r["l2_n"] == 2 and r["l2_agree"] == 0.5, f"{r['l2_n']} {r['l2_agree']}")
+    check("gate: exact agreement", abs(r["exact_agree"] - 1 / 3) < 1e-9, str(r["exact_agree"]))
+    check("gate: disagreements listed with both codes",
+          [(d["n"], d["head_code"], d["review_code"]) for d in r["disagreements"]]
+          == [(2, "FIN.BNK", "FIN.INS"), (3, "MED.PUBL", "NPO")], str(r["disagreements"]))
+    check("gate: bar is 0.90 L1", not head_gate.passes(r) and head_gate.passes({**r, "l1_agree": 0.9}))
+    check("gate: unmatched review rows are an error",
+          _raises(lambda: head_gate.score(key, [{"n": 99, "code": "NPO"}])))
+
+
+def test_head_tools() -> None:
+    """The head writer: SKIP dropped, hand wins silently, invalid codes and
+    retracted keys rejected, module text carries provenance comments."""
+    from collections import OrderedDict
+    from . import head_tools
+    rows = [
+        {"company_id": "a", "code": "HLT.PROV.HOSP", "display": 'A "Corp"', "freq": 10},
+        {"company_id": "b", "code": "SKIP", "display": "B", "freq": 9},
+        {"company_id": "c", "code": "NOPE.X", "display": "C", "freq": 8},
+        {"company_id": "d", "code": "NPO", "display": "D", "freq": 7},
+        {"company_id": "e", "code": "FIN.BNK", "display": "E", "freq": 6},
+    ]
+    entries, bad = head_tools.build_entries(rows, hand={"e"}, retracted=frozenset({"d"}))
+    check("head_tools: keeps only valid, non-hand, non-retracted, non-SKIP", list(entries) == ["a"], str(list(entries)))
+    check("head_tools: rejects invalid code and retracted key",
+          bad == [("c", "NOPE.X", "invalid code"), ("d", "NPO", "retracted")], str(bad))
+    text = head_tools.render(OrderedDict(entries), "HEADER\n")
+    check("head_tools: rendered module has provenance comment with escaped display",
+          text == 'HEADER\nHEAD: dict[str, str] = {\n    "a": "HLT.PROV.HOSP",  # A \\"Corp\\" (rows=10)\n}\n', repr(text))
+    ns: dict = {}
+    exec(text.replace("HEADER\n", ""), ns)  # noqa: S102 -- the rendered table must be importable Python
+    check("head_tools: rendered table round-trips", ns["HEAD"] == {"a": "HLT.PROV.HOSP"})
+
+
+def _raises(fn) -> bool:
+    try:
+        fn()
+    except (KeyError, ValueError):
+        return True
+    return False
+
+
 def main() -> None:
-    for t in (test_taxonomy, test_codes_resolve, test_precedence, test_rows,
-              test_occupation_prior, test_level_scores, test_llm, test_jury,
-              test_local_llm, test_llm_pool, test_gold_residual):
+    for t in (test_taxonomy, test_codes_resolve, test_name_rule_precision,
+              test_precedence, test_rows,
+              test_occupation_prior, test_audit_guards, test_propagation,
+              test_level_scores, test_llm, test_jury,
+              test_local_llm, test_llm_pool, test_gold_residual, test_head_gate, test_head_tools):
         t()
     print()
     if _failures:

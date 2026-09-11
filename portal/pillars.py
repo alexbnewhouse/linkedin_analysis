@@ -32,7 +32,7 @@ def _percentile(sorted_vals: list[float], x: float) -> float:
 
 
 def compute(con) -> dict:
-    cut = C.SNAPSHOT_YEAR - C.FAN_YEAR
+    cut = C.LAST_COMPLETE_YEAR - C.FAN_YEAR
     trans = f"read_parquet('{C.q(C.TRANSITIONS)}')"
     dir_types = tuple(dict.fromkeys(C.UP_TYPES + C.PIVOT_TYPES))
     dir_list = ", ".join(f"'{t}'" for t in dir_types)

@@ -42,23 +42,31 @@ def main() -> None:
 
     # --- 2. window discipline -----------------------------------------------
     fan = analyses.destination_fan(con)  # materializes fan_endpoint (y10 window)
-    cut10 = C.SNAPSHOT_YEAR - C.FAN_YEAR
+    cut10 = C.LAST_COMPLETE_YEAR - C.FAN_YEAR
     leak = con.execute(
         f"SELECT count(*) FROM fan_endpoint fe JOIN membership m "
         f"USING (group_key, linkedin_id) WHERE m.anchor > {cut10}").fetchone()[0]
     check("window: no fan-endpoint person with anchor > snapshot-10", leak == 0)
 
-    # every curve horizon confines its cohort to anchor <= snapshot - y
+    # every curve horizon confines its cohort to anchor <= LAST_COMPLETE_YEAR - y.
+    # The panel itself legitimately reaches SNAPSHOT_CAL_YEAR (2026, observed
+    # through February), so the discipline is asserted on what curve() EMITS:
+    # its n per horizon must equal the cut-restricted count, and the
+    # unrestricted count must be strictly larger whenever partially-observed
+    # people exist (audit 2026-09-02: the old check queried the panel directly
+    # and could only pass while the panel stopped at the last complete year).
     cv = analyses.curve(con)
     win_ok = True
-    for y in C.CURVE_YEARS:
-        cut = C.SNAPSHOT_YEAR - y
-        n = con.execute(
-            f"SELECT count(*) FROM membership m JOIN panel p "
+    for i, y in enumerate(C.CURVE_YEARS):
+        cut = C.LAST_COMPLETE_YEAR - y
+        n_cut, n_all = con.execute(
+            f"SELECT count(*) FILTER (WHERE m.anchor <= {cut}), count(*) "
+            f"FROM membership m JOIN panel p "
             f"ON p.linkedin_id = m.linkedin_id AND p.cal_year = m.anchor + {y} "
-            f"WHERE m.anchor > {cut} AND p.seniority_score IS NOT NULL"
-        ).fetchone()[0]
-        win_ok = win_ok and (n == 0)
+            f"WHERE p.seniority_score IS NOT NULL"
+        ).fetchone()
+        emitted = sum(cv[g]["n"][i] for g in cv)
+        win_ok = win_ok and (emitted == n_cut) and (n_all >= n_cut)
     check("window: no partially-observed person in any curve horizon", win_ok)
 
     # curve n per point is the count of observed persons; a windowed y10 person
@@ -140,7 +148,7 @@ def main() -> None:
           SELECT e.linkedin_id, min(e.end_year) AS anchor
           FROM {edu} e
           WHERE e.degree_level = {C.BACHELOR_LEVEL} AND {pred}
-            AND e.end_year BETWEEN {C.MIN_ANCHOR_YEAR} AND {C.SNAPSHOT_YEAR}
+            AND e.end_year BETWEEN {C.MIN_ANCHOR_YEAR} AND {C.LAST_COMPLETE_YEAR}
             AND NOT coalesce(e.in_progress, FALSE)
           GROUP BY e.linkedin_id
         """).fetchall()
@@ -313,7 +321,7 @@ def main() -> None:
           "stability cells suppressed below bar", lb_ok)
     # window discipline: y5 outcome cohort only contains anchors <= snapshot-5
     leak = con.execute(f"""
-      SELECT count(*) FROM lb_moves WHERE anchor > {C.SNAPSHOT_YEAR - 5}
+      SELECT count(*) FROM lb_moves WHERE anchor > {C.LAST_COMPLETE_YEAR - 5}
     """).fetchone()[0]
     check("launchboard: mover cohort respects the year-5 window", leak == 0)
     # mover classes partition each group's cohort
@@ -430,7 +438,7 @@ def main() -> None:
     # --- choices ------------------------------------------------------------------
     from portal import choices
     ch = choices.compute(con)
-    cut10 = C.SNAPSHOT_YEAR - C.FAN_YEAR
+    cut10 = C.LAST_COMPLETE_YEAR - C.FAN_YEAR
 
     # (a) window discipline + spine integrity: the choices cohort is exactly
     # the windowed membership; flag join produced one row per (group, person).

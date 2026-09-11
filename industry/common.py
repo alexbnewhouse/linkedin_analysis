@@ -52,7 +52,13 @@ def export_company_vocab(force: bool = False) -> Path:
 
     One row per ``company_canonical_id`` (org companies only). Columns:
       key, display, company_id, freq, n_persons, occ_coded_frac, modal_occ,
-      titles (LIST<VARCHAR>), descriptions (LIST<VARCHAR>).
+      modal_share, titles (LIST<VARCHAR>), descriptions (LIST<VARCHAR>).
+
+    ``modal_occ`` is the modal SOC MAJOR GROUP (2-digit) over the pooled
+    occupation column (deterministic prefix, else the calibrated jury major;
+    audit 2026-09-02 green I5 -- the prior used to read the 21% deterministic
+    column and fired on none of the 113 largest unresolved companies);
+    ``modal_share`` is that major's share of the company's coded rows.
     """
     out = CACHE / "company_vocab.parquet"
     if not force and _cache_fresh(out):
@@ -66,7 +72,7 @@ def export_company_vocab(force: bool = False) -> Path:
             SELECT
               company_canonical_id AS key,
               company_raw, company_id_canonical, linkedin_id,
-              occupation_code,
+              occupation_major_pooled AS occ_major,
               coalesce(nullif(trim(role_canonical), ''), nullif(trim(title_raw), '')) AS title,
               description
             FROM {STEPS}
@@ -102,9 +108,9 @@ def export_company_vocab(force: bool = False) -> Path:
             FROM org GROUP BY key, company_raw
           ),
           occmode AS (
-            SELECT key, occupation_code, row_number() OVER (
-              PARTITION BY key ORDER BY count(*) DESC, occupation_code) rn
-            FROM org WHERE occupation_code IS NOT NULL GROUP BY key, occupation_code
+            SELECT key, occ_major, count(*) AS c, row_number() OVER (
+              PARTITION BY key ORDER BY count(*) DESC, occ_major) rn
+            FROM org WHERE occ_major IS NOT NULL GROUP BY key, occ_major
           ),
           base AS (
             SELECT
@@ -113,11 +119,12 @@ def export_company_vocab(force: bool = False) -> Path:
               any_value(o.company_id_canonical) FILTER (WHERE o.key LIKE 'id:%') AS company_id,
               count(*) AS freq,
               count(DISTINCT o.linkedin_id) AS n_persons,
-              round(avg(CASE WHEN o.occupation_code IS NOT NULL THEN 1.0 ELSE 0.0 END), 4) AS occ_coded_frac,
-              any_value(om.occupation_code) AS modal_occ
+              round(avg(CASE WHEN o.occ_major IS NOT NULL THEN 1.0 ELSE 0.0 END), 4) AS occ_coded_frac,
+              any_value(om.occ_major) AS modal_occ,
+              round(any_value(om.c) * 1.0 / NULLIF(count(o.occ_major), 0), 4) AS modal_share
             FROM org o
             LEFT JOIN (SELECT key, company_raw FROM dispmode WHERE rn = 1) dm USING (key)
-            LEFT JOIN (SELECT key, occupation_code FROM occmode WHERE rn = 1) om USING (key)
+            LEFT JOIN (SELECT key, occ_major, c FROM occmode WHERE rn = 1) om USING (key)
             GROUP BY o.key
           )
           SELECT b.*,
@@ -143,13 +150,13 @@ def load_company_vocab(cap: int | None = None, force: bool = False) -> list[dict
     limit = f"LIMIT {cap}" if cap is not None else ""
     rows = con.sql(f"""
         SELECT key, display, company_id, freq, n_persons, occ_coded_frac,
-               modal_occ, titles, descriptions
+               modal_occ, modal_share, titles, descriptions
         FROM read_parquet('{path}')
         ORDER BY freq DESC, key
         {limit}
     """).fetchall()
     cols = ["key", "display", "company_id", "freq", "n_persons", "occ_coded_frac",
-            "modal_occ", "titles", "descriptions"]
+            "modal_occ", "modal_share", "titles", "descriptions"]
     return [dict(zip(cols, r)) for r in rows]
 
 
@@ -176,7 +183,9 @@ def level_scores(
             p = pred.get(key)
             # a prediction shallower than this level is an ABSTAIN here, not a
             # wrong answer -- only score it where it actually reaches.
-            if p and taxonomy.is_valid(p) and taxonomy.level_of(p) >= lvl:
+            # XOT is an explicit non-answer -> abstain (fn), never a false
+            # positive (audit 2026-09-02 red M8).
+            if p and p != "XOT" and taxonomy.is_valid(p) and taxonomy.level_of(p) >= lvl:
                 pt = taxonomy.truncate(p, lvl)
             else:
                 pt = None
