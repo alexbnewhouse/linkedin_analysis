@@ -26,6 +26,7 @@ from . import taxonomy as T
 
 # Per-method confidences for the deterministic spine.
 _CONF_CURATED = 1.0
+_CONF_PROMOTED = 0.95  # machine-promoted entries: jury agreement band, not 1.0
 _CONF_NAME_MULTIWORD = 0.9
 _CONF_NAME_TOKEN = 0.82
 _AGREE_BONUS = 0.05  # weak prior corroborates the spine's L1
@@ -37,7 +38,7 @@ class IndustryAssignment:
     depth: int           # 1..4
     method: str          # curated | name_rule | occupation_prior | unresolved
     confidence: float    # overall
-    sector: str          # private | public | nonprofit
+    sector: str | None   # private | public | nonprofit; None for XOT (no answer)
     per_level: dict[int, float] = dc_field(default_factory=dict)
     needs_review: bool = False
     matched: str | None = None  # the keyword / company_id that fired
@@ -47,9 +48,11 @@ class IndustryAssignment:
 
 
 def _unresolved() -> IndustryAssignment:
+    # XOT is an explicit non-answer: it carries NO sector (audit 2026-09-02:
+    # 47% of steps were "private" by default).
     return IndustryAssignment(
         code="XOT", depth=1, method="unresolved", confidence=0.0,
-        sector=T.sector_of("XOT"), per_level={1: 0.0}, needs_review=True,
+        sector=None, per_level={1: 0.0}, needs_review=True,
     )
 
 
@@ -77,14 +80,17 @@ def _from_spine(code: str, conf: float, method: str, matched: str | None,
 def classify_company(
     *, company_id: str | None, display: str | None,
     modal_occ: str | None = None, occ_coded_frac: float | None = None,
+    freq: int | None = None, modal_share: float | None = None,
 ) -> IndustryAssignment:
     """Deterministic company-grain industry. Inputs come from the company vocab."""
-    prior_code, prior_conf = occupation_prior.company_occupation_prior(modal_occ, occ_coded_frac)
+    prior_code, prior_conf = occupation_prior.company_occupation_prior(
+        modal_occ, occ_coded_frac, freq=freq, modal_share=modal_share)
 
     # M1 -- curated head crosswalk
     cur = curated.lookup(company_id)
     if cur:
-        return _from_spine(cur, _CONF_CURATED, "curated", company_id, prior_code)
+        conf = curated.confidence_of(company_id) or _CONF_CURATED
+        return _from_spine(cur, conf, "curated", company_id, prior_code)
 
     # M3 -- company-name lexical rules
     code, kw = name_rules.match(display)
@@ -141,5 +147,6 @@ def classify_company_vocab(rows: list[dict]) -> dict[str, IndustryAssignment]:
         out[r["key"]] = classify_company(
             company_id=r.get("company_id"), display=r.get("display"),
             modal_occ=r.get("modal_occ"), occ_coded_frac=r.get("occ_coded_frac"),
+            freq=r.get("freq"), modal_share=r.get("modal_share"),
         )
     return out

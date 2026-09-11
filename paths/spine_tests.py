@@ -20,19 +20,23 @@ _COLS = [
     "linkedin_id", "source_table", "experience_idx", "position_idx",
     "company_canonical_id", "company_id_canonical", "company_raw",
     "employment_type", "title_raw", "role_canonical", "seniority_level",
-    "seniority_rank_token", "occupation_code", "location", "start_date", "end_date",
+    "seniority_rank_token", "occupation_code", "occupation_major_pooled",
+    "occupation_source", "location", "start_date", "end_date",
 ]
 
 
-def _step(lid, ec_id, emp, sen, start, end, role="r", occ=None, cid=None):
-    """One synthetic step. ec_id is company_canonical_id; cid the bare slug."""
+def _step(lid, ec_id, emp, sen, start, end, role="r", occ=None, cid=None,
+          major=None, source=None):
+    """One synthetic step. ec_id is company_canonical_id; cid the bare slug;
+    major/source the pooled SOC-major column (audit 2026-09-02 H6)."""
     return {
         "linkedin_id": lid, "source_table": "experience", "experience_idx": 0,
         "position_idx": None, "company_canonical_id": ec_id,
         "company_id_canonical": cid, "company_raw": ec_id, "employment_type": emp,
         "title_raw": role, "role_canonical": role, "seniority_level": sen,
-        "seniority_rank_token": sen, "occupation_code": occ, "location": None,
-        "start_date": start, "end_date": end,
+        "seniority_rank_token": sen, "occupation_code": occ,
+        "occupation_major_pooled": major, "occupation_source": source,
+        "location": None, "start_date": start, "end_date": end,
     }
 
 
@@ -47,6 +51,9 @@ ROWS = [
     # P3 self_employed -> retired: exit must win over out_of_self_employment (M2)
     _step("p3", "nonorg:self_employed", "self_employed", "", "Jan 2018", "Dec 2018"),
     _step("p3", "nonorg:retired", "retired", "", "Jan 2019", "Dec 2019"),
+    # P9 employee -> career_break (a 2026-09-02 placeholder bucket): an exit, like unemployed
+    _step("p9", "id:acme", "employee", "", "Jan 2018", "Dec 2018", cid="acme"),
+    _step("p9", "nonorg:career_break", "career_break", "", "Jan 2019", "Dec 2019"),
     # P4 same-employer senior -> unmarked: direction unknown, kind lateral (H3)
     _step("p4", "id:beta", "employee", "senior", "Jan 2018", "Dec 2018", cid="beta"),
     _step("p4", "id:beta", "employee", "",       "Jan 2019", "Dec 2019", cid="beta"),
@@ -56,6 +63,17 @@ ROWS = [
     # P6 long role fully contains a shorter concurrent one -> shorter is secondary
     _step("p6", "id:e", "employee", "", "Jan 2018", "Dec 2020", cid="e"),
     _step("p6", "id:f", "employee", "", "Jan 2019", "Jun 2019", cid="f"),
+    # P7 employer move with a JURY-pooled major change (no 6-digit code on
+    # either side): the pooled column must drive occupation-change typing (H6)
+    _step("p7", "id:g", "employee", "", "Jan 2018", "Dec 2018", cid="g",
+          role="clerk", major="43", source="jury"),
+    _step("p7", "id:h", "employee", "", "Jan 2019", "Dec 2019", cid="h",
+          role="manager", major="11", source="jury"),
+    # P8 employer move, same pooled major -> employer_move, not occupation_change
+    _step("p8", "id:g", "employee", "", "Jan 2018", "Dec 2018", cid="g",
+          role="clerk", occ="43-4051", major="43", source="det"),
+    _step("p8", "id:h", "employee", "", "Jan 2019", "Dec 2019", cid="h",
+          role="receptionist", major="43", source="jury"),
 ]
 
 
@@ -84,8 +102,11 @@ def main() -> None:
         steps_out, trans_out = _run(con, tmp)
         edges = {r[0]: r for r in con.sql(f"""
             SELECT linkedin_id, kind, seniority_direction, gap_months, has_gap,
-                   overlap_months, has_overlap
+                   overlap_months, has_overlap, transition_type,
+                   from_soc_major, to_soc_major
             FROM read_parquet('{trans_out}')""").fetchall()}
+        step_cols = {c[0] for c in con.sql(
+            f"DESCRIBE SELECT * FROM read_parquet('{steps_out}')").fetchall()}
         steps = {(r[0], r[1]): r for r in con.sql(f"""
             SELECT linkedin_id, start_date_raw, tenure_months, seniority_ordinal
             FROM read_parquet('{steps_out}')""").fetchall()}
@@ -103,6 +124,7 @@ def main() -> None:
           edges["p1"][3] == 0 and edges["p1"][4] is False)
     check("P2 employee->self_employed = into_self_employment", edges["p2"][1] == "into_self_employment")
     check("P3 self_employed->retired = exit, not out_of_self_employment (M2)", edges["p3"][1] == "exit")
+    check("P9 employee->career_break = exit (new placeholder bucket)", edges["p9"][1] == "exit")
     check("P4 unmarked seniority side = unknown direction (H3)", edges["p4"][2] == "unknown")
     check("P4 same-employer unknown direction = lateral (H3)", edges["p4"][1] == "lateral")
     check("P5 two empty months = gap_months 2, has_gap (H1)",
@@ -111,6 +133,13 @@ def main() -> None:
     check("P6 contained shorter role flagged concurrent-secondary", "p6" in dominated)
     check("P6 single primary step => no edge emitted", "p6" not in edges)
     check("unmarked '' seniority -> NULL ordinal (H3)", steps[("p2", "Jan 2018")][3] is None)
+    check("steps carry the pooled soc_major + soc_source (H6)",
+          {"soc_major", "soc_source"} <= step_cols)
+    check("P7 pooled major change (jury both sides) = occupation_change",
+          edges["p7"][7] == "occupation_change"
+          and edges["p7"][8] == "43" and edges["p7"][9] == "11")
+    check("P8 same pooled major across employers = employer_move",
+          edges["p8"][7] == "employer_move")
     print("\nAll spine regression checks passed.")
 
 

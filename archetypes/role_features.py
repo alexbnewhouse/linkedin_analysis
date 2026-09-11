@@ -13,7 +13,6 @@ from . import common as C
 
 def build(con) -> str:
     cs = f"read_parquet('{C.CAREER_STEPS}')"
-    jury = f"read_parquet('{C.ROLE_SOC_JURY}')"
     # Pre-collapse industry + steps to ONE row per step key: both tables carry
     # a handful of non-unique (linkedin_id, source_table, NULL, NULL) groups
     # that would otherwise fan out the LEFT JOIN and inflate count(*)/n_steps
@@ -49,7 +48,6 @@ def build(con) -> str:
         CASE WHEN c.employment_type IN ('self_employed','business_owner')
              THEN 1 ELSE 0 END                             AS is_owner
       FROM {cs} c
-      LEFT JOIN {jury} j ON c.role_canonical = j.role_canonical
       LEFT JOIN {ind} i
         ON c.linkedin_id = i.linkedin_id
        AND c.source_table = i.source_table

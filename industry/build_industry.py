@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 
 import duckdb
@@ -31,7 +32,7 @@ import pyarrow.parquet as pq
 
 from . import classify, jury, llm
 from . import taxonomy as T
-from .common import STEPS, depth_coverage, export_company_vocab, load_company_vocab
+from .common import STEPS_FILE, depth_coverage, export_company_vocab, load_company_vocab
 
 RESULTS = Path(__file__).resolve().parent / "results"
 COMPANY_OUT = RESULTS / "company_industry.parquet"
@@ -103,6 +104,11 @@ def build_company_table(cap: int | None, *, use_llm: bool) -> tuple[Path, dict]:
     multi_juror = [r for r in llm_rows if (r["llm_n_jurors"] or 0) >= 2]
     disagreements = sum(1 for r in llm_rows if r["llm_agrees_det"] is False)
     manifest = {
+        "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "inputs": {
+            "career_steps": str(STEPS_FILE),
+            "career_steps_mtime": STEPS_FILE.stat().st_mtime if STEPS_FILE.exists() else None,
+        },
         "n_companies": len(rows),
         "total_rows": sum(r["freq"] for r in vocab),
         "coverage_by_depth_row_pct": depth_coverage(vocab, pred, taxonomy=T, weight="freq"),
@@ -116,46 +122,82 @@ def build_company_table(cap: int | None, *, use_llm: bool) -> tuple[Path, dict]:
     return COMPANY_OUT, manifest
 
 
-def propagate_to_steps() -> tuple[Path, dict]:
+def propagate_to_steps(
+    steps_path: Path | None = None, company_path: Path | None = None,
+    out_path: Path | None = None,
+) -> tuple[Path, dict]:
     """Join the company industry onto career steps; nonorg rows get their own
-    row-level occupation prior. Heavy (full career_steps)."""
-    if not COMPANY_OUT.exists():
+    row-level occupation prior. Heavy (full career_steps).
+
+    Invariants (audit 2026-09-02 red H1/H2, tested in tests.py): exactly one
+    output row per career step -- rows with a NULL company key and companies
+    missing from the table are emitted as unresolved, never dropped; ``l1`` is
+    always a top-level code (the prior's L2/L3 codes are truncated); XOT rows
+    carry no sector."""
+    steps_path = Path(steps_path) if steps_path else STEPS_FILE
+    company_path = Path(company_path) if company_path else COMPANY_OUT
+    out_path = Path(out_path) if out_path else STEP_OUT
+    if not company_path.exists():
         raise SystemExit("run build_company_table first (company_industry.parquet missing)")
     con = duckdb.connect()
-    # Build a tiny SOC-major -> industry prior table in SQL for the nonorg rows,
-    # mirroring occupation_prior (kept in sync via the test suite).
+    # Prior tables for the nonorg rows, mirroring occupation_prior (kept in sync
+    # via the test suite), with the derived path columns computed in Python so
+    # the SQL never has to truncate codes.
     from .occupation_prior import _MAJOR_TO_INDUSTRY, _SOC_OVERRIDE  # noqa: SLF001
-    major_vals = ", ".join(f"('{k}', '{v[0]}', {v[1]})" for k, v in _MAJOR_TO_INDUSTRY.items())
-    over_vals = ", ".join(f"('{k}', '{v[0]}', {v[1]})" for k, v in _SOC_OVERRIDE.items())
-    con.sql(f"CREATE TEMP TABLE major_prior AS SELECT * FROM (VALUES {major_vals}) t(maj, code, conf)")
-    con.sql(f"CREATE TEMP TABLE soc_prior AS SELECT * FROM (VALUES {over_vals}) t(soc, code, conf)")
+
+    def _prior_rows(d: dict) -> str:
+        vals = []
+        for k, (code, conf) in d.items():
+            l = [T.truncate(code, i) for i in (1, 2, 3, 4)]
+            sector = T.sector_of(code)
+            vals.append(
+                f"('{k}', '{code}', {conf}, '{sector}', {T.level_of(code)}, "
+                + ", ".join("NULL" if v is None else f"'{v}'" for v in l) + ")")
+        return ", ".join(vals)
+
+    cols = "(k, code, conf, sector, depth, l1, l2, l3, l4)"
+    con.sql(f"CREATE TEMP TABLE major_prior AS SELECT * FROM (VALUES {_prior_rows(_MAJOR_TO_INDUSTRY)}) t{cols}")
+    con.sql(f"CREATE TEMP TABLE soc_prior AS SELECT * FROM (VALUES {_prior_rows(_SOC_OVERRIDE)}) t{cols}")
+    steps = f"read_parquet('{steps_path}')"
     con.sql(f"""
         COPY (
           WITH steps AS (
             SELECT linkedin_id, experience_idx, position_idx, source_table,
-                   company_canonical_id AS key, occupation_code
-            FROM {STEPS}
+                   company_canonical_id AS key,
+                   -- row-level occupation: the deterministic 6-digit code, else the
+                   -- pooled (jury) major group (green I5 at row grain)
+                   replace(occupation_code, 'soc:', '') AS occ6,
+                   coalesce(substr(replace(occupation_code, 'soc:', ''), 1, 2),
+                            occupation_major_pooled) AS occ_major
+            FROM {steps}
           ),
           org AS (
-            SELECT s.*, c.industry_code, c.l1, c.l2, c.l3, c.l4, c.depth,
-                   c.method, c.confidence, c.sector, c.needs_review
-            FROM steps s JOIN read_parquet('{COMPANY_OUT}') c USING (key)
+            SELECT s.linkedin_id, s.experience_idx, s.position_idx, s.source_table, s.key,
+                   coalesce(c.industry_code, 'XOT') AS industry_code,
+                   coalesce(c.l1, 'XOT') AS l1, c.l2, c.l3, c.l4,
+                   coalesce(c.depth, 1) AS depth,
+                   coalesce(c.method, 'unresolved') AS method,
+                   coalesce(c.confidence, 0.0) AS confidence,
+                   CASE WHEN coalesce(c.industry_code, 'XOT') = 'XOT' THEN NULL ELSE c.sector END AS sector,
+                   coalesce(c.needs_review, TRUE) AS needs_review
+            FROM steps s LEFT JOIN read_parquet('{company_path}') c USING (key)
+            WHERE s.key LIKE 'id:%' OR s.key LIKE 'raw:%'
           ),
           nonorg AS (
-            SELECT s.*,
+            SELECT s.linkedin_id, s.experience_idx, s.position_idx, s.source_table, s.key,
                    coalesce(o.code, m.code, 'XOT') AS industry_code,
-                   coalesce(o.code, m.code, 'XOT') AS l1,
-                   NULL AS l2, NULL AS l3, NULL AS l4,
-                   1 AS depth,
+                   coalesce(o.l1, m.l1, 'XOT') AS l1,
+                   coalesce(o.l2, m.l2) AS l2, coalesce(o.l3, m.l3) AS l3, coalesce(o.l4, m.l4) AS l4,
+                   coalesce(o.depth, m.depth, 1) AS depth,
                    CASE WHEN o.code IS NOT NULL OR m.code IS NOT NULL
                         THEN 'occupation_prior' ELSE 'unresolved' END AS method,
                    coalesce(o.conf, m.conf, 0.0) AS confidence,
-                   'private' AS sector,
+                   coalesce(o.sector, m.sector) AS sector,
                    TRUE AS needs_review
             FROM steps s
-            LEFT JOIN soc_prior  o ON o.soc = replace(s.occupation_code, 'soc:', '')
-            LEFT JOIN major_prior m ON m.maj = substr(replace(s.occupation_code, 'soc:', ''), 1, 2)
-            WHERE s.key NOT LIKE 'id:%' AND s.key NOT LIKE 'raw:%'
+            LEFT JOIN soc_prior  o ON o.k = s.occ6
+            LEFT JOIN major_prior m ON m.k = s.occ_major
+            WHERE s.key IS NULL OR (s.key NOT LIKE 'id:%' AND s.key NOT LIKE 'raw:%')
           )
           SELECT linkedin_id, experience_idx, position_idx, source_table, key,
                  industry_code, l1, l2, l3, l4, depth, method, confidence, sector, needs_review
@@ -164,13 +206,31 @@ def propagate_to_steps() -> tuple[Path, dict]:
           SELECT linkedin_id, experience_idx, position_idx, source_table, key,
                  industry_code, l1, l2, l3, l4, depth, method, confidence, sector, needs_review
           FROM nonorg
-        ) TO '{STEP_OUT}' (FORMAT parquet)
+        ) TO '{out_path}' (FORMAT parquet)
     """)
-    n, l1cov = con.sql(f"""
-        SELECT count(*), round(100.0 * avg(CASE WHEN l1 <> 'XOT' THEN 1 ELSE 0 END), 1)
-        FROM read_parquet('{STEP_OUT}')
+    n_in = con.sql(f"SELECT count(*) FROM {steps}").fetchone()[0]
+    n, l1cov, dotted = con.sql(f"""
+        SELECT count(*), round(100.0 * avg(CASE WHEN l1 <> 'XOT' THEN 1 ELSE 0 END), 2),
+               sum(CASE WHEN l1 LIKE '%.%' THEN 1 ELSE 0 END)
+        FROM read_parquet('{out_path}')
     """).fetchone()
-    return STEP_OUT, {"step_rows": n, "L1_coverage_pct": l1cov}
+    if n != n_in:
+        raise AssertionError(f"propagation dropped rows: {n_in:,} steps in, {n:,} out")
+    if dotted:
+        raise AssertionError(f"{dotted:,} step rows carry a dotted l1")
+    null_keys, nonorg_rows, missing = con.sql(f"""
+        SELECT sum(CASE WHEN key IS NULL THEN 1 ELSE 0 END),
+               sum(CASE WHEN key LIKE 'nonorg:%' THEN 1 ELSE 0 END),
+               sum(CASE WHEN (key LIKE 'id:%' OR key LIKE 'raw:%') AND method = 'unresolved'
+                         AND confidence = 0.0 AND key NOT IN (SELECT key FROM read_parquet('{company_path}'))
+                        THEN 1 ELSE 0 END)
+        FROM read_parquet('{out_path}')
+    """).fetchone()
+    return out_path, {
+        "step_rows": n, "L1_coverage_pct": l1cov,
+        "null_key_rows": int(null_keys or 0), "nonorg_rows": int(nonorg_rows or 0),
+        "org_rows_missing_company": int(missing or 0),
+    }
 
 
 def main() -> None:

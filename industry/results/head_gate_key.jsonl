@@ -1,0 +1,100 @@
+{"n": 1, "company_id": "united-surgical-partners-international-inc", "display": "United Surgical Partners International, Inc", "stratum": "uniform", "head_code": "HLT.PROV.AMB"}
+{"n": 2, "company_id": "george-street-photo-and-video", "display": "George Street Photo & Video", "stratum": "uniform", "head_code": "PRO.DSGN"}
+{"n": 3, "company_id": "konecranes", "display": "Konecranes", "stratum": "weighted", "head_code": "MFG.IND.MACH"}
+{"n": 4, "company_id": "mcmaster-carr", "display": "McMaster-Carr", "stratum": "uniform", "head_code": "CON.WHL"}
+{"n": 5, "company_id": "jerseymikes", "display": "Jersey Mike's Subs", "stratum": "weighted", "head_code": "HOS.FOOD"}
+{"n": 6, "company_id": "winterthur-museum", "display": "Winterthur Museum, Garden and Library", "stratum": "uniform", "head_code": "NPO"}
+{"n": 7, "company_id": "sherwin-williams", "display": "Sherwin-Williams", "stratum": "weighted", "head_code": "MFG.CHEM.SPCH"}
+{"n": 8, "company_id": "brenntag", "display": "Brenntag", "stratum": "weighted", "head_code": "CON.WHL"}
+{"n": 9, "company_id": "lisa-wyatt-north-dallas-real-estate", "display": "Keller Williams", "stratum": "weighted", "head_code": "RE.REST.RES"}
+{"n": 10, "company_id": "bluecrossnc", "display": "Blue Cross NC", "stratum": "uniform", "head_code": "HLT.PAYR"}
+{"n": 11, "company_id": "corepower-yoga", "display": "CorePower Yoga", "stratum": "uniform", "head_code": "HOS.TRVL"}
+{"n": 12, "company_id": "north-american-mission-board", "display": "North American Mission Board", "stratum": "uniform", "head_code": "NPO.RELG"}
+{"n": 13, "company_id": "pasadena-playhouse", "display": "Pasadena Playhouse", "stratum": "uniform", "head_code": "NPO"}
+{"n": 14, "company_id": "partners-and-napier", "display": "Partners + Napier", "stratum": "uniform", "head_code": "MED.ADV.AGY"}
+{"n": 15, "company_id": "dallas-area-rapid-transit", "display": "DART (Dallas Area Rapid Transit)", "stratum": "uniform", "head_code": "TRN.PSNG"}
+{"n": 16, "company_id": "afi", "display": "The American Film Institute", "stratum": "weighted", "head_code": "NPO"}
+{"n": 17, "company_id": "marketstar", "display": "MarketStar", "stratum": "uniform", "head_code": "MED.ADV.MKTG"}
+{"n": 18, "company_id": "anti-defamation-league", "display": "Anti-Defamation League", "stratum": "weighted", "head_code": "NPO.ADVO"}
+{"n": 19, "company_id": "verkada", "display": "Verkada", "stratum": "uniform", "head_code": "TEC"}
+{"n": 20, "company_id": "aerosoles", "display": "Aerosoles", "stratum": "uniform", "head_code": "CON.RET.SPEC"}
+{"n": 21, "company_id": "endemol-shine-north-america", "display": "Endemol Shine North America", "stratum": "uniform", "head_code": "MED.FILM"}
+{"n": 22, "company_id": "cargill", "display": "Cargill", "stratum": "weighted", "head_code": "AGR"}
+{"n": 23, "company_id": "omnicom", "display": "Omnicom", "stratum": "uniform", "head_code": "MED.ADV"}
+{"n": 24, "company_id": "ferguson-official", "display": "Ferguson Enterprises", "stratum": "weighted", "head_code": "CON.WHL"}
+{"n": 25, "company_id": "national-vision-inc.", "display": "National Vision Inc.", "stratum": "weighted", "head_code": "CON.RET.SPEC"}
+{"n": 26, "company_id": "nsf", "display": "NSF International", "stratum": "uniform", "head_code": "PRO"}
+{"n": 27, "company_id": "pinnacle-entertainment", "display": "Pinnacle Entertainment", "stratum": "weighted", "head_code": "HOS.TRVL"}
+{"n": 28, "company_id": "scicorp", "display": "Service Corporation International", "stratum": "weighted", "head_code": "PRO"}
+{"n": 29, "company_id": "novavax", "display": "Novavax", "stratum": "uniform", "head_code": "HLT.PHRM.BIO"}
+{"n": 30, "company_id": "precision-castparts", "display": "Precision Castparts", "stratum": "weighted", "head_code": "MFG.AERO"}
+{"n": 31, "company_id": "martin-brower", "display": "Martin Brower", "stratum": "uniform", "head_code": "CON.WHL"}
+{"n": 32, "company_id": "anderson-merchandisers", "display": "Anderson Merchandisers", "stratum": "weighted", "head_code": "MED.ADV.MKTG"}
+{"n": 33, "company_id": "kbr-inc", "display": "KBR, Inc.", "stratum": "weighted", "head_code": "PRO.ENGS"}
+{"n": 34, "company_id": "juice-pharma-worldwide", "display": "JUICE Pharma Worldwide", "stratum": "uniform", "head_code": "MED.ADV.AGY"}
+{"n": 35, "company_id": "richproducts", "display": "Rich Products Corporation", "stratum": "weighted", "head_code": "CON.CPG.FNB"}
+{"n": 36, "company_id": "vuori-inc-", "display": "Vuori", "stratum": "uniform", "head_code": "CON.CPG.APPL"}
+{"n": 37, "company_id": "fcbcure", "display": "Integrated Communications", "stratum": "uniform", "head_code": "MED.ADV.AGY"}
+{"n": 38, "company_id": "the-kansas-city-star", "display": "The Kansas City Star", "stratum": "uniform", "head_code": "MED.PUBL"}
+{"n": 39, "company_id": "we-tv-network", "display": "WE tv (AMC Networks)", "stratum": "uniform", "head_code": "MED.BCAST"}
+{"n": 40, "company_id": "msc-industrial-supply", "display": "MSC Industrial Supply Co.", "stratum": "uniform", "head_code": "CON.WHL"}
+{"n": 41, "company_id": "ntt-data-americas", "display": "NTT DATA Services", "stratum": "weighted", "head_code": "TEC.SOF.ITSV"}
+{"n": 42, "company_id": "it-works-global", "display": "It Works! Global", "stratum": "uniform", "head_code": "CON.CPG.HPC"}
+{"n": 43, "company_id": "compass-group", "display": "Compass Group", "stratum": "uniform", "head_code": "HOS.FOOD"}
+{"n": 44, "company_id": "guildeducation", "display": "Guild", "stratum": "weighted", "head_code": "EDU.EDTECH"}
+{"n": 45, "company_id": "cleary-gottlieb-steen-hamilton-llp", "display": "Cleary Gottlieb Steen & Hamilton LLP", "stratum": "weighted", "head_code": "PRO.LEGAL"}
+{"n": 46, "company_id": "worley", "display": "Worley", "stratum": "weighted", "head_code": "PRO.ENGS"}
+{"n": 47, "company_id": "toshiba-americas", "display": "Toshiba", "stratum": "uniform", "head_code": "TEC.HRDW"}
+{"n": 48, "company_id": "rockwell-international", "display": "Rockwell International", "stratum": "weighted", "head_code": "MFG.AERO"}
+{"n": 49, "company_id": "disney-experiences", "display": "Disney Parks, Experiences and Products", "stratum": "weighted", "head_code": "HOS.TRVL"}
+{"n": 50, "company_id": "burson", "display": "Burson", "stratum": "uniform", "head_code": "MED.ADV.MKTG"}
+{"n": 51, "company_id": "hilti", "display": "Hilti", "stratum": "weighted", "head_code": "MFG.IND.MACH"}
+{"n": 52, "company_id": "medicus-life-brands", "display": "Publicis LifeBrands Medicus", "stratum": "uniform", "head_code": "MED.ADV.AGY"}
+{"n": 53, "company_id": "ntt-data-inc", "display": "Keane", "stratum": "uniform", "head_code": "TEC.SOF.ITSV"}
+{"n": 54, "company_id": "the-cigna-group", "display": "The Cigna Group", "stratum": "weighted", "head_code": "HLT.PAYR"}
+{"n": 55, "company_id": "saicinc", "display": "SAIC", "stratum": "weighted", "head_code": "PUB.DEF.DCON"}
+{"n": 56, "company_id": "human-rights-campaign", "display": "Human Rights Campaign", "stratum": "uniform", "head_code": "NPO.ADVO"}
+{"n": 57, "company_id": "insightssed", "display": "Millward Brown", "stratum": "weighted", "head_code": "PRO"}
+{"n": 58, "company_id": "theory", "display": "Theory", "stratum": "weighted", "head_code": "CON.RET.SPEC"}
+{"n": 59, "company_id": "czarnowskicollective", "display": "Czarnowski", "stratum": "uniform", "head_code": "HOS.EVNT"}
+{"n": 60, "company_id": "actavis", "display": "Actavis", "stratum": "weighted", "head_code": "HLT.PHRM.PHARMA"}
+{"n": 61, "company_id": "candiddotorg", "display": "Candid", "stratum": "uniform", "head_code": "NPO"}
+{"n": 62, "company_id": "hanley-wood", "display": "Hanley Wood", "stratum": "weighted", "head_code": "MED.PUBL"}
+{"n": 63, "company_id": "coinbase", "display": "Coinbase", "stratum": "uniform", "head_code": "FIN.FINT.CRYP"}
+{"n": 64, "company_id": "nylonmag", "display": "NYLON LLC.", "stratum": "weighted", "head_code": "MED.PUBL"}
+{"n": 65, "company_id": "milliman", "display": "Milliman", "stratum": "uniform", "head_code": "PRO.CONSL"}
+{"n": 66, "company_id": "camden-property-trust", "display": "Camden Property Trust", "stratum": "weighted", "head_code": "RE.REST.RES"}
+{"n": 67, "company_id": "denver-center-for-the-performing-arts", "display": "Denver Center for the Performing Arts", "stratum": "uniform", "head_code": "NPO"}
+{"n": 68, "company_id": "the-siegfried-group", "display": "The Siegfried Group", "stratum": "uniform", "head_code": "PRO.ACCT"}
+{"n": 69, "company_id": "slalom-consulting", "display": "Slalom", "stratum": "weighted", "head_code": "PRO.CONSL"}
+{"n": 70, "company_id": "metropolitan-family-services", "display": "Metropolitan Family Services", "stratum": "weighted", "head_code": "NPO.SOCS"}
+{"n": 71, "company_id": "the-journal-news", "display": "The Journal News", "stratum": "weighted", "head_code": "MED.PUBL"}
+{"n": 72, "company_id": "avangrid", "display": "Avangrid", "stratum": "uniform", "head_code": "ENR.UTIL"}
+{"n": 73, "company_id": "lego-group", "display": "the LEGO Group", "stratum": "uniform", "head_code": "MFG.CONP"}
+{"n": 74, "company_id": "h&r-block", "display": "H&R Block", "stratum": "weighted", "head_code": "PRO.ACCT"}
+{"n": 75, "company_id": "harry-&-david", "display": "Harry & David", "stratum": "uniform", "head_code": "CON.RET.ETAIL"}
+{"n": 76, "company_id": "worldlearning", "display": "World Learning", "stratum": "uniform", "head_code": "NPO.INTD"}
+{"n": 77, "company_id": "hanesbrands-inc-", "display": "Hanesbrands Inc.", "stratum": "weighted", "head_code": "CON.CPG.APPL"}
+{"n": 78, "company_id": "guy-carpenter", "display": "Guy Carpenter", "stratum": "weighted", "head_code": "FIN.INS.BROK"}
+{"n": 79, "company_id": "stanley-black-decker-inc", "display": "Stanley Black & Decker, Inc.", "stratum": "weighted", "head_code": "MFG.IND"}
+{"n": 80, "company_id": "cadence", "display": "Cadence Design Systems", "stratum": "weighted", "head_code": "TEC.SOF.APP"}
+{"n": 81, "company_id": "thefcateam", "display": "Fellowship of Christian Athletes", "stratum": "weighted", "head_code": "NPO.RELG"}
+{"n": 82, "company_id": "gecapital", "display": "GE Capital", "stratum": "weighted", "head_code": "FIN"}
+{"n": 83, "company_id": "hays", "display": "Hays", "stratum": "uniform", "head_code": "PRO.HRST"}
+{"n": 84, "company_id": "national-museum-of-women-in-the-arts", "display": "National Museum of Women in the Arts", "stratum": "uniform", "head_code": "NPO"}
+{"n": 85, "company_id": "usis", "display": "USIS", "stratum": "weighted", "head_code": "PUB.DEF.DCON"}
+{"n": 86, "company_id": "pitchfork-media", "display": "Pitchfork", "stratum": "weighted", "head_code": "MED.PUBL"}
+{"n": 87, "company_id": "stearns-lending", "display": "Stearns Lending (NMLS #1854)", "stratum": "uniform", "head_code": "FIN.FINT.LEND"}
+{"n": 88, "company_id": "crumbl", "display": "Crumbl Cookies", "stratum": "uniform", "head_code": "HOS.FOOD"}
+{"n": 89, "company_id": "joy-global", "display": "Joy Global Inc.", "stratum": "weighted", "head_code": "MFG.IND.MACH"}
+{"n": 90, "company_id": "urs-corporation", "display": "URS Corporation", "stratum": "weighted", "head_code": "PRO.ENGS"}
+{"n": 91, "company_id": "la-jolla-playhouse", "display": "La Jolla Playhouse", "stratum": "weighted", "head_code": "NPO"}
+{"n": 92, "company_id": "sportsman's-warehouse", "display": "Sportsman's Warehouse", "stratum": "uniform", "head_code": "CON.RET.SPEC"}
+{"n": 93, "company_id": "brooklynkids", "display": "Brooklyn Children's Museum", "stratum": "uniform", "head_code": "NPO"}
+{"n": 94, "company_id": "lending-club", "display": "LendingClub", "stratum": "weighted", "head_code": "FIN.FINT.LEND"}
+{"n": 95, "company_id": "manatt-phelps-phillips-llp", "display": "Manatt, Phelps & Phillips, LLP", "stratum": "uniform", "head_code": "PRO.LEGAL"}
+{"n": 96, "company_id": "girlswhocode", "display": "Girls Who Code", "stratum": "weighted", "head_code": "NPO"}
+{"n": 97, "company_id": "electronic-data-systems", "display": "Electronic Data Systems", "stratum": "weighted", "head_code": "TEC.SOF.ITSV"}
+{"n": 98, "company_id": "nycda", "display": "The New York Conservatory for Dramatic Arts", "stratum": "weighted", "head_code": "EDU.HED"}
+{"n": 99, "company_id": "aesop", "display": "Aesop", "stratum": "uniform", "head_code": "CON.CPG.HPC"}
+{"n": 100, "company_id": "american-councils-for-international-education", "display": "American Councils for International Education", "stratum": "uniform", "head_code": "NPO.INTD"}

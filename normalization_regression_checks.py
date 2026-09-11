@@ -432,12 +432,84 @@ def check_location() -> None:
                  "lowercase 'in' is not Indiana")
 
 
+def check_build_bootstrap() -> None:
+    """Audit 2026-09-02 (refactor s0 / H8): a fresh clone must be able to build
+    career_steps BEFORE the SOC jury has ever run -- the jury mapping is an
+    optional, propose-only input, not a hard dependency."""
+    import tempfile
+    from pathlib import Path
+
+    import build_normalized as B
+
+    with tempfile.TemporaryDirectory() as d:
+        out = Path(d)
+        (out / "mappings").mkdir()
+        for name in ("edu_degree", "edu_degree_field", "edu_school", "edu_field",
+                     "career_company", "career_company_id_alias", "career_title",
+                     "career_occupation", "career_functional_cluster", "career_location"):
+            (out / "mappings" / f"{name}.parquet").touch()
+        # every required mapping present, the jury mapping absent
+        paths = B.build_mappings(out, [], "all", skip=True)
+        assert_equal(paths["role_soc_jury"].exists(), False, "jury mapping absent in fixture")
+        rel = B._optional_mapping_relation(paths["role_soc_jury"],  # noqa: SLF001
+                                           "role_canonical VARCHAR, soc_major VARCHAR")
+        import duckdb
+        n = duckdb.connect().execute(f"SELECT count(*) FROM {rel}").fetchone()[0]
+        assert_equal(n, 0, "missing jury mapping reads as an empty relation")
+        present = out / "mappings" / "career_company.parquet"
+        rel2 = B._optional_mapping_relation(present, "value VARCHAR")  # noqa: SLF001
+        assert_equal("read_parquet" in rel2, True, "present mapping reads the parquet")
+
+
+def check_freshness_logic() -> None:
+    """scripts/check_freshness.py: an output is stale when any input is newer
+    than its manifest, or the manifest is missing."""
+    import importlib.util
+    import os
+    import tempfile
+    import time
+    from pathlib import Path
+
+    spec = importlib.util.spec_from_file_location(
+        "check_freshness", Path(__file__).parent / "scripts" / "check_freshness.py")
+    cf = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(cf)
+    with tempfile.TemporaryDirectory() as d:
+        d = Path(d)
+        old, new, manifest = d / "old", d / "new", d / "manifest.json"
+        old.touch(); manifest.touch(); new.touch()
+        t = time.time()
+        os.utime(old, (t - 100, t - 100)); os.utime(manifest, (t - 50, t - 50)); os.utime(new, (t, t))
+        assert_equal(cf.stale_inputs(manifest, [old]), [], "older input is fresh")
+        assert_equal(cf.stale_inputs(manifest, [old, new]), [new], "newer input is stale")
+        assert_equal(cf.stale_inputs(d / "missing.json", [old]), [old], "missing manifest -> all stale")
+        assert_equal(cf.stale_inputs(manifest, [d / "absent"]), [], "absent inputs are ignored")
+
+
+def check_employment_sql_mirrors_buckets() -> None:
+    """The SQL that derives employment_type from a company placeholder must
+    apply the same bucket -> employment overrides as
+    career_rules.placeholder_to_employment (none -> unknown,
+    private_household -> employee, ...), or Python and the build drift."""
+    import build_normalized as B
+    from career_clean import approach_a_rules as A
+    sql = B._EMPLOYMENT_TYPE_SQL  # noqa: SLF001
+    for bucket, emp in A._BUCKET_TO_EMPLOYMENT.items():  # noqa: SLF001
+        if emp != bucket:
+            assert f"'nonorg:{bucket}' THEN '{emp}'" in sql, (bucket, emp)
+    assert "substr(company.canonical_id, 8)" in sql
+    print("employment_type SQL mirrors the placeholder bucket overrides")
+
+
 def main() -> None:
     check_education()
     check_career()
     check_seniority_rank_and_display()
     check_self_employed_clusters()
     check_location()
+    check_build_bootstrap()
+    check_freshness_logic()
+    check_employment_sql_mirrors_buckets()
     print("normalization regression checks passed")
 
 

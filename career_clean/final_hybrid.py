@@ -95,15 +95,27 @@ def normalize_description(text: str | None) -> str | None:
 
 
 # ------------------------------------------------------------ company
+MIN_FUZZY_NORM_LEN = 4  # shortest normalized value the typo tier may merge
+INHERITED_ID_CONFIDENCE = 0.9  # value-level modal id inherited by id-less rows
+
+
 def canon_company_value(
     value: str | None,
     *,
     company_id: str | None = None,
     name_crosswalk: dict[str, str] | None = None,
 ) -> tuple[str, str, float]:
-    """Canonicalize one company row, preferring the row's actual company_id."""
+    """Canonicalize one company row, preferring the row's actual company_id.
+
+    At the VALUE grain ``company_id`` is the support-gated modal id of the
+    string's id-bearing rows (career_clean.common.MIN_ID_ROWS / MIN_ID_SHARE),
+    so id-less rows inherit it at 0.9, not 1.0; rows with their own id are
+    resolved inline in build_normalized at 1.0."""
     norm = normalize(value)
     bucket = A._placeholder_bucket(norm)  # noqa: SLF001
+    if bucket is None and not norm and value is not None and value.strip() \
+            and not any(ch.isalnum() for ch in value):
+        bucket = "none"  # punctuation-only "employers": '.', '-', '--', '_'
     if bucket:
         return f"nonorg:{bucket}", "placeholder", 1.0
     if company_id:
@@ -126,12 +138,22 @@ def canon_company(vocab: list[tuple]) -> DetailedResult:
             )
             mapping[value] = cid
             method[value] = m
-            conf[value] = c
+            # at the value grain a company_id is always the string's modal id
+            # INHERITED by its id-less rows (support-gated in export_vocab);
+            # rows carrying their own id are resolved inline at 1.0.
+            conf[value] = INHERITED_ID_CONFIDENCE if m == "company_id" else c
 
-        # guarded typo tail: merge a no-id raw spelling onto an id-bearing twin
+        # guarded typo tail: merge a no-id raw spelling onto an id-bearing twin.
+        # Values whose normalization is empty (non-Latin scripts, punctuation)
+        # or shorter than MIN_FUZZY_NORM_LEN never enter the fuzzy tier: they
+        # all share one empty phonetic block and were merged onto a random id
+        # (audit 2026-09-02 red M3: 1,875 Korean/Chinese/Cyrillic employers
+        # became "vip-cinema-seating").
         b_map = B.run("company", vocab).mapping
         for value, *_ in vocab:
             if method[value] != "raw":
+                continue
+            if len(normalize(value)) < MIN_FUZZY_NORM_LEN:
                 continue
             rep = b_map[value]
             if rep != value and mapping.get(rep, "").startswith("id:"):

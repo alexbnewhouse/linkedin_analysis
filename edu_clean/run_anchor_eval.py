@@ -78,14 +78,14 @@ def eval_a2(con) -> dict:
     gold_n = con.execute("SELECT count(*) FROM gold").fetchone()[0]
     has_start_n = con.execute(
         "SELECT count(*) FROM gold WHERE start_year IS NOT NULL "
-        f"AND start_year BETWEEN 1900 AND {A.SNAPSHOT_YEAR}").fetchone()[0]
+        f"AND start_year BETWEEN 1900 AND {A.LAST_COMPLETE_YEAR}").fetchone()[0]
 
     iterations = []
     for d_hat in (2, 3, 4, 5):
         con.execute(f"""
           CREATE OR REPLACE TEMP TABLE a2_pred AS
           SELECT linkedin_id, cip2, true_anchor, (start_year + {d_hat}) AS pred
-          FROM gold WHERE start_year IS NOT NULL AND start_year BETWEEN 1900 AND {A.SNAPSHOT_YEAR}
+          FROM gold WHERE start_year IS NOT NULL AND start_year BETWEEN 1900 AND {A.LAST_COMPLETE_YEAR}
         """)
         errs = _errors_query(con, "a2_pred", "pred")
         iterations.append({"variant": f"start_year + {d_hat}", "d_hat": d_hat, **_summ(errs)})
@@ -99,8 +99,8 @@ def eval_a2(con) -> dict:
       SELECT cip2, start_year, end_year, (CAST(start_year AS INT) // 10 * 10) AS decade
       FROM {edu}
       WHERE degree_level = {A.BACHELOR_LEVEL} AND cip_code IS NOT NULL
-        AND end_year BETWEEN 1950 AND {A.SNAPSHOT_YEAR} AND NOT coalesce(in_progress, FALSE)
-        AND start_year IS NOT NULL AND start_year BETWEEN 1900 AND {A.SNAPSHOT_YEAR}
+        AND end_year BETWEEN 1950 AND {A.LAST_COMPLETE_YEAR} AND NOT coalesce(in_progress, FALSE)
+        AND start_year IS NOT NULL AND start_year BETWEEN 1900 AND {A.LAST_COMPLETE_YEAR}
     """)
     con.execute("""
       CREATE OR REPLACE TEMP TABLE dhat_cip AS
@@ -123,7 +123,7 @@ def eval_a2(con) -> dict:
       CREATE OR REPLACE TEMP TABLE a2_final AS
       SELECT linkedin_id, cip2, true_anchor, (start_year + {d_hat_final}) AS pred,
              (CAST(true_anchor AS INT) // 10 * 10) AS decade
-      FROM gold WHERE start_year IS NOT NULL AND start_year BETWEEN 1900 AND {A.SNAPSHOT_YEAR}
+      FROM gold WHERE start_year IS NOT NULL AND start_year BETWEEN 1900 AND {A.LAST_COMPLETE_YEAR}
     """)
     overall = _summ(_errors_query(con, "a2_final", "pred"))
 
@@ -181,7 +181,7 @@ def eval_a3(con) -> dict:
           SELECT linkedin_id, min(year(start_dt)) AS onset_year
           FROM {steps}
           WHERE datable AND NOT bad_negative_duration AND NOT bad_future_start
-            AND year(start_dt) BETWEEN 1950 AND {A.SNAPSHOT_YEAR}
+            AND year(start_dt) BETWEEN 1950 AND {A.LAST_COMPLETE_YEAR}
             {where_extra}
           GROUP BY 1
         """)

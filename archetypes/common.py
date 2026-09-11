@@ -34,11 +34,11 @@ MAX_YEAR = 15                    # absolute ceiling
 # Last FULLY observed calendar year (paths/common.LAST_COMPLETE_YEAR), which is
 # what _window() needs -- NOT the snapshot's calendar year (2026, observed only
 # through February). Unchanged by the 2026-08-05 snapshot-date correction.
-SNAPSHOT_YEAR = 2025
+LAST_COMPLETE_YEAR = 2025  # == paths.common.LAST_COMPLETE_YEAR (audit 2026-09-02 M7 rename)
 
 # Career-ENTRY cohorts (5-year bins on first-job year). panel.valid_cohort caps
 # entry at 1990-2020, so the bins span that. The honest observation window is
-# DERIVED, not hardcoded: a cohort is observed to career-year = SNAPSHOT_YEAR -
+# DERIVED, not hardcoded: a cohort is observed to career-year = LAST_COMPLETE_YEAR -
 # hi (the LATEST entry in the bin), capped at MAX_YEAR. Deriving it guarantees
 # every member is fully observable across the whole window -> no within-window
 # right-censoring (§3a). E.g. 2020 entrants -> 5, 2015-2019 -> 6, 2010-2014 -> 11.
@@ -53,7 +53,7 @@ _COHORT_BINS: tuple[tuple[str, int, int], ...] = (
 
 
 def _window(hi: int) -> int:
-    return max(0, min(MAX_YEAR, SNAPSHOT_YEAR - hi))
+    return max(0, min(MAX_YEAR, LAST_COMPLETE_YEAR - hi))
 
 
 # (cohort_key, lo, hi, max_window) — window derived from the horizon rule.
@@ -100,16 +100,17 @@ def connect(threads: int | None = None) -> duckdb.DuckDBPyConnection:
 
 
 # --- Triangulated SOC-major (ARCHETYPES_PLAN.md §2) -------------------------
-# Detailed occupation_code prefix (21.5%) > LLM-jury soc_major (40%) >
-# functional_cluster for the self-employed (2.2%). Union ~= 63% of steps.
-# Returns a 2-digit SOC major string or NULL. `c` is the career_steps alias,
-# `j` the role_soc_jury alias (LEFT JOINed on role_canonical).
+# The pooled column landed on career_steps (audit R1: deterministic 6-digit
+# prefix, else the calibrated jury major -- 61.5% of steps) >
+# functional_cluster for the self-employed (2.2%). Reads
+# ``occupation_major_pooled`` / ``occupation_source`` directly (audit
+# 2026-09-02 H6: this module used to re-join the jury parquet itself).
+# Returns a 2-digit SOC major string or NULL. `c` is the career_steps alias;
+# `j` is accepted for call-site compatibility and unused.
 def soc_major_expr(c: str = "c", j: str = "j") -> str:
     return f"""
         coalesce(
-          CASE WHEN {c}.occupation_code IS NOT NULL
-               THEN substr({c}.occupation_code, 1, 2) END,
-          {j}.soc_major,
+          {c}.occupation_major_pooled,
           CASE WHEN {c}.functional_cluster IS NOT NULL
                 AND regexp_matches({c}.functional_cluster, '^[0-9]{{2}}$')
                THEN {c}.functional_cluster END
@@ -120,8 +121,8 @@ def soc_major_expr(c: str = "c", j: str = "j") -> str:
 def soc_major_method_expr(c: str = "c", j: str = "j") -> str:
     return f"""
         CASE
-          WHEN {c}.occupation_code IS NOT NULL THEN 'detail'
-          WHEN {j}.soc_major IS NOT NULL THEN 'jury'
+          WHEN {c}.occupation_source = 'det' THEN 'detail'
+          WHEN {c}.occupation_source = 'jury' THEN 'jury'
           WHEN {c}.functional_cluster IS NOT NULL
                 AND {c}.functional_cluster NOT LIKE '%unspecified%'
                 AND regexp_matches({c}.functional_cluster, '^[0-9]{{2}}$')

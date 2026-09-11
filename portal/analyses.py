@@ -1,7 +1,7 @@
 """Per-major analyses over the shared substrate (membership + panel + spine).
 
 All statistics obey equal-window discipline: a year-N number includes only
-people whose anchor is <= SNAPSHOT_YEAR - N, so every subject has a full window.
+people whose anchor is <= LAST_COMPLETE_YEAR - N, so every subject has a full window.
 Every reported cell with person-support < MIN_SUPPORT is suppressed.
 """
 
@@ -13,7 +13,7 @@ ALL_GROUPS = list(C.MAJORS.keys()) + [C.BASELINE_KEY]
 
 
 def _win_cut(y: int) -> int:
-    return C.SNAPSHOT_YEAR - y
+    return C.LAST_COMPLETE_YEAR - y
 
 
 def register_occ_nodes(con) -> None:

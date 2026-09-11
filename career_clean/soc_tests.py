@@ -110,6 +110,27 @@ def test_gold_dominance() -> None:
     ok(f"gold: dominance >= 0.9 enforced over {lo[1]:,} rows")
 
 
+def test_non_occupation_forms() -> None:
+    """Audit 2026-09-02 red H4: a student or extern is an employment FORM, not
+    an occupation -- the jury coded 'Student' as Education (12,452 rows) and
+    nursing/medical students as practitioners. Head-noun rule: a string whose
+    head noun is student/extern/trainee/apprentice/intern carries no
+    occupational content; 'Student Teacher' (head noun teacher) does."""
+    from career_clean.run_soc_jury import _non_occupation
+    for s in ("Student", "Students", "Extern", "Trainee", "Apprentice", "Intern",
+              "Nursing Student", "Medical Student", "PhD Student", "Law Student",
+              "Practicum Student", "Work Study Student", "Graduate Student",
+              "Legal Extern", "Nurse Extern", "Judicial Extern",
+              "Student Nurse", "Student Physical Therapist", "Physician Assistant Student",
+              "Student Athletic Trainer", "Student Clinician", "Internship", "Volunteer"):
+        assert _non_occupation(s), f"{s!r} should be a non-occupation"
+    for s in ("Student Teacher", "Student Assistant", "Student Ambassador",
+              "Registered Nurse", "Legal Assistant", "Athletic Trainer",
+              "Graduate Student Researcher", "Software Engineer"):
+        assert not _non_occupation(s), f"{s!r} should be an occupation"
+    ok("non-occupation forms: student/extern/trainee heads excluded, role heads kept")
+
+
 def main() -> None:
     test_taxonomy()
     test_cache_key()
@@ -117,6 +138,7 @@ def main() -> None:
     test_unanimous_accept()
     test_build_request_pure()
     test_gold_dominance()
+    test_non_occupation_forms()
     print("All SOC jury tests passed.")
 
 

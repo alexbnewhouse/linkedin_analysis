@@ -1,0 +1,18 @@
+{
+  "axis": "soc_major",
+  "alpha": 0.05,
+  "nodes": 23,
+  "edges_nonself": 506,
+  "backbone_edges": 27,
+  "infomap": {
+    "n_communities": 1,
+    "largest": 23,
+    "singletons": 0
+  },
+  "leiden": {
+    "n_communities": 2,
+    "largest": 14,
+    "singletons": 0
+  },
+  "runtime_s": 0.1
+}

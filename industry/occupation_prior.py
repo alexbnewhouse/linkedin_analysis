@@ -24,7 +24,9 @@ _MAJOR_TO_INDUSTRY: dict[str, tuple[str, float]] = {
     "21": ("NPO.SOCS", 0.3),     # Community & Social Service
     "23": ("PRO.LEGAL", 0.45),   # Legal
     "25": ("EDU", 0.5),          # Education, Training & Library
-    "27": ("MED", 0.3),          # Arts/Design/Media (weak: designers span sectors)
+    # "27" Arts/Design/Media deliberately ABSENT (audit 2026-09-02 red M4):
+    # graphic designers, PR specialists and producers work in every sector;
+    # the prior sent furniture stores and grocers to Media.
     "29": ("HLT.PROV", 0.5),     # Healthcare Practitioners
     "31": ("HLT.PROV", 0.5),     # Healthcare Support
     "33": ("PUB.JUST", 0.3),     # Protective Service (weak: private security too)
@@ -66,14 +68,24 @@ def soc_to_industry(soc_code: str | None) -> tuple[str | None, float]:
 
 # Company-grain: a weak prior only when the workforce is overwhelmingly one
 # industry-bound occupation. Requires a high coded fraction so we don't infer an
-# industry from a thin, unrepresentative tail of coded titles.
+# industry from a thin, unrepresentative tail of coded titles, a minimum row
+# count so one person's title is never "the workforce" (audit 2026-09-02 red
+# M4: 133k of 175k prior-coded companies had a single row), and a modal share
+# so a split workforce abstains (green I5).
 MIN_OCC_CODED_FRAC = 0.5
+MIN_COMPANY_ROWS = 3
+MIN_MODAL_SHARE = 0.6
 
 
 def company_occupation_prior(
-    modal_occ: str | None, occ_coded_frac: float | None
+    modal_occ: str | None, occ_coded_frac: float | None,
+    freq: int | None = None, modal_share: float | None = None,
 ) -> tuple[str | None, float]:
     if not modal_occ or (occ_coded_frac or 0.0) < MIN_OCC_CODED_FRAC:
+        return None, 0.0
+    if freq is not None and freq < MIN_COMPANY_ROWS:
+        return None, 0.0
+    if modal_share is not None and modal_share < MIN_MODAL_SHARE:
         return None, 0.0
     code, conf = soc_to_industry(modal_occ)
     # company-grain modal occupation is a slightly weaker signal than a person's

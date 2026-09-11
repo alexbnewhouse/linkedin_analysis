@@ -95,7 +95,7 @@ def run(threads: int | None = None) -> dict:
         "min_support": C.MIN_SUPPORT,
         "window_rule": (
             "A year-N statistic includes only persons whose graduation anchor "
-            f"(qualifying bachelor's end year) is <= {C.SNAPSHOT_YEAR}-N, so every "
+            f"(qualifying bachelor's end year) is <= {C.LAST_COMPLETE_YEAR}-N, so every "
             "subject has a fully observed N-year window."),
         "baseline_def": (
             "All persons holding any CIP-coded bachelor's degree with a usable "

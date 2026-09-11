@@ -167,33 +167,19 @@ def build_membership(con, tiers: tuple[str, ...] = C.ANCHOR_TIERS,
 def build_panel(con, soc_sources: tuple[str, ...] = None) -> None:
     """Person-year primary step for every population person, industry attached.
 
-    ``soc_major`` / ``soc_source`` implement the pooled occupation column at
-    major-group grain: the deterministic 6-digit backbone ALWAYS wins; a jury
-    label fills in only where the backbone abstained, and only when "llm_jury"
-    is in ``soc_sources`` AND the calibrated mapping parquet exists. 6-digit
-    consumers keep reading ``occupation_code`` (deterministic-only)."""
+    ``soc_major`` / ``soc_source`` expose the pooled occupation column at
+    major-group grain, read from the spine (``paths/steps.parquet`` carries
+    ``soc_major`` / ``soc_source`` from ``career_steps.occupation_major_pooled``;
+    audit 2026-09-02 H6 -- the portal used to re-join the jury parquet itself).
+    The deterministic 6-digit backbone ALWAYS wins; a jury label fills in only
+    where the backbone abstained, and only when "llm_jury" is in
+    ``soc_sources``. 6-digit consumers keep reading ``occupation_code``
+    (deterministic-only)."""
     if soc_sources is None:
         soc_sources = C.SOC_SOURCES
     steps = f"read_parquet('{C.q(C.STEPS)}')"
     ind = f"read_parquet('{C.q(C.STEP_INDUSTRY)}')"
-    use_jury = "llm_jury" in soc_sources and C.ROLE_SOC_JURY.exists()
-    if use_jury:
-        con.execute(f"""
-          CREATE OR REPLACE TEMP TABLE role_jury AS
-          SELECT role_canonical, soc_major AS jury_code
-          FROM read_parquet('{C.q(C.ROLE_SOC_JURY)}')
-        """)
-        dup = con.execute(
-            "SELECT count(*) - count(DISTINCT role_canonical) FROM role_jury"
-        ).fetchone()[0]
-        if dup:
-            raise ValueError(
-                f"role_soc_jury.parquet has {dup} duplicate role_canonical rows -- "
-                "joining it would silently fan out the panel; rebuild it with "
-                "career_clean.run_soc_jury merge")
-    else:
-        con.execute("CREATE OR REPLACE TEMP TABLE role_jury "
-                    "(role_canonical VARCHAR, jury_code VARCHAR)")
+    use_jury = "llm_jury" in soc_sources
     con.execute("""
       CREATE OR REPLACE TEMP TABLE pop_persons AS
       SELECT DISTINCT linkedin_id FROM membership
@@ -205,7 +191,8 @@ def build_panel(con, soc_sources: tuple[str, ...] = None) -> None:
              s.source_table,
              year(s.start_dt) AS y0, year(s.end_dt) AS y1,
              s.seniority_score, s.occupation_code, s.job_zone_norm,
-             s.role_canonical, s.tenure_months, s.company_raw
+             s.role_canonical, s.tenure_months, s.company_raw,
+             s.soc_major AS soc_major_code, s.soc_source
       FROM {steps} s
       SEMI JOIN pop_persons p ON p.linkedin_id = s.linkedin_id
       WHERE s.datable AND NOT s.bad_negative_duration AND NOT s.bad_future_start
@@ -237,12 +224,11 @@ def build_panel(con, soc_sources: tuple[str, ...] = None) -> None:
              p.seniority_score, p.occupation_code, p.job_zone_norm,
              p.role_canonical, p.tenure_months, p.company_raw,
              si.l1 AS industry_l1,
-             CASE WHEN p.occupation_code IS NOT NULL
-                    THEN {C.soc_major_case('p.occupation_code')}
-                  ELSE {C.soc_major_label_case('rj.jury_code')}
+             CASE WHEN p.soc_source = 'det' OR (p.soc_source = 'jury' AND {str(use_jury).upper()})
+                    THEN {C.soc_major_label_case('p.soc_major_code')}
              END AS soc_major,
-             CASE WHEN p.occupation_code IS NOT NULL THEN 'det'
-                  WHEN rj.jury_code IS NOT NULL THEN 'jury'
+             CASE WHEN p.soc_source = 'det' THEN 'det'
+                  WHEN p.soc_source = 'jury' AND {str(use_jury).upper()} THEN 'jury'
              END AS soc_source
       FROM prim p
       LEFT JOIN step_ind si
@@ -250,8 +236,6 @@ def build_panel(con, soc_sources: tuple[str, ...] = None) -> None:
        AND si.experience_idx IS NOT DISTINCT FROM p.experience_idx
        AND si.position_idx  IS NOT DISTINCT FROM p.position_idx
        AND si.source_table   = p.source_table
-      LEFT JOIN role_jury rj
-        ON p.occupation_code IS NULL AND rj.role_canonical = p.role_canonical
     """)
 
 
@@ -311,7 +295,7 @@ def group_funnel(con, cip_sources: tuple[str, ...] = None) -> dict:
         cip_sources = C.CIP_SOURCES
     edu = _edu_table(con, cip_sources)
     pooled = edu == "edu_pooled"
-    win_cut = C.SNAPSHOT_YEAR - C.FAN_YEAR
+    win_cut = C.LAST_COMPLETE_YEAR - C.FAN_YEAR
     out = {}
 
     def one(key, pred):

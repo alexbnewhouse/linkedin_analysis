@@ -127,8 +127,13 @@ def build(axis_name: str, threads: int, min_support: int,
     # z             = (observed - expected)/sqrt(expected)  (Poisson-ish).
     print(f"[net:{axis_name}] Phase 2: null-model normalization ...", flush=True)
     label_join, label_select = "", "e.from_node AS from_label, e.to_node AS to_label"
-    if ax.label_ref == "onet":
-        con.sql(f"CREATE TEMP TABLE labels AS {_onet_labels_sql()}")
+    if ax.label_ref in ("onet", "soc_major"):
+        if ax.label_ref == "onet":
+            con.sql(f"CREATE TEMP TABLE labels AS {_onet_labels_sql()}")
+        else:
+            vals = ", ".join(f"('{k}', '{v.replace(chr(39), chr(39) * 2)}')"
+                             for k, v in C.SOC_MAJOR.items())
+            con.sql(f"CREATE TEMP TABLE labels AS SELECT * FROM (VALUES {vals}) t(node, label)")
         label_join = (
             "LEFT JOIN labels lf ON lf.node = e.from_node "
             "LEFT JOIN labels lt ON lt.node = e.to_node"
@@ -174,7 +179,7 @@ def build(axis_name: str, threads: int, min_support: int,
     # --- node table ---------------------------------------------------------
     label_node = "n.node"
     node_label_join = ""
-    if ax.label_ref == "onet":
+    if ax.label_ref in ("onet", "soc_major"):
         node_label_join = "LEFT JOIN labels l ON l.node = n.node"
         label_node = "coalesce(l.label, n.node)"
     elif ax.label_strip:

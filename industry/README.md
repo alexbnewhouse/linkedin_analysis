@@ -45,17 +45,24 @@ forced L4 leaf.
 
 | method | file | grain | precision | typical depth |
 |---|---|---|---|---|
-| **M1** curated `company_id` → industry | `curated.py` | company | ≈1.0 | L3/L4 |
-| **M3** company-name lexical rules | `name_rules.py` | company (no-id tail) | high (guarded) | L2/L3 |
-| **M4/M5** occupation (SOC) → industry prior | `occupation_prior.py` | row / company-modal | weak (tiebreak) | L1/L2 |
+| **M1** curated `company_id` → industry | `curated.py` (hand) > `curated_head.py` (frontier-labeled head) > `curated_promoted.py` (jury-promoted) | company | hand 1.0; head / promoted 0.95 (their gate precision) | L3/L4 |
+| **M3** company-name lexical rules | `name_rules.py` | company (no-id tail) | high (precision-tested fixtures, audit 2026-09-02) | L2/L3 |
+| **M4/M5** occupation (SOC) → industry prior | `occupation_prior.py` | row / company-modal (pooled SOC major) | weak (tiebreak) | L1/L2 |
 | **M6** LLM on name+titles+description | `llm.py` | distinct value | propose-only | varies |
 
 Precision-first guards (same discipline as the O*NET coder): M3 fires only on
 unambiguous tokens — generic corporate words (group, holdings, solutions,
-services, global) never classify. M5 **abstains on industry-agnostic
-occupations** (Software Engineer, Accountant, PM, Sales) and only fires for the
-genuinely industry-bound major groups, always shallow + low-confidence. Anything
-unresolved → `XOT` + `needs_review`.
+services, global) never classify, and the 2026-09-02 audit retired the tokens
+that fired mostly on the wrong sector (electric, farm, dairy, motors, ventures,
+equity, records, industries, salon, systems, bare capital; see the bottom of
+`name_rules.py`). Every rule must be reachable on its own keyword and the real
+misfires (PG&E, Columbia University, food banks, Goodwill, State Farm, BAE
+Systems, ...) are pinned as negative fixtures in `tests.py`. M5 **abstains on
+industry-agnostic occupations** (Software Engineer, Accountant, PM, Sales,
+designers / PR) and only fires for the genuinely industry-bound major groups,
+always shallow + low-confidence, and at the company grain only with >= 3 rows
+and a modal share >= 0.6. Anything unresolved → `XOT` + `needs_review`, with
+**no sector** (an XOT row is not "private").
 
 ## The LLM layer (`llm.py` + `jury.py`) — propose-only LLM-as-jury, frozen cache
 
@@ -158,11 +165,40 @@ industry token in the name, no `company_id`) — exactly the population the LLM
 tail-proposer + curation ratchet target. Row-grain self-employed prior: 6/6,
 including correctly **abstaining** on industry-agnostic occupations.
 
-**Production (deterministic backbone only, no LLM), row-weighted coverage by
-depth:** L1 **42.0%**, L2 37.8%, L3 17.3%, L4 1.4% of all career steps land on a
-real industry at high precision. The remaining ~58% (the no-id `raw:` singleton
-tail + agnostic occupations) is the curation/LLM problem, exactly as with
-occupation coverage in `career_clean/FINDINGS.md`.
+**Production, row-weighted coverage by depth (2026-09-02, after the audit
+fixes and the frontier head pass):** L1 **58.3%**, L2 53.1%, L3 25.2%, L4 2.1%
+of all 10.8M career steps land on a real industry.  By method: curated 27.4%
+(hand + head + promoted, 6,706 companies), name rules 29.6%, occupation prior
+1.4%, unresolved 41.7%.  The humanities cohort's steps sit at L1 53.9%.  Of
+the unresolved 4.5M steps, 2.56M are id-keyed companies below the head
+(the next curation slice: +1,000 ids -> 59.3%, +10,000 -> 63.5%, +20,000 ->
+65.9%) and 1.78M are the no-id `raw:` singleton tail, which is the LLM
+proposer's problem, exactly as with occupation coverage in
+`career_clean/FINDINGS.md`.  Before the head pass the same build measured
+L1 49.8% (the Phase 0 fixes had retired mostly-wrong name-rule coverage from
+53.0%).
+
+## The curated head and its blind gate
+
+`curated_head.py` (method `frontier_head_v1`) is the 2026-09-02 pass over the
+unresolved head: every company with no curated / name-rule / prior industry,
+ranked by row count and by humanities-cohort rows, labeled from its display
+name, its modal titles and its description snippets, with abstention (`SKIP`)
+for ambiguous ids ("Independent Film", "Entertainment", gig platforms).  The
+label record, including the abstentions, is `results/head_labels_v1.jsonl`.
+
+The tier carries confidence 0.95, which is a claim, not a measurement, until a
+second reader checks it.  `results/head_gate_blind.jsonl` is a 100-company
+blind sample (50 row-weighted, 50 uniform) with the same evidence and no code;
+`results/head_gate_key.jsonl` holds the head's answers.  A reviewer who has not
+seen the key writes `code` per `n` into a review file, then:
+```
+uv run python -m industry.head_gate industry/results/head_gate_review.jsonl
+```
+reports L1 / L2 / exact agreement and every disagreement, and fails under
+L1 agreement 0.90.  Retract the L1 disagreements into `curated.RETRACTED`
+rather than lowering the bar.  The next slice of the head (rank 10k-20k, the
+65% cut) goes through the same two files.
 
 ## The review-queue ratchet
 

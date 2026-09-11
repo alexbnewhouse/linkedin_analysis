@@ -43,7 +43,7 @@ CLASSES = ("0", "1", "2+")
 # falls into the fan's "unclassified" bucket). It is a START-DATED event -- ~95%
 # of post-bachelor grad rows carry a usable start_year (vs ~20% end coverage on
 # bachelors) -- so the equal-window rule applies cleanly: cohort = anchor <=
-# SNAPSHOT_YEAR - GRAD_HORIZON, enrollment within [0, GRAD_HORIZON] of the
+# LAST_COMPLETE_YEAR - GRAD_HORIZON, enrollment within [0, GRAD_HORIZON] of the
 # bachelor anchor. All counts use count(DISTINCT linkedin_id) so a person's
 # several grad degrees (MA then PhD; MA + MBA) never fan out.
 GRAD_HORIZON = 5
@@ -78,7 +78,7 @@ def _grad_track(con) -> dict:
     doctorate) and by professional/field type (Law, Medicine, ...). Reads
     membership + education only (no panel). Distinct-person counts throughout."""
     edu = f"read_parquet('{C.q(C.EDUCATION)}')"
-    cut = C.SNAPSHOT_YEAR - GRAD_HORIZON
+    cut = C.LAST_COMPLETE_YEAR - GRAD_HORIZON
     levels = ", ".join(str(l) for l in GRAD_LEVELS)
     con.execute(f"""
       CREATE OR REPLACE TEMP TABLE lb_grad AS
@@ -88,7 +88,7 @@ def _grad_track(con) -> dict:
       WHERE m.anchor <= {cut}
         AND e.degree_level IN ({levels})
         AND e.start_year IS NOT NULL
-        AND e.start_year BETWEEN {C.MIN_ANCHOR_YEAR} AND {C.SNAPSHOT_YEAR}
+        AND e.start_year BETWEEN {C.MIN_ANCHOR_YEAR} AND {C.LAST_COMPLETE_YEAR}
         AND e.start_year >= m.anchor
         AND e.start_year - m.anchor <= {GRAD_HORIZON}
     """)
@@ -160,7 +160,7 @@ def _fan_at(con, horizon: int) -> dict:
     (analyses.destination_fan_detail over this horizon's endpoint: det-coded
     subset only, roles clearing DETAIL_MIN_SUPPORT, honest coverage split).
     Requires occ_nodes registered on `con` (analyses.register_occ_nodes)."""
-    cut = C.SNAPSHOT_YEAR - horizon
+    cut = C.LAST_COMPLETE_YEAR - horizon
     con.execute(f"""
       CREATE OR REPLACE TEMP TABLE lb_ep AS
       SELECT m.group_key, m.linkedin_id, p.soc_major,
@@ -212,8 +212,8 @@ def _stability(con) -> dict:
     trans = f"read_parquet('{C.q(C.TRANSITIONS)}')"
     w0, w1 = MOVER_WINDOW
     l0, l1 = LATE_WINDOW
-    y5cut = C.SNAPSHOT_YEAR - MOVER_OUTCOME_YEAR
-    y10cut = C.SNAPSHOT_YEAR - C.FAN_YEAR
+    y5cut = C.LAST_COMPLETE_YEAR - MOVER_OUTCOME_YEAR
+    y10cut = C.LAST_COMPLETE_YEAR - C.FAN_YEAR
 
     # early-move counts for BOTH windows in one pass
     con.execute(f"""

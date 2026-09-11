@@ -51,6 +51,7 @@ def build(threads: int) -> dict:
       SELECT linkedin_id, start_dt, end_dt,
              year(start_dt) AS y0, year(end_dt) AS y1,
              seniority_score, seniority_confidence, occupation_code,
+             soc_major, soc_source,
              job_zone_norm, employment_type, role_canonical, tenure_months
       FROM {steps}
       WHERE datable AND NOT bad_negative_duration AND NOT bad_future_start
@@ -67,13 +68,13 @@ def build(threads: int) -> dict:
         -- back to the earliest credential end year (the old semantics).
         SELECT linkedin_id,
                CAST(coalesce(
-                 CASE WHEN bachelor_end_year BETWEEN 1950 AND {C.SNAPSHOT_YEAR}
+                 CASE WHEN bachelor_end_year BETWEEN 1950 AND {C.LAST_COMPLETE_YEAR}
                       THEN bachelor_end_year END,
-                 CASE WHEN any_end_year_min BETWEEN 1950 AND {C.SNAPSHOT_YEAR}
+                 CASE WHEN any_end_year_min BETWEEN 1950 AND {C.LAST_COMPLETE_YEAR}
                       THEN any_end_year_min END,
-                 CASE WHEN highest_degree_year BETWEEN 1950 AND {C.SNAPSHOT_YEAR}
+                 CASE WHEN highest_degree_year BETWEEN 1950 AND {C.LAST_COMPLETE_YEAR}
                       THEN highest_degree_year END,
-                 CASE WHEN any_end_year_max BETWEEN 1950 AND {C.SNAPSHOT_YEAR}
+                 CASE WHEN any_end_year_max BETWEEN 1950 AND {C.LAST_COMPLETE_YEAR}
                       THEN any_end_year_max END
                ) AS INT) AS graduation_year
         FROM {edu_person}
@@ -96,6 +97,8 @@ def build(threads: int) -> dict:
           max(y1) AS last_year,
           count(*) AS n_steps,
           arg_min(occupation_code, start_dt) AS first_occupation,
+          -- pooled SOC major of the first step (audit 2026-09-02 H6)
+          arg_min(soc_major, start_dt) AS first_soc_major,
           arg_min(role_canonical, start_dt) AS first_role,
           bool_or(end_dt >= DATE '{C.SNAPSHOT_CAL_YEAR}-01-01') AS right_censored
         FROM vstep GROUP BY 1
@@ -103,7 +106,7 @@ def build(threads: int) -> dict:
       SELECT
         b.linkedin_id, b.entry_year, b.last_year,
         b.last_year - b.entry_year AS observed_max_career_age,
-        b.n_steps, b.first_occupation, b.first_role, b.right_censored,
+        b.n_steps, b.first_occupation, b.first_soc_major, b.first_role, b.right_censored,
         g.graduation_year,
         (b.entry_year - {C.ENTRY_AGE_PROXY}) AS birth_year_proxy,
         {C.generation_for_birth_year_sql(f"(b.entry_year - {C.ENTRY_AGE_PROXY})")} AS generation,
@@ -131,6 +134,7 @@ def build(threads: int) -> dict:
           SELECT v.linkedin_id,
                  unnest(range(v.y0, least(v.y1, {C.SNAPSHOT_CAL_YEAR}) + 1)) AS calendar_year,
                  v.seniority_score, v.seniority_confidence, v.occupation_code,
+                 v.soc_major, v.soc_source,
                  v.job_zone_norm, v.employment_type, v.role_canonical, v.tenure_months
           FROM vstep v
         ),
@@ -149,7 +153,8 @@ def build(threads: int) -> dict:
           pr.nha_level_any, pr.hum_l1_any, pr.hum_l1_bachelor_any,
           pr.humanities_field_group,
           p.seniority_score, p.seniority_confidence,
-          p.occupation_code, p.job_zone_norm, p.employment_type, p.role_canonical
+          p.occupation_code, p.soc_major, p.soc_source,
+          p.job_zone_norm, p.employment_type, p.role_canonical
         FROM primary_year p
         JOIN prof pr USING (linkedin_id)
         WHERE p.calendar_year - pr.entry_year >= 0

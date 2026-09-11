@@ -38,7 +38,9 @@ paths, transition networks) → a shareable portal.
 
 ```bash
 uv sync            # base deps (duckdb, pyarrow, orjson, …)
-make test          # data-independent suites
+make test          # logic suites: no built parquet needed (~10 s)
+make test-data     # suites that read the built tables
+make check-freshness   # is every downstream table newer than its inputs?
 ```
 
 Raw data (`data/*.jsonl`), `parsed/`, and large generated parquet are never

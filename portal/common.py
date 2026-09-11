@@ -45,15 +45,15 @@ MANIFEST_OUT = ROOT / "portal" / "_manifest.json"
 # Matches paths/common.SNAPSHOT_DATE = 2026-02-19 (corrected 2026-08-05 from a
 # year-slipped 2025-02-19; see paths/common.py for the evidence).
 SNAPSHOT_DATE = "2026-02-19"
-# SNAPSHOT_YEAR here means the last FULLY observed calendar year, which is what
-# every window cut (`SNAPSHOT_YEAR - N`, equal-window discipline) and every
+# LAST_COMPLETE_YEAR here means the last FULLY observed calendar year, which is what
+# every window cut (`LAST_COMPLETE_YEAR - N`, equal-window discipline) and every
 # graduation-anchor bound in this package needs. Its value is unchanged by the
 # date correction: 2026 is observed only through February, so a year-N statistic
 # still requires an anchor <= 2025 - N, and a 2026 end_year is still a
 # graduation that has not happened.
-SNAPSHOT_YEAR = 2025
+LAST_COMPLETE_YEAR = 2025  # == paths.common.LAST_COMPLETE_YEAR; renamed 2026-09-02 (audit M7) so it can never be confused with the 2026 calendar ceiling
 # The calendar ceiling on observed steps and panel years -- the other year-grain
-# fact. Use this, NOT SNAPSHOT_YEAR, when capping a date rather than a window.
+# fact. Use this, NOT LAST_COMPLETE_YEAR, when capping a date rather than a window.
 SNAPSHOT_CAL_YEAR = 2026
 
 # --- Population policy -------------------------------------------------------

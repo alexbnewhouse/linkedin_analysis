@@ -297,7 +297,7 @@ edge carrying **both endpoints on every axis** plus:
   `has_gap` iff `delta−1 ≥ GAP_MONTHS_MIN(1)`; `has_overlap` iff
   `1−delta ≥ OVERLAP_MONTHS_MIN(2)`.
 - **`kind`** (legacy ladder, first match wins, `:283–300`): `exit` (to
-  retired/unemployed/homemaker) > `education_entry` (to student) >
+  retired/unemployed/homemaker/career_break) > `education_entry` (to student) >
   `into/out_of_self_employment` > same-employer `promotion`/`demotion`/`lateral`
   (only on lexical ordinal, both sides named) > `move`.
 - **`seniority_direction`** (`:275–280`): up/down/flat only when **both** lexical
@@ -311,7 +311,7 @@ Uses `Δsen = to_sen_score − from_sen_score` and `sen_conf = min(from_conf,
 to_conf)`. A direction is asserted only when `sen_conf ≥ CONF_MIN(0.3)` AND
 `Δsen` clears the threshold. First match wins:
 
-1. `exit` — to ∈ {retired, unemployed, homemaker}. conf 0.95.
+1. `exit` — to ∈ {retired, unemployed, homemaker, career_break}. conf 0.95.
 2. `education_entry` — to = student. conf 0.95.
 3. `into_self_employment` / `out_of_self_employment` — crossing the
    {self_employed, business_owner} axis. conf 0.95.

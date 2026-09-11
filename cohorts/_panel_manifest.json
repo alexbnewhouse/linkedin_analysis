@@ -15,7 +15,7 @@
     "2015": 307045,
     "2020": 40536
   },
-  "runtime_s": 20.4,
+  "runtime_s": 23.4,
   "outputs": {
     "profiles": "/home/alex/linkedin-analysis/cohorts/profiles.parquet",
     "panel": "/home/alex/linkedin-analysis/cohorts/panel.parquet"

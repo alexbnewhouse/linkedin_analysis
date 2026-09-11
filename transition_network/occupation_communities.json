@@ -3,29 +3,29 @@
     "axis": "occupation",
     "alpha": 0.05,
     "nodes": 824,
-    "edges_nonself": 39077,
-    "backbone_edges": 1526,
+    "edges_nonself": 39097,
+    "backbone_edges": 1525,
     "infomap": {
-      "n_communities": 24,
-      "largest": 210,
+      "n_communities": 23,
+      "largest": 216,
       "singletons": 0
     },
     "leiden": {
-      "n_communities": 34,
-      "largest": 354,
+      "n_communities": 35,
+      "largest": 383,
       "singletons": 6
     },
     "runtime_s": 0.6,
-    "mean_infomap_soc_purity": 0.574
+    "mean_infomap_soc_purity": 0.534
   },
   "example_infomap_modules": {
     "4": {
-      "size": 210,
+      "size": 216,
       "soc_majors": {
-        "Production": 35,
-        "Transportation": 28,
-        "Office & Admin Support": 24,
-        "Personal Care": 19
+        "Production": 34,
+        "Transportation": 27,
+        "Healthcare Practitioners": 26,
+        "Office & Admin Support": 24
       },
       "top_nodes": [
         "Waiters and Waitresses",
@@ -36,11 +36,11 @@
       ]
     },
     "1": {
-      "size": 168,
+      "size": 186,
       "soc_majors": {
-        "Business & Financial": 25,
-        "Management": 23,
-        "Office & Admin Support": 20,
+        "Business & Financial": 26,
+        "Management": 25,
+        "Education": 25,
         "Arts/Design/Media": 20
       },
       "top_nodes": [
@@ -51,7 +51,7 @@
         "Advertising and Promotions Managers"
       ]
     },
-    "11": {
+    "10": {
       "size": 106,
       "soc_majors": {
         "Installation/Maint/Repair": 30,
@@ -68,7 +68,7 @@
       ]
     },
     "2": {
-      "size": 62,
+      "size": 63,
       "soc_majors": {
         "Computer & Mathematical": 17,
         "Architecture & Engineering": 17,
@@ -84,7 +84,7 @@
       ]
     },
     "8": {
-      "size": 53,
+      "size": 51,
       "soc_majors": {
         "Life/Physical/Social Science": 26,
         "Education": 12,
@@ -100,12 +100,12 @@
       ]
     },
     "5": {
-      "size": 46,
+      "size": 43,
       "soc_majors": {
-        "Healthcare Practitioners": 33,
+        "Healthcare Practitioners": 30,
         "Healthcare Support": 4,
-        "Life/Physical/Social Science": 2,
-        "Management": 2
+        "Management": 2,
+        "Community & Social Service": 2
       },
       "top_nodes": [
         "Registered Nurses",
