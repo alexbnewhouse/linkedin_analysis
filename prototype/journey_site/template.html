@@ -180,6 +180,21 @@ figcaption{margin-top:6px;padding-top:6px;border-top:1px solid var(--rule);font-
 @keyframes drawin{to{stroke-dashoffset:0}}
 @media (prefers-reduced-motion: reduce){.web.anim .lk{animation:none;stroke-dashoffset:0}}
 
+/* The thousand dots: a sticky canvas with steps scrolling beneath it */
+.scrolly{position:relative;margin-top:6px}
+.sticky{position:sticky;top:0;z-index:2;background:var(--ground);padding:6px 0 4px}
+.sticky.under-poles{top:56px}
+.sticky canvas{display:block;margin:0 auto;max-width:100%}
+.steps{position:relative;z-index:1;padding-top:12px}
+.stepc{min-height:46vh;display:flex;align-items:flex-start;padding:0 0 12px}
+.stepc:last-child{min-height:20vh}
+.stepcard{max-width:440px;background:var(--paper);border:1px solid var(--rule2);border-radius:4px;padding:14px 16px;font-size:17px;line-height:1.45;opacity:.55;transition:opacity .3s}
+.stepc.on .stepcard{opacity:1;border-color:var(--violet2)}
+.stepcard p{margin:0 0 8px}
+.stepcard p:last-child{margin:0}
+.stepcard .yr{font-family:Archivo,sans-serif;font-size:12.5px;font-weight:500;color:var(--muted);display:block;margin-bottom:4px}
+@media (prefers-reduced-motion: reduce){.stepcard{transition:none}}
+
 /* The kinds of work, as a compact grid */
 .kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:0 16px;margin:6px 0}
 .kcard{text-align:left;padding:9px 0 10px;border-top:1px solid var(--rule);display:block;width:100%}
@@ -239,6 +254,7 @@ details .body{padding:10px 0 4px;font-size:15px}
   .doorrow,.panels{grid-template-columns:1fr}
   .fig-head{grid-template-columns:1fr}
   h1{font-size:32px}h2{font-size:24px}
+  .stepc{min-height:40vh}
   .shell{padding:6px 16px}
 }
 @media print{
@@ -434,10 +450,112 @@ function wireWebs(){
   });
 }
 
+/* ---------- the thousand dots, simulated from the measured rates ---------- */
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function hashStr(str){ let h=2166136261; for(let i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); } return h>>>0; }
+function simulate(originKey){
+  const kindO=isKindOrigin(originKey); const fd=(originKey==='all'||kindO)?ALL:F[originKey]; const rnd=mulberry32(hashStr(originKey)); const N=1000;
+  const initRow=[]; if(kindO){ for(let k=0;k<16;k++) initRow.push(k===originKind(originKey)?1:0); } else { const m=mixAt(fd,1).mix; for(let k=0;k<16;k++) initRow.push(m[k]||0); }
+  const pick=row=>{ let tot=0; for(const v of row) tot+=v; if(!tot) return -1; let r=rnd()*tot; for(let i=0;i<row.length;i++){ r-=row[i]; if(r<0) return i; } return row.length-1; };
+  const seqs=[]; for(let i=0;i<N;i++){ const seq=[Math.max(0,pick(initRow))]; for(let t=1;t<10;t++){ const k=seq[t-1]; const nk=pick(fd.trans[String(t)][k]); seq.push(nk<0?k:nk); } seqs.push(seq); }
+  const changes=seq=>{ let c=0; for(let t=1;t<10;t++) if(seq[t]!==seq[t-1]) c++; return c; };
+  let follow=seqs.findIndex(q=>q[0]>0&&q[9]>0&&q[0]!==q[9]&&changes(q)===2); if(follow<0) follow=seqs.findIndex(q=>q[0]>0&&q[9]>0&&changes(q)===1); if(follow<0) follow=0;
+  return {seqs,follow};
+}
+function cssVar(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+function makeSim(wrap, originKey){
+  const cv=wrap.querySelector('canvas'); const ctx=cv.getContext('2d'); const W=700,H=500,cx=350,cy=246,R=176;
+  const pos={}; KIDS.forEach((k,i)=>{ const a=-Math.PI/2+i*2*Math.PI/KIDS.length; pos[k]=[cx+R*Math.cos(a),cy+R*Math.sin(a),a]; }); pos[0]=[cx,cy,0];
+  const {seqs,follow}=simulate(originKey);
+  const dots=seqs.map(q=>({seq:q,x:0,y:0,sx:0,sy:0,tx:0,ty:0,node:-1,slot:-1,d:0}));
+  const slots={}; for(let k=0;k<16;k++) slots[k]=[];
+  const slotPos=(k,i)=>{ const r=2.7*Math.sqrt(i), th=i*2.399963; return [pos[k][0]+r*Math.cos(th), pos[k][1]+r*Math.sin(th)]; };
+  let year=0, mode='one', alpha=1, anim=null, queue=[], scale=1, colors={};
+  function readColors(){ colors={dot:cssVar('--violet'),one:cssVar('--rust'),ink:cssVar('--ink'),muted:cssVar('--muted'),ink2:cssVar('--ink2'),rule:cssVar('--rule2'),paper:cssVar('--paper')}; }
+  function assign(y){ dots.forEach((d,i)=>{ const k=d.seq[y-1]; if(d.node!==k){ if(d.node>=0) slots[d.node][d.slot]=-1; d.node=k; const arr=slots[k]; let j=arr.indexOf(-1); if(j<0){ j=arr.length; arr.push(i); } else arr[j]=i; d.slot=j; } const p=slotPos(d.node,d.slot); d.sx=d.x; d.sy=d.y; d.tx=p[0]; d.ty=p[1]; d.d=(i%40)*3; }); }
+  function snap(){ dots.forEach(d=>{ d.x=d.tx; d.y=d.ty; }); }
+  function size(){ const w=Math.min(wrap.clientWidth, (window.innerHeight*0.62)*W/H); const dpr=window.devicePixelRatio||1; cv.style.width=w+'px'; cv.style.height=(w*H/W)+'px'; cv.width=Math.round(w*dpr); cv.height=Math.round(w*H/W*dpr); scale=w/W*dpr; draw(); }
+  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+  function draw(){
+    readColors(); ctx.setTransform(scale,0,0,scale,0,0); ctx.clearRect(0,0,W,H);
+    ctx.font='500 12.5px Archivo, sans-serif'; ctx.fillStyle=colors.ink2;
+    KIDS.forEach(k=>{ const [x,y,a]=pos[k]; const lx=cx+(R+46)*Math.cos(a), ly=cy+(R+46)*Math.sin(a); ctx.textAlign=Math.cos(a)>0.2?'left':Math.cos(a)<-0.2?'right':'center'; ctx.textBaseline='middle'; ctx.fillText(KIND[k].short, lx, ly); });
+    ctx.fillStyle=colors.muted; ctx.textAlign='center'; ctx.font='400 11.5px Archivo, sans-serif'; ctx.fillText('outside the fifteen', cx, cy+52);
+    const f=dots[follow];
+    if(mode==='one'){
+      // the path this one person took, drawn between the kinds they held, with the year of each move
+      ctx.strokeStyle=colors.rule; ctx.lineWidth=1.2; ctx.setLineDash([3,4]); ctx.beginPath(); let prev=f.seq[0]; ctx.moveTo(pos[prev][0],pos[prev][1]);
+      for(let t=1;t<Math.min(year,10);t++){ const k=f.seq[t]; if(k!==prev){ ctx.lineTo(pos[k][0],pos[k][1]); prev=k; } } ctx.stroke(); ctx.setLineDash([]);
+      prev=f.seq[0]; ctx.font='500 11.5px Archivo, sans-serif'; ctx.fillStyle=colors.one; ctx.textAlign='center';
+      for(let t=1;t<Math.min(year,10);t++){ const k=f.seq[t]; if(k!==prev){ ctx.fillText('year '+(t+1), pos[k][0], pos[k][1]-14); prev=k; } }
+      ctx.fillStyle=colors.one; ctx.beginPath(); ctx.arc(f.x,f.y,5.5,0,Math.PI*2); ctx.fill();
+    } else {
+      ctx.globalAlpha=alpha*0.82; ctx.fillStyle=colors.dot;
+      dots.forEach((d,i)=>{ if(i===follow) return; ctx.beginPath(); ctx.arc(d.x,d.y,2.1,0,Math.PI*2); ctx.fill(); });
+      ctx.globalAlpha=alpha; ctx.fillStyle=colors.one; ctx.beginPath(); ctx.arc(f.x,f.y,4.2,0,Math.PI*2); ctx.fill(); ctx.globalAlpha=1;
+    }
+    ctx.fillStyle=colors.ink; ctx.textAlign='left'; ctx.textBaseline='alphabetic'; ctx.font='600 26px Spectral, Georgia, serif'; ctx.fillText('Year '+Math.max(1,Math.min(10,year)), 12, 34);
+    ctx.fillStyle=colors.muted; ctx.font='400 12px Archivo, sans-serif'; ctx.fillText(mode==='one'?'one simulated career':'a thousand simulated careers', 12, 52);
+  }
+  function tween(dur, then){ const t0=performance.now(); if(anim) cancelAnimationFrame(anim);
+    const step=now=>{ const raw=(now-t0)/dur; let done=true; dots.forEach(d=>{ const u=Math.min(1,Math.max(0,(now-t0-d.d)/dur)); if(u<1) done=false; const e=ease(u); d.x=d.sx+(d.tx-d.sx)*e; d.y=d.sy+(d.ty-d.sy)*e; }); if(alpha<1){ alpha=Math.min(1,alpha+0.05); done=false; } draw(); if(!done) anim=requestAnimationFrame(step); else { anim=null; if(then) then(); } };
+    anim=requestAnimationFrame(step); }
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function runQueue(){ if(!queue.length) return; const y=queue.shift(); year=y; assign(y); if(reduce){ snap(); draw(); runQueue(); } else tween(mode==='one'?700:560, runQueue); }
+  function go(m, y){
+    if(m!==mode){ mode=m; queue=[]; if(anim){cancelAnimationFrame(anim);anim=null;} year=m==='one'?1:y; assign(year); snap(); if(m==='all'){ alpha=0; tween(600,null); } else draw();
+      if(m==='one'&&y>1){ queue=[]; for(let k=2;k<=y;k++) queue.push(k); runQueue(); } return; }
+    if(y>year){ queue=[]; for(let k=year+1;k<=y;k++) queue.push(k); if(!anim) runQueue(); }
+    else if(y<year){ queue=[]; if(anim){cancelAnimationFrame(anim);anim=null;} year=y; assign(y); if(reduce){snap();draw();} else tween(700,null); }
+  }
+  year=1; assign(1); snap(); size();
+  const ro=new ResizeObserver(size); ro.observe(wrap);
+  window.addEventListener('themechange', draw);
+  document.fonts && document.fonts.ready.then(draw);
+  return {go, follow:seqs[follow], seqs, destroy(){ ro.disconnect(); if(anim) cancelAnimationFrame(anim); }};
+}
+let sims=[];
+function wireScrolly(){
+  sims.forEach(sm=>sm.destroy()); sims=[];
+  canvas.querySelectorAll('.scrolly').forEach(sc=>{
+    const sim=makeSim(sc.querySelector('.sticky'), sc.dataset.origin); sims.push(sim);
+    const steps=[...sc.querySelectorAll('.stepc')]; const plan=steps.map(st=>({m:st.dataset.mode,y:+st.dataset.year}));
+    const root=window.matchMedia('(max-width: 920px)').matches?null:site;
+    const io=new IntersectionObserver(entries=>{ entries.forEach(en=>{ if(en.isIntersecting){ const i=steps.indexOf(en.target); steps.forEach((x,j)=>x.classList.toggle('on',j===i)); sim.go(plan[i].m,plan[i].y); } }); },{root,rootMargin:'-35% 0px -45% 0px',threshold:0});
+    steps.forEach(st=>io.observe(st));
+    // the one person's path, written out from the simulated sequence
+    const one=sc.querySelector('[data-one]'); if(one){ const q=sim.follow; const bits=['Started in '+klow(q[0])+'.']; for(let t=1;t<10;t++) if(q[t]!==q[t-1]) bits.push('Year '+(t+1)+', '+klow(q[t])+'.'); if(bits.length===1) bits.push('Stayed there for ten years.'); one.textContent=bits.join(' '); }
+    steps[0].classList.add('on');
+  });
+}
+function scrollyBlock(node, originKey){
+  const kindO=isKindOrigin(originKey); const fd=(originKey==='all'||kindO)?ALL:F[originKey];
+  const who = originKey==='all'?'people with a humanities degree':originName(originKey);
+  const dd = originKey==='all'?{rows:Object.entries(allMix10.mix).map(([k,n])=>({id:+k,n,share:n/allMix10.n}))}:destsFor(originKey);
+  const named=dd.rows.filter(r=>r.id>0); const top=named.slice().sort((a,b)=>b.n-a.n)[0];
+  let reveal='';
+  if(S.g&&S.g!=='skip'){ const gid=+S.g; reveal = gid===top.id ? `${kname(gid)} was the largest single answer, at ${shareWord(top.share)}. The other kinds of work held the rest.` : `${kname(gid)} was one of the ${nw(named.length)} answers. The largest single answer was ${klow(top.id)}, at ${shareWord(top.share)}.`; }
+  const guess = `<details id="guess-box"><summary>Guess before year ten</summary><div class="body"><p class="small">Where will the largest cluster be?</p><div class="guess-opts">${KIDS.map(k=>`<button type="button" data-guess="${k}">${esc(KIND[k].short)}</button>`).join('')}</div></div></details>`;
+  const step=(m,y,label,html)=>`<div class="stepc" data-mode="${m}" data-year="${y}"><div class="stepcard"><span class="yr">${esc(label)}</span>${html}</div></div>`;
+  return block(node, `
+    <h2>${originKey==='all'?'Ten years of work, a thousand people at a time':'Ten years of work for '+esc(who)}</h2>
+    <div class="scrolly" data-origin="${esc(originKey)}">
+      <div class="sticky ${node==='B'?'':'under-poles'}"><canvas width="700" height="500" role="img" aria-label="A thousand simulated careers moving between fifteen kinds of work over ten years"></canvas></div>
+      <div class="steps">
+        ${step('one',10,'One person','<p data-one></p><p class="small">A simulated career, drawn from the rates at which real people in this record moved between kinds of work each year.</p>')}
+        ${step('all',1,'Year one',`<p>A thousand people${originKey==='all'?' with a humanities degree':', '+esc(who)}, in their first year of work. Each dot is one simulated career; the one in orange is the person above.</p>`)}
+        ${step('all',3,'Year three','<p>The moves have begun. Most are still where they started. The rest are already somewhere else.</p>')}
+        ${step('all',5,'Year five',`<p>Halfway. Every kind of work has people in it, and the piles keep trading places.</p>${S.g?'':guess}`)}
+        ${step('all',10,'Year ten',`<p>The largest cluster, ${esc(klow(top.id))}, holds ${shareWord(top.share)}. No kind of work holds most of them, and ${originKey==='all'?'every one of the fifteen':nw(named.length)+' of the fifteen'} is in use.</p>${reveal?`<p id="reveal">${esc(reveal)}</p>`:'<p id="reveal" hidden></p>'}`)}
+        ${step('all',10,'What this is',`<p class="small">The dots are simulated from this record's measured year-to-year moves${originKey==='all'?'':' for '+esc(who)}, so no dot is a real person and every rate behind it rests on ten or more people. The counts are real; the individuals are not.</p>`)}
+      </div>
+    </div>`);
+}
+
 /* ---------- blocks ---------- */
 const stepNames = {A:'1. Arrives',B:'2. The whole field',C:'3. Narrow, or keep looking',D:'4. Where to start',E:'5. Challenges expectations',F:'6. Where could I go',G:'7. Who is already doing it',H:'8. Open a kind of work',I:'9. How would I get there',J:'10. People like me',K:'11. The nearest group',L:'12. Too few to describe',M:'13. Leaves with steps',N:'14. Comes back',P:'15. Every name opens a view'};
 function stepTag(node){ return `<button type="button" class="step" data-hover="${node}" data-go="${node}" title="${esc(stepNames[node])} in the journey chart">Step ${stepNames[node].split('.')[0]}</button>`; }
-function block(node, inner, extra){ return `<section class="block ${extra||''}" data-node="${node}" id="blk-${node}">${stepTag(node)}${inner}</section>`; }
+function block(node, inner, extra){ const nd=node.replace(/\d+$/,''); return `<section class="block ${extra||''}" data-node="${nd}" id="blk-${node}">${stepTag(nd)}${inner}</section>`; }
 function kindCards(ids, opts){
   const set=new Set(ids); const all=opts.all?KIDS:KIDS.filter(k=>set.has(k));
   return `<div class="kgrid">${all.map(k=>{ const sup=!set.has(k); const t=titles(k,2);
@@ -461,7 +579,7 @@ function arrival(compact){
 
 function fieldBlock(){
   const named=ALL.flows.filter(f=>f[0]>0&&f[1]>0&&f[0]!==f[1]); const rows=Object.entries(allMix10.mix).map(([k,n])=>({id:+k,n,share:n/allMix10.n}));
-  return block('B', `
+  return scrollyBlock('B','all') + block('B2', `
     <h2>Fifteen kinds of work, and every move between them</h2>
     <p class="lead">Each line is a move from a first-year kind of work to a year-ten kind that ten or more people made. Every pair is joined.</p>
     <figure>
@@ -481,19 +599,6 @@ function doorsBlock(compact){
     <div class="doorrow"><h3>A job I am curious about</h3><div><input class="search" id="job-search" type="search" placeholder="Type a job title, for example editor or paralegal" aria-label="Search for a job"><div class="results" id="job-results"></div></div></div>`);
 }
 
-function expectBlock(){
-  const o=S.o; const dd=destsFor(o); const named=dd.rows.filter(r=>r.id>0); const top=named.slice().sort((a,b)=>b.n-a.n)[0];
-  const who=originName(o);
-  let guess='';
-  if(S.g&&S.g!=='skip'){ const gid=+S.g; const right=gid===top.id;
-    guess = right ? `<p>${kname(gid)} was the largest single answer, at ${shareWord(top.share)}. The other kinds of work on this page held the rest.</p>`
-      : `<p>${kname(gid)} was one of the ${nw(named.length)} answers. The largest single answer was ${klow(top.id)}, and it held ${shareWord(top.share)}.</p>`;
-  } else {
-    guess = `<details><summary>Guess before you look</summary><div class="body"><p class="small">What kind of work do you think the largest share of ${esc(who)} were in ten years later?</p><div class="guess-opts">${KIDS.map(k=>`<button type="button" data-guess="${k}">${esc(KIND[k].short)}</button>`).join('')}</div></div></details>`;
-  }
-  return block('E', `<div class="callout"><p class="lead" style="margin-bottom:6px">Ten years later, ${who} were in ${nw(named.length)} different kinds of work. The largest held ${shareWord(top.share)}.</p>${guess}</div>`);
-}
-
 function q1Block(){
   const o=S.o; const dd=destsFor(o); const named=dd.rows.filter(r=>r.id>0); const ids=named.map(r=>r.id);
   const who=originName(o); let lead, ring;
@@ -506,7 +611,7 @@ function q1Block(){
     lead=`<p class="lead">${cap(who)} reached ${nw(ids.length)} kinds of work, and made ${fmt(moves.length)} different moves between them.</p>`;
     ring=ringSVG(moves.map(f=>[f[0],f[1]]),{click:'dest',aria:'Routes from '+fd.name,center:fd.name,center2:'first-year kind to year-ten kind'});
   }
-  return block('F', `
+  return scrollyBlock('E',o) + block('F', `
     <h2>Where <span class="acc">${esc(who)}</span> were, one to ten years later</h2>
     ${lead}
     <figure>${ring}<figcaption>Fig. 1. One line per move made by ten or more people, all at the same weight. Touch a kind to see its routes; open one to see the way in. Years count from the first job. Source: archetype build of ${D.generated}.</figcaption></figure>
@@ -660,13 +765,13 @@ function render(){
   if(m==='Q0'){ html += arrival(false) + returnBlock() + fieldBlock() + narrowLine() + doorsBlock(false) + takeBlock(); }
   else {
     html += arrival(true) + polesBar();
-    if(m==='Q1') html += expectBlock() + q1Block();
+    if(m==='Q1') html += q1Block();
     if(m==='Q3') html += q3Block();
     if(m==='Q2') html += q2Block() + likeMeBlocks();
     html += nounNote() + takeBlock() + doorsBlock(true);
   }
   canvas.innerHTML=html;
-  wireSearch(); wireWebs(); observe();
+  wireSearch(); wireWebs(); wireScrolly(); observe();
   try{ if(m!=='Q0'){ localStorage.setItem('hw-last',JSON.stringify({h:location.hash,label:stateLabel(S),date:new Date().toLocaleDateString('en-US',{day:'numeric',month:'long'})})); } }catch(e){}
   if(pendingScroll){ const el=document.getElementById('blk-'+pendingScroll); if(el) scrollSiteTo(el); pendingScroll=null; }
   else if(m!=='Q0'){ const first=canvas.querySelector('.poles'); if(first) scrollSiteTo(first,true); }
@@ -701,7 +806,9 @@ canvas.addEventListener('click',e=>{
   if(ds.origin){ commit({o:ds.origin, s:null, g:null}, S.d?'I':'E'); return; }
   if(ds.startorigin){ commit({o:'k:'+ds.startorigin, s:null, g:null}, S.d?'I':'F'); return; }
   if(ds.dest!==undefined){ openKind(+ds.dest); return; }
-  if(ds.guess){ commit({g:ds.guess}, 'E'); return; }
+  if(ds.guess){ S.g=ds.guess; history.replaceState(null,'',writeHash(S)); const gid=+ds.guess; const dd=S.o?destsFor(S.o):{rows:Object.entries(allMix10.mix).map(([k,n])=>({id:+k,n,share:n/allMix10.n}))}; const named=dd.rows.filter(r=>r.id>0); const top=named.slice().sort((a,b)=>b.n-a.n)[0];
+    const txt = gid===top.id ? `${kname(gid)} was the largest single answer, at ${shareWord(top.share)}. The other kinds of work held the rest.` : `${kname(gid)} was one of the ${nw(named.length)} answers. The largest single answer was ${klow(top.id)}, at ${shareWord(top.share)}.`;
+    const rv=document.getElementById('reveal'); if(rv){ rv.textContent=txt; rv.hidden=false; } const gb=document.getElementById('guess-box'); if(gb) gb.innerHTML=`<summary>Your guess</summary><div class="body"><p class="small">${esc(kname(gid))}. Scroll on to year ten.</p></div>`; return; }
   if(ds.start){ commit({s:+ds.start}, 'J'); return; }
   if(ds.likeme!==undefined){ commit({s:isKindOrigin(S.o)?ds.likeme:+ds.likeme}, 'J'); return; }
   if(ds.clear){ const p={}; p[ds.clear]=null; if(ds.clear==='o'){p.s=null;p.g=null;} if(ds.clear==='d'){p.s=null;} commit(p, ds.clear==='s'?'J':null); return; }
@@ -834,7 +941,7 @@ document.getElementById('map-head').addEventListener('click',()=>{ map.classList
 /* theme */
 document.getElementById('theme-btn').addEventListener('click',()=>{
   const r=document.documentElement; const cur=r.getAttribute('data-theme'); const sysDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
-  r.setAttribute('data-theme', cur==='dark' ? 'light' : cur==='light' ? 'dark' : (sysDark?'light':'dark'));
+  r.setAttribute('data-theme', cur==='dark' ? 'light' : cur==='light' ? 'dark' : (sysDark?'light':'dark')); window.dispatchEvent(new Event('themechange'));
 });
 
 /* boot */

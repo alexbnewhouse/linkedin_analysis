@@ -62,6 +62,17 @@ def one(where, key):
       JOIN (SELECT linkedin_id, archetype_id, min(career_year) AS first_y FROM py WHERE {where} GROUP BY 1,2) f USING (linkedin_id, archetype_id)
       GROUP BY 1 HAVING count(*) >= {BAR}""").fetchall()
     d["first_entry"] = {int(a): float(m) for a, m, n in rows}
+    # year-to-year transition counts, years 1..9 -> 2..10, cells below the bar zeroed.
+    # These rates drive the simulated dots on the page; no individual sequence is shipped.
+    rows = con.execute(f"""SELECT a.career_year, a.archetype_id, b.archetype_id, count(*) FROM
+      (SELECT linkedin_id, career_year, archetype_id FROM py WHERE {where}) a
+      JOIN (SELECT linkedin_id, career_year, archetype_id FROM py WHERE {where}) b
+        ON a.linkedin_id = b.linkedin_id AND b.career_year = a.career_year + 1
+      WHERE a.career_year BETWEEN 1 AND 9 GROUP BY 1,2,3 HAVING count(*) >= {BAR}""").fetchall()
+    trans = {t: [[0]*16 for _ in range(16)] for t in range(1, 10)}
+    for t, a, b, n in rows:
+        trans[int(t)][int(a)][int(b)] = n
+    d["trans"] = trans
     return d
 
 data = {"bar": BAR, "years": YEARS, "axis": "career-entry", "fields": {}, "all": None}
