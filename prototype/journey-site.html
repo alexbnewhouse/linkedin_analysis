@@ -103,20 +103,23 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--focus);outline-
 .el{font-family:Archivo,sans-serif;font-size:9.5px;fill:var(--muted)}
 
 /* Site typography */
-h1{font-size:30px;line-height:1.2;font-weight:600;margin:0 0 10px;text-wrap:balance;letter-spacing:-.01em}
-h2{font-size:22px;line-height:1.25;font-weight:600;margin:0 0 8px;text-wrap:balance}
-h3{font-size:17px;font-weight:600;margin:20px 0 6px}
+h1{font-size:40px;line-height:1.1;font-weight:600;margin:0 0 14px;text-wrap:balance;letter-spacing:-.015em}
+h2{font-size:28px;line-height:1.15;font-weight:600;margin:0 0 10px;text-wrap:balance;letter-spacing:-.01em}
+h2 .acc{color:var(--violet)}
+h3{font-size:16px;font-weight:600;margin:18px 0 6px}
 p{margin:0 0 12px}
-.lede{font-size:19px;line-height:1.45}
-.lead{font-size:18px;line-height:1.5}
+.lede{font-size:21px;line-height:1.4;max-width:34em}
+.lead{font-size:18px;line-height:1.45;max-width:36em}
 .small{font-size:14.5px;color:var(--ink2)}
 .muted{color:var(--muted)}
+.note{font-family:Archivo,sans-serif;font-size:13px;color:var(--muted);margin:4px 0 0;line-height:1.4}
 .label{font-family:Archivo,sans-serif;font-size:13.5px;font-weight:500;color:var(--muted)}
-.block{position:relative;padding:22px 0 18px;border-top:1px solid var(--rule)}
+.block{position:relative;padding:26px 0 22px;border-top:1px solid var(--rule)}
 .block:first-child{border-top:0;padding-top:0}
-.step{position:absolute;right:0;top:20px;font-family:Archivo,sans-serif;font-size:12.5px;color:var(--muted);border:1px solid var(--rule2);border-radius:3px;padding:1px 7px;background:var(--paper);cursor:pointer}
+.step{position:absolute;right:0;top:24px;font-family:Archivo,sans-serif;font-size:12.5px;color:var(--muted);border:1px solid var(--rule2);border-radius:3px;padding:1px 7px;background:var(--paper);cursor:pointer}
 .step:hover{color:var(--violet);border-color:var(--violet)}
 .block:first-child .step{top:0}
+.block>h1,.block>h2{padding-right:80px}
 
 .poles{position:sticky;top:0;z-index:5;background:var(--ground);padding:10px 0 10px;border-bottom:1px solid var(--rule);margin-bottom:10px;font-family:Archivo,sans-serif;font-size:13.5px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .poles .k{color:var(--muted)}
@@ -127,18 +130,20 @@ p{margin:0 0 12px}
 .chip.empty{color:var(--muted);border-style:dashed}
 .chip.filter{background:var(--violet-wash);border-color:transparent}
 
-.doors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:6px}
-.door{border:1px solid var(--rule2);border-radius:4px;padding:14px 14px 12px;background:var(--paper);display:flex;flex-direction:column;gap:8px;min-width:0}
-.door h3{margin:0;font-size:16px}
-.door .small{margin:0}
-.opts{display:flex;flex-direction:column;gap:2px}
-.opt{text-align:left;padding:5px 8px;border-radius:3px;font-family:Archivo,sans-serif;font-size:14px;border:1px solid transparent;display:flex;flex-direction:column;gap:1px}
+/* Doors as three short rows of chips */
+.doorrow{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 18px;align-items:baseline;padding:12px 0;border-top:1px solid var(--rule)}
+.doorrow:first-of-type{border-top:0}
+.doorrow h3{margin:0;font-size:16px}
+.cloud{display:flex;flex-wrap:wrap;gap:6px 6px}
+.cloud button{font-family:Archivo,sans-serif;font-size:13.5px;padding:5px 10px;border:1px solid var(--rule2);border-radius:3px;background:var(--paper);color:var(--ink);text-align:left}
+.cloud button:hover{border-color:var(--violet);color:var(--violet);background:var(--violet-wash)}
+.cloud button.self{border-color:var(--violet);color:var(--violet);font-weight:500}
+.cloud span.sup{font-family:Archivo,sans-serif;font-size:13.5px;padding:5px 10px;border:1px dashed var(--rule2);border-radius:3px;color:var(--muted)}
+input.search{width:100%;max-width:420px;font:inherit;font-family:Archivo,sans-serif;font-size:14px;padding:8px 10px;border:1px solid var(--rule2);border-radius:3px;background:var(--paper);color:var(--ink)}
+.results{display:flex;flex-direction:column;gap:2px;max-height:240px;overflow:auto;max-width:420px;margin-top:6px}
+.opt{text-align:left;padding:5px 8px;border-radius:3px;font-family:Archivo,sans-serif;font-size:14px;border:1px solid transparent;display:flex;justify-content:space-between;gap:8px}
 .opt:hover{background:var(--violet-wash);border-color:var(--rule2)}
-.opt .d{color:var(--muted);font-size:12.5px;line-height:1.3}
 .opt .in{color:var(--muted);font-size:12.5px}
-.opts.scroll{max-height:380px;overflow:auto;padding-right:4px}
-input.search{width:100%;font:inherit;font-family:Archivo,sans-serif;font-size:14px;padding:7px 9px;border:1px solid var(--rule2);border-radius:3px;background:var(--ground);color:var(--ink)}
-.results{display:flex;flex-direction:column;gap:2px;max-height:240px;overflow:auto}
 
 .btn{font-family:Archivo,sans-serif;font-size:14px;font-weight:500;padding:8px 14px;border:1px solid var(--violet);border-radius:3px;color:var(--violet);background:var(--paper)}
 .btn:hover{background:var(--violet-wash)}
@@ -146,44 +151,44 @@ input.search{width:100%;font:inherit;font-family:Archivo,sans-serif;font-size:14
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 
 /* Figures */
-figure{margin:18px 0 8px;padding:0}
-.fig-head{display:grid;grid-template-columns:52px minmax(0,1fr);gap:8px;align-items:baseline;margin-bottom:8px}
+figure{margin:16px 0 8px;padding:0}
+.fig-head{display:grid;grid-template-columns:52px minmax(0,1fr);gap:8px;align-items:baseline;margin-bottom:6px}
 .fig-n{font-family:Archivo,sans-serif;font-size:12.5px;color:var(--muted);font-weight:500}
 .fig-title{font-weight:600;font-size:17px;margin:0}
-.fig-dek{margin:2px 0 0;font-size:14.5px;color:var(--ink2)}
-figcaption{margin-top:8px;padding-top:6px;border-top:1px solid var(--rule);font-family:Archivo,sans-serif;font-size:12.5px;color:var(--muted);line-height:1.45}
+.fig-dek{margin:2px 0 0;font-size:14px;color:var(--ink2)}
+figcaption{margin-top:6px;padding-top:6px;border-top:1px solid var(--rule);font-family:Archivo,sans-serif;font-size:12.5px;color:var(--muted);line-height:1.45}
 
-/* The possibility grid: every kind of work, with real titles inside it */
-.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0 18px;margin:8px 0}
-.kcard{text-align:left;padding:10px 0 12px;border-top:1px solid var(--rule);display:block;width:100%}
-.kcard .nm{display:block;font-weight:600;font-size:16px;line-height:1.25;color:var(--ink)}
-.kcard:hover .nm{color:var(--violet)}
-.kcard .ds{display:block;font-size:14px;color:var(--ink2);line-height:1.35;margin-top:3px}
-.kcard .ti{display:block;font-family:Archivo,sans-serif;font-size:12.5px;color:var(--muted);line-height:1.35;margin-top:5px}
-.kcard.self .nm{color:var(--violet)}
-.kcard.sup{opacity:.55;cursor:default}
-
-/* The route map: a line wherever ten or more people made the move */
+/* The ring and the route maps: one uniform line per move made by ten or more people */
 .web{width:100%;height:auto;display:block;font-family:Archivo,sans-serif}
-.web .lk{fill:none;stroke:var(--link);stroke-width:1.1;opacity:.55}
-.web .lk.hot{stroke:var(--link-hot);opacity:1;stroke-width:1.6}
-.web .lk.dim{opacity:.12}
+.web .lk{fill:none;stroke:var(--link);stroke-width:1;opacity:.5}
+.web.ring .lk{opacity:.32}
+.web .lk.hot{stroke:var(--link-hot);opacity:1;stroke-width:1.7}
+.web .lk.dim{opacity:.06}
 .web .nd{cursor:pointer}
 .web .nd circle{fill:var(--dot)}
-.web .nd text{font-size:12px;fill:var(--ink2)}
-.web .nd.hot circle{fill:var(--link-hot)}
+.web .nd text{font-size:12.5px;fill:var(--ink2)}
+.web.ring .nd text{font-size:13px}
+.web .nd.hot circle{fill:var(--link-hot);r:4.5}
 .web .nd.hot text{fill:var(--violet);font-weight:600}
-.web .nd.self text{font-weight:600;fill:var(--ink)}
-.web .nd.dim{opacity:.35}
+.web .nd.self circle{fill:var(--link-hot);r:5}
+.web .nd.self text{font-weight:600;fill:var(--violet)}
+.web .nd.dim{opacity:.3}
 .web text.ch{font-size:12px;fill:var(--muted)}
+.web .ctr{font-family:Spectral,Georgia,serif;font-size:22px;font-weight:600;fill:var(--ink);pointer-events:none}
+.web .ctr2{font-size:12.5px;fill:var(--muted);pointer-events:none}
+.web.anim .lk{stroke-dasharray:900;stroke-dashoffset:900;animation:drawin 1.4s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes drawin{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion: reduce){.web.anim .lk{animation:none;stroke-dashoffset:0}}
 
-.plain{list-style:none;margin:6px 0;padding:0;font-family:Archivo,sans-serif;font-size:14.5px;columns:2;column-gap:24px}
-.plain li{break-inside:avoid;padding:4px 0;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;gap:8px}
-.plain li button{text-align:left;color:var(--ink);border-bottom:1px solid var(--rule2)}
-.plain li button:hover{color:var(--violet);border-bottom-color:var(--violet)}
-.plain li .self{font-weight:500}
-.plain li .w{color:var(--muted);font-size:12.5px;white-space:nowrap}
-.plain li.sup{color:var(--muted)}
+/* The kinds of work, as a compact grid */
+.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:0 16px;margin:6px 0}
+.kcard{text-align:left;padding:9px 0 10px;border-top:1px solid var(--rule);display:block;width:100%}
+.kcard .nm{display:block;font-weight:600;font-size:15px;line-height:1.2;color:var(--ink)}
+.kcard:hover .nm{color:var(--violet)}
+.kcard .ti{display:block;font-family:Archivo,sans-serif;font-size:12px;color:var(--muted);line-height:1.35;margin-top:4px}
+.kcard.self .nm{color:var(--violet)}
+.kcard.sup{opacity:.5;cursor:default}
+
 table.t{width:100%;border-collapse:collapse;font-family:Archivo,sans-serif;font-size:13.5px;margin:6px 0}
 table.t td,table.t th{padding:4px 6px;border-bottom:1px solid var(--rule);text-align:left}
 table.t th{font-weight:500;color:var(--muted);font-size:12.5px}
@@ -191,28 +196,29 @@ table.t td.r,table.t th.r{text-align:right;font-variant-numeric:tabular-nums;whi
 
 .callout{padding:14px 16px;border:1px solid var(--amber);border-radius:4px;background:var(--amber-wash);margin:10px 0}
 .callout p:last-child{margin:0}
-.guess-opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:3px 10px;margin:8px 0 6px}
-.guess-opts button{text-align:left;font-family:Archivo,sans-serif;font-size:13.5px;padding:4px 8px;border-radius:3px;border:1px solid transparent}
-.guess-opts button:hover{background:var(--paper);border-color:var(--rule2)}
+.guess-opts{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 6px}
+.guess-opts button{font-family:Archivo,sans-serif;font-size:13px;padding:4px 9px;border-radius:3px;border:1px solid var(--rule2);background:var(--paper)}
+.guess-opts button:hover{border-color:var(--amber)}
 .thin-box{padding:14px 16px;border:1px solid var(--rust);border-radius:4px;background:var(--rust-wash);margin:12px 0}
 .thin-box p{margin:0 0 8px}
 .thin-box p:last-child{margin:0}
-.panel{margin-top:16px;padding-top:12px;border-top:1px solid var(--rule)}
-.panel h3{margin:0 0 4px;display:flex;gap:10px;align-items:baseline}
-.panel h3 .pn{font-family:Archivo,sans-serif;font-size:12.5px;color:var(--muted);font-weight:500}
-.chips{display:flex;flex-wrap:wrap;gap:6px;font-family:Archivo,sans-serif;font-size:13.5px;margin:6px 0}
-.chips span,.chips button{border:1px solid var(--rule2);border-radius:3px;padding:3px 8px;background:var(--paper);color:var(--ink)}
+.panels{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px 18px;margin-top:14px}
+.panels .ph{font-family:Archivo,sans-serif;font-size:13px;font-weight:500;color:var(--muted);padding-top:6px;border-top:1px solid var(--rule)}
+.panels .pb{padding-top:6px;border-top:1px solid var(--rule);min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;font-family:Archivo,sans-serif;font-size:13.5px;margin:0}
+.chips span,.chips button{border:1px solid var(--rule2);border-radius:3px;padding:4px 9px;background:var(--paper);color:var(--ink)}
 .chips button:hover{border-color:var(--violet);color:var(--violet)}
-.empty{padding:10px 12px;border:1px dashed var(--rule2);border-radius:4px;color:var(--ink2);font-size:15px;margin:6px 0}
+.chips button.self{border-color:var(--violet);color:var(--violet)}
+.empty{padding:8px 10px;border:1px dashed var(--rule2);border-radius:4px;color:var(--muted);font-family:Archivo,sans-serif;font-size:13px;margin:0}
 details{margin:8px 0}
-summary{cursor:pointer;color:var(--violet);font-family:Archivo,sans-serif;font-size:14px;font-weight:500}
-details .body{padding:10px 0 4px;font-size:15.5px}
-.take{border:1px solid var(--rule2);border-radius:4px;background:var(--paper);padding:20px 22px;margin-top:10px}
+summary{cursor:pointer;color:var(--violet);font-family:Archivo,sans-serif;font-size:13.5px;font-weight:500}
+details .body{padding:10px 0 4px;font-size:15px}
+.take{border:1px solid var(--rule2);border-radius:4px;background:var(--paper);padding:18px 20px;margin-top:10px}
 .take .tb{padding:10px 0;border-top:1px solid var(--rule)}
 .take .tb:first-of-type{border-top:0}
 .take .tb .label{margin-bottom:2px}
 .take ul,.take ol{margin:4px 0 4px 20px;padding:0}
-.take li{margin:3px 0}
+.take li{margin:3px 0;font-size:15.5px}
 .return{padding:12px 14px;border:1px solid var(--rule2);border-radius:4px;background:var(--paper);display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:15px;margin-bottom:8px}
 .return p{margin:0;flex:1 1 300px}
 .trail{font-family:Archivo,sans-serif;font-size:12.5px;color:var(--muted);display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:4px 0 0}
@@ -230,9 +236,9 @@ details .body{padding:10px 0 4px;font-size:15.5px}
   .map.open{transform:none}
   .map-head{min-height:46px;cursor:pointer}
   .map-toggle{display:inline-block;color:var(--violet);font-weight:500}
-  .doors{grid-template-columns:1fr}
+  .doorrow,.panels{grid-template-columns:1fr}
   .fig-head{grid-template-columns:1fr}
-  .plain{columns:1}
+  h1{font-size:32px}h2{font-size:24px}
   .shell{padding:6px 16px}
 }
 @media print{
@@ -383,10 +389,21 @@ const allMix10 = mixAt(ALL,10);
 function fieldsInto(d){ return FK.map(k=>{ const m=mixAt(F[k],10); const n=m.mix[d]||0; return {k,name:F[k].name,n,share:n/m.n}; }); }
 const byName = rows => rows.slice().sort((a,b)=>(a.name||kname(a.id)).localeCompare(b.name||kname(b.id)));
 
-/* ---------- the route map ---------- */
+/* ---------- the ring and the route maps ---------- */
 let webSeq=0;
-function webSVG(cols, links, opts){
-  // cols: [{title, nodes:[{id,label,full,click,self,sup}]}]  links: [[colIdx, idFrom, idTo]]
+function ringSVG(links, opts){ // fifteen kinds around a circle; one uniform line per named move
+  const W=700,H=590,cx=350,cy=292,R=205; const ids=KIDS; const ang={}; ids.forEach((k,i)=>ang[k]=-Math.PI/2+i*2*Math.PI/ids.length);
+  const pt=k=>[cx+R*Math.cos(ang[k]),cy+R*Math.sin(ang[k])];
+  let s=`<svg class="web ring ${opts.anim?'anim':''}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.aria||'Moves between kinds of work')}" data-web="${++webSeq}">`;
+  links.forEach(([a,b],i)=>{ if(a===b||!ang[a]||!ang[b]) return; const [x0,y0]=pt(a),[x1,y1]=pt(b);
+    s+=`<path class="lk" data-a="0:${a}" data-b="0:${b}" style="animation-delay:${(i*5)%900}ms" d="M${x0.toFixed(1)},${y0.toFixed(1)} Q${cx},${cy} ${x1.toFixed(1)},${y1.toFixed(1)}"/>`; });
+  ids.forEach(k=>{ const [x,y]=pt(k); const a=ang[k]; const lx=cx+(R+14)*Math.cos(a), ly=cy+(R+14)*Math.sin(a)+4.5; const anchor=Math.cos(a)>0.2?'start':Math.cos(a)<-0.2?'end':'middle'; const ly2=anchor==='middle'?(Math.sin(a)<0?ly-6:ly+8):ly;
+    const click=opts.click?`data-${opts.click}="${k}"`:''; const self=opts.self&&opts.self.has(k)?'self':'';
+    s+=`<g class="nd ${self}" data-node="0:${k}" ${click}><title>${esc(kname(k))}</title><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5"/><text x="${lx.toFixed(1)}" y="${ly2.toFixed(1)}" text-anchor="${anchor}">${esc(KIND[k].short)}</text></g>`; });
+  if(opts.center){ s+=`<text class="ctr" x="${cx}" y="${cy-4}" text-anchor="middle">${esc(opts.center)}</text>`; if(opts.center2) s+=`<text class="ctr2" x="${cx}" y="${cy+16}" text-anchor="middle">${esc(opts.center2)}</text>`; }
+  s+='</svg>'; return s;
+}
+function webSVG(cols, links, opts){ // columns of stops with one uniform line per named move
   const W=640, rowH=21, top=34, bottom=10; const rows=Math.max(...cols.map(c=>c.nodes.length)); const H=top+rows*rowH+bottom;
   const xs = cols.length===2 ? [215,425] : [120,320,520];
   const y = (c,i) => top + i*rowH + (rows-cols[c].nodes.length)*rowH/2;
@@ -396,18 +413,9 @@ function webSVG(cols, links, opts){
   links.forEach(([ci,a,b])=>{ const ya=pos[ci][a], yb=pos[ci+1][b]; if(ya==null||yb==null) return; const x0=xs[ci], x1=xs[ci+1], cx=(x0+x1)/2;
     s+=`<path class="lk" data-a="${ci}:${a}" data-b="${ci+1}:${b}" d="M${x0},${ya} C${cx},${ya} ${cx},${yb} ${x1},${yb}"/>`; });
   cols.forEach((c,ci)=>{ c.nodes.forEach(n=>{ const yy=pos[ci][n.id]; const anchor = ci===0?'end':ci===cols.length-1?'start':'middle'; const tx = ci===0?xs[0]-9:ci===cols.length-1?xs[ci]+9:xs[ci]; const ty = (ci>0&&ci<cols.length-1)?yy-7:yy+4;
-    s+=`<g class="nd ${n.self?'self':''} ${n.sup?'sup':''}" data-node="${ci}:${n.id}" ${n.click?`data-${n.click.attr}="${esc(n.click.val)}"`:''}><title>${esc(n.full||n.label)}</title><circle cx="${xs[ci]}" cy="${yy}" r="3.2"/><text x="${tx}" y="${ty}" text-anchor="${anchor}">${esc(n.label)}</text></g>`; }); });
+    s+=`<g class="nd ${n.self?'self':''}" data-node="${ci}:${n.id}" ${n.click?`data-${n.click.attr}="${esc(n.click.val)}"`:''}><title>${esc(n.full||n.label)}</title><circle cx="${xs[ci]}" cy="${yy}" r="3.2"/><text x="${tx}" y="${ty}" text-anchor="${anchor}">${esc(n.label)}</text></g>`; }); });
   s+='</svg>'; return s;
 }
-function routeMapFor(fd, opts){ // two columns: kinds at year one, kinds at year ten, one line per named route
-  const starts=[...new Set(fd.flows.map(f=>f[0]))]; const ends=[...new Set(fd.flows.map(f=>f[1]))];
-  const mk=(ids,click,selfId)=>ids.slice().sort((a,b)=>kname(a).localeCompare(kname(b))).filter(k=>k>0).concat(ids.includes(0)?[0]:[]).map(k=>({id:k,label:KIND[k].short,full:kname(k),click:click?{attr:click,val:k}:null,self:k===selfId}));
-  const cols=[{title:opts.leftTitle||'Kind of work in the first year',nodes:mk(starts,opts.leftClick,opts.selfLeft)},{title:opts.rightTitle||'Kind of work at year ten',nodes:mk(ends,opts.rightClick,opts.selfRight)}];
-  const links=fd.flows.map(f=>[0,f[0],f[1]]);
-  return webSVG(cols,links,{aria:opts.aria});
-}
-function routeMapFromKind(a){ const rows=flowsFrom(ALL,a); const fd={flows:rows.map(r=>[a,r.to,r.n])}; return routeMapFor(fd,{leftTitle:'Started in',rightClick:'dest',selfLeft:a}); }
-function routeMapInto(d){ const rows=flowsInto(ALL,d); const fd={flows:rows.map(r=>[r.from,d,r.n])}; return routeMapFor(fd,{rightTitle:'At year ten',leftClick:'startorigin',selfRight:d}); }
 function pathwayMap(fd, a, d){ // three stops for one cell: year one, year five, year ten
   const v=via5(fd,a,d); const mids=v.map(r=>r.at5); const n=flowCell(fd,a,d); const named=v.reduce((s,r)=>s+r.n,0);
   const mk=k=>({id:k,label:KIND[k].short,full:kname(k)});
@@ -430,128 +438,95 @@ function wireWebs(){
 const stepNames = {A:'1. Arrives',B:'2. The whole field',C:'3. Narrow, or keep looking',D:'4. Where to start',E:'5. Challenges expectations',F:'6. Where could I go',G:'7. Who is already doing it',H:'8. Open a kind of work',I:'9. How would I get there',J:'10. People like me',K:'11. The nearest group',L:'12. Too few to describe',M:'13. Leaves with steps',N:'14. Comes back',P:'15. Every name opens a view'};
 function stepTag(node){ return `<button type="button" class="step" data-hover="${node}" data-go="${node}" title="${esc(stepNames[node])} in the journey chart">Step ${stepNames[node].split('.')[0]}</button>`; }
 function block(node, inner, extra){ return `<section class="block ${extra||''}" data-node="${node}" id="blk-${node}">${stepTag(node)}${inner}</section>`; }
-function kindCards(ids, opts){ // every kind of work, alphabetical, with real titles inside it
+function kindCards(ids, opts){
   const set=new Set(ids); const all=opts.all?KIDS:KIDS.filter(k=>set.has(k));
-  return `<div class="kgrid">${all.map(k=>{ const sup=!set.has(k); const t=titles(k,3);
-    return sup ? `<div class="kcard sup"><span class="nm">${esc(kname(k))}</span><span class="ds">Fewer than ten people here reached it, so it is counted without description.</span></div>`
-      : `<button type="button" class="kcard ${k===opts.self?'self':''}" data-${opts.click||'dest'}="${k}"><span class="nm">${esc(kname(k))}</span><span class="ds">${esc(KIND[k].desc)}</span>${t.length?`<span class="ti">${esc(t.join(', '))}</span>`:''}</button>`; }).join('')}</div>`;
+  return `<div class="kgrid">${all.map(k=>{ const sup=!set.has(k); const t=titles(k,2);
+    return sup ? `<div class="kcard sup"><span class="nm">${esc(kname(k))}</span><span class="ti">fewer than ten here</span></div>`
+      : `<button type="button" class="kcard ${k===opts.self?'self':''}" data-${opts.click||'dest'}="${k}" title="${esc(KIND[k].desc)}"><span class="nm">${esc(kname(k))}</span>${t.length?`<span class="ti">${esc(t.join(', '))}</span>`:''}</button>`; }).join('')}</div>`;
 }
-function plainList(rows, opts){ // rows: {id?, name?, key?, self?, sup?, note?}
-  return `<ul class="plain">${rows.map(r=>{ const label=r.name||kname(r.id);
-    const name=r.sup?`<span>${esc(label)}</span>`:r.self?`<span class="self">${esc(label)}</span>`:`<button type="button" data-${opts.click}="${esc(r.key!=null?r.key:r.id)}">${esc(label)}</button>`;
-    return `<li class="${r.sup?'sup':''}">${name}${r.note?`<span class="w">${esc(r.note)}</span>`:''}</li>`; }).join('')}</ul>`;
+function cloud(rows, opts){ // rows: {id?, name?, key?, self?, sup?}
+  return `<div class="cloud">${rows.map(r=>{ const label=r.name||kname(r.id); if(r.sup) return `<span class="sup">${esc(label)}</span>`;
+    return `<button type="button" class="${r.self?'self':''}" data-${opts.click}="${esc(r.key!=null?r.key:r.id)}" ${r.id!=null&&KIND[r.id]?`title="${esc(KIND[r.id].desc)}"`:''}>${esc(label)}</button>`; }).join('')}</div>`;
 }
 function numbersTable(rows, head){ return `<details><summary>See the numbers</summary><div class="body"><table class="t"><tr><th>${esc(head[0])}</th><th class="r">People</th>${head[1]?`<th class="r">${esc(head[1])}</th>`:''}</tr>${byName(rows).map(r=>`<tr><td>${esc(r.name||kname(r.id))}</td><td class="r">${r.sup?'fewer than '+BAR:fmt(r.n)}</td>${head[1]?`<td class="r">${r.sup||r.share==null?'':pct(r.share)}</td>`:''}</tr>`).join('')}</table></div></details>`; }
 
 function arrival(compact){
   const who=cap(countWord(ALL.persons));
-  if(compact) return block('A', `<h1 style="font-size:22px;margin-bottom:4px">What people with a humanities degree did</h1><p class="small" style="margin:0">These are ${who} people from ten fields of study, followed from their first job across ten years. They keep a public professional profile, so the record holds fewer of those who left the professional track.</p>`);
+  if(compact) return block('A', `<p class="note" style="margin:0 0 4px">What people with a humanities degree did in their first ten years of work. ${who} people, ten fields of study, from the first job on.</p>`);
   return block('A', `
     <h1>What people with a humanities degree did in their first ten years of work</h1>
-    <p class="lede">This page follows ${who} people with a humanities degree from their first job across ten years of work. It records the kinds of work they reached and the routes they took, with the places too small to describe marked.</p>
-    <p class="small">These are people who keep a public professional profile, so the record holds fewer of the people who left the professional track. Nothing on this page is scored, and nothing asks you to sign in. Nothing is saved anywhere but this device.</p>`);
+    <p class="lede">${who} people, ten fields of study, followed from their first job. The kinds of work they reached, and the routes between them.</p>
+    <p class="note">People who keep a public professional profile, so the record holds fewer of those who left the professional track. Nothing here is scored, and nothing is saved anywhere but this device.</p>`);
 }
 
 function fieldBlock(){
-  const k1=kindsAt(ALL,1).length, k10=kindsAt(ALL,10).length; const named=ALL.flows.filter(f=>f[0]>0&&f[1]>0).length; const possible=15*15;
-  const rows=Object.entries(allMix10.mix).map(([k,n])=>({id:+k,n,share:n/allMix10.n}));
+  const named=ALL.flows.filter(f=>f[0]>0&&f[1]>0&&f[0]!==f[1]); const rows=Object.entries(allMix10.mix).map(([k,n])=>({id:+k,n,share:n/allMix10.n}));
   return block('B', `
-    <h2>Fifteen kinds of work, and every move recorded between them</h2>
-    <p class="lead">People with a humanities degree were doing all fifteen of these kinds of work ten years in, and all fifteen in their first year too. ${named===possible?'Every one of the '+fmt(possible)+' possible moves from a first-year kind of work to a year-ten kind was made by ten or more people.':fmt(named)+' of the '+fmt(possible)+' possible moves from a first-year kind of work to a year-ten kind were made by ten or more people.'} All fifteen kinds of work were in use at both ends of the decade.</p>
+    <h2>Fifteen kinds of work, and every move between them</h2>
+    <p class="lead">Each line is a move from a first-year kind of work to a year-ten kind that ten or more people made. Every pair is joined.</p>
     <figure>
-      <div class="fig-head"><span class="fig-n">Fig. 1</span><div><p class="fig-title">The whole field</p><p class="fig-dek">Every kind of work in the record, in alphabetical order, with three of the titles people held inside it. Open one to see who was already there.</p></div></div>
-      ${kindCards(KIDS,{all:true,click:'dest'})}
-      <figcaption>Kinds of work are groupings of job titles by what the work is, built from federal occupation codes and the titles themselves. Order is alphabetical; nothing here is ranked. Source: archetype build of ${D.generated}.</figcaption>
+      ${ringSVG(named.map(f=>[f[0],f[1]]),{anim:true,click:'dest',aria:'Every move between kinds of work',center:'Ten years in',center2:'touch a kind; open one to see who is in it'})}
+      <figcaption>Fig. 1. Fifteen kinds of work, grouped from job titles and federal occupation codes, in alphabetical order around the ring. Lines are the same weight whether ten people or a thousand made the move. Source: archetype build of ${D.generated}.</figcaption>
     </figure>
+    ${kindCards(KIDS,{all:true,click:'dest'})}
     ${numbersTable(rows,['Kind of work at year ten','Share'])}`);
 }
-function narrowLine(){ return block('C', `<p class="small" style="margin:0">Narrow it down, or keep looking around. Looking around keeps this screen open.</p>`); }
+function narrowLine(){ return block('C', `<p class="note" style="margin:0">Narrow it down below, or keep looking around.</p>`); }
 
 function doorsBlock(compact){
-  const fields = FK.map(k=>`<button type="button" class="opt" data-origin="${k}"><span>${esc(F[k].name)}</span></button>`).join('');
-  const kinds = KIDS.map(k=>`<button type="button" class="opt" data-origin="k:${k}"><span>${esc(kname(k))}</span><span class="d">${esc(KIND[k].desc)}</span></button>`).join('');
   return block('D', `
-    <h2 ${compact?'style="font-size:19px"':''}>${compact?'Start somewhere else':'Three ways in, each following a different group of people.'}</h2>
-    <div class="doors">
-      <div class="door">
-        <h3>What I studied</h3>
-        <p class="small">The site follows the people who studied the same thing.</p>
-        <div class="opts">${fields}</div>
-      </div>
-      <div class="door">
-        <h3>Work I would want to be doing</h3>
-        <p class="small">Pick the kind of work you can picture yourself starting in. The site follows the people who started there.</p>
-        <div class="opts scroll">${kinds}</div>
-      </div>
-      <div class="door">
-        <h3>A job I am curious about</h3>
-        <p class="small">Type a job title. The nearest match names the kind of work it belongs to, and the site shows who is already doing it.</p>
-        <input class="search" id="job-search" type="search" placeholder="For example, editor or paralegal" aria-label="Search for a job">
-        <div class="results" id="job-results"></div>
-      </div>
-    </div>`);
+    <h2 ${compact?'style="font-size:22px"':''}>${compact?'Start somewhere else':'Three ways in'}</h2>
+    <div class="doorrow"><h3>What I studied</h3>${cloud(FK.map(k=>({name:F[k].name,key:k})),{click:'origin'})}</div>
+    <div class="doorrow"><h3>Work I would want to start in</h3>${cloud(KIDS.map(k=>({id:k,key:'k:'+k})),{click:'origin'})}</div>
+    <div class="doorrow"><h3>A job I am curious about</h3><div><input class="search" id="job-search" type="search" placeholder="Type a job title, for example editor or paralegal" aria-label="Search for a job"><div class="results" id="job-results"></div></div></div>`);
 }
 
 function expectBlock(){
   const o=S.o; const dd=destsFor(o); const named=dd.rows.filter(r=>r.id>0); const top=named.slice().sort((a,b)=>b.n-a.n)[0];
   const who=originName(o);
   let guess='';
-  if(S.g&&S.g!=='skip'){ const gid=+S.g; const row=named.find(r=>r.id===gid); const right=gid===top.id;
+  if(S.g&&S.g!=='skip'){ const gid=+S.g; const right=gid===top.id;
     guess = right ? `<p>${kname(gid)} was the largest single answer, at ${shareWord(top.share)}. The other kinds of work on this page held the rest.</p>`
-      : `<p>${kname(gid)} was one of the ${nw(named.length)} answers${row?'':', though fewer than ten people here reached it'}. The largest single answer was ${klow(top.id)}, and it held ${shareWord(top.share)}. ${cap(nw(named.length))} kinds of work each held ten or more of them.</p>`;
+      : `<p>${kname(gid)} was one of the ${nw(named.length)} answers. The largest single answer was ${klow(top.id)}, and it held ${shareWord(top.share)}.</p>`;
   } else {
-    guess = `<details><summary>Guess before you look</summary><div class="body"><p class="small">What kind of work do you think the largest share of ${esc(who)} were in ten years later?</p><div class="guess-opts">${KIDS.map(k=>`<button type="button" data-guess="${k}">${esc(kname(k))}</button>`).join('')}</div></div></details>`;
+    guess = `<details><summary>Guess before you look</summary><div class="body"><p class="small">What kind of work do you think the largest share of ${esc(who)} were in ten years later?</p><div class="guess-opts">${KIDS.map(k=>`<button type="button" data-guess="${k}">${esc(KIND[k].short)}</button>`).join('')}</div></div></details>`;
   }
-  return block('E', `<div class="callout">
-    <p class="lead" style="margin-bottom:8px">Ten years later, ${who} were in ${nw(named.length)} different kinds of work. The largest of them held ${shareWord(top.share)}. No single kind of work accounted for most of them.</p>
-    ${guess}
-  </div>`);
+  return block('E', `<div class="callout"><p class="lead" style="margin-bottom:6px">Ten years later, ${who} were in ${nw(named.length)} different kinds of work. The largest held ${shareWord(top.share)}.</p>${guess}</div>`);
 }
 
 function q1Block(){
   const o=S.o; const dd=destsFor(o); const named=dd.rows.filter(r=>r.id>0); const ids=named.map(r=>r.id);
-  const who=originName(o); let story, map;
+  const who=originName(o); let lead, ring;
   if(isKindOrigin(o)){
     const a=originKind(o); const outs=flowsFrom(ALL,a).filter(r=>r.to>0&&r.to!==a);
-    story = `<p class="lead">${cap(who)} were, ten years later, in ${nw(ids.length)} kinds of work. Every line on the map below is a move that ten or more of them made. ${outs.length?'Some stayed; others went into '+list(outs.slice().sort((x,y)=>kname(x.to).localeCompare(kname(y.to))).slice(0,4).map(r=>klow(r.to)))+', and beyond.':''}</p>`;
-    map = routeMapFromKind(a);
+    lead=`<p class="lead">From ${esc(klow(a))}, ${nw(outs.length)} other kinds of work were reached by ten or more people.</p>`;
+    ring=ringSVG(outs.map(r=>[a,r.to]),{click:'dest',self:new Set([a]),aria:'Routes out of '+kname(a),center:KIND[a].short,center2:'where people who started here were at year ten'});
   } else {
-    const fd=F[o]; const k1=kindsAt(fd,1).length, k3=kindsAt(fd,3).length, k10=kindsAt(fd,10).length; const routes=fd.flows.filter(f=>f[0]>0&&f[1]>0).length; const sample=titles(ids[Math.floor(ids.length/3)],2).concat(titles(ids[Math.floor(2*ids.length/3)],1));
-    story = `<p class="lead">${cap(who)} were in ${nw(k1)} kinds of work in their first year and ${nw(k10)} by year ten. Between those two points, ${fmt(routes)} different moves from one kind of work to another were each made by ten or more of them. The titles they held ran from ${esc(list(sample))}, and on, across all fifteen kinds of work.</p>`;
-    map = routeMapFor(fd,{rightClick:'dest',aria:'Routes from '+fd.name});
+    const fd=F[o]; const moves=fd.flows.filter(f=>f[0]>0&&f[1]>0&&f[0]!==f[1]);
+    lead=`<p class="lead">${cap(who)} reached ${nw(ids.length)} kinds of work, and made ${fmt(moves.length)} different moves between them.</p>`;
+    ring=ringSVG(moves.map(f=>[f[0],f[1]]),{click:'dest',aria:'Routes from '+fd.name,center:fd.name,center2:'first-year kind to year-ten kind'});
   }
   return block('F', `
-    <h2>Where ${esc(who)} were, one to ten years later</h2>
-    ${story}
-    <figure>
-      <div class="fig-head"><span class="fig-n">Fig. 1</span><div><p class="fig-title">${isKindOrigin(o)?'Every route out of '+esc(klow(originKind(o))):'Every route from '+esc(F[o].name)}</p><p class="fig-dek">A line joins a first-year kind of work to a year-ten kind wherever ten or more people made that move. Touch a kind to see its routes; open a year-ten kind to see the way in.</p></div></div>
-      ${map}
-      <figcaption>Every line is drawn at the same weight, from ten people to a thousand. The map shows which moves were made. The counts are under See the numbers. Years count from the first datable job. Source: archetype build of ${D.generated}.</figcaption>
-    </figure>
-    <h3>The kinds of work they reached</h3>
+    <h2>Where <span class="acc">${esc(who)}</span> were, one to ten years later</h2>
+    ${lead}
+    <figure>${ring}<figcaption>Fig. 1. One line per move made by ten or more people, all at the same weight. Touch a kind to see its routes; open one to see the way in. Years count from the first job. Source: archetype build of ${D.generated}.</figcaption></figure>
     ${kindCards(ids,{click:'dest'})}
-    ${numbersTable(named,['Kind of work at year ten','Share'])}
-    <p class="small">Nothing here is ranked. The order is alphabetical.</p>`)
-    + block('H', `<p class="small" style="margin:0">Open a kind of work above to see the route in: where people held their first job, how long it took, what they studied, and who employed them.</p>`);
+    ${numbersTable(named,['Kind of work at year ten','Share'])}`)
+    + block('H', `<p class="note" style="margin:0">Open a kind of work to see the route in.</p>`);
 }
 
 function q3Block(){
-  const d=S.d; const fields=fieldsInto(d); const named=fields.filter(f=>f.n>=BAR); const starts=flowsInto(ALL,d); const fe=ALL.first_entry[d]; const roles=titles(d,12);
-  const n=allMix10.mix[d]||0; const startsOther=starts.filter(r=>r.from!==d&&r.from>0);
+  const d=S.d; const fields=fieldsInto(d); const named=fields.filter(f=>f.n>=BAR); const starts=flowsInto(ALL,d).filter(r=>r.from>0&&r.from!==d); const fe=ALL.first_entry[d]; const roles=titles(d,12);
+  const n=allMix10.mix[d]||0;
   return block('G', `
-    <h2>Who was already in ${esc(klow(d))}, and what they studied</h2>
-    <p class="lead">${cap(countWord(n))} people in this record were in ${esc(klow(d))} ten years in. They came from ${named.length===FK.length?'every field of study here':nw(named.length)+' of the '+nw(FK.length)+' fields of study here'}, and they started in ${nw(startsOther.length)} other kinds of work before arriving. ${fe?'People who reached this work typically first entered it in '+yearWord(fe)+'.':''} ${roles.length?'Inside it, the titles ran from '+esc(list(roles.slice(0,3)))+' to '+esc(roles[Math.min(roles.length-1,7)])+'.':''}</p>
-    <figure>
-      <div class="fig-head"><span class="fig-n">Fig. 1</span><div><p class="fig-title">Every route into ${esc(klow(d))}</p><p class="fig-dek">The first-year kinds of work that ten or more people moved from into this one. Touch a kind to see its line; open one to follow the people who started there.</p></div></div>
-      ${routeMapInto(d)}
-      <figcaption>Every line is drawn at the same weight. The map shows which moves were made. Counts are below. Source: archetype build of ${D.generated}.</figcaption>
-    </figure>
-    <h3>What they studied</h3>
-    <p class="small">Every field of study whose graduates reached this work. Open a field to see the route from it.</p>
-    ${plainList(byName(fields.map(f=>({name:f.name,key:f.k,sup:f.n<BAR}))),{click:'origin'})}
-    ${numbersTable(fields.map(f=>({name:f.name,n:f.n,share:f.share,sup:f.n<BAR})),['Field of study','Of that field'])}
-    ${roles.length?`<h3>What this work was called</h3><div class="chips">${roles.map(r=>`<span>${esc(r)}</span>`).join('')}</div><p class="small muted">Titles people held inside this kind of work, across the whole record.</p>`:''}`)
-    + block('H', `<p class="small" style="margin:0">Open a field of study above to see how people got from there to ${esc(klow(d))}.</p>`);
+    <h2>Who was already in <span class="acc">${esc(klow(d))}</span></h2>
+    <p class="lead">${cap(countWord(n))} people, from ${named.length===FK.length?'every field of study here':nw(named.length)+' fields of study'}, arriving from ${nw(starts.length)} other kinds of work${fe?', typically first entering it in '+yearWord(fe):''}.</p>
+    <figure>${ringSVG(starts.map(r=>[r.from,d]),{click:'startorigin',self:new Set([d]),aria:'Routes into '+kname(d),center:KIND[d].short,center2:'the first-year kinds people came from'})}<figcaption>Fig. 1. One line per first-year kind of work that ten or more people moved from into this one. Open a kind to follow the people who started there. Source: archetype build of ${D.generated}.</figcaption></figure>
+    <div class="panels">
+      <div class="ph">What they studied</div><div class="pb">${cloud(byName(fields.map(f=>({name:f.name,key:f.k,sup:f.n<BAR}))),{click:'origin'})}${numbersTable(fields.map(f=>({name:f.name,n:f.n,share:f.share,sup:f.n<BAR})),['Field of study','Of that field'])}</div>
+      <div class="ph">What it was called</div><div class="pb"><div class="chips">${roles.map(r=>`<span>${esc(r)}</span>`).join('')}</div></div>
+    </div>`)
+    + block('H', `<p class="note" style="margin:0">Open a field of study to see how people got from there to ${esc(klow(d))}.</p>`);
 }
 
 function q2Block(){
@@ -562,41 +537,34 @@ function q2Block(){
   else { n=mixAt(fd,10).mix[d]||0; ways=flowsInto(fd,d); fe=fd.first_entry[d]; }
   if(n<BAR){
     const pooled=allMix10.mix[d]||0; const near=byName(fieldsInto(d).filter(f=>f.n>=BAR)).slice(0,3);
-    return block('I', `<h2>From ${esc(originShort(o))} to ${esc(klow(d))}</h2>`)
+    return block('I', `<h2>From ${esc(originShort(o))} to <span class="acc">${esc(klow(d))}</span></h2>`)
       + block('L', `<div class="thin-box">
-        <p>Fewer than ten ${esc(who)} were in ${esc(klow(d))} ten years later, too few to describe without describing individuals. This record holds people who keep a public professional profile.</p>
+        <p>Fewer than ten ${esc(who)} were in ${esc(klow(d))} ten years later, too few to describe without describing individuals.</p>
         <p>A wider view of the same route. ${cap(countWord(pooled))} people across all ten fields reached this work. ${near.length?'The nearest routes that were common enough to name ran from '+list(near.map(f=>f.name))+'.':''} The condition set aside was ${kindO?'the starting kind of work':'field of study'}. The button below restores it.</p>
         <p class="row"><button type="button" class="btn quiet" data-clear="o">Show the wider answer</button><button type="button" class="btn quiet" data-clear="d">Keep ${esc(originShort(o))} and clear the destination</button></p>
       </div>`);
   }
   const waysOther=ways.filter(r=>r.from!==d&&r.from>0);
-  const story = kindO
-    ? `<p class="lead">${cap(countWord(n))} ${esc(who)} were in ${esc(klow(d))} ten years later. ${fe?'People who reached this work typically first entered it in '+yearWord(fe)+', so the route usually ran through other work first.':''}</p>`
-    : `<p class="lead">${cap(countWord(n))} ${esc(who)} were in ${esc(klow(d))} ten years later. They came in from ${nw(waysOther.length)} other kinds of work${ways.find(r=>r.from===d)?', and some were there from the start':''}. ${fe?'People from this field typically first entered this work in '+yearWord(fe)+'.':''}</p>`;
+  const lead = kindO
+    ? `<p class="lead">${cap(countWord(n))} ${esc(who)} were in ${esc(klow(d))} ten years later${fe?', typically first entering it in '+yearWord(fe):''}.</p>`
+    : `<p class="lead">${cap(countWord(n))} ${esc(who)} were in ${esc(klow(d))} ten years later, arriving from ${nw(waysOther.length)} other kinds of work${fe?' and typically first entering it in '+yearWord(fe):''}.</p>`;
   const roles=titles(d,10); const portal=(!kindO&&fd.portal)?D.portal[fd.portal]:null;
   const studied = kindO
-    ? (()=>{ const rows=FK.map(k=>({name:F[k].name,key:k,n:flowCell(F[k],a,d)})); const ok=rows.filter(r=>r.n>=BAR); return ok.length?plainList(byName(rows.map(r=>({name:r.name,key:r.key,sup:r.n<BAR}))),{click:'likeme'})+numbersTable(rows.map(r=>({name:r.name,n:r.n,sup:r.n<BAR})),['Field of study']):`<div class="empty">No single field of study sent ten or more people along this route. Their field of study is withheld below the threshold of ten.</div>`; })()
-    : `<p class="small">Everyone in this view studied ${esc(F[o].name)}. To see the other fields that reach this work, open ${esc(klow(d))} on its own from the trail above.</p>`;
+    ? (()=>{ const rows=FK.map(k=>({name:F[k].name,key:k,n:flowCell(F[k],a,d)})); const ok=rows.filter(r=>r.n>=BAR); return ok.length?cloud(byName(rows.map(r=>({name:r.name,key:r.key,sup:r.n<BAR}))),{click:'likeme'})+numbersTable(rows.map(r=>({name:r.name,n:r.n,sup:r.n<BAR})),['Field of study']):`<div class="empty">No single field of study sent ten or more people along this route.</div>`; })()
+    : `<p class="note" style="margin:0">Everyone here studied ${esc(F[o].name)}. Open ${esc(klow(d))} on its own from the trail to compare fields.</p>`;
   return block('I', `
-    <h2>How ${esc(who)} got to ${esc(klow(d))}</h2>
-    ${story}
-    <div class="panel"><h3><span class="pn">1 of 5</span>Ways in</h3>
-      ${kindO?`<p class="small">Everyone in this view started in ${esc(klow(a))}. Narrow to a field of study below to see the route for people who studied one thing.</p>`:`<p class="small">The kinds of work these people held in their first year. Open one to narrow to the people who started there.</p>${plainList(byName(ways.map(r=>({id:r.from,self:r.from===d}))),{click:'start'})}${numbersTable(ways.map(r=>({id:r.from,n:r.n})),['First-year kind of work'])}`}
-    </div>
-    <div class="panel"><h3><span class="pn">2 of 5</span>What this work was called</h3>
-      ${roles.length?`<div class="chips">${roles.map(r=>`<span>${esc(r)}</span>`).join('')}</div>`:''}
-      <div class="empty">A short description of what this work involves, composited from how people described their own jobs and never quoted. This description is not yet written.</div>
-    </div>
-    <div class="panel"><h3><span class="pn">3 of 5</span>What they studied</h3>${studied}</div>
-    <div class="panel"><h3><span class="pn">4 of 5</span>What they carried</h3>
-      <div class="empty">Certifications and licenses held by people on this route, named where ten or more held one. This record does not yet hold them.</div>
-    </div>
-    <div class="panel"><h3><span class="pn">5 of 5</span>Where it happened</h3>
-      ${portal?`<p class="small">Employers of ${esc(F[o].name)} graduates in their first five years, where ten or more worked. These are places where people worked. They are not current openings.</p><div class="chips">${portal.employers.slice(0,10).map(e=>`<span>${esc(e.name)}</span>`).join('')}</div>`:`<div class="empty">Employers of people on this route, where ten or more worked. This record does not yet hold them for ${kindO?'a starting kind of work':esc(F[o].name)}.</div>`}
-      <details><summary>Does this work pay</summary><div class="body">
-        <p>This record holds job titles, employers, industries, credentials and degrees. It does not hold pay, hours, benefits, or time out of work, so no figure on this site is an earnings figure.</p>
-        <p style="margin:0">The kind of work maps onto federal occupation codes (${esc(KIND[d].soc)}). The Bureau of Labor Statistics publishes median wages for those codes, from a survey built to measure pay. This view stays open behind them.</p>
-      </div></details>
+    <h2>How ${esc(who)} got to <span class="acc">${esc(klow(d))}</span></h2>
+    ${lead}
+    <div class="panels">
+      <div class="ph">Ways in</div><div class="pb">${kindO?`<p class="note" style="margin:0">Everyone here started in ${esc(klow(a))}. Narrow to a field of study below.</p>`:cloud(byName(ways.map(r=>({id:r.from,self:r.from===d}))),{click:'start'})+numbersTable(ways.map(r=>({id:r.from,n:r.n})),['First-year kind of work'])}</div>
+      <div class="ph">What it was called</div><div class="pb"><div class="chips">${roles.map(r=>`<span>${esc(r)}</span>`).join('')}</div><p class="note">A description of the work itself, composited from how people described their own jobs, is not yet written.</p></div>
+      <div class="ph">What they studied</div><div class="pb">${studied}</div>
+      <div class="ph">What they carried</div><div class="pb"><div class="empty">Certifications and licenses, named where ten or more held one. This record does not yet hold them.</div></div>
+      <div class="ph">Where it happened</div><div class="pb">${portal?`<div class="chips">${portal.employers.slice(0,10).map(e=>`<span>${esc(e.name)}</span>`).join('')}</div><p class="note">Employers of ${esc(F[o].name)} graduates in their first five years, where ten or more worked. Places where people worked, and not current openings.</p>`:`<div class="empty">Employers where ten or more worked. This record does not yet hold them for ${kindO?'a starting kind of work':esc(F[o].name)}.</div>`}
+        <details><summary>Does this work pay</summary><div class="body">
+          <p>This record holds job titles, employers, industries, credentials and degrees. It does not hold pay, hours, benefits, or time out of work, so no figure on this site is an earnings figure.</p>
+          <p style="margin:0">The kind of work maps onto federal occupation codes (${esc(KIND[d].soc)}). The Bureau of Labor Statistics publishes median wages for those codes, from a survey built to measure pay. This view stays open behind them.</p>
+        </div></details></div>
     </div>`);
 }
 
@@ -605,28 +573,24 @@ function likeMeBlocks(){
   const base = kindO ? flowCell(ALL,a,d) : (mixAt(F[o],10).mix[d]||0); if(base<BAR) return '';
   let head, opts, cellN, fd, aa, fieldName;
   if(kindO){
-    head=`<h2>Only people who studied what I study</h2><p class="small">Narrow this route to people from one field of study. Fewer people remain in view once a field of study is added.</p>`;
-    opts = FK.map(k=>`<button type="button" class="opt" data-likeme="${k}"><span>${esc(F[k].name)}</span></button>`).join('');
+    head=`<h2>Only people who studied what I study</h2>`;
+    opts = cloud(FK.map(k=>({name:F[k].name,key:k})),{click:'likeme'});
     if(S.s!=null){ fd=F[S.s]; aa=a; fieldName=F[S.s].name; cellN=flowCell(fd,a,d); }
   } else {
-    head=`<h2>Only people who started where I would start</h2><p class="small">Narrow this route to people who held one kind of work in their first year. Fewer people remain in view once a first job is added.</p>`;
-    opts = KIDS.map(k=>`<button type="button" class="opt" data-likeme="${k}"><span>${esc(kname(k))}</span></button>`).join('');
+    head=`<h2>Only people who started where I would start</h2>`;
+    opts = cloud(KIDS.map(k=>({id:k})),{click:'likeme'});
     if(S.s!=null){ fd=F[o]; aa=S.s; fieldName=F[o].name; cellN=flowCell(fd,aa,d); }
   }
   let out = block('J', head + (S.s!=null
     ? `<p class="row"><span class="chip filter">${kindO?'Studied':'Started in'} <b>${esc(kindO?F[S.s].name:kname(S.s))}</b><button type="button" data-clear="s" aria-label="Remove this condition">×</button></span></p>`
-    : `<div class="opts scroll" style="max-width:420px">${opts}</div>`));
+    : opts));
   if(S.s==null) return out;
   if(cellN>=BAR){
     const v=via5(fd,aa,d); const mids=v.filter(r=>r.at5!==aa&&r.at5!==d); const already=v.find(r=>r.at5===d); const still=v.find(r=>r.at5===aa);
     const parts=[]; if(already) parts.push('Some were already in '+klow(d)+' by year five.'); if(still) parts.push('Some were still in '+klow(aa)+' at year five.'); if(mids.length) parts.push('Others passed through '+list(byName(mids.map(r=>({id:r.at5}))).map(r=>klow(r.id)))+' on the way.');
     out += block('K', `<h2>The nearest group in the record</h2>
-      <p class="lead">${cap(countWord(cellN))} people who studied ${esc(fieldName)} started in ${esc(klow(aa))} and were in ${esc(klow(d))} ten years later. ${parts.join(' ')} ${fd.first_entry[d]?'People from this field typically first entered '+klow(d)+' in '+yearWord(fd.first_entry[d])+'.':''}</p>
-      <figure>
-        <div class="fig-head"><span class="fig-n">Fig. 1</span><div><p class="fig-title">The route, in three stops</p><p class="fig-dek">The same people at year one, year five and year ten. The middle column is every kind of work that ten or more of them held halfway along.</p></div></div>
-        ${pathwayMap(fd,aa,d)}
-        <figcaption>Every line is drawn at the same weight. Waypoints held by fewer than ten of these people are pooled as elsewhere. Source: archetype build of ${D.generated}.</figcaption>
-      </figure>
+      <p class="lead">${cap(countWord(cellN))} people who studied ${esc(fieldName)} started in ${esc(klow(aa))} and were in ${esc(klow(d))} ten years later. ${parts.join(' ')}</p>
+      <figure>${pathwayMap(fd,aa,d)}<figcaption>Fig. 1. The same people at year one, year five and year ten. The middle column is every kind of work that ten or more of them held halfway along; the rest are pooled as elsewhere. Source: archetype build of ${D.generated}.</figcaption></figure>
       ${numbersTable(v.map(r=>({id:r.at5,n:r.n})).concat(cellN-v.reduce((s,r)=>s+r.n,0)>0?[{name:'Elsewhere, in kinds too small to name',n:cellN-v.reduce((s,r)=>s+r.n,0)}]:[]),['Kind of work at year five'])}`);
     return out;
   }
@@ -642,11 +606,11 @@ function likeMeBlocks(){
   return out;
 }
 
-function nounNote(){ return block('P', `<p class="small" style="margin:0">Any kind of work, field of study or first job named on this screen becomes the next question when it is opened.</p>`); }
+function nounNote(){ return block('P', `<p class="note" style="margin:0">Any kind of work, field of study or first job named on this screen opens as the next view.</p>`); }
 
 function takeBlock(){
   const m=mode(S);
-  if(m==='Q0') return block('M', `<h2>Leave with something to do</h2><p class="small">Once a starting point or a kind of work is set, this becomes a short list of possible steps: entry-level work, a graduate option, employers, and questions to bring to an advisor.</p>`, 'take-block');
+  if(m==='Q0') return block('M', `<h2>Leave with something to do</h2><p class="note" style="margin:0">Set a starting point or a kind of work, and this becomes a short list of possible steps and questions to bring to an advisor.</p>`, 'take-block');
   const o=S.o,d=S.d; const kindO=o?isKindOrigin(o):false; const fd=(o&&!kindO)?F[o]:null; const portal=fd&&fd.portal?D.portal[fd.portal]:null;
   const steps=[];
   if(d){ const ways=byName((fd?flowsInto(fd,d):flowsInto(ALL,d)).filter(r=>r.from>0&&r.from!==d).map(r=>({id:r.from}))); const first=ways.slice(0,3).map(r=>klow(r.id)); const y1roles=ways.length?titles(ways[0].id,4):[];
