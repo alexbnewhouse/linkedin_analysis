@@ -1,26 +1,26 @@
 {
-  "created_at_epoch_s": 1788387734.2149355,
-  "runtime_s": 77.6,
+  "created_at_epoch_s": 1790091375.3546696,
+  "runtime_s": 81.5,
   "threads": 32,
   "sections": "career",
   "source": {
-    "parsed_manifest": "/home/alex/linkedin-analysis/parsed/_manifest.json",
-    "education": "read_parquet('/home/alex/linkedin-analysis/parsed/education/*.parquet')",
-    "experience": "read_parquet('/home/alex/linkedin-analysis/parsed/experience/*.parquet')",
-    "positions": "read_parquet('/home/alex/linkedin-analysis/parsed/positions/*.parquet')"
+    "parsed_manifest": "/home/alex/linkedin-analysis/.claude/worktrees/sibling-methods-port/parsed/_manifest.json",
+    "education": "read_parquet('/home/alex/linkedin-analysis/.claude/worktrees/sibling-methods-port/parsed/education/*.parquet')",
+    "experience": "read_parquet('/home/alex/linkedin-analysis/.claude/worktrees/sibling-methods-port/parsed/experience/*.parquet')",
+    "positions": "read_parquet('/home/alex/linkedin-analysis/.claude/worktrees/sibling-methods-port/parsed/positions/*.parquet')"
   },
   "outputs": {
-    "education": "/home/alex/linkedin-analysis/normalized/education.parquet",
-    "education_person": "/home/alex/linkedin-analysis/normalized/education_person.parquet",
-    "career_steps": "/home/alex/linkedin-analysis/normalized/career_steps.parquet",
-    "mappings": "/home/alex/linkedin-analysis/normalized/mappings"
+    "education": "/home/alex/linkedin-analysis/.claude/worktrees/sibling-methods-port/normalized/education.parquet",
+    "education_person": "/home/alex/linkedin-analysis/.claude/worktrees/sibling-methods-port/normalized/education_person.parquet",
+    "career_steps": "/home/alex/linkedin-analysis/.claude/worktrees/sibling-methods-port/normalized/career_steps.parquet",
+    "mappings": "/home/alex/linkedin-analysis/.claude/worktrees/sibling-methods-port/normalized/mappings"
   },
   "steps": [
     {
       "name": "normalized career_steps table",
-      "runtime_s": 77.1,
+      "runtime_s": 81.1,
       "rows": 10800787,
-      "path": "/home/alex/linkedin-analysis/normalized/career_steps.parquet"
+      "path": "/home/alex/linkedin-analysis/.claude/worktrees/sibling-methods-port/normalized/career_steps.parquet"
     }
   ]
 }

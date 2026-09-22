@@ -241,4 +241,31 @@ role_canonical in ('president', 'assistantpresident'), and never otherwise"; dro
 alone; logged as a P4 follow-up (`assistantmanager` has no pooled major on 25k rows). All adopted;
 senior/executive VPs stay at 11-1011 and the bare-VP routing is documented as a convention.
 
+**Built:** `career_clean/overrides.py` (pure rule table: `vice_president` on the seniority-token form
+only, `k12_principal`, `law_firm_partner` incl. `principal` under PRO.LEGAL; `firm_principal` dropped),
+`career_clean/override_tests.py`, `career_clean/run_overrides.py` (row-level mapping
+`normalized/mappings/career_occupation_override.parquet`, DISTINCT on the four step keys, never lands
+on a row whose det major differs), `build_normalized` precedence override > det > jury > family for
+the pooled major and override > det for the new `occupation_code_pooled` / `occupation_code_source`
+plus `override_reason`; `career_clean/soc_data_checks.py` extended for the new sources.
+
+**After (measured, `normalized/career_steps.parquet`):**
+
+| measure | before | after |
+|---|---|---|
+| override rows by reason | n/a | vice_president 33,971; law_firm_partner 8,792; k12_principal 8,230 (50,993; 42 candidates skipped for a det-major conflict) |
+| steps on 11-1011 Chief Executives | 178,911 | 149,424 |
+| steps on 11-1021 General and Operations Managers | 44,240 | 78,211 |
+| steps on 11-9032 K-12 administrators | 4,701 | 12,214 |
+| steps on 23-1011 Lawyers | 31,774 | 37,583 |
+| 6-digit code coverage | 21.46% | 21.62% |
+| pooled major coverage | 61.83% (after P4) | 61.99% |
+| top management codes, L1 bachelor's holders | 11-1011 14,684; 11-2022 5,299; 11-2011 3,823; 11-1021 3,136 | 11-1011 12,404; 11-1021 5,710; 11-2022 5,299; 11-2011 3,823 |
+
+Chief Executives stays the modal 6-digit management code for the humanities cohort because
+President (45k), CEO and Executive Director titles are legitimately 11-1011; the audit's remedy is a
+display split (senior VPs stay per O*NET). XOT industry caps the reach of the principal and law-firm
+rules at roughly half of each title's rows. Blind sample: `career_clean/results/override_sample.jsonl`
+(50 per reason); Label Studio project `coding/label_studio/overrides.*`.
+
 ## P6. Person summary and metrics cube v0

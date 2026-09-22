@@ -33,13 +33,33 @@ def main() -> None:
     assert dup == 0, f"role_soc_jury has {dup} duplicate role_canonical rows"
     ok("jury mapping unique on role_canonical")
 
+    # P5 (2026-09-22): an override may sit on a det row (VP titles re-routed
+    # within 11) but never changes the det MAJOR.
     bad_det = con.execute(f"""
         SELECT count(*) FROM {steps}
         WHERE occupation_code IS NOT NULL
-          AND (occupation_source <> 'det' OR occupation_major_pooled <> substr(occupation_code, 1, 2))
+          AND (occupation_source NOT IN ('det', 'override')
+               OR occupation_major_pooled <> substr(occupation_code, 1, 2))
     """).fetchone()[0]
     assert bad_det == 0, f"{bad_det} det rows where pooled major != 2-digit prefix"
-    ok("det rows: occupation_major_pooled == substr(occupation_code, 1, 2)")
+    ok("det rows: occupation_major_pooled == substr(occupation_code, 1, 2) (override never moves a det major)")
+
+    bad_code = con.execute(f"""
+        SELECT count(*) FROM {steps}
+        WHERE (occupation_source = 'override') <> (override_reason IS NOT NULL)
+           OR (occupation_code_source = 'override' AND occupation_code_pooled IS NULL)
+           OR (occupation_code_source = 'det' AND occupation_code_pooled IS DISTINCT FROM occupation_code)
+           OR (occupation_code_source IS NULL AND occupation_code_pooled IS NOT NULL)
+    """).fetchone()[0]
+    assert bad_code == 0, f"{bad_code} rows where occupation_code_pooled / _source disagree"
+    ok("occupation_code_pooled is override > det and its source says which")
+
+    bad_enum = con.execute(f"""
+        SELECT count(*) FROM {steps}
+        WHERE occupation_source NOT IN ('det', 'jury', 'override', 'family')
+    """).fetchone()[0]
+    assert bad_enum == 0, f"{bad_enum} rows with an unknown occupation_source"
+    ok("occupation_source in (det, jury, override, family, NULL)")
 
     bad_jury = con.execute(f"""
         SELECT count(*) FROM {steps}

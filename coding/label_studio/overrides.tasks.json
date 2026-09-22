@@ -1,0 +1,2102 @@
+[
+ {
+  "data": {
+   "id": "overrides:000",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "ADxg",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:001",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Vice President",
+   "company_raw": "BNY Mellon",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.ASM",
+   "reason": "vice_president",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:002",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Second Federal Savings and Loan",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.BNK",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:003",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Medical Third Party Resources, Inc.",
+   "industry_l1": "HLT",
+   "industry_l2": "HLT.PROV",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:004",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Golin",
+   "industry_l1": "MED",
+   "industry_l2": "MED.ADV",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:005",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "AVP",
+   "company_raw": "JPMorgan Chase & Co.",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.BNK",
+   "reason": "vice_president",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:006",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "KeyBank",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.BNK",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:007",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice-president",
+   "company_raw": "Veterans Medical Leadership Council",
+   "industry_l1": "HLT",
+   "industry_l2": "HLT.PROV",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:008",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "NAI Mertz",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:009",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Tango Transport, Inc.",
+   "industry_l1": "TRN",
+   "industry_l2": "TRN",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:010",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Robert Plan",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:011",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Vice President",
+   "company_raw": "GENPACT",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.BPO",
+   "reason": "vice_president",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:012",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Fenton Communications",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:013",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Morgan Stanley",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.BNK",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:014",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "AVP",
+   "company_raw": "RLI Insurance Company",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.INS",
+   "reason": "vice_president",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:015",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Small Girls PR",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:016",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Vice President",
+   "company_raw": "J.P. Morgan",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN",
+   "reason": "vice_president",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:017",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Weber Shandwick",
+   "industry_l1": "MED",
+   "industry_l2": "MED.ADV",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:018",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Hong Kong and Shanghai Banking Corporation",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:019",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "RockCreek",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:020",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice-president",
+   "company_raw": "Wildlife Stewards - Don Edwards Wildlife Refuge",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:021",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "AVP",
+   "company_raw": "Federal Reserve Bank of San Francisco",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.BNK",
+   "reason": "vice_president",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:022",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Diagnostic Research/Added Value, Inc.",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:023",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Doris Stanley Co.",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:024",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Vice President",
+   "company_raw": "American International Group, Inc (AIG)",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.INS",
+   "reason": "vice_president",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:025",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Moody's Investors Service",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:026",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Vice President",
+   "company_raw": "MAPFRE",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.INS",
+   "reason": "vice_president",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:027",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Behrman Communications",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:028",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "BMO Harris Bank",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.BNK",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:029",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Sigma Group, LLC",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:030",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "MidWestOne Bank",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.BNK",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:031",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Leo Burnett",
+   "industry_l1": "MED",
+   "industry_l2": "MED.ADV",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:032",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Shannon & Wilson, Inc.",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:033",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Aurora Bank FSB",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.BNK",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:034",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "VP",
+   "company_raw": "Sakura Bank",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.BNK",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:035",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Rodman Construction",
+   "industry_l1": "RE",
+   "industry_l2": "RE.CNST",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:036",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Furndex Inc.",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:037",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Fillippo Development",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:038",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "VP",
+   "company_raw": "Cisco",
+   "industry_l1": "TEC",
+   "industry_l2": "TEC.HRDW",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:039",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Vice President",
+   "company_raw": "Reliance Insurance",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.INS",
+   "reason": "vice_president",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:040",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Vice President",
+   "company_raw": "State Street",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.ASM",
+   "reason": "vice_president",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:041",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Kowit & Passov Real Estate Group",
+   "industry_l1": "RE",
+   "industry_l2": "RE.REST",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:042",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "FleishmanHillard",
+   "industry_l1": "MED",
+   "industry_l2": "MED.ADV",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:043",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "CIGNA Group Insurance",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.INS",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:044",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "mclane advanced technologies",
+   "industry_l1": "TEC",
+   "industry_l2": "TEC",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:045",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "ECCO, Inc.",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:046",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Align Capital Partners",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.ASM",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:047",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Willis Towers Watson",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.INS",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:048",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Vice President",
+   "company_raw": "Avalon Risk, LLC",
+   "industry_l1": "XOT",
+   "industry_l2": "XOT",
+   "reason": "vice_president",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:049",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Vice President",
+   "company_raw": "Deutsche Bank",
+   "industry_l1": "FIN",
+   "industry_l2": "FIN.BNK",
+   "reason": "vice_president",
+   "occupation_code_before": "11-1011",
+   "occupation_code_override": "11-1021",
+   "occupation_label": "General and Operations Managers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:050",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Dyett Arts High School",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:051",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "FBISD",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:052",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "School Principal",
+   "company_raw": "Memphis-Shelby County Schools",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "11-9032",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:053",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Joliet Public Schools District 86",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:054",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "School Principal",
+   "company_raw": "Jenks Public Schools",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "11-9032",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:055",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Washington Elementary School District",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:056",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Plano ISD",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:057",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "School District of Philadlephia",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:058",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Bay City Public Schools",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:059",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Maple Shade High School",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:060",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Oklahoma City Public Schools",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:061",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Irving ISD/ Farine Elementary",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:062",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Houston ISD and Pasadena ISD",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:063",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Sylacauga City Schools",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:064",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Ector County ISD",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:065",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Bridgeport School District",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:066",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Deer Valley School District",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:067",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Greene County Board of Education",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:068",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Adams 12 Five Star Schools",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:069",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "United Charter High School for Advanced Math and Science",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:070",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Batesville High School",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:071",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "principal",
+   "company_raw": "vcusd",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:072",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Clio Elementary Middle School",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:073",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "School Principal",
+   "company_raw": "Hillsborough Cunty Schools",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "11-9032",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:074",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Paul R. Baird Middle School",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:075",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Iberville Parish School Board",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:076",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "West Covina Unified School District",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:077",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Grand Prairie ISD",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:078",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Carrizo Springs High School",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:079",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "West Covina Unified School District",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:080",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Spring Branch ISD",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:081",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Klein ISD",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:082",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "IDEA Public Schools",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:083",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "St. James School",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:084",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "North Todd Elementary School",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:085",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Jefferson County Schools (JEFCOED) Alabama",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:086",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Washington Elem School",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:087",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Hall County Schools",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:088",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Homewood School DIstrict 153",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:089",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "James Madison High School",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:090",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Hawthorn Primary School",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:091",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Holy Family Academy",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:092",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Los Angeles Unified School District",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:093",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Gwinnett County Public Schools",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:094",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "TelosTorah Bible Academy",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:095",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Huntley Middle School",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:096",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Sewanhaka Central High School District",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:097",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Universal Schools",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:098",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Assistant Principal",
+   "company_raw": "Galax County Public Schools",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:099",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Lee A. Tolbert Community Academy",
+   "industry_l1": "EDU",
+   "industry_l2": "EDU.K12",
+   "reason": "k12_principal",
+   "occupation_code_before": "",
+   "occupation_code_override": "11-9032",
+   "occupation_label": "Education Administrators, K-12"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:100",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate Attorney",
+   "company_raw": "Watt, Tieder, Hoffar & Fitzgerald, LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "23-1011",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:101",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Senior Associate",
+   "company_raw": "Frilot LLC",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:102",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "Arnall Golden Gregory LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:103",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "Roetzel & Andress",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:104",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "Pullman & Comley, LLC",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:105",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate Attorney",
+   "company_raw": "Berkman, Henoch, Peterson & Peddy, P.C.",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "23-1011",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:106",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate Attorney",
+   "company_raw": "Lydecker LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "23-1011",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:107",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate",
+   "company_raw": "Sidley Austin LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:108",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "The Cooke Law Firm, P.C.",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:109",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate",
+   "company_raw": "Patterson and Sheridan LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:110",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate",
+   "company_raw": "LewisMcDaniels Law Firm",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:111",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Counsel",
+   "company_raw": "Pullman & Comley, LLC",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "23-1011",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:112",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Principal",
+   "company_raw": "Legal Consultant Expert Witness",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:113",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate Attorney",
+   "company_raw": "Holland & Hart LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "23-1011",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:114",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate",
+   "company_raw": "Weil, Gotshal & Manges LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:115",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "DeHay & Elliston",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:116",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "Kirkland & Ellis LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:117",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "Phelps Dunbar LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:118",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate Attorney",
+   "company_raw": "Law Office of Mark B. Johnson",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "23-1011",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:119",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "Kirkland & Ellis LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:120",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate",
+   "company_raw": "O'Melveny & Myers LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:121",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate Attorney",
+   "company_raw": "Skadden, Arps, Slate, Meagher & Flom LLP and Affiliates",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "23-1011",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:122",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate",
+   "company_raw": "Brobeck, Phleger & Harrison",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:123",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate",
+   "company_raw": "Pillsbury Winthrop Shaw Pittman",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:124",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Senior Associate",
+   "company_raw": "Law Offices of Ramon J. Morganstern, P.C.",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:125",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate Attorney",
+   "company_raw": "Cole, Scott & Kissane, P.A.",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "23-1011",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:126",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate Attorney",
+   "company_raw": "Carlton Fields, P.A.",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "23-1011",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:127",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "Law Offices of Jones & Suh, LLC",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:128",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Counsel",
+   "company_raw": "Baker & Hostetler LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "23-1011",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:129",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Senior Associate",
+   "company_raw": "Baker Botts",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:130",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate",
+   "company_raw": "Montgomery McCracken Walker & Rhoads LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:131",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "Law Office of Marty R. Howard, P.C.",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:132",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "Munck Wilson Mandala LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:133",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Member",
+   "company_raw": "Wyche, P.A.",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:134",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate",
+   "company_raw": "Pillsbury Madison & Sutro",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:135",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Of Counsel",
+   "company_raw": "Sills Cummis & Gross P.C.",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "23-1011",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:136",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "Morrison Mahoney LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:137",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate Attorney",
+   "company_raw": "Lloyd Gosselink Rochelle & Townsend, P.C.",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "23-1011",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:138",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "Robinson, Phillips & Calcagnie Law Firm",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:139",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "Steptoe & Johnson LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:140",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate",
+   "company_raw": "Cooley LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:141",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Counsel",
+   "company_raw": "Day Pitney LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "23-1011",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:142",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate",
+   "company_raw": "King & Spalding",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:143",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate",
+   "company_raw": "Foley & Lardner LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:144",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate Attorney",
+   "company_raw": "Akerman LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "23-1011",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:145",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate",
+   "company_raw": "Montgomery Barnett",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:146",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "Lamson Dugan & Murray LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:147",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "Akin Gump Strauss Hauer & Feld LLP",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:148",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Associate",
+   "company_raw": "Jones Day",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ },
+ {
+  "data": {
+   "id": "overrides:149",
+   "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell",
+   "title_raw": "Partner",
+   "company_raw": "Fisher Phillips",
+   "industry_l1": "PRO",
+   "industry_l2": "PRO.LEGAL",
+   "reason": "law_firm_partner",
+   "occupation_code_before": "",
+   "occupation_code_override": "23-1011",
+   "occupation_label": "Lawyers"
+  }
+ }
+]
