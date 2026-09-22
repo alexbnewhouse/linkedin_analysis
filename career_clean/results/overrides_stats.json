@@ -3,8 +3,8 @@
  "candidates": 82401,
  "rows": 47303,
  "by_reason": {
-  "k12_principal": 7522,
   "vice_president": 33971,
+  "k12_principal": 7522,
   "law_firm_partner": 5810
  },
  "skipped_det_major_conflict": 42,
