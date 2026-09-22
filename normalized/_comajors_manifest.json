@@ -1,0 +1,87 @@
+{
+  "generated": "2026-09-22",
+  "rows": 3577659,
+  "executed": true,
+  "by_source": [
+    {
+      "source": null,
+      "rows": 3430516
+    },
+    {
+      "source": "split",
+      "rows": 137497
+    },
+    {
+      "source": "no_primary",
+      "rows": 5877
+    },
+    {
+      "source": "conflict",
+      "rows": 3769
+    }
+  ],
+  "l1_bachelor_persons_gained_via_secondary": 17993,
+  "top_l1_pairs": [
+    {
+      "pair": "45+54",
+      "rows": 2969
+    },
+    {
+      "pair": null,
+      "rows": 2892
+    },
+    {
+      "pair": "23+09",
+      "rows": 1907
+    },
+    {
+      "pair": "09+50",
+      "rows": 1663
+    },
+    {
+      "pair": "45+16",
+      "rows": 1516
+    },
+    {
+      "pair": "50+09",
+      "rows": 1272
+    },
+    {
+      "pair": "09+23",
+      "rows": 1163
+    },
+    {
+      "pair": "23+45",
+      "rows": 1049
+    },
+    {
+      "pair": "23+50",
+      "rows": 931
+    },
+    {
+      "pair": "52+16",
+      "rows": 921
+    },
+    {
+      "pair": "45+38",
+      "rows": 918
+    },
+    {
+      "pair": "45+23",
+      "rows": 905
+    },
+    {
+      "pair": "50+52",
+      "rows": 868
+    },
+    {
+      "pair": "23+16",
+      "rows": 804
+    },
+    {
+      "pair": "23+54",
+      "rows": 799
+    }
+  ],
+  "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string"
+}

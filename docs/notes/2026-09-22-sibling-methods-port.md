@@ -125,6 +125,34 @@ value: split 72,683 values / 141,558 rows (4.0% of education rows); 0 of 2,328 C
 persons would gain an L1 bachelor co-major under the corrected primary rule (18,782 under the plan's).
 All changes adopted.
 
+**Built:** `edu_clean/comajors.py` (splitter; whole-string-first, deterministic method wins, majors
+deduped per family, primary chosen per row by the pooled family), `edu_clean/run_comajors.py`
+(value mapping `normalized/mappings/edu_field_components.parquet`, 445,336 values in 3.4 s),
+`edu_clean/apply_comajors.py` (columns `cip_secondary`, `cip2_secondary`, `nha_level_secondary`,
+`minor_cip`, `minor_cip2`, `nha_level_minor`, `field_components_n`, `comajor_source`; runs inside
+`build_normalized` after the imputed apply), `edu_clean/comajor_tests.py` (logic, incl. the sweep over
+all 2,328 CIP titles: 0 split), `edu_clean/comajor_data_checks.py` (data); person flags
+`double_major_any`, `hum_l1_comajor_any`, `minor_hum_l1_any`. Coding sample registered as `comajors`
+(50 plain-separator + 50 marker rows, gate on the plain stratum).
+
+**After (measured):**
+
+| measure | value |
+|---|---|
+| values by status (row-weighted, non-duplicate rows) | single 1,974,908; unresolved 795,982; split 146,942 |
+| education rows by `comajor_source` | split 137,497; no_primary 5,877; conflict 3,769 |
+| persons `double_major_any` (bachelor rung) | 92,392 |
+| persons `hum_l1_comajor_any` | 24,914 |
+| persons `minor_hum_l1_any` | 3,517 |
+| L1 bachelor's holders with a double major | 17,883 of 184,575 (9.7%) |
+| persons gaining an L1 bachelor's field only through the secondary | 17,993 (L1 bachelor OR L1 co-major = 202,568) |
+
+Top L1 pairs (pooled + secondary): 45+54 (2,969), 23+09 (1,907), 09+50 (1,663), 45+16 (1,516),
+50+09 (1,272), 09+23 (1,163), 23+45 (1,049), 23+50 (931), 52+16 (921), 45+38 (918). Same-family
+pairs (e.g. finance + marketing) collapse by design. Blind sample:
+`edu_clean/results/comajors_sample.jsonl` (100 rows, stratified); Label Studio project in
+`coding/label_studio/comajors.*`.
+
 ## P4. Occupation-family tier
 
 **Pre-review (fresh subagent, 2026-09-22): VERDICT: BUILD WITH CHANGES.** Verbatim core: the residue

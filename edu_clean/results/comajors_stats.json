@@ -1,0 +1,43 @@
+{
+ "generated": "2026-09-22",
+ "values": 445336,
+ "runtime_s": 3.4,
+ "row_weighted": [
+  {
+   "status": "single",
+   "marker_class": "plain",
+   "rows": 1966437,
+   "strings": 9120
+  },
+  {
+   "status": "unresolved",
+   "marker_class": "plain",
+   "rows": 734809,
+   "strings": 304812
+  },
+  {
+   "status": "split",
+   "marker_class": "plain",
+   "rows": 115328,
+   "strings": 49705
+  },
+  {
+   "status": "unresolved",
+   "marker_class": "marker",
+   "rows": 61173,
+   "strings": 52834
+  },
+  {
+   "status": "split",
+   "marker_class": "marker",
+   "rows": 31614,
+   "strings": 28644
+  },
+  {
+   "status": "single",
+   "marker_class": "marker",
+   "rows": 8471,
+   "strings": 221
+  }
+ ]
+}

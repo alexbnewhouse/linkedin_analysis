@@ -607,6 +607,7 @@ def write_education_person(out: Path, threads: int, timings: list[StepTiming]) -
           field under POOLED coverage (deterministic backbone + calibrated CIP
           jury; see edu_clean/apply_cip_pooled.py)
       bachelor_imputed_any  -- any bachelor-rung row leveled by the imputed tier (P2)
+      double_major_any / hum_l1_comajor_any / minor_hum_l1_any  -- co-major columns (P3)
       hum_l1_any/hum_l2_any/hum_l3_any/hum_l1_bachelor_any  -- ANY-degree
           humanities membership under pooled coverage. Use these, NOT the
           terminal nha_level, to define the humanities population: the terminal
@@ -658,7 +659,17 @@ def write_education_person(out: Path, threads: int, timings: list[StepTiming]) -
                   -- imputed-bachelor tier (edu_clean/apply_bachelor_imputed.py);
                   -- consumers that want det/jury levels only exclude on this flag.
                   coalesce(bool_or(degree_level_source = 'imputed_bachelor'), FALSE)
-                    AS bachelor_imputed_any
+                    AS bachelor_imputed_any,
+                  -- P3 (2026-09-22): co-majors / minors from the field string
+                  -- (edu_clean/apply_comajors.py); bachelor rung under pooled level.
+                  coalesce(bool_or(comajor_source = 'split' AND cip2_secondary IS NOT NULL
+                           AND coalesce(degree_level_pooled, degree_level) = 4), FALSE)
+                    AS double_major_any,
+                  coalesce(bool_or(comajor_source = 'split' AND nha_level_secondary = 1
+                           AND coalesce(degree_level_pooled, degree_level) = 4), FALSE)
+                    AS hum_l1_comajor_any,
+                  coalesce(bool_or(comajor_source = 'split' AND nha_level_minor = 1), FALSE)
+                    AS minor_hum_l1_any
                 FROM e GROUP BY 1
               ),
               highest_year AS (
@@ -720,6 +731,9 @@ def write_education_person(out: Path, threads: int, timings: list[StepTiming]) -
                 a.hum_l1_bachelor_any,
                 a.hum_l1_bachelor_pooled_any,
                 a.bachelor_imputed_any,
+                a.double_major_any,
+                a.hum_l1_comajor_any,
+                a.minor_hum_l1_any,
                 s.school_slug
               FROM agg a
               LEFT JOIN highest_year h USING (linkedin_id)
@@ -1098,6 +1112,12 @@ def main() -> None:
 
         with StepTimer("imputed-bachelor apply (strict, propose-only)", timings):
             apply_bachelor_imputed.run(execute=True)
+        # P3 (2026-09-22): co-major / minor columns from the value-level splitter
+        # mapping (edu_clean.run_comajors); optional, NULL columns when missing.
+        from edu_clean import apply_comajors
+
+        with StepTimer("co-major apply (propose-only)", timings):
+            apply_comajors.run(execute=True)
         write_education_person(out, args.threads, timings)
         try:
             from edu_clean import apply_institution_meta

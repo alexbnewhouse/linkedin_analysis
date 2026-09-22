@@ -46,7 +46,8 @@ Order of steps (education): value mappings → `education.parquet` →
 **pooled applies** (degree-level jury first, then CIP: deterministic >
 jury/frontier > knn_head > degree-type > degree-level; string-level 53 labels
 are gated on the row's degree level, and uncoded high-school rows get 53; then the strict
-imputed-bachelor tier, `edu_clean/apply_bachelor_imputed.py`) →
+imputed-bachelor tier, `edu_clean/apply_bachelor_imputed.py`, then the co-major columns,
+`edu_clean/apply_comajors.py`) →
 `education_person.parquet` → institution meta (IPEDS; skipped with a warning if
 the crosswalk isn't built). Career: value mappings → functional-cluster rows →
 `career_steps.parquet` (carries `occupation_major_pooled` from the SOC jury and
@@ -81,6 +82,7 @@ pooled applies ~2 min, person rollup 3s, career_steps 75s.
 | CIP juror calibration on the gold (any local model) | `uv run python -m edu_clean.gold_v1 calibrate ollama/<model> "<name>=<url>\|<slots>\|ollama"` | `edu_clean/results/frontier_gold_v1_calibration.json` |
 | CIP precision report + kNN threshold sweep | `uv run python -m edu_clean.gold_v1 report` / `uv run --group embed python -m edu_clean.gold_v1 knn` | `frontier_gold_v1_{report,knn_sweep}.json`; prose in `docs/methods/cip-precision-gold-v1.md` |
 | Degree level tail | `uv run python -m edu_clean.run_dlevel_jury` | `mappings/degree_level_jury.parquet` |
+| Co-majors / minors (propose-only; P3 2026-09-22) | `uv run python -m edu_clean.run_comajors` (value mapping) then `apply_comajors --execute` (runs inside `build_normalized` after the imputed apply) | `mappings/edu_field_components.parquet`; education `cip_secondary`, `minor_cip`, `comajor_source`; person `double_major_any`, `hum_l1_comajor_any`, `minor_hum_l1_any`; blind sample `edu_clean/results/comajors_sample.jsonl` |
 | Imputed bachelor's (strict, propose-only; P2 2026-09-22) | `uv run python -m edu_clean.apply_bachelor_imputed --execute` (runs inside `build_normalized` after the CIP apply) | `education.degree_level_source = 'imputed_bachelor'`; person flag `bachelor_imputed_any`; blind sample `edu_clean/results/imputed_bachelor_sample.jsonl` |
 | SOC role tail | `uv run python -m career_clean.run_soc_jury` | `mappings/role_soc_jury.parquet` |
 | Industry | `uv run python -m industry.fire_llm` | see `industry/SETUP.md` |
