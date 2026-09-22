@@ -66,3 +66,7 @@ __pycache__/
 
 # Claude Code worktrees (nested checkouts; never commit)
 /.claude/worktrees/
+
+# persons/ generated outputs (manifest + metrics JSON are kept)
+/persons/*.parquet
+/persons/results/tables/

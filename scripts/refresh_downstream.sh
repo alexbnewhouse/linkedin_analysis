@@ -18,7 +18,7 @@ START="${START:-1}"
 INDUSTRY_ARGS="${INDUSTRY_ARGS:---force-vocab}"
 [ "$START" = "1" ] && : > "$LOG"
 
-N_STAGES=17
+N_STAGES=19
 stage_i=0
 run_stage() {  # run_stage <name> <command...>
   name=$1; shift
@@ -57,6 +57,9 @@ run_stage an-socmajor  $UVR python -m transition_network.analyze soc_major
 #       paths/steps, paths/transitions AND cohorts/panel)
 run_stage cohorts      $UVR python -m cohorts.build_panel --force
 run_stage archetypes   $UVR python -m archetypes.run_all
+# 15 persons: person summary + metrics cube v0 (reads education_person, career_steps, paths/steps, step_industry)
+run_stage persons      $UVR python -m persons.build_person
+run_stage persons-m    $UVR python -m persons.build_metrics
 # 15-16 portal + share build
 run_stage portal       $UVR python -m portal.run_portal_data
 run_stage share        $UVR python -m portal.run_share_build

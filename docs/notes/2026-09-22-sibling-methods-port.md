@@ -355,3 +355,39 @@ prefilter normalizes punctuation ("Partner." reaches the rule). Rebuilt: 51,008 
 11-1021 -> 78,211; 11-9032 -> 12,223; 23-1011 -> 37,584. Sample redrawn (salt v2).
 
 ## P6. Person summary and metrics cube v0
+
+**Pre-review (fresh subagent, 2026-09-22): VERDICT: BUILD WITH CHANGES.** Verbatim core: "The step join
+as written drops 74% of steps ... position_idx is NULL on 8,010,124 of 10,798,352 steps; an
+equality/USING join returns 2,788,244 rows"; "tier:l1 in the cube must be defined as
+hum_l1_bachelor_pooled_any (the ANY-row rule) ... 6,307 L1 persons are lost by the choice" of one
+bachelor row; "'Current' step rule: not consistent with build_panel ... use the panel's ordering";
+"neither the spec nor Task 12 states the windowing rule for at_k_*"; "Disclosure rule: not enough ...
+when a panel has exactly one cell below the bar, also suppress the next-smallest cell"; release stamp
+fields listed; `profiles.parquet` and `paths/steps.parquet` are stale relative to P4/P5 so the person
+table must derive career columns from `career_steps`. All adopted (see `persons/README.md`).
+
+**Built:** `persons/` (`common.py` with the two-cell suppression rule, `build_person.py`,
+`build_metrics.py`, `person_tests.py`, `person_checks.py`, `README.md`); `make persons`; a `persons`
+stage in `scripts/refresh_downstream.sh` after archetypes; a `persons` stage in
+`scripts/check_freshness.py`; `/persons/*.parquet` ignored, manifest and `results/metrics.json` kept.
+
+**After (measured):**
+
+| measure | value |
+|---|---|
+| persons / with a bachelor's row | 1,999,974 / 1,497,978 |
+| tier L1 / L2 / L3 (bachelor rung, ANY-row) | 184,529 / 380,283 / 602,584 |
+| entry axis / grad axis persons | 1,999,916 / 279,671 (both: 274,428) |
+| spine steps joined (asserted equal to the spine) | 10,717,451 |
+| persons with a current pooled major | 1,064,580 |
+| groups in the cube | 62 (all, 3 tiers, field groups, cip2 >= 300) |
+| build time | person 12 s; metrics 49 s |
+
+Headline reads, tier L1 (bachelor's, pooled): graduate degree 32.0%, ever director+ 41.5%,
+double major 9.5%; current SOC major top 5: 27 (26,955), 11 (24,928), 25 (10,358), 13 (9,381),
+43 (5,316); plus-10 eligible on the entry axis 156,570 (147,400 with a step) vs 21,596 (17,393) on
+the grad axis, the FOUNDATION 1.3 seven-to-one gap made concrete. `person_checks`: one row per person;
+tiers nest; axes independent (entry-only 1,724,691, grad-only 66, both 274,428); entry_year agrees
+with `cohorts/profiles` on all 1,999,916; attainment matches `max(seniority_ordinal)`; no printed cell
+below the floor and no panel exposes a single suppressed cell. The suppressed-cell total (2.58M) is
+dominated by employer cells and is reported per panel only when >= 2.
