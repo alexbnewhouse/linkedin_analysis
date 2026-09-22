@@ -1,12 +1,12 @@
 {
  "schema_version": 1,
- "built": "2026-09-22T16:06:19.671491+00:00",
+ "built": "2026-09-22T16:07:45.201816+00:00",
  "snapshot_date": "2026-02-19",
  "snapshot_id": "snap_mlsi9jwqziij1k8zq",
  "snapshot_cal_year": 2026,
  "last_complete_year": 2025,
- "git": "c4846da",
- "git_dirty": true,
+ "git": "76de6eb",
+ "git_dirty": false,
  "params": {
   "min_support": 10,
   "secondary_suppression": true,
@@ -57,7 +57,7 @@
  },
  "rows": 1999974,
  "steps_joined": 10717451,
- "runtime_s": 11.7,
+ "runtime_s": 12.0,
  "summary": {
   "persons": 1999974,
   "with_bachelor": 1497978,
