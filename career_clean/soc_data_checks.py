@@ -38,15 +38,16 @@ def main() -> None:
     bad_det = con.execute(f"""
         SELECT count(*) FROM {steps}
         WHERE occupation_code IS NOT NULL
-          AND (occupation_source NOT IN ('det', 'override')
+          AND (occupation_source <> 'det'
                OR occupation_major_pooled <> substr(occupation_code, 1, 2))
     """).fetchone()[0]
-    assert bad_det == 0, f"{bad_det} det rows where pooled major != 2-digit prefix"
-    ok("det rows: occupation_major_pooled == substr(occupation_code, 1, 2) (override never moves a det major)")
+    assert bad_det == 0, f"{bad_det} det rows where pooled major != 2-digit prefix or source != det"
+    ok("det rows: source stays 'det' and occupation_major_pooled == substr(occupation_code, 1, 2)")
 
     bad_code = con.execute(f"""
         SELECT count(*) FROM {steps}
-        WHERE (occupation_source = 'override') <> (override_reason IS NOT NULL)
+        WHERE (occupation_source = 'override') <> (override_reason IS NOT NULL AND occupation_code IS NULL)
+           OR (occupation_code_source = 'override') <> (override_reason IS NOT NULL)
            OR (occupation_code_source = 'override' AND occupation_code_pooled IS NULL)
            OR (occupation_code_source = 'det' AND occupation_code_pooled IS DISTINCT FROM occupation_code)
            OR (occupation_code_source IS NULL AND occupation_code_pooled IS NOT NULL)

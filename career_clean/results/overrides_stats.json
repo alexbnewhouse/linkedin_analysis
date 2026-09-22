@@ -1,11 +1,11 @@
 {
  "generated": "2026-09-22",
- "candidates": 82376,
- "rows": 50993,
+ "candidates": 82401,
+ "rows": 51008,
  "by_reason": {
-  "k12_principal": 8230,
+  "k12_principal": 8239,
   "vice_president": 33971,
-  "law_firm_partner": 8792
+  "law_firm_partner": 8798
  },
  "skipped_det_major_conflict": 42,
  "rubric": "pass = the override occupation code is right for this title at this employer; fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan officer, a university principal); unsure = cannot tell"

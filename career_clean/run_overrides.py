@@ -28,7 +28,7 @@ INDUSTRY = ROOT / "industry" / "results" / "step_industry.parquet"
 OUT = ROOT / "normalized" / "mappings" / "career_occupation_override.parquet"
 STATS = ROOT / "career_clean" / "results" / "overrides_stats.json"
 SAMPLE = ROOT / "career_clean" / "results" / "override_sample.jsonl"
-SALT = "p5-override-2026-09-22"
+SALT = "p5-override-2026-09-22-v2"
 RUBRIC = ("pass = the override occupation code is right for this title at this employer; "
           "fail = a different code is clearly right (e.g. a paralegal, a bank VP who is a loan "
           "officer, a university principal); unsure = cannot tell")
@@ -47,8 +47,8 @@ def build() -> dict:
           ON i.source_table = c.source_table AND i.linkedin_id = c.linkedin_id
          AND i.experience_idx = c.experience_idx AND i.position_idx IS NOT DISTINCT FROM c.position_idx
         WHERE (c.seniority_level LIKE '%vice%' AND c.role_canonical IN ('president', 'assistantpresident'))
-           OR regexp_matches(lower(c.title_raw), '^\\s*((assistant|associate|vice|interim|acting|school)\\s+)?principal\\s*$')
-           OR (i.l2 = 'PRO.LEGAL' AND lower(trim(c.title_raw)) IN
+           OR regexp_matches(trim(regexp_replace(lower(c.title_raw), '[^a-z0-9]+', ' ', 'g')), '^((assistant|associate|vice|interim|acting|school) )?principal$')
+           OR (i.l2 = 'PRO.LEGAL' AND trim(regexp_replace(lower(c.title_raw), '[^a-z0-9]+', ' ', 'g')) IN
                ('partner', 'managing partner', 'senior partner', 'equity partner', 'junior partner',
                 'name partner', 'founding partner', 'associate', 'senior associate', 'junior associate',
                 'of counsel', 'counsel', 'shareholder', 'member', 'associate attorney', 'principal'))
@@ -58,7 +58,7 @@ def build() -> dict:
     by_reason: dict[str, int] = {}
     det_changed = 0
     for st, lid, eidx, pidx, title, sen, role, l1, l2, det in rows:
-        o = override(title, sen, role, l1, l2)
+        o = override(title, role, sen, l1, l2)
         if not o:
             continue
         key = (st, lid, eidx, pidx)
@@ -115,7 +115,7 @@ def sample(n_per_reason: int) -> None:
         for i, r in enumerate(rows):
             d = dict(zip(cols, r))
             d["occupation_label"] = CODE_LABELS.get(d["occupation_code_override"], "")
-            d["id"] = f"overrides:{i:03d}"
+            d["id"] = f"overrides:{SALT.rsplit('-', 1)[-1]}:{i:03d}"
             fh.write(json.dumps(d, default=str, ensure_ascii=False) + "\n")
     print(f"wrote {SAMPLE} ({len(rows)} rows)")
 

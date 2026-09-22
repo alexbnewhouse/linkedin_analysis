@@ -582,6 +582,18 @@ R('executive', 'executive director', 'managing director', 'executive chairman',
   'executive vice chairman')
 R('banking_insurance', 'insurance producer', 'producer insurance')
 R('arts_performance', 'theatrical producer', 'theater producer')
+# --- post-review 2026-09-22 (P4): precedence fixes measured on the landed sample ---
+RX('higher_ed_faculty', r' (?:assistant |associate |visiting |adjunct |clinical |full |emeritus )?(?:professor|lecturer)s? of ',
+   ('professor', 'lecturer'))
+R('admin_support', 'assistant to')
+R('banking_insurance', 'licensed producer', 'insurance producer', 'sales line producer',
+  'commercial lines producer', 'personal lines producer', 'producer insurance', 'benefits producer')
+R('museum_library', 'planetarium')
+R('higher_ed_staff', 'faculty affairs', 'faculty support', 'faculty services', 'faculty development',
+  'faculty relations', 'faculty coordinator', 'academic affairs', 'faculty innovator')
+R('research', 'postdoctoral', 'post doctoral', 'postdoc', 'post doc', 'visiting scholar',
+  'research fellow', 'postdoctoral fellow', 'visiting researcher', 'senior researcher',
+  'visiting fellow')
 R('journalism_media', 'executive producer', 'supervising producer',
   'line producer', 'associate producer', 'story producer', 'segment producer',
   'news producer', 'broadcast producer', 'radio producer', 'podcast producer',
@@ -696,8 +708,7 @@ R('translation_language',
 
 # --- D. education ----------------------------------------------------------
 R('higher_ed_faculty',
-  'professor', 'adjunct', 'lecturer', 'postdoctoral', 'post doctoral',
-  'postdoc', 'post doc', 'visiting scholar', 'teaching fellow', 'faculty',
+  'professor', 'adjunct', 'lecturer', 'teaching fellow', 'faculty',
   'college instructor', 'university instructor', 'clinical instructor',
   'nursing instructor', 'course instructor', 'department chair',
   'chair of department', 'academic chair', 'program chair', 'faculty member',

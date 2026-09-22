@@ -2,7 +2,7 @@
 UV := uv run
 
 .PHONY: parse normalize normalize-fast normalize-education normalize-career \
-        industry archetypes portal test test-data lint cert benchmarks \
+        industry archetypes portal test test-data lint cert benchmarks persons \
         paths network seniority cohorts refresh check-freshness
 
 parse:            ## raw JSONL -> parsed/ star schema (~20 min)
@@ -68,6 +68,10 @@ coding-export:    ## export every drawn blind sample as a Label Studio project (
 benchmarks:       ## LinkedIn shares vs NCES / Humanities Indicators (validation/results)
 	$(UV) python -m validation.external_benchmarks
 
+persons:          ## person summary table + metrics cube v0 (both axes, all tiers, floor 10) -- after industry + paths
+	$(UV) --with numpy python -m persons.build_person
+	$(UV) python -m persons.build_metrics
+
 portal:
 	$(UV) python -m portal.run_portal_data
 	$(UV) python -m portal.run_share_build
@@ -88,6 +92,7 @@ test:             ## data-independent logic suites (no built parquet needed)
 	$(UV) python -m edu_clean.comajor_tests
 	$(UV) python -m career_clean.families.family_tests
 	$(UV) python -m career_clean.override_tests
+	$(UV) python -m persons.person_tests
 	$(UV) python -m coding.coding_tests
 
 test-data:        ## suites that read built parquet
@@ -101,6 +106,8 @@ test-data:        ## suites that read built parquet
 	$(UV) python -m edu_clean.imputed_data_checks
 	$(UV) python -m edu_clean.comajor_data_checks
 	$(UV) python -m career_clean.family_data_checks
+	$(UV) python -m career_clean.override_data_checks
+	$(UV) python -m persons.person_checks
 
 lint:
 	uvx ruff check .

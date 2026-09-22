@@ -961,7 +961,8 @@ def write_career_steps(out: Path, mappings: dict[str, Path], threads: int, timin
                 -- code's major group wins; else the unanimous role->SOC-major
                 -- jury vote (career_clean.run_soc_jury, 299,787 roles).
                 -- Propose-only: no deterministic column above is altered.
-                -- P4/P5 (2026-09-22): precedence override > det > jury > family.
+                -- P4/P5 (2026-09-22): precedence override > det > jury > family for the
+                -- major VALUE (an override never differs from a det major by contract).
                 -- family lands only where the title is landable (per-family,
                 -- per-stratum gate in career_clean/results/family_gate.json) AND
                 -- the row has no functional_cluster (the self-employment layer
@@ -976,9 +977,13 @@ def write_career_steps(out: Path, mappings: dict[str, Path], threads: int, timin
                   WHEN coalesce(tf.landable, FALSE) AND fc.functional_cluster IS NULL
                     THEN tf.soc_major_anchor
                 END AS occupation_major_pooled,
+                -- occupation_source names who supplied the MAJOR: a det row whose
+                -- major an override leaves unchanged (the VP re-route within 11)
+                -- stays 'det' so det-only consumers (portal) keep it; the code-level
+                -- change is visible in occupation_code_source / override_reason.
                 CASE
-                  WHEN ov.soc_major_override IS NOT NULL THEN 'override'
                   WHEN starts_with(occupation.canonical_id, 'soc:') THEN 'det'
+                  WHEN ov.soc_major_override IS NOT NULL THEN 'override'
                   WHEN rsj.soc_major IS NOT NULL THEN 'jury'
                   WHEN coalesce(tf.landable, FALSE) AND fc.functional_cluster IS NULL THEN 'family'
                 END AS occupation_source,

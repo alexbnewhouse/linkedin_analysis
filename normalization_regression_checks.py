@@ -459,6 +459,22 @@ def check_build_bootstrap() -> None:
         present = out / "mappings" / "career_company.parquet"
         rel2 = B._optional_mapping_relation(present, "value VARCHAR")  # noqa: SLF001
         assert_equal("read_parquet" in rel2, True, "present mapping reads the parquet")
+        # P4/P5 (2026-09-22): the family and override mappings are optional too
+        for name, schema, cols in (
+            ("title_family", "value VARCHAR, family VARCHAR, seniority9 VARCHAR, confidence VARCHAR, "
+                             "soc_major_anchor VARCHAR, landable BOOLEAN",
+             ("value", "family", "seniority9", "confidence", "soc_major_anchor", "landable")),
+            ("career_occupation_override", "source_table VARCHAR, linkedin_id VARCHAR, experience_idx BIGINT, "
+                                           "position_idx BIGINT, occupation_code_override VARCHAR, "
+                                           "soc_major_override VARCHAR, reason VARCHAR",
+             ("source_table", "linkedin_id", "experience_idx", "position_idx", "occupation_code_override",
+              "soc_major_override", "reason")),
+        ):
+            assert_equal(name in B.OPTIONAL_MAPPINGS, True, f"{name} is optional")
+            assert_equal(paths[name].exists(), False, f"{name} absent in fixture")
+            rel3 = B._optional_mapping_relation(paths[name], schema)  # noqa: SLF001
+            got = [r[0] for r in duckdb.connect().execute(f"DESCRIBE SELECT * FROM {rel3}").fetchall()]
+            assert_equal(tuple(got), cols, f"empty {name} relation has the declared columns")
 
 
 def check_freshness_logic() -> None:

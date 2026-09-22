@@ -1,6 +1,6 @@
 {
-  "created_at_epoch_s": 1790091375.3546696,
-  "runtime_s": 81.5,
+  "created_at_epoch_s": 1790092314.900262,
+  "runtime_s": 76.0,
   "threads": 32,
   "sections": "career",
   "source": {
@@ -18,7 +18,7 @@
   "steps": [
     {
       "name": "normalized career_steps table",
-      "runtime_s": 81.1,
+      "runtime_s": 75.5,
       "rows": 10800787,
       "path": "/home/alex/linkedin-analysis/.claude/worktrees/sibling-methods-port/normalized/career_steps.parquet"
     }

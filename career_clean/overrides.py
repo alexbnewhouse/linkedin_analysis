@@ -44,7 +44,7 @@ _LAW_TITLES = frozenset({
 _VP_EXCLUDE_TOKENS = frozenset({"senior", "executive"})
 
 
-def override(title_raw, seniority_level, role_canonical, industry_l1, industry_l2) -> Override | None:
+def override(title_raw, role_canonical, seniority_level, industry_l1, industry_l2) -> Override | None:
     t = normalize(title_raw)
     if not t:
         return None

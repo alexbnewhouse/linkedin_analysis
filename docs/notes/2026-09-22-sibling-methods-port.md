@@ -248,6 +248,30 @@ rows) and the residue head (Project Manager 78k, Owner 69k, Sales 54k, Administr
 still have no pooled major; a per-title anchor keyed on (family x seniority9), or a re-fire of the
 jury on the residue head, is the next step, not a wider gate.
 
+**Post-review (fresh subagent, 2026-09-22): VERDICT: LAND AS PROPOSE-ONLY.** Verbatim: "the three
+landed strata clear the blind gate only at 0.87 and the largest one (higher_ed_faculty) fails its own
+step-weighted gold precision on a known class (postdocs/researchers -> 25)". Blind score n=100: strict
+0.870, lenient 0.916; fails: "Faculty Affairs", "Planetarium Presenter", "Senior Faculty Support
+Coordinator", "Sales Line Producer" at Allstate, "Postdoctoral Research Fellow", "Assistant to Executive
+Producer", "Professor of Journalism and French language" landed as 27, "Visiting Scholar/Senior
+Researcher". Gate audit: every per-stratum number reproduced to four decimals; the functional
+families' failures are "both" the classifier (developer/dealer/brand catch-alls) and the gold's
+conventions (engineer -> 17 regardless of software, coordinator/officer -> 11). Also noted: commit
+c38c103's Makefile referenced P5 modules that landed in the next commit (history artifact; the branch
+is consistent).
+
+**Fixes (same day):** postdocs, visiting scholars, research/visiting fellows and senior researchers
+route to `research` (19) ahead of the faculty rule (three ported assertions updated to say so);
+"professor/lecturer of X" wins over the journalism block; "assistant to" is admin support; insurance
+producers are `banking_insurance`; "planetarium" is `museum_library`; faculty-affairs/support strings
+are `higher_ed_staff`; the gate now also requires the STEP-WEIGHTED precision >= 0.85 on both
+populations; the bootstrap regression check covers the two new optional mappings. Re-gate:
+higher_ed_faculty/staff gold 1.00 (n=289) jury 0.93 (n=3,137); journalism_media/staff 0.90 / 0.88;
+legal_attorney/staff 0.98 / 0.94; landable title values 74,676. Rebuilt: `occupation_source = 'family'`
+on 58,282 rows (journalism_media 27,350; higher_ed_faculty 21,668; legal_attorney 9,264); pooled major
+61.96%. Sample redrawn (salt v2, ids carry the salt) for a second blind review; the first reviewer's
+labels are in `coding/labels/superseded/`.
+
 ## P5. Employer-keyed overrides
 
 **Pre-review (fresh subagent, 2026-09-22): VERDICT: BUILD WITH CHANGES.** Verbatim core: "The plan's
@@ -289,5 +313,22 @@ President (45k), CEO and Executive Director titles are legitimately 11-1011; the
 display split (senior VPs stay per O*NET). XOT industry caps the reach of the principal and law-firm
 rules at roughly half of each title's rows. Blind sample: `career_clean/results/override_sample.jsonl`
 (50 per reason); Label Studio project `coding/label_studio/overrides.*`.
+
+**Post-review (fresh subagent, 2026-09-22): VERDICT: LAND.** Verbatim: "every reason clears the gate
+(0.96 / 0.98 / 0.98), all claimed numbers and the det-major contract reproduce exactly, and the one real
+defect is the occupation_source='override' labeling on unchanged-major det rows, which will NULL 33,187
+det-coded steps in the portal panel and break portal_tests on the next spine rebuild". Blind score
+n=150: strict 0.973, lenient 1.000 (four unsures: two volunteer-board "Vice-president"s, a Bible
+academy principal, a self-employed "Principal"). Every landed override re-derived from the rule on the
+row's own evidence (0 mismatches).
+
+**Fixes (same day):** `occupation_source` names who supplied the MAJOR, so a det row whose major an
+override leaves unchanged stays `'det'` (the VP re-route is visible in `occupation_code_source =
+'override'` and `override_reason`); `'override'` as a major source now means only "code added where
+the coder abstained" (17,816 rows); `soc_data_checks` re-tightened; new `override_data_checks`
+re-applies the pure rule to every landed row; `override()` takes the spec's argument order; the SQL
+prefilter normalizes punctuation ("Partner." reaches the rule). Rebuilt: 51,008 override rows
+(vice_president 33,971; law_firm_partner 8,798; k12_principal 8,239); 11-1011 178,911 -> 149,424;
+11-1021 -> 78,211; 11-9032 -> 12,223; 23-1011 -> 37,584. Sample redrawn (salt v2).
 
 ## P6. Person summary and metrics cube v0

@@ -128,9 +128,9 @@
       "precision_step_weighted": 0.0912
      },
      "jury": {
-      "n": 1251,
-      "precision": 0.3405,
-      "precision_step_weighted": 0.4813
+      "n": 1238,
+      "precision": 0.3441,
+      "precision_step_weighted": 0.485
      },
      "landable": false
     }
@@ -219,14 +219,14 @@
     },
     "staff": {
      "det_gold": {
-      "n": 166,
-      "precision": 0.7048,
-      "precision_step_weighted": 0.8763
+      "n": 161,
+      "precision": 0.7267,
+      "precision_step_weighted": 0.8769
      },
      "jury": {
-      "n": 5086,
-      "precision": 0.627,
-      "precision_step_weighted": 0.6479
+      "n": 5064,
+      "precision": 0.6295,
+      "precision_step_weighted": 0.6493
      },
      "landable": false
     }
@@ -251,14 +251,14 @@
     },
     "staff": {
      "det_gold": {
-      "n": 380,
-      "precision": 0.7816,
-      "precision_step_weighted": 0.9223
+      "n": 415,
+      "precision": 0.7494,
+      "precision_step_weighted": 0.9213
      },
      "jury": {
-      "n": 5049,
-      "precision": 0.8114,
-      "precision_step_weighted": 0.8437
+      "n": 5356,
+      "precision": 0.7909,
+      "precision_step_weighted": 0.829
      },
      "landable": false
     }
@@ -288,7 +288,7 @@
       "precision_step_weighted": 0.7729
      },
      "jury": {
-      "n": 2696,
+      "n": 2692,
       "precision": 0.7088,
       "precision_step_weighted": 0.7882
      },
@@ -315,14 +315,14 @@
     },
     "staff": {
      "det_gold": {
-      "n": 184,
-      "precision": 0.7065,
-      "precision_step_weighted": 0.6663
+      "n": 182,
+      "precision": 0.7143,
+      "precision_step_weighted": 0.6664
      },
      "jury": {
-      "n": 9391,
-      "precision": 0.6686,
-      "precision_step_weighted": 0.722
+      "n": 9370,
+      "precision": 0.6699,
+      "precision_step_weighted": 0.7222
      },
      "landable": false
     }
@@ -352,9 +352,9 @@
       "precision_step_weighted": 0.6052
      },
      "jury": {
-      "n": 1898,
-      "precision": 0.3656,
-      "precision_step_weighted": 0.3549
+      "n": 1894,
+      "precision": 0.3664,
+      "precision_step_weighted": 0.3551
      },
      "landable": false
     }
@@ -379,14 +379,14 @@
     },
     "staff": {
      "det_gold": {
-      "n": 168,
-      "precision": 0.5833,
-      "precision_step_weighted": 0.6213
+      "n": 167,
+      "precision": 0.5868,
+      "precision_step_weighted": 0.6233
      },
      "jury": {
-      "n": 6057,
-      "precision": 0.4506,
-      "precision_step_weighted": 0.4315
+      "n": 6032,
+      "precision": 0.4523,
+      "precision_step_weighted": 0.4332
      },
      "landable": false
     }
@@ -403,22 +403,22 @@
       "precision_step_weighted": 0.0006
      },
      "jury": {
-      "n": 1124,
-      "precision": 0.0418,
-      "precision_step_weighted": 0.0612
+      "n": 1122,
+      "precision": 0.0419,
+      "precision_step_weighted": 0.0613
      },
      "landable": false
     },
     "staff": {
      "det_gold": {
-      "n": 77,
-      "precision": 0.4545,
-      "precision_step_weighted": 0.9126
+      "n": 73,
+      "precision": 0.4795,
+      "precision_step_weighted": 0.9229
      },
      "jury": {
-      "n": 2551,
-      "precision": 0.3477,
-      "precision_step_weighted": 0.4842
+      "n": 2502,
+      "precision": 0.3533,
+      "precision_step_weighted": 0.4879
      },
      "landable": false
     }
@@ -443,14 +443,14 @@
     },
     "staff": {
      "det_gold": {
-      "n": 266,
-      "precision": 0.8008,
+      "n": 265,
+      "precision": 0.8038,
       "precision_step_weighted": 0.916
      },
      "jury": {
-      "n": 5183,
-      "precision": 0.7922,
-      "precision_step_weighted": 0.872
+      "n": 5176,
+      "precision": 0.7931,
+      "precision_step_weighted": 0.873
      },
      "landable": false
     }
@@ -467,22 +467,22 @@
       "precision_step_weighted": 1.0
      },
      "jury": {
-      "n": 272,
-      "precision": 0.4412,
-      "precision_step_weighted": 0.4591
+      "n": 271,
+      "precision": 0.4428,
+      "precision_step_weighted": 0.4594
      },
      "landable": false
     },
     "staff": {
      "det_gold": {
-      "n": 184,
-      "precision": 0.8913,
-      "precision_step_weighted": 0.9668
+      "n": 183,
+      "precision": 0.8962,
+      "precision_step_weighted": 0.9677
      },
      "jury": {
-      "n": 2932,
-      "precision": 0.8752,
-      "precision_step_weighted": 0.9344
+      "n": 2911,
+      "precision": 0.8808,
+      "precision_step_weighted": 0.9383
      },
      "landable": true
     }
@@ -507,14 +507,14 @@
     },
     "staff": {
      "det_gold": {
-      "n": 340,
-      "precision": 0.7353,
-      "precision_step_weighted": 0.9198
+      "n": 338,
+      "precision": 0.7396,
+      "precision_step_weighted": 0.9204
      },
      "jury": {
-      "n": 5453,
-      "precision": 0.7478,
-      "precision_step_weighted": 0.8745
+      "n": 5439,
+      "precision": 0.7489,
+      "precision_step_weighted": 0.8754
      },
      "landable": false
     }
@@ -539,14 +539,14 @@
     },
     "staff": {
      "det_gold": {
-      "n": 279,
-      "precision": 0.7133,
-      "precision_step_weighted": 0.8946
+      "n": 278,
+      "precision": 0.7158,
+      "precision_step_weighted": 0.8951
      },
      "jury": {
-      "n": 2280,
-      "precision": 0.8101,
-      "precision_step_weighted": 0.8614
+      "n": 2262,
+      "precision": 0.8156,
+      "precision_step_weighted": 0.8656
      },
      "landable": false
     }
@@ -571,14 +571,14 @@
     },
     "staff": {
      "det_gold": {
-      "n": 139,
-      "precision": 0.8273,
-      "precision_step_weighted": 0.8877
+      "n": 137,
+      "precision": 0.8321,
+      "precision_step_weighted": 0.8883
      },
      "jury": {
-      "n": 897,
-      "precision": 0.5652,
-      "precision_step_weighted": 0.3551
+      "n": 889,
+      "precision": 0.5714,
+      "precision_step_weighted": 0.3571
      },
      "landable": false
     }
@@ -603,13 +603,13 @@
     },
     "staff": {
      "det_gold": {
-      "n": 361,
-      "precision": 0.8476,
+      "n": 360,
+      "precision": 0.8472,
       "precision_step_weighted": 0.8069
      },
      "jury": {
-      "n": 5747,
-      "precision": 0.9024,
+      "n": 5745,
+      "precision": 0.9023,
       "precision_step_weighted": 0.9757
      },
      "landable": false
@@ -640,9 +640,9 @@
       "precision_step_weighted": 1.0
      },
      "jury": {
-      "n": 47,
-      "precision": 0.8511,
-      "precision_step_weighted": 0.9471
+      "n": 37,
+      "precision": 0.9459,
+      "precision_step_weighted": 0.9783
      },
      "landable": false
     }
@@ -659,22 +659,22 @@
       "precision_step_weighted": 0.0
      },
      "jury": {
-      "n": 294,
-      "precision": 0.4524,
-      "precision_step_weighted": 0.3013
+      "n": 271,
+      "precision": 0.4945,
+      "precision_step_weighted": 0.317
      },
      "landable": false
     },
     "staff": {
      "det_gold": {
-      "n": 288,
-      "precision": 0.9722,
-      "precision_step_weighted": 0.6536
+      "n": 289,
+      "precision": 1.0,
+      "precision_step_weighted": 1.0
      },
      "jury": {
-      "n": 3222,
-      "precision": 0.888,
-      "precision_step_weighted": 0.9527
+      "n": 3137,
+      "precision": 0.9321,
+      "precision_step_weighted": 0.9805
      },
      "landable": true
     }
@@ -691,9 +691,9 @@
       "precision_step_weighted": 0.955
      },
      "jury": {
-      "n": 735,
-      "precision": 0.8884,
-      "precision_step_weighted": 0.9265
+      "n": 753,
+      "precision": 0.8911,
+      "precision_step_weighted": 0.9273
      },
      "landable": false
     },
@@ -704,9 +704,9 @@
       "precision_step_weighted": 0.038
      },
      "jury": {
-      "n": 1452,
-      "precision": 0.1357,
-      "precision_step_weighted": 0.1882
+      "n": 1447,
+      "precision": 0.1244,
+      "precision_step_weighted": 0.174
      },
      "landable": false
     }
@@ -736,8 +736,8 @@
       "precision_step_weighted": 0.7617
      },
      "jury": {
-      "n": 6472,
-      "precision": 0.6227,
+      "n": 6469,
+      "precision": 0.6228,
       "precision_step_weighted": 0.7697
      },
      "landable": false
@@ -755,22 +755,22 @@
       "precision_step_weighted": 0.0051
      },
      "jury": {
-      "n": 406,
-      "precision": 0.0813,
-      "precision_step_weighted": 0.0414
+      "n": 413,
+      "precision": 0.0847,
+      "precision_step_weighted": 0.0421
      },
      "landable": false
     },
     "staff": {
      "det_gold": {
-      "n": 132,
-      "precision": 0.7045,
-      "precision_step_weighted": 0.7817
+      "n": 138,
+      "precision": 0.6812,
+      "precision_step_weighted": 0.5176
      },
      "jury": {
-      "n": 2637,
-      "precision": 0.5408,
-      "precision_step_weighted": 0.7846
+      "n": 2784,
+      "precision": 0.5453,
+      "precision_step_weighted": 0.7864
      },
      "landable": false
     }
@@ -864,9 +864,9 @@
       "precision_step_weighted": 0.8832
      },
      "jury": {
-      "n": 7903,
-      "precision": 0.6625,
-      "precision_step_weighted": 0.83
+      "n": 7895,
+      "precision": 0.6631,
+      "precision_step_weighted": 0.8302
      },
      "landable": false
     }
@@ -896,9 +896,9 @@
       "precision_step_weighted": 0.0
      },
      "jury": {
-      "n": 432,
-      "precision": 0.6505,
-      "precision_step_weighted": 0.6236
+      "n": 431,
+      "precision": 0.6497,
+      "precision_step_weighted": 0.6233
      },
      "landable": false
     }
@@ -928,7 +928,7 @@
       "precision_step_weighted": 0.8395
      },
      "jury": {
-      "n": 8310,
+      "n": 8304,
       "precision": 0.6083,
       "precision_step_weighted": 0.6605
      },
@@ -960,9 +960,9 @@
       "precision_step_weighted": 0.686
      },
      "jury": {
-      "n": 2663,
-      "precision": 0.6459,
-      "precision_step_weighted": 0.7407
+      "n": 2660,
+      "precision": 0.6455,
+      "precision_step_weighted": 0.7404
      },
      "landable": false
     }
@@ -987,14 +987,14 @@
     },
     "staff": {
      "det_gold": {
-      "n": 247,
-      "precision": 0.6032,
+      "n": 245,
+      "precision": 0.6041,
       "precision_step_weighted": 0.7368
      },
      "jury": {
-      "n": 5964,
-      "precision": 0.6818,
-      "precision_step_weighted": 0.7252
+      "n": 5944,
+      "precision": 0.6827,
+      "precision_step_weighted": 0.7251
      },
      "landable": false
     }
@@ -1011,22 +1011,22 @@
       "precision_step_weighted": 0.1262
      },
      "jury": {
-      "n": 2843,
-      "precision": 0.2638,
+      "n": 2844,
+      "precision": 0.2637,
       "precision_step_weighted": 0.2061
      },
      "landable": false
     },
     "staff": {
      "det_gold": {
-      "n": 484,
-      "precision": 0.4731,
-      "precision_step_weighted": 0.46
+      "n": 482,
+      "precision": 0.4751,
+      "precision_step_weighted": 0.4601
      },
      "jury": {
-      "n": 7421,
-      "precision": 0.6464,
-      "precision_step_weighted": 0.6785
+      "n": 7414,
+      "precision": 0.6469,
+      "precision_step_weighted": 0.6786
      },
      "landable": false
     }
@@ -1056,9 +1056,9 @@
       "precision_step_weighted": 0.8593
      },
      "jury": {
-      "n": 1639,
-      "precision": 0.5381,
-      "precision_step_weighted": 0.6964
+      "n": 1631,
+      "precision": 0.5408,
+      "precision_step_weighted": 0.6972
      },
      "landable": false
     }
@@ -1088,9 +1088,9 @@
       "precision_step_weighted": 0.9998
      },
      "jury": {
-      "n": 1628,
-      "precision": 0.938,
-      "precision_step_weighted": 0.9483
+      "n": 1615,
+      "precision": 0.9406,
+      "precision_step_weighted": 0.9501
      },
      "landable": true
     }
@@ -1115,14 +1115,14 @@
     },
     "staff": {
      "det_gold": {
-      "n": 83,
-      "precision": 0.7711,
-      "precision_step_weighted": 0.8044
+      "n": 82,
+      "precision": 0.7683,
+      "precision_step_weighted": 0.8043
      },
      "jury": {
-      "n": 1254,
-      "precision": 0.6475,
-      "precision_step_weighted": 0.5817
+      "n": 1251,
+      "precision": 0.6483,
+      "precision_step_weighted": 0.5818
      },
      "landable": false
     }
@@ -1152,9 +1152,9 @@
       "precision_step_weighted": 0.2977
      },
      "jury": {
-      "n": 1457,
-      "precision": 0.2629,
-      "precision_step_weighted": 0.3065
+      "n": 1441,
+      "precision": 0.2658,
+      "precision_step_weighted": 0.3105
      },
      "landable": false
     }
@@ -1179,14 +1179,14 @@
     },
     "staff": {
      "det_gold": {
-      "n": 67,
-      "precision": 0.3134,
+      "n": 65,
+      "precision": 0.3231,
       "precision_step_weighted": 0.246
      },
      "jury": {
-      "n": 2954,
-      "precision": 0.264,
-      "precision_step_weighted": 0.2865
+      "n": 2942,
+      "precision": 0.2651,
+      "precision_step_weighted": 0.2869
      },
      "landable": false
     }
@@ -1211,9 +1211,9 @@
     },
     "staff": {
      "det_gold": {
-      "n": 282,
-      "precision": 0.5993,
-      "precision_step_weighted": 0.7124
+      "n": 280,
+      "precision": 0.6,
+      "precision_step_weighted": 0.7125
      },
      "jury": {
       "n": 3651,
@@ -1248,9 +1248,9 @@
       "precision_step_weighted": 0.9778
      },
      "jury": {
-      "n": 601,
-      "precision": 0.8486,
-      "precision_step_weighted": 0.9246
+      "n": 596,
+      "precision": 0.8523,
+      "precision_step_weighted": 0.9285
      },
      "landable": false
     }
@@ -1275,13 +1275,13 @@
     },
     "staff": {
      "det_gold": {
-      "n": 869,
-      "precision": 0.8734,
-      "precision_step_weighted": 0.9605
+      "n": 864,
+      "precision": 0.8773,
+      "precision_step_weighted": 0.9606
      },
      "jury": {
-      "n": 7545,
-      "precision": 0.8347,
+      "n": 7543,
+      "precision": 0.8349,
       "precision_step_weighted": 0.7636
      },
      "landable": false
@@ -1344,9 +1344,9 @@
       "precision_step_weighted": 0.6843
      },
      "jury": {
-      "n": 1682,
-      "precision": 0.4744,
-      "precision_step_weighted": 0.4134
+      "n": 1679,
+      "precision": 0.4753,
+      "precision_step_weighted": 0.4136
      },
      "landable": false
     }
@@ -1376,9 +1376,9 @@
       "precision_step_weighted": 0.8359
      },
      "jury": {
-      "n": 2219,
-      "precision": 0.5922,
-      "precision_step_weighted": 0.6328
+      "n": 2215,
+      "precision": 0.5923,
+      "precision_step_weighted": 0.6333
      },
      "landable": false
     }
@@ -1408,9 +1408,9 @@
       "precision_step_weighted": 0.7582
      },
      "jury": {
-      "n": 3563,
-      "precision": 0.4075,
-      "precision_step_weighted": 0.5114
+      "n": 3552,
+      "precision": 0.4085,
+      "precision_step_weighted": 0.5117
      },
      "landable": false
     }
@@ -1435,14 +1435,14 @@
     },
     "staff": {
      "det_gold": {
-      "n": 288,
-      "precision": 0.6285,
-      "precision_step_weighted": 0.6102
+      "n": 285,
+      "precision": 0.6246,
+      "precision_step_weighted": 0.6101
      },
      "jury": {
-      "n": 3372,
-      "precision": 0.3135,
-      "precision_step_weighted": 0.3753
+      "n": 3370,
+      "precision": 0.3131,
+      "precision_step_weighted": 0.3752
      },
      "landable": false
     }
@@ -1467,14 +1467,14 @@
     },
     "staff": {
      "det_gold": {
-      "n": 1581,
-      "precision": 0.1986,
+      "n": 1577,
+      "precision": 0.1991,
       "precision_step_weighted": 0.0819
      },
      "jury": {
-      "n": 8953,
-      "precision": 0.1248,
-      "precision_step_weighted": 0.1559
+      "n": 8938,
+      "precision": 0.125,
+      "precision_step_weighted": 0.156
      },
      "landable": false
     }
@@ -1504,9 +1504,9 @@
       "precision_step_weighted": 0.9901
      },
      "jury": {
-      "n": 414,
-      "precision": 0.7295,
-      "precision_step_weighted": 0.7954
+      "n": 413,
+      "precision": 0.7312,
+      "precision_step_weighted": 0.7961
      },
      "landable": false
     }

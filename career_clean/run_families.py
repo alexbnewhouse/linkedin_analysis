@@ -18,8 +18,8 @@ gate scores each family's anchor on TWO populations and TWO strata:
                because functional families (marketing 13, sales 41, ...) are wrong on
                managers by SOC convention (managers are 11).
 The string classified is role_display (soc_candidates.parquet). A (family, stratum) is
-landable when precision >= BAR with n >= MIN_GOLD on BOTH populations at confidence 'high',
-and the family is not in NEVER_LAND. Role-unweighted and step-weighted precision are both
+landable when role-unweighted AND step-weighted precision >= BAR with n >= MIN_GOLD on BOTH
+populations at confidence 'high', and the family is not in NEVER_LAND. Role-unweighted and step-weighted precision are both
 written to career_clean/results/family_gate.json.
 """
 from __future__ import annotations
@@ -50,7 +50,7 @@ BAR = 0.85
 MIN_GOLD = 100
 CHUNK = 40_000
 MANAGERIAL = frozenset({"manager", "director", "vp", "c_suite", "owner"})
-SALT = "p4-family-2026-09-22"
+SALT = "p4-family-2026-09-22-v2"
 RUBRIC = ("pass = the assigned SOC major group is the right group for this job title at this "
           "employer (a marketing manager is Management 11, a marketing coordinator is Business "
           "13); fail = a different major group is clearly right; unsure = the title alone cannot "
@@ -145,9 +145,14 @@ def gate() -> None:
         for st in ("managerial", "staff"):
             ga = a.get((fam, st), {"n": 0, "precision": None, "precision_step_weighted": None})
             gb = b.get((fam, st), {"n": 0, "precision": None, "precision_step_weighted": None})
+            # post-review 2026-09-22: the step-weighted precision must clear the bar too
+            # (higher_ed_faculty passed role-unweighted at 0.97 while postdocs, a few
+            # heavy roles, held its step-weighted precision at 0.65).
             landable = (fam not in NEVER_LAND and FAMILIES[fam][2] is not None
                         and ga["n"] >= MIN_GOLD and gb["n"] >= MIN_GOLD
-                        and ga["precision"] >= BAR and gb["precision"] >= BAR)
+                        and ga["precision"] >= BAR and gb["precision"] >= BAR
+                        and (ga["precision_step_weighted"] or 0) >= BAR
+                        and (gb["precision_step_weighted"] or 0) >= BAR)
             strata[st] = {"det_gold": ga, "jury": gb, "landable": bool(landable)}
         fams[fam] = {"anchor": FAMILIES[fam][2], "never_land": fam in NEVER_LAND, "strata": strata}
     GATE.write_text(json.dumps({
@@ -190,7 +195,7 @@ def sample(n: int = 100) -> None:
         for i, r in enumerate(rows):
             d = dict(zip(cols, r))
             d["soc_major_label"] = SOC_MAJOR.get(d["soc_major"], "")
-            d["id"] = f"family:{i:03d}"
+            d["id"] = f"family:{SALT.rsplit('-', 1)[-1]}:{i:03d}"
             for k in ("linkedin_id", "experience_idx", "position_idx", "source_table"):
                 d.pop(k, None)
             fh.write(json.dumps(d, default=str, ensure_ascii=False) + "\n")
