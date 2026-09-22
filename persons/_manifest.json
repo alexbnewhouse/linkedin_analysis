@@ -1,12 +1,12 @@
 {
  "schema_version": 1,
- "built": "2026-09-22T16:00:10.950663+00:00",
+ "built": "2026-09-22T16:06:19.671491+00:00",
  "snapshot_date": "2026-02-19",
  "snapshot_id": "snap_mlsi9jwqziij1k8zq",
  "snapshot_cal_year": 2026,
  "last_complete_year": 2025,
- "git": "67081d7",
- "git_dirty": false,
+ "git": "c4846da",
+ "git_dirty": true,
  "params": {
   "min_support": 10,
   "secondary_suppression": true,
@@ -37,7 +37,7 @@
    "mtime": "2026-09-22T15:54:38.143727+00:00"
   },
   "normalized/career_steps.parquet": {
-   "mtime": "2026-09-22T15:51:54.110226+00:00"
+   "mtime": "2026-09-22T16:03:26.339690+00:00"
   },
   "paths/steps.parquet": {
    "mtime": "2026-09-02T22:27:57.899767+00:00"
@@ -57,7 +57,7 @@
  },
  "rows": 1999974,
  "steps_joined": 10717451,
- "runtime_s": 12.4,
+ "runtime_s": 11.7,
  "summary": {
   "persons": 1999974,
   "with_bachelor": 1497978,
@@ -66,7 +66,7 @@
   "l3": 602584,
   "with_entry": 1999916,
   "with_grad_year": 279671,
-  "with_cur_major": 1064578,
+  "with_cur_major": 1064527,
   "grad_degree": 611807
  }
 }
