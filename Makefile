@@ -2,7 +2,7 @@
 UV := uv run
 
 .PHONY: parse normalize normalize-fast normalize-education normalize-career \
-        industry archetypes portal test test-data lint cert \
+        industry archetypes portal test test-data lint cert benchmarks \
         paths network seniority cohorts refresh check-freshness
 
 parse:            ## raw JSONL -> parsed/ star schema (~20 min)
@@ -52,6 +52,9 @@ check-freshness:  ## exit 1 if any downstream output is older than its inputs
 cert:             ## certifications skills axis (audit R6)
 	$(UV) python -m cert_clean.run_cert
 
+benchmarks:       ## LinkedIn shares vs NCES / Humanities Indicators (validation/results)
+	$(UV) python -m validation.external_benchmarks
+
 portal:
 	$(UV) python -m portal.run_portal_data
 	$(UV) python -m portal.run_share_build
@@ -67,6 +70,7 @@ test:             ## data-independent logic suites (no built parquet needed)
 	$(UV) python -m cert_clean.cert_tests
 	$(UV) python -m paths.spine_tests
 	$(UV) --with numpy python normalization_regression_checks.py
+	$(UV) python -m validation.validation_tests
 
 test-data:        ## suites that read built parquet
 	$(UV) python -m career_clean.soc_data_checks
@@ -75,6 +79,7 @@ test-data:        ## suites that read built parquet
 	$(UV) python -m edu_clean.cip_tests
 	$(UV) python -m portal.portal_tests
 	$(UV) python -m cohorts.cohort_tests
+	$(UV) python -m validation.benchmark_checks
 
 lint:
 	uvx ruff check .

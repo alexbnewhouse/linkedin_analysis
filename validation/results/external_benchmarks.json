@@ -1,0 +1,337 @@
+{
+ "release": {
+  "built": "2026-09-22",
+  "git": "5cbc738",
+  "snapshot_date": "2026-02-19",
+  "last_complete_year": 2025,
+  "education_rows": 3577659,
+  "education_fingerprint": "9303125656290400326"
+ },
+ "sources": {
+  "nces": "NCES Digest of Education Statistics, Table 322.10: Bachelor's degrees conferred by postsecondary institutions, by field of study (2023 edition, d23)",
+  "nces_history": "NCES Digest of Education Statistics, Table 325.92 (2022 edition, d22): Degrees in economics, history, political science and government, and sociology conferred by postsecondary institutions, by level of degree, 1949-50 through 2020-21 (https://nces.ed.gov/programs/digest/d22/tables/dt22_325.92.asp), bachelor's in history, verified 2026-09-22. The d23 edition has no renumbered equivalent online (dt23_325.92 returns 404), so 2021-22 has no printed count.",
+  "nces_verified_on": "2026-09-22",
+  "humanities_indicators": "https://www.amacad.org/humanities-indicators/workforce/earnings-humanities-majors-advanced-degree ('In 2021, 42% of humanities majors possessed at least one advanced degree'; American Community Survey)"
+ },
+ "definitions": {
+  "rung": "degree_level_pooled = 4, NOT is_duplicate, cip2_pooled real; field = cip2_pooled",
+  "core6": [
+   "05",
+   "16",
+   "23",
+   "24",
+   "38",
+   "54"
+  ],
+  "l1_proxy": [
+   "05",
+   "16",
+   "23",
+   "24",
+   "38",
+   "54",
+   "39",
+   "50"
+  ],
+  "year_bucket": "nearest Digest year within +-1",
+  "advanced_degree": "highest_degree_level_pooled >= 6 among hum_l1_bachelor_pooled_any; primary line restricted to bachelor_end_year <= 2015"
+ },
+ "biases": [
+  "years-present rows are a minority of the bachelor's rung and skew toward CS and away from business (see rung_subset)",
+  "rows are not restricted to US institutions; NCES counts US institutions only",
+  "the pooled CIP layer (det + jury + knn_head + degree_type) is what is benchmarked"
+ ],
+ "rung_subset": {
+  "undated": {
+   "n": 1190936,
+   "core6": 0.07476976092753934,
+   "l1_proxy": 0.12843511322186918,
+   "business": 0.30810135893112645,
+   "cs": 0.04637444833307583
+  },
+  "dated": {
+   "n": 288856,
+   "core6": 0.06811006176087739,
+   "l1_proxy": 0.12296092170493256,
+   "business": 0.22163984822887528,
+   "cs": 0.06996565762871465
+  }
+ },
+ "years": {
+  "1991": {
+   "linkedin_n": 5953,
+   "history_estimated": false,
+   "core6": {
+    "linkedin": 0.10062153536032252,
+    "nces": 0.12084276653711429,
+    "ratio": 0.8326649434115592
+   },
+   "l1_proxy": {
+    "linkedin": 0.15320006719301194,
+    "nces": 0.16376955391224426,
+    "ratio": 0.9354612230006074
+   },
+   "english": {
+    "linkedin": 0.04518730052074584,
+    "nces": 0.0466534738857856,
+    "ratio": 0.9685731148632327
+   },
+   "history": {
+    "linkedin": 0.023685536704182764,
+    "nces": 0.022421332105417992,
+    "ratio": 1.0563840093363268
+   },
+   "business": {
+    "linkedin": 0.2623887115739963,
+    "nces": 0.22764399225974793,
+    "ratio": 1.1526274379980286
+   },
+   "cs": {
+    "linkedin": 0.028892995128506634,
+    "nces": 0.022985953891048096,
+    "ratio": 1.2569848206194758
+   },
+   "communication": {
+    "linkedin": 0.06568116915840752,
+    "nces": 0.047188859591900875,
+    "ratio": 1.3918787130359158
+   },
+   "psychology": {
+    "linkedin": 0.05106668906433731,
+    "nces": 0.05358882012319353,
+    "ratio": 0.9529354993624011
+   }
+  },
+  "2001": {
+   "linkedin_n": 10103,
+   "history_estimated": false,
+   "core6": {
+    "linkedin": 0.08532119172523013,
+    "nces": 0.11682558104955026,
+    "ratio": 0.7303297014122455
+   },
+   "l1_proxy": {
+    "linkedin": 0.14837177076116004,
+    "nces": 0.17097247886343597,
+    "ratio": 0.8678108415312372
+   },
+   "english": {
+    "linkedin": 0.034148272790260316,
+    "nces": 0.04064473452604184,
+    "ratio": 0.8401647393804696
+   },
+   "history": {
+    "linkedin": 0.01603484113629615,
+    "nces": 0.020166038269659074,
+    "ratio": 0.7951408661373741
+   },
+   "business": {
+    "linkedin": 0.2533900821538157,
+    "nces": 0.2117996641940698,
+    "ratio": 1.1963667795131019
+   },
+   "cs": {
+    "linkedin": 0.05473621696525784,
+    "nces": 0.03547904588677923,
+    "ratio": 1.5427759004549368
+   },
+   "communication": {
+    "linkedin": 0.06334752053845392,
+    "nces": 0.046627834919798,
+    "ratio": 1.3585773529355276
+   },
+   "psychology": {
+    "linkedin": 0.0569137879837672,
+    "nces": 0.059192024247470804,
+    "ratio": 0.9615110938903065
+   }
+  },
+  "2006": {
+   "linkedin_n": 16131,
+   "history_estimated": false,
+   "core6": {
+    "linkedin": 0.08796726799330482,
+    "nces": 0.11665916999752206,
+    "ratio": 0.7540536075747266
+   },
+   "l1_proxy": {
+    "linkedin": 0.15690285785134214,
+    "nces": 0.17792019952811386,
+    "ratio": 0.8818720879781237
+   },
+   "english": {
+    "linkedin": 0.035583658793627175,
+    "nces": 0.03709773860955192,
+    "ratio": 0.959186735561965
+   },
+   "history": {
+    "linkedin": 0.01791581427065898,
+    "nces": 0.022319648994279188,
+    "ratio": 0.8026924740281997
+   },
+   "business": {
+    "linkedin": 0.24858967206000868,
+    "nces": 0.2141553722836919,
+    "ratio": 1.1607912022431153
+   },
+   "cs": {
+    "linkedin": 0.05033785878122869,
+    "nces": 0.03212030941940766,
+    "ratio": 1.5671660606984583
+   },
+   "communication": {
+    "linkedin": 0.0556692083565805,
+    "nces": 0.04959787328025512,
+    "ratio": 1.1224111977950952
+   },
+   "psychology": {
+    "linkedin": 0.057900936085797536,
+    "nces": 0.059343992070589,
+    "ratio": 0.9756832000268036
+   }
+  },
+  "2016": {
+   "linkedin_n": 33756,
+   "history_estimated": false,
+   "core6": {
+    "linkedin": 0.06295177153691196,
+    "nces": 0.07833606664063517,
+    "ratio": 0.8036115959932187
+   },
+   "l1_proxy": {
+    "linkedin": 0.11861594975708023,
+    "nces": 0.1308181699856827,
+    "ratio": 0.90672381191437
+   },
+   "english": {
+    "linkedin": 0.02393648536556464,
+    "nces": 0.022281400494598463,
+    "ratio": 1.0742810072179894
+   },
+   "history": {
+    "linkedin": 0.011494252873563218,
+    "nces": 0.013322400104125992,
+    "ratio": 0.8627764354565067
+   },
+   "business": {
+    "linkedin": 0.1950764308567366,
+    "nces": 0.19351295067031107,
+    "ratio": 1.008079460217054
+   },
+   "cs": {
+    "linkedin": 0.07681597345657068,
+    "nces": 0.03352961082910322,
+    "ratio": 2.290989115504303
+   },
+   "communication": {
+    "linkedin": 0.050539163407986726,
+    "nces": 0.04818482363660029,
+    "ratio": 1.0488606078366576
+   },
+   "psychology": {
+    "linkedin": 0.07400165896433226,
+    "nces": 0.06114642717688403,
+    "ratio": 1.2102368426246835
+   }
+  },
+  "2021": {
+   "linkedin_n": 29643,
+   "history_estimated": false,
+   "core6": {
+    "linkedin": 0.05185035252842155,
+    "nces": 0.0655240379334157,
+    "ratio": 0.7913180286769095
+   },
+   "l1_proxy": {
+    "linkedin": 0.0966501366258476,
+    "nces": 0.11234897503608823,
+    "ratio": 0.8602671861919707
+   },
+   "english": {
+    "linkedin": 0.017811962351988665,
+    "nces": 0.017306866854136755,
+    "ratio": 1.029184687333004
+   },
+   "history": {
+    "linkedin": 0.009412002833721284,
+    "nces": 0.01109093170310816,
+    "ratio": 0.8486214761455643
+   },
+   "business": {
+    "linkedin": 0.18112201868906655,
+    "nces": 0.1893825343110426,
+    "ratio": 0.9563818508817241
+   },
+   "cs": {
+    "linkedin": 0.07988395236649462,
+    "nces": 0.05075484051734776,
+    "ratio": 1.573917907183467
+   },
+   "communication": {
+    "linkedin": 0.039638363188611137,
+    "nces": 0.043920941241144894,
+    "ratio": 0.9024934818900953
+   },
+   "psychology": {
+    "linkedin": 0.07711770063758729,
+    "nces": 0.06143347352456831,
+    "ratio": 1.2553042537428163
+   }
+  },
+  "2022": {
+   "linkedin_n": 29534,
+   "history_estimated": true,
+   "core6": {
+    "linkedin": 0.04564231055732376,
+    "nces": 0.06189698293081758,
+    "ratio": 0.7373915237248041
+   },
+   "l1_proxy": {
+    "linkedin": 0.08793255231258888,
+    "nces": 0.10985396630827753,
+    "ratio": 0.8004494991635376
+   },
+   "english": {
+    "linkedin": 0.014728787160560709,
+    "nces": 0.016589786281627862,
+    "ratio": 0.8878225982255062
+   },
+   "history": {
+    "linkedin": 0.009311302227940679,
+    "nces": 0.01072367824876491,
+    "ratio": 0.8682936966160002
+   },
+   "business": {
+    "linkedin": 0.21192523870792984,
+    "nces": 0.18630842640450415,
+    "ratio": 1.137496799247328
+   },
+   "cs": {
+    "linkedin": 0.09030270197061015,
+    "nces": 0.05384670737729121,
+    "ratio": 1.677032939783678
+   },
+   "communication": {
+    "linkedin": 0.03812555021331347,
+    "nces": 0.0427004989987767,
+    "ratio": 0.8928595943200971
+   },
+   "psychology": {
+    "linkedin": 0.0778086273447552,
+    "nces": 0.06432096712960321,
+    "ratio": 1.2096930568219706
+   }
+  }
+ },
+ "advanced_degree_rate": {
+  "linkedin_hum_l1_bachelor_cohort": 0.42857804324674725,
+  "n_cohort": 21597,
+  "cohort_max_bachelor_year": 2015,
+  "linkedin_hum_l1_bachelor_all": 0.32312245897220065,
+  "n_all": 181767,
+  "humanities_indicators": 0.42,
+  "humanities_indicators_year": 2021,
+  "ratio_cohort": 1.0204239124922554,
+  "ratio_all": 0.7693391880290492
+ }
+}

@@ -33,3 +33,11 @@ Notes:
   (ACLS), L3 liberal arts (Phi Beta Kappa: + math & natural sciences, − applied/
   vocational). Levels are nested (L1⇒L2⇒L3). Full schema, source CIP groupings,
   deviations, and coverage stats: `edu_clean/HUMANITIES_CLASSIFICATION.md`.
+
+## External benchmarks (validation/, 2026-09-22)
+
+- `nces_bachelors_by_field.json`: NCES Digest Table 322.10 (d23) bachelor's degrees by field for six
+  academic years, plus history bachelor's from Table 325.92 (d22). Every number verified against the
+  live tables on the date in `verified_on`. Consumed by `validation/external_benchmarks.py`.
+- `humanities_indicators.json`: Humanities Indicators figures (advanced-degree rate among humanities
+  majors, 42% in 2021, ACS) with source URLs.
