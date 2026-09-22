@@ -115,7 +115,10 @@ def build() -> dict:
             "year_bucket": f"nearest Digest year within +-{C.YEAR_TOLERANCE}",
             "advanced_degree": (f"highest_degree_level_pooled >= 6 among hum_l1_bachelor_pooled_any; "
                                 f"primary line restricted to bachelor_end_year <= "
-                                f"{C.ADVANCED_DEGREE_COHORT_MAX_YEAR}"),
+                                f"{C.ADVANCED_DEGREE_COHORT_MAX_YEAR}; bachelor_end_year is the "
+                                f"deterministic rung, so persons whose only bachelor's is jury- or "
+                                f"imputation-leveled fall out of the cohort line"),
+            "digest_years": "the six years Table 322.10 prints in this span; it has no 2010-11 column",
         },
         "biases": [
             "years-present rows are a minority of the bachelor's rung and skew toward CS and away from business (see rung_subset)",

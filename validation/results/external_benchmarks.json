@@ -1,7 +1,7 @@
 {
  "release": {
   "built": "2026-09-22",
-  "git": "5cbc738",
+  "git": "4576de5",
   "snapshot_date": "2026-02-19",
   "last_complete_year": 2025,
   "education_rows": 3577659,
@@ -34,7 +34,8 @@
    "50"
   ],
   "year_bucket": "nearest Digest year within +-1",
-  "advanced_degree": "highest_degree_level_pooled >= 6 among hum_l1_bachelor_pooled_any; primary line restricted to bachelor_end_year <= 2015"
+  "advanced_degree": "highest_degree_level_pooled >= 6 among hum_l1_bachelor_pooled_any; primary line restricted to bachelor_end_year <= 2015; bachelor_end_year is the deterministic rung, so persons whose only bachelor's is jury- or imputation-leveled fall out of the cohort line",
+  "digest_years": "the six years Table 322.10 prints in this span; it has no 2010-11 column"
  },
  "biases": [
   "years-present rows are a minority of the bachelor's rung and skew toward CS and away from business (see rung_subset)",
@@ -283,13 +284,13 @@
    "history_estimated": true,
    "core6": {
     "linkedin": 0.04564231055732376,
-    "nces": 0.06189698293081758,
-    "ratio": 0.7373915237248041
+    "nces": 0.06185843768172761,
+    "ratio": 0.7378510073623483
    },
    "l1_proxy": {
     "linkedin": 0.08793255231258888,
-    "nces": 0.10985396630827753,
-    "ratio": 0.8004494991635376
+    "nces": 0.10981542105918755,
+    "ratio": 0.8007304572023232
    },
    "english": {
     "linkedin": 0.014728787160560709,
@@ -298,8 +299,8 @@
    },
    "history": {
     "linkedin": 0.009311302227940679,
-    "nces": 0.01072367824876491,
-    "ratio": 0.8682936966160002
+    "nces": 0.010685132999674943,
+    "ratio": 0.8714259549435596
    },
    "business": {
     "linkedin": 0.21192523870792984,

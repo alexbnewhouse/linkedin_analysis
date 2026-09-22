@@ -9,6 +9,8 @@ from __future__ import annotations
 
 import json
 
+import duckdb
+
 from validation import common as C
 
 MIN_ROWS_PER_YEAR = 1_000
@@ -24,6 +26,14 @@ def main() -> None:
     r = json.loads(C.OUT.read_text())
     assert r["release"].get("git"), "release stamp missing git sha"
     ok("release stamp present")
+    con = duckdb.connect()
+    n_rows, fp = con.execute(f"""
+        SELECT count(*), bit_xor(hash(linkedin_id, idx, cip_code, cip2_pooled, degree_level_pooled))
+        FROM read_parquet('{C.EDUCATION}')""").fetchone()
+    con.close()
+    assert n_rows == r["release"]["education_rows"] and str(fp) == r["release"]["education_fingerprint"], \
+        "education.parquet changed since the benchmark was built: run `make benchmarks` and recommit"
+    ok("committed benchmark matches the live education.parquet fingerprint")
     for y, e in r["years"].items():
         assert e["linkedin_n"] >= MIN_ROWS_PER_YEAR, f"{y}: only {e['linkedin_n']} rows"
         for grp in ("core6", "l1_proxy"):

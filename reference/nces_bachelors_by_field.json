@@ -2,7 +2,7 @@
  "source": "NCES Digest of Education Statistics, Table 322.10: Bachelor's degrees conferred by postsecondary institutions, by field of study (2023 edition, d23)",
  "url": "https://nces.ed.gov/programs/digest/d23/tables/dt23_322.10.asp",
  "verified_on": "2026-09-22",
- "verification": "every number below was read from the live d23 table on the date above; 2020-21 values differ slightly from the d22 edition (revised by NCES)",
+ "verification": "every number below was read from the live d23 table on the date above; 2020-21 values differ slightly from the d22 edition (revised by NCES); Table 322.10 has no 2010-11 column, so the spec's 2010-11 year is absent by source",
  "year_key": "end year of the academic year (1990-91 -> 1991)",
  "cip_map": {
   "english": "23",
@@ -146,6 +146,6 @@
    "history": null
   }
  },
- "notes": "core6 = english + foreign_lang + liberal_arts_hum + phil_rel + area_ethnic + history (CIP 23, 16, 24, 38, 05, 54). history comes from Table 325.92 where printed; where null (2021-22) the build uses history_estimate_share_of_socsci_history * socsci_history (0.143 = the 2020-21 printed share, 22,919 / 160,851) and flags the year history_estimated. l1_proxy = core6 + theology (39) + visual_performing_arts (50), the Digest lines that correspond to the repo's L1 additions.",
- "history_estimate_share_of_socsci_history": 0.143
+ "notes": "core6 = english + foreign_lang + liberal_arts_hum + phil_rel + area_ethnic + history (CIP 23, 16, 24, 38, 05, 54). history comes from Table 325.92 where printed; where null (2021-22) the build uses history_estimate_share_of_socsci_history * socsci_history (the 2020-21 printed quotient 22,919 / 160,851) and flags the year history_estimated. l1_proxy = core6 + theology (39) + visual_performing_arts (50), the Digest lines that correspond to the repo's L1 additions.",
+ "history_estimate_share_of_socsci_history": 0.142486
 }
