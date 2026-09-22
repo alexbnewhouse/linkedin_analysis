@@ -85,7 +85,14 @@ pooled applies ~2 min, person rollup 3s, career_steps 75s.
 | Co-majors / minors (propose-only; P3 2026-09-22) | `uv run python -m edu_clean.run_comajors` (value mapping) then `apply_comajors --execute` (runs inside `build_normalized` after the imputed apply) | `mappings/edu_field_components.parquet`; education `cip_secondary`, `minor_cip`, `comajor_source`; person `double_major_any`, `hum_l1_comajor_any`, `minor_hum_l1_any`; blind sample `edu_clean/results/comajors_sample.jsonl` |
 | Imputed bachelor's (strict, propose-only; P2 2026-09-22) | `uv run python -m edu_clean.apply_bachelor_imputed --execute` (runs inside `build_normalized` after the CIP apply) | `education.degree_level_source = 'imputed_bachelor'`; person flag `bachelor_imputed_any`; blind sample `edu_clean/results/imputed_bachelor_sample.jsonl` |
 | SOC role tail | `uv run python -m career_clean.run_soc_jury` | `mappings/role_soc_jury.parquet` |
+| Occupation-family tier (rules; P4 2026-09-22) | `make families` (classify + per-(family, stratum) gate) then `make normalize-career` | `mappings/title_family.parquet`; steps `title_family`, `title_family_confidence`, `title_seniority9`; pooled major `occupation_source = 'family'` only for gate-cleared strata (3 of 104) |
+| Employer-keyed overrides (P5 2026-09-22) | `make overrides` then `make normalize-career` | `mappings/career_occupation_override.parquet` (row-level); steps `occupation_code_pooled`, `occupation_code_source`, `override_reason`; pooled major `occupation_source = 'override'` |
 | Industry | `uv run python -m industry.fire_llm` | see `industry/SETUP.md` |
+
+Pooled-occupation precedence on `career_steps` (2026-09-22): override > det > jury > family for
+`occupation_major_pooled` / `occupation_source`; `occupation_code_pooled` is override > det (jury and
+family know only the major group). The three propose-only mappings (`role_soc_jury`, `title_family`,
+`career_occupation_override`) are OPTIONAL: a fresh clone builds with their columns NULL.
 
 Contract: votes land in append-only JSONL caches keyed by (evidence, model,
 prompt version); merges write NEW mapping parquets; deterministic columns are

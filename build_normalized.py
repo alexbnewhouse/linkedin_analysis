@@ -206,7 +206,7 @@ def _quote(path: Path) -> str:
 # drivers downstream of the tables they enrich (career_steps -> paths -> SOC
 # jury -> role_soc_jury -> career_steps), so the first build of a fresh clone
 # cannot have them. The join reads an empty relation and warns.
-OPTIONAL_MAPPINGS: frozenset[str] = frozenset({"role_soc_jury"})
+OPTIONAL_MAPPINGS: frozenset[str] = frozenset({"role_soc_jury", "title_family", "career_occupation_override"})
 
 
 def _optional_mapping_relation(path: Path, schema: str) -> str:
@@ -247,6 +247,12 @@ def build_mappings(
         # Built by career_clean.run_soc_jury merge, not by this script; joined
         # into career_steps for the pooled SOC-major axis (audit R1).
         "role_soc_jury": mappings / "role_soc_jury.parquet",
+        # Built by career_clean.run_families (classify + gate), not by this script;
+        # propose-only occupation-family tier (P4, 2026-09-22).
+        "title_family": mappings / "title_family.parquet",
+        # Built by career_clean.run_overrides; row-level employer-keyed overrides
+        # (P5, 2026-09-22).
+        "career_occupation_override": mappings / "career_occupation_override.parquet",
     }
 
     if skip:
@@ -955,15 +961,40 @@ def write_career_steps(out: Path, mappings: dict[str, Path], threads: int, timin
                 -- code's major group wins; else the unanimous role->SOC-major
                 -- jury vote (career_clean.run_soc_jury, 299,787 roles).
                 -- Propose-only: no deterministic column above is altered.
+                -- P4/P5 (2026-09-22): precedence override > det > jury > family.
+                -- family lands only where the title is landable (per-family,
+                -- per-stratum gate in career_clean/results/family_gate.json) AND
+                -- the row has no functional_cluster (the self-employment layer
+                -- already resolved what the owner does). Overrides never change
+                -- a non-NULL det major (data-checked): they add codes where the
+                -- coder abstained and re-route VP titles within 11.
                 CASE
+                  WHEN ov.soc_major_override IS NOT NULL THEN ov.soc_major_override
                   WHEN starts_with(occupation.canonical_id, 'soc:')
                     THEN substr(occupation.canonical_id, 5, 2)
-                  ELSE rsj.soc_major
+                  WHEN rsj.soc_major IS NOT NULL THEN rsj.soc_major
+                  WHEN coalesce(tf.landable, FALSE) AND fc.functional_cluster IS NULL
+                    THEN tf.soc_major_anchor
                 END AS occupation_major_pooled,
                 CASE
+                  WHEN ov.soc_major_override IS NOT NULL THEN 'override'
                   WHEN starts_with(occupation.canonical_id, 'soc:') THEN 'det'
                   WHEN rsj.soc_major IS NOT NULL THEN 'jury'
+                  WHEN coalesce(tf.landable, FALSE) AND fc.functional_cluster IS NULL THEN 'family'
                 END AS occupation_source,
+                -- 6-digit code under the same precedence (override > det; jury and
+                -- family know only the major group).
+                coalesce(ov.occupation_code_override,
+                         CASE WHEN starts_with(occupation.canonical_id, 'soc:')
+                              THEN substr(occupation.canonical_id, 5) END) AS occupation_code_pooled,
+                CASE
+                  WHEN ov.occupation_code_override IS NOT NULL THEN 'override'
+                  WHEN starts_with(occupation.canonical_id, 'soc:') THEN 'det'
+                END AS occupation_code_source,
+                ov.reason AS override_reason,
+                tf.family AS title_family,
+                tf.confidence AS title_family_confidence,
+                tf.seniority9 AS title_seniority9,
                 -- finding 3: SE functional cluster (SOC major group or honest
                 -- *_unspecified residue), resolved row-level for the
                 -- self-employment population only; NULL elsewhere.
@@ -1012,6 +1043,13 @@ def write_career_steps(out: Path, mappings: dict[str, Path], threads: int, timin
                      WHEN starts_with(title.canonical_id, 'title:')
                      THEN regexp_extract(title.canonical_id, '^title:[^|]*\\|(.*)$', 1)
                    END
+              LEFT JOIN {_optional_mapping_relation(mappings["title_family"], "value VARCHAR, family VARCHAR, seniority9 VARCHAR, confidence VARCHAR, soc_major_anchor VARCHAR, landable BOOLEAN")} tf
+                ON s.title IS NOT DISTINCT FROM tf.value
+              LEFT JOIN {_optional_mapping_relation(mappings["career_occupation_override"], "source_table VARCHAR, linkedin_id VARCHAR, experience_idx BIGINT, position_idx BIGINT, occupation_code_override VARCHAR, soc_major_override VARCHAR, reason VARCHAR")} ov
+                ON s.source_table = ov.source_table
+               AND s.linkedin_id = ov.linkedin_id
+               AND s.experience_idx = ov.experience_idx
+               AND s.position_idx IS NOT DISTINCT FROM ov.position_idx
               LEFT JOIN read_parquet('{_quote(mappings["career_functional_cluster"])}') fc
                 ON s.source_table = fc.source_table
                AND s.linkedin_id = fc.linkedin_id

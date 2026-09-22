@@ -52,6 +52,13 @@ check-freshness:  ## exit 1 if any downstream output is older than its inputs
 cert:             ## certifications skills axis (audit R6)
 	$(UV) python -m cert_clean.run_cert
 
+families:         ## occupation-family tier: classify every title, gate per (family, stratum); rebuild career afterwards
+	$(UV) python -m career_clean.run_families classify
+	$(UV) python -m career_clean.run_families gate
+
+overrides:        ## employer-keyed occupation overrides (row-level mapping); rebuild career afterwards
+	$(UV) python -m career_clean.run_overrides
+
 comajors:         ## value-level co-major mapping (edu_clean.run_comajors); the apply runs inside build_normalized
 	$(UV) python -m edu_clean.run_comajors
 
@@ -79,6 +86,8 @@ test:             ## data-independent logic suites (no built parquet needed)
 	$(UV) python -m validation.validation_tests
 	$(UV) python -m edu_clean.imputed_tests
 	$(UV) python -m edu_clean.comajor_tests
+	$(UV) python -m career_clean.families.family_tests
+	$(UV) python -m career_clean.override_tests
 	$(UV) python -m coding.coding_tests
 
 test-data:        ## suites that read built parquet
@@ -91,6 +100,7 @@ test-data:        ## suites that read built parquet
 	$(UV) python -m validation.benchmark_checks
 	$(UV) python -m edu_clean.imputed_data_checks
 	$(UV) python -m edu_clean.comajor_data_checks
+	$(UV) python -m career_clean.family_data_checks
 
 lint:
 	uvx ruff check .

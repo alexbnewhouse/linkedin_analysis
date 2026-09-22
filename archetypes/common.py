@@ -123,6 +123,8 @@ def soc_major_method_expr(c: str = "c", j: str = "j") -> str:
         CASE
           WHEN {c}.occupation_source = 'det' THEN 'detail'
           WHEN {c}.occupation_source = 'jury' THEN 'jury'
+          WHEN {c}.occupation_source = 'override' THEN 'override'
+          WHEN {c}.occupation_source = 'family' THEN 'family'
           WHEN {c}.functional_cluster IS NOT NULL
                 AND {c}.functional_cluster NOT LIKE '%unspecified%'
                 AND regexp_matches({c}.functional_cluster, '^[0-9]{{2}}$')
