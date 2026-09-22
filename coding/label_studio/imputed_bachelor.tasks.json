@@ -1,0 +1,2802 @@
+[
+ {
+  "data": {
+   "id": "imputed_bachelor:000",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Evangel University",
+   "degree_raw": "Marketing",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:001",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Houston",
+   "degree_raw": "Business Administration",
+   "field_raw": "BUSINESS, MANAGEMENT, MARKETING, AND RELATED SUPPORT SERVICES",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:002",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Lawrence Technological University",
+   "degree_raw": "Architecture",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "04",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:003",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California State University-Sacramento",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:004",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Purdue University",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:005",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Saint John's University",
+   "degree_raw": "Business",
+   "field_raw": "Management and English",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:006",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Portland State University",
+   "degree_raw": "Electrical Engineering",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "14",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:007",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Utah State University",
+   "degree_raw": "Computer and Information Sciences and Support Services",
+   "field_raw": "3.86 GPA",
+   "description": "Activities and Societies: Summa Cum Laude Degree pursued: Bachelors of Computer Science, Software and System Environments, minor work in Math and Spanish",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "11",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:008",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Portland State University",
+   "degree_raw": "Computer Science",
+   "field_raw": "Engineering Management",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "15",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:009",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "George Mason University",
+   "degree_raw": "Computational Science",
+   "field_raw": "",
+   "description": "",
+   "start_year": "2018",
+   "end_year": "2021",
+   "cip2_pooled": "30",
+   "field_group": "Math & Statistics"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:010",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Fort Hays State University",
+   "degree_raw": "Business Administration",
+   "field_raw": "Business / Agri Business",
+   "description": "",
+   "start_year": "1968",
+   "end_year": "1971",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:011",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California State University-Hayward",
+   "degree_raw": "Environmental Chemistry",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "40",
+   "field_group": "Physical Sciences"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:012",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "The University of Texas at Austin",
+   "degree_raw": "JOURNALISM",
+   "field_raw": "BROADCAST NEWS",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "09",
+   "field_group": "Communication & Media"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:013",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Wisconsin-Platteville",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:014",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Maryland Global Campus",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "Bachelor of Science, Business Administration, University of Maryland University College (20 Course Credits to go/3.5 GPA)",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:015",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Princeton University",
+   "degree_raw": "Social Psychology",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "42",
+   "field_group": "Psychology"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:016",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Southeastern Louisiana University",
+   "degree_raw": "BUSINESS, MANAGEMENT, MARKETING, AND RELATED SUPPORT SERVICES",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:017",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Suffolk University",
+   "degree_raw": "Business Administration, Management and Operations",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:018",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California State University, Northridge",
+   "degree_raw": "Political Science",
+   "field_raw": "Public Policy and Administration",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "44",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:019",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California State University-Sacramento",
+   "degree_raw": "Film",
+   "field_raw": "Cinematography and Film/Video Production",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "50",
+   "field_group": "Fine & Performing Arts"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:020",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Louisiana Monroe",
+   "degree_raw": "Sociology",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "45",
+   "field_group": "Humanistic Social Science"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:021",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Indiana University Bloomington",
+   "degree_raw": "Public Affairs",
+   "field_raw": "School of Public and Environmental Affairs",
+   "description": "Activities and Societies: Indiana Public Interest Research Group",
+   "start_year": "2006",
+   "end_year": "2010",
+   "cip2_pooled": "44",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:022",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Stony Brook University",
+   "degree_raw": "Chemistry",
+   "field_raw": "Chemical Physics",
+   "description": "Activities and Societies: Member of the taiko performance group on campus",
+   "start_year": "2022",
+   "end_year": "2024",
+   "cip2_pooled": "40",
+   "field_group": "Physical Sciences"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:023",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of North Carolina at Chapel Hill",
+   "degree_raw": "Epidemiology",
+   "field_raw": "",
+   "description": "Activities and Societies: President, Student Union Board",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "26",
+   "field_group": "Biological Sciences"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:024",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Colorado Boulder",
+   "degree_raw": "English",
+   "field_raw": "Creative Writing",
+   "description": "",
+   "start_year": "2011",
+   "end_year": "2019",
+   "cip2_pooled": "23",
+   "field_group": "English & Literature"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:025",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "George Mason University",
+   "degree_raw": "Communication",
+   "field_raw": "Journalism",
+   "description": "Activities and Societies: Because of the workload of my intern-ships I just started working at the Broadside, GMU's newspaper. I am graduating in Fall of 2007.",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "09",
+   "field_group": "Communication & Media"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:026",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Queens University of Charlotte",
+   "degree_raw": "Business Administration",
+   "field_raw": "Marketing/Corporate Communications",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:027",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Nova Southeastern University",
+   "degree_raw": "Computer Engineering",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "14",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:028",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Eastern Washington University",
+   "degree_raw": "Nursing",
+   "field_raw": "Nursing Science",
+   "description": "",
+   "start_year": "2018",
+   "end_year": "2022",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:029",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "James Madison University",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "Activities and Societies: Phi Chi Theta, Professional Business Fraternity Since transferring to JMU in the Fall of 2014, I have taken several business classes that have enhanced my understanding of th",
+   "start_year": "2014",
+   "end_year": "2017",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:030",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Queens College",
+   "degree_raw": "Elementary Education and Teaching",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "13",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:031",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Florida",
+   "degree_raw": "Finance",
+   "field_raw": "Business",
+   "description": "Activities and Societies: Phi Delta Theta",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:032",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "SANS Technology Institute",
+   "degree_raw": "Cyber/Computer Forensics and Counterterrorism",
+   "field_raw": "",
+   "description": "",
+   "start_year": "2019",
+   "end_year": "2020",
+   "cip2_pooled": "43",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:033",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "St. Cloud State University",
+   "degree_raw": "Liberal Arts",
+   "field_raw": "Ethnic Studies",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "05",
+   "field_group": "Area & Cultural Studies"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:034",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Brigham Young University",
+   "degree_raw": "Public Health",
+   "field_raw": "",
+   "description": "Activities and Societies: Additional background in Neuroscience and Political Science.",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:035",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Chicago State University",
+   "degree_raw": "Computer Science",
+   "field_raw": "2.9",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "11",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:036",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Pratt Institute",
+   "degree_raw": "Graphic Design",
+   "field_raw": "",
+   "description": "",
+   "start_year": "2016",
+   "end_year": "2020",
+   "cip2_pooled": "50",
+   "field_group": "Fine & Performing Arts"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:037",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Oregon",
+   "degree_raw": "Industrial Design",
+   "field_raw": "Industrial and Product Design",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "50",
+   "field_group": "Fine & Performing Arts"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:038",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Wisconsin-Madison",
+   "degree_raw": "Soil Science and Agronomy,",
+   "field_raw": "3.7",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "01",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:039",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Rhode Island",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "3.85",
+   "description": "",
+   "start_year": "2016",
+   "end_year": "2019",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:040",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Northern Illinois University",
+   "degree_raw": "Accountancy",
+   "field_raw": "Accounting and Finance",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:041",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Pittsburg State University",
+   "degree_raw": "Communication",
+   "field_raw": "Major: Public Relations / Minor: Economics",
+   "description": "Activities and Societies: PSU Varsity Men's Golf Team Tau Sigma Honor Society Dean's List Scholastic Honors",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "09",
+   "field_group": "Communication & Media"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:042",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Monroe College",
+   "degree_raw": "Nursing",
+   "field_raw": "3.95",
+   "description": "President’s List (2020) Summa Cum Laude",
+   "start_year": "2020",
+   "end_year": "2022",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:043",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Hobart and William Smith Colleges",
+   "degree_raw": "Psychology",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "42",
+   "field_group": "Psychology"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:044",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Fisk University",
+   "degree_raw": "Mathematics",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "27",
+   "field_group": "Math & Statistics"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:045",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Purdue University",
+   "degree_raw": "Organizational Leadership",
+   "field_raw": "",
+   "description": "Activities and Societies: All Campus Coral 60 Credit hours completed",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:046",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Kentucky",
+   "degree_raw": "Public Health",
+   "field_raw": "Public Health",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:047",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Brigham Young University",
+   "degree_raw": "Manufacturing Engineering",
+   "field_raw": "Freshman",
+   "description": "",
+   "start_year": "2023",
+   "end_year": "",
+   "cip2_pooled": "14",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:048",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Western Carolina University",
+   "degree_raw": "Mechanical Engineering",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "14",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:049",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of California, Irvine",
+   "degree_raw": "International Studies",
+   "field_raw": "Economics",
+   "description": "",
+   "start_year": "2011",
+   "end_year": "2015",
+   "cip2_pooled": "45",
+   "field_group": "Economics"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:050",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California Polytechnic State University-San Luis Obispo",
+   "degree_raw": "Metallurgical Engineering",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "14",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:051",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California State University-Chico",
+   "degree_raw": "Communications",
+   "field_raw": "Public Relations and Physical Education",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "09",
+   "field_group": "Communication & Media"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:052",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Arizona",
+   "degree_raw": "ENGINEERING",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "14",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:053",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Berklee College of Music",
+   "degree_raw": "Vocal Performance",
+   "field_raw": "Voice",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "50",
+   "field_group": "Fine & Performing Arts"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:054",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "St. Francis College",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:055",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Millersville University of Pennsylvania",
+   "degree_raw": "PSYCHOLOGY",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "42",
+   "field_group": "Psychology"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:056",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Miami Regional University",
+   "degree_raw": "Registered Nurse",
+   "field_raw": "Registered Nursing/Registered Nurse",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:057",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Kansas State University",
+   "degree_raw": "Business",
+   "field_raw": "Production and Operations Management",
+   "description": "Activities and Societies: Alpha Kappa Psi Honorary Fraternity Minor in Rhetoric/Communication",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:058",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "West Chester University of Pennsylvania",
+   "degree_raw": "Music Performance, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "50",
+   "field_group": "Fine & Performing Arts"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:059",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Houston",
+   "degree_raw": "Business Administration",
+   "field_raw": "Finance, General",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:060",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Colorado Technical University",
+   "degree_raw": "Health/Health Care Administration/Management",
+   "field_raw": "",
+   "description": "",
+   "start_year": "2016",
+   "end_year": "2017",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:061",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Xavier University of Louisiana",
+   "degree_raw": "Pre-Medicine/Pre-Medical Studies",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:062",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California State University-Fullerton",
+   "degree_raw": "Computer Science",
+   "field_raw": "Computer Software Engineering",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "14",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:063",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Wisconsin-Madison",
+   "degree_raw": "Liberal Arts",
+   "field_raw": "Political Science and Government, Criminal Justice",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "45",
+   "field_group": "Humanistic Social Science"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:064",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "College of Charleston",
+   "degree_raw": "BUSINESS",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:065",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Our Lady of the Lake University",
+   "degree_raw": "Criminology",
+   "field_raw": "Juvenile Corrections",
+   "description": "",
+   "start_year": "2017",
+   "end_year": "2020",
+   "cip2_pooled": "43",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:066",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Illinois State University",
+   "degree_raw": "Physical Education",
+   "field_raw": "Teaching",
+   "description": "",
+   "start_year": "1987",
+   "end_year": "1991",
+   "cip2_pooled": "13",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:067",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "St. Joseph's University New York",
+   "degree_raw": "Business",
+   "field_raw": "Biology, General",
+   "description": "Activities and Societies: Varsity Soccer & Tennis",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "26",
+   "field_group": "Biological Sciences"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:068",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California State University San Marcos",
+   "degree_raw": "Accounting and Finance",
+   "field_raw": "A",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:069",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Illinois at Chicago",
+   "degree_raw": "Business",
+   "field_raw": "Business and Marketing",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:070",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Idaho",
+   "degree_raw": "American Studies",
+   "field_raw": "Writing and editing",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "23",
+   "field_group": "English & Literature"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:071",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Boston University",
+   "degree_raw": "Communication",
+   "field_raw": "Communication",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "09",
+   "field_group": "Communication & Media"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:072",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Brigham Young University",
+   "degree_raw": "Neuroscience",
+   "field_raw": "Life Science",
+   "description": "I am currently a senior at Brigham Young University and will graduate with a Bachelor's of Neuroscience. I also have a passion for family sociology. I plan to obtain a Master's in Social Work after my",
+   "start_year": "2016",
+   "end_year": "2021",
+   "cip2_pooled": "26",
+   "field_group": "Biological Sciences"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:073",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Springfield College",
+   "degree_raw": "Human Services",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "44",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:074",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Capella University",
+   "degree_raw": "homeland security",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "43",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:075",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Point Park University",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "Additional schooling in business management",
+   "start_year": "1987",
+   "end_year": "1988",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:076",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Florida",
+   "degree_raw": "Animal Sciences",
+   "field_raw": "Freshman",
+   "description": "Animal Science Major Pre-vet track Class of 2028",
+   "start_year": "2024",
+   "end_year": "",
+   "cip2_pooled": "01",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:077",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Lewis University",
+   "degree_raw": "Computer Science",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "11",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:078",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Rutgers University - Newark",
+   "degree_raw": "Accounting",
+   "field_raw": "Accounting",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:079",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California State University, Northridge",
+   "degree_raw": "Graphic Design",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "50",
+   "field_group": "Fine & Performing Arts"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:080",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Anna Maria College",
+   "degree_raw": "Early Childhood education",
+   "field_raw": "Human Growth and Development",
+   "description": "",
+   "start_year": "2002",
+   "end_year": "2006",
+   "cip2_pooled": "19",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:081",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California State University, Northridge",
+   "degree_raw": "Political Science",
+   "field_raw": "Law and Society",
+   "description": "",
+   "start_year": "2017",
+   "end_year": "2019",
+   "cip2_pooled": "30",
+   "field_group": "Interdisciplinary Studies"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:082",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Louisiana Tech University",
+   "degree_raw": "Management",
+   "field_raw": "Business, Management, Marketing, and Related Support Services, Student Athlete",
+   "description": "Activities and Societies: Track and Field/Cross Country student athlete, Black Student Union, National Society of Collegiate Scholars (NSCS) honor society, The Society for Collegiate Leadership and Ad",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:083",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "State University of New York at Buffalo",
+   "degree_raw": "Psychology",
+   "field_raw": "Education minor",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "13",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:084",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Virginia Tech",
+   "degree_raw": "International/Global Studies",
+   "field_raw": "World Politics and Policy",
+   "description": "Activities and Societies: Alpha Phi - Eta Omicron",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "45",
+   "field_group": "Humanistic Social Science"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:085",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "SUNY Binghamton",
+   "degree_raw": "Business Administration",
+   "field_raw": "Accounting; Computer Science",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "30",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:086",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Montclair State University",
+   "degree_raw": "Audiology/Audiologist and Speech-Language Pathology/Pathologist",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:087",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Texas A&M University",
+   "degree_raw": "BUSINESS, MANAGEMENT, MARKETING, AND RELATED SUPPORT SERVICES",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:088",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "The University of Kansas",
+   "degree_raw": "Business Analytics",
+   "field_raw": "Business Analytics",
+   "description": "",
+   "start_year": "2020",
+   "end_year": "2024",
+   "cip2_pooled": "30",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:089",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Louisiana at Monroe",
+   "degree_raw": "Psychology",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "42",
+   "field_group": "Psychology"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:090",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Illinois at Chicago",
+   "degree_raw": "Accounting",
+   "field_raw": "Accounting",
+   "description": "Activities and Societies: Cum Laude, High Distinction, Phi Kappa Phi, Phi Theta Kappa, Beta Gamma Sigma, Golden Key",
+   "start_year": "2015",
+   "end_year": "2017",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:091",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Jackson State University",
+   "degree_raw": "Chemistry",
+   "field_raw": "Biomedical Sciences",
+   "description": "",
+   "start_year": "2016",
+   "end_year": "2019",
+   "cip2_pooled": "26",
+   "field_group": "Biological Sciences"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:092",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California State Polytechnic University-Pomona",
+   "degree_raw": "Business",
+   "field_raw": "Marketing/Marketing Management, General",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:093",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Kansas State University",
+   "degree_raw": "Architectural Engineering",
+   "field_raw": "ENGINEERING",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "14",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:094",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Sacred Heart University",
+   "degree_raw": "Media Studies",
+   "field_raw": "Business/Commerce, General",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:095",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Rhodes College",
+   "degree_raw": "Philosophy",
+   "field_raw": "",
+   "description": "",
+   "start_year": "1991",
+   "end_year": "1995",
+   "cip2_pooled": "38",
+   "field_group": "Philosophy & Religion"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:096",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Tennessee State University",
+   "degree_raw": "Business Administration",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:097",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Brigham Young University",
+   "degree_raw": "Manufacturing Engineering",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "14",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:098",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Purdue University",
+   "degree_raw": "Education",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "13",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:099",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of North Carolina at Charlotte",
+   "degree_raw": "PSYCHOLOGY",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "42",
+   "field_group": "Psychology"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:100",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California State University-Fullerton",
+   "degree_raw": "Business Marketing",
+   "field_raw": "Business Marketing",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:101",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Iowa State University",
+   "degree_raw": "Economics",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "45",
+   "field_group": "Economics"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:102",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Colorado at Denver",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:103",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Worcester Polytechnic Institute",
+   "degree_raw": "Mechanical Engineering",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "14",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:104",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "American Military University",
+   "degree_raw": "Human Resource Management",
+   "field_raw": "Business Administration and Management, General",
+   "description": "",
+   "start_year": "2022",
+   "end_year": "2025",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:105",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "UC Santa Barbara",
+   "degree_raw": "Economics",
+   "field_raw": "Philosophy",
+   "description": "",
+   "start_year": "2020",
+   "end_year": "",
+   "cip2_pooled": "38",
+   "field_group": "Philosophy & Religion"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:106",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Queens College",
+   "degree_raw": "Economics",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "45",
+   "field_group": "Economics"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:107",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Wayne State University",
+   "degree_raw": "Criminal Justice",
+   "field_raw": "3.3",
+   "description": "Activities and Societies: National Association for the Advancement of Colored People,Honors Peer Mentor, Coordinator of Engagement for Campus Activity Team. At Wayne State University I major in Crimin",
+   "start_year": "2021",
+   "end_year": "",
+   "cip2_pooled": "43",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:108",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Southern Illinois University, Carbondale",
+   "degree_raw": "General Studies",
+   "field_raw": "BUSINESS, MANAGEMENT, MARKETING, AND RELATED SUPPORT SERVICES",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:109",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of San Diego",
+   "degree_raw": "Business",
+   "field_raw": "Business Administration and Management, General",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:110",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Brigham Young University",
+   "degree_raw": "Cyber Security",
+   "field_raw": "Cyber Security",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "11",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:111",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Florida Gulf Coast University",
+   "degree_raw": "Elementary Education and Teaching",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "13",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:112",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of The Arts",
+   "degree_raw": "Dance",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "50",
+   "field_group": "Fine & Performing Arts"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:113",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "San Diego State University",
+   "degree_raw": "International Business",
+   "field_raw": "Cum Laude",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:114",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Utah Valley University",
+   "degree_raw": "Kinesiology and Exercise Science",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "31",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:115",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "The University of Kansas",
+   "degree_raw": "Journalism",
+   "field_raw": "Business/Corporate Communications",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:116",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Winona State University",
+   "degree_raw": "Exercise Science",
+   "field_raw": "Strength and Conditioning",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "31",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:117",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Central Connecticut State University",
+   "degree_raw": "Biology",
+   "field_raw": "Molecular Biology",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "26",
+   "field_group": "Biological Sciences"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:118",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of California, Berkeley",
+   "degree_raw": "Applied Mathematics",
+   "field_raw": "",
+   "description": "",
+   "start_year": "2020",
+   "end_year": "2022",
+   "cip2_pooled": "27",
+   "field_group": "Math & Statistics"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:119",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "School of Visual Arts",
+   "degree_raw": "Film/Video and Photographic Arts",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "50",
+   "field_group": "Fine & Performing Arts"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:120",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Western Michigan University",
+   "degree_raw": "Elementary Education",
+   "field_raw": "Education",
+   "description": "",
+   "start_year": "1998",
+   "end_year": "2002",
+   "cip2_pooled": "13",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:121",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of North Carolina at Asheville",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:122",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Massachusetts Amherst",
+   "degree_raw": "Dance",
+   "field_raw": "Dance",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "50",
+   "field_group": "Fine & Performing Arts"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:123",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "The University of Texas at San Antonio",
+   "degree_raw": "BUSINESS, MANAGEMENT, MARKETING, AND RELATED SUPPORT SERVICES",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:124",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Chapman University",
+   "degree_raw": "Communication, General",
+   "field_raw": "Junior",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "09",
+   "field_group": "Communication & Media"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:125",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Florida International University",
+   "degree_raw": "PSYCHOLOGY",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "42",
+   "field_group": "Psychology"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:126",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California State Polytechnic University-Pomona",
+   "degree_raw": "Computer Science",
+   "field_raw": "B",
+   "description": "Was studying to become an Architect, computer science was my major.",
+   "start_year": "2006",
+   "end_year": "2008",
+   "cip2_pooled": "11",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:127",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Tuskegee University",
+   "degree_raw": "Architecture",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "04",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:128",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Syracuse University",
+   "degree_raw": "Psychology",
+   "field_raw": "Child Life",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:129",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Central Florida",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:130",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Brenau University",
+   "degree_raw": "Biology",
+   "field_raw": "Biology/Biological Sciences, General",
+   "description": "Activities and Societies: Mu Sigma Chi (Math and Science Club) (Secretary and President) Student Alumni Association, and Student Government Association (Senator)",
+   "start_year": "2017",
+   "end_year": "2021",
+   "cip2_pooled": "26",
+   "field_group": "Biological Sciences"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:131",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "East Carolina University",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:132",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Pittsburgh",
+   "degree_raw": "Economics",
+   "field_raw": "Economics",
+   "description": "Activities and Societies: Tau Kappa Epsilon Fraternity Pitt Vets Organization",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "45",
+   "field_group": "Economics"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:133",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Ferris State University",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:134",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Tarleton State University",
+   "degree_raw": "Industrial Technology",
+   "field_raw": "Engineering Technology",
+   "description": "Bachelor of Science Degree in Engineering Technology with a Major in Industrial Technology and a Minor in Business from Tarleton State University, Stephenville, TX with a 3.27 Overall GPA in December ",
+   "start_year": "2008",
+   "end_year": "2011",
+   "cip2_pooled": "15",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:135",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "UNLV",
+   "degree_raw": "Business, Management, Marketing, and Related Support Services",
+   "field_raw": "",
+   "description": "",
+   "start_year": "2005",
+   "end_year": "2007",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:136",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Western Kentucky University",
+   "degree_raw": "PSYCHOLOGY",
+   "field_raw": "Sophomore",
+   "description": "Activities and Societies: Psychology Club, American Sign Language Organization",
+   "start_year": "2020",
+   "end_year": "",
+   "cip2_pooled": "42",
+   "field_group": "Psychology"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:137",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of North Carolina at Greensboro",
+   "degree_raw": "Graphic Design",
+   "field_raw": "",
+   "description": "",
+   "start_year": "2009",
+   "end_year": "2011",
+   "cip2_pooled": "50",
+   "field_group": "Fine & Performing Arts"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:138",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Oregon State University",
+   "degree_raw": "Business",
+   "field_raw": "International Business",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:139",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Kansas State University",
+   "degree_raw": "mechanical engineering",
+   "field_raw": "ENGINEERING",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "14",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:140",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Valdosta State University",
+   "degree_raw": "Pre-Pharmacy Studies",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:141",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Troy University",
+   "degree_raw": "business marketing",
+   "field_raw": "Fine Arts",
+   "description": "Also attended University of Montevallo and Jefferson State Community College",
+   "start_year": "2004",
+   "end_year": "2006",
+   "cip2_pooled": "50",
+   "field_group": "Fine & Performing Arts"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:142",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Maryland University College",
+   "degree_raw": "Social science",
+   "field_raw": "",
+   "description": "Activities and Societies: Current Student",
+   "start_year": "2017",
+   "end_year": "",
+   "cip2_pooled": "45",
+   "field_group": "Humanistic Social Science"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:143",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Nebraska at Omaha",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:144",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Tarleton State University",
+   "degree_raw": "Social Work",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "44",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:145",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Illinois Urbana-Champaign",
+   "degree_raw": "English",
+   "field_raw": "Creative Writing",
+   "description": "",
+   "start_year": "2019",
+   "end_year": "",
+   "cip2_pooled": "23",
+   "field_group": "English & Literature"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:146",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of San Francisco",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:147",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Old Dominion University",
+   "degree_raw": "psychology",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "42",
+   "field_group": "Psychology"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:148",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Florida Gulf Coast University",
+   "degree_raw": "Economics",
+   "field_raw": "Business Administration and Management, General",
+   "description": "Activities and Societies: ΣΧ",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:149",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Southern Connecticut State University",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:150",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Arkansas State University",
+   "degree_raw": "Business Management",
+   "field_raw": "Business Administration and Management, General",
+   "description": "",
+   "start_year": "2017",
+   "end_year": "2021",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:151",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Florida Southern College",
+   "degree_raw": "Economics",
+   "field_raw": "Behavioral Sciences",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "30",
+   "field_group": "Social Science"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:152",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of California, Santa Barbara",
+   "degree_raw": "Global International Studies",
+   "field_raw": "International Relations and Affairs",
+   "description": "Activities and Societies: CALPIRG, SBMG, NATIVE TALENT, UCSB DIV 1 Marketing",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "45",
+   "field_group": "Humanistic Social Science"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:153",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Winston-Salem State University",
+   "degree_raw": "Therapeutic Recreation/Recreational Therapy",
+   "field_raw": "3.6",
+   "description": "",
+   "start_year": "2012",
+   "end_year": "",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:154",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Wright State University-Lake Campus",
+   "degree_raw": "Early Childhood Education",
+   "field_raw": "Elementary Education and Teaching",
+   "description": "",
+   "start_year": "2016",
+   "end_year": "2020",
+   "cip2_pooled": "13",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:155",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California State University, Long Beach",
+   "degree_raw": "Cell/Cellular and Molecular Biology",
+   "field_raw": "",
+   "description": "Activities and Societies: Member - Physician Assistants Coming Together (2019-Present)",
+   "start_year": "2019",
+   "end_year": "2021",
+   "cip2_pooled": "26",
+   "field_group": "Biological Sciences"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:156",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Grambling State University",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:157",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Rhode Island College",
+   "degree_raw": "HISTORY",
+   "field_raw": "",
+   "description": "Did not complete degree program.",
+   "start_year": "2005",
+   "end_year": "2008",
+   "cip2_pooled": "54",
+   "field_group": "History"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:158",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Southern California",
+   "degree_raw": "Marketing",
+   "field_raw": "",
+   "description": "",
+   "start_year": "1979",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:159",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Coastal Carolina University",
+   "degree_raw": "Kinesiology and Exercise Science",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "31",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:160",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Milwaukee Institute of Art & Design",
+   "degree_raw": "Illustration",
+   "field_raw": "Art/Art Studies, General",
+   "description": "Minor in digital media production",
+   "start_year": "2022",
+   "end_year": "",
+   "cip2_pooled": "50",
+   "field_group": "Fine & Performing Arts"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:161",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Gettysburg College",
+   "degree_raw": "Mathematics",
+   "field_raw": "4.0",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "27",
+   "field_group": "Math & Statistics"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:162",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Eastfield college",
+   "degree_raw": "Substance Abuse/Addiction Counseling",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:163",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Amridge University (formerly Southern Christian University)",
+   "degree_raw": "Liberal Studies",
+   "field_raw": "Classical literature and Christian Apologetics",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "23",
+   "field_group": "English & Literature"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:164",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Walden University",
+   "degree_raw": "Business/Corporate Communications",
+   "field_raw": "3.8",
+   "description": "Activities and Societies: Honor Society",
+   "start_year": "2013",
+   "end_year": "2015",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:165",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Sam Houston State University",
+   "degree_raw": "Journalism",
+   "field_raw": "COMMUNICATION, JOURNALISM, AND RELATED PROGRAMS",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "09",
+   "field_group": "Communication & Media"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:166",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Old Dominion University",
+   "degree_raw": "Criminal Justice",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "43",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:167",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "The University of Georgia",
+   "degree_raw": "Business Finance",
+   "field_raw": "International Finance",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:168",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Louisiana at Monroe",
+   "degree_raw": "elementary education",
+   "field_raw": "PSYCHOLOGY",
+   "description": "",
+   "start_year": "2016",
+   "end_year": "2018",
+   "cip2_pooled": "42",
+   "field_group": "Psychology"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:169",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Liberty University",
+   "degree_raw": "Business Management",
+   "field_raw": "Senior",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:170",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Maine",
+   "degree_raw": "Business Management",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:171",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California Lutheran University",
+   "degree_raw": "Music Teacher Education",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "13",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:172",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Miami",
+   "degree_raw": "PSYCHOLOGY",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "42",
+   "field_group": "Psychology"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:173",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "East Carolina University",
+   "degree_raw": "English/Language Arts Teacher Education",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "13",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:174",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Western Governors University",
+   "degree_raw": "Business Administration",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:175",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Central Florida",
+   "degree_raw": "Public Relations",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "09",
+   "field_group": "Communication & Media"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:176",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Washington State University",
+   "degree_raw": "PSYCHOLOGY",
+   "field_raw": "2.9",
+   "description": "",
+   "start_year": "2020",
+   "end_year": "",
+   "cip2_pooled": "42",
+   "field_group": "Psychology"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:177",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Alvernia University",
+   "degree_raw": "Psychology",
+   "field_raw": "Junior",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "42",
+   "field_group": "Psychology"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:178",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Utah Valley University",
+   "degree_raw": "Business Management",
+   "field_raw": "Business Management, Spanish",
+   "description": "",
+   "start_year": "2007",
+   "end_year": "2010",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:179",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Kansas State University",
+   "degree_raw": "Animal Sciences",
+   "field_raw": "Freshman",
+   "description": "Activities and Societies: Veteran student services, Non-traditional student veteran organization Helping veterans accumulate civilian social skills",
+   "start_year": "2016",
+   "end_year": "",
+   "cip2_pooled": "01",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:180",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Davis and Elkins College",
+   "degree_raw": "International Marketing",
+   "field_raw": "International Marketing",
+   "description": "Activities and Societies: Davis and Elkins Womens' Soccer, Sigma Phi Epilson",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:181",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Clarkson University",
+   "degree_raw": "Environmental Engineering",
+   "field_raw": "Civil Engineering",
+   "description": "I found myself looking around at the types of people in my lecture hall one morning and decided I did not want to pursue Engineering with the type of fervor most of the other geeks did. I transferred ",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "14",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:182",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Southern New Hampshire University",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:183",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Eastern Illinois University",
+   "degree_raw": "Speech Communications",
+   "field_raw": "Speech Communication and Rhetoric",
+   "description": "Activities and Societies: Football",
+   "start_year": "1998",
+   "end_year": "2000",
+   "cip2_pooled": "09",
+   "field_group": "Communication & Media"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:184",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Linfield College",
+   "degree_raw": "MIS",
+   "field_raw": "Management of Information Technology",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:185",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "North Carolina Central University",
+   "degree_raw": "Public Health",
+   "field_raw": "",
+   "description": "",
+   "start_year": "2015",
+   "end_year": "2020",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:186",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Monroe College",
+   "degree_raw": "Healthcare Administration",
+   "field_raw": "Medical Office Management/Administration",
+   "description": "",
+   "start_year": "2022",
+   "end_year": "2025",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:187",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California State University, Long Beach",
+   "degree_raw": "English",
+   "field_raw": "Creative Writing",
+   "description": "",
+   "start_year": "2021",
+   "end_year": "2025",
+   "cip2_pooled": "23",
+   "field_group": "English & Literature"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:188",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Barry University",
+   "degree_raw": "Crisis/Emergency/Disaster Management",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "43",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:189",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Oklahoma",
+   "degree_raw": "Radiologic Technology/Science - Radiographer",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:190",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Mesa State College",
+   "degree_raw": "Art History",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "50",
+   "field_group": "Fine & Performing Arts"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:191",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Brown University",
+   "degree_raw": "Philosophy",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "38",
+   "field_group": "Philosophy & Religion"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:192",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Liberty University",
+   "degree_raw": "HISTORY",
+   "field_raw": "4.0",
+   "description": "",
+   "start_year": "2021",
+   "end_year": "",
+   "cip2_pooled": "54",
+   "field_group": "History"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:193",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Capella University",
+   "degree_raw": "Nursing Administration",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "51",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:194",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "San Jose State University",
+   "degree_raw": "Sociology",
+   "field_raw": "Junior",
+   "description": "Activities and Societies: Marketing Officer for Women's Club Soccer",
+   "start_year": "2023",
+   "end_year": "2027",
+   "cip2_pooled": "45",
+   "field_group": "Humanistic Social Science"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:195",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Western Washington University",
+   "degree_raw": "Environmental Studies",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "03",
+   "field_group": "Natural Sciences"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:196",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Northeastern University",
+   "degree_raw": "Computer Science",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "11",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:197",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "California State University-Long Beach",
+   "degree_raw": "Human Development",
+   "field_raw": "Human Resources Management/Personnel Administration, General",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:198",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Fitchburg State University",
+   "degree_raw": "Human Services",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "44",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:199",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Nevada-Las Vegas",
+   "degree_raw": "Cybersecurity",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "11",
+   "field_group": "Other"
+  }
+ }
+]

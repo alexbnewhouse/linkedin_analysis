@@ -606,6 +606,7 @@ def write_education_person(out: Path, threads: int, timings: list[StepTiming]) -
       cip2_pooled/nha_level_pooled/humanities_field_group_pooled  -- the terminal
           field under POOLED coverage (deterministic backbone + calibrated CIP
           jury; see edu_clean/apply_cip_pooled.py)
+      bachelor_imputed_any  -- any bachelor-rung row leveled by the imputed tier (P2)
       hum_l1_any/hum_l2_any/hum_l3_any/hum_l1_bachelor_any  -- ANY-degree
           humanities membership under pooled coverage. Use these, NOT the
           terminal nha_level, to define the humanities population: the terminal
@@ -652,7 +653,12 @@ def write_education_person(out: Path, threads: int, timings: list[StepTiming]) -
                   -- pooled bachelor variant: bachelor rung under pooled degree level
                   coalesce(bool_or(nha_level_pooled = 1
                            AND coalesce(degree_level_pooled, degree_level) = 4),
-                           FALSE) AS hum_l1_bachelor_pooled_any
+                           FALSE) AS hum_l1_bachelor_pooled_any,
+                  -- P2 (2026-09-22): any bachelor-rung row leveled by the strict
+                  -- imputed-bachelor tier (edu_clean/apply_bachelor_imputed.py);
+                  -- consumers that want det/jury levels only exclude on this flag.
+                  coalesce(bool_or(degree_level_source = 'imputed_bachelor'), FALSE)
+                    AS bachelor_imputed_any
                 FROM e GROUP BY 1
               ),
               highest_year AS (
@@ -713,6 +719,7 @@ def write_education_person(out: Path, threads: int, timings: list[StepTiming]) -
                 a.hum_l3_any,
                 a.hum_l1_bachelor_any,
                 a.hum_l1_bachelor_pooled_any,
+                a.bachelor_imputed_any,
                 s.school_slug
               FROM agg a
               LEFT JOIN highest_year h USING (linkedin_id)
@@ -1085,6 +1092,12 @@ def main() -> None:
             apply_degree_level_pooled.run(execute=True)
         with StepTimer("pooled CIP apply (det + jury + knn_head + degree_type + degree_level)", timings):
             apply_cip_pooled.run(execute=True)
+        # P2 (2026-09-22): strict imputed-bachelor tier reads cip2_pooled, so it
+        # runs after the CIP apply and before the person rollup.
+        from edu_clean import apply_bachelor_imputed
+
+        with StepTimer("imputed-bachelor apply (strict, propose-only)", timings):
+            apply_bachelor_imputed.run(execute=True)
         write_education_person(out, args.threads, timings)
         try:
             from edu_clean import apply_institution_meta

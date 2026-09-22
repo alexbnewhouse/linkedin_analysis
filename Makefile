@@ -52,6 +52,9 @@ check-freshness:  ## exit 1 if any downstream output is older than its inputs
 cert:             ## certifications skills axis (audit R6)
 	$(UV) python -m cert_clean.run_cert
 
+coding-export:    ## export every drawn blind sample as a Label Studio project (coding/label_studio)
+	$(UV) python -m coding.export --all
+
 benchmarks:       ## LinkedIn shares vs NCES / Humanities Indicators (validation/results)
 	$(UV) python -m validation.external_benchmarks
 
@@ -71,6 +74,8 @@ test:             ## data-independent logic suites (no built parquet needed)
 	$(UV) python -m paths.spine_tests
 	$(UV) --with numpy python normalization_regression_checks.py
 	$(UV) python -m validation.validation_tests
+	$(UV) python -m edu_clean.imputed_tests
+	$(UV) python -m coding.coding_tests
 
 test-data:        ## suites that read built parquet
 	$(UV) python -m career_clean.soc_data_checks
@@ -80,6 +85,7 @@ test-data:        ## suites that read built parquet
 	$(UV) python -m portal.portal_tests
 	$(UV) python -m cohorts.cohort_tests
 	$(UV) python -m validation.benchmark_checks
+	$(UV) python -m edu_clean.imputed_data_checks
 
 lint:
 	uvx ruff check .
