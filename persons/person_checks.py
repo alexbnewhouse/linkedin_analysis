@@ -53,17 +53,25 @@ def main() -> None:
         assert m["release"].get("git") and m["release"].get("snapshot_date") and m["release"].get("schema_version")
         ok("metrics carry a release stamp (git, snapshot_date, schema_version)")
         assert m["groups"]["all"]["basic"]["n"] == q(f"SELECT count(*) FROM {P} WHERE has_bachelor")[0]
+        assert isinstance(m["groups"]["all"]["basic"]["n"], int), "counts must serialize as integers"
         assert m["groups"]["tier:l1"]["basic"]["n"] == q(f"SELECT count(*) FROM {P} WHERE hum_l1_bachelor")[0]
         ok("group n for all / tier:l1 match the person table")
         low = 0
         single = 0
-        for g, d in m["groups"].items():
-            for key in ("cur_soc_major", "first_soc_major", "cur_title_family", "cur_industry_l1", "cur_us_state",
-                        "top_employers", "transitions_first_to_current", "time_to_first_job_grad_axis"):
-                p = d[key]
-                low += sum(1 for c in p["cells"] if c["n"] < C.MIN_SUPPORT)
-                if p.get("suppressed_cells") == 1:
-                    single += 1
+
+        def walk(node):
+            nonlocal low, single
+            if isinstance(node, dict):
+                if "cells" in node and isinstance(node["cells"], list):
+                    low += sum(1 for c in node["cells"] if c["n"] < C.MIN_SUPPORT)
+                    if node.get("suppressed_cells") == 1:
+                        single += 1
+                for v in node.values():
+                    walk(v)
+            elif isinstance(node, list):
+                for v in node:
+                    walk(v)
+        walk(m["groups"])
         assert low == 0, f"{low} printed cells below the floor"
         assert single == 0, f"{single} panels expose a single suppressed cell"
         ok("no printed cell below the floor; no panel exposes a single suppressed cell")

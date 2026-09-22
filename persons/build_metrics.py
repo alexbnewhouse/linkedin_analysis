@@ -41,8 +41,11 @@ def panel(rows: list[tuple], top: int | None = None) -> dict:
     cells = [(str(k), int(n)) for k, n in rows if k is not None]
     kept, n_sup = C.suppress(cells, C.MIN_SUPPORT)
     kept.sort(key=lambda kv: -kv[1])
-    out = {"cells": [{"k": k, "n": n} for k, n in (kept[:top] if top else kept)],
-           "n_total": sum(n for _, n in cells), "n_shown": sum(n for _, n in kept)}
+    printed = kept[:top] if top else kept
+    out = {"cells": [{"k": k, "n": n} for k, n in printed],
+           "n_total": sum(n for _, n in cells),          # persons in every cell, suppressed or not
+           "n_kept": sum(n for _, n in kept),            # persons in cells that cleared the floor
+           "n_printed": sum(n for _, n in printed)}      # persons in the cells listed above
     sc = C.suppressed_count_for_output(n_sup)
     if sc is not None:
         out["suppressed_cells"] = sc
@@ -131,41 +134,45 @@ def build(threads: int = 16) -> dict:
     con.close()
 
     out = {"release": release(), "floor": C.MIN_SUPPORT, "groups": {}}
-    total_suppressed = 0
+    suppressed_by_panel: dict[str, int] = defaultdict(int)
+    current_key = ["?"]
 
-    def P_(rows, top=None):
-        nonlocal total_suppressed
+    def P_(rows, top=None, key=None):
         p = panel(rows, top)
-        total_suppressed += p.get("suppressed_cells", 0)
+        suppressed_by_panel[key or current_key[0]] += p.get("suppressed_cells", 0)
         return p
 
     for g in groups:
         b = dict(zip(BASIC, basic[g]))
-        b = {k: (float(v) if v is not None else None) for k, v in b.items()}
+        b = {k: (int(v) if k.startswith("n") and v is not None else (float(v) if v is not None else None))
+             for k, v in b.items()}
         cm = cur_major.get(g, [])
         counts = [int(n) for _, n in cm]
         d = {"basic": b,
              "breadth": {"entropy": round(C.entropy(counts), 4), "majors_for_80pct": C.cover80(counts),
                          "top3_share": round(C.top3(counts), 4), "n": sum(counts)},
-             "cur_soc_major": P_(cm, TOP["cur_soc_major"]),
-             "first_soc_major": P_(first_major.get(g, []), TOP["first_soc_major"]),
-             "cur_title_family": P_(cur_family.get(g, []), TOP["cur_title_family"]),
-             "cur_industry_l1": P_(cur_ind.get(g, []), TOP["cur_industry_l1"]),
-             "cur_us_state": P_(cur_state.get(g, []), TOP["cur_us_state"]),
-             "top_employers": P_(employers.get(g, []), TOP["top_employers"]),
-             "transitions_first_to_current": P_(trans.get(g, []), TOP["transitions"]),
-             "stage": {ax: P_(stage_dist[ax].get(g, [])) for ax in ("entry", "grad")},
+             "cur_soc_major": P_(cm, TOP["cur_soc_major"], "cur_soc_major"),
+             "first_soc_major": P_(first_major.get(g, []), TOP["first_soc_major"], "first_soc_major"),
+             "cur_title_family": P_(cur_family.get(g, []), TOP["cur_title_family"], "cur_title_family"),
+             "cur_industry_l1": P_(cur_ind.get(g, []), TOP["cur_industry_l1"], "cur_industry_l1"),
+             "cur_us_state": P_(cur_state.get(g, []), TOP["cur_us_state"], "cur_us_state"),
+             "top_employers": P_(employers.get(g, []), TOP["top_employers"], "top_employers"),
+             "transitions_first_to_current": P_(trans.get(g, []), TOP["transitions"], "transitions_first_to_current"),
+             "stage": {ax: P_(stage_dist[ax].get(g, []), None, "stage") for ax in ("entry", "grad")},
              "seniority_by_stage": {ax: {st: {"manager_plus": r[1], "director_plus": r[2], "vp_plus": r[3], "n": r[4]}
                                           for st, *r_ in [(x[0], x) for x in sen_stage[ax].get(g, [])]
                                           for r in [r_[0]] if r[4] >= C.MIN_SUPPORT}
                                     for ax in ("entry", "grad")},
              "at_k": {ax: {str(k): {"eligible": atk_n[ax][k].get(g, (0, 0))[0], "with_step": atk_n[ax][k].get(g, (0, 0))[1],
-                                    "soc_major": P_(atk[ax][k].get(g, []), 30)}
+                                    "soc_major": P_(atk[ax][k].get(g, []), 30, "at_k")}
                           for k in C.HORIZONS} for ax in ("entry", "grad")},
-             "time_to_first_job_grad_axis": P_(ttf.get(g, []))}
+             "time_to_first_job_grad_axis": P_(ttf.get(g, []), None, "time_to_first_job_grad_axis")}
         out["groups"][g] = d
     out["cohort_trend_grad_axis"] = [{"year": y, "n": n, "l1": a, "l2": b_, "l3": c_} for y, n, a, b_, c_ in trend if n >= C.MIN_SUPPORT]
-    out["total_suppressed_cells"] = total_suppressed
+    out["suppressed_cells_by_panel"] = dict(sorted(suppressed_by_panel.items(), key=lambda kv: -kv[1]))
+    out["total_suppressed_cells"] = sum(suppressed_by_panel.values())
+    # employer cells are a long tail of single-person employers; the substantive panels are the rest
+    out["total_suppressed_cells_excluding_employers"] = out["total_suppressed_cells"] - suppressed_by_panel.get("top_employers", 0)
     out["runtime_s"] = round(time.time() - t0, 1)
     return out
 
@@ -182,11 +189,11 @@ def write_tables(out: dict) -> None:
             w.writerow(row)
     with (C.TABLES / "cur_soc_major_by_group.csv").open("w", newline="") as fh:
         w = csv.writer(fh)
-        w.writerow(["group", "soc_major", "n", "share_of_shown"])
+        w.writerow(["group", "soc_major", "n", "share_of_group_total"])
         for g, d in out["groups"].items():
             p = d["cur_soc_major"]
             for c in p["cells"]:
-                w.writerow([g, c["k"], c["n"], round(c["n"] / p["n_shown"], 4) if p["n_shown"] else None])
+                w.writerow([g, c["k"], c["n"], round(c["n"] / p["n_total"], 4) if p["n_total"] else None])
 
 
 def main() -> None:
@@ -194,8 +201,9 @@ def main() -> None:
     C.RESULTS.mkdir(parents=True, exist_ok=True)
     C.METRICS_OUT.write_text(json.dumps(out, indent=1, default=str) + "\n")
     write_tables(out)
-    print(f"wrote {C.METRICS_OUT} ({len(out['groups'])} groups, {out['total_suppressed_cells']} suppressed cells, "
-          f"{out['runtime_s']}s)")
+    print(f"wrote {C.METRICS_OUT} ({len(out['groups'])} groups; suppressed cells "
+          f"{out['total_suppressed_cells_excluding_employers']:,} excluding employers, "
+          f"{out['suppressed_cells_by_panel'].get('top_employers', 0):,} employer cells; {out['runtime_s']}s)")
     for g in ("all", "tier:l1", "tier:l2", "tier:l3"):
         d = out["groups"][g]
         b = d["basic"]

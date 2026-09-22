@@ -43,6 +43,13 @@ It does not decide the axis or the cohort. It carries both so that decision can 
   pooled row. They can come from different rows.
 - Current step = the ongoing step with the cohort panel's tie-break (`seniority_score DESC NULLS
   LAST, tenure_months DESC NULLS LAST`), so `cur_*` equals the panel's 2026 primary role.
+- Graduate flags overlap by design: `has_master` is any level-6 degree that is not law, medicine or
+  dental, so it includes MBA, M.Ed and MSW rows; `has_mba` / `has_med` / `has_msw` are subsets.
+- Every panel carries `n_total` (persons in all cells), `n_kept` (cells that cleared the floor) and
+  `n_printed` (the cells listed); a share must use `n_total` as its denominator.
+- `suppressed_cells_by_panel` at the top level separates the employer long tail (one-person
+  employers) from the substantive panels; `total_suppressed_cells_excluding_employers` is the
+  number to quote.
 - Attainment uses `seniority_ordinal` (manager 6, director 7, vice president 8), never the token
   string; `ever_founder_owner` is `employment_type IN (business_owner, self_employed)`.
 - Plus-k panels are windowed: a person counts at horizon k only when the anchor year is at most

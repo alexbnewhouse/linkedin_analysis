@@ -589,6 +589,13 @@ R('admin_support', 'assistant to')
 R('banking_insurance', 'licensed producer', 'insurance producer', 'sales line producer',
   'commercial lines producer', 'personal lines producer', 'producer insurance', 'benefits producer')
 R('museum_library', 'planetarium')
+# second review: "producer"/"correspondent" with sales or insurance words anywhere is not media
+RX('banking_insurance', r'(insurance|underwrit).*(producer|agent)|(producer|agent).*(insurance|underwrit)',
+   ('insurance', 'producer', 'agent', 'underwriting', 'underwriter'))
+RX('sales', r'(sales|lead generation|loan|mortgage|wholesale).*(producer|correspondent)|(producer|correspondent).*(sales|lead generation|loan|mortgage)',
+   ('producer', 'correspondent'))
+R('research', 'research assistant for', 'research assistant to', 'research assistant under',
+  'undergraduate research assistant', 'graduate research assistant')
 R('higher_ed_staff', 'faculty affairs', 'faculty support', 'faculty services', 'faculty development',
   'faculty relations', 'faculty coordinator', 'academic affairs', 'faculty innovator')
 R('research', 'postdoctoral', 'post doctoral', 'postdoc', 'post doc', 'visiting scholar',

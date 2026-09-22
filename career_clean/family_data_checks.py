@@ -47,9 +47,9 @@ def main() -> None:
            if (f, "managerial" if s9 in MANAGERIAL else "staff") not in landed]
     assert not off, f"family rows landed outside the gate: {off[:5]}"
     ok("every landed family row is in a landable (family, stratum)")
-    bad = q(f"SELECT count(*) FROM {steps} WHERE occupation_source = 'family' AND title_family_confidence <> 'high'")
+    bad = q(f"SELECT count(*) FROM {steps} WHERE occupation_source = 'family' AND (title_family_confidence <> 'high' OR title_seniority9 = 'intern')")
     assert bad == 0
-    ok("family rows are confidence = high")
+    ok("family rows are confidence = high and never intern seniority")
     cov = con.execute(f"""
         SELECT occupation_source, count(*) FROM {steps} GROUP BY 1 ORDER BY 2 DESC""").fetchall()
     total = sum(n for _, n in cov)

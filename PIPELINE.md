@@ -24,6 +24,9 @@ normalized/mappings/*.parquet         value-keyed canonicalization mappings
    │     └─ transition_network/{build_network,analyze} occupation | soc_major
    ├─ cohorts/build_panel.py          reads paths/steps + education_person
    ├─ archetypes/run_all.py           reads career_steps, step_industry, paths/*, cohorts/panel
+   ├─ persons/build_person.py         one row per person, both time axes, all tiers (2026-09-22)
+   │     └─ persons/build_metrics.py  metrics cube v0: per-group panels, floor 10, release stamp
+   ├─ validation/external_benchmarks  LinkedIn shares vs NCES / Humanities Indicators (reporting only)
    ▼
 portal/run_portal_data.py → portal/run_share_build.py   the shareable portal
    (reads education, paths/*, transition_network/occupation_nodes_analyzed, step_industry)
@@ -133,6 +136,13 @@ Part 3.
   on 2026-09-01 (see PR #1). Production outputs and `curated_promoted.py`
   are intact; offline calibration replay and extending the industry jury
   require re-firing (`industry/fire_llm.py`, resumable).
+
+## Human coding of blind samples
+
+Every propose-only tier drawn a blind sample that a reviewer scored against a rubric. `coding/`
+exports each sample as a Label Studio project, ingests any annotator's labels, and scores precision
+and Cohen's kappa (`make coding-export`; `coding/README.md`). Reviewer labels live in
+`coding/labels/<sample>.<annotator>.jsonl`; superseded draws in `coding/labels/superseded/`.
 
 ## Tests
 

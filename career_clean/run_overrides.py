@@ -68,6 +68,8 @@ def build() -> dict:
         if det is not None and det[:2] != o.soc_major:
             det_changed += 1
             continue  # never change a non-NULL det major
+        if det == o.occupation_code:
+            continue  # second review: a no-op (det already has the code) is not an override
         out.append({"source_table": st, "linkedin_id": lid, "experience_idx": eidx, "position_idx": pidx,
                     "occupation_code_override": o.occupation_code, "soc_major_override": o.soc_major,
                     "reason": o.reason, "occupation_code_before": det})

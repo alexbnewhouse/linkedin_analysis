@@ -155,7 +155,9 @@ def build(threads: int = 16) -> dict:
        AND i.experience_idx = s.experience_idx AND i.position_idx IS NOT DISTINCT FROM s.position_idx
       WHERE s.datable AND NOT s.bad_negative_duration AND NOT s.bad_future_start
         AND year(s.start_dt) <= {C.SNAPSHOT_YEAR}
-      QUALIFY row_number() OVER (PARTITION BY s.row_id ORDER BY c.is_duplicate, i.confidence DESC NULLS LAST) = 1
+      QUALIFY row_number() OVER (PARTITION BY s.row_id
+                                 ORDER BY c.is_duplicate, i.confidence DESC NULLS LAST,
+                                          c.title_family, c.company_canonical_id, i.l1, c.occupation_major_pooled) = 1
     """)
     n_spine = con.execute(f"""SELECT count(*) FROM read_parquet('{_q(C.STEPS)}')
         WHERE datable AND NOT bad_negative_duration AND NOT bad_future_start AND year(start_dt) <= {C.SNAPSHOT_YEAR}""").fetchone()[0]

@@ -295,6 +295,25 @@ on 58,282 rows (journalism_media 27,350; higher_ed_faculty 21,668; legal_attorne
 61.96%. Sample redrawn (salt v2, ids carry the salt) for a second blind review; the first reviewer's
 labels are in `coding/labels/superseded/`.
 
+**Post-review 2 (fresh subagent, 2026-09-22): P4 VERDICT: LAND AS PROPOSE-ONLY.** Verbatim: "the three
+landed strata reproduce their gate (step-weighted >= 0.94 on both populations) and clear the blind bar
+at strict 0.89, but the producer/faculty catch-alls and intern-seniority landings (roughly 3-4% of
+family rows) mean the family major should stay out of portal.SOC_SOURCES until those guards land".
+Blind score n=100: strict 0.890, lenient 0.947; fails: "Sales Associate/... Correspondent" at IKEA,
+"Global Learning Leader - Design & Faculty Excellence" at GE, "Insurance Agent / Producer", "Research
+Assistant for Professor McGuire", "Lead Generation top producer". No mechanical or contract defects.
+Labels: `coding/labels/family.reviewer2.jsonl`.
+
+**Guards (same day, no third review):** "producer"/"correspondent" with insurance, sales, lead, loan
+or mortgage words anywhere in the title is `banking_insurance` / `sales`, not media; "research
+assistant for/to/under" is `research`; an intern SENIORITY never lands a major even inside a landable
+family (data-checked). Re-gate unchanged (three strata); landable title values 73,219; rebuilt:
+`occupation_source = 'family'` on 56,614 rows (journalism_media 26,103; higher_ed_faculty 21,420;
+legal_attorney 9,091); pooled major 61.95%. **Decision:** the family major stays landed on
+`career_steps` as its own `occupation_source` value (the portal admits only det and jury by
+`portal.common.SOC_SOURCES`, so it is excluded there by construction); `title_family`,
+`title_family_confidence` and `title_seniority9` are on every step for any consumer that opts in.
+
 ## P5. Employer-keyed overrides
 
 **Pre-review (fresh subagent, 2026-09-22): VERDICT: BUILD WITH CHANGES.** Verbatim core: "The plan's
@@ -354,6 +373,17 @@ prefilter normalizes punctuation ("Partner." reaches the rule). Rebuilt: 51,008 
 (vice_president 33,971; law_firm_partner 8,798; k12_principal 8,239); 11-1011 178,911 -> 149,424;
 11-1021 -> 78,211; 11-9032 -> 12,223; 23-1011 -> 37,584. Sample redrawn (salt v2).
 
+**Post-review 2 (fresh subagent, 2026-09-22): P5 VERDICT: LAND.** Verbatim: "every reason clears 0.90
+strict (0.92 / 0.96 / 1.00, zero fails), all counts reproduce exactly, det rows keep occupation_source
+= 'det' so the portal simulation NULLs zero det-coded steps". Blind score n=150: strict 0.960,
+lenient 1.000; unsures are student-organization officers (Pi Sigma Epsilon, Wharton club) and a
+preschool-plus-elementary operator. Defects taken: no-op overrides (det already carried the code:
+2,988 law-firm and 717 K-12 rows) are no longer written, so `override_reason` now means "the code
+changed". Logged for follow-up: student-organization and association "Vice-president"s (~3.6% of the
+VP reason, already wrong at 11-1011 before) want an employer-name guard; `EDU` with an unresolved L2
+(221 rows) is accepted as K-12. Rebuilt: 47,303 override rows (vice_president 33,971; k12_principal
+7,522; law_firm_partner 5,810); 11-1011 149,424 and 11-1021 78,211 unchanged.
+
 ## P6. Person summary and metrics cube v0
 
 **Pre-review (fresh subagent, 2026-09-22): VERDICT: BUILD WITH CHANGES.** Verbatim core: "The step join
@@ -391,3 +421,31 @@ tiers nest; axes independent (entry-only 1,724,691, grad-only 66, both 274,428);
 with `cohorts/profiles` on all 1,999,916; attainment matches `max(seniority_ordinal)`; no printed cell
 below the floor and no panel exposes a single suppressed cell. The suppressed-cell total (2.58M) is
 dominated by employer cells and is reported per panel only when >= 2.
+
+**Post-review (fresh subagent, 2026-09-22): VERDICT: LAND.** Verbatim: "all five gate metrics reconcile
+exactly against direct source-table queries, the stamp is present and the step join keeps every spine
+row". Reconciled: L1/L2/L3 184,529 / 380,283 / 602,584; L1 graduate-degree rate 0.3202; L1 current
+SOC-major top 5 identical; plus-10 eligible/with-step 156,570 / 147,400 (entry) and 21,596 / 17,393
+(grad); suppression re-derived on three panels; a JSON-wide scan of 1,116 panels found no cell below
+10 and no single suppressed cell. Defects taken: the step-join dedupe over the 70 tied duplicate step
+keys now has a deterministic tie-break (counts moved by single digits between builds before);
+counts serialize as integers; every panel carries `n_total` / `n_kept` / `n_printed`;
+`suppressed_cells_by_panel` and `total_suppressed_cells_excluding_employers` separate the employer long
+tail (99.4% of the old headline total) from the substantive panels; `person_checks` scans every panel
+including `at_k` and `stage`; the README documents that `has_master` includes MBA/M.Ed/MSW rows.
+The dirty flag on the first results build is superseded by the rebuild at the final commit.
+
+## Summary (2026-09-22)
+
+| piece | before | after | gate (blind, strict) | reviews | decision |
+|---|---|---|---|---|---|
+| P1 benchmarks | no external check | core6 share 0.73-0.83x NCES across six Digest years; L1 advanced-degree rate 42.9% vs HI 42% | n/a (reporting) | pre BUILD WITH CHANGES; post LAND | landed (reporting) |
+| P2 imputed bachelor's | 0 rows | 25,175 rows; 12,100 persons gain a first level; +2,762 L1 bachelor's | 0.900 on 200 (0.904 on the 197 survivors) vs 0.90 | pre BUILD WITH CHANGES (strict variant); post LAND | landed, excludable via `degree_level_source` |
+| P3 co-majors | none | 133,904 rows split; `double_major_any` 87,702; +17,542 L1 via a second major | plain 0.86 -> 0.94 vs 0.90 | pre BUILD WITH CHANGES; post 1 PROPOSE-ONLY; post 2 LAND | landed; flags consumable |
+| P4 family tier | SOC major 61.3% | 61.95% (+56,614 rows, 3 of 104 strata); `title_family` on 97% of steps; seniority marked on 55% vs 30% | 0.87 -> 0.89 vs 0.85 | pre BUILD WITH CHANGES; post 1 PROPOSE-ONLY; post 2 PROPOSE-ONLY | landed on career_steps as `occupation_source='family'`; excluded from the portal |
+| P5 overrides | VPs on 11-1011 | 47,303 rows; 11-1011 178,911 -> 149,424; K-12 principals 4,701 -> 12,223; lawyers 31,774 -> 37,584 | 0.96/0.98/0.98 then 0.92/0.96/1.00 vs 0.90 | pre BUILD WITH CHANGES; post LAND; post 2 LAND | landed |
+| P6 persons + cube | no person table | 1,999,974 rows, both axes, all tiers; 62-group cube with release stamp | five metrics reconciled | pre BUILD WITH CHANGES; post LAND | landed |
+
+Coding workflow: `coding/` (Label Studio export, ingest, precision + kappa) with reviewer labels for
+every sample. Downstream stages now STALE and to be refreshed in the main checkout after merge:
+industry, paths, cohorts, archetypes, portal (`make refresh`).

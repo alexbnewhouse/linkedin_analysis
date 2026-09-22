@@ -92,8 +92,9 @@ def classify() -> None:
         "flags": pa.array([r[3] for r in rows], pa.list_(pa.string())),
         "confidence": [r[4] for r in rows],
         "soc_major_anchor": [r[5] for r in rows],
+        # second review: an intern SENIORITY never lands a major, even inside a landable family
         "landable": [bool(land.get((r[1], stratum(r[2])), False)) and r[4] == "high"
-                     and r[1] not in NEVER_LAND and r[5] is not None for r in rows],
+                     and r[1] not in NEVER_LAND and r[5] is not None and r[2] != "intern" for r in rows],
     })
     pq.write_table(t, OUT, compression="zstd")
     n_land = sum(t.column("landable").to_pylist())
