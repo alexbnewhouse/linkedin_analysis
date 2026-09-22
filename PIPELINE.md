@@ -92,6 +92,11 @@ pooled applies ~2 min, person rollup 3s, career_steps 75s.
 | Employer-keyed overrides (P5 2026-09-22) | `make overrides` then `make normalize-career` | `mappings/career_occupation_override.parquet` (row-level); steps `occupation_code_pooled`, `occupation_code_source`, `override_reason`; pooled major `occupation_source = 'override'` |
 | Industry | `uv run python -m industry.fire_llm` | see `industry/SETUP.md` |
 
+The override mapping is a snapshot keyed to the industry build it was made from: after any
+`make industry`, run `make overrides && make normalize-career` (the refresh driver does this and
+re-propagates industry once); `career_clean.override_data_checks` tolerates up to 0.5% industry
+drift and names the re-sync command above that.
+
 Pooled-occupation precedence on `career_steps` (2026-09-22): override > det > jury > family for
 `occupation_major_pooled` / `occupation_source`; `occupation_code_pooled` is override > det (jury and
 family know only the major group). The three propose-only mappings (`role_soc_jury`, `title_family`,

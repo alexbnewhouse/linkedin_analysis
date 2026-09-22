@@ -18,7 +18,7 @@ START="${START:-1}"
 INDUSTRY_ARGS="${INDUSTRY_ARGS:---force-vocab}"
 [ "$START" = "1" ] && : > "$LOG"
 
-N_STAGES=19
+N_STAGES=22
 stage_i=0
 run_stage() {  # run_stage <name> <command...>
   name=$1; shift
@@ -36,7 +36,13 @@ run_stage() {  # run_stage <name> <command...>
 
 # 1 industry: company -> industry, propagated to steps (reads the jury cache if any)
 run_stage industry     $UVR python -m industry.build_industry --propagate $INDUSTRY_ARGS
-# 2-5 the revealed-seniority loop: spine (with whatever scores exist) -> role
+# 2-4 employer-keyed overrides depend on step_industry and land in career_steps, which
+#     industry reads: re-sync the mapping, re-land it, then re-propagate industry once
+#     (industry does not read the override columns, so this converges in one pass).
+run_stage overrides    $UVR python -m career_clean.run_overrides
+run_stage career2      $UVR python build_normalized.py --sections career --skip-mappings
+run_stage industry2    $UVR python -m industry.build_industry --propagate $INDUSTRY_ARGS
+# 5-8 the revealed-seniority loop: spine (with whatever scores exist) -> role
 #     network -> analyze -> seniority scores -> spine again (now enriched)
 run_stage paths        $UVR python -m paths.build_spine --force
 run_stage net-role     $UVR python -m transition_network.build_network role
