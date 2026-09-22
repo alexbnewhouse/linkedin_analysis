@@ -6,8 +6,9 @@ A row is imputed to the bachelor's rung only when every one of these holds:
   2. a real field is coded (cip2_pooled not NULL and not 53);
   3. the degree box held a FIELD title (degree_method = 'cip_from_degree'): the person
      typed their major where the degree goes, which is the sibling build's actual signal;
-  4. the degree text carries no non-bachelor token (license, certificate, minor, study
-     abroad, associate/master abbreviations, ...);
+  4. neither the degree text nor the field text carries a non-bachelor token (license,
+     certificate, minor, study abroad, associate/master abbreviations, ...), and the
+     description does not say the program was not completed;
   5. the school string is not a high school, MOOC, community college, or named
      graduate/professional school;
   6. the school resolves to IPEDS as a four-year institution whose Carnegie class is not
@@ -48,6 +49,12 @@ _DEGREE_NEGATIVE = re.compile(
 
 CARNEGIE_EXCLUDE_PREFIXES = ("bacc_associates", "assoc_")
 
+# Post-review 2026-09-22: descriptions that say the program was not completed.
+_NOT_COMPLETED = re.compile(
+    r"(did not (?:complete|finish|graduate)|didn'?t (?:complete|finish|graduate)|never (?:completed|finished|graduated)|"
+    r"transferred (?:out|to)|dropped out|withdrew|incomplete|not completed|no degree|left (?:before|without))",
+    re.I)
+
 
 def school_excluded(school_raw: str | None) -> bool:
     if not school_raw or not school_raw.strip():
@@ -59,6 +66,12 @@ def degree_negative(degree_raw: str | None) -> bool:
     if not degree_raw:
         return False
     return bool(_DEGREE_NEGATIVE.search(degree_raw))
+
+
+def not_completed(description: str | None) -> bool:
+    if not description:
+        return False
+    return bool(_NOT_COMPLETED.search(description))
 
 
 def carnegie_excluded(carnegie_label: str | None) -> bool:
@@ -78,6 +91,8 @@ def predicate_sql(e: str, lvl: str, other: str) -> str:
         AND {e}.cip2_pooled IS NOT NULL AND {e}.cip2_pooled <> '53'
         AND {e}.degree_method = 'cip_from_degree'
         AND NOT degree_negative({e}.degree_raw)
+        AND NOT degree_negative({e}.field_raw)
+        AND NOT not_completed({e}.description)
         AND NOT school_excluded({e}.school_raw)
         AND {lvl}.iclevel_label = '4yr+'
         AND NOT carnegie_excluded({lvl}.carnegie_label)

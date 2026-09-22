@@ -109,6 +109,24 @@ fingerprint, CIP fingerprint, det/jury pooled fingerprint. Blind sample: 200 row
 `make benchmarks` re-run and recommitted (the fingerprint tripwire fired as designed; shares moved by
 < 0.1 pp).
 
+**Post-review (fresh subagent, 2026-09-22): VERDICT: LAND.** Verbatim: "every invariant re-derives
+exactly, det/jury rows are byte-identical to the main checkout, idempotence holds, and strict
+precision meets the 0.90 bar at the point estimate". Blind score on the 200-row sample: "pass=180
+unsure=15 fail=5 -> strict = 0.900, lenient = 0.973; the Wilson 95% interval is 0.851-0.934". Failed
+rows: SANS Technology Institute one-year program; Point Park "additional schooling"; Rhode Island
+College "did not complete degree program"; "Eastfield college" whose `school_slug` resolves to UNT (an
+upstream slug error); Clarkson "transferred out". Defects taken now: (2) the negative-token regex now
+also runs on `field_raw` and a non-completion regex (`did not complete`, `transferred out`, `dropped
+out`, `withdrew`, ...) runs on `description`; (3) the same-school graduate guard is `> 4`, not `>= 6`.
+Re-run: 25,175 rows (from 25,536), 12,100 persons gain a first level, +2,762 L1 bachelor's persons.
+Re-scoring the reviewer's labels on the 197 sample rows that survive the tightened predicate (the
+three dropped rows were labeled pass, pass, fail): strict 0.904, lenient 0.978. Labels file:
+`coding/labels/imputed_bachelor.reviewer.jsonl` (the human coder's labels go beside it; see
+`coding/README.md`). Deferred defects, recorded for follow-up: the slug map has wrong exact matches
+("Eastfield college" -> UNT, "College" -> SIU, "Western" -> WGU) that P2 is the first consumer to turn
+into a degree level; 770 persons carry imputed rows at two schools (one is usually a transfer-out);
+the word "propose-only" here means excludable through `degree_level_source`, not unlanded.
+
 ## P3. Co-majors and minors
 
 **Pre-review (fresh subagent, 2026-09-22): VERDICT: BUILD WITH CHANGES.** Verbatim core: "Whole-string-first
@@ -168,6 +186,45 @@ two populations and two strata ... (a) the det gold with the 1,586 mixed roles r
 jury-accepted mapping (298,942 roles) ... require precision >= 0.85 with n >= 100 on both ... stamp
 `landable` per (family, stratum)". Precedence det > jury > family confirmed. All adopted; the family
 tier lands only where `functional_cluster` is NULL.
+
+**Built:** `career_clean/families/` (`taxonomy.py` with FAMILIES + SENIORITY verbatim and NEVER_LAND;
+`classify.py` verbatim; `family_tests.py` verbatim plus the taxonomy contract, 634 assertions pass),
+`career_clean/run_families.py` (classify 3,507,500 title values in 11 s; gate on det gold minus mixed
+roles and on the 298,942-role jury mapping, per (family, stratum), n >= 100 and p >= 0.85 on both;
+sample), `career_clean/family_data_checks.py`; `build_normalized` joins the optional
+`title_family` mapping and lands `title_family`, `title_family_confidence`, `title_seniority9` on
+every step and the family's SOC-major anchor as `occupation_source = 'family'` only where landable,
+high-confidence, no det, no jury, no `functional_cluster`; `archetypes/common.py` and
+`cohorts/cohort_tests.py` accept the new source values. Gate file:
+`career_clean/results/family_gate.json`.
+
+**Gate result (the important finding):** only three (family, stratum) pairs clear 0.85 on both
+populations: `higher_ed_faculty`/staff (gold 0.97, jury 0.89), `journalism_media`/staff (0.89, 0.88),
+`legal_attorney`/staff (0.98, 0.94). Every functional family fails on the managerial stratum by SOC
+convention (managers are 11), and most fail on staff too, because a single 2-digit anchor per family
+is not how SOC codes titles: `software` misses "Full Stack Engineer" (gold 17), `sales` misses bare
+"Sales" (gold 11) and "Business Development Specialist" (13), `teaching_k12` misses "School Counselor"
+(21) and "School Psychologist" (19), `marketing` misses "Brand Ambassador" (41) and "Content Creator"
+(15). Some of those gold labels are themselves conventions of the deterministic coder, but the tier
+cannot clear a gate it disagrees with. Landable title values: 77,091 of 3,507,500.
+
+**Before -> after (measured, `normalized/career_steps.parquet`):**
+
+| measure | before | after |
+|---|---|---|
+| `occupation_major_pooled` coverage | 61.3% | 61.83% (+61,110 rows, `occupation_source = 'family'`) |
+| landed rows by family | n/a | journalism_media 27,817 (27); higher_ed_faculty 23,924 (25); legal_attorney 9,369 (23) |
+| `title_family` present (not `unclassified`) | n/a | 97.07% of steps |
+| `title_family_confidence = 'high'` | n/a | 83.24% |
+| `title_seniority9` marked (not `mid`) | 30.4% named tokens | 54.98% |
+
+So the SOC-proposer use of the family tier is nearly a bust (+0.5 pp), and that is the honest result
+of gating it; the family axis itself is on every step as a propose-only column, and the nine-level
+seniority marks 55% of steps versus 30% for the token parser. Blind sample of landed steps:
+`career_clean/results/family_sample.jsonl` (100 rows). Follow-ups logged: `assistantmanager` (25k
+rows) and the residue head (Project Manager 78k, Owner 69k, Sales 54k, Administrative Assistant 47k)
+still have no pooled major; a per-title anchor keyed on (family x seniority9), or a re-fire of the
+jury on the residue head, is the next step, not a wider gate.
 
 ## P5. Employer-keyed overrides
 

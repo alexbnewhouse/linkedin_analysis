@@ -577,20 +577,6 @@
   "data": {
    "id": "imputed_bachelor:041",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
-   "school_raw": "Pittsburg State University",
-   "degree_raw": "Communication",
-   "field_raw": "Major: Public Relations / Minor: Economics",
-   "description": "Activities and Societies: PSU Varsity Men's Golf Team Tau Sigma Honor Society Dean's List Scholastic Honors",
-   "start_year": "",
-   "end_year": "",
-   "cip2_pooled": "09",
-   "field_group": "Communication & Media"
-  }
- },
- {
-  "data": {
-   "id": "imputed_bachelor:042",
-   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Monroe College",
    "degree_raw": "Nursing",
    "field_raw": "3.95",
@@ -603,7 +589,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:043",
+   "id": "imputed_bachelor:042",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Hobart and William Smith Colleges",
    "degree_raw": "Psychology",
@@ -617,7 +603,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:044",
+   "id": "imputed_bachelor:043",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Fisk University",
    "degree_raw": "Mathematics",
@@ -631,7 +617,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:045",
+   "id": "imputed_bachelor:044",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Purdue University",
    "degree_raw": "Organizational Leadership",
@@ -645,7 +631,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:046",
+   "id": "imputed_bachelor:045",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Kentucky",
    "degree_raw": "Public Health",
@@ -659,7 +645,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:047",
+   "id": "imputed_bachelor:046",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Brigham Young University",
    "degree_raw": "Manufacturing Engineering",
@@ -673,7 +659,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:048",
+   "id": "imputed_bachelor:047",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Western Carolina University",
    "degree_raw": "Mechanical Engineering",
@@ -687,7 +673,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:049",
+   "id": "imputed_bachelor:048",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of California, Irvine",
    "degree_raw": "International Studies",
@@ -701,7 +687,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:050",
+   "id": "imputed_bachelor:049",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "California Polytechnic State University-San Luis Obispo",
    "degree_raw": "Metallurgical Engineering",
@@ -715,7 +701,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:051",
+   "id": "imputed_bachelor:050",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "California State University-Chico",
    "degree_raw": "Communications",
@@ -729,7 +715,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:052",
+   "id": "imputed_bachelor:051",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Arizona",
    "degree_raw": "ENGINEERING",
@@ -743,7 +729,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:053",
+   "id": "imputed_bachelor:052",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Berklee College of Music",
    "degree_raw": "Vocal Performance",
@@ -757,7 +743,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:054",
+   "id": "imputed_bachelor:053",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "St. Francis College",
    "degree_raw": "Business Administration and Management, General",
@@ -771,7 +757,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:055",
+   "id": "imputed_bachelor:054",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Millersville University of Pennsylvania",
    "degree_raw": "PSYCHOLOGY",
@@ -785,7 +771,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:056",
+   "id": "imputed_bachelor:055",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Miami Regional University",
    "degree_raw": "Registered Nurse",
@@ -799,7 +785,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:057",
+   "id": "imputed_bachelor:056",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Kansas State University",
    "degree_raw": "Business",
@@ -813,7 +799,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:058",
+   "id": "imputed_bachelor:057",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "West Chester University of Pennsylvania",
    "degree_raw": "Music Performance, General",
@@ -827,7 +813,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:059",
+   "id": "imputed_bachelor:058",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Houston",
    "degree_raw": "Business Administration",
@@ -841,7 +827,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:060",
+   "id": "imputed_bachelor:059",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Colorado Technical University",
    "degree_raw": "Health/Health Care Administration/Management",
@@ -855,7 +841,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:061",
+   "id": "imputed_bachelor:060",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Xavier University of Louisiana",
    "degree_raw": "Pre-Medicine/Pre-Medical Studies",
@@ -869,7 +855,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:062",
+   "id": "imputed_bachelor:061",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "California State University-Fullerton",
    "degree_raw": "Computer Science",
@@ -883,7 +869,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:063",
+   "id": "imputed_bachelor:062",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Wisconsin-Madison",
    "degree_raw": "Liberal Arts",
@@ -897,7 +883,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:064",
+   "id": "imputed_bachelor:063",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "College of Charleston",
    "degree_raw": "BUSINESS",
@@ -911,7 +897,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:065",
+   "id": "imputed_bachelor:064",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Our Lady of the Lake University",
    "degree_raw": "Criminology",
@@ -925,7 +911,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:066",
+   "id": "imputed_bachelor:065",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Illinois State University",
    "degree_raw": "Physical Education",
@@ -939,7 +925,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:067",
+   "id": "imputed_bachelor:066",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "St. Joseph's University New York",
    "degree_raw": "Business",
@@ -953,7 +939,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:068",
+   "id": "imputed_bachelor:067",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "California State University San Marcos",
    "degree_raw": "Accounting and Finance",
@@ -967,7 +953,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:069",
+   "id": "imputed_bachelor:068",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Illinois at Chicago",
    "degree_raw": "Business",
@@ -981,7 +967,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:070",
+   "id": "imputed_bachelor:069",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Idaho",
    "degree_raw": "American Studies",
@@ -995,7 +981,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:071",
+   "id": "imputed_bachelor:070",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Boston University",
    "degree_raw": "Communication",
@@ -1009,7 +995,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:072",
+   "id": "imputed_bachelor:071",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Brigham Young University",
    "degree_raw": "Neuroscience",
@@ -1023,7 +1009,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:073",
+   "id": "imputed_bachelor:072",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Springfield College",
    "degree_raw": "Human Services",
@@ -1037,7 +1023,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:074",
+   "id": "imputed_bachelor:073",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Capella University",
    "degree_raw": "homeland security",
@@ -1051,7 +1037,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:075",
+   "id": "imputed_bachelor:074",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Point Park University",
    "degree_raw": "Business Administration and Management, General",
@@ -1065,7 +1051,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:076",
+   "id": "imputed_bachelor:075",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Florida",
    "degree_raw": "Animal Sciences",
@@ -1079,7 +1065,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:077",
+   "id": "imputed_bachelor:076",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Lewis University",
    "degree_raw": "Computer Science",
@@ -1093,7 +1079,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:078",
+   "id": "imputed_bachelor:077",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Rutgers University - Newark",
    "degree_raw": "Accounting",
@@ -1107,7 +1093,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:079",
+   "id": "imputed_bachelor:078",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "California State University, Northridge",
    "degree_raw": "Graphic Design",
@@ -1121,7 +1107,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:080",
+   "id": "imputed_bachelor:079",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Anna Maria College",
    "degree_raw": "Early Childhood education",
@@ -1135,7 +1121,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:081",
+   "id": "imputed_bachelor:080",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "California State University, Northridge",
    "degree_raw": "Political Science",
@@ -1149,7 +1135,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:082",
+   "id": "imputed_bachelor:081",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Louisiana Tech University",
    "degree_raw": "Management",
@@ -1163,21 +1149,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:083",
-   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
-   "school_raw": "State University of New York at Buffalo",
-   "degree_raw": "Psychology",
-   "field_raw": "Education minor",
-   "description": "",
-   "start_year": "",
-   "end_year": "",
-   "cip2_pooled": "13",
-   "field_group": "Other"
-  }
- },
- {
-  "data": {
-   "id": "imputed_bachelor:084",
+   "id": "imputed_bachelor:082",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Virginia Tech",
    "degree_raw": "International/Global Studies",
@@ -1191,7 +1163,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:085",
+   "id": "imputed_bachelor:083",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "SUNY Binghamton",
    "degree_raw": "Business Administration",
@@ -1205,7 +1177,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:086",
+   "id": "imputed_bachelor:084",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Montclair State University",
    "degree_raw": "Audiology/Audiologist and Speech-Language Pathology/Pathologist",
@@ -1219,7 +1191,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:087",
+   "id": "imputed_bachelor:085",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Texas A&M University",
    "degree_raw": "BUSINESS, MANAGEMENT, MARKETING, AND RELATED SUPPORT SERVICES",
@@ -1233,7 +1205,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:088",
+   "id": "imputed_bachelor:086",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "The University of Kansas",
    "degree_raw": "Business Analytics",
@@ -1247,7 +1219,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:089",
+   "id": "imputed_bachelor:087",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Louisiana at Monroe",
    "degree_raw": "Psychology",
@@ -1261,7 +1233,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:090",
+   "id": "imputed_bachelor:088",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Illinois at Chicago",
    "degree_raw": "Accounting",
@@ -1275,7 +1247,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:091",
+   "id": "imputed_bachelor:089",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Jackson State University",
    "degree_raw": "Chemistry",
@@ -1289,7 +1261,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:092",
+   "id": "imputed_bachelor:090",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "California State Polytechnic University-Pomona",
    "degree_raw": "Business",
@@ -1303,7 +1275,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:093",
+   "id": "imputed_bachelor:091",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Kansas State University",
    "degree_raw": "Architectural Engineering",
@@ -1317,7 +1289,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:094",
+   "id": "imputed_bachelor:092",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Sacred Heart University",
    "degree_raw": "Media Studies",
@@ -1331,7 +1303,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:095",
+   "id": "imputed_bachelor:093",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Rhodes College",
    "degree_raw": "Philosophy",
@@ -1345,7 +1317,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:096",
+   "id": "imputed_bachelor:094",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Tennessee State University",
    "degree_raw": "Business Administration",
@@ -1359,7 +1331,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:097",
+   "id": "imputed_bachelor:095",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Brigham Young University",
    "degree_raw": "Manufacturing Engineering",
@@ -1373,7 +1345,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:098",
+   "id": "imputed_bachelor:096",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Purdue University",
    "degree_raw": "Education",
@@ -1387,7 +1359,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:099",
+   "id": "imputed_bachelor:097",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of North Carolina at Charlotte",
    "degree_raw": "PSYCHOLOGY",
@@ -1401,7 +1373,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:100",
+   "id": "imputed_bachelor:098",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "California State University-Fullerton",
    "degree_raw": "Business Marketing",
@@ -1415,7 +1387,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:101",
+   "id": "imputed_bachelor:099",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Iowa State University",
    "degree_raw": "Economics",
@@ -1429,7 +1401,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:102",
+   "id": "imputed_bachelor:100",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Colorado at Denver",
    "degree_raw": "Business Administration and Management, General",
@@ -1443,7 +1415,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:103",
+   "id": "imputed_bachelor:101",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Worcester Polytechnic Institute",
    "degree_raw": "Mechanical Engineering",
@@ -1457,7 +1429,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:104",
+   "id": "imputed_bachelor:102",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "American Military University",
    "degree_raw": "Human Resource Management",
@@ -1471,7 +1443,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:105",
+   "id": "imputed_bachelor:103",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "UC Santa Barbara",
    "degree_raw": "Economics",
@@ -1485,7 +1457,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:106",
+   "id": "imputed_bachelor:104",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Queens College",
    "degree_raw": "Economics",
@@ -1499,7 +1471,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:107",
+   "id": "imputed_bachelor:105",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Wayne State University",
    "degree_raw": "Criminal Justice",
@@ -1513,7 +1485,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:108",
+   "id": "imputed_bachelor:106",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Southern Illinois University, Carbondale",
    "degree_raw": "General Studies",
@@ -1527,7 +1499,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:109",
+   "id": "imputed_bachelor:107",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of San Diego",
    "degree_raw": "Business",
@@ -1541,7 +1513,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:110",
+   "id": "imputed_bachelor:108",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Brigham Young University",
    "degree_raw": "Cyber Security",
@@ -1555,7 +1527,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:111",
+   "id": "imputed_bachelor:109",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Florida Gulf Coast University",
    "degree_raw": "Elementary Education and Teaching",
@@ -1569,7 +1541,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:112",
+   "id": "imputed_bachelor:110",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of The Arts",
    "degree_raw": "Dance",
@@ -1583,7 +1555,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:113",
+   "id": "imputed_bachelor:111",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "San Diego State University",
    "degree_raw": "International Business",
@@ -1597,7 +1569,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:114",
+   "id": "imputed_bachelor:112",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Utah Valley University",
    "degree_raw": "Kinesiology and Exercise Science",
@@ -1611,7 +1583,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:115",
+   "id": "imputed_bachelor:113",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "The University of Kansas",
    "degree_raw": "Journalism",
@@ -1625,7 +1597,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:116",
+   "id": "imputed_bachelor:114",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Winona State University",
    "degree_raw": "Exercise Science",
@@ -1639,7 +1611,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:117",
+   "id": "imputed_bachelor:115",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Central Connecticut State University",
    "degree_raw": "Biology",
@@ -1653,7 +1625,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:118",
+   "id": "imputed_bachelor:116",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of California, Berkeley",
    "degree_raw": "Applied Mathematics",
@@ -1667,7 +1639,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:119",
+   "id": "imputed_bachelor:117",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "School of Visual Arts",
    "degree_raw": "Film/Video and Photographic Arts",
@@ -1681,7 +1653,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:120",
+   "id": "imputed_bachelor:118",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Western Michigan University",
    "degree_raw": "Elementary Education",
@@ -1695,7 +1667,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:121",
+   "id": "imputed_bachelor:119",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of North Carolina at Asheville",
    "degree_raw": "Business Administration and Management, General",
@@ -1709,7 +1681,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:122",
+   "id": "imputed_bachelor:120",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Massachusetts Amherst",
    "degree_raw": "Dance",
@@ -1723,7 +1695,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:123",
+   "id": "imputed_bachelor:121",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "The University of Texas at San Antonio",
    "degree_raw": "BUSINESS, MANAGEMENT, MARKETING, AND RELATED SUPPORT SERVICES",
@@ -1737,7 +1709,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:124",
+   "id": "imputed_bachelor:122",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Chapman University",
    "degree_raw": "Communication, General",
@@ -1751,7 +1723,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:125",
+   "id": "imputed_bachelor:123",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Florida International University",
    "degree_raw": "PSYCHOLOGY",
@@ -1765,7 +1737,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:126",
+   "id": "imputed_bachelor:124",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "California State Polytechnic University-Pomona",
    "degree_raw": "Computer Science",
@@ -1779,7 +1751,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:127",
+   "id": "imputed_bachelor:125",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Tuskegee University",
    "degree_raw": "Architecture",
@@ -1793,7 +1765,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:128",
+   "id": "imputed_bachelor:126",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Syracuse University",
    "degree_raw": "Psychology",
@@ -1807,7 +1779,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:129",
+   "id": "imputed_bachelor:127",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Central Florida",
    "degree_raw": "Business Administration and Management, General",
@@ -1821,7 +1793,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:130",
+   "id": "imputed_bachelor:128",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Brenau University",
    "degree_raw": "Biology",
@@ -1835,7 +1807,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:131",
+   "id": "imputed_bachelor:129",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "East Carolina University",
    "degree_raw": "Business Administration and Management, General",
@@ -1849,7 +1821,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:132",
+   "id": "imputed_bachelor:130",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Pittsburgh",
    "degree_raw": "Economics",
@@ -1863,7 +1835,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:133",
+   "id": "imputed_bachelor:131",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Ferris State University",
    "degree_raw": "Business Administration and Management, General",
@@ -1877,7 +1849,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:134",
+   "id": "imputed_bachelor:132",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Tarleton State University",
    "degree_raw": "Industrial Technology",
@@ -1891,7 +1863,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:135",
+   "id": "imputed_bachelor:133",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "UNLV",
    "degree_raw": "Business, Management, Marketing, and Related Support Services",
@@ -1905,7 +1877,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:136",
+   "id": "imputed_bachelor:134",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Western Kentucky University",
    "degree_raw": "PSYCHOLOGY",
@@ -1919,7 +1891,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:137",
+   "id": "imputed_bachelor:135",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of North Carolina at Greensboro",
    "degree_raw": "Graphic Design",
@@ -1933,7 +1905,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:138",
+   "id": "imputed_bachelor:136",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Oregon State University",
    "degree_raw": "Business",
@@ -1947,7 +1919,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:139",
+   "id": "imputed_bachelor:137",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Kansas State University",
    "degree_raw": "mechanical engineering",
@@ -1961,7 +1933,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:140",
+   "id": "imputed_bachelor:138",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Valdosta State University",
    "degree_raw": "Pre-Pharmacy Studies",
@@ -1975,7 +1947,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:141",
+   "id": "imputed_bachelor:139",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Troy University",
    "degree_raw": "business marketing",
@@ -1989,7 +1961,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:142",
+   "id": "imputed_bachelor:140",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Maryland University College",
    "degree_raw": "Social science",
@@ -2003,7 +1975,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:143",
+   "id": "imputed_bachelor:141",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Nebraska at Omaha",
    "degree_raw": "Business Administration and Management, General",
@@ -2017,7 +1989,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:144",
+   "id": "imputed_bachelor:142",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Tarleton State University",
    "degree_raw": "Social Work",
@@ -2031,7 +2003,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:145",
+   "id": "imputed_bachelor:143",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Illinois Urbana-Champaign",
    "degree_raw": "English",
@@ -2045,7 +2017,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:146",
+   "id": "imputed_bachelor:144",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of San Francisco",
    "degree_raw": "Business Administration and Management, General",
@@ -2059,7 +2031,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:147",
+   "id": "imputed_bachelor:145",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Old Dominion University",
    "degree_raw": "psychology",
@@ -2073,7 +2045,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:148",
+   "id": "imputed_bachelor:146",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Florida Gulf Coast University",
    "degree_raw": "Economics",
@@ -2087,7 +2059,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:149",
+   "id": "imputed_bachelor:147",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Southern Connecticut State University",
    "degree_raw": "Business Administration and Management, General",
@@ -2101,7 +2073,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:150",
+   "id": "imputed_bachelor:148",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Arkansas State University",
    "degree_raw": "Business Management",
@@ -2115,7 +2087,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:151",
+   "id": "imputed_bachelor:149",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Florida Southern College",
    "degree_raw": "Economics",
@@ -2129,7 +2101,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:152",
+   "id": "imputed_bachelor:150",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of California, Santa Barbara",
    "degree_raw": "Global International Studies",
@@ -2143,7 +2115,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:153",
+   "id": "imputed_bachelor:151",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Winston-Salem State University",
    "degree_raw": "Therapeutic Recreation/Recreational Therapy",
@@ -2157,7 +2129,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:154",
+   "id": "imputed_bachelor:152",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Wright State University-Lake Campus",
    "degree_raw": "Early Childhood Education",
@@ -2171,7 +2143,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:155",
+   "id": "imputed_bachelor:153",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "California State University, Long Beach",
    "degree_raw": "Cell/Cellular and Molecular Biology",
@@ -2185,7 +2157,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:156",
+   "id": "imputed_bachelor:154",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Grambling State University",
    "degree_raw": "Business Administration and Management, General",
@@ -2199,21 +2171,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:157",
-   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
-   "school_raw": "Rhode Island College",
-   "degree_raw": "HISTORY",
-   "field_raw": "",
-   "description": "Did not complete degree program.",
-   "start_year": "2005",
-   "end_year": "2008",
-   "cip2_pooled": "54",
-   "field_group": "History"
-  }
- },
- {
-  "data": {
-   "id": "imputed_bachelor:158",
+   "id": "imputed_bachelor:155",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Southern California",
    "degree_raw": "Marketing",
@@ -2227,7 +2185,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:159",
+   "id": "imputed_bachelor:156",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Coastal Carolina University",
    "degree_raw": "Kinesiology and Exercise Science",
@@ -2241,7 +2199,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:160",
+   "id": "imputed_bachelor:157",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Milwaukee Institute of Art & Design",
    "degree_raw": "Illustration",
@@ -2255,7 +2213,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:161",
+   "id": "imputed_bachelor:158",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Gettysburg College",
    "degree_raw": "Mathematics",
@@ -2269,7 +2227,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:162",
+   "id": "imputed_bachelor:159",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Eastfield college",
    "degree_raw": "Substance Abuse/Addiction Counseling",
@@ -2283,7 +2241,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:163",
+   "id": "imputed_bachelor:160",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Amridge University (formerly Southern Christian University)",
    "degree_raw": "Liberal Studies",
@@ -2297,7 +2255,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:164",
+   "id": "imputed_bachelor:161",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Walden University",
    "degree_raw": "Business/Corporate Communications",
@@ -2311,7 +2269,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:165",
+   "id": "imputed_bachelor:162",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Sam Houston State University",
    "degree_raw": "Journalism",
@@ -2325,7 +2283,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:166",
+   "id": "imputed_bachelor:163",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Old Dominion University",
    "degree_raw": "Criminal Justice",
@@ -2339,7 +2297,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:167",
+   "id": "imputed_bachelor:164",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "The University of Georgia",
    "degree_raw": "Business Finance",
@@ -2353,7 +2311,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:168",
+   "id": "imputed_bachelor:165",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Louisiana at Monroe",
    "degree_raw": "elementary education",
@@ -2367,7 +2325,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:169",
+   "id": "imputed_bachelor:166",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Liberty University",
    "degree_raw": "Business Management",
@@ -2381,7 +2339,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:170",
+   "id": "imputed_bachelor:167",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Maine",
    "degree_raw": "Business Management",
@@ -2395,7 +2353,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:171",
+   "id": "imputed_bachelor:168",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "California Lutheran University",
    "degree_raw": "Music Teacher Education",
@@ -2409,7 +2367,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:172",
+   "id": "imputed_bachelor:169",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Miami",
    "degree_raw": "PSYCHOLOGY",
@@ -2423,7 +2381,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:173",
+   "id": "imputed_bachelor:170",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "East Carolina University",
    "degree_raw": "English/Language Arts Teacher Education",
@@ -2437,7 +2395,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:174",
+   "id": "imputed_bachelor:171",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Western Governors University",
    "degree_raw": "Business Administration",
@@ -2451,7 +2409,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:175",
+   "id": "imputed_bachelor:172",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Central Florida",
    "degree_raw": "Public Relations",
@@ -2465,7 +2423,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:176",
+   "id": "imputed_bachelor:173",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Washington State University",
    "degree_raw": "PSYCHOLOGY",
@@ -2479,7 +2437,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:177",
+   "id": "imputed_bachelor:174",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Alvernia University",
    "degree_raw": "Psychology",
@@ -2493,7 +2451,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:178",
+   "id": "imputed_bachelor:175",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Utah Valley University",
    "degree_raw": "Business Management",
@@ -2507,7 +2465,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:179",
+   "id": "imputed_bachelor:176",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Kansas State University",
    "degree_raw": "Animal Sciences",
@@ -2521,7 +2479,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:180",
+   "id": "imputed_bachelor:177",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Davis and Elkins College",
    "degree_raw": "International Marketing",
@@ -2535,7 +2493,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:181",
+   "id": "imputed_bachelor:178",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Clarkson University",
    "degree_raw": "Environmental Engineering",
@@ -2549,7 +2507,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:182",
+   "id": "imputed_bachelor:179",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Southern New Hampshire University",
    "degree_raw": "Business Administration and Management, General",
@@ -2563,7 +2521,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:183",
+   "id": "imputed_bachelor:180",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Eastern Illinois University",
    "degree_raw": "Speech Communications",
@@ -2577,7 +2535,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:184",
+   "id": "imputed_bachelor:181",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Linfield College",
    "degree_raw": "MIS",
@@ -2591,7 +2549,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:185",
+   "id": "imputed_bachelor:182",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "North Carolina Central University",
    "degree_raw": "Public Health",
@@ -2605,7 +2563,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:186",
+   "id": "imputed_bachelor:183",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Monroe College",
    "degree_raw": "Healthcare Administration",
@@ -2619,7 +2577,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:187",
+   "id": "imputed_bachelor:184",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "California State University, Long Beach",
    "degree_raw": "English",
@@ -2633,7 +2591,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:188",
+   "id": "imputed_bachelor:185",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Barry University",
    "degree_raw": "Crisis/Emergency/Disaster Management",
@@ -2647,7 +2605,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:189",
+   "id": "imputed_bachelor:186",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Oklahoma",
    "degree_raw": "Radiologic Technology/Science - Radiographer",
@@ -2661,7 +2619,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:190",
+   "id": "imputed_bachelor:187",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Mesa State College",
    "degree_raw": "Art History",
@@ -2675,7 +2633,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:191",
+   "id": "imputed_bachelor:188",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Brown University",
    "degree_raw": "Philosophy",
@@ -2689,7 +2647,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:192",
+   "id": "imputed_bachelor:189",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Liberty University",
    "degree_raw": "HISTORY",
@@ -2703,7 +2661,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:193",
+   "id": "imputed_bachelor:190",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Capella University",
    "degree_raw": "Nursing Administration",
@@ -2717,7 +2675,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:194",
+   "id": "imputed_bachelor:191",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "San Jose State University",
    "degree_raw": "Sociology",
@@ -2731,7 +2689,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:195",
+   "id": "imputed_bachelor:192",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Western Washington University",
    "degree_raw": "Environmental Studies",
@@ -2745,7 +2703,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:196",
+   "id": "imputed_bachelor:193",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Northeastern University",
    "degree_raw": "Computer Science",
@@ -2759,7 +2717,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:197",
+   "id": "imputed_bachelor:194",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "California State University-Long Beach",
    "degree_raw": "Human Development",
@@ -2773,7 +2731,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:198",
+   "id": "imputed_bachelor:195",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "Fitchburg State University",
    "degree_raw": "Human Services",
@@ -2787,7 +2745,7 @@
  },
  {
   "data": {
-   "id": "imputed_bachelor:199",
+   "id": "imputed_bachelor:196",
    "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
    "school_raw": "University of Nevada-Las Vegas",
    "degree_raw": "Cybersecurity",
@@ -2797,6 +2755,48 @@
    "end_year": "",
    "cip2_pooled": "11",
    "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:197",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "University of Arkansas",
+   "degree_raw": "Business",
+   "field_raw": "",
+   "description": "",
+   "start_year": "1982",
+   "end_year": "1984",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:198",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "Lake Forest College",
+   "degree_raw": "Business Administration and Management, General",
+   "field_raw": "",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "52",
+   "field_group": "Other"
+  }
+ },
+ {
+  "data": {
+   "id": "imputed_bachelor:199",
+   "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row",
+   "school_raw": "DePaul University",
+   "degree_raw": "Biological Sciences",
+   "field_raw": "Biology",
+   "description": "",
+   "start_year": "",
+   "end_year": "",
+   "cip2_pooled": "26",
+   "field_group": "Biological Sciences"
   }
  }
 ]

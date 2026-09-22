@@ -48,6 +48,8 @@ def _register(con: duckdb.DuckDBPyConnection) -> None:
                         null_handling="special")
     con.create_function("carnegie_excluded", IB.carnegie_excluded, ["VARCHAR"], "BOOLEAN",
                         null_handling="special")
+    con.create_function("not_completed", IB.not_completed, ["VARCHAR"], "BOOLEAN",
+                        null_handling="special")
 
 
 def _build_views(con: duckdb.DuckDBPyConnection, unland: bool) -> None:
@@ -78,7 +80,7 @@ def _build_views(con: duckdb.DuckDBPyConnection, unland: bool) -> None:
       FROM (
         SELECT a.linkedin_id, a.idx,
                (b.idx <> a.idx AND b.degree_level_pooled = 4) AS other_bach,
-               (b.idx <> a.idx AND b.degree_level_pooled >= 6
+               (b.idx <> a.idx AND b.degree_level_pooled > 4
                 AND lower(trim(b.school_raw)) = lower(trim(a.school_raw))) AS other_grad_same
         FROM base a JOIN base b ON a.linkedin_id = b.linkedin_id
         WHERE a.degree_level_pooled IS NULL AND a.cip2_pooled IS NOT NULL

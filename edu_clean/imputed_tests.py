@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from edu_clean.imputed_bachelor import (LEVEL, SOURCE, carnegie_excluded, degree_negative,
-                                        predicate_sql, school_excluded)
+                                        not_completed, predicate_sql, school_excluded)
 
 
 def check(name: str, cond: bool) -> None:
@@ -44,12 +44,17 @@ def main() -> None:
               "special_focus_4yr_arts", "not_applicable", None):
         check(f"carnegie kept: {c}", not carnegie_excluded(c))
 
+    for d in ("Did not complete degree program", "transferred out after two years", "Dropped out in 2009",
+              "Withdrew to join the Army", "did not finish"):
+        check(f"not completed: {d}", not_completed(d))
+    for d in ("Completed 2012, Dean's List", "Activities and Societies: debate", None, ""):
+        check(f"completed / neutral: {d!r}", not not_completed(d))
     check("source constant", SOURCE == "imputed_bachelor")
     check("level is bachelor's ordinal", LEVEL == 4)
     sql = predicate_sql("e", "lvl", "g")
     for frag in ("e.degree_level_pooled IS NULL", "e.cip2_pooled <> '53'",
                  "e.degree_method = 'cip_from_degree'", "degree_negative(e.degree_raw)",
-                 "school_excluded(e.school_raw)", "lvl.iclevel_label = '4yr+'",
+                 "school_excluded(e.school_raw)", "degree_negative(e.field_raw)", "not_completed(e.description)", "lvl.iclevel_label = '4yr+'",
                  "carnegie_excluded(lvl.carnegie_label)", "g.bachelor_elsewhere", "g.grad_same_school"):
         check(f"predicate has {frag}", frag in sql)
     print("imputed-bachelor logic tests passed")

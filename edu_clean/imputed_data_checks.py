@@ -37,7 +37,8 @@ def main() -> None:
           degree_level IS NULL AND degree_level_pooled = {IB.LEVEL}
           AND cip2_pooled IS NOT NULL AND cip2_pooled <> '53'
           AND degree_method = 'cip_from_degree'
-          AND NOT degree_negative(degree_raw) AND NOT school_excluded(school_raw))
+          AND NOT degree_negative(degree_raw) AND NOT degree_negative(field_raw)
+          AND NOT not_completed(description) AND NOT school_excluded(school_raw))
     """).fetchone()[0]
     assert bad == 0, f"{bad} imputed rows violate the row-level predicate"
     ok("every imputed row satisfies the row-level predicate")
