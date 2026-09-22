@@ -94,6 +94,7 @@ test:             ## data-independent logic suites (no built parquet needed)
 	$(UV) python -m career_clean.override_tests
 	$(UV) python -m persons.person_tests
 	$(UV) python -m coding.coding_tests
+	bash scripts/statusline_tests.sh
 
 test-data:        ## suites that read built parquet
 	$(UV) python -m career_clean.soc_data_checks

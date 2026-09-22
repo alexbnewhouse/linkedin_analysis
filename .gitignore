@@ -70,3 +70,5 @@ __pycache__/
 # persons/ generated outputs (manifest + metrics JSON are kept)
 /persons/*.parquet
 /persons/results/tables/
+# status-line task markers (scripts/track.sh; expire on their own)
+/.claude/tasks/

@@ -144,9 +144,18 @@ exports each sample as a Label Studio project, ingests any annotator's labels, a
 and Cohen's kappa (`make coding-export`; `coding/README.md`). Reviewer labels live in
 `coding/labels/<sample>.<annotator>.jsonl`; superseded draws in `coding/labels/superseded/`.
 
+## Status line and long jobs
+
+`.claude/statusline.sh` (wired in `.claude/settings.json`) shows every running pipeline process
+it can see by name (`⚙ normalize 4m, persons 1m`), any job started through
+`scripts/track.sh <label> -- <command>` with a progress hint from its log (`▶ soc-tail 12m [pool]
+4,200 done`), and the driver one-liner in `.build_status`. Finished markers stay for ten minutes
+and are then removed by the status line itself; a `.build_status` that claims to be running with
+no driver alive is flagged and removed after fifteen minutes. Nothing needs cleaning by hand.
+
 ## Tests
 
-`make test` runs the logic suites that need no built parquet (about 10 s):
+`make test` runs the logic suites that need no built parquet (about 10 s), plus the status-line checks (`scripts/statusline_tests.sh`):
 humanities/degree-level rules, self-employment and company canonicalization
 (`career_clean/company_tests`), the SOC jury filters, the industry classifier
 (name-rule precision fixtures, propagation on a temp dir, curated provenance),
