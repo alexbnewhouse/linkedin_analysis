@@ -3,241 +3,7 @@
   "data": {
    "id": "comajors:000",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "French and International Relations",
-   "components": "[{\"text\": \"French\", \"role\": \"major\", \"cip\": \"16.0901\"}, {\"text\": \"International Relations\", \"role\": \"major\", \"cip\": \"45.0901\"}]",
-   "primary_cip": "45.0901",
-   "secondary_cip": "16.0901",
-   "minor_cip": "",
-   "cip2_pooled": "45",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:001",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Spanish; Administration of Justice; Criminal Justice",
-   "components": "[{\"text\": \"Spanish\", \"role\": \"major\", \"cip\": \"16.0905\"}, {\"text\": \"Administration of Justice\", \"role\": \"major\", \"cip\": \"43.0103\"}]",
-   "primary_cip": "16.0905",
-   "secondary_cip": "43.0103",
-   "minor_cip": "",
-   "cip2_pooled": "16",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:002",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Physics, Chemistry, Mathematics and Economics",
-   "components": "[{\"text\": \"Physics\", \"role\": \"major\", \"cip\": \"40.08\"}, {\"text\": \"Mathematics\", \"role\": \"major\", \"cip\": \"27.01\"}, {\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}]",
-   "primary_cip": "40.08",
-   "secondary_cip": "27.01",
-   "minor_cip": "",
-   "cip2_pooled": "40",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:003",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Psychology & Sociology",
-   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}]",
-   "primary_cip": "42.01",
-   "secondary_cip": "45.11",
-   "minor_cip": "",
-   "cip2_pooled": "42",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:004",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Political Science and Government, Spanish",
-   "components": "[{\"text\": \"Political Science\", \"role\": \"major\", \"cip\": \"45.10\"}, {\"text\": \"Spanish\", \"role\": \"major\", \"cip\": \"16.0905\"}]",
-   "primary_cip": "45.10",
-   "secondary_cip": "16.0905",
-   "minor_cip": "",
-   "cip2_pooled": "45",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:005",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Biological Sciences and Psychology",
-   "components": "[{\"text\": \"Biological Sciences\", \"role\": \"major\", \"cip\": \"26.01\"}, {\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}]",
-   "primary_cip": "26.01",
-   "secondary_cip": "42.01",
-   "minor_cip": "",
-   "cip2_pooled": "26",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:006",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Sociology, History, Secondary Education, and Psychology",
-   "components": "[{\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}, {\"text\": \"History\", \"role\": \"major\", \"cip\": \"54.01\"}, {\"text\": \"Secondary Education\", \"role\": \"major\", \"cip\": \"13.1205\"}, {\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}]",
-   "primary_cip": "45.11",
-   "secondary_cip": "54.01",
-   "minor_cip": "",
-   "cip2_pooled": "45",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:007",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "English, History",
-   "components": "[{\"text\": \"English\", \"role\": \"major\", \"cip\": \"23.01\"}, {\"text\": \"History\", \"role\": \"major\", \"cip\": \"54.01\"}]",
-   "primary_cip": "23.01",
-   "secondary_cip": "54.01",
-   "minor_cip": "",
-   "cip2_pooled": "23",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:008",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Business/Industrial Management",
-   "components": "[{\"text\": \"Business\", \"role\": \"major\", \"cip\": \"52\"}, {\"text\": \"Industrial Management\", \"role\": \"major\", \"cip\": \"15.1501\"}]",
-   "primary_cip": "52",
-   "secondary_cip": "15.1501",
-   "minor_cip": "",
-   "cip2_pooled": "52",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:009",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Psychology, Philosophy",
-   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Philosophy\", \"role\": \"major\", \"cip\": \"38.01\"}]",
-   "primary_cip": "42.01",
-   "secondary_cip": "38.01",
-   "minor_cip": "",
-   "cip2_pooled": "42",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:010",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Business, Economics & Public Policy",
-   "components": "[{\"text\": \"Business\", \"role\": \"major\", \"cip\": \"52\"}, {\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}, {\"text\": \"Public Policy\", \"role\": \"major\", \"cip\": \"44.0501\"}]",
-   "primary_cip": "52",
-   "secondary_cip": "45.06",
-   "minor_cip": "",
-   "cip2_pooled": "52",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:011",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Communications and Language, Spanish & German",
-   "components": "[{\"text\": \"Communications\", \"role\": \"major\", \"cip\": \"09.0100\"}, {\"text\": \"Spanish\", \"role\": \"major\", \"cip\": \"16.0905\"}]",
-   "primary_cip": "09.0100",
-   "secondary_cip": "16.0905",
-   "minor_cip": "",
-   "cip2_pooled": "09",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:012",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Sociology, Psychology, and Deaf Studies",
-   "components": "[{\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}, {\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Deaf Studies\", \"role\": \"major\", \"cip\": \"05.0211\"}]",
-   "primary_cip": "45.11",
-   "secondary_cip": "42.01",
-   "minor_cip": "",
-   "cip2_pooled": "45",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:013",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Economics & Mathematics",
-   "components": "[{\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}, {\"text\": \"Mathematics\", \"role\": \"major\", \"cip\": \"27.01\"}]",
-   "primary_cip": "45.06",
-   "secondary_cip": "27.01",
-   "minor_cip": "",
-   "cip2_pooled": "45",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:014",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Public Policy and Management",
-   "components": "[{\"text\": \"Public Policy\", \"role\": \"major\", \"cip\": \"44.0501\"}, {\"text\": \"Management\", \"role\": \"major\", \"cip\": \"52.02\"}]",
-   "primary_cip": "44.0501",
-   "secondary_cip": "52.02",
-   "minor_cip": "",
-   "cip2_pooled": "44",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:015",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Economics/Accounting",
-   "components": "[{\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}, {\"text\": \"Accounting\", \"role\": \"major\", \"cip\": \"52.0301\"}]",
-   "primary_cip": "45.06",
-   "secondary_cip": "52.0301",
-   "minor_cip": "",
-   "cip2_pooled": "45",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:016",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "English, Psychology",
-   "components": "[{\"text\": \"English\", \"role\": \"major\", \"cip\": \"23.01\"}, {\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}]",
-   "primary_cip": "23.01",
-   "secondary_cip": "42.01",
-   "minor_cip": "",
-   "cip2_pooled": "23",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:017",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Business and Engineering",
-   "components": "[{\"text\": \"Business\", \"role\": \"major\", \"cip\": \"52\"}, {\"text\": \"Engineering\", \"role\": \"major\", \"cip\": \"14.01\"}]",
-   "primary_cip": "52",
-   "secondary_cip": "14.01",
-   "minor_cip": "",
-   "cip2_pooled": "52",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:018",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Biology/Chemistry",
+   "field_raw": "Biology and Chemistry",
    "components": "[{\"text\": \"Biology\", \"role\": \"major\", \"cip\": \"26.01\"}, {\"text\": \"Chemistry\", \"role\": \"major\", \"cip\": \"40.05\"}]",
    "primary_cip": "26.01",
    "secondary_cip": "40.05",
@@ -248,25 +14,25 @@
  },
  {
   "data": {
-   "id": "comajors:019",
+   "id": "comajors:001",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Biology, History",
-   "components": "[{\"text\": \"Biology\", \"role\": \"major\", \"cip\": \"26.01\"}, {\"text\": \"History\", \"role\": \"major\", \"cip\": \"54.01\"}]",
-   "primary_cip": "26.01",
-   "secondary_cip": "54.01",
+   "field_raw": "Management and Economics",
+   "components": "[{\"text\": \"Management\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}]",
+   "primary_cip": "52.02",
+   "secondary_cip": "45.06",
    "minor_cip": "",
-   "cip2_pooled": "26",
+   "cip2_pooled": "52",
    "marker_class": "plain"
   }
  },
  {
   "data": {
-   "id": "comajors:020",
+   "id": "comajors:002",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "English and French",
-   "components": "[{\"text\": \"English\", \"role\": \"major\", \"cip\": \"23.01\"}, {\"text\": \"French\", \"role\": \"major\", \"cip\": \"16.0901\"}]",
+   "field_raw": "English / Speech Communication",
+   "components": "[{\"text\": \"English\", \"role\": \"major\", \"cip\": \"23.01\"}, {\"text\": \"Speech Communication\", \"role\": \"major\", \"cip\": \"09.0101\"}]",
    "primary_cip": "23.01",
-   "secondary_cip": "16.0901",
+   "secondary_cip": "09.0101",
    "minor_cip": "",
    "cip2_pooled": "23",
    "marker_class": "plain"
@@ -274,74 +40,61 @@
  },
  {
   "data": {
-   "id": "comajors:021",
+   "id": "comajors:003",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Liberal Arts/Communications Radio/TV/Film",
-   "components": "[{\"text\": \"Liberal Arts\", \"role\": \"major\", \"cip\": \"24.0101\"}, {\"text\": \"Film\", \"role\": \"major\", \"cip\": \"50.0601\"}]",
-   "primary_cip": "24.0101",
-   "secondary_cip": "50.0601",
+   "field_raw": "Business and IT",
+   "components": "[{\"text\": \"Business\", \"role\": \"major\", \"cip\": \"52\"}, {\"text\": \"IT\", \"role\": \"major\", \"cip\": \"11.0103\"}]",
+   "primary_cip": "52",
+   "secondary_cip": "11.0103",
    "minor_cip": "",
-   "cip2_pooled": "24",
+   "cip2_pooled": "52",
    "marker_class": "plain"
   }
  },
  {
   "data": {
-   "id": "comajors:022",
+   "id": "comajors:004",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Theater and Communications",
-   "components": "[{\"text\": \"Theater\", \"role\": \"major\", \"cip\": \"50.05\"}, {\"text\": \"Communications\", \"role\": \"major\", \"cip\": \"09.0100\"}]",
-   "primary_cip": "50.05",
-   "secondary_cip": "09.0100",
+   "field_raw": "Criminal Justice and Psychology",
+   "components": "[{\"text\": \"Criminal Justice\", \"role\": \"major\", \"cip\": \"43.01\"}, {\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}]",
+   "primary_cip": "43.01",
+   "secondary_cip": "42.01",
    "minor_cip": "",
-   "cip2_pooled": "50",
+   "cip2_pooled": "43",
    "marker_class": "plain"
   }
  },
  {
   "data": {
-   "id": "comajors:023",
+   "id": "comajors:005",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Mathematics and English",
-   "components": "[{\"text\": \"Mathematics\", \"role\": \"major\", \"cip\": \"27.01\"}, {\"text\": \"English\", \"role\": \"major\", \"cip\": \"23.01\"}]",
-   "primary_cip": "27.01",
-   "secondary_cip": "23.01",
+   "field_raw": "Marketing and Advertising",
+   "components": "[{\"text\": \"Marketing\", \"role\": \"major\", \"cip\": \"52.14\"}, {\"text\": \"Advertising\", \"role\": \"major\", \"cip\": \"09.0903\"}]",
+   "primary_cip": "52.14",
+   "secondary_cip": "09.0903",
    "minor_cip": "",
-   "cip2_pooled": "27",
+   "cip2_pooled": "52",
    "marker_class": "plain"
   }
  },
  {
   "data": {
-   "id": "comajors:024",
+   "id": "comajors:006",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Sociology and History",
-   "components": "[{\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}, {\"text\": \"History\", \"role\": \"major\", \"cip\": \"54.01\"}]",
-   "primary_cip": "45.11",
-   "secondary_cip": "54.01",
+   "field_raw": "Business Administration, Economics",
+   "components": "[{\"text\": \"Business Administration\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}]",
+   "primary_cip": "52.02",
+   "secondary_cip": "45.06",
    "minor_cip": "",
-   "cip2_pooled": "45",
+   "cip2_pooled": "52",
    "marker_class": "plain"
   }
  },
  {
   "data": {
-   "id": "comajors:025",
+   "id": "comajors:007",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Humanities, Philosophy, & Arts",
-   "components": "[{\"text\": \"Humanities\", \"role\": \"major\", \"cip\": \"24.0103\"}, {\"text\": \"Philosophy\", \"role\": \"major\", \"cip\": \"38.01\"}]",
-   "primary_cip": "24.0103",
-   "secondary_cip": "38.01",
-   "minor_cip": "",
-   "cip2_pooled": "24",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:026",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Communication/Marketing",
+   "field_raw": "Communication and Marketing",
    "components": "[{\"text\": \"Communication\", \"role\": \"major\", \"cip\": \"09.0100\"}, {\"text\": \"Marketing\", \"role\": \"major\", \"cip\": \"52.14\"}]",
    "primary_cip": "09.0100",
    "secondary_cip": "52.14",
@@ -352,25 +105,51 @@
  },
  {
   "data": {
-   "id": "comajors:027",
+   "id": "comajors:008",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Marketing, Public Relations",
-   "components": "[{\"text\": \"Marketing\", \"role\": \"major\", \"cip\": \"52.14\"}, {\"text\": \"Public Relations\", \"role\": \"major\", \"cip\": \"09.09\"}]",
-   "primary_cip": "09.09",
-   "secondary_cip": "52.14",
+   "field_raw": "Astronomy, Math, Physics",
+   "components": "[{\"text\": \"Astronomy\", \"role\": \"major\", \"cip\": \"40.0201\"}, {\"text\": \"Math\", \"role\": \"major\", \"cip\": \"27.01\"}]",
+   "primary_cip": "40.0201",
+   "secondary_cip": "27.01",
    "minor_cip": "",
-   "cip2_pooled": "09",
+   "cip2_pooled": "40",
    "marker_class": "plain"
   }
  },
  {
   "data": {
-   "id": "comajors:028",
+   "id": "comajors:009",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Molecular Genetics, Biochemistry, Psychology, Chemistry and Statistics",
-   "components": "[{\"text\": \"Molecular Genetics\", \"role\": \"major\", \"cip\": \"26.0802\"}, {\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Chemistry\", \"role\": \"major\", \"cip\": \"40.05\"}, {\"text\": \"Statistics\", \"role\": \"major\", \"cip\": \"27.05\"}]",
-   "primary_cip": "26.0802",
-   "secondary_cip": "42.01",
+   "field_raw": "Liberal Arts/ Social and Behavioral Sciences",
+   "components": "[{\"text\": \"Liberal Arts\", \"role\": \"major\", \"cip\": \"24.0101\"}, {\"text\": \"Behavioral Sciences\", \"role\": \"major\", \"cip\": \"30.17\"}]",
+   "primary_cip": "24.0101",
+   "secondary_cip": "30.17",
+   "minor_cip": "",
+   "cip2_pooled": "24",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:010",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Elementary Education and Teaching and Accounting",
+   "components": "[{\"text\": \"Elementary Education\", \"role\": \"major\", \"cip\": \"13.1202\"}, {\"text\": \"Accounting\", \"role\": \"major\", \"cip\": \"52.0301\"}]",
+   "primary_cip": "13.1202",
+   "secondary_cip": "52.0301",
+   "minor_cip": "",
+   "cip2_pooled": "13",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:011",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Biochemistry & Molecular Biology, Spanish",
+   "components": "[{\"text\": \"Biochemistry\", \"role\": \"major\", \"cip\": \"26.0202\"}, {\"text\": \"Spanish\", \"role\": \"major\", \"cip\": \"16.0905\"}]",
+   "primary_cip": "26.0202",
+   "secondary_cip": "16.0905",
    "minor_cip": "",
    "cip2_pooled": "26",
    "marker_class": "plain"
@@ -378,165 +157,9 @@
  },
  {
   "data": {
-   "id": "comajors:029",
+   "id": "comajors:012",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Human Development and Psychology",
-   "components": "[{\"text\": \"Human Development\", \"role\": \"major\", \"cip\": \"19.0701\"}, {\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}]",
-   "primary_cip": "19.0701",
-   "secondary_cip": "42.01",
-   "minor_cip": "",
-   "cip2_pooled": "19",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:030",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Economics, Development, Negotiation, Humanities",
-   "components": "[{\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}, {\"text\": \"Humanities\", \"role\": \"major\", \"cip\": \"24.0103\"}]",
-   "primary_cip": "45.06",
-   "secondary_cip": "24.0103",
-   "minor_cip": "",
-   "cip2_pooled": "45",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:031",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Business/Psychology",
-   "components": "[{\"text\": \"Business\", \"role\": \"major\", \"cip\": \"52\"}, {\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}]",
-   "primary_cip": "52",
-   "secondary_cip": "42.01",
-   "minor_cip": "",
-   "cip2_pooled": "52",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:032",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Economics and Neuroscience",
-   "components": "[{\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}, {\"text\": \"Neuroscience\", \"role\": \"major\", \"cip\": \"26.1501\"}]",
-   "primary_cip": "45.06",
-   "secondary_cip": "26.1501",
-   "minor_cip": "",
-   "cip2_pooled": "45",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:033",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Mass Communication, Sociology & Psychology",
-   "components": "[{\"text\": \"Mass Communication\", \"role\": \"major\", \"cip\": \"09.0102\"}, {\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}, {\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}]",
-   "primary_cip": "09.0102",
-   "secondary_cip": "45.11",
-   "minor_cip": "",
-   "cip2_pooled": "09",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:034",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Computer Science & Engineering",
-   "components": "[{\"text\": \"Computer Science\", \"role\": \"major\", \"cip\": \"11.07\"}, {\"text\": \"Engineering\", \"role\": \"major\", \"cip\": \"14.01\"}]",
-   "primary_cip": "14.01",
-   "secondary_cip": "11.07",
-   "minor_cip": "",
-   "cip2_pooled": "14",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:035",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Psychology & Sociology",
-   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}]",
-   "primary_cip": "42.01",
-   "secondary_cip": "45.11",
-   "minor_cip": "",
-   "cip2_pooled": "42",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:036",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "English & Spanish",
-   "components": "[{\"text\": \"English\", \"role\": \"major\", \"cip\": \"23.01\"}, {\"text\": \"Spanish\", \"role\": \"major\", \"cip\": \"16.0905\"}]",
-   "primary_cip": "23.01",
-   "secondary_cip": "16.0905",
-   "minor_cip": "",
-   "cip2_pooled": "23",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:037",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Finance, Economics",
-   "components": "[{\"text\": \"Finance\", \"role\": \"major\", \"cip\": \"52.0801\"}, {\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}]",
-   "primary_cip": "52.0801",
-   "secondary_cip": "45.06",
-   "minor_cip": "",
-   "cip2_pooled": "52",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:038",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Theatre/Theater, Creative Writing",
-   "components": "[{\"text\": \"Theatre\", \"role\": \"major\", \"cip\": \"50.05\"}, {\"text\": \"Creative Writing\", \"role\": \"major\", \"cip\": \"23.05\"}]",
-   "primary_cip": "50.05",
-   "secondary_cip": "23.05",
-   "minor_cip": "",
-   "cip2_pooled": "50",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:039",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Psychology & Women's Studies",
-   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Women's Studies\", \"role\": \"major\", \"cip\": \"05.0207\"}]",
-   "primary_cip": "42.01",
-   "secondary_cip": "05.0207",
-   "minor_cip": "",
-   "cip2_pooled": "42",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:040",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Criminology, Law & Society",
-   "components": "[{\"text\": \"Criminology\", \"role\": \"major\", \"cip\": \"45.04\"}, {\"text\": \"Law\", \"role\": \"major\", \"cip\": \"22.01\"}]",
-   "primary_cip": "22.01",
-   "secondary_cip": "45.04",
-   "minor_cip": "",
-   "cip2_pooled": "22",
-   "marker_class": "plain"
-  }
- },
- {
-  "data": {
-   "id": "comajors:041",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Marketing & Economics",
+   "field_raw": "Marketing, Economics",
    "components": "[{\"text\": \"Marketing\", \"role\": \"major\", \"cip\": \"52.14\"}, {\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}]",
    "primary_cip": "52.14",
    "secondary_cip": "45.06",
@@ -547,38 +170,51 @@
  },
  {
   "data": {
-   "id": "comajors:042",
+   "id": "comajors:013",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "History/Marketing",
-   "components": "[{\"text\": \"History\", \"role\": \"major\", \"cip\": \"54.01\"}, {\"text\": \"Marketing\", \"role\": \"major\", \"cip\": \"52.14\"}]",
-   "primary_cip": "54.01",
-   "secondary_cip": "52.14",
+   "field_raw": "Zoology and Chemistry",
+   "components": "[{\"text\": \"Zoology\", \"role\": \"major\", \"cip\": \"26.0701\"}, {\"text\": \"Chemistry\", \"role\": \"major\", \"cip\": \"40.05\"}]",
+   "primary_cip": "40.05",
+   "secondary_cip": "26.0701",
    "minor_cip": "",
-   "cip2_pooled": "54",
+   "cip2_pooled": "40",
    "marker_class": "plain"
   }
  },
  {
   "data": {
-   "id": "comajors:043",
+   "id": "comajors:014",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Psychology and English",
-   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"English\", \"role\": \"major\", \"cip\": \"23.01\"}]",
-   "primary_cip": "42.01",
-   "secondary_cip": "23.01",
+   "field_raw": "Math and Physics",
+   "components": "[{\"text\": \"Math\", \"role\": \"major\", \"cip\": \"27.01\"}, {\"text\": \"Physics\", \"role\": \"major\", \"cip\": \"40.08\"}]",
+   "primary_cip": "27.01",
+   "secondary_cip": "40.08",
    "minor_cip": "",
-   "cip2_pooled": "42",
+   "cip2_pooled": "27",
    "marker_class": "plain"
   }
  },
  {
   "data": {
-   "id": "comajors:044",
+   "id": "comajors:015",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Economics and Communications",
-   "components": "[{\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}, {\"text\": \"Communications\", \"role\": \"major\", \"cip\": \"09.0100\"}]",
-   "primary_cip": "45.06",
-   "secondary_cip": "09.0100",
+   "field_raw": "Psychology and Business Management",
+   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Business Management\", \"role\": \"major\", \"cip\": \"52.02\"}]",
+   "primary_cip": "52.02",
+   "secondary_cip": "42.01",
+   "minor_cip": "",
+   "cip2_pooled": "52",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:016",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Political Science and Philosophy",
+   "components": "[{\"text\": \"Political Science\", \"role\": \"major\", \"cip\": \"45.10\"}, {\"text\": \"Philosophy\", \"role\": \"major\", \"cip\": \"38.01\"}]",
+   "primary_cip": "45.10",
+   "secondary_cip": "38.01",
    "minor_cip": "",
    "cip2_pooled": "45",
    "marker_class": "plain"
@@ -586,12 +222,12 @@
  },
  {
   "data": {
-   "id": "comajors:045",
+   "id": "comajors:017",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Communications/History",
-   "components": "[{\"text\": \"Communications\", \"role\": \"major\", \"cip\": \"09.0100\"}, {\"text\": \"History\", \"role\": \"major\", \"cip\": \"54.01\"}]",
-   "primary_cip": "09.0100",
-   "secondary_cip": "54.01",
+   "field_raw": "Journalism and Psychology",
+   "components": "[{\"text\": \"Journalism\", \"role\": \"major\", \"cip\": \"09.04\"}, {\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}]",
+   "primary_cip": "09.04",
+   "secondary_cip": "42.01",
    "minor_cip": "",
    "cip2_pooled": "09",
    "marker_class": "plain"
@@ -599,11 +235,193 @@
  },
  {
   "data": {
-   "id": "comajors:046",
+   "id": "comajors:018",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Sociology, Gender and Women's Studies",
-   "components": "[{\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}, {\"text\": \"Women's Studies\", \"role\": \"major\", \"cip\": \"05.0207\"}]",
-   "primary_cip": "45.11",
+   "field_raw": "Advertising and Marketing",
+   "components": "[{\"text\": \"Advertising\", \"role\": \"major\", \"cip\": \"09.0903\"}, {\"text\": \"Marketing\", \"role\": \"major\", \"cip\": \"52.14\"}]",
+   "primary_cip": "52.14",
+   "secondary_cip": "09.0903",
+   "minor_cip": "",
+   "cip2_pooled": "52",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:019",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "International Business and Economics",
+   "components": "[{\"text\": \"International Business\", \"role\": \"major\", \"cip\": \"52.11\"}, {\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}]",
+   "primary_cip": "52.11",
+   "secondary_cip": "45.06",
+   "minor_cip": "",
+   "cip2_pooled": "52",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:020",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "History, Film, & German",
+   "components": "[{\"text\": \"History\", \"role\": \"major\", \"cip\": \"54.01\"}, {\"text\": \"Film\", \"role\": \"major\", \"cip\": \"50.0601\"}]",
+   "primary_cip": "54.01",
+   "secondary_cip": "50.0601",
+   "minor_cip": "",
+   "cip2_pooled": "54",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:021",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Business Administration; Marketing; Economics",
+   "components": "[{\"text\": \"Business Administration\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}]",
+   "primary_cip": "52.02",
+   "secondary_cip": "45.06",
+   "minor_cip": "",
+   "cip2_pooled": "52",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:022",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "History, Geography, Poli Sci, Economics",
+   "components": "[{\"text\": \"History\", \"role\": \"major\", \"cip\": \"54.01\"}, {\"text\": \"Geography\", \"role\": \"major\", \"cip\": \"45.0701\"}]",
+   "primary_cip": "54.01",
+   "secondary_cip": "45.0701",
+   "minor_cip": "",
+   "cip2_pooled": "54",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:023",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "English, Sociology, Anthropology",
+   "components": "[{\"text\": \"English\", \"role\": \"major\", \"cip\": \"23.01\"}, {\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}]",
+   "primary_cip": "23.01",
+   "secondary_cip": "45.11",
+   "minor_cip": "",
+   "cip2_pooled": "23",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:024",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Biochemistry, Molecular Biology; Computer Science",
+   "components": "[{\"text\": \"Biochemistry\", \"role\": \"major\", \"cip\": \"26.0202\"}, {\"text\": \"Computer Science\", \"role\": \"major\", \"cip\": \"11.07\"}]",
+   "primary_cip": "26.0202",
+   "secondary_cip": "11.07",
+   "minor_cip": "",
+   "cip2_pooled": "26",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:025",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Math, Psychology, Secondary Education",
+   "components": "[{\"text\": \"Math\", \"role\": \"major\", \"cip\": \"27.01\"}, {\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Secondary Education\", \"role\": \"major\", \"cip\": \"13.1205\"}]",
+   "primary_cip": "27.01",
+   "secondary_cip": "42.01",
+   "minor_cip": "",
+   "cip2_pooled": "27",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:026",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Business Administration, Sociology",
+   "components": "[{\"text\": \"Business Administration\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}]",
+   "primary_cip": "52.02",
+   "secondary_cip": "45.11",
+   "minor_cip": "",
+   "cip2_pooled": "52",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:027",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Economics, Legal Studies",
+   "components": "[{\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}, {\"text\": \"Legal Studies\", \"role\": \"major\", \"cip\": \"22.0000\"}]",
+   "primary_cip": "45.06",
+   "secondary_cip": "22.0000",
+   "minor_cip": "",
+   "cip2_pooled": "45",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:028",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Mechanical Engineering and Management & Business Economics",
+   "components": "[{\"text\": \"Mechanical Engineering\", \"role\": \"major\", \"cip\": \"14.19\"}, {\"text\": \"Management\", \"role\": \"major\", \"cip\": \"52.02\"}]",
+   "primary_cip": "14.19",
+   "secondary_cip": "52.02",
+   "minor_cip": "",
+   "cip2_pooled": "14",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:029",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "History/ Political Science",
+   "components": "[{\"text\": \"History\", \"role\": \"major\", \"cip\": \"54.01\"}, {\"text\": \"Political Science\", \"role\": \"major\", \"cip\": \"45.10\"}]",
+   "primary_cip": "54.01",
+   "secondary_cip": "45.10",
+   "minor_cip": "",
+   "cip2_pooled": "54",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:030",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "English, Music",
+   "components": "[{\"text\": \"English\", \"role\": \"major\", \"cip\": \"23.01\"}, {\"text\": \"Music\", \"role\": \"major\", \"cip\": \"50.09\"}]",
+   "primary_cip": "23.01",
+   "secondary_cip": "50.09",
+   "minor_cip": "",
+   "cip2_pooled": "23",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:031",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Spanish; Management Science/ Business Information Technology",
+   "components": "[{\"text\": \"Spanish\", \"role\": \"major\", \"cip\": \"16.0905\"}, {\"text\": \"Management Science\", \"role\": \"major\", \"cip\": \"52.1301\"}]",
+   "primary_cip": "16.0905",
+   "secondary_cip": "52.1301",
+   "minor_cip": "",
+   "cip2_pooled": "16",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:032",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "International Relations; European Studies; Women's Studies",
+   "components": "[{\"text\": \"International Relations\", \"role\": \"major\", \"cip\": \"45.0901\"}, {\"text\": \"Women's Studies\", \"role\": \"major\", \"cip\": \"05.0207\"}]",
+   "primary_cip": "45.0901",
    "secondary_cip": "05.0207",
    "minor_cip": "",
    "cip2_pooled": "45",
@@ -612,25 +430,116 @@
  },
  {
   "data": {
-   "id": "comajors:047",
+   "id": "comajors:033",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Economics / Entrepreneurship",
-   "components": "[{\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}, {\"text\": \"Entrepreneurship\", \"role\": \"major\", \"cip\": \"52.0701\"}]",
-   "primary_cip": "45.06",
-   "secondary_cip": "52.0701",
+   "field_raw": "Biology/Secondary Education",
+   "components": "[{\"text\": \"Biology\", \"role\": \"major\", \"cip\": \"26.01\"}, {\"text\": \"Secondary Education\", \"role\": \"major\", \"cip\": \"13.1205\"}]",
+   "primary_cip": "13.1205",
+   "secondary_cip": "26.01",
    "minor_cip": "",
-   "cip2_pooled": "45",
+   "cip2_pooled": "13",
    "marker_class": "plain"
   }
  },
  {
   "data": {
-   "id": "comajors:048",
+   "id": "comajors:034",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Biology and Agriculture",
-   "components": "[{\"text\": \"Biology\", \"role\": \"major\", \"cip\": \"26.01\"}, {\"text\": \"Agriculture\", \"role\": \"major\", \"cip\": \"01.00\"}]",
-   "primary_cip": "26.01",
-   "secondary_cip": "01.00",
+   "field_raw": "School of Journalism and Mass Communications, Theatre & Drama",
+   "components": "[{\"text\": \"Mass Communications\", \"role\": \"major\", \"cip\": \"09.0102\"}, {\"text\": \"Theatre\", \"role\": \"major\", \"cip\": \"50.05\"}]",
+   "primary_cip": "09.0102",
+   "secondary_cip": "50.05",
+   "minor_cip": "",
+   "cip2_pooled": "09",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:035",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Film and Communication",
+   "components": "[{\"text\": \"Film\", \"role\": \"major\", \"cip\": \"50.0601\"}, {\"text\": \"Communication\", \"role\": \"major\", \"cip\": \"09.0100\"}]",
+   "primary_cip": "09.0100",
+   "secondary_cip": "50.0601",
+   "minor_cip": "",
+   "cip2_pooled": "09",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:036",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Business, Computer Science",
+   "components": "[{\"text\": \"Business\", \"role\": \"major\", \"cip\": \"52\"}, {\"text\": \"Computer Science\", \"role\": \"major\", \"cip\": \"11.07\"}]",
+   "primary_cip": "52",
+   "secondary_cip": "11.07",
+   "minor_cip": "",
+   "cip2_pooled": "52",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:037",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Speech Communications, business",
+   "components": "[{\"text\": \"Speech Communications\", \"role\": \"major\", \"cip\": \"09.0101\"}, {\"text\": \"business\", \"role\": \"major\", \"cip\": \"52\"}]",
+   "primary_cip": "09.0101",
+   "secondary_cip": "52",
+   "minor_cip": "",
+   "cip2_pooled": "09",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:038",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Psychology/Criminal Justice",
+   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Criminal Justice\", \"role\": \"major\", \"cip\": \"43.01\"}]",
+   "primary_cip": "43.01",
+   "secondary_cip": "42.01",
+   "minor_cip": "",
+   "cip2_pooled": "43",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:039",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Marketing/Advertising",
+   "components": "[{\"text\": \"Marketing\", \"role\": \"major\", \"cip\": \"52.14\"}, {\"text\": \"Advertising\", \"role\": \"major\", \"cip\": \"09.0903\"}]",
+   "primary_cip": "52.14",
+   "secondary_cip": "09.0903",
+   "minor_cip": "",
+   "cip2_pooled": "52",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:040",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Psychology and Sociology",
+   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}]",
+   "primary_cip": "42.01",
+   "secondary_cip": "45.11",
+   "minor_cip": "",
+   "cip2_pooled": "42",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:041",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Biochemistry/Chemistry",
+   "components": "[{\"text\": \"Biochemistry\", \"role\": \"major\", \"cip\": \"26.0202\"}, {\"text\": \"Chemistry\", \"role\": \"major\", \"cip\": \"40.05\"}]",
+   "primary_cip": "26.0202",
+   "secondary_cip": "40.05",
    "minor_cip": "",
    "cip2_pooled": "26",
    "marker_class": "plain"
@@ -638,12 +547,38 @@
  },
  {
   "data": {
-   "id": "comajors:049",
+   "id": "comajors:042",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Psychology and Spanish",
-   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Spanish\", \"role\": \"major\", \"cip\": \"16.0905\"}]",
-   "primary_cip": "42.01",
-   "secondary_cip": "16.0905",
+   "field_raw": "political science/literature",
+   "components": "[{\"text\": \"political science\", \"role\": \"major\", \"cip\": \"45.10\"}, {\"text\": \"literature\", \"role\": \"major\", \"cip\": \"23.14\"}]",
+   "primary_cip": "45.10",
+   "secondary_cip": "23.14",
+   "minor_cip": "",
+   "cip2_pooled": "45",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:043",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Management and French",
+   "components": "[{\"text\": \"Management\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"French\", \"role\": \"major\", \"cip\": \"16.0901\"}]",
+   "primary_cip": "52.02",
+   "secondary_cip": "16.0901",
+   "minor_cip": "",
+   "cip2_pooled": "52",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:044",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Clinical Psychology and Sociology",
+   "components": "[{\"text\": \"Clinical Psychology\", \"role\": \"major\", \"cip\": \"42.02\"}, {\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}]",
+   "primary_cip": "42.02",
+   "secondary_cip": "45.11",
    "minor_cip": "",
    "cip2_pooled": "42",
    "marker_class": "plain"
@@ -651,14 +586,79 @@
  },
  {
   "data": {
+   "id": "comajors:045",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "English/Journalism",
+   "components": "[{\"text\": \"English\", \"role\": \"major\", \"cip\": \"23.01\"}, {\"text\": \"Journalism\", \"role\": \"major\", \"cip\": \"09.04\"}]",
+   "primary_cip": "23.01",
+   "secondary_cip": "09.04",
+   "minor_cip": "",
+   "cip2_pooled": "23",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:046",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Film & Video, French",
+   "components": "[{\"text\": \"Film\", \"role\": \"major\", \"cip\": \"50.0601\"}, {\"text\": \"French\", \"role\": \"major\", \"cip\": \"16.0901\"}]",
+   "primary_cip": "50.0601",
+   "secondary_cip": "16.0901",
+   "minor_cip": "",
+   "cip2_pooled": "50",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:047",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Psychology and communications",
+   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"communications\", \"role\": \"major\", \"cip\": \"09.0100\"}]",
+   "primary_cip": "42.01",
+   "secondary_cip": "09.0100",
+   "minor_cip": "",
+   "cip2_pooled": "42",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:048",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Culinary Arts, Hospitality Management",
+   "components": "[{\"text\": \"Culinary Arts\", \"role\": \"major\", \"cip\": \"12.0503\"}, {\"text\": \"Hospitality Management\", \"role\": \"major\", \"cip\": \"52.0901\"}]",
+   "primary_cip": "12.0503",
+   "secondary_cip": "52.0901",
+   "minor_cip": "",
+   "cip2_pooled": "12",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:049",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Political Science and Journalism",
+   "components": "[{\"text\": \"Political Science\", \"role\": \"major\", \"cip\": \"45.10\"}, {\"text\": \"Journalism\", \"role\": \"major\", \"cip\": \"09.04\"}]",
+   "primary_cip": "45.10",
+   "secondary_cip": "09.04",
+   "minor_cip": "",
+   "cip2_pooled": "45",
+   "marker_class": "plain"
+  }
+ },
+ {
+  "data": {
    "id": "comajors:050",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Secondary Education / Health Major / Biology Minor",
-   "components": "[{\"text\": \"Secondary Education\", \"role\": \"major\", \"cip\": \"13.1205\"}, {\"text\": \"Biology\", \"role\": \"minor\", \"cip\": \"26.01\"}]",
-   "primary_cip": "13.1205",
+   "field_raw": "Sociology with a minor in Educational Psychology",
+   "components": "[{\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}, {\"text\": \"Educational Psychology\", \"role\": \"minor\", \"cip\": \"42.18\"}]",
+   "primary_cip": "45.11",
    "secondary_cip": "",
-   "minor_cip": "26.01",
-   "cip2_pooled": "13",
+   "minor_cip": "42.18",
+   "cip2_pooled": "45",
    "marker_class": "marker"
   }
  },
@@ -666,12 +666,12 @@
   "data": {
    "id": "comajors:051",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Communication and Media Studies Major, Political Science Minor",
-   "components": "[{\"text\": \"Communication\", \"role\": \"major\", \"cip\": \"09.0100\"}, {\"text\": \"Political Science\", \"role\": \"minor\", \"cip\": \"45.10\"}]",
-   "primary_cip": "09.0100",
+   "field_raw": "Biology major, Chemistry minor",
+   "components": "[{\"text\": \"Biology\", \"role\": \"major\", \"cip\": \"26.01\"}, {\"text\": \"Chemistry\", \"role\": \"minor\", \"cip\": \"40.05\"}]",
+   "primary_cip": "26.01",
    "secondary_cip": "",
-   "minor_cip": "45.10",
-   "cip2_pooled": "09",
+   "minor_cip": "40.05",
+   "cip2_pooled": "26",
    "marker_class": "marker"
   }
  },
@@ -679,241 +679,7 @@
   "data": {
    "id": "comajors:052",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Double Major: Psychology and Sociology",
-   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}]",
-   "primary_cip": "42.01",
-   "secondary_cip": "45.11",
-   "minor_cip": "",
-   "cip2_pooled": "42",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:053",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Business with a concentration in Marketing",
-   "components": "[{\"text\": \"Business\", \"role\": \"major\", \"cip\": \"52\"}, {\"text\": \"Marketing\", \"role\": \"concentration\", \"cip\": \"52.14\"}]",
-   "primary_cip": "52",
-   "secondary_cip": "",
-   "minor_cip": "",
-   "cip2_pooled": "52",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:054",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Child Development and Family Relations with Minor in Psychology",
-   "components": "[{\"text\": \"Child Development\", \"role\": \"major\", \"cip\": \"19.0706\"}, {\"text\": \"Psychology\", \"role\": \"minor\", \"cip\": \"42.01\"}]",
-   "primary_cip": "19.0706",
-   "secondary_cip": "",
-   "minor_cip": "42.01",
-   "cip2_pooled": "19",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:055",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Criminal Justice, Minor in Sociology",
-   "components": "[{\"text\": \"Criminal Justice\", \"role\": \"major\", \"cip\": \"43.01\"}, {\"text\": \"Sociology\", \"role\": \"minor\", \"cip\": \"45.11\"}]",
-   "primary_cip": "43.01",
-   "secondary_cip": "",
-   "minor_cip": "45.11",
-   "cip2_pooled": "43",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:056",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Social Work, Minor in Spanish",
-   "components": "[{\"text\": \"Social Work\", \"role\": \"major\", \"cip\": \"44.07\"}, {\"text\": \"Spanish\", \"role\": \"minor\", \"cip\": \"16.0905\"}]",
-   "primary_cip": "44.07",
-   "secondary_cip": "",
-   "minor_cip": "16.0905",
-   "cip2_pooled": "44",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:057",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Double major in Architecture and Psychology",
-   "components": "[{\"text\": \"Architecture\", \"role\": \"major\", \"cip\": \"04.02\"}, {\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}]",
-   "primary_cip": "42.01",
-   "secondary_cip": "04.02",
-   "minor_cip": "",
-   "cip2_pooled": "42",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:058",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Business Administration with emphasis in Accounting",
-   "components": "[{\"text\": \"Business Administration\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"Accounting\", \"role\": \"concentration\", \"cip\": \"52.0301\"}]",
-   "primary_cip": "52.02",
-   "secondary_cip": "",
-   "minor_cip": "",
-   "cip2_pooled": "52",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:059",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Government and International Studies and History double major",
-   "components": "[{\"text\": \"Government\", \"role\": \"major\", \"cip\": \"45.10\"}, {\"text\": \"International Studies\", \"role\": \"major\", \"cip\": \"30.2001\"}, {\"text\": \"History\", \"role\": \"major\", \"cip\": \"54.01\"}]",
-   "primary_cip": "45.10",
-   "secondary_cip": "30.2001",
-   "minor_cip": "",
-   "cip2_pooled": "45",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:060",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Communication Studies, minor in Marketing",
-   "components": "[{\"text\": \"Communication Studies\", \"role\": \"major\", \"cip\": \"09.01\"}, {\"text\": \"Marketing\", \"role\": \"minor\", \"cip\": \"52.14\"}]",
-   "primary_cip": "09.01",
-   "secondary_cip": "",
-   "minor_cip": "52.14",
-   "cip2_pooled": "09",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:061",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Business Management, Concentration in International Business, Minor in Finance",
-   "components": "[{\"text\": \"Business Management\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"International Business\", \"role\": \"concentration\", \"cip\": \"52.11\"}, {\"text\": \"Finance\", \"role\": \"minor\", \"cip\": \"52.0801\"}]",
-   "primary_cip": "52.02",
-   "secondary_cip": "",
-   "minor_cip": "52.0801",
-   "cip2_pooled": "52",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:062",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Organizational Management / Business Administrations / Minor in Psychology",
-   "components": "[{\"text\": \"Organizational Management\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"Psychology\", \"role\": \"minor\", \"cip\": \"42.01\"}]",
-   "primary_cip": "52.02",
-   "secondary_cip": "",
-   "minor_cip": "42.01",
-   "cip2_pooled": "52",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:063",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Philosophy with a minor in Business Administration",
-   "components": "[{\"text\": \"Philosophy\", \"role\": \"major\", \"cip\": \"38.01\"}, {\"text\": \"Business Administration\", \"role\": \"minor\", \"cip\": \"52.02\"}]",
-   "primary_cip": "38.01",
-   "secondary_cip": "",
-   "minor_cip": "52.02",
-   "cip2_pooled": "38",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:064",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Business Administration with Specialization in Healthcare",
-   "components": "[{\"text\": \"Business Administration\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"Healthcare\", \"role\": \"concentration\", \"cip\": \"51\"}]",
-   "primary_cip": "52.02",
-   "secondary_cip": "",
-   "minor_cip": "",
-   "cip2_pooled": "52",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:065",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Mathematics Major and Computer Science Minor",
-   "components": "[{\"text\": \"Mathematics\", \"role\": \"major\", \"cip\": \"27.01\"}, {\"text\": \"Computer Science\", \"role\": \"minor\", \"cip\": \"11.07\"}]",
-   "primary_cip": "27.01",
-   "secondary_cip": "",
-   "minor_cip": "11.07",
-   "cip2_pooled": "27",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:066",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Applied Psychology (Human Development)",
-   "components": "[{\"text\": \"Applied Psychology\", \"role\": \"major\", \"cip\": \"42.2813\"}, {\"text\": \"Human Development\", \"role\": \"major\", \"cip\": \"19.0701\"}]",
-   "primary_cip": "42.2813",
-   "secondary_cip": "19.0701",
-   "minor_cip": "",
-   "cip2_pooled": "42",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:067",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Psychology, Communications; Music minor",
-   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Communications\", \"role\": \"major\", \"cip\": \"09.0100\"}, {\"text\": \"Music\", \"role\": \"minor\", \"cip\": \"50.09\"}]",
-   "primary_cip": "42.01",
-   "secondary_cip": "09.0100",
-   "minor_cip": "50.09",
-   "cip2_pooled": "42",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:068",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Criminal Justice/Sociology (dual major) & English (minor)",
-   "components": "[{\"text\": \"Criminal Justice\", \"role\": \"major\", \"cip\": \"43.01\"}, {\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}, {\"text\": \"English\", \"role\": \"minor\", \"cip\": \"23.01\"}]",
-   "primary_cip": "43.01",
-   "secondary_cip": "45.11",
-   "minor_cip": "23.01",
-   "cip2_pooled": "43",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:069",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Economics major, Finance minor",
-   "components": "[{\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}, {\"text\": \"Finance\", \"role\": \"minor\", \"cip\": \"52.0801\"}]",
-   "primary_cip": "45.06",
-   "secondary_cip": "",
-   "minor_cip": "52.0801",
-   "cip2_pooled": "45",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:070",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Finance with a minor in Economics",
+   "field_raw": "Finance, minor in Economics",
    "components": "[{\"text\": \"Finance\", \"role\": \"major\", \"cip\": \"52.0801\"}, {\"text\": \"Economics\", \"role\": \"minor\", \"cip\": \"45.06\"}]",
    "primary_cip": "52.0801",
    "secondary_cip": "",
@@ -924,218 +690,101 @@
  },
  {
   "data": {
-   "id": "comajors:071",
+   "id": "comajors:053",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Mathematics with minor in French and Political Science",
-   "components": "[{\"text\": \"Mathematics\", \"role\": \"major\", \"cip\": \"27.01\"}, {\"text\": \"French\", \"role\": \"minor\", \"cip\": \"16.0901\"}, {\"text\": \"Political Science\", \"role\": \"minor\", \"cip\": \"45.10\"}]",
+   "field_raw": "Biology (Marine Emphasis), Mathematics",
+   "components": "[{\"text\": \"Biology\", \"role\": \"major\", \"cip\": \"26.01\"}, {\"text\": \"Mathematics\", \"role\": \"major\", \"cip\": \"27.01\"}]",
+   "primary_cip": "26.01",
+   "secondary_cip": "27.01",
+   "minor_cip": "",
+   "cip2_pooled": "26",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:054",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Sociology/Psychology emphasis",
+   "components": "[{\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}, {\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}]",
+   "primary_cip": "45.11",
+   "secondary_cip": "42.01",
+   "minor_cip": "",
+   "cip2_pooled": "45",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:055",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Graphic Design, Minor: Marketing",
+   "components": "[{\"text\": \"Graphic Design\", \"role\": \"major\", \"cip\": \"50.0409\"}, {\"text\": \"Marketing\", \"role\": \"minor\", \"cip\": \"52.14\"}]",
+   "primary_cip": "50.0409",
+   "secondary_cip": "",
+   "minor_cip": "52.14",
+   "cip2_pooled": "50",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:056",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Mathematics and minor in Physics",
+   "components": "[{\"text\": \"Mathematics\", \"role\": \"major\", \"cip\": \"27.01\"}, {\"text\": \"Physics\", \"role\": \"minor\", \"cip\": \"40.08\"}]",
    "primary_cip": "27.01",
    "secondary_cip": "",
-   "minor_cip": "16.0901",
+   "minor_cip": "40.08",
    "cip2_pooled": "27",
    "marker_class": "marker"
   }
  },
  {
   "data": {
-   "id": "comajors:072",
+   "id": "comajors:057",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Liberal Arts Emphasis in Mathematics and Sciences",
-   "components": "[{\"text\": \"Liberal Arts\", \"role\": \"major\", \"cip\": \"24.0101\"}, {\"text\": \"Mathematics\", \"role\": \"concentration\", \"cip\": \"27.01\"}]",
-   "primary_cip": "24.0101",
+   "field_raw": "Psychology major and Biology minor",
+   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Biology\", \"role\": \"minor\", \"cip\": \"26.01\"}]",
+   "primary_cip": "42.01",
    "secondary_cip": "",
-   "minor_cip": "",
-   "cip2_pooled": "24",
+   "minor_cip": "26.01",
+   "cip2_pooled": "42",
    "marker_class": "marker"
   }
  },
  {
   "data": {
-   "id": "comajors:073",
+   "id": "comajors:058",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Sociology and a Minor in Psychology and Anthropology",
-   "components": "[{\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}, {\"text\": \"Psychology\", \"role\": \"minor\", \"cip\": \"42.01\"}, {\"text\": \"Anthropology\", \"role\": \"minor\", \"cip\": \"45.02\"}]",
-   "primary_cip": "45.11",
+   "field_raw": "Major: Journalism; Minor: Marketing",
+   "components": "[{\"text\": \"Journalism\", \"role\": \"major\", \"cip\": \"09.04\"}, {\"text\": \"Marketing\", \"role\": \"minor\", \"cip\": \"52.14\"}]",
+   "primary_cip": "09.04",
    "secondary_cip": "",
-   "minor_cip": "42.01",
-   "cip2_pooled": "45",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:074",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Organizational Management with a concentration in Organizational Leadership",
-   "components": "[{\"text\": \"Organizational Management\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"Organizational Leadership\", \"role\": \"concentration\", \"cip\": \"52.0213\"}]",
-   "primary_cip": "52.02",
-   "secondary_cip": "",
-   "minor_cip": "",
-   "cip2_pooled": "52",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:075",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Major: Marketing, Minor: Entrepreneurship",
-   "components": "[{\"text\": \"Marketing\", \"role\": \"major\", \"cip\": \"52.14\"}, {\"text\": \"Entrepreneurship\", \"role\": \"minor\", \"cip\": \"52.0701\"}]",
-   "primary_cip": "52.14",
-   "secondary_cip": "",
-   "minor_cip": "52.0701",
-   "cip2_pooled": "52",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:076",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Business Management; English Minor",
-   "components": "[{\"text\": \"Business Management\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"English\", \"role\": \"minor\", \"cip\": \"23.01\"}]",
-   "primary_cip": "52.02",
-   "secondary_cip": "",
-   "minor_cip": "23.01",
-   "cip2_pooled": "52",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:077",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Fine Arts (BFA) Art Teacher Education (MFA)",
-   "components": "[{\"text\": \"Fine Arts\", \"role\": \"major\", \"cip\": \"50.07\"}, {\"text\": \"Art Teacher Education\", \"role\": \"major\", \"cip\": \"13.1302\"}]",
-   "primary_cip": "50.07",
-   "secondary_cip": "13.1302",
-   "minor_cip": "",
-   "cip2_pooled": "50",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:078",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Finance concentration in Management Information Systems",
-   "components": "[{\"text\": \"Finance\", \"role\": \"major\", \"cip\": \"52.0801\"}, {\"text\": \"Management Information Systems\", \"role\": \"concentration\", \"cip\": \"52.1201\"}]",
-   "primary_cip": "52.0801",
-   "secondary_cip": "",
-   "minor_cip": "",
-   "cip2_pooled": "52",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:079",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Communications/Public Relations with a minor in Business Administration",
-   "components": "[{\"text\": \"Communications\", \"role\": \"major\", \"cip\": \"09.0100\"}, {\"text\": \"Business Administration\", \"role\": \"minor\", \"cip\": \"52.02\"}]",
-   "primary_cip": "09.0100",
-   "secondary_cip": "",
-   "minor_cip": "52.02",
+   "minor_cip": "52.14",
    "cip2_pooled": "09",
    "marker_class": "marker"
   }
  },
  {
   "data": {
-   "id": "comajors:080",
+   "id": "comajors:059",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Environmental Studies (Policy Concentration) and Ecology, Evolution & Biodiversity",
-   "components": "[{\"text\": \"Environmental Studies\", \"role\": \"major\", \"cip\": \"03.0103\"}, {\"text\": \"Ecology\", \"role\": \"major\", \"cip\": \"26.1301\"}]",
-   "primary_cip": "03.0103",
-   "secondary_cip": "26.1301",
-   "minor_cip": "",
-   "cip2_pooled": "03",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:081",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "English, MInor French",
-   "components": "[{\"text\": \"English\", \"role\": \"major\", \"cip\": \"23.01\"}, {\"text\": \"French\", \"role\": \"minor\", \"cip\": \"16.0901\"}]",
-   "primary_cip": "23.01",
-   "secondary_cip": "",
-   "minor_cip": "16.0901",
-   "cip2_pooled": "23",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:082",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Major - Communications, Minors - Public Relations, English, Studio Art",
-   "components": "[{\"text\": \"Communications\", \"role\": \"major\", \"cip\": \"09.0100\"}, {\"text\": \"Public Relations\", \"role\": \"minor\", \"cip\": \"09.09\"}, {\"text\": \"English\", \"role\": \"minor\", \"cip\": \"23.01\"}, {\"text\": \"Studio Art\", \"role\": \"minor\", \"cip\": \"50.0702\"}]",
-   "primary_cip": "09.0100",
-   "secondary_cip": "",
-   "minor_cip": "09.09",
-   "cip2_pooled": "09",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:083",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Graphic Design, Photography Minor",
-   "components": "[{\"text\": \"Graphic Design\", \"role\": \"major\", \"cip\": \"50.0409\"}, {\"text\": \"Photography\", \"role\": \"minor\", \"cip\": \"50.0605\"}]",
-   "primary_cip": "50.0409",
-   "secondary_cip": "",
-   "minor_cip": "50.0605",
-   "cip2_pooled": "50",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:084",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Fine Art with a concentration in Graphic Design",
-   "components": "[{\"text\": \"Fine Art\", \"role\": \"major\", \"cip\": \"50.07\"}, {\"text\": \"Graphic Design\", \"role\": \"concentration\", \"cip\": \"50.0409\"}]",
-   "primary_cip": "50.07",
-   "secondary_cip": "",
-   "minor_cip": "",
-   "cip2_pooled": "50",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:085",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Double Major: Economics / Business Administration",
-   "components": "[{\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}, {\"text\": \"Business Administration\", \"role\": \"major\", \"cip\": \"52.02\"}]",
+   "field_raw": "Economics & Political Science | Minor: International Relations (Focus: Russian & Spanish)",
+   "components": "[{\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}, {\"text\": \"International Relations\", \"role\": \"minor\", \"cip\": \"45.0901\"}]",
    "primary_cip": "45.06",
-   "secondary_cip": "52.02",
-   "minor_cip": "",
+   "secondary_cip": "",
+   "minor_cip": "45.0901",
    "cip2_pooled": "45",
    "marker_class": "marker"
   }
  },
  {
   "data": {
-   "id": "comajors:086",
+   "id": "comajors:060",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Business Administration /Option: Financial analysis / Minor: Business Analytics",
-   "components": "[{\"text\": \"Business Administration\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"Business Analytics\", \"role\": \"minor\", \"cip\": \"30.7102\"}]",
-   "primary_cip": "52.02",
-   "secondary_cip": "",
-   "minor_cip": "30.7102",
-   "cip2_pooled": "52",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:087",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Major: Business Administration Minor: Human Resource Management",
-   "components": "[{\"text\": \"Business Administration\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"Human Resource Management\", \"role\": \"minor\", \"cip\": \"52.10\"}]",
+   "field_raw": "Major: General Management and Business Administration Minor: Human Resources Management",
+   "components": "[{\"text\": \"Business Administration\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"Human Resources Management\", \"role\": \"minor\", \"cip\": \"52.10\"}]",
    "primary_cip": "52.02",
    "secondary_cip": "",
    "minor_cip": "52.10",
@@ -1145,12 +794,25 @@
  },
  {
   "data": {
-   "id": "comajors:088",
+   "id": "comajors:061",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Economics (Business) & Psychology",
-   "components": "[{\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}, {\"text\": \"Business\", \"role\": \"major\", \"cip\": \"52\"}, {\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}]",
-   "primary_cip": "45.06",
-   "secondary_cip": "52",
+   "field_raw": "Double Major in Accounting and Economics",
+   "components": "[{\"text\": \"Accounting\", \"role\": \"major\", \"cip\": \"52.0301\"}, {\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}]",
+   "primary_cip": "52.0301",
+   "secondary_cip": "45.06",
+   "minor_cip": "",
+   "cip2_pooled": "52",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:062",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Political Science/Communications (emphasis in Public Relations)",
+   "components": "[{\"text\": \"Political Science\", \"role\": \"major\", \"cip\": \"45.10\"}, {\"text\": \"Communications\", \"role\": \"major\", \"cip\": \"09.0100\"}, {\"text\": \"Public Relations\", \"role\": \"concentration\", \"cip\": \"09.09\"}]",
+   "primary_cip": "45.10",
+   "secondary_cip": "09.0100",
    "minor_cip": "",
    "cip2_pooled": "45",
    "marker_class": "marker"
@@ -1158,13 +820,351 @@
  },
  {
   "data": {
-   "id": "comajors:089",
+   "id": "comajors:063",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Business Administration and Management, Minor",
-   "components": "[{\"text\": \"Business Administration\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"Management\", \"role\": \"minor\", \"cip\": \"52.02\"}]",
+   "field_raw": "Political Science and Communication (Double Major)",
+   "components": "[{\"text\": \"Political Science\", \"role\": \"major\", \"cip\": \"45.10\"}, {\"text\": \"Communication\", \"role\": \"major\", \"cip\": \"09.0100\"}]",
+   "primary_cip": "45.10",
+   "secondary_cip": "09.0100",
+   "minor_cip": "",
+   "cip2_pooled": "45",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:064",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Psychology, Business minor",
+   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Business\", \"role\": \"minor\", \"cip\": \"52\"}]",
+   "primary_cip": "42.01",
+   "secondary_cip": "",
+   "minor_cip": "52",
+   "cip2_pooled": "42",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:065",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Double major: Psychology and Political Science",
+   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Political Science\", \"role\": \"major\", \"cip\": \"45.10\"}]",
+   "primary_cip": "42.01",
+   "secondary_cip": "45.10",
+   "minor_cip": "",
+   "cip2_pooled": "42",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:066",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Business Administration and Management, IT Focus",
+   "components": "[{\"text\": \"Business Administration\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"IT\", \"role\": \"major\", \"cip\": \"11.0103\"}]",
+   "primary_cip": "52.02",
+   "secondary_cip": "11.0103",
+   "minor_cip": "",
+   "cip2_pooled": "52",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:067",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Mass Communications (Concentration: Telecommunications), Legal Studies Minor",
+   "components": "[{\"text\": \"Mass Communications\", \"role\": \"major\", \"cip\": \"09.0102\"}, {\"text\": \"Legal Studies\", \"role\": \"minor\", \"cip\": \"22.0000\"}]",
+   "primary_cip": "09.0102",
+   "secondary_cip": "",
+   "minor_cip": "22.0000",
+   "cip2_pooled": "09",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:068",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Business Major and Art History Major",
+   "components": "[{\"text\": \"Business\", \"role\": \"major\", \"cip\": \"52\"}, {\"text\": \"Art History\", \"role\": \"major\", \"cip\": \"50.0703\"}]",
+   "primary_cip": "52",
+   "secondary_cip": "50.0703",
+   "minor_cip": "",
+   "cip2_pooled": "52",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:069",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "French; minor Marketing",
+   "components": "[{\"text\": \"French\", \"role\": \"major\", \"cip\": \"16.0901\"}, {\"text\": \"Marketing\", \"role\": \"minor\", \"cip\": \"52.14\"}]",
+   "primary_cip": "16.0901",
+   "secondary_cip": "",
+   "minor_cip": "52.14",
+   "cip2_pooled": "16",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:070",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Sociology Major, English - Minor",
+   "components": "[{\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}, {\"text\": \"English\", \"role\": \"minor\", \"cip\": \"23.01\"}]",
+   "primary_cip": "45.11",
+   "secondary_cip": "",
+   "minor_cip": "23.01",
+   "cip2_pooled": "45",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:071",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Liberal Studies, Psychology concentration",
+   "components": "[{\"text\": \"Liberal Studies\", \"role\": \"major\", \"cip\": \"24.0101\"}, {\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}]",
+   "primary_cip": "24.0101",
+   "secondary_cip": "42.01",
+   "minor_cip": "",
+   "cip2_pooled": "24",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:072",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Computer Science with Minor in Math",
+   "components": "[{\"text\": \"Computer Science\", \"role\": \"major\", \"cip\": \"11.07\"}, {\"text\": \"Math\", \"role\": \"minor\", \"cip\": \"27.01\"}]",
+   "primary_cip": "11.07",
+   "secondary_cip": "",
+   "minor_cip": "27.01",
+   "cip2_pooled": "11",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:073",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "History; minor in Business",
+   "components": "[{\"text\": \"History\", \"role\": \"major\", \"cip\": \"54.01\"}, {\"text\": \"Business\", \"role\": \"minor\", \"cip\": \"52\"}]",
+   "primary_cip": "54.01",
+   "secondary_cip": "",
+   "minor_cip": "52",
+   "cip2_pooled": "54",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:074",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Psychology, with minors in Sociology and Philosophy",
+   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Sociology\", \"role\": \"minor\", \"cip\": \"45.11\"}, {\"text\": \"Philosophy\", \"role\": \"minor\", \"cip\": \"38.01\"}]",
+   "primary_cip": "42.01",
+   "secondary_cip": "",
+   "minor_cip": "45.11",
+   "cip2_pooled": "42",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:075",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Political Science, minor in Economics",
+   "components": "[{\"text\": \"Political Science\", \"role\": \"major\", \"cip\": \"45.10\"}, {\"text\": \"Economics\", \"role\": \"minor\", \"cip\": \"45.06\"}]",
+   "primary_cip": "45.10",
+   "secondary_cip": "",
+   "minor_cip": "45.06",
+   "cip2_pooled": "45",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:076",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Major in International Business with Minors in Economics and Marketing",
+   "components": "[{\"text\": \"International Business\", \"role\": \"major\", \"cip\": \"52.11\"}, {\"text\": \"Economics\", \"role\": \"minor\", \"cip\": \"45.06\"}, {\"text\": \"Marketing\", \"role\": \"minor\", \"cip\": \"52.14\"}]",
+   "primary_cip": "52.11",
+   "secondary_cip": "",
+   "minor_cip": "45.06",
+   "cip2_pooled": "52",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:077",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Psychology; Minor - Anthropology",
+   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Anthropology\", \"role\": \"minor\", \"cip\": \"45.02\"}]",
+   "primary_cip": "42.01",
+   "secondary_cip": "",
+   "minor_cip": "45.02",
+   "cip2_pooled": "42",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:078",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Communication, Media and Theatre (CMT)",
+   "components": "[{\"text\": \"Communication\", \"role\": \"major\", \"cip\": \"09.0100\"}, {\"text\": \"Theatre\", \"role\": \"major\", \"cip\": \"50.05\"}]",
+   "primary_cip": "09.0100",
+   "secondary_cip": "50.05",
+   "minor_cip": "",
+   "cip2_pooled": "09",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:079",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Political Science, Communications Minor",
+   "components": "[{\"text\": \"Political Science\", \"role\": \"major\", \"cip\": \"45.10\"}, {\"text\": \"Communications\", \"role\": \"minor\", \"cip\": \"09.0100\"}]",
+   "primary_cip": "45.10",
+   "secondary_cip": "",
+   "minor_cip": "09.0100",
+   "cip2_pooled": "45",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:080",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Advertising, Graphic Design, Fine Arts (oil on canvas, photography and sculpture)",
+   "components": "[{\"text\": \"Advertising\", \"role\": \"major\", \"cip\": \"09.0903\"}, {\"text\": \"Graphic Design\", \"role\": \"major\", \"cip\": \"50.0409\"}]",
+   "primary_cip": "09.0903",
+   "secondary_cip": "50.0409",
+   "minor_cip": "",
+   "cip2_pooled": "09",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:081",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Political Science | Information Technology, Minor",
+   "components": "[{\"text\": \"Political Science\", \"role\": \"major\", \"cip\": \"45.10\"}, {\"text\": \"Information Technology\", \"role\": \"minor\", \"cip\": \"11.0103\"}]",
+   "primary_cip": "45.10",
+   "secondary_cip": "",
+   "minor_cip": "11.0103",
+   "cip2_pooled": "45",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:082",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Major: History / Minor: Economics",
+   "components": "[{\"text\": \"History\", \"role\": \"major\", \"cip\": \"54.01\"}, {\"text\": \"Economics\", \"role\": \"minor\", \"cip\": \"45.06\"}]",
+   "primary_cip": "54.01",
+   "secondary_cip": "",
+   "minor_cip": "45.06",
+   "cip2_pooled": "54",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:083",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Biological Sciences - Microbiology & Immunology; Chemistry minor",
+   "components": "[{\"text\": \"Immunology\", \"role\": \"major\", \"cip\": \"26.0507\"}, {\"text\": \"Chemistry\", \"role\": \"minor\", \"cip\": \"40.05\"}]",
+   "primary_cip": "26.0507",
+   "secondary_cip": "",
+   "minor_cip": "40.05",
+   "cip2_pooled": "26",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:084",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Major: Psychology Minor: Biology",
+   "components": "[{\"text\": \"Psychology\", \"role\": \"major\", \"cip\": \"42.01\"}, {\"text\": \"Biology\", \"role\": \"minor\", \"cip\": \"26.01\"}]",
+   "primary_cip": "42.01",
+   "secondary_cip": "",
+   "minor_cip": "26.01",
+   "cip2_pooled": "42",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:085",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Business Management Minor in Economics",
+   "components": "[{\"text\": \"Business Management\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"Economics\", \"role\": \"minor\", \"cip\": \"45.06\"}]",
    "primary_cip": "52.02",
    "secondary_cip": "",
-   "minor_cip": "52.02",
+   "minor_cip": "45.06",
+   "cip2_pooled": "52",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:086",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Art History and Journalism, Minors: Italian and South Asian Studies",
+   "components": "[{\"text\": \"Art History\", \"role\": \"major\", \"cip\": \"50.0703\"}, {\"text\": \"Journalism\", \"role\": \"major\", \"cip\": \"09.04\"}, {\"text\": \"South Asian Studies\", \"role\": \"minor\", \"cip\": \"05.0112\"}]",
+   "primary_cip": "50.0703",
+   "secondary_cip": "09.04",
+   "minor_cip": "05.0112",
+   "cip2_pooled": "50",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:087",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Major: Business | Minor: Marketing & Management Information Systems (MIS)",
+   "components": "[{\"text\": \"Business\", \"role\": \"major\", \"cip\": \"52\"}, {\"text\": \"MIS\", \"role\": \"concentration\", \"cip\": \"52.1201\"}, {\"text\": \"Marketing\", \"role\": \"minor\", \"cip\": \"52.14\"}, {\"text\": \"Management Information Systems\", \"role\": \"minor\", \"cip\": \"52.1201\"}]",
+   "primary_cip": "52",
+   "secondary_cip": "",
+   "minor_cip": "52.14",
+   "cip2_pooled": "52",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:088",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Chemistry with minor in Chemical Engineering",
+   "components": "[{\"text\": \"Chemistry\", \"role\": \"major\", \"cip\": \"40.05\"}, {\"text\": \"Chemical Engineering\", \"role\": \"minor\", \"cip\": \"14.07\"}]",
+   "primary_cip": "40.05",
+   "secondary_cip": "",
+   "minor_cip": "14.07",
+   "cip2_pooled": "40",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
+   "id": "comajors:089",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "Business Administration & Management, Minor Computer Information Systems",
+   "components": "[{\"text\": \"Business Administration\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"Computer Information Systems\", \"role\": \"minor\", \"cip\": \"11.01\"}]",
+   "primary_cip": "52.02",
+   "secondary_cip": "",
+   "minor_cip": "11.01",
    "cip2_pooled": "52",
    "marker_class": "marker"
   }
@@ -1173,12 +1173,12 @@
   "data": {
    "id": "comajors:090",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Physics with Second Major in Mathematics",
-   "components": "[{\"text\": \"Physics with\", \"role\": \"major\", \"cip\": \"40.08\"}, {\"text\": \"Mathematics\", \"role\": \"major\", \"cip\": \"27.01\"}]",
-   "primary_cip": "40.08",
-   "secondary_cip": "27.01",
-   "minor_cip": "",
-   "cip2_pooled": "40",
+   "field_raw": "Communications; Minor in Sociology",
+   "components": "[{\"text\": \"Communications\", \"role\": \"major\", \"cip\": \"09.0100\"}, {\"text\": \"Sociology\", \"role\": \"minor\", \"cip\": \"45.11\"}]",
+   "primary_cip": "09.0100",
+   "secondary_cip": "",
+   "minor_cip": "45.11",
+   "cip2_pooled": "09",
    "marker_class": "marker"
   }
  },
@@ -1186,12 +1186,12 @@
   "data": {
    "id": "comajors:091",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Mathematics, Minor in Economics",
-   "components": "[{\"text\": \"Mathematics\", \"role\": \"major\", \"cip\": \"27.01\"}, {\"text\": \"Economics\", \"role\": \"minor\", \"cip\": \"45.06\"}]",
-   "primary_cip": "27.01",
+   "field_raw": "Illustration, Minor: Art History, English Writing",
+   "components": "[{\"text\": \"Illustration\", \"role\": \"major\", \"cip\": \"50.0410\"}, {\"text\": \"Art History\", \"role\": \"minor\", \"cip\": \"50.0703\"}]",
+   "primary_cip": "50.0410",
    "secondary_cip": "",
-   "minor_cip": "45.06",
-   "cip2_pooled": "27",
+   "minor_cip": "50.0703",
+   "cip2_pooled": "50",
    "marker_class": "marker"
   }
  },
@@ -1199,12 +1199,12 @@
   "data": {
    "id": "comajors:092",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Statistics and Data Science (General Track)",
-   "components": "[{\"text\": \"Statistics\", \"role\": \"major\", \"cip\": \"27.05\"}, {\"text\": \"Data Science\", \"role\": \"major\", \"cip\": \"30.70\"}]",
-   "primary_cip": "27.05",
-   "secondary_cip": "30.70",
-   "minor_cip": "",
-   "cip2_pooled": "27",
+   "field_raw": "Sociology, Minor in Psychology",
+   "components": "[{\"text\": \"Sociology\", \"role\": \"major\", \"cip\": \"45.11\"}, {\"text\": \"Psychology\", \"role\": \"minor\", \"cip\": \"42.01\"}]",
+   "primary_cip": "45.11",
+   "secondary_cip": "",
+   "minor_cip": "42.01",
+   "cip2_pooled": "45",
    "marker_class": "marker"
   }
  },
@@ -1212,12 +1212,12 @@
   "data": {
    "id": "comajors:093",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Business with a concentration in Management",
-   "components": "[{\"text\": \"Business\", \"role\": \"major\", \"cip\": \"52\"}, {\"text\": \"Management\", \"role\": \"concentration\", \"cip\": \"52.02\"}]",
-   "primary_cip": "52",
+   "field_raw": "Criminal Justice/Law Enforcement Administration minor in Psychology",
+   "components": "[{\"text\": \"Criminal Justice\", \"role\": \"major\", \"cip\": \"43.01\"}, {\"text\": \"Psychology\", \"role\": \"minor\", \"cip\": \"42.01\"}]",
+   "primary_cip": "43.01",
    "secondary_cip": "",
-   "minor_cip": "",
-   "cip2_pooled": "52",
+   "minor_cip": "42.01",
+   "cip2_pooled": "43",
    "marker_class": "marker"
   }
  },
@@ -1225,12 +1225,12 @@
   "data": {
    "id": "comajors:094",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Double Major: English and Communications with a Concentration in PR and Advertising",
-   "components": "[{\"text\": \"English\", \"role\": \"major\", \"cip\": \"23.01\"}, {\"text\": \"Communications\", \"role\": \"major\", \"cip\": \"09.0100\"}, {\"text\": \"Advertising\", \"role\": \"concentration\", \"cip\": \"09.0903\"}]",
-   "primary_cip": "23.01",
-   "secondary_cip": "09.0100",
-   "minor_cip": "",
-   "cip2_pooled": "23",
+   "field_raw": "Business Administration, Concentration in Markeing, Minor in Communications",
+   "components": "[{\"text\": \"Business Administration\", \"role\": \"major\", \"cip\": \"52.02\"}, {\"text\": \"Communications\", \"role\": \"minor\", \"cip\": \"09.0100\"}]",
+   "primary_cip": "52.02",
+   "secondary_cip": "",
+   "minor_cip": "09.0100",
+   "cip2_pooled": "52",
    "marker_class": "marker"
   }
  },
@@ -1238,23 +1238,10 @@
   "data": {
    "id": "comajors:095",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Major: Mathematics & Computer Science / Minor: Logic.",
-   "components": "[{\"text\": \"Mathematics\", \"role\": \"major\", \"cip\": \"27.01\"}, {\"text\": \"Computer Science\", \"role\": \"major\", \"cip\": \"11.07\"}, {\"text\": \"Logic\", \"role\": \"minor\", \"cip\": \"38.0102\"}]",
-   "primary_cip": "27.01",
-   "secondary_cip": "11.07",
-   "minor_cip": "38.0102",
-   "cip2_pooled": "27",
-   "marker_class": "marker"
-  }
- },
- {
-  "data": {
-   "id": "comajors:096",
-   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Accounting and Business Management (Legal Studies)",
-   "components": "[{\"text\": \"Accounting\", \"role\": \"major\", \"cip\": \"52.0301\"}, {\"text\": \"Legal Studies\", \"role\": \"major\", \"cip\": \"22.0000\"}]",
-   "primary_cip": "52.0301",
-   "secondary_cip": "22.0000",
+   "field_raw": "Science in Management (MS) and Public Administration (MPA)",
+   "components": "[{\"text\": \"Science in Management\", \"role\": \"major\", \"cip\": \"52.1301\"}, {\"text\": \"Public Administration\", \"role\": \"major\", \"cip\": \"44.04\"}]",
+   "primary_cip": "52.1301",
+   "secondary_cip": "44.04",
    "minor_cip": "",
    "cip2_pooled": "52",
    "marker_class": "marker"
@@ -1262,9 +1249,22 @@
  },
  {
   "data": {
+   "id": "comajors:096",
+   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
+   "field_raw": "International Affairs, Minor in Global Public Health and French",
+   "components": "[{\"text\": \"International Affairs\", \"role\": \"major\", \"cip\": \"45.0901\"}, {\"text\": \"French\", \"role\": \"minor\", \"cip\": \"16.0901\"}]",
+   "primary_cip": "45.0901",
+   "secondary_cip": "",
+   "minor_cip": "16.0901",
+   "cip2_pooled": "45",
+   "marker_class": "marker"
+  }
+ },
+ {
+  "data": {
    "id": "comajors:097",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Major in Social Work & Minor in Psychology",
+   "field_raw": "Social Work (BSW, LSW); (minor in Psychology)",
    "components": "[{\"text\": \"Social Work\", \"role\": \"major\", \"cip\": \"44.07\"}, {\"text\": \"Psychology\", \"role\": \"minor\", \"cip\": \"42.01\"}]",
    "primary_cip": "44.07",
    "secondary_cip": "",
@@ -1277,12 +1277,12 @@
   "data": {
    "id": "comajors:098",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Marketing and Economics with a concentration in Entrepreneurial Studies: Double Major",
-   "components": "[{\"text\": \"Marketing\", \"role\": \"major\", \"cip\": \"52.14\"}, {\"text\": \"Economics\", \"role\": \"major\", \"cip\": \"45.06\"}]",
-   "primary_cip": "52.14",
-   "secondary_cip": "45.06",
-   "minor_cip": "",
-   "cip2_pooled": "52",
+   "field_raw": "Communications Major / Mass Communications Minor",
+   "components": "[{\"text\": \"Communications\", \"role\": \"major\", \"cip\": \"09.0100\"}, {\"text\": \"Mass Communications\", \"role\": \"minor\", \"cip\": \"09.0102\"}]",
+   "primary_cip": "09.0100",
+   "secondary_cip": "",
+   "minor_cip": "09.0102",
+   "cip2_pooled": "09",
    "marker_class": "marker"
   }
  },
@@ -1290,12 +1290,12 @@
   "data": {
    "id": "comajors:099",
    "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string",
-   "field_raw": "Sport Management (major), Business Administration (minor)",
-   "components": "[{\"text\": \"Sport Management\", \"role\": \"major\", \"cip\": \"31.0504\"}, {\"text\": \"Business Administration\", \"role\": \"minor\", \"cip\": \"52.02\"}]",
-   "primary_cip": "31.0504",
+   "field_raw": "French; minor in Math",
+   "components": "[{\"text\": \"French\", \"role\": \"major\", \"cip\": \"16.0901\"}, {\"text\": \"Math\", \"role\": \"minor\", \"cip\": \"27.01\"}]",
+   "primary_cip": "16.0901",
    "secondary_cip": "",
-   "minor_cip": "52.02",
-   "cip2_pooled": "31",
+   "minor_cip": "27.01",
+   "cip2_pooled": "16",
    "marker_class": "marker"
   }
  }

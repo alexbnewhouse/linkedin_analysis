@@ -1,43 +1,43 @@
 {
  "generated": "2026-09-22",
  "values": 445336,
- "runtime_s": 3.4,
+ "runtime_s": 3.5,
  "row_weighted": [
   {
    "status": "single",
    "marker_class": "plain",
-   "rows": 1966437,
-   "strings": 9120
+   "rows": 1976913,
+   "strings": 9438
   },
   {
    "status": "unresolved",
    "marker_class": "plain",
-   "rows": 734809,
-   "strings": 304812
+   "rows": 727982,
+   "strings": 304582
   },
   {
    "status": "split",
    "marker_class": "plain",
-   "rows": 115328,
-   "strings": 49705
+   "rows": 111679,
+   "strings": 49617
   },
   {
    "status": "unresolved",
    "marker_class": "marker",
-   "rows": 61173,
-   "strings": 52834
+   "rows": 60457,
+   "strings": 52979
   },
   {
    "status": "split",
    "marker_class": "marker",
-   "rows": 31614,
-   "strings": 28644
+   "rows": 31961,
+   "strings": 28317
   },
   {
    "status": "single",
    "marker_class": "marker",
-   "rows": 8471,
-   "strings": 221
+   "rows": 8840,
+   "strings": 403
   }
  ]
 }

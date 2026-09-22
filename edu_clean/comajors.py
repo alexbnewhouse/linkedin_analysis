@@ -20,11 +20,12 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 
+from cleanlib.text import normalize as _norm
 from edu_clean import final_hybrid as FH
 
 _MINOR_MARK = re.compile(r"\b(?:with\s+(?:a\s+)?)?minors?\b\s*(?:\bin\b|\bof\b|:|;|-|=)?\s*", re.I)
 _MAJOR_MARK = re.compile(
-    r"\b(?:double|dual|triple|second|first|primary)?\s*majors?(?:ing)?\b\s*(?:\bin\b|\bof\b|:|;|-|=)?\s*",
+    r"\b(?:with\s+(?:a\s+)?)?(?:double|dual|triple|second|first|primary)?\s*majors?(?:ing)?\b\s*(?:\bin\b|\bof\b|:|;|-|=)?\s*",
     re.I)
 _CONC_MARK = re.compile(
     r"\b(?:with\s+(?:a\s+)?)?(?:concentrations?|emphasis|specializations?|specialisations?|"
@@ -36,6 +37,41 @@ _MARKER_ANY = re.compile(r"\bminors?\b|\bmajors?\b|concentration|emphasis|specia
                          r"\btracks?\b|\bfocus|[\(\[]", re.I)
 
 DETERMINISTIC_METHODS = ("cip_exact", "cip_alias", "cip_override", "typo_to_cip")
+
+# Post-review 2026-09-22: compound SINGLE-program names that the CIP lookup does not
+# resolve whole and whose halves both resolve. Matched on the normalized string
+# (cleanlib.text.normalize: lowercase, '&' -> 'and', punctuation -> space). Extend with
+# evidence; each entry is a program name, not a pair of majors.
+COMPOUND_PROGRAMS = frozenset({
+    "computer science and engineering", "computer science engineering",
+    "electrical engineering and computer science", "electrical and computer engineering",
+    "computer engineering and computer science", "statistics and data science",
+    "philosophy politics and economics", "philosophy politics economics",
+    "criminology law and society", "criminology law society", "law and society",
+    "public policy and management", "economics and management", "economics and business",
+    "business and economics", "politics and government", "government and politics",
+    "education and human development", "information science and technology",
+    "information systems and technology", "business and technology", "business and information technology",
+    "mechanical and aerospace engineering", "civil and environmental engineering",
+    "chemical and biological engineering", "chemical and biomolecular engineering",
+    "industrial and systems engineering", "materials science and engineering",
+    "cell and molecular biology", "molecular and cell biology", "molecular and cellular biology",
+    "ecology and evolutionary biology", "biochemistry and molecular biology",
+    "supply chain and operations management", "operations and supply chain management",
+    "sport and recreation management", "media and communication", "media and communications",
+    "communication and media", "journalism and mass communication", "journalism and media studies",
+    "radio tv film", "radio television film", "radio television and film", "film and television",
+    "film and media studies", "theatre and dance", "theater and dance", "music and theatre",
+    "human development and psychology", "psychology and human development",
+    "business industrial management", "history and philosophy of science",
+    "science technology and society", "society and environment", "environment and society",
+    "peace and conflict studies", "war and peace studies", "international and global studies",
+    "gender and sexuality studies", "gender and women s studies", "women s and gender studies",
+    "race and ethnic studies", "ethnic and racial studies", "religion and culture",
+    "language and literature", "linguistics and languages", "literature and writing",
+    "rhetoric and writing", "writing and rhetoric", "english and creative writing",
+    "creative writing and literature",
+})
 
 
 @dataclass
@@ -75,6 +111,8 @@ def split_field(field_raw: str | None, method: str | None = None) -> Split:
     whole = _resolve(field_raw)
     if whole:
         return Split("single", [Component(field_raw.strip(), "major", whole)], mc)
+    if _norm(field_raw) in COMPOUND_PROGRAMS:
+        return Split("single", [Component(field_raw.strip(), "major", None)], mc)
 
     text = field_raw
     minors: list[str] = []
@@ -95,7 +133,9 @@ def split_field(field_raw: str | None, method: str | None = None) -> Split:
             if rest:
                 concs.append(rest)
             return " ; "
-        return " ; " + inner + " ; "
+        # a bare parenthetical ("Chemistry (Biochemistry)") is a track, never a second major
+        concs.append(inner)
+        return " ; "
 
     text = _PAREN.sub(paren, text)
     # "X (minor)" -> X is a minor
@@ -112,8 +152,10 @@ def split_field(field_raw: str | None, method: str | None = None) -> Split:
         head, rest = text[:m.start()], text[m.end():]
         if rest.strip(" ,;:-/"):
             minors.extend(_pieces(_MINOR_MARK.sub(" ; ", rest)))
-        else:  # trailing "<x> minor": last segment of the head is the minor
-            parts = _pieces(head)
+        else:  # trailing "<x> minor": the whole head may itself be one program ("..., Minor")
+            if _resolve(head) or _norm(head) in COMPOUND_PROGRAMS:
+                return Split("single", [Component(field_raw.strip(), "major", _resolve(head))], mc)
+            parts = _pieces(head)  # else the last segment of the head is the minor
             if parts:
                 minors.append(parts[-1])
                 head = " ; ".join(parts[:-1])

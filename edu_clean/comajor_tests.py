@@ -62,6 +62,19 @@ def main() -> None:
           split_field("Business and Economics", method="typo_to_cip").status == "single")
     check("typo method does not force single",
           split_field("History and Political Science", method="typo").status == "split")
+    for prog in ("Computer Science and Engineering", "Computer Science & Engineering",
+                 "Electrical Engineering and Computer Science", "Statistics and Data Science",
+                 "Philosophy, Politics and Economics", "Criminology, Law & Society", "Radio/TV/Film"):
+        check(f"compound single program: {prog}", split_field(prog).status == "single")
+    s = split_field("Chemistry (Biochemistry)")
+    check("bare parenthetical is a track, not a second major",
+          s.status in ("split", "unresolved") and len(majors(s)) == 1 and concentration(s) is not None)
+    s = split_field("Economics (Business) & Psychology")
+    check("bare parenthetical does not displace the real second major", fams(s) == ["45", "42"])
+    check("trailing ', Minor' on a CIP title stays single",
+          split_field("Business Administration and Management, Minor").status == "single")
+    s = split_field("Physics with Second Major in Mathematics")
+    check("'with second major' consumed", s.status == "split" and fams(s) == ["40", "27"])
     check("empty", split_field("").status == "empty" and split_field(None).status == "empty")
     check("unresolved junk", split_field("study of people and stuff").status in ("unresolved", "single"))
     check("marker_class", marker_class("Double Major in History and French") == "marker"

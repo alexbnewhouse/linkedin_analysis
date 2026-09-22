@@ -171,6 +171,28 @@ pairs (e.g. finance + marketing) collapse by design. Blind sample:
 `edu_clean/results/comajors_sample.jsonl` (100 rows, stratified); Label Studio project in
 `coding/label_studio/comajors.*`.
 
+**Post-review 1 (fresh subagent, 2026-09-22): VERDICT: LAND AS PROPOSE-ONLY.** Verbatim: "plain-stratum
+strict precision is 0.86 against a 0.90 bar and the misses concentrate in two fixable mechanisms
+(compound program names, bare parentheticals) whose largest case, CSE, is the table's most frequent
+'double major'". Blind score n=100: strict 0.870 overall; plain 0.860 (43 pass, 3 fail, 4 unsure);
+marker 0.880. Failed rows: "Computer Science & Engineering" split 14 + 11; "Criminology, Law & Society"
+split 22 + 45; "Radio/TV/Film" left only Film; "Chemistry (Biochemistry)"-type parentheticals promoted
+to a second major; "Economics (Business) & Psychology" where the parenthetical displaced Psychology;
+"Business Administration and Management, Minor" split a CIP title; "Statistics and Data Science".
+All headline numbers reproduced exactly; deterministic and pooled columns verified untouched.
+Labels: `coding/labels/comajors.reviewer.jsonl`.
+
+**Fixes (same day):** a curated `COMPOUND_PROGRAMS` stoplist of single-program names checked on the
+normalized whole string before splitting (CSE, EECS, ECE, PPE, Statistics and Data Science,
+Criminology Law and Society, Radio/TV/Film, ... ~70 names); a bare parenthetical is always a
+concentration, never a second major; a trailing ", Minor" first tries the whole head as one
+program; "with second major" is consumed by the major marker; the blind draw requires a secondary or
+a minor (7,928 split rows are concentration-only and never carry a co-major: consumers filter on
+`cip_secondary`). Tests added for each. Re-run: split 134,452 / no_primary 5,681 / conflict 3,708;
+`double_major_any` 89,088; `hum_l1_comajor_any` 24,463; L1 bachelor's holders with a double major
+17,682 of 184,529; L1 bachelor OR L1 co-major 202,152 (+17,623). Sample redrawn (salt v2) for a
+second blind review.
+
 ## P4. Occupation-family tier
 
 **Pre-review (fresh subagent, 2026-09-22): VERDICT: BUILD WITH CHANGES.** Verbatim core: the residue

@@ -37,7 +37,7 @@ SAMPLE = ROOT / "edu_clean" / "results" / "comajors_sample.jsonl"
 ADDED = ("cip_secondary", "cip2_secondary", "nha_level_secondary", "minor_cip", "minor_cip2",
          "nha_level_minor", "field_components_n", "comajor_source")
 FP = "bit_xor(hash(linkedin_id, idx, cip_code, cip2_pooled, degree_level_pooled, degree_level_source))"
-SALT = "p3-comajors-2026-09-22"
+SALT = "p3-comajors-2026-09-22-v2"
 RUBRIC = ("pass = the field string names two distinct fields (major + major, or major + minor) AND "
           "each CIP shown is right for its component; fail = one program name that was split, or "
           "a wrong CIP on either component; unsure = cannot tell from the string")
@@ -114,7 +114,8 @@ def run(execute: bool, sample: int = 0) -> dict:
     """).fetchone()[0]
     pairs = con.execute("""
       SELECT cip2_pooled || '+' || cip2_secondary AS pair, count(*) c FROM ep
-      WHERE comajor_source = 'split' AND (nha_level_pooled = 1 OR nha_level_secondary = 1)
+      WHERE comajor_source = 'split' AND cip2_secondary IS NOT NULL
+        AND (nha_level_pooled = 1 OR nha_level_secondary = 1)
       GROUP BY 1 ORDER BY 2 DESC LIMIT 15""").fetchall()
     report = {"generated": date.today().isoformat(), "rows": n_new, "executed": execute,
               "by_source": [{"source": s, "rows": c} for s, c in dist],
@@ -137,6 +138,7 @@ def run(execute: bool, sample: int = 0) -> dict:
                      ep.cip_secondary, ep.minor_cip, '{mc}' AS marker_class
               FROM ep JOIN m ON m.value = ep.field_raw
               WHERE ep.comajor_source = 'split' AND ep._marker_class = '{mc}'
+                AND (ep.cip_secondary IS NOT NULL OR ep.minor_cip IS NOT NULL)
               ORDER BY hash(ep.linkedin_id || '|' || ep.idx::VARCHAR || '|{SALT}') LIMIT {half}
             """).fetchall()
         cols = ["linkedin_id", "idx", "field_raw", "components", "cip2_pooled", "primary_cip",

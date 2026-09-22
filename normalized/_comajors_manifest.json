@@ -5,46 +5,42 @@
   "by_source": [
     {
       "source": null,
-      "rows": 3430516
+      "rows": 3433818
     },
     {
       "source": "split",
-      "rows": 137497
+      "rows": 134452
     },
     {
       "source": "no_primary",
-      "rows": 5877
+      "rows": 5681
     },
     {
       "source": "conflict",
-      "rows": 3769
+      "rows": 3708
     }
   ],
-  "l1_bachelor_persons_gained_via_secondary": 17993,
+  "l1_bachelor_persons_gained_via_secondary": 17623,
   "top_l1_pairs": [
     {
       "pair": "45+54",
-      "rows": 2969
-    },
-    {
-      "pair": null,
-      "rows": 2892
+      "rows": 2958
     },
     {
       "pair": "23+09",
-      "rows": 1907
-    },
-    {
-      "pair": "09+50",
-      "rows": 1663
+      "rows": 1887
     },
     {
       "pair": "45+16",
-      "rows": 1516
+      "rows": 1508
+    },
+    {
+      "pair": "09+50",
+      "rows": 1413
     },
     {
       "pair": "50+09",
-      "rows": 1272
+      "rows": 1267
     },
     {
       "pair": "09+23",
@@ -52,35 +48,39 @@
     },
     {
       "pair": "23+45",
-      "rows": 1049
+      "rows": 1050
     },
     {
       "pair": "23+50",
-      "rows": 931
+      "rows": 928
     },
     {
       "pair": "52+16",
-      "rows": 921
-    },
-    {
-      "pair": "45+38",
-      "rows": 918
+      "rows": 916
     },
     {
       "pair": "45+23",
-      "rows": 905
+      "rows": 898
     },
     {
       "pair": "50+52",
-      "rows": 868
+      "rows": 866
     },
     {
-      "pair": "23+16",
-      "rows": 804
+      "pair": "45+38",
+      "rows": 836
     },
     {
       "pair": "23+54",
-      "rows": 799
+      "rows": 798
+    },
+    {
+      "pair": "23+16",
+      "rows": 795
+    },
+    {
+      "pair": "54+45",
+      "rows": 784
     }
   ],
   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string"
