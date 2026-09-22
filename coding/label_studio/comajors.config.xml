@@ -1,0 +1,26 @@
+<View>
+  <Header value="Does the field string name two distinct fields (major + major, or major + minor), and is each CIP code right for its component?"/>
+  <Text name="rubric" value="$rubric"/>
+  <View style="display: grid; grid-template-columns: 1fr; gap: 4px; padding: 8px; background: #f7f7f7; border-radius: 6px">
+    <Header value="field_raw" size="6"/>
+    <Text name="field_raw" value="$field_raw"/>
+    <Header value="components" size="6"/>
+    <Text name="components" value="$components"/>
+    <Header value="primary_cip" size="6"/>
+    <Text name="primary_cip" value="$primary_cip"/>
+    <Header value="secondary_cip" size="6"/>
+    <Text name="secondary_cip" value="$secondary_cip"/>
+    <Header value="minor_cip" size="6"/>
+    <Text name="minor_cip" value="$minor_cip"/>
+    <Header value="cip2_pooled" size="6"/>
+    <Text name="cip2_pooled" value="$cip2_pooled"/>
+    <Header value="marker_class" size="6"/>
+    <Text name="marker_class" value="$marker_class"/>
+  </View>
+  <Choices name="label" toName="rubric" choice="single" required="true" showInline="true">
+      <Choice value="pass"/>
+      <Choice value="fail"/>
+      <Choice value="unsure"/>
+  </Choices>
+  <TextArea name="note" toName="rubric" placeholder="why (optional)" maxSubmissions="1" rows="2"/>
+</View>

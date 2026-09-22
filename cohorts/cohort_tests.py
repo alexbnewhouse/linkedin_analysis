@@ -41,8 +41,8 @@ def main() -> None:
         FROM {p}""").fetchone()
     check("panel: pooled soc_major covers more than the deterministic code",
           pooled_cov > det_cov)
-    check("panel: soc_source is det/jury/NULL only",
-          con.sql(f"SELECT count(*) FROM {p} WHERE soc_source NOT IN ('det', 'jury')").fetchone()[0] == 0)
+    check("panel: soc_source is det/jury/override/family/NULL only",
+          con.sql(f"SELECT count(*) FROM {p} WHERE soc_source NOT IN ('det', 'jury', 'override', 'family')").fetchone()[0] == 0)
     check("profiles: first_soc_major present",
           con.sql(f"SELECT count(*) FROM {pr} WHERE first_soc_major IS NOT NULL").fetchone()[0] > 0)
 

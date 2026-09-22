@@ -1,0 +1,100 @@
+{"id": "comajors:000", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:001", "label": "pass", "note": "Spanish + Administration of Justice (43.0103); Criminal Justice deduped in family 43"}
+{"id": "comajors:002", "label": "pass", "note": "four fields; Chemistry deduped with Physics (40); secondary Mathematics 27.01 right"}
+{"id": "comajors:003", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:004", "label": "pass", "note": "'Political Science and Government' is the CIP 45.10 title, kept as one; Spanish second"}
+{"id": "comajors:005", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:006", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:007", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:008", "label": "unsure", "note": "UNSURE: 'Business/Industrial Management' may be one program (business-side industrial management); 15.1501 is the engineering-management CIP"}
+{"id": "comajors:009", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:010", "label": "unsure", "note": "UNSURE: 'Business, Economics & Public Policy' is the Wharton BEPP department name; the comma reads as a list, cannot tell"}
+{"id": "comajors:011", "label": "pass", "note": "'Language' dropped, German deduped with Spanish (16); the two kept components are right"}
+{"id": "comajors:012", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:013", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:014", "label": "unsure", "note": "UNSURE: 'Public Policy and Management' is a single program name (CMU MSPPM); cannot tell from the string"}
+{"id": "comajors:015", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:016", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:017", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:018", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:019", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:020", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:021", "label": "fail", "note": "FAIL: 'Communications Radio/TV/Film' is one program (09.07); split on '/' and only 'Film' survived as the secondary, 50.0601 is wrong for it"}
+{"id": "comajors:022", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:023", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:024", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:025", "label": "pass", "note": "Humanities 24.0103 + Philosophy; 'Arts' dropped"}
+{"id": "comajors:026", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:027", "label": "pass", "note": "pooled 09 makes Public Relations primary, Marketing secondary; both CIPs right"}
+{"id": "comajors:028", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:029", "label": "unsure", "note": "UNSURE: 'Human Development and Psychology' is a single program name at some schools (HGSE HDP); cannot tell"}
+{"id": "comajors:030", "label": "pass", "note": "Economics + Humanities; Development and Negotiation dropped"}
+{"id": "comajors:031", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:032", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:033", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:034", "label": "fail", "note": "FAIL: 'Computer Science & Engineering' is one program name (CSE); split into Engineering 14.01 primary + Computer Science 11.07 secondary"}
+{"id": "comajors:035", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:036", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:037", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:038", "label": "pass", "note": "'Theatre/Theater' deduped; Theatre + Creative Writing"}
+{"id": "comajors:039", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:040", "label": "fail", "note": "FAIL: 'Criminology, Law & Society' is one program name (45.0401, UC Irvine); split into Law 22.01 primary + Criminology; Law 22.01 is wrong for it"}
+{"id": "comajors:041", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:042", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:043", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:044", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:045", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:046", "label": "pass", "note": "'Gender and Women's Studies' truncated to 'Women's Studies' but 05.0207 is right for it"}
+{"id": "comajors:047", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:048", "label": "pass", "note": "Biology + Agriculture 01.00 (general); acceptable"}
+{"id": "comajors:049", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:050", "label": "pass", "note": "Secondary Education major + Biology minor; 'Health' dropped"}
+{"id": "comajors:051", "label": "pass", "note": "'Communication and Media Studies' truncated to 'Communication' (09.0100 family right); minor Political Science right"}
+{"id": "comajors:052", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:053", "label": "pass", "note": "concentration-only (Business + Marketing concentration); no secondary or minor populated; split itself right"}
+{"id": "comajors:054", "label": "pass", "note": "'Child Development and Family Relations' resolved from 'Child Development' 19.0706; family right; minor Psychology right"}
+{"id": "comajors:055", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:056", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:057", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:058", "label": "pass", "note": "concentration-only; split itself right"}
+{"id": "comajors:059", "label": "fail", "note": "FAIL: 'double major' names two majors but 'Government and International Studies' was split into two; secondary is International Studies 30.2001 where it should be History 54.01"}
+{"id": "comajors:060", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:061", "label": "pass", "note": "major Business Management + concentration Intl Business + minor Finance; major+minor right"}
+{"id": "comajors:062", "label": "pass", "note": "'Business Administrations' deduped with Organizational Management (52); minor Psychology right"}
+{"id": "comajors:063", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:064", "label": "pass", "note": "concentration-only; Healthcare -> 51 coarse but right"}
+{"id": "comajors:065", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:066", "label": "fail", "note": "FAIL: parenthetical '(Human Development)' is a track of Applied Psychology, promoted to a co-major 19.0701"}
+{"id": "comajors:067", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:068", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:069", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:070", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:071", "label": "pass", "note": "two minors; minor_cip carries the first (French); right"}
+{"id": "comajors:072", "label": "pass", "note": "concentration-only; Mathematics emphasis 27.01; 'Sciences' dropped"}
+{"id": "comajors:073", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:074", "label": "pass", "note": "concentration-only; split itself right"}
+{"id": "comajors:075", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:076", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:077", "label": "pass", "note": "two degrees' fields in one string (BFA Fine Arts, MFA Art Teacher Education); two distinct fields, CIPs right, though not a double major"}
+{"id": "comajors:078", "label": "pass", "note": "concentration-only; split itself right"}
+{"id": "comajors:079", "label": "pass", "note": "Public Relations deduped with Communications (09); minor Business Administration right"}
+{"id": "comajors:080", "label": "pass", "note": "'Ecology, Evolution & Biodiversity' resolved from 'Ecology' 26.1301; family right"}
+{"id": "comajors:081", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:082", "label": "pass", "note": "three minors; minor_cip carries the first (Public Relations 09.09); right"}
+{"id": "comajors:083", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:084", "label": "pass", "note": "concentration-only; split itself right"}
+{"id": "comajors:085", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:086", "label": "pass", "note": "'Option: Financial analysis' dropped; major Business Administration + minor Business Analytics 30.7102 right"}
+{"id": "comajors:087", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:088", "label": "fail", "note": "FAIL: parenthetical '(Business)' qualifies Economics but was promoted to a major; secondary is 52 where the real second major is Psychology 42.01"}
+{"id": "comajors:089", "label": "fail", "note": "FAIL: 'Business Administration and Management' is one CIP title; split into major 52.02 + minor 'Management' 52.02; the string says the whole thing is a minor"}
+{"id": "comajors:090", "label": "pass", "note": "component text 'Physics with' (marker regex left 'with'); CIP 40.08 still right; cosmetic"}
+{"id": "comajors:091", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:092", "label": "fail", "note": "FAIL: 'Statistics and Data Science (General Track)' is one program name; split into 27.05 + 30.70"}
+{"id": "comajors:093", "label": "pass", "note": "concentration-only; split itself right"}
+{"id": "comajors:094", "label": "pass", "note": "English + Communications double major; 'PR' dropped from the concentration"}
+{"id": "comajors:095", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:096", "label": "unsure", "note": "UNSURE: '(Legal Studies)' parenthetical could be a minor or concentration rather than a co-major; CIP 22.0000 right"}
+{"id": "comajors:097", "label": "pass", "note": "two distinct fields, CIPs right"}
+{"id": "comajors:098", "label": "pass", "note": "Marketing + Economics double major; concentration dropped"}
+{"id": "comajors:099", "label": "pass", "note": "two distinct fields, CIPs right"}

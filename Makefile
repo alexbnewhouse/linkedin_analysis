@@ -2,7 +2,7 @@
 UV := uv run
 
 .PHONY: parse normalize normalize-fast normalize-education normalize-career \
-        industry archetypes portal test test-data lint cert \
+        industry archetypes portal test test-data lint cert benchmarks persons \
         paths network seniority cohorts refresh check-freshness
 
 parse:            ## raw JSONL -> parsed/ star schema (~20 min)
@@ -52,6 +52,26 @@ check-freshness:  ## exit 1 if any downstream output is older than its inputs
 cert:             ## certifications skills axis (audit R6)
 	$(UV) python -m cert_clean.run_cert
 
+families:         ## occupation-family tier: classify every title, gate per (family, stratum); rebuild career afterwards
+	$(UV) python -m career_clean.run_families classify
+	$(UV) python -m career_clean.run_families gate
+
+overrides:        ## employer-keyed occupation overrides (row-level mapping); rebuild career afterwards
+	$(UV) python -m career_clean.run_overrides
+
+comajors:         ## value-level co-major mapping (edu_clean.run_comajors); the apply runs inside build_normalized
+	$(UV) python -m edu_clean.run_comajors
+
+coding-export:    ## export every drawn blind sample as a Label Studio project (coding/label_studio)
+	$(UV) python -m coding.export --all
+
+benchmarks:       ## LinkedIn shares vs NCES / Humanities Indicators (validation/results)
+	$(UV) python -m validation.external_benchmarks
+
+persons:          ## person summary table + metrics cube v0 (both axes, all tiers, floor 10) -- after industry + paths
+	$(UV) --with numpy python -m persons.build_person
+	$(UV) python -m persons.build_metrics
+
 portal:
 	$(UV) python -m portal.run_portal_data
 	$(UV) python -m portal.run_share_build
@@ -67,6 +87,14 @@ test:             ## data-independent logic suites (no built parquet needed)
 	$(UV) python -m cert_clean.cert_tests
 	$(UV) python -m paths.spine_tests
 	$(UV) --with numpy python normalization_regression_checks.py
+	$(UV) python -m validation.validation_tests
+	$(UV) python -m edu_clean.imputed_tests
+	$(UV) python -m edu_clean.comajor_tests
+	$(UV) python -m career_clean.families.family_tests
+	$(UV) python -m career_clean.override_tests
+	$(UV) python -m persons.person_tests
+	$(UV) python -m coding.coding_tests
+	bash scripts/statusline_tests.sh
 
 test-data:        ## suites that read built parquet
 	$(UV) python -m career_clean.soc_data_checks
@@ -75,6 +103,12 @@ test-data:        ## suites that read built parquet
 	$(UV) python -m edu_clean.cip_tests
 	$(UV) python -m portal.portal_tests
 	$(UV) python -m cohorts.cohort_tests
+	$(UV) python -m validation.benchmark_checks
+	$(UV) python -m edu_clean.imputed_data_checks
+	$(UV) python -m edu_clean.comajor_data_checks
+	$(UV) python -m career_clean.family_data_checks
+	$(UV) python -m career_clean.override_data_checks
+	$(UV) python -m persons.person_checks
 
 lint:
 	uvx ruff check .

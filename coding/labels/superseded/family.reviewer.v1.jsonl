@@ -1,0 +1,100 @@
+{"id": "family:000", "label": "fail", "note": "'Faculty Affairs' at NYU Stern is an administrative office role (11-9033 / 43), not a postsecondary teacher"}
+{"id": "family:001", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Reporter'"}
+{"id": "family:002", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Post Producer \"Brother Vs. Brother\"'"}
+{"id": "family:003", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Solutions Journalism Reporter'"}
+{"id": "family:004", "label": "pass", "note": "legal_attorney -> 23 is the right major group for 'Democratic Health Counsel'"}
+{"id": "family:005", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Assistant Prof. in general surgery, Aden University'"}
+{"id": "family:006", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Lecturer Of Business & Technology'"}
+{"id": "family:007", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Adjunct Professor of Film & TV Business, Producing & Distrib'"}
+{"id": "family:008", "label": "pass", "note": "legal_attorney -> 23 is the right major group for 'Senior Attorney (Professional Liability Section)'"}
+{"id": "family:009", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Writer's Assistant to Executive Producer/Head Writer'"}
+{"id": "family:010", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Assistant Adjunct Professor Appointment, Univ. of Calif., Da'"}
+{"id": "family:011", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Substitute/Adjunct Instructor & Tutor'"}
+{"id": "family:012", "label": "unsure", "note": "Visiting Scholar: research or teaching appointment cannot be told from the title; 25 vs 19"}
+{"id": "family:013", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'On Air Talent: KAFF Country Morning Show Host'"}
+{"id": "family:014", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Creator & Producer, \"News Edge at 6\"'"}
+{"id": "family:015", "label": "fail", "note": "Planetarium Presenter at a science museum is a museum educator (25), not media (27); 'presenter' regex fired"}
+{"id": "family:016", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Sports reporter covering college events for Alabama, Auburn,'"}
+{"id": "family:017", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Reporter'"}
+{"id": "family:018", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Guest Lecturer In Economics (Macro/Micro Credit Analysis)'"}
+{"id": "family:019", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Lecturer of Saxophone'"}
+{"id": "family:020", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Viral Video Co-Producer and Co-Creator'"}
+{"id": "family:021", "label": "fail", "note": "Senior Faculty Support Coordinator at 2U is administrative support (43), not a teacher"}
+{"id": "family:022", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Visiting Associate Professor, Fulbright Research Scholar'"}
+{"id": "family:023", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Fisheries Reporter'"}
+{"id": "family:024", "label": "pass", "note": "legal_attorney -> 23 is the right major group for 'Environmental Attorney/Consultant'"}
+{"id": "family:025", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Reporter'"}
+{"id": "family:026", "label": "unsure", "note": "Journalism Intern at a K-12 school (Trinity School of Midland): student activity or media job cannot be told from the title"}
+{"id": "family:027", "label": "pass", "note": "legal_attorney -> 23 is the right major group for 'Staff Attorney, International Labor Rights'"}
+{"id": "family:028", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Self-Syndicated Weekly Columnist & Newspaper Consultant'"}
+{"id": "family:029", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'WSLS Producer'"}
+{"id": "family:030", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Insurance Markets Reporter (New York) and Telecom Regulatory'"}
+{"id": "family:031", "label": "pass", "note": "legal_attorney -> 23 is the right major group for 'Deputy Attorney General - Employment Law Section'"}
+{"id": "family:032", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Adjunct Instructor | BA23 Training & Development (Fall Semes'"}
+{"id": "family:033", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'TV Host, Producer, PR and Media Liasion'"}
+{"id": "family:034", "label": "pass", "note": "legal_attorney -> 23 is the right major group for 'U.S. Attorney'"}
+{"id": "family:035", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Associate Producer of Carolina Sports Live'"}
+{"id": "family:036", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Digital Media Producer, Digital Marketer, and Talent Broker'"}
+{"id": "family:037", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'News Anchor - WDBO NewsTalk'"}
+{"id": "family:038", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Assistant Professor, School Psychology'"}
+{"id": "family:039", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'TV Anchor of ‘Spokane Talks’ on FOX28'"}
+{"id": "family:040", "label": "unsure", "note": "Visiting Scholar: research or teaching appointment cannot be told from the title; 25 vs 19"}
+{"id": "family:041", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Adjunct Instructor, Center for Food Security and Public Heal'"}
+{"id": "family:042", "label": "pass", "note": "legal_attorney -> 23 is the right major group for 'General Counsel/Senior Legal Advisor (U.S. Navy Staff Judge '"}
+{"id": "family:043", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Reporter'"}
+{"id": "family:044", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Assistant Professor/Coordinator of School Partnerships'"}
+{"id": "family:045", "label": "pass", "note": "legal_attorney -> 23 is the right major group for 'Attorney Title Specialist'"}
+{"id": "family:046", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Reporter'"}
+{"id": "family:047", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Adjunct Professor and Educational Technology Consultant'"}
+{"id": "family:048", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Assistant de langue (Prof d'anglais)'"}
+{"id": "family:049", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Super Adjunct Assistant Professor'"}
+{"id": "family:050", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Assistant Producer at New Sounds'"}
+{"id": "family:051", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Postgraduate Teaching Fellow'"}
+{"id": "family:052", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Emcee/Event Co-Producer'"}
+{"id": "family:053", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Reporter'"}
+{"id": "family:054", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Multimedia Investigative Reporter'"}
+{"id": "family:055", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Reporter'"}
+{"id": "family:056", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Instructor/Adjunct Faculty, Master of Health Science Program'"}
+{"id": "family:057", "label": "pass", "note": "legal_attorney -> 23 is the right major group for 'Corporate & Securities Lawyer'"}
+{"id": "family:058", "label": "fail", "note": "Sales Line Producer at Allstate is an insurance sales agent (41-3021); 'producer' regex fired on an insurance title"}
+{"id": "family:059", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Radio Personality | Host | Producer - Madd Hatta Morning Sho'"}
+{"id": "family:060", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Metro Editor - Investigations'"}
+{"id": "family:061", "label": "pass", "note": "legal_attorney -> 23 is the right major group for 'Of Counsel, Criminal Defense and Government Investigations P'"}
+{"id": "family:062", "label": "unsure", "note": "Hospital-based Clinical Instructor / Nurse Educator: 25-1072 nursing instructors vs 29-1141 RN vs 13-1151 training specialist; title and employer split"}
+{"id": "family:063", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Line Producer - MTV pilot'"}
+{"id": "family:064", "label": "fail", "note": "Postdoctoral Research Fellow in neuroscience is a researcher (19-1042), not a postsecondary teacher; same defect the gold/jury flag on postdocs"}
+{"id": "family:065", "label": "fail", "note": "Assistant to Executive Producer and Showrunner is an administrative assistant (43-6011/6014), not a producer"}
+{"id": "family:066", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Multi-Media Producer & Creative Direction'"}
+{"id": "family:067", "label": "unsure", "note": "Faculty Innovator in Residence is a fellowship-style title; teaching content unknown"}
+{"id": "family:068", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Reporter'"}
+{"id": "family:069", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Tenured Professor of Arts Management, CSEP, CMP'"}
+{"id": "family:070", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'ArtisticDirector/Choreographer/ Co-Producer'"}
+{"id": "family:071", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Adjunct Professor - Suicide Assessment & Treatment'"}
+{"id": "family:072", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Adjunct Teacher, Creative Process for Children, Youth and Ad'"}
+{"id": "family:073", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Success Correspondent, \"My Generation\" syndicated TV show.'"}
+{"id": "family:074", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Retter Professor of Pharmacy'"}
+{"id": "family:075", "label": "pass", "note": "legal_attorney -> 23 is the right major group for 'Sr. Corporate Counsel and Technology Transactions Attorney'"}
+{"id": "family:076", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Senior Producer and Franchise Lead (Digital/Multiplatform), '"}
+{"id": "family:077", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Professor, English as a Foreign Language Teaching Program'"}
+{"id": "family:078", "label": "fail", "note": "Professor of Journalism and French language is a postsecondary teacher (25); 'journalism' outranked 'professor' so 27 was assigned"}
+{"id": "family:079", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Producer/1st AD: Streamy Awards 2022 Trailer'"}
+{"id": "family:080", "label": "pass", "note": "legal_attorney -> 23 is the right major group for 'Staff Attorney, Criminal Appellate Division'"}
+{"id": "family:081", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Professor of Asian & Asian American Studies, College of Ethn'"}
+{"id": "family:082", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Reporter'"}
+{"id": "family:083", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Reporter'"}
+{"id": "family:084", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'FOX45 Morning Show Associate Producer'"}
+{"id": "family:085", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Journalist, ESPN News/Investigative/Enterprise Unit'"}
+{"id": "family:086", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'LATER TODAY | Associate Producer'"}
+{"id": "family:087", "label": "fail", "note": "Visiting Scholar / Senior Researcher is a research role (19 by field), not a postsecondary teacher"}
+{"id": "family:088", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Morning Show Producer & Anchor, Television'"}
+{"id": "family:089", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Social Media + Internet News Producer'"}
+{"id": "family:090", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Assistant Professor and Scholar in Residence'"}
+{"id": "family:091", "label": "pass", "note": "legal_attorney -> 23 is the right major group for 'Municipal Prosecutor, Park Hills'"}
+{"id": "family:092", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Associate Professor/Lecturer, Department of Management'"}
+{"id": "family:093", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Digital Content Producer & Engineer Assistant'"}
+{"id": "family:094", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Adjunct Faculty/Teaching Fellow - Forensic Psychology, Quant'"}
+{"id": "family:095", "label": "pass", "note": "legal_attorney -> 23 is the right major group for 'Senior Counsel for Cleveland Cliffs Steel LLC Business Unit'"}
+{"id": "family:096", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Real Estate Law Professor - Adjunct NYU Schack Institute of '"}
+{"id": "family:097", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Producer for Discovery Kids'"}
+{"id": "family:098", "label": "pass", "note": "higher_ed_faculty -> 25 is the right major group for 'Professor Behavioral Health/Psychology/SocialWork/Addiction '"}
+{"id": "family:099", "label": "pass", "note": "journalism_media -> 27 is the right major group for 'Game Day Producer'"}

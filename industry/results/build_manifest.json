@@ -1,8 +1,8 @@
 {
-  "created_at": "2026-09-02T22:24:52+00:00",
+  "created_at": "2026-09-22T16:19:52+00:00",
   "inputs": {
     "career_steps": "/home/alex/linkedin-analysis/normalized/career_steps.parquet",
-    "career_steps_mtime": 1788387733.48484
+    "career_steps_mtime": 1790093678.1495206
   },
   "n_companies": 3110970,
   "total_rows": 10614420,
@@ -12,7 +12,7 @@
     "L3": 25.6,
     "L4": 2.1
   },
-  "review_queue_companies": 2168116,
+  "review_queue_companies": 2168147,
   "llm_candidates": 0,
   "llm_multi_juror_candidates": 0,
   "llm_abstentions_XOT": 0,
@@ -20,7 +20,7 @@
   "cap": null,
   "propagation": {
     "step_rows": 10800787,
-    "L1_coverage_pct": 58.35,
+    "L1_coverage_pct": 58.37,
     "null_key_rows": 1992,
     "nonorg_rows": 184375,
     "org_rows_missing_company": 0

@@ -1,0 +1,100 @@
+{"id": "comajors:000", "label": "pass", "note": ""}
+{"id": "comajors:001", "label": "pass", "note": ""}
+{"id": "comajors:002", "label": "pass", "note": ""}
+{"id": "comajors:003", "label": "unsure", "note": "Business and IT: as likely one program (Business and Information Technology is in the repo stoplist) as two majors"}
+{"id": "comajors:004", "label": "pass", "note": ""}
+{"id": "comajors:005", "label": "pass", "note": "commonly two majors; occasionally one program name"}
+{"id": "comajors:006", "label": "pass", "note": ""}
+{"id": "comajors:007", "label": "pass", "note": ""}
+{"id": "comajors:008", "label": "pass", "note": ""}
+{"id": "comajors:009", "label": "fail", "note": "Liberal Arts/Social and Behavioral Sciences is one community-college track (liberal arts with an SBS emphasis); 'Social and' was also cut off the second component"}
+{"id": "comajors:010", "label": "pass", "note": ""}
+{"id": "comajors:011", "label": "pass", "note": "Biochemistry & Molecular Biology is one program; family dedupe leaves 26.0202 (26.0210 would be exact); pair with Spanish is right"}
+{"id": "comajors:012", "label": "pass", "note": ""}
+{"id": "comajors:013", "label": "pass", "note": ""}
+{"id": "comajors:014", "label": "pass", "note": ""}
+{"id": "comajors:015", "label": "pass", "note": ""}
+{"id": "comajors:016", "label": "pass", "note": ""}
+{"id": "comajors:017", "label": "pass", "note": ""}
+{"id": "comajors:018", "label": "pass", "note": "commonly two majors; occasionally one program name"}
+{"id": "comajors:019", "label": "unsure", "note": "International Business and Economics: reads as one program as easily as two; stoplist treats 'business and economics' as one"}
+{"id": "comajors:020", "label": "pass", "note": ""}
+{"id": "comajors:021", "label": "pass", "note": ""}
+{"id": "comajors:022", "label": "pass", "note": ""}
+{"id": "comajors:023", "label": "pass", "note": ""}
+{"id": "comajors:024", "label": "pass", "note": ""}
+{"id": "comajors:025", "label": "pass", "note": ""}
+{"id": "comajors:026", "label": "pass", "note": ""}
+{"id": "comajors:027", "label": "pass", "note": ""}
+{"id": "comajors:028", "label": "pass", "note": "Management & Business Economics is one program (UC Merced); secondary 52.02 right at family level"}
+{"id": "comajors:029", "label": "pass", "note": ""}
+{"id": "comajors:030", "label": "pass", "note": ""}
+{"id": "comajors:031", "label": "pass", "note": ""}
+{"id": "comajors:032", "label": "pass", "note": ""}
+{"id": "comajors:033", "label": "pass", "note": ""}
+{"id": "comajors:034", "label": "pass", "note": "school name in the string; the fields named are still journalism/mass comm + theatre"}
+{"id": "comajors:035", "label": "pass", "note": ""}
+{"id": "comajors:036", "label": "pass", "note": ""}
+{"id": "comajors:037", "label": "pass", "note": ""}
+{"id": "comajors:038", "label": "pass", "note": ""}
+{"id": "comajors:039", "label": "pass", "note": "commonly two majors; occasionally one program name"}
+{"id": "comajors:040", "label": "pass", "note": ""}
+{"id": "comajors:041", "label": "pass", "note": ""}
+{"id": "comajors:042", "label": "pass", "note": ""}
+{"id": "comajors:043", "label": "pass", "note": ""}
+{"id": "comajors:044", "label": "pass", "note": ""}
+{"id": "comajors:045", "label": "pass", "note": ""}
+{"id": "comajors:046", "label": "pass", "note": ""}
+{"id": "comajors:047", "label": "pass", "note": ""}
+{"id": "comajors:048", "label": "pass", "note": ""}
+{"id": "comajors:049", "label": "pass", "note": ""}
+{"id": "comajors:050", "label": "pass", "note": ""}
+{"id": "comajors:051", "label": "pass", "note": ""}
+{"id": "comajors:052", "label": "pass", "note": ""}
+{"id": "comajors:053", "label": "pass", "note": ""}
+{"id": "comajors:054", "label": "fail", "note": "'Sociology/Psychology emphasis': Psychology is an emphasis, not a second major; trailing concentration word ignored"}
+{"id": "comajors:055", "label": "pass", "note": ""}
+{"id": "comajors:056", "label": "pass", "note": ""}
+{"id": "comajors:057", "label": "pass", "note": ""}
+{"id": "comajors:058", "label": "pass", "note": ""}
+{"id": "comajors:059", "label": "pass", "note": ""}
+{"id": "comajors:060", "label": "pass", "note": ""}
+{"id": "comajors:061", "label": "pass", "note": ""}
+{"id": "comajors:062", "label": "pass", "note": ""}
+{"id": "comajors:063", "label": "pass", "note": ""}
+{"id": "comajors:064", "label": "pass", "note": ""}
+{"id": "comajors:065", "label": "pass", "note": ""}
+{"id": "comajors:066", "label": "fail", "note": "'IT Focus' is a concentration; promoted to a second major (11.0103) because the marker trails the component"}
+{"id": "comajors:067", "label": "pass", "note": ""}
+{"id": "comajors:068", "label": "pass", "note": ""}
+{"id": "comajors:069", "label": "pass", "note": ""}
+{"id": "comajors:070", "label": "pass", "note": ""}
+{"id": "comajors:071", "label": "fail", "note": "'Psychology concentration' promoted to a second major (42.01); trailing concentration word ignored"}
+{"id": "comajors:072", "label": "pass", "note": ""}
+{"id": "comajors:073", "label": "pass", "note": ""}
+{"id": "comajors:074", "label": "pass", "note": ""}
+{"id": "comajors:075", "label": "pass", "note": ""}
+{"id": "comajors:076", "label": "pass", "note": ""}
+{"id": "comajors:077", "label": "pass", "note": ""}
+{"id": "comajors:078", "label": "fail", "note": "'Communication, Media and Theatre (CMT)' is one department/program name (the parenthetical says so); split 09 + 50"}
+{"id": "comajors:079", "label": "pass", "note": ""}
+{"id": "comajors:080", "label": "pass", "note": ""}
+{"id": "comajors:081", "label": "pass", "note": ""}
+{"id": "comajors:082", "label": "pass", "note": ""}
+{"id": "comajors:083", "label": "pass", "note": "primary 26.0507 Immunology for 'Microbiology & Immunology' (26.0508 exact); family right; minor right"}
+{"id": "comajors:084", "label": "pass", "note": ""}
+{"id": "comajors:085", "label": "pass", "note": ""}
+{"id": "comajors:086", "label": "pass", "note": ""}
+{"id": "comajors:087", "label": "pass", "note": ""}
+{"id": "comajors:088", "label": "pass", "note": ""}
+{"id": "comajors:089", "label": "pass", "note": "head is the CIP title 'Business Administration & Management' split then family-deduped; shown CIPs right"}
+{"id": "comajors:090", "label": "pass", "note": ""}
+{"id": "comajors:091", "label": "pass", "note": ""}
+{"id": "comajors:092", "label": "pass", "note": ""}
+{"id": "comajors:093", "label": "pass", "note": "head is the CIP title 'Criminal Justice/Law Enforcement Administration' split then family-deduped; shown CIPs right"}
+{"id": "comajors:094", "label": "pass", "note": ""}
+{"id": "comajors:095", "label": "fail", "note": "two graduate degrees (MS Management + MPA), not a co-major; 'Science in Management' resolved to 52.1301 Management Science, wrong for an MS in Management"}
+{"id": "comajors:096", "label": "pass", "note": ""}
+{"id": "comajors:097", "label": "pass", "note": ""}
+{"id": "comajors:098", "label": "pass", "note": "Communications major + Mass Communications minor; same family but distinct as named"}
+{"id": "comajors:099", "label": "pass", "note": ""}

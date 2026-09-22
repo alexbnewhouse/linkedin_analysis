@@ -2,18 +2,18 @@
   "axis": "occupation",
   "alpha": 0.05,
   "nodes": 824,
-  "edges_nonself": 39097,
-  "backbone_edges": 1525,
+  "edges_nonself": 39089,
+  "backbone_edges": 1528,
   "infomap": {
-    "n_communities": 23,
-    "largest": 216,
+    "n_communities": 18,
+    "largest": 424,
     "singletons": 0
   },
   "leiden": {
-    "n_communities": 35,
-    "largest": 383,
+    "n_communities": 37,
+    "largest": 347,
     "singletons": 6
   },
   "runtime_s": 0.6,
-  "mean_infomap_soc_purity": 0.534
+  "mean_infomap_soc_purity": 0.556
 }

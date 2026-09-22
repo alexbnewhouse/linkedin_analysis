@@ -1,0 +1,122 @@
+{
+  "generated": "2026-09-22",
+  "rows": 3577659,
+  "executed": true,
+  "unland": false,
+  "imputed_rows": 25175,
+  "persons_gaining_first_level": 12100,
+  "l1_bachelor_persons_gained": 2762,
+  "top_schools": [
+    {
+      "school": "Penn State University",
+      "rows": 198
+    },
+    {
+      "school": "Southern New Hampshire University",
+      "rows": 183
+    },
+    {
+      "school": "University of Central Florida",
+      "rows": 183
+    },
+    {
+      "school": "University of Houston",
+      "rows": 177
+    },
+    {
+      "school": "University of South Florida",
+      "rows": 170
+    },
+    {
+      "school": "Florida International University",
+      "rows": 169
+    },
+    {
+      "school": "The University of Texas at Austin",
+      "rows": 162
+    },
+    {
+      "school": "Texas A&M University",
+      "rows": 141
+    },
+    {
+      "school": "University of North Texas",
+      "rows": 138
+    },
+    {
+      "school": "University of Washington",
+      "rows": 136
+    },
+    {
+      "school": "Brigham Young University",
+      "rows": 128
+    },
+    {
+      "school": "San Francisco State University",
+      "rows": 126
+    },
+    {
+      "school": "Michigan State University",
+      "rows": 125
+    },
+    {
+      "school": "San Jose State University",
+      "rows": 125
+    },
+    {
+      "school": "Western Governors University",
+      "rows": 123
+    }
+  ],
+  "by_field_group": [
+    {
+      "group": "Other",
+      "rows": 16153
+    },
+    {
+      "group": "Fine & Performing Arts",
+      "rows": 1439
+    },
+    {
+      "group": "Communication & Media",
+      "rows": 1363
+    },
+    {
+      "group": "Psychology",
+      "rows": 1362
+    },
+    {
+      "group": "Humanistic Social Science",
+      "rows": 1183
+    },
+    {
+      "group": "Biological Sciences",
+      "rows": 760
+    },
+    {
+      "group": "English & Literature",
+      "rows": 369
+    },
+    {
+      "group": "Economics",
+      "rows": 358
+    },
+    {
+      "group": "Physical Sciences",
+      "rows": 316
+    },
+    {
+      "group": "Liberal Arts & Humanities",
+      "rows": 303
+    },
+    {
+      "group": "Math & Statistics",
+      "rows": 298
+    },
+    {
+      "group": "History",
+      "rows": 277
+    }
+  ],
+  "rubric": "pass = a completed or in-progress bachelor's at a bachelor's-granting institution; fail = exchange term, minor, certificate, license, associate, master's, residency, or an institution that does not grant bachelor's; unsure = cannot tell from the row"
+}

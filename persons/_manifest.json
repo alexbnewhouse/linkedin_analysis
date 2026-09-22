@@ -1,0 +1,72 @@
+{
+ "schema_version": 1,
+ "built": "2026-09-22T16:26:22.071324+00:00",
+ "snapshot_date": "2026-02-19",
+ "snapshot_id": "snap_mlsi9jwqziij1k8zq",
+ "snapshot_cal_year": 2026,
+ "last_complete_year": 2025,
+ "git": "d2c20a3",
+ "git_dirty": true,
+ "params": {
+  "min_support": 10,
+  "secondary_suppression": true,
+  "min_group_n": 300,
+  "stages": [
+   "0-2",
+   "3-5",
+   "6-10",
+   "11-20",
+   "21+"
+  ],
+  "horizons": [
+   1,
+   5,
+   10,
+   20
+  ],
+  "current_step_rule": "is_ongoing; seniority_score DESC NULLS LAST, tenure_months DESC NULLS LAST, row_id",
+  "first_step_rule": "start_dt, end_dt, row_id over datable sane steps",
+  "bachelor_row_rule": "pooled level 4; det source first, earliest end_year, idx",
+  "attainment": "max(seniority_ordinal) >= 6 / 7 / 8 (paths.common.SENIORITY_RANK)"
+ },
+ "inputs": {
+  "normalized/education.parquet": {
+   "mtime": "2026-09-22T16:13:21.534691+00:00"
+  },
+  "normalized/education_person.parquet": {
+   "mtime": "2026-09-22T16:13:24.510649+00:00"
+  },
+  "normalized/career_steps.parquet": {
+   "mtime": "2026-09-22T16:14:38.149521+00:00"
+  },
+  "paths/steps.parquet": {
+   "mtime": "2026-09-22T16:21:56.114885+00:00"
+  },
+  "industry/results/step_industry.parquet": {
+   "mtime": "2026-09-22T16:20:01.820607+00:00"
+  },
+  "reference/cip_humanities.parquet": {
+   "mtime": "2026-06-10T15:27:55.751650+00:00"
+  },
+  "reference/institution_meta.parquet": {
+   "mtime": "2026-07-22T14:54:59.029193+00:00"
+  },
+  "normalized/mappings/school_ipeds.parquet": {
+   "mtime": "2026-07-22T14:54:59.025193+00:00"
+  }
+ },
+ "rows": 1999974,
+ "steps_joined": 10717451,
+ "runtime_s": 11.6,
+ "summary": {
+  "persons": 1999974,
+  "with_bachelor": 1497978,
+  "l1": 184529,
+  "l2": 380283,
+  "l3": 602584,
+  "with_entry": 1999916,
+  "with_grad_year": 279671,
+  "with_cur_major": 1064514,
+  "grad_degree": 611807
+ }
+}

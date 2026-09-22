@@ -1,0 +1,13 @@
+{
+  "source": "American Academy of Arts & Sciences, Humanities Indicators",
+  "advanced_degree_rate_humanities_ba": 0.42,
+  "advanced_degree_rate_year": 2021,
+  "advanced_degree_rate_source": "https://www.amacad.org/humanities-indicators/workforce/earnings-humanities-majors-advanced-degree ('In 2021, 42% of humanities majors possessed at least one advanced degree'; American Community Survey)",
+  "advanced_degree_rate_all_graduates": 0.37,
+  "advanced_degree_rate_all_graduates_year": 2018,
+  "advanced_degree_rate_all_graduates_source": "https://www.amacad.org/news/new-reports-humanities-indicators-earnings-job-outcomes ('Among all college graduates, the average was 37 percent'; arts and business majors about 25 percent each)",
+  "humanities_share_of_bachelors": {"2005": 0.15, "2012": 0.131, "2025": 0.081},
+  "humanities_share_source": "https://www.amacad.org/humanities-indicators/higher-education/bachelors-degrees-humanities (Humanities Indicators definition, which includes communication and the arts; not the same as the Digest core lines)",
+  "verified_on": "2026-09-22",
+  "note": "'humanities majors' in the ACS-based rate means people whose bachelor's field is in the Humanities Indicators' humanities set; the comparable repo population is hum_l1_bachelor_pooled_any."
+}

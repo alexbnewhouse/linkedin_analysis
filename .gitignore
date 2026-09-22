@@ -63,3 +63,12 @@ __pycache__/
 /edu_clean/results/*.log
 /.build_status
 /refresh.log
+
+# Claude Code worktrees (nested checkouts; never commit)
+/.claude/worktrees/
+
+# persons/ generated outputs (manifest + metrics JSON are kept)
+/persons/*.parquet
+/persons/results/tables/
+# status-line task markers (scripts/track.sh; expire on their own)
+/.claude/tasks/

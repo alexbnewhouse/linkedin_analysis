@@ -206,7 +206,7 @@ def _quote(path: Path) -> str:
 # drivers downstream of the tables they enrich (career_steps -> paths -> SOC
 # jury -> role_soc_jury -> career_steps), so the first build of a fresh clone
 # cannot have them. The join reads an empty relation and warns.
-OPTIONAL_MAPPINGS: frozenset[str] = frozenset({"role_soc_jury"})
+OPTIONAL_MAPPINGS: frozenset[str] = frozenset({"role_soc_jury", "title_family", "career_occupation_override"})
 
 
 def _optional_mapping_relation(path: Path, schema: str) -> str:
@@ -247,6 +247,12 @@ def build_mappings(
         # Built by career_clean.run_soc_jury merge, not by this script; joined
         # into career_steps for the pooled SOC-major axis (audit R1).
         "role_soc_jury": mappings / "role_soc_jury.parquet",
+        # Built by career_clean.run_families (classify + gate), not by this script;
+        # propose-only occupation-family tier (P4, 2026-09-22).
+        "title_family": mappings / "title_family.parquet",
+        # Built by career_clean.run_overrides; row-level employer-keyed overrides
+        # (P5, 2026-09-22).
+        "career_occupation_override": mappings / "career_occupation_override.parquet",
     }
 
     if skip:
@@ -606,6 +612,8 @@ def write_education_person(out: Path, threads: int, timings: list[StepTiming]) -
       cip2_pooled/nha_level_pooled/humanities_field_group_pooled  -- the terminal
           field under POOLED coverage (deterministic backbone + calibrated CIP
           jury; see edu_clean/apply_cip_pooled.py)
+      bachelor_imputed_any  -- any bachelor-rung row leveled by the imputed tier (P2)
+      double_major_any / hum_l1_comajor_any / minor_hum_l1_any  -- co-major columns (P3)
       hum_l1_any/hum_l2_any/hum_l3_any/hum_l1_bachelor_any  -- ANY-degree
           humanities membership under pooled coverage. Use these, NOT the
           terminal nha_level, to define the humanities population: the terminal
@@ -652,7 +660,22 @@ def write_education_person(out: Path, threads: int, timings: list[StepTiming]) -
                   -- pooled bachelor variant: bachelor rung under pooled degree level
                   coalesce(bool_or(nha_level_pooled = 1
                            AND coalesce(degree_level_pooled, degree_level) = 4),
-                           FALSE) AS hum_l1_bachelor_pooled_any
+                           FALSE) AS hum_l1_bachelor_pooled_any,
+                  -- P2 (2026-09-22): any bachelor-rung row leveled by the strict
+                  -- imputed-bachelor tier (edu_clean/apply_bachelor_imputed.py);
+                  -- consumers that want det/jury levels only exclude on this flag.
+                  coalesce(bool_or(degree_level_source = 'imputed_bachelor'), FALSE)
+                    AS bachelor_imputed_any,
+                  -- P3 (2026-09-22): co-majors / minors from the field string
+                  -- (edu_clean/apply_comajors.py); bachelor rung under pooled level.
+                  coalesce(bool_or(comajor_source = 'split' AND cip2_secondary IS NOT NULL
+                           AND coalesce(degree_level_pooled, degree_level) = 4), FALSE)
+                    AS double_major_any,
+                  coalesce(bool_or(comajor_source = 'split' AND nha_level_secondary = 1
+                           AND coalesce(degree_level_pooled, degree_level) = 4), FALSE)
+                    AS hum_l1_comajor_any,
+                  coalesce(bool_or(comajor_source = 'split' AND nha_level_minor = 1), FALSE)
+                    AS minor_hum_l1_any
                 FROM e GROUP BY 1
               ),
               highest_year AS (
@@ -713,6 +736,10 @@ def write_education_person(out: Path, threads: int, timings: list[StepTiming]) -
                 a.hum_l3_any,
                 a.hum_l1_bachelor_any,
                 a.hum_l1_bachelor_pooled_any,
+                a.bachelor_imputed_any,
+                a.double_major_any,
+                a.hum_l1_comajor_any,
+                a.minor_hum_l1_any,
                 s.school_slug
               FROM agg a
               LEFT JOIN highest_year h USING (linkedin_id)
@@ -934,15 +961,45 @@ def write_career_steps(out: Path, mappings: dict[str, Path], threads: int, timin
                 -- code's major group wins; else the unanimous role->SOC-major
                 -- jury vote (career_clean.run_soc_jury, 299,787 roles).
                 -- Propose-only: no deterministic column above is altered.
+                -- P4/P5 (2026-09-22): precedence override > det > jury > family for the
+                -- major VALUE (an override never differs from a det major by contract).
+                -- family lands only where the title is landable (per-family,
+                -- per-stratum gate in career_clean/results/family_gate.json) AND
+                -- the row has no functional_cluster (the self-employment layer
+                -- already resolved what the owner does). Overrides never change
+                -- a non-NULL det major (data-checked): they add codes where the
+                -- coder abstained and re-route VP titles within 11.
                 CASE
+                  WHEN ov.soc_major_override IS NOT NULL THEN ov.soc_major_override
                   WHEN starts_with(occupation.canonical_id, 'soc:')
                     THEN substr(occupation.canonical_id, 5, 2)
-                  ELSE rsj.soc_major
+                  WHEN rsj.soc_major IS NOT NULL THEN rsj.soc_major
+                  WHEN coalesce(tf.landable, FALSE) AND fc.functional_cluster IS NULL
+                    THEN tf.soc_major_anchor
                 END AS occupation_major_pooled,
+                -- occupation_source names who supplied the MAJOR: a det row whose
+                -- major an override leaves unchanged (the VP re-route within 11)
+                -- stays 'det' so det-only consumers (portal) keep it; the code-level
+                -- change is visible in occupation_code_source / override_reason.
                 CASE
                   WHEN starts_with(occupation.canonical_id, 'soc:') THEN 'det'
+                  WHEN ov.soc_major_override IS NOT NULL THEN 'override'
                   WHEN rsj.soc_major IS NOT NULL THEN 'jury'
+                  WHEN coalesce(tf.landable, FALSE) AND fc.functional_cluster IS NULL THEN 'family'
                 END AS occupation_source,
+                -- 6-digit code under the same precedence (override > det; jury and
+                -- family know only the major group).
+                coalesce(ov.occupation_code_override,
+                         CASE WHEN starts_with(occupation.canonical_id, 'soc:')
+                              THEN substr(occupation.canonical_id, 5) END) AS occupation_code_pooled,
+                CASE
+                  WHEN ov.occupation_code_override IS NOT NULL THEN 'override'
+                  WHEN starts_with(occupation.canonical_id, 'soc:') THEN 'det'
+                END AS occupation_code_source,
+                ov.reason AS override_reason,
+                tf.family AS title_family,
+                tf.confidence AS title_family_confidence,
+                tf.seniority9 AS title_seniority9,
                 -- finding 3: SE functional cluster (SOC major group or honest
                 -- *_unspecified residue), resolved row-level for the
                 -- self-employment population only; NULL elsewhere.
@@ -991,6 +1048,13 @@ def write_career_steps(out: Path, mappings: dict[str, Path], threads: int, timin
                      WHEN starts_with(title.canonical_id, 'title:')
                      THEN regexp_extract(title.canonical_id, '^title:[^|]*\\|(.*)$', 1)
                    END
+              LEFT JOIN {_optional_mapping_relation(mappings["title_family"], "value VARCHAR, family VARCHAR, seniority9 VARCHAR, confidence VARCHAR, soc_major_anchor VARCHAR, landable BOOLEAN")} tf
+                ON s.title IS NOT DISTINCT FROM tf.value
+              LEFT JOIN {_optional_mapping_relation(mappings["career_occupation_override"], "source_table VARCHAR, linkedin_id VARCHAR, experience_idx BIGINT, position_idx BIGINT, occupation_code_override VARCHAR, soc_major_override VARCHAR, reason VARCHAR")} ov
+                ON s.source_table = ov.source_table
+               AND s.linkedin_id = ov.linkedin_id
+               AND s.experience_idx = ov.experience_idx
+               AND s.position_idx IS NOT DISTINCT FROM ov.position_idx
               LEFT JOIN read_parquet('{_quote(mappings["career_functional_cluster"])}') fc
                 ON s.source_table = fc.source_table
                AND s.linkedin_id = fc.linkedin_id
@@ -1085,6 +1149,18 @@ def main() -> None:
             apply_degree_level_pooled.run(execute=True)
         with StepTimer("pooled CIP apply (det + jury + knn_head + degree_type + degree_level)", timings):
             apply_cip_pooled.run(execute=True)
+        # P2 (2026-09-22): strict imputed-bachelor tier reads cip2_pooled, so it
+        # runs after the CIP apply and before the person rollup.
+        from edu_clean import apply_bachelor_imputed
+
+        with StepTimer("imputed-bachelor apply (strict, propose-only)", timings):
+            apply_bachelor_imputed.run(execute=True)
+        # P3 (2026-09-22): co-major / minor columns from the value-level splitter
+        # mapping (edu_clean.run_comajors); optional, NULL columns when missing.
+        from edu_clean import apply_comajors
+
+        with StepTimer("co-major apply (propose-only)", timings):
+            apply_comajors.run(execute=True)
         write_education_person(out, args.threads, timings)
         try:
             from edu_clean import apply_institution_meta

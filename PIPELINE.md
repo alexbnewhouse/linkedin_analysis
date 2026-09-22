@@ -24,6 +24,9 @@ normalized/mappings/*.parquet         value-keyed canonicalization mappings
    │     └─ transition_network/{build_network,analyze} occupation | soc_major
    ├─ cohorts/build_panel.py          reads paths/steps + education_person
    ├─ archetypes/run_all.py           reads career_steps, step_industry, paths/*, cohorts/panel
+   ├─ persons/build_person.py         one row per person, both time axes, all tiers (2026-09-22)
+   │     └─ persons/build_metrics.py  metrics cube v0: per-group panels, floor 10, release stamp
+   ├─ validation/external_benchmarks  LinkedIn shares vs NCES / Humanities Indicators (reporting only)
    ▼
 portal/run_portal_data.py → portal/run_share_build.py   the shareable portal
    (reads education, paths/*, transition_network/occupation_nodes_analyzed, step_industry)
@@ -45,7 +48,9 @@ uv run --with numpy python build_normalized.py [--sections all|education|career]
 Order of steps (education): value mappings → `education.parquet` →
 **pooled applies** (degree-level jury first, then CIP: deterministic >
 jury/frontier > knn_head > degree-type > degree-level; string-level 53 labels
-are gated on the row's degree level, and uncoded high-school rows get 53) →
+are gated on the row's degree level, and uncoded high-school rows get 53; then the strict
+imputed-bachelor tier, `edu_clean/apply_bachelor_imputed.py`, then the co-major columns,
+`edu_clean/apply_comajors.py`) →
 `education_person.parquet` → institution meta (IPEDS; skipped with a warning if
 the crosswalk isn't built). Career: value mappings → functional-cluster rows →
 `career_steps.parquet` (carries `occupation_major_pooled` from the SOC jury and
@@ -80,8 +85,22 @@ pooled applies ~2 min, person rollup 3s, career_steps 75s.
 | CIP juror calibration on the gold (any local model) | `uv run python -m edu_clean.gold_v1 calibrate ollama/<model> "<name>=<url>\|<slots>\|ollama"` | `edu_clean/results/frontier_gold_v1_calibration.json` |
 | CIP precision report + kNN threshold sweep | `uv run python -m edu_clean.gold_v1 report` / `uv run --group embed python -m edu_clean.gold_v1 knn` | `frontier_gold_v1_{report,knn_sweep}.json`; prose in `docs/methods/cip-precision-gold-v1.md` |
 | Degree level tail | `uv run python -m edu_clean.run_dlevel_jury` | `mappings/degree_level_jury.parquet` |
+| Co-majors / minors (propose-only; P3 2026-09-22) | `uv run python -m edu_clean.run_comajors` (value mapping) then `apply_comajors --execute` (runs inside `build_normalized` after the imputed apply) | `mappings/edu_field_components.parquet`; education `cip_secondary`, `minor_cip`, `comajor_source`; person `double_major_any`, `hum_l1_comajor_any`, `minor_hum_l1_any`; blind sample `edu_clean/results/comajors_sample.jsonl` |
+| Imputed bachelor's (strict, propose-only; P2 2026-09-22) | `uv run python -m edu_clean.apply_bachelor_imputed --execute` (runs inside `build_normalized` after the CIP apply) | `education.degree_level_source = 'imputed_bachelor'`; person flag `bachelor_imputed_any`; blind sample `edu_clean/results/imputed_bachelor_sample.jsonl` |
 | SOC role tail | `uv run python -m career_clean.run_soc_jury` | `mappings/role_soc_jury.parquet` |
+| Occupation-family tier (rules; P4 2026-09-22) | `make families` (classify + per-(family, stratum) gate) then `make normalize-career` | `mappings/title_family.parquet`; steps `title_family`, `title_family_confidence`, `title_seniority9`; pooled major `occupation_source = 'family'` only for gate-cleared strata (3 of 104) |
+| Employer-keyed overrides (P5 2026-09-22) | `make overrides` then `make normalize-career` | `mappings/career_occupation_override.parquet` (row-level); steps `occupation_code_pooled`, `occupation_code_source`, `override_reason`; pooled major `occupation_source = 'override'` |
 | Industry | `uv run python -m industry.fire_llm` | see `industry/SETUP.md` |
+
+The override mapping is a snapshot keyed to the industry build it was made from: after any
+`make industry`, run `make overrides && make normalize-career` (the refresh driver does this and
+re-propagates industry once); `career_clean.override_data_checks` tolerates up to 0.5% industry
+drift and names the re-sync command above that.
+
+Pooled-occupation precedence on `career_steps` (2026-09-22): override > det > jury > family for
+`occupation_major_pooled` / `occupation_source`; `occupation_code_pooled` is override > det (jury and
+family know only the major group). The three propose-only mappings (`role_soc_jury`, `title_family`,
+`career_occupation_override`) are OPTIONAL: a fresh clone builds with their columns NULL.
 
 Contract: votes land in append-only JSONL caches keyed by (evidence, model,
 prompt version); merges write NEW mapping parquets; deterministic columns are
@@ -123,9 +142,25 @@ Part 3.
   are intact; offline calibration replay and extending the industry jury
   require re-firing (`industry/fire_llm.py`, resumable).
 
+## Human coding of blind samples
+
+Every propose-only tier drawn a blind sample that a reviewer scored against a rubric. `coding/`
+exports each sample as a Label Studio project, ingests any annotator's labels, and scores precision
+and Cohen's kappa (`make coding-export`; `coding/README.md`). Reviewer labels live in
+`coding/labels/<sample>.<annotator>.jsonl`; superseded draws in `coding/labels/superseded/`.
+
+## Status line and long jobs
+
+`.claude/statusline.sh` (wired in `.claude/settings.json`) shows every running pipeline process
+it can see by name (`⚙ normalize 4m, persons 1m`), any job started through
+`scripts/track.sh <label> -- <command>` with a progress hint from its log (`▶ soc-tail 12m [pool]
+4,200 done`), and the driver one-liner in `.build_status`. Finished markers stay for ten minutes
+and are then removed by the status line itself; a `.build_status` that claims to be running with
+no driver alive is flagged and removed after fifteen minutes. Nothing needs cleaning by hand.
+
 ## Tests
 
-`make test` runs the logic suites that need no built parquet (about 10 s):
+`make test` runs the logic suites that need no built parquet (about 10 s), plus the status-line checks (`scripts/statusline_tests.sh`):
 humanities/degree-level rules, self-employment and company canonicalization
 (`career_clean/company_tests`), the SOC jury filters, the industry classifier
 (name-rule precision fixtures, propagation on a temp dir, curated provenance),

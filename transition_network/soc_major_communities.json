@@ -4,15 +4,15 @@
     "alpha": 0.05,
     "nodes": 23,
     "edges_nonself": 506,
-    "backbone_edges": 27,
+    "backbone_edges": 28,
     "infomap": {
       "n_communities": 1,
       "largest": 23,
       "singletons": 0
     },
     "leiden": {
-      "n_communities": 2,
-      "largest": 14,
+      "n_communities": 4,
+      "largest": 13,
       "singletons": 0
     },
     "runtime_s": 0.1
