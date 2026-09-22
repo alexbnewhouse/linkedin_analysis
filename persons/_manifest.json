@@ -1,11 +1,11 @@
 {
  "schema_version": 1,
- "built": "2026-09-22T16:14:50.864912+00:00",
+ "built": "2026-09-22T16:26:22.071324+00:00",
  "snapshot_date": "2026-02-19",
  "snapshot_id": "snap_mlsi9jwqziij1k8zq",
  "snapshot_cal_year": 2026,
  "last_complete_year": 2025,
- "git": "535f681",
+ "git": "d2c20a3",
  "git_dirty": true,
  "params": {
   "min_support": 10,
@@ -40,10 +40,10 @@
    "mtime": "2026-09-22T16:14:38.149521+00:00"
   },
   "paths/steps.parquet": {
-   "mtime": "2026-09-02T22:27:57.899767+00:00"
+   "mtime": "2026-09-22T16:21:56.114885+00:00"
   },
   "industry/results/step_industry.parquet": {
-   "mtime": "2026-09-02T22:25:02.246352+00:00"
+   "mtime": "2026-09-22T16:20:01.820607+00:00"
   },
   "reference/cip_humanities.parquet": {
    "mtime": "2026-06-10T15:27:55.751650+00:00"
@@ -57,7 +57,7 @@
  },
  "rows": 1999974,
  "steps_joined": 10717451,
- "runtime_s": 12.0,
+ "runtime_s": 11.6,
  "summary": {
   "persons": 1999974,
   "with_bachelor": 1497978,
@@ -66,7 +66,7 @@
   "l3": 602584,
   "with_entry": 1999916,
   "with_grad_year": 279671,
-  "with_cur_major": 1064527,
+  "with_cur_major": 1064514,
   "grad_degree": 611807
  }
 }

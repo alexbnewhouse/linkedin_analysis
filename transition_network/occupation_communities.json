@@ -3,45 +3,29 @@
     "axis": "occupation",
     "alpha": 0.05,
     "nodes": 824,
-    "edges_nonself": 39097,
-    "backbone_edges": 1525,
+    "edges_nonself": 39089,
+    "backbone_edges": 1528,
     "infomap": {
-      "n_communities": 23,
-      "largest": 216,
+      "n_communities": 18,
+      "largest": 424,
       "singletons": 0
     },
     "leiden": {
-      "n_communities": 35,
-      "largest": 383,
+      "n_communities": 37,
+      "largest": 347,
       "singletons": 6
     },
     "runtime_s": 0.6,
-    "mean_infomap_soc_purity": 0.534
+    "mean_infomap_soc_purity": 0.556
   },
   "example_infomap_modules": {
-    "4": {
-      "size": 216,
-      "soc_majors": {
-        "Production": 34,
-        "Transportation": 27,
-        "Healthcare Practitioners": 26,
-        "Office & Admin Support": 24
-      },
-      "top_nodes": [
-        "Waiters and Waitresses",
-        "Health Technologists and Technicians, All Other",
-        "Medical Assistants",
-        "Retail Salespersons",
-        "Bartenders"
-      ]
-    },
     "1": {
-      "size": 186,
+      "size": 424,
       "soc_majors": {
-        "Business & Financial": 26,
-        "Management": 25,
-        "Education": 25,
-        "Arts/Design/Media": 20
+        "Office & Admin Support": 48,
+        "Education": 40,
+        "Production": 39,
+        "Transportation": 31
       },
       "top_nodes": [
         "Chief Executives",
@@ -51,13 +35,13 @@
         "Advertising and Promotions Managers"
       ]
     },
-    "10": {
-      "size": 106,
+    "7": {
+      "size": 114,
       "soc_majors": {
+        "Construction & Extraction": 30,
         "Installation/Maint/Repair": 30,
-        "Construction & Extraction": 28,
-        "Production": 23,
-        "Transportation": 8
+        "Production": 27,
+        "Architecture & Engineering": 8
       },
       "top_nodes": [
         "First-Line Supervisors of Construction Trades and Extraction Workers",
@@ -68,11 +52,11 @@
       ]
     },
     "2": {
-      "size": 63,
+      "size": 64,
       "soc_majors": {
-        "Computer & Mathematical": 17,
         "Architecture & Engineering": 17,
-        "Production": 8,
+        "Computer & Mathematical": 17,
+        "Production": 9,
         "Installation/Maint/Repair": 5
       },
       "top_nodes": [
@@ -83,13 +67,29 @@
         "Computer and Information Systems Managers"
       ]
     },
-    "8": {
-      "size": 51,
+    "4": {
+      "size": 47,
       "soc_majors": {
-        "Life/Physical/Social Science": 26,
-        "Education": 12,
+        "Healthcare Practitioners": 35,
+        "Healthcare Support": 5,
+        "Education": 2,
+        "Life/Physical/Social Science": 2
+      },
+      "top_nodes": [
+        "Registered Nurses",
+        "Medical and Health Services Managers",
+        "Nurse Practitioners",
+        "Health Education Specialists",
+        "Physicians, All Other"
+      ]
+    },
+    "5": {
+      "size": 44,
+      "soc_majors": {
+        "Life/Physical/Social Science": 24,
+        "Education": 11,
         "Healthcare Practitioners": 4,
-        "Production": 4
+        "Management": 1
       },
       "top_nodes": [
         "Natural Sciences Managers",
@@ -99,20 +99,20 @@
         "Life, Physical, and Social Science Technicians, All Other"
       ]
     },
-    "5": {
-      "size": 43,
+    "8": {
+      "size": 27,
       "soc_majors": {
-        "Healthcare Practitioners": 30,
-        "Healthcare Support": 4,
-        "Management": 2,
-        "Community & Social Service": 2
+        "Protective Service": 15,
+        "Production": 3,
+        "Military": 2,
+        "Transportation": 2
       },
       "top_nodes": [
-        "Registered Nurses",
-        "Medical and Health Services Managers",
-        "Nurse Practitioners",
-        "Health Education Specialists",
-        "Physicians, All Other"
+        "Police and Sheriff's Patrol Officers",
+        "Detectives and Criminal Investigators",
+        "First-Line Supervisors of Police and Detectives",
+        "Security Guards",
+        "Probation Officers and Correctional Treatment Specialists"
       ]
     }
   }

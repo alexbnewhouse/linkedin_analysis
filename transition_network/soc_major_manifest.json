@@ -5,9 +5,9 @@
   "edges": 529,
   "self_loop_edges": 23,
   "total_spine_transitions": 6180324,
-  "transitions_covered": 2620737,
-  "axis_coverage": 0.424,
-  "grand_total_weight": 2620737,
+  "transitions_covered": 2664382,
+  "axis_coverage": 0.4311,
+  "grand_total_weight": 2664382,
   "min_support": 1,
   "runtime_s": 0.3,
   "outputs": {

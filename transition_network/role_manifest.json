@@ -1,15 +1,15 @@
 {
   "axis": "role",
   "exclude_overlap": false,
-  "nodes": 1947652,
-  "edges": 4387447,
-  "self_loop_edges": 67900,
+  "nodes": 1947697,
+  "edges": 4387396,
+  "self_loop_edges": 67896,
   "total_spine_transitions": 6180324,
-  "transitions_covered": 6023121,
+  "transitions_covered": 6023117,
   "axis_coverage": 0.9746,
-  "grand_total_weight": 6023121,
+  "grand_total_weight": 6023117,
   "min_support": 1,
-  "runtime_s": 10.9,
+  "runtime_s": 9.7,
   "outputs": {
     "edges": "/home/alex/linkedin-analysis/transition_network/role_edges.parquet",
     "nodes": "/home/alex/linkedin-analysis/transition_network/role_nodes.parquet"

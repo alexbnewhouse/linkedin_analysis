@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-02",
-  "runtime_s": 13.8,
+  "generated": "2026-09-22",
+  "runtime_s": 13.5,
   "inputs": {
     "education": "/home/alex/linkedin-analysis/normalized/education.parquet",
     "steps": "/home/alex/linkedin-analysis/paths/steps.parquet",
@@ -35,8 +35,8 @@
       "anchor_drop_rate_a1": 0.8366,
       "anchor_drop_rate": 0.8223,
       "anchor_method_mix": {
-        "A2": 0.0801,
-        "A1": 0.9199
+        "A1": 0.9199,
+        "A2": 0.0801
       },
       "cip_source_mix": {
         "det": 0.7551,
@@ -52,12 +52,12 @@
       "anchor_drop_rate_a1": 0.806,
       "anchor_drop_rate": 0.7915,
       "anchor_method_mix": {
-        "A2": 0.0695,
-        "A1": 0.9305
+        "A1": 0.9305,
+        "A2": 0.0695
       },
       "cip_source_mix": {
-        "det": 0.9009,
-        "jury": 0.0991
+        "jury": 0.0991,
+        "det": 0.9009
       }
     },
     "philrel": {
@@ -73,8 +73,8 @@
         "A2": 0.1128
       },
       "cip_source_mix": {
-        "jury": 0.2291,
-        "det": 0.7709
+        "det": 0.7709,
+        "jury": 0.2291
       }
     },
     "arts": {
