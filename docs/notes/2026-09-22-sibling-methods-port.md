@@ -193,6 +193,29 @@ a minor (7,928 split rows are concentration-only and never carry a co-major: con
 17,682 of 184,529; L1 bachelor OR L1 co-major 202,152 (+17,623). Sample redrawn (salt v2) for a
 second blind review.
 
+**Post-review 2 (fresh subagent, 2026-09-22): VERDICT: LAND.** Verbatim: "The plain-stratum gate passes
+at 0.94 strict (0.92 overall), the deterministic and pooled columns are verified untouched, and the
+remaining misses are a 0.6% trailing-concentration class plus stoplist gaps that are bounded". Blind
+score n=100: strict 0.920 overall; plain 0.940 (47 pass, 1 fail, 2 unsure); marker 0.900. Failed rows:
+"Liberal Arts/ Social and Behavioral Sciences" (one track; second component cut to "Behavioral
+Sciences"), "Sociology/Psychology emphasis", "Business Administration and Management, IT Focus",
+"Liberal Studies, Psychology concentration" (trailing concentration word did not demote the preceding
+component), "Communication, Media and Theatre (CMT)", two graduate degrees in one string. All headline
+numbers reproduced exactly (0 stoplisted names still split). Stoplist review: "criminology and
+criminal justice" (647 rows) and embedded longer forms (~500 rows) missing; ~25 entries moot under
+family dedupe. Tooling: positional sample ids collided across draws. Labels:
+`coding/labels/comajors.reviewer2.jsonl` (round 1 in `coding/labels/superseded/`).
+
+**Follow-ups (same day, all conservative, no third review):** a trailing concentration word demotes
+the preceding component (mirror of the trailing-minor rule); a head that is one program (resolves
+whole or stoplisted) followed only by a parenthetical or a minor/concentration marker never splits,
+but keeps a resolved minor or concentration; stoplist gains "criminology and criminal justice" and the
+embedded forms; sample ids carry the draw's salt. Re-run: split 133,904 / no_primary 5,806 / conflict
+3,695; `double_major_any` 87,702; `hum_l1_comajor_any` 24,367; L1 bachelor's holders with a double
+major 17,589 of 184,529; L1 bachelor OR L1 co-major 202,071 (+17,542); 14,260 split rows are
+minor-only (a stoplisted head with a resolved minor). Decision: LANDED; the person flags
+`double_major_any` / `hum_l1_comajor_any` may be consumed.
+
 ## P4. Occupation-family tier
 
 **Pre-review (fresh subagent, 2026-09-22): VERDICT: BUILD WITH CHANGES.** Verbatim core: the residue

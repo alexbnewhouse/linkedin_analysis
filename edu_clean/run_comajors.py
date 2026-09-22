@@ -45,7 +45,8 @@ def _work(items: list[tuple[str, str]]) -> list[dict]:
         out.append({
             "value": value, "method": method, "status": s.status, "marker_class": s.marker_class,
             "components": json.dumps(comps, ensure_ascii=False),
-            "n_majors": sum(1 for c in s.components if c.role == "major" and c.cip),
+            # a stoplisted one-program head is a major with no CIP; it still counts as a component
+            "n_majors": sum(1 for c in s.components if c.role == "major" and (c.cip or s.status == "split")),
             "n_minors": sum(1 for c in s.components if c.role == "minor" and c.cip),
             "n_concentrations": sum(1 for c in s.components if c.role == "concentration" and c.cip),
             "major_cips": CM.majors(s) if s.status == "split" else [],

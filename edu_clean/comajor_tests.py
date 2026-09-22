@@ -75,6 +75,13 @@ def main() -> None:
           split_field("Business Administration and Management, Minor").status == "single")
     s = split_field("Physics with Second Major in Mathematics")
     check("'with second major' consumed", s.status == "split" and fams(s) == ["40", "27"])
+    s = split_field("Economics, Finance Concentration")
+    check("trailing concentration demotes the preceding component", fams(s) == ["45"] and concentration(s)[:2] == "52")
+    s = split_field("Electrical Engineering and Computer Science (EECS)")
+    check("stoplisted head with a parenthetical stays single", s.status == "single")
+    s = split_field("Computer Science and Engineering, Minor in Mathematics")
+    check("stoplisted head keeps the minor", s.status == "split" and len(majors(s)) <= 1 and minor(s)[:2] == "27")
+    check("criminology and criminal justice is one program", split_field("Criminology and Criminal Justice").status == "single")
     check("empty", split_field("").status == "empty" and split_field(None).status == "empty")
     check("unresolved junk", split_field("study of people and stuff").status in ("unresolved", "single"))
     check("marker_class", marker_class("Double Major in History and French") == "marker"

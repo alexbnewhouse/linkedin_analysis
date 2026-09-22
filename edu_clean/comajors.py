@@ -48,6 +48,11 @@ COMPOUND_PROGRAMS = frozenset({
     "computer engineering and computer science", "statistics and data science",
     "philosophy politics and economics", "philosophy politics economics",
     "criminology law and society", "criminology law society", "law and society",
+    "criminology and criminal justice", "criminal justice and criminology",
+    "economics and business administration", "applied economics and management",
+    "international business and economics", "economics and business management",
+    "planning public policy and management", "biostatistics and data science",
+    "politics philosophy and economics",
     "public policy and management", "economics and management", "economics and business",
     "business and economics", "politics and government", "government and politics",
     "education and human development", "information science and technology",
@@ -97,6 +102,11 @@ def _resolve(text: str) -> str | None:
     return FH._field_cip_lookup(t) if t else None
 
 
+def _one_program(text: str) -> bool:
+    t = text.strip(" .,;:-/")
+    return bool(t) and (bool(_resolve(t)) or _norm(t) in COMPOUND_PROGRAMS)
+
+
 def _pieces(text: str) -> list[str]:
     return [p for p in (x.strip(" .,;:-") for x in _SEP.split(text)) if p]
 
@@ -117,6 +127,38 @@ def split_field(field_raw: str | None, method: str | None = None) -> Split:
     text = field_raw
     minors: list[str] = []
     concs: list[str] = []
+    # a head that is one program followed by a parenthetical or a marker never splits
+    # ("Electrical Engineering and Computer Science (EECS)", "Computer Science and
+    # Engineering, Minor in Mathematics" keeps the head whole and, for a minor, the minor)
+    head_m = re.search(r"[\(\[]|,\s*(?:minors?|concentrations?|emphasis|focus|tracks?|specializations?)\b", text, re.I)
+    # ... but only when nothing substantive follows the parenthetical / marker phrase
+    # ("Economics (Business) & Psychology" still names a second major after the track)
+    tail_ok = True
+    if head_m and head_m.group(0).startswith(("(", "[")):
+        close = _PAREN.search(text, head_m.start())
+        after = text[close.end():] if close else ""
+        tail_ok = not after.strip(" .,;:-/") or bool(_MINOR_MARK.match(after.strip(" .,;:-/"))) \
+            or bool(_CONC_MARK.match(after.strip(" .,;:-/")))
+    if head_m and tail_ok and _one_program(text[:head_m.start()]):
+        head = text[:head_m.start()].strip(" .,;:-")
+        rest = text[head_m.start():]
+        comps = [Component(head, "major", _resolve(head))]
+        mm = _MINOR_MARK.search(rest)
+        cm = _CONC_MARK.search(rest)
+        if mm:
+            comps += [Component(t, "minor", _resolve(t)) for t in _pieces(_MINOR_MARK.sub(" ; ", rest[mm.end():]))]
+        elif cm:
+            comps += [Component(t, "concentration", _resolve(t)) for t in _pieces(_CONC_MARK.sub(" ; ", rest[cm.end():]))]
+        else:  # bare parenthetical after a whole program: a track
+            inner = _PAREN.search(rest)
+            if inner and inner.group(1).strip():
+                comps.append(Component(inner.group(1).strip(), "concentration", _resolve(inner.group(1))))
+        # the head is one program (it may be stoplisted and carry no CIP); a resolved
+        # minor or concentration after it is still real information
+        extras = [c for c in comps[1:] if c.cip]
+        if extras:
+            return Split("split", [comps[0]] + extras, mc)
+        return Split("single", [comps[0]], mc)
 
     def paren(m: re.Match) -> str:
         inner = m.group(1).strip()
@@ -162,8 +204,17 @@ def split_field(field_raw: str | None, method: str | None = None) -> Split:
         text = head
     m = _CONC_MARK.search(text)
     if m:
-        concs.extend(_pieces(text[m.end():]))
-        text = text[:m.start()]
+        after = text[m.end():]
+        if after.strip(" ,;:-/"):
+            concs.extend(_pieces(after))
+            text = text[:m.start()]
+        else:  # trailing "<x> concentration": the last segment of the head is the concentration
+            parts = _pieces(text[:m.start()])
+            if parts:
+                concs.append(parts[-1])
+                text = " ; ".join(parts[:-1])
+            else:
+                text = ""
     text = _MAJOR_MARK.sub(" ; ", text)
     majors = _pieces(text)
 

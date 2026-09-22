@@ -5,22 +5,22 @@
   "by_source": [
     {
       "source": null,
-      "rows": 3433818
+      "rows": 3434254
     },
     {
       "source": "split",
-      "rows": 134452
+      "rows": 133904
     },
     {
       "source": "no_primary",
-      "rows": 5681
+      "rows": 5806
     },
     {
       "source": "conflict",
-      "rows": 3708
+      "rows": 3695
     }
   ],
-  "l1_bachelor_persons_gained_via_secondary": 17623,
+  "l1_bachelor_persons_gained_via_secondary": 17542,
   "top_l1_pairs": [
     {
       "pair": "45+54",
@@ -28,7 +28,7 @@
     },
     {
       "pair": "23+09",
-      "rows": 1887
+      "rows": 1876
     },
     {
       "pair": "45+16",
@@ -36,19 +36,19 @@
     },
     {
       "pair": "09+50",
-      "rows": 1413
+      "rows": 1405
     },
     {
       "pair": "50+09",
-      "rows": 1267
+      "rows": 1259
     },
     {
       "pair": "09+23",
-      "rows": 1163
+      "rows": 1159
     },
     {
       "pair": "23+45",
-      "rows": 1050
+      "rows": 1049
     },
     {
       "pair": "23+50",
@@ -56,7 +56,7 @@
     },
     {
       "pair": "52+16",
-      "rows": 916
+      "rows": 915
     },
     {
       "pair": "45+23",
@@ -64,23 +64,23 @@
     },
     {
       "pair": "50+52",
-      "rows": 866
-    },
-    {
-      "pair": "45+38",
-      "rows": 836
+      "rows": 863
     },
     {
       "pair": "23+54",
-      "rows": 798
+      "rows": 797
     },
     {
       "pair": "23+16",
-      "rows": 795
+      "rows": 794
     },
     {
       "pair": "54+45",
-      "rows": 784
+      "rows": 783
+    },
+    {
+      "pair": "45+38",
+      "rows": 771
     }
   ],
   "rubric": "pass = the field string names two distinct fields (major + major, or major + minor) AND each CIP shown is right for its component; fail = one program name that was split, or a wrong CIP on either component; unsure = cannot tell from the string"

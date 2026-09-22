@@ -37,7 +37,7 @@ SAMPLE = ROOT / "edu_clean" / "results" / "comajors_sample.jsonl"
 ADDED = ("cip_secondary", "cip2_secondary", "nha_level_secondary", "minor_cip", "minor_cip2",
          "nha_level_minor", "field_components_n", "comajor_source")
 FP = "bit_xor(hash(linkedin_id, idx, cip_code, cip2_pooled, degree_level_pooled, degree_level_source))"
-SALT = "p3-comajors-2026-09-22-v2"
+SALT = "p3-comajors-2026-09-22-v3"
 RUBRIC = ("pass = the field string names two distinct fields (major + major, or major + minor) AND "
           "each CIP shown is right for its component; fail = one program name that was split, or "
           "a wrong CIP on either component; unsure = cannot tell from the string")
@@ -80,6 +80,8 @@ def run(execute: bool, sample: int = 0) -> dict:
       k AS (
         SELECT *,
           CASE WHEN status = 'split' AND cip2_pooled IS NULL THEN 'no_primary'
+               -- a stoplisted one-program head carries no CIP: minor/concentration only
+               WHEN status = 'split' AND len(major_cips) = 0 THEN 'split'
                WHEN status = 'split' AND len(matching) = 0 THEN 'conflict'
                WHEN status = 'split' THEN 'split' END AS comajor_source,
           CASE WHEN status = 'split' AND cip2_pooled IS NOT NULL AND len(matching) > 0 AND len(others) > 0
@@ -151,7 +153,7 @@ def run(execute: bool, sample: int = 0) -> dict:
             for i, r in enumerate(rows):
                 d = dict(zip(cols, r))
                 d["secondary_cip"] = d.pop("cip_secondary")
-                d["id"] = f"comajors:{i:03d}"
+                d["id"] = f"comajors:{SALT.rsplit('-', 1)[-1]}:{i:03d}"
                 fh.write(json.dumps(d, default=str, ensure_ascii=False) + "\n")
         report["sample_path"] = str(SAMPLE.relative_to(ROOT))
     con.close()
