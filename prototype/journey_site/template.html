@@ -1,92 +1,85 @@
+<meta charset="utf-8">
 <title>Humanities Workforce journey prototype</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Archivo:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&display=swap">
 <style>
 :root{
-  --ground:#faf9fb; --paper:#ffffff; --ink:#1b1a2e; --ink2:#4b4960; --muted:#77748c;
-  --rule:#e3e1ea; --rule2:#cfcbdc;
-  --violet:#4a3aa7; --violet2:#9085e9; --violet-wash:#eef0f8;
-  --amber:#9a6524; --amber-wash:#fbf0e3;
-  --rust:#b4552c; --rust-wash:#f7e6dc;
-  --green:#3f7a52; --green-wash:#e7f2ea;
-  --chart-ground:#f4f3f8; --node-text:#1b1a2e;
+  --paper:#ffffff; --frame:#ecebe6; --frame-ink:#2a2a27; --ink:#1c1c1c; --ink2:#4a4a46; --muted:#73736d;
+  --rule:#dedcd6; --rule2:#c4c2bb; --wash:#f4f3ef;
+  --line:#3a6fb0; --hot:#1d4f8a; --one:#d2481c; --band:#eef3f9; --band-hot:#dce8f5; --link:#1d4f8a; --focus:#1d4f8a;
+  --chart-ground:#f5f4f0; --node-text:#1b1a2e;
   --node-read:#eef0f8; --node-read-s:#4a3aa7;
   --node-choose:#fbf0e3; --node-choose-s:#9a6524;
   --node-thin:#f7e6dc; --node-thin-s:#b4552c;
   --node-out:#e7f2ea; --node-out-s:#3f7a52;
   --edge:#8a879c; --halo:rgba(74,58,167,.22);
-  --link:#a3a0b8; --link-hot:#4a3aa7; --dot:#6b6880; --focus:#4a3aa7;
-  --shell:#1b1a2e; --shell-ink:#e9e7f3; --shell-muted:#b3b0c6;
+  --serif:Newsreader,Georgia,"Times New Roman",serif; --sans:"Public Sans","Helvetica Neue",Arial,sans-serif;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --ground:#151421; --paper:#1c1b2a; --ink:#ebe9f4; --ink2:#c4c1d6; --muted:#8f8ca6;
-    --rule:#2c2a3d; --rule2:#3d3a52;
-    --violet:#a99ff0; --violet2:#9085e9; --violet-wash:#26244a;
-    --amber:#d9a45e; --amber-wash:#3a2c14;
-    --rust:#e08a63; --rust-wash:#3e2418;
-    --green:#7cc094; --green-wash:#193225;
-    --chart-ground:#121120; --node-text:#ebe9f4;
+    --paper:#161615; --frame:#242422; --frame-ink:#e4e3dd; --ink:#ebeae4; --ink2:#c3c2bb; --muted:#8e8d86;
+    --rule:#2f2f2c; --rule2:#484743; --wash:#1e1e1c;
+    --line:#5b8dc9; --hot:#8fb8e6; --one:#e86a2a; --band:#1c2330; --band-hot:#25344a; --link:#8fb8e6; --focus:#8fb8e6;
+    --chart-ground:#111110; --node-text:#ebe9f4;
     --node-read:#26244a; --node-read-s:#9085e9;
     --node-choose:#3a2c14; --node-choose-s:#d9a45e;
     --node-thin:#3e2418; --node-thin-s:#e08a63;
     --node-out:#193225; --node-out-s:#7cc094;
     --edge:#8a879c; --halo:rgba(144,133,233,.28);
-    --link:#4a4766; --link-hot:#a99ff0; --dot:#9997ad; --focus:#a99ff0;
-    --shell:#0e0d17; --shell-ink:#e9e7f3; --shell-muted:#9997ad;
   }
 }
 :root[data-theme="dark"]{
-  --ground:#151421; --paper:#1c1b2a; --ink:#ebe9f4; --ink2:#c4c1d6; --muted:#8f8ca6;
-  --rule:#2c2a3d; --rule2:#3d3a52;
-  --violet:#a99ff0; --violet2:#9085e9; --violet-wash:#26244a;
-  --amber:#d9a45e; --amber-wash:#3a2c14;
-  --rust:#e08a63; --rust-wash:#3e2418;
-  --green:#7cc094; --green-wash:#193225;
-  --chart-ground:#121120; --node-text:#ebe9f4;
+  --paper:#161615; --frame:#242422; --frame-ink:#e4e3dd; --ink:#ebeae4; --ink2:#c3c2bb; --muted:#8e8d86;
+  --rule:#2f2f2c; --rule2:#484743; --wash:#1e1e1c;
+  --line:#5b8dc9; --hot:#8fb8e6; --one:#e86a2a; --band:#1c2330; --band-hot:#25344a; --link:#8fb8e6; --focus:#8fb8e6;
+  --chart-ground:#111110; --node-text:#ebe9f4;
   --node-read:#26244a; --node-read-s:#9085e9;
   --node-choose:#3a2c14; --node-choose-s:#d9a45e;
   --node-thin:#3e2418; --node-thin-s:#e08a63;
   --node-out:#193225; --node-out-s:#7cc094;
   --edge:#8a879c; --halo:rgba(144,133,233,.28);
-  --link:#4a4766; --link-hot:#a99ff0; --dot:#9997ad; --focus:#a99ff0;
-  --shell:#0e0d17; --shell-ink:#e9e7f3; --shell-muted:#9997ad;
 }
 
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:Spectral,Georgia,"Times New Roman",serif;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
-button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-button:focus-visible,input:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
-.ui{font-family:Archivo,"Helvetica Neue",Arial,sans-serif}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.sans{font-family:var(--sans)}
 .num{font-variant-numeric:tabular-nums}
 
-/* Shell: the prototype frame around both panes. Not part of the site. */
-.shell{background:var(--shell);color:var(--shell-ink);font-family:Archivo,"Helvetica Neue",Arial,sans-serif;font-size:13px;line-height:1.4;padding:8px 16px;display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
-.shell strong{font-weight:600}
-.shell .note{color:var(--shell-muted);flex:1 1 320px;min-width:0}
-.shell button{color:var(--shell-ink);border:1px solid var(--shell-muted);border-radius:4px;padding:3px 9px;font-size:12.5px}
+/* The prototype frame. Not part of the site. */
+.bar{background:var(--frame);color:var(--frame-ink);font-family:var(--sans);font-size:12.5px;line-height:1.4;padding:7px 16px;display:flex;gap:14px;align-items:center;height:40px;position:relative;z-index:30}
+.bar strong{font-weight:600;white-space:nowrap}
+.bar .note{color:var(--muted);flex:1 1 200px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar button,.bar summary{color:var(--frame-ink);border:1px solid var(--rule2);border-radius:3px;padding:2px 9px;font-size:12px;cursor:pointer;list-style:none;white-space:nowrap;font-family:var(--sans)}
+.bar summary::-webkit-details-marker{display:none}
+.bar details{position:relative}
+.bar details[open] summary{background:var(--paper)}
+.bar .about{position:absolute;right:0;top:30px;width:min(520px,calc(100vw - 32px));background:var(--paper);color:var(--ink);border:1px solid var(--rule2);border-radius:3px;padding:12px 14px;font-size:13px;line-height:1.5;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.bar .about p{margin:0 0 8px}
+.bar .about p:last-child{margin:0}
 
-.frame{display:grid;grid-template-columns:minmax(0,1fr) 440px;height:calc(100vh - 42px);height:calc(100dvh - 42px)}
-.site{overflow-y:auto;overflow-x:hidden;background:var(--ground);scroll-behavior:smooth}
+.frame{display:grid;grid-template-columns:minmax(0,1fr) 440px;height:calc(100vh - 40px);height:calc(100dvh - 40px)}
+.site{overflow-y:auto;overflow-x:hidden;background:var(--paper);scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){.site{scroll-behavior:auto}}
-.site-inner{max-width:720px;margin:0 auto;padding:28px 24px 96px}
+.site-inner{max-width:760px;margin:0 auto;padding:36px 24px 120px;position:relative}
 .map{border-left:1px solid var(--rule);background:var(--chart-ground);display:flex;flex-direction:column;min-height:0}
-.map-head{padding:12px 16px 10px;border-bottom:1px solid var(--rule);font-family:Archivo,sans-serif;font-size:13px;color:var(--ink2);display:flex;gap:10px;align-items:baseline}
+.map-head{padding:12px 16px 10px;border-bottom:1px solid var(--rule);font-family:var(--sans);font-size:13px;color:var(--ink2);display:flex;gap:10px;align-items:baseline}
 .map-head b{font-weight:600;color:var(--ink)}
 .map-head .where{color:var(--muted);flex:1}
 .map-scroll{overflow-y:auto;flex:1;padding:12px 8px 40px;scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){.map-scroll{scroll-behavior:auto}}
 .map svg{width:100%;height:auto;display:block}
-.map-legend{padding:8px 16px 12px;border-top:1px solid var(--rule);font-family:Archivo,sans-serif;font-size:12px;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap}
+.map-legend{padding:8px 16px 12px;border-top:1px solid var(--rule);font-family:var(--sans);font-size:12px;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap}
 .map-legend span{display:inline-flex;align-items:center;gap:6px}
 .map-legend i{width:12px;height:12px;border-radius:2px;border:1px solid;display:inline-block}
 .map-toggle{display:none}
 
-/* Node styles in the chart */
+/* Node styles in the chart. The chart is the journey document's own, kept as drawn. */
 .n{cursor:pointer}
 .n .box{stroke-width:1.2}
-.n text{font-family:Archivo,sans-serif;font-size:10.5px;fill:var(--node-text);pointer-events:none}
+.n text{font-family:var(--sans);font-size:10.5px;fill:var(--node-text);pointer-events:none}
 .n .t1{font-weight:600}
 .n.read .box{fill:var(--node-read);stroke:var(--node-read-s)}
 .n.choose .box{fill:var(--node-choose);stroke:var(--node-choose-s)}
@@ -100,176 +93,191 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--focus);outline-
 .n.hover:not(.hot) .box{stroke-width:2}
 .e{fill:none;stroke:var(--edge);stroke-width:1.2}
 .e.dot{stroke-dasharray:3 4}
-.el{font-family:Archivo,sans-serif;font-size:9.5px;fill:var(--muted)}
+.el{font-family:var(--sans);font-size:9.5px;fill:var(--muted)}
 
 /* Site typography */
-h1{font-size:40px;line-height:1.1;font-weight:600;margin:0 0 14px;text-wrap:balance;letter-spacing:-.015em}
-h2{font-size:28px;line-height:1.15;font-weight:600;margin:0 0 10px;text-wrap:balance;letter-spacing:-.01em}
-h2 .acc{color:var(--violet)}
-h3{font-size:16px;font-weight:600;margin:18px 0 6px}
+h1{font-size:46px;line-height:1.05;font-weight:500;margin:0 0 18px;text-wrap:balance;letter-spacing:-.012em;max-width:15em}
+h2{font-size:30px;line-height:1.15;font-weight:500;margin:0 0 12px;text-wrap:balance;letter-spacing:-.008em}
+h3{font-size:18px;font-weight:600;margin:0 0 6px}
 p{margin:0 0 12px}
-.lede{font-size:21px;line-height:1.4;max-width:34em}
-.lead{font-size:18px;line-height:1.45;max-width:36em}
-.small{font-size:14.5px;color:var(--ink2)}
+.lede{font-size:21px;line-height:1.4;max-width:32em}
+.lead{font-size:19px;line-height:1.45;max-width:34em}
+.small{font-size:15px;color:var(--ink2)}
 .muted{color:var(--muted)}
-.note{font-family:Archivo,sans-serif;font-size:13px;color:var(--muted);margin:4px 0 0;line-height:1.4}
-.label{font-family:Archivo,sans-serif;font-size:13.5px;font-weight:500;color:var(--muted)}
-.block{position:relative;padding:26px 0 22px;border-top:1px solid var(--rule)}
+.note{font-family:var(--sans);font-size:13px;color:var(--muted);margin:6px 0 0;line-height:1.5;max-width:60em}
+.label{font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--muted)}
+.sitename{font-family:var(--sans);font-size:13px;color:var(--muted);margin:0 0 22px}
+.sitename button{color:var(--muted);border-bottom:1px solid var(--rule2)}
+.sitename button:hover{color:var(--link);border-color:var(--link)}
+
+.block{position:relative;padding:30px 0 26px;border-top:1px solid var(--rule)}
 .block:first-child{border-top:0;padding-top:0}
-.step{position:absolute;right:0;top:24px;font-family:Archivo,sans-serif;font-size:12.5px;color:var(--muted);border:1px solid var(--rule2);border-radius:3px;padding:1px 7px;background:var(--paper);cursor:pointer}
-.step:hover{color:var(--violet);border-color:var(--violet)}
-.block:first-child .step{top:0}
-.block>h1,.block>h2{padding-right:80px}
+.block.quiet{padding:16px 0 14px}
+.stepno{position:absolute;left:-52px;top:34px;width:28px;text-align:right;font-family:var(--sans);font-size:11.5px;color:var(--muted);cursor:pointer;line-height:1;padding:4px 0;border-bottom:1px solid transparent}
+.block:first-child .stepno{top:4px}
+.block.quiet .stepno{top:18px}
+.stepno:hover{color:var(--link);border-bottom-color:var(--link)}
 
-.poles{position:sticky;top:0;z-index:5;background:var(--ground);padding:10px 0 10px;border-bottom:1px solid var(--rule);margin-bottom:10px;font-family:Archivo,sans-serif;font-size:13.5px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.poles .k{color:var(--muted)}
-.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--rule2);border-radius:3px;padding:3px 8px;background:var(--paper);font-size:13.5px;color:var(--ink)}
-.chip b{font-weight:500}
-.chip button{color:var(--muted);font-size:14px;line-height:1;padding:0 2px}
-.chip button:hover{color:var(--rust)}
-.chip.empty{color:var(--muted);border-style:dashed}
-.chip.filter{background:var(--violet-wash);border-color:transparent}
+/* The question, as a sentence with blanks */
+.ask{font-size:25px;line-height:1.4;margin:0 0 6px;max-width:30em;letter-spacing:-.005em}
+.blank{font-weight:500;color:var(--link);text-decoration:underline dotted;text-decoration-thickness:1.5px;text-underline-offset:6px;border-radius:2px;padding:0 1px}
+.blank.empty{color:var(--ink2);font-weight:400}
+.blank:hover,.blank[aria-expanded="true"]{background:var(--band);color:var(--hot)}
+.picker{margin:14px 0 6px;padding:16px 0 12px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px 32px;font-family:var(--sans);font-size:14px}
+.picker h4{margin:0 0 6px;font-size:13px;font-weight:500;color:var(--muted)}
+.picker ul{list-style:none;margin:0;padding:0;columns:1}
+.picker li{margin:0;padding:3px 0}
+.picker li button{color:var(--ink);border-bottom:1px solid transparent;line-height:1.35}
+.picker li button:hover{color:var(--link);border-bottom-color:var(--link)}
+.picker li button.self{color:var(--link);font-weight:600}
+.picker li .ti{display:block;font-size:11.5px;color:var(--muted);margin-top:1px}
+.picker .foot{grid-column:1/-1;display:flex;gap:18px;flex-wrap:wrap;padding-top:8px;border-top:1px solid var(--rule);font-size:13px}
+.picker .foot button{color:var(--ink2);border-bottom:1px solid var(--rule2)}
+.picker .foot button:hover{color:var(--link);border-color:var(--link)}
+input.search{width:100%;font-family:var(--sans);font-size:14px;padding:7px 9px;border:1px solid var(--rule2);border-radius:3px;background:var(--paper);color:var(--ink)}
+.results{display:flex;flex-direction:column;gap:0;max-height:230px;overflow:auto;margin-top:6px}
+.opt{padding:5px 2px;font-family:var(--sans);font-size:13.5px;display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid var(--rule);width:100%}
+.opt:hover{color:var(--link)}
+.opt .in{color:var(--muted);font-size:12px;white-space:nowrap}
+.trail{font-family:var(--sans);font-size:12.5px;color:var(--muted);display:flex;gap:4px 14px;flex-wrap:wrap;align-items:center;margin:10px 0 0}
+.trail button{color:var(--ink2);border-bottom:1px solid var(--rule2)}
+.trail button[aria-current="true"]{color:var(--ink);border-bottom-color:var(--ink);font-weight:500}
 
-/* Doors as three short rows of chips */
-.doorrow{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 18px;align-items:baseline;padding:12px 0;border-top:1px solid var(--rule)}
-.doorrow:first-of-type{border-top:0}
-.doorrow h3{margin:0;font-size:16px}
-.cloud{display:flex;flex-wrap:wrap;gap:6px 6px}
-.cloud button{font-family:Archivo,sans-serif;font-size:13.5px;padding:5px 10px;border:1px solid var(--rule2);border-radius:3px;background:var(--paper);color:var(--ink);text-align:left}
-.cloud button:hover{border-color:var(--violet);color:var(--violet);background:var(--violet-wash)}
-.cloud button.self{border-color:var(--violet);color:var(--violet);font-weight:500}
-.cloud span.sup{font-family:Archivo,sans-serif;font-size:13.5px;padding:5px 10px;border:1px dashed var(--rule2);border-radius:3px;color:var(--muted)}
-input.search{width:100%;max-width:420px;font:inherit;font-family:Archivo,sans-serif;font-size:14px;padding:8px 10px;border:1px solid var(--rule2);border-radius:3px;background:var(--paper);color:var(--ink)}
-.results{display:flex;flex-direction:column;gap:2px;max-height:240px;overflow:auto;max-width:420px;margin-top:6px}
-.opt{text-align:left;padding:5px 8px;border-radius:3px;font-family:Archivo,sans-serif;font-size:14px;border:1px solid transparent;display:flex;justify-content:space-between;gap:8px}
-.opt:hover{background:var(--violet-wash);border-color:var(--rule2)}
-.opt .in{color:var(--muted);font-size:12.5px}
+/* Text links: every name is a door */
+.tl{color:var(--link);text-decoration:underline dotted;text-decoration-thickness:1px;text-underline-offset:3px;border-radius:2px}
+.tl:hover{background:var(--band);color:var(--hot)}
+.tl.self{color:var(--ink);font-weight:600;text-decoration:none}
+.inl{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 18px;font-family:var(--sans);font-size:14.5px;line-height:1.4}
+.inl li{margin:0}
+.inl .sup{color:var(--muted)}
+.run{font-family:var(--sans);font-size:14.5px;line-height:1.6;color:var(--ink2);margin:0}
+.run span{white-space:nowrap}
+.run span:not(:last-child)::after{content:"";display:inline-block;width:14px}
 
-.btn{font-family:Archivo,sans-serif;font-size:14px;font-weight:500;padding:8px 14px;border:1px solid var(--violet);border-radius:3px;color:var(--violet);background:var(--paper)}
-.btn:hover{background:var(--violet-wash)}
+.btn{font-family:var(--sans);font-size:13.5px;font-weight:500;padding:7px 13px;border:1px solid var(--ink);border-radius:3px;color:var(--ink);background:var(--paper)}
+.btn:hover{background:var(--wash)}
 .btn.quiet{border-color:var(--rule2);color:var(--ink2)}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 
 /* Figures */
-figure{margin:16px 0 8px;padding:0}
-.fig-head{display:grid;grid-template-columns:52px minmax(0,1fr);gap:8px;align-items:baseline;margin-bottom:6px}
-.fig-n{font-family:Archivo,sans-serif;font-size:12.5px;color:var(--muted);font-weight:500}
+figure{margin:18px 0 10px;padding:0}
+.fig-head{display:grid;grid-template-columns:48px minmax(0,1fr);gap:8px;align-items:baseline;margin-bottom:8px}
+.fig-n{font-family:var(--sans);font-size:12.5px;color:var(--muted);font-weight:500}
 .fig-title{font-weight:600;font-size:17px;margin:0}
-.fig-dek{margin:2px 0 0;font-size:14px;color:var(--ink2)}
-figcaption{margin-top:6px;padding-top:6px;border-top:1px solid var(--rule);font-family:Archivo,sans-serif;font-size:12.5px;color:var(--muted);line-height:1.45}
+.fig-dek{margin:2px 0 0;font-size:14.5px;color:var(--ink2)}
+figcaption{margin-top:8px;padding-top:6px;border-top:1px solid var(--rule);font-family:var(--sans);font-size:12.5px;color:var(--muted);line-height:1.5}
 
-/* The ring and the route maps: one uniform line per move made by ten or more people */
-.web{width:100%;height:auto;display:block;font-family:Archivo,sans-serif}
-.web .lk{fill:none;stroke:var(--link);stroke-width:1;opacity:.5}
-.web.ring .lk{opacity:.32}
-.web .lk.hot{stroke:var(--link-hot);opacity:1;stroke-width:1.7}
-.web .lk.dim{opacity:.06}
-.web .nd{cursor:pointer}
-.web .nd circle{fill:var(--dot)}
-.web .nd text{font-size:12.5px;fill:var(--ink2)}
-.web.ring .nd text{font-size:13px}
-.web .nd.hot circle{fill:var(--link-hot);r:4.5}
-.web .nd.hot text{fill:var(--violet);font-weight:600}
-.web .nd.self circle{fill:var(--link-hot);r:5}
-.web .nd.self text{font-weight:600;fill:var(--violet)}
-.web .nd.dim{opacity:.3}
-.web text.ch{font-size:12px;fill:var(--muted)}
-.web .ctr{font-family:Spectral,Georgia,serif;font-size:22px;font-weight:600;fill:var(--ink);pointer-events:none}
-.web .ctr2{font-size:12.5px;fill:var(--muted);pointer-events:none}
-.web.anim .lk{stroke-dasharray:900;stroke-dashoffset:900;animation:drawin 1.4s cubic-bezier(.4,0,.2,1) forwards}
-@keyframes drawin{to{stroke-dashoffset:0}}
-@media (prefers-reduced-motion: reduce){.web.anim .lk{animation:none;stroke-dashoffset:0}}
+/* The ten-year strip: kinds of work as lanes, career years left to right, one line per simulated career */
+.strip{width:100%;height:auto;display:block;font-family:var(--sans)}
+.strip .band{fill:transparent}
+.strip .lane.hot .band{fill:var(--band-hot)}
+.strip .lane[role="button"]{cursor:pointer}
+.strip .lane[role="button"]:hover .band,.strip .lane[role="button"]:focus-visible .band{fill:var(--band)}
+.strip .lane[role="button"]:hover .ln{fill:var(--link);text-decoration:underline}
+.strip .rule{stroke:var(--rule);stroke-width:1}
+.strip .lane.outside .rule{stroke-dasharray:2 3}
+.strip .ln{font-size:12px;fill:var(--ink);font-weight:500}
+.strip .lane.outside .ln{fill:var(--muted);font-weight:400}
+.strip .lane.hot .ln{fill:var(--hot);font-weight:600}
+.strip .lt{font-size:10.5px;fill:var(--muted)}
+.strip .yr{font-size:11px;fill:var(--muted)}
+.strip .yr.first{font-weight:500;fill:var(--ink2)}
+.strip .axis{stroke:var(--rule2);stroke-width:1}
+.strip .p{fill:none;stroke:var(--line);stroke-width:1;stroke-opacity:.26;stroke-linejoin:round;stroke-linecap:round}
+.strip .p.hot{stroke:var(--hot);stroke-opacity:.38;stroke-width:1}
+.strip .p.one{stroke:var(--one);stroke-width:2.4;stroke-opacity:1}
+.strip.one .p:not(.one){display:none}
+.strip .mv{fill:var(--one)}
+.strip .mvl{font-size:10.5px;fill:var(--one);font-weight:500}
+.strip.all .mv,.strip.all .mvl{display:none}
+.strip .empty{font-size:12.5px;fill:var(--muted)}
 
-/* The thousand dots: a sticky canvas with steps scrolling beneath it */
-.scrolly{position:relative;margin-top:6px}
-.sticky{position:sticky;top:0;z-index:2;background:var(--ground);padding:6px 0 4px}
-.sticky.under-poles{top:56px}
-.sticky canvas{display:block;margin:0 auto;max-width:100%}
-.steps{position:relative;z-index:1;padding-top:12px}
-.stepc{min-height:46vh;display:flex;align-items:flex-start;padding:0 0 12px}
-.stepc:last-child{min-height:20vh}
-.stepcard{max-width:440px;background:var(--paper);border:1px solid var(--rule2);border-radius:4px;padding:14px 16px;font-size:17px;line-height:1.45;opacity:.55;transition:opacity .3s}
-.stepc.on .stepcard{opacity:1;border-color:var(--violet2)}
+/* Scrollytelling: the strip holds while the steps pass beneath it */
+.scrolly{position:relative;margin-top:8px}
+.sticky{position:sticky;top:0;z-index:2;background:var(--paper);padding:4px 0 8px}
+.strip-head{display:flex;align-items:baseline;gap:12px;margin:0 0 4px;min-height:34px}
+.strip-head .big{font-family:var(--serif);font-size:26px;font-weight:500;line-height:1;min-width:4.2em}
+.strip-head .what{font-family:var(--sans);font-size:12.5px;color:var(--muted)}
+.steps{position:relative;z-index:1;padding-top:6px}
+.stepc{min-height:50vh;display:flex;align-items:flex-start;padding:0 0 14px}
+.stepc:last-child{min-height:24vh}
+.stepcard{max-width:470px;border-top:1px solid var(--rule2);padding:12px 0 0;font-size:17.5px;line-height:1.5;opacity:.5;transition:opacity .3s}
+.stepc.on .stepcard{opacity:1}
 .stepcard p{margin:0 0 8px}
 .stepcard p:last-child{margin:0}
-.stepcard .yr{font-family:Archivo,sans-serif;font-size:12.5px;font-weight:500;color:var(--muted);display:block;margin-bottom:4px}
+.stepcard .yr{font-family:var(--sans);font-size:12.5px;font-weight:500;color:var(--muted);display:block;margin-bottom:6px}
 @media (prefers-reduced-motion: reduce){.stepcard{transition:none}}
+.guess{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0 4px}
+.guess button{font-family:var(--sans);font-size:12.5px;padding:3px 8px;border-radius:3px;border:1px solid var(--rule2);color:var(--ink2)}
+.guess button:hover{border-color:var(--ink);color:var(--ink)}
 
-/* The kinds of work, as a compact grid */
-.kgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:0 16px;margin:6px 0}
-.kcard{text-align:left;padding:9px 0 10px;border-top:1px solid var(--rule);display:block;width:100%}
-.kcard .nm{display:block;font-weight:600;font-size:15px;line-height:1.2;color:var(--ink)}
-.kcard:hover .nm{color:var(--violet)}
-.kcard .ti{display:block;font-family:Archivo,sans-serif;font-size:12px;color:var(--muted);line-height:1.35;margin-top:4px}
-.kcard.self .nm{color:var(--violet)}
-.kcard.sup{opacity:.5;cursor:default}
-
-table.t{width:100%;border-collapse:collapse;font-family:Archivo,sans-serif;font-size:13.5px;margin:6px 0}
-table.t td,table.t th{padding:4px 6px;border-bottom:1px solid var(--rule);text-align:left}
+table.t{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:13.5px;margin:6px 0}
+table.t td,table.t th{padding:5px 6px;border-bottom:1px solid var(--rule);text-align:left}
 table.t th{font-weight:500;color:var(--muted);font-size:12.5px}
 table.t td.r,table.t th.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+details{margin:10px 0}
+summary{cursor:pointer;color:var(--link);font-family:var(--sans);font-size:13.5px;font-weight:500}
+details .body{padding:10px 0 4px;font-size:15.5px}
 
-.callout{padding:14px 16px;border:1px solid var(--amber);border-radius:4px;background:var(--amber-wash);margin:10px 0}
-.callout p:last-child{margin:0}
-.guess-opts{display:flex;flex-wrap:wrap;gap:4px;margin:8px 0 6px}
-.guess-opts button{font-family:Archivo,sans-serif;font-size:13px;padding:4px 9px;border-radius:3px;border:1px solid var(--rule2);background:var(--paper)}
-.guess-opts button:hover{border-color:var(--amber)}
-.thin-box{padding:14px 16px;border:1px solid var(--rust);border-radius:4px;background:var(--rust-wash);margin:12px 0}
-.thin-box p{margin:0 0 8px}
-.thin-box p:last-child{margin:0}
-.panels{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px 18px;margin-top:14px}
-.panels .ph{font-family:Archivo,sans-serif;font-size:13px;font-weight:500;color:var(--muted);padding-top:6px;border-top:1px solid var(--rule)}
-.panels .pb{padding-top:6px;border-top:1px solid var(--rule);min-width:0}
-.chips{display:flex;flex-wrap:wrap;gap:6px;font-family:Archivo,sans-serif;font-size:13.5px;margin:0}
-.chips span,.chips button{border:1px solid var(--rule2);border-radius:3px;padding:4px 9px;background:var(--paper);color:var(--ink)}
-.chips button:hover{border-color:var(--violet);color:var(--violet)}
-.chips button.self{border-color:var(--violet);color:var(--violet)}
-.empty{padding:8px 10px;border:1px dashed var(--rule2);border-radius:4px;color:var(--muted);font-family:Archivo,sans-serif;font-size:13px;margin:0}
-details{margin:8px 0}
-summary{cursor:pointer;color:var(--violet);font-family:Archivo,sans-serif;font-size:13.5px;font-weight:500}
-details .body{padding:10px 0 4px;font-size:15px}
-.take{border:1px solid var(--rule2);border-radius:4px;background:var(--paper);padding:18px 20px;margin-top:10px}
-.take .tb{padding:10px 0;border-top:1px solid var(--rule)}
-.take .tb:first-of-type{border-top:0}
-.take .tb .label{margin-bottom:2px}
+.panels{display:grid;grid-template-columns:150px minmax(0,1fr);gap:0 20px;margin-top:18px;border-top:1px solid var(--rule)}
+.panels .ph{font-family:var(--sans);font-size:13.5px;font-weight:500;color:var(--muted);padding:12px 0}
+.panels .pb{padding:12px 0;min-width:0;border-bottom:1px solid var(--rule)}
+.panels .ph{border-bottom:1px solid var(--rule)}
+.panels .pb .note{margin-top:6px}
+.panels .pb p.lead{font-size:17px}
+.thin p{max-width:36em}
+.filter{font-family:var(--sans);font-size:14px;margin:0 0 6px}
+.filter button{color:var(--ink2);border-bottom:1px solid var(--rule2);margin-left:10px}
+.filter button:hover{color:var(--link);border-color:var(--link)}
+
+.take{margin-top:12px}
+.take .tb{padding:12px 0;border-top:1px solid var(--rule)}
+.take .tb .label{margin-bottom:4px}
 .take ul,.take ol{margin:4px 0 4px 20px;padding:0}
-.take li{margin:3px 0;font-size:15.5px}
-.return{padding:12px 14px;border:1px solid var(--rule2);border-radius:4px;background:var(--paper);display:flex;gap:12px;flex-wrap:wrap;align-items:center;font-size:15px;margin-bottom:8px}
+.take li{margin:4px 0;font-size:16px}
+.take .code{font-family:var(--sans);font-size:12.5px;color:var(--ink2);word-break:break-all}
+.return{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:15.5px}
 .return p{margin:0;flex:1 1 300px}
-.trail{font-family:Archivo,sans-serif;font-size:12.5px;color:var(--muted);display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:4px 0 0}
-.trail button{color:var(--ink2);border-bottom:1px solid var(--rule2)}
-.trail button[aria-current="true"]{color:var(--ink);border-bottom-color:var(--ink);font-weight:500}
-.hint{padding:10px 12px;border:1px solid var(--amber);border-radius:4px;background:var(--amber-wash);font-size:15px;margin:8px 0}
+.hint{padding:10px 12px;border-left:0;border:1px solid var(--rule2);border-radius:3px;font-size:15px;margin:8px 0;font-family:var(--sans);font-size:13.5px}
 
 /* Phone width */
 @media (max-width: 920px){
   .frame{grid-template-columns:1fr;height:auto}
   .site{overflow:visible}
-  .site-inner{padding:20px 16px 140px}
-  .map{position:fixed;left:0;right:0;bottom:0;height:56vh;border-left:0;border-top:1px solid var(--rule2);transform:translateY(calc(100% - 46px));transition:transform .25s ease;z-index:20;box-shadow:0 -4px 20px rgba(0,0,0,.12)}
+  .site-inner{padding:20px 16px 150px}
+  .sticky{top:env(safe-area-inset-top,0px)}
+  .map{position:fixed;left:0;right:0;bottom:0;height:56vh;border-left:0;border-top:1px solid var(--rule2);transform:translateY(calc(100% - 46px));transition:transform .25s ease;z-index:20;box-shadow:0 -4px 20px rgba(0,0,0,.12);padding-bottom:env(safe-area-inset-bottom,0px)}
   @media (prefers-reduced-motion: reduce){.map{transition:none}}
   .map.open{transform:none}
   .map-head{min-height:46px;cursor:pointer}
-  .map-toggle{display:inline-block;color:var(--violet);font-weight:500}
-  .doorrow,.panels{grid-template-columns:1fr}
+  .map-toggle{display:inline-block;color:var(--link);font-weight:500}
+  .stepno{display:none}
+  .panels{grid-template-columns:1fr;gap:0}
+  .panels .ph{padding-bottom:2px;border-bottom:0}
+  .panels .pb{padding-top:4px}
   .fig-head{grid-template-columns:1fr}
-  h1{font-size:32px}h2{font-size:24px}
-  .stepc{min-height:40vh}
-  .shell{padding:6px 16px}
+  h1{font-size:34px}h2{font-size:25px}
+  .ask{font-size:21px}
+  .stepc{min-height:42vh}
+  .bar .note{display:none}
 }
 @media print{
-  .shell,.map,.poles,.block:not(.take-block),.step,.btn{display:none !important}
+  .bar,.map,.block:not(.take-block),.stepno,.btn{display:none !important}
   .frame{display:block;height:auto}
   .site{overflow:visible}
   .site-inner{max-width:none;padding:0}
-  .take{border:0;padding:0}
   body{background:#fff;color:#000}
 }
 </style>
 
-<div class="shell">
+<div class="bar">
   <strong>Journey prototype</strong>
-  <span class="note">The site on the left is built from the user journey in docs/design, revised 14 September 2026. The chart on the right is that journey. Scrolling or acting on the site lights the node it belongs to; clicking a node moves the site there. The record behind it is the archetype build of 2 September. It covers ten humanities fields of study and fifteen kinds of work, with years counted from the first job. Anything named on the site was done by ten or more people.</span>
+  <span class="note">Built from the user journey in docs/design. Scrolling the site lights its step in the chart; clicking a step moves the site there.</span>
+  <details><summary>About this build</summary><div class="about">
+    <p>The record behind the site is the archetype build of 2 September 2026. It covers ten humanities fields of study and fifteen kinds of work, with years counted from the first job. Anything named on the site was done by ten or more people.</p>
+    <p>The lines on the ten-year strip are simulated from the record's measured year-to-year moves, so no line is a real person. Counts and shares in the text and tables are real. The numbers in the margin are the journey's step numbers; they are annotation for this prototype and not part of the site.</p>
+    <p>Revised 15 September 2026. The site column, the strip and the sentence control are new; the journey chart is unchanged from the 14 September revision.</p>
+  </div></details>
   <button type="button" id="theme-btn">Theme</button>
 </div>
 
@@ -300,7 +308,7 @@ details .body{padding:10px 0 4px;font-size:15px}
 const D = JSON.parse(document.getElementById('data').textContent);
 const F = D.fields, FK = Object.keys(F), ALL = D.all, BAR = D.bar;
 const KIND = {
-  0:{name:'Work outside these fifteen',short:'Outside the fifteen',desc:'Trades, transport, protective service, the military, and titles that could not be placed.',soc:'33, 45 to 55'},
+  0:{name:'Work outside these fifteen',short:'Outside these fifteen',desc:'Trades, transport, protective service, the military, and titles that could not be placed.',soc:'33, 45 to 55'},
   1:{name:'Teaching and academic work',short:'Teaching',desc:'Teaching, tutoring, running a classroom or a course, or working inside a school or a university.',soc:'25-0000'},
   2:{name:'Design, art and media making',short:'Design and media',desc:'Making things people look at or listen to: design, illustration, photography, film, music, performance.',soc:'27-1000 to 27-4000'},
   3:{name:'Writing and editing',short:'Writing',desc:'Writing, editing and publishing, from journalism to copy to books.',soc:'27-3000'},
@@ -318,6 +326,7 @@ const KIND = {
   15:{name:'Running a business or a practice',short:'Own business',desc:'Working for yourself: a business, a studio, a consultancy, a freelance practice.',soc:'none; recorded by employment form'}
 };
 const KIDS = Object.keys(KIND).map(Number).filter(k=>k>0).sort((a,b)=>KIND[a].name.localeCompare(KIND[b].name));
+const LANES = KIDS.concat([0]);
 const fmt = n => n==null?'':Number(n).toLocaleString('en-US');
 const pct = s => (s>0&&s<0.01)?(s*100).toFixed(1)+'%':Math.round(s*100)+'%';
 const WORDS=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen'];
@@ -355,6 +364,7 @@ const titles = (id, n) => (D.roles[id]||[]).slice(0,n||3).map(r=>r[0]);
 
 /* ---------- state ---------- */
 let S = {o:null,d:null,s:null,g:null};
+let pick = null; // which blank is open: 'o', 'd', 's', or null. Not part of the address.
 function isKindOrigin(o){ return typeof o==='string' && o.startsWith('k:'); }
 function originKind(o){ return isKindOrigin(o)?+o.slice(2):null; }
 function readHash(){
@@ -369,6 +379,7 @@ function writeHash(s){ const parts=[]; ['o','d','s','g'].forEach(k=>{ if(s[k]!=n
 function mode(s){ if(s.o&&s.d) return 'Q2'; if(s.o) return 'Q1'; if(s.d) return 'Q3'; return 'Q0'; }
 let trail=[]; let trailIdx=-1; let pendingScroll=null;
 function commit(patch, scrollTo){
+  pick=null;
   const n=Object.assign({},S,patch); pendingScroll=scrollTo||null;
   const h=writeHash(n); if(h===location.hash){ S=n; render(); return; }
   location.hash=h;
@@ -380,8 +391,8 @@ function trackTrail(){
   const back=trail.slice(0,trailIdx).map(t=>t.h).lastIndexOf(h); if(back>=0){ trailIdx=back; return; }
   trail=trail.slice(0,trailIdx+1); trail.push({h,label:stateLabel(S)}); trailIdx=trail.length-1;
 }
-function originName(o){ return isKindOrigin(o)?'people who started in '+klow(originKind(o)):'people who studied '+F[o].name; }
-function originShort(o){ return isKindOrigin(o)?'Started in '+klow(originKind(o)):F[o].name; }
+function originName(o){ return isKindOrigin(o)?'people who started out in '+klow(originKind(o)):'people who studied '+F[o].name; }
+function originShort(o){ return isKindOrigin(o)?'Started out in '+klow(originKind(o)):F[o].name; }
 function stateLabel(s){
   const m=mode(s);
   if(m==='Q0') return 'The whole field';
@@ -392,246 +403,225 @@ function stateLabel(s){
 
 /* ---------- derived ---------- */
 function mixAt(fd, y){ const o=fd.occ[y]; const out={}; Object.entries(o.mix).forEach(([k,n])=>out[+k]=n); return {n:o.n,mix:out}; }
-function kindsAt(fd, y){ return Object.keys(fd.occ[y].mix).map(Number).filter(k=>k>0); }
 function flowsFrom(fd, a){ return fd.flows.filter(f=>f[0]===a).map(f=>({to:f[1],n:f[2]})); }
 function flowsInto(fd, d){ return fd.flows.filter(f=>f[1]===d).map(f=>({from:f[0],n:f[2]})); }
 function flowCell(fd, a, d){ const f=fd.flows.find(f=>f[0]===a&&f[1]===d); return f?f[2]:0; }
 function via5(fd, a, d){ return fd.via5.filter(v=>v[0]===a&&v[1]===d).map(v=>({at5:v[2],n:v[3]})); }
-function destsFor(o){ // kinds reached at year ten from an origin, with counts
+function destsFor(o){
   if(isKindOrigin(o)){ const a=originKind(o); const rows=flowsFrom(ALL,a); const tot=rows.reduce((s,r)=>s+r.n,0); return {n:tot, rows:rows.map(r=>({id:r.to,n:r.n,share:r.n/tot}))}; }
   const m=mixAt(F[o],10); return {n:m.n, rows:Object.entries(m.mix).map(([k,n])=>({id:+k,n,share:n/m.n}))};
 }
 const allMix10 = mixAt(ALL,10);
+const allRows10 = Object.entries(allMix10.mix).map(([k,n])=>({id:+k,n,share:n/allMix10.n}));
 function fieldsInto(d){ return FK.map(k=>{ const m=mixAt(F[k],10); const n=m.mix[d]||0; return {k,name:F[k].name,n,share:n/m.n}; }); }
 const byName = rows => rows.slice().sort((a,b)=>(a.name||kname(a.id)).localeCompare(b.name||kname(b.id)));
 
-/* ---------- the ring and the route maps ---------- */
-let webSeq=0;
-function ringSVG(links, opts){ // fifteen kinds around a circle; one uniform line per named move
-  const W=700,H=590,cx=350,cy=292,R=205; const ids=KIDS; const ang={}; ids.forEach((k,i)=>ang[k]=-Math.PI/2+i*2*Math.PI/ids.length);
-  const pt=k=>[cx+R*Math.cos(ang[k]),cy+R*Math.sin(ang[k])];
-  let s=`<svg class="web ring ${opts.anim?'anim':''}" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.aria||'Moves between kinds of work')}" data-web="${++webSeq}">`;
-  links.forEach(([a,b],i)=>{ if(a===b||!ang[a]||!ang[b]) return; const [x0,y0]=pt(a),[x1,y1]=pt(b);
-    s+=`<path class="lk" data-a="0:${a}" data-b="0:${b}" style="animation-delay:${(i*5)%900}ms" d="M${x0.toFixed(1)},${y0.toFixed(1)} Q${cx},${cy} ${x1.toFixed(1)},${y1.toFixed(1)}"/>`; });
-  ids.forEach(k=>{ const [x,y]=pt(k); const a=ang[k]; const lx=cx+(R+14)*Math.cos(a), ly=cy+(R+14)*Math.sin(a)+4.5; const anchor=Math.cos(a)>0.2?'start':Math.cos(a)<-0.2?'end':'middle'; const ly2=anchor==='middle'?(Math.sin(a)<0?ly-6:ly+8):ly;
-    const click=opts.click?`data-${opts.click}="${k}"`:''; const self=opts.self&&opts.self.has(k)?'self':'';
-    s+=`<g class="nd ${self}" data-node="0:${k}" ${click}><title>${esc(kname(k))}</title><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5"/><text x="${lx.toFixed(1)}" y="${ly2.toFixed(1)}" text-anchor="${anchor}">${esc(KIND[k].short)}</text></g>`; });
-  if(opts.center){ s+=`<text class="ctr" x="${cx}" y="${cy-4}" text-anchor="middle">${esc(opts.center)}</text>`; if(opts.center2) s+=`<text class="ctr2" x="${cx}" y="${cy+16}" text-anchor="middle">${esc(opts.center2)}</text>`; }
-  s+='</svg>'; return s;
-}
-function webSVG(cols, links, opts){ // columns of stops with one uniform line per named move
-  const W=640, rowH=21, top=34, bottom=10; const rows=Math.max(...cols.map(c=>c.nodes.length)); const H=top+rows*rowH+bottom;
-  const xs = cols.length===2 ? [215,425] : [120,320,520];
-  const y = (c,i) => top + i*rowH + (rows-cols[c].nodes.length)*rowH/2;
-  const pos = cols.map((c,ci)=>{ const m={}; c.nodes.forEach((n,i)=>m[n.id]=y(ci,i)); return m; });
-  let s=`<svg class="web" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.aria||'Routes between kinds of work')}" data-web="${++webSeq}">`;
-  cols.forEach((c,ci)=>{ const anchor = ci===0?'end':ci===cols.length-1?'start':'middle'; const x = ci===0?xs[0]-12:ci===cols.length-1?xs[ci]+12:xs[ci]; s+=`<text class="ch" x="${x}" y="${top-16}" text-anchor="${anchor}">${esc(c.title)}</text>`; });
-  links.forEach(([ci,a,b])=>{ const ya=pos[ci][a], yb=pos[ci+1][b]; if(ya==null||yb==null) return; const x0=xs[ci], x1=xs[ci+1], cx=(x0+x1)/2;
-    s+=`<path class="lk" data-a="${ci}:${a}" data-b="${ci+1}:${b}" d="M${x0},${ya} C${cx},${ya} ${cx},${yb} ${x1},${yb}"/>`; });
-  cols.forEach((c,ci)=>{ c.nodes.forEach(n=>{ const yy=pos[ci][n.id]; const anchor = ci===0?'end':ci===cols.length-1?'start':'middle'; const tx = ci===0?xs[0]-9:ci===cols.length-1?xs[ci]+9:xs[ci]; const ty = (ci>0&&ci<cols.length-1)?yy-7:yy+4;
-    s+=`<g class="nd ${n.self?'self':''}" data-node="${ci}:${n.id}" ${n.click?`data-${n.click.attr}="${esc(n.click.val)}"`:''}><title>${esc(n.full||n.label)}</title><circle cx="${xs[ci]}" cy="${yy}" r="3.2"/><text x="${tx}" y="${ty}" text-anchor="${anchor}">${esc(n.label)}</text></g>`; }); });
-  s+='</svg>'; return s;
-}
-function pathwayMap(fd, a, d){ // three stops for one cell: year one, year five, year ten
-  const v=via5(fd,a,d); const mids=v.map(r=>r.at5); const n=flowCell(fd,a,d); const named=v.reduce((s,r)=>s+r.n,0);
-  const mk=k=>({id:k,label:KIND[k].short,full:kname(k)});
-  const midNodes=mids.slice().sort((x,y)=>kname(x).localeCompare(kname(y))).map(mk); if(n-named>=1) midNodes.push({id:-1,label:'Elsewhere',full:'Kinds held by fewer than ten of these people'});
-  const cols=[{title:'Year one',nodes:[Object.assign(mk(a),{self:true})]},{title:'Year five',nodes:midNodes},{title:'Year ten',nodes:[Object.assign(mk(d),{self:true})]}];
-  const links=[]; midNodes.forEach(m=>{ links.push([0,a,m.id]); links.push([1,m.id,d]); });
-  return webSVG(cols,links,{aria:'The route in three stops'});
-}
-function wireWebs(){
-  canvas.querySelectorAll('svg.web').forEach(svg=>{
-    const clear=()=>{ svg.querySelectorAll('.hot,.dim').forEach(e=>e.classList.remove('hot','dim')); };
-    svg.addEventListener('mouseover',ev=>{ const nd=ev.target.closest('.nd'); if(!nd) return; clear(); const key=nd.dataset.node; const touched=new Set([key]);
-      svg.querySelectorAll('.lk').forEach(l=>{ if(l.dataset.a===key||l.dataset.b===key){ l.classList.add('hot'); touched.add(l.dataset.a); touched.add(l.dataset.b); } else l.classList.add('dim'); });
-      svg.querySelectorAll('.nd').forEach(n=>{ if(touched.has(n.dataset.node)) n.classList.add('hot'); else n.classList.add('dim'); }); });
-    svg.addEventListener('mouseleave',clear);
-  });
-}
-
-/* ---------- the thousand dots, simulated from the measured rates ---------- */
+/* ---------- simulated careers, from the measured year-to-year rates ---------- */
 function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
 function hashStr(str){ let h=2166136261; for(let i=0;i<str.length;i++){ h^=str.charCodeAt(i); h=Math.imul(h,16777619); } return h>>>0; }
-function simulate(originKey){
-  const kindO=isKindOrigin(originKey); const fd=(originKey==='all'||kindO)?ALL:F[originKey]; const rnd=mulberry32(hashStr(originKey)); const N=1000;
-  const initRow=[]; if(kindO){ for(let k=0;k<16;k++) initRow.push(k===originKind(originKey)?1:0); } else { const m=mixAt(fd,1).mix; for(let k=0;k<16;k++) initRow.push(m[k]||0); }
+function fieldInit(fd){ const m=mixAt(fd,1).mix; const r=[]; for(let k=0;k<16;k++) r.push(m[k]||0); return r; }
+function oneHot(k){ const r=[]; for(let i=0;i<16;i++) r.push(i===k?1:0); return r; }
+function simulate(opts){ // {fd, initRow, seed, cap, maxTries, want}
+  const rnd=mulberry32(hashStr(opts.seed));
   const pick=row=>{ let tot=0; for(const v of row) tot+=v; if(!tot) return -1; let r=rnd()*tot; for(let i=0;i<row.length;i++){ r-=row[i]; if(r<0) return i; } return row.length-1; };
-  const seqs=[]; for(let i=0;i<N;i++){ const seq=[Math.max(0,pick(initRow))]; for(let t=1;t<10;t++){ const k=seq[t-1]; const nk=pick(fd.trans[String(t)][k]); seq.push(nk<0?k:nk); } seqs.push(seq); }
-  const changes=seq=>{ let c=0; for(let t=1;t<10;t++) if(seq[t]!==seq[t-1]) c++; return c; };
-  let follow=seqs.findIndex(q=>q[0]>0&&q[9]>0&&q[0]!==q[9]&&changes(q)===2); if(follow<0) follow=seqs.findIndex(q=>q[0]>0&&q[9]>0&&changes(q)===1); if(follow<0) follow=0;
-  return {seqs,follow};
+  const out=[]; let tries=0; const max=opts.maxTries||opts.cap;
+  while(out.length<opts.cap && tries<max){ tries++;
+    const seq=[Math.max(0,pick(opts.initRow))];
+    for(let t=1;t<10;t++){ const k=seq[t-1]; const nk=pick(opts.fd.trans[String(t)][k]); seq.push(nk<0?k:nk); }
+    if(!opts.want||opts.want(seq)) out.push(seq); }
+  return out;
 }
-function cssVar(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
-function makeSim(wrap, originKey){
-  const cv=wrap.querySelector('canvas'); const ctx=cv.getContext('2d'); const W=700,H=500,cx=350,cy=246,R=176;
-  const pos={}; KIDS.forEach((k,i)=>{ const a=-Math.PI/2+i*2*Math.PI/KIDS.length; pos[k]=[cx+R*Math.cos(a),cy+R*Math.sin(a),a]; }); pos[0]=[cx,cy,0];
-  const {seqs,follow}=simulate(originKey);
-  const dots=seqs.map(q=>({seq:q,x:0,y:0,sx:0,sy:0,tx:0,ty:0,node:-1,slot:-1,d:0}));
-  const slots={}; for(let k=0;k<16;k++) slots[k]=[];
-  const slotPos=(k,i)=>{ const r=2.7*Math.sqrt(i), th=i*2.399963; return [pos[k][0]+r*Math.cos(th), pos[k][1]+r*Math.sin(th)]; };
-  let year=0, mode='one', alpha=1, anim=null, queue=[], scale=1, colors={};
-  function readColors(){ colors={dot:cssVar('--violet'),one:cssVar('--rust'),ink:cssVar('--ink'),muted:cssVar('--muted'),ink2:cssVar('--ink2'),rule:cssVar('--rule2'),paper:cssVar('--paper')}; }
-  function assign(y){ dots.forEach((d,i)=>{ const k=d.seq[y-1]; if(d.node!==k){ if(d.node>=0) slots[d.node][d.slot]=-1; d.node=k; const arr=slots[k]; let j=arr.indexOf(-1); if(j<0){ j=arr.length; arr.push(i); } else arr[j]=i; d.slot=j; } const p=slotPos(d.node,d.slot); d.sx=d.x; d.sy=d.y; d.tx=p[0]; d.ty=p[1]; d.d=(i%40)*3; }); }
-  function snap(){ dots.forEach(d=>{ d.x=d.tx; d.y=d.ty; }); }
-  function size(){ const w=Math.min(wrap.clientWidth, (window.innerHeight*0.62)*W/H); const dpr=window.devicePixelRatio||1; cv.style.width=w+'px'; cv.style.height=(w*H/W)+'px'; cv.width=Math.round(w*dpr); cv.height=Math.round(w*H/W*dpr); scale=w/W*dpr; draw(); }
-  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
-  function draw(){
-    readColors(); ctx.setTransform(scale,0,0,scale,0,0); ctx.clearRect(0,0,W,H);
-    ctx.font='500 12.5px Archivo, sans-serif'; ctx.fillStyle=colors.ink2;
-    KIDS.forEach(k=>{ const [x,y,a]=pos[k]; const lx=cx+(R+46)*Math.cos(a), ly=cy+(R+46)*Math.sin(a); ctx.textAlign=Math.cos(a)>0.2?'left':Math.cos(a)<-0.2?'right':'center'; ctx.textBaseline='middle'; ctx.fillText(KIND[k].short, lx, ly); });
-    ctx.fillStyle=colors.muted; ctx.textAlign='center'; ctx.font='400 11.5px Archivo, sans-serif'; ctx.fillText('outside the fifteen', cx, cy+52);
-    const f=dots[follow];
-    if(mode==='one'){
-      // the path this one person took, drawn between the kinds they held, with the year of each move
-      ctx.strokeStyle=colors.rule; ctx.lineWidth=1.2; ctx.setLineDash([3,4]); ctx.beginPath(); let prev=f.seq[0]; ctx.moveTo(pos[prev][0],pos[prev][1]);
-      for(let t=1;t<Math.min(year,10);t++){ const k=f.seq[t]; if(k!==prev){ ctx.lineTo(pos[k][0],pos[k][1]); prev=k; } } ctx.stroke(); ctx.setLineDash([]);
-      prev=f.seq[0]; ctx.font='500 11.5px Archivo, sans-serif'; ctx.fillStyle=colors.one; ctx.textAlign='center';
-      for(let t=1;t<Math.min(year,10);t++){ const k=f.seq[t]; if(k!==prev){ ctx.fillText('year '+(t+1), pos[k][0], pos[k][1]-14); prev=k; } }
-      ctx.fillStyle=colors.one; ctx.beginPath(); ctx.arc(f.x,f.y,5.5,0,Math.PI*2); ctx.fill();
-    } else {
-      ctx.globalAlpha=alpha*0.82; ctx.fillStyle=colors.dot;
-      dots.forEach((d,i)=>{ if(i===follow) return; ctx.beginPath(); ctx.arc(d.x,d.y,2.1,0,Math.PI*2); ctx.fill(); });
-      ctx.globalAlpha=alpha; ctx.fillStyle=colors.one; ctx.beginPath(); ctx.arc(f.x,f.y,4.2,0,Math.PI*2); ctx.fill(); ctx.globalAlpha=1;
-    }
-    ctx.fillStyle=colors.ink; ctx.textAlign='left'; ctx.textBaseline='alphabetic'; ctx.font='600 26px Spectral, Georgia, serif'; ctx.fillText('Year '+Math.max(1,Math.min(10,year)), 12, 34);
-    ctx.fillStyle=colors.muted; ctx.font='400 12px Archivo, sans-serif'; ctx.fillText(mode==='one'?'one simulated career':'a thousand simulated careers', 12, 52);
-  }
-  function tween(dur, then){ const t0=performance.now(); if(anim) cancelAnimationFrame(anim);
-    const step=now=>{ const raw=(now-t0)/dur; let done=true; dots.forEach(d=>{ const u=Math.min(1,Math.max(0,(now-t0-d.d)/dur)); if(u<1) done=false; const e=ease(u); d.x=d.sx+(d.tx-d.sx)*e; d.y=d.sy+(d.ty-d.sy)*e; }); if(alpha<1){ alpha=Math.min(1,alpha+0.05); done=false; } draw(); if(!done) anim=requestAnimationFrame(step); else { anim=null; if(then) then(); } };
-    anim=requestAnimationFrame(step); }
-  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function runQueue(){ if(!queue.length) return; const y=queue.shift(); year=y; assign(y); if(reduce){ snap(); draw(); runQueue(); } else tween(mode==='one'?700:560, runQueue); }
-  function go(m, y){
-    if(m!==mode){ mode=m; queue=[]; if(anim){cancelAnimationFrame(anim);anim=null;} year=m==='one'?1:y; assign(year); snap(); if(m==='all'){ alpha=0; tween(600,null); } else draw();
-      if(m==='one'&&y>1){ queue=[]; for(let k=2;k<=y;k++) queue.push(k); runQueue(); } return; }
-    if(y>year){ queue=[]; for(let k=year+1;k<=y;k++) queue.push(k); if(!anim) runQueue(); }
-    else if(y<year){ queue=[]; if(anim){cancelAnimationFrame(anim);anim=null;} year=y; assign(y); if(reduce){snap();draw();} else tween(700,null); }
-  }
-  year=1; assign(1); snap(); size();
-  const ro=new ResizeObserver(size); ro.observe(wrap);
-  window.addEventListener('themechange', draw);
-  document.fonts && document.fonts.ready.then(draw);
-  return {go, follow:seqs[follow], seqs, destroy(){ ro.disconnect(); if(anim) cancelAnimationFrame(anim); }};
-}
-let sims=[];
-function wireScrolly(){
-  sims.forEach(sm=>sm.destroy()); sims=[];
-  canvas.querySelectorAll('.scrolly').forEach(sc=>{
-    const sim=makeSim(sc.querySelector('.sticky'), sc.dataset.origin); sims.push(sim);
-    const steps=[...sc.querySelectorAll('.stepc')]; const plan=steps.map(st=>({m:st.dataset.mode,y:+st.dataset.year}));
-    const root=window.matchMedia('(max-width: 920px)').matches?null:site;
-    const io=new IntersectionObserver(entries=>{ entries.forEach(en=>{ if(en.isIntersecting){ const i=steps.indexOf(en.target); steps.forEach((x,j)=>x.classList.toggle('on',j===i)); sim.go(plan[i].m,plan[i].y); } }); },{root,rootMargin:'-35% 0px -45% 0px',threshold:0});
-    steps.forEach(st=>io.observe(st));
-    // the one person's path, written out from the simulated sequence
-    const one=sc.querySelector('[data-one]'); if(one){ const q=sim.follow; const bits=['Started in '+klow(q[0])+'.']; for(let t=1;t<10;t++) if(q[t]!==q[t-1]) bits.push('Year '+(t+1)+', '+klow(q[t])+'.'); if(bits.length===1) bits.push('Stayed there for ten years.'); one.textContent=bits.join(' '); }
-    steps[0].classList.add('on');
-  });
-}
-function scrollyBlock(node, originKey){
+function originSpec(originKey){ // a thousand people from an origin, plus one to follow
   const kindO=isKindOrigin(originKey); const fd=(originKey==='all'||kindO)?ALL:F[originKey];
+  const seqs=simulate({fd, initRow:kindO?oneHot(originKind(originKey)):fieldInit(fd), seed:originKey, cap:1000});
+  const changes=q=>{ let c=0; for(let t=1;t<10;t++) if(q[t]!==q[t-1]) c++; return c; };
+  let follow=seqs.findIndex(q=>q[0]>0&&q[9]>0&&q[0]!==q[9]&&changes(q)===2); if(follow<0) follow=seqs.findIndex(q=>q[0]>0&&q[9]>0&&changes(q)===1); if(follow<0) follow=0;
+  return {seqs, follow};
+}
+function routeSeqs(fd, initRow, seed, want){ return simulate({fd, initRow, seed, cap:100, maxTries:60000, want}); }
+
+/* ---------- the ten-year strip ---------- */
+const site=document.getElementById('site');
+function stripGeom(){ const narrow=site.clientWidth<640; return narrow?{W:420,gut:118,x0:126,x1:410,LH:21,top:30,ts:0,tiny:1}:{W:760,gut:204,x0:218,x1:744,LH:27,top:34,ts:1,tiny:0}; }
+const TINY={1:'Teaching',2:'Design, media',3:'Writing',4:'Communications',5:'Sales',6:'Managing',7:'Analysis',8:'Finance',9:'Software, data',10:'Administration',11:'Law, research',12:'Health',13:'Nonprofit',14:'Hospitality',15:'Own business',0:'Other work'};
+function fitText(t,maxW,font){ const c=wrap.c||(wrap.c=document.createElement('canvas').getContext('2d')); c.font=font; if(c.measureText(t).width<=maxW) return t; let cut=t; while(cut.length>3&&c.measureText(cut+'…').width>maxW) cut=cut.slice(0,-1); return cut.replace(/[\s,]+$/,'')+'…'; }
+let stripSeq=0; const SPECS={};
+function stripSVG(spec){ // spec: {id, seqs, follow, mode:'one'|'all'|'route', year, lanes:{o,d}, laneClick, aria}
+  const g=stripGeom(); const {W,gut,x0,x1,LH,top}=g; const H=top+LANES.length*LH+8;
+  const laneY={}; LANES.forEach((k,i)=>laneY[k]=top+i*LH+LH/2);
+  const xs=y=>x0+(y-1)/9*(x1-x0);
+  const jit=i=>{ const h=hashStr('j'+i+spec.id); return ((h%1000)/1000-0.5)*(LH-9); };
+  let s=`<svg class="strip ${spec.mode}" viewBox="0 0 ${W} ${H}" data-strip="${spec.id}" role="img" aria-label="${esc(spec.aria||'Ten years of simulated careers across fifteen kinds of work')}">`;
+  s+=`<defs><clipPath id="clip-${spec.id}"><rect class="clip" x="0" y="0" width="${(spec.year>=10?W:xs(spec.year)+2).toFixed(1)}" height="${H}"/></clipPath></defs>`;
+  LANES.forEach(k=>{ const y=laneY[k]-LH/2; const hot=k!==0&&(k===spec.lanes.o||k===spec.lanes.d); const clickable=spec.laneClick&&k>0;
+    s+=`<g class="lane ${hot?'hot':''} ${k===0?'outside':''}" data-lane="${k}" ${clickable?'role="button" tabindex="0"':''}><title>${esc(k===0?KIND[0].desc:kname(k)+'. '+KIND[k].desc)}</title><rect class="band" x="0" y="${y}" width="${W}" height="${LH}"/><line class="rule" x1="${x0}" x2="${x1}" y1="${laneY[k]}" y2="${laneY[k]}"/>`;
+    s+=`<text class="ln" x="${gut-10}" y="${laneY[k]+(g.ts&&k>0?-1.5:4)}" text-anchor="end">${esc(g.tiny?TINY[k]:(k===0?'Outside these fifteen':KIND[k].short))}</text>`;
+    if(g.ts&&k>0) s+=`<text class="lt" x="${gut-10}" y="${laneY[k]+10.5}" text-anchor="end">${esc(fitText(titles(k,2).join(', '),gut-16,'400 10.5px "Public Sans", sans-serif'))}</text>`;
+    s+=`</g>`; });
+  for(let y=1;y<=10;y++) s+=`<text class="yr ${y===1?'first':''}" x="${xs(y)}" y="${top-12}" text-anchor="middle">${y===1?'Year 1':y}</text>`;
+  s+=`<line class="axis" x1="${x0}" x2="${x1}" y1="${top-4}" y2="${top-4}"/>`;
+  const dx=xs(2)-xs(1);
+  const pts=(q,i)=>{ const j=jit(i); const P=[`${xs(1).toFixed(1)},${(laneY[q[0]]+j).toFixed(1)}`];
+    for(let t=1;t<10;t++){ if(q[t]!==q[t-1]) P.push(`${(xs(t)+0.62*dx).toFixed(1)},${(laneY[q[t-1]]+j).toFixed(1)}`); P.push(`${xs(t+1).toFixed(1)},${(laneY[q[t]]+j).toFixed(1)}`); }
+    return P.join(' '); };
+  s+=`<g clip-path="url(#clip-${spec.id})">`;
+  if(spec.mode!=='one') spec.seqs.forEach((q,i)=>{ if(i===spec.follow) return; s+=`<polyline class="p ${spec.mode==='route'?'hot':''}" points="${pts(q,i)}"/>`; });
+  if(spec.follow>=0){ const q=spec.seqs[spec.follow]; const j=jit(spec.follow); s+=`<polyline class="p one" points="${pts(q,spec.follow)}"/>`;
+    s+=`<circle class="mv" cx="${xs(1).toFixed(1)}" cy="${(laneY[q[0]]+j).toFixed(1)}" r="3.5"/>`;
+    for(let t=1;t<10;t++) if(q[t]!==q[t-1]){ const x=xs(t+1), y=laneY[q[t]]+j; const anchor=t>=7?'end':'start'; const dx=t>=7?-7:7;
+      s+=`<circle class="mv" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5"/><text class="mvl" x="${(x+dx).toFixed(1)}" y="${(y-6).toFixed(1)}" text-anchor="${anchor}">year ${t+1}</text>`; } }
+  if(spec.mode==='route'&&!spec.seqs.length) s+=`<text class="empty" x="${(x0+x1)/2}" y="${top+LH*8}" text-anchor="middle">No simulated career ran this exact route in sixty thousand draws.</text>`;
+  s+=`</g></svg>`; return s;
+}
+function stripBlock(spec, head){ // a sticky strip with a running year label
+  const id=++stripSeq; spec.id=id; SPECS[id]=spec;
+  const big=spec.mode==='route'?'':`<div class="strip-head"><span class="big" data-year>Year ${Math.max(1,Math.min(10,spec.year))}</span><span class="what" data-what>${spec.mode==='one'?'one simulated career':'a thousand simulated careers'}</span></div>`;
+  return `<div class="stripwrap" data-strip-id="${id}">${head||big}${stripSVG(spec)}</div>`;
+}
+function rebuildStrips(){ document.querySelectorAll('.stripwrap').forEach(w=>{ const spec=SPECS[w.dataset.stripId]; if(!spec) return; const old=w.querySelector('svg'); if(old) old.outerHTML=stripSVG(spec); }); }
+
+/* scrollytelling: the strip holds while the steps pass beneath it */
+let scrollies=[];
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function makeScrolly(sc){
+  const wrap=sc.querySelector('.stripwrap'); const spec=SPECS[wrap.dataset.stripId];
+  let anim=null;
+  const svg=()=>wrap.querySelector('svg'); const rect=()=>svg().querySelector('.clip');
+  const xs=y=>{ const g=stripGeom(); return y>=10?g.W:g.x0+(y-1)/9*(g.x1-g.x0)+2; };
+  function go(m,y){
+    const s=svg(); if(!s) return; const from=+rect().getAttribute('width'); const to=xs(y);
+    if(m!==spec.mode){ spec.mode=m; s.setAttribute('class','strip '+m); }
+    spec.year=y;
+    const yl=wrap.querySelector('[data-year]'); if(yl) yl.textContent='Year '+y;
+    const wl=wrap.querySelector('[data-what]'); if(wl) wl.textContent=m==='one'?'one simulated career':'a thousand simulated careers';
+    if(anim) cancelAnimationFrame(anim);
+    if(reduce||Math.abs(to-from)<1){ rect().setAttribute('width',to); return; }
+    const dur=Math.min(1100, 380+Math.abs(to-from)*1.4); const t0=performance.now(); const ease=t=>1-Math.pow(1-t,3);
+    const step=now=>{ const u=Math.min(1,(now-t0)/dur); const r=rect(); if(r) r.setAttribute('width',(from+(to-from)*ease(u)).toFixed(1)); if(u<1) anim=requestAnimationFrame(step); else anim=null; };
+    anim=requestAnimationFrame(step);
+  }
+  const steps=[...sc.querySelectorAll('.stepc')]; const plan=steps.map(st=>({m:st.dataset.mode,y:+st.dataset.year}));
+  const root=window.matchMedia('(max-width: 920px)').matches?null:site;
+  const io=new IntersectionObserver(entries=>{ entries.forEach(en=>{ if(en.isIntersecting){ const i=steps.indexOf(en.target); steps.forEach((x,j)=>x.classList.toggle('on',j===i)); go(plan[i].m,plan[i].y); } }); },{root,rootMargin:'-35% 0px -45% 0px',threshold:0});
+  steps.forEach(st=>io.observe(st));
+  const one=sc.querySelector('[data-one]'); if(one&&spec.follow>=0){ const q=spec.seqs[spec.follow]; const bits=['Started out in '+klow(q[0])+'.']; for(let t=1;t<10;t++) if(q[t]!==q[t-1]) bits.push('Year '+(t+1)+', '+klow(q[t])+'.'); if(bits.length===1) bits.push('Stayed there for ten years.'); one.textContent=bits.join(' '); }
+  steps[0].classList.add('on');
+  return {destroy(){ io.disconnect(); if(anim) cancelAnimationFrame(anim); }};
+}
+function wireScrolly(){ scrollies.forEach(s=>s.destroy()); scrollies=[]; canvas.querySelectorAll('.scrolly').forEach(sc=>scrollies.push(makeScrolly(sc))); }
+
+function scrollyHTML(originKey){
+  const kindO=isKindOrigin(originKey);
   const who = originKey==='all'?'people with a humanities degree':originName(originKey);
-  const dd = originKey==='all'?{rows:Object.entries(allMix10.mix).map(([k,n])=>({id:+k,n,share:n/allMix10.n}))}:destsFor(originKey);
+  const dd = originKey==='all'?{rows:allRows10}:destsFor(originKey);
   const named=dd.rows.filter(r=>r.id>0); const top=named.slice().sort((a,b)=>b.n-a.n)[0];
   let reveal='';
-  if(S.g&&S.g!=='skip'){ const gid=+S.g; reveal = gid===top.id ? `${kname(gid)} was the largest single answer, at ${shareWord(top.share)}. The other kinds of work held the rest.` : `${kname(gid)} was one of the ${nw(named.length)} answers. The largest single answer was ${klow(top.id)}, at ${shareWord(top.share)}.`; }
-  const guess = `<details id="guess-box"><summary>Guess before year ten</summary><div class="body"><p class="small">Where will the largest cluster be?</p><div class="guess-opts">${KIDS.map(k=>`<button type="button" data-guess="${k}">${esc(KIND[k].short)}</button>`).join('')}</div></div></details>`;
+  if(S.g&&S.g!=='skip'){ const gid=+S.g; reveal = gid===top.id ? `${kname(gid)} was the fullest lane, at ${shareWord(top.share)}. The other kinds of work held the rest.` : `${kname(gid)} was one of the ${nw(named.length)} answers. The fullest lane was ${klow(top.id)}, at ${shareWord(top.share)}.`; }
+  const guess = `<div id="guess-box"><p class="small">Before year ten: which lane do you think will be fullest?</p><div class="guess">${KIDS.map(k=>`<button type="button" data-guess="${k}">${esc(KIND[k].short)}</button>`).join('')}</div></div>`;
   const step=(m,y,label,html)=>`<div class="stepc" data-mode="${m}" data-year="${y}"><div class="stepcard"><span class="yr">${esc(label)}</span>${html}</div></div>`;
-  return block(node, `
-    <h2>${originKey==='all'?'Ten years of work, a thousand people at a time':'Ten years of work for '+esc(who)}</h2>
-    <div class="scrolly" data-origin="${esc(originKey)}">
-      <div class="sticky ${node==='B'?'':'under-poles'}"><canvas width="700" height="500" role="img" aria-label="A thousand simulated careers moving between fifteen kinds of work over ten years"></canvas></div>
+  const spec=Object.assign(originSpec(originKey),{mode:'one',year:10,lanes:{o:kindO?originKind(originKey):null,d:null},laneClick:true,aria:'Ten years of simulated careers for '+who});
+  return `<div class="scrolly" data-origin="${esc(originKey)}">
+      <div class="sticky">${stripBlock(spec)}</div>
       <div class="steps">
-        ${step('one',10,'One person','<p data-one></p><p class="small">A simulated career, drawn from the rates at which real people in this record moved between kinds of work each year.</p>')}
-        ${step('all',1,'Year one',`<p>A thousand people${originKey==='all'?' with a humanities degree':', '+esc(who)}, in their first year of work. Each dot is one simulated career; the one in orange is the person above.</p>`)}
-        ${step('all',3,'Year three','<p>The moves have begun. Most are still where they started. The rest are already somewhere else.</p>')}
-        ${step('all',5,'Year five',`<p>Halfway. Every kind of work has people in it, and the piles keep trading places.</p>${S.g?'':guess}`)}
-        ${step('all',10,'Year ten',`<p>The largest cluster, ${esc(klow(top.id))}, holds ${shareWord(top.share)}. No kind of work holds most of them, and ${originKey==='all'?'every one of the fifteen':nw(named.length)+' of the fifteen'} is in use.</p>${reveal?`<p id="reveal">${esc(reveal)}</p>`:'<p id="reveal" hidden></p>'}`)}
-        ${step('all',10,'What this is',`<p class="small">The dots are simulated from this record's measured year-to-year moves${originKey==='all'?'':' for '+esc(who)}, so no dot is a real person and every rate behind it rests on ten or more people. The counts are real; the individuals are not.</p>`)}
+        ${step('one',10,'One person','<p data-one></p><p class="small">A simulated career, drawn from the rates at which real people in this record moved between kinds of work each year. Each row is a kind of work, in alphabetical order. Left to right is the first ten years of work.</p>')}
+        ${step('all',1,'Year one',`<p>A thousand ${originKey==='all'?'people with a humanities degree':esc(who)}, in their first year of work. Each line is one simulated career. The line in orange is the person above.</p>`)}
+        ${step('all',3,'Year three','<p>The moves have begun. Most lines run straight on. The rest have already crossed into another row.</p>')}
+        ${step('all',5,'Year five',`<p>Halfway. Every row has people in it, and lines keep crossing in both directions.</p>${S.g?'':guess}`)}
+        ${step('all',10,'Year ten',`<p>The fullest row, ${esc(klow(top.id))}, holds ${shareWord(top.share)}. No row holds most of them, and ${originKey==='all'?'every one of the fifteen':nw(named.length)+' of the fifteen'} is in use.</p>${reveal?`<p id="reveal">${esc(reveal)}</p>`:'<p id="reveal" hidden></p>'}`)}
+        ${step('all',10,'What this is',`<p class="small">The lines are simulated from this record's measured year-to-year moves${originKey==='all'?'':' for '+esc(who)}, so no line is a real person and every rate behind it rests on ten or more people. The counts are real; the individuals are not. Open a row on the left to see who was in it.</p>`)}
       </div>
-    </div>`);
+    </div>`;
+}
+function routeStrip(opts){ // {fd, initRow, seed, want, lanes, aria, figTitle, figDek, caption}
+  const seqs=routeSeqs(opts.fd, opts.initRow, opts.seed, opts.want);
+  const spec={seqs, follow:-1, mode:'route', year:10, lanes:opts.lanes, laneClick:true, aria:opts.aria};
+  return `<figure><div class="fig-head"><span class="fig-n">Fig. 1</span><div><p class="fig-title">${esc(opts.figTitle)}</p><p class="fig-dek">${esc(opts.figDek)}</p></div></div>${stripBlock(spec,'')}<figcaption>${esc(opts.caption)} Source: archetype build of ${esc(D.generated)}.</figcaption></figure>`;
 }
 
 /* ---------- blocks ---------- */
 const stepNames = {A:'1. Arrives',B:'2. The whole field',C:'3. Narrow, or keep looking',D:'4. Where to start',E:'5. Challenges expectations',F:'6. Where could I go',G:'7. Who is already doing it',H:'8. Open a kind of work',I:'9. How would I get there',J:'10. People like me',K:'11. The nearest group',L:'12. Too few to describe',M:'13. Leaves with steps',N:'14. Comes back',P:'15. Every name opens a view'};
-function stepTag(node){ return `<button type="button" class="step" data-hover="${node}" data-go="${node}" title="${esc(stepNames[node])} in the journey chart">Step ${stepNames[node].split('.')[0]}</button>`; }
-function block(node, inner, extra){ const nd=node.replace(/\d+$/,''); return `<section class="block ${extra||''}" data-node="${nd}" id="blk-${node}">${stepTag(nd)}${inner}</section>`; }
-function kindCards(ids, opts){
-  const set=new Set(ids); const all=opts.all?KIDS:KIDS.filter(k=>set.has(k));
-  return `<div class="kgrid">${all.map(k=>{ const sup=!set.has(k); const t=titles(k,2);
-    return sup ? `<div class="kcard sup"><span class="nm">${esc(kname(k))}</span><span class="ti">fewer than ten here</span></div>`
-      : `<button type="button" class="kcard ${k===opts.self?'self':''}" data-${opts.click||'dest'}="${k}" title="${esc(KIND[k].desc)}"><span class="nm">${esc(kname(k))}</span>${t.length?`<span class="ti">${esc(t.join(', '))}</span>`:''}</button>`; }).join('')}</div>`;
+function block(node, inner, extra){ const nd=node.replace(/\d+$/,''); return `<section class="block ${extra||''}" data-node="${nd}" id="blk-${node}"><button type="button" class="stepno" data-hover="${nd}" data-go="${nd}" title="Step ${esc(stepNames[nd])}, in the journey chart">${stepNames[nd].split('.')[0]}</button>${inner}</section>`; }
+function links(rows, attr){ // rows: {id?, name?, key?, self?, sup?}
+  return `<ul class="inl">${rows.map(r=>{ const label=r.name||kname(r.id); if(r.sup) return `<li class="sup">${esc(label)}</li>`;
+    return `<li><button type="button" class="tl ${r.self?'self':''}" data-${attr}="${esc(r.key!=null?r.key:r.id)}" ${r.id!=null&&KIND[r.id]?`title="${esc(KIND[r.id].desc)}"`:''}>${esc(label)}</button></li>`; }).join('')}</ul>`;
 }
-function cloud(rows, opts){ // rows: {id?, name?, key?, self?, sup?}
-  return `<div class="cloud">${rows.map(r=>{ const label=r.name||kname(r.id); if(r.sup) return `<span class="sup">${esc(label)}</span>`;
-    return `<button type="button" class="${r.self?'self':''}" data-${opts.click}="${esc(r.key!=null?r.key:r.id)}" ${r.id!=null&&KIND[r.id]?`title="${esc(KIND[r.id].desc)}"`:''}>${esc(label)}</button>`; }).join('')}</div>`;
-}
+const run = items => `<p class="run">${items.map(t=>`<span>${esc(t)}</span>`).join('')}</p>`;
 function numbersTable(rows, head){ return `<details><summary>See the numbers</summary><div class="body"><table class="t"><tr><th>${esc(head[0])}</th><th class="r">People</th>${head[1]?`<th class="r">${esc(head[1])}</th>`:''}</tr>${byName(rows).map(r=>`<tr><td>${esc(r.name||kname(r.id))}</td><td class="r">${r.sup?'fewer than '+BAR:fmt(r.n)}</td>${head[1]?`<td class="r">${r.sup||r.share==null?'':pct(r.share)}</td>`:''}</tr>`).join('')}</table></div></details>`; }
 
 function arrival(compact){
   const who=cap(countWord(ALL.persons));
-  if(compact) return block('A', `<p class="note" style="margin:0 0 4px">What people with a humanities degree did in their first ten years of work. ${who} people, ten fields of study, from the first job on.</p>`);
+  if(compact) return `<p class="sitename"><button type="button" data-startover="1">What people with a humanities degree did in their first ten years of work</button></p>`;
   return block('A', `
     <h1>What people with a humanities degree did in their first ten years of work</h1>
     <p class="lede">${who} people, ten fields of study, followed from their first job. The kinds of work they reached, and the routes between them.</p>
     <p class="note">People who keep a public professional profile, so the record holds fewer of those who left the professional track. Nothing here is scored, and nothing is saved anywhere but this device.</p>`);
 }
 
-function fieldBlock(){
-  const named=ALL.flows.filter(f=>f[0]>0&&f[1]>0&&f[0]!==f[1]); const rows=Object.entries(allMix10.mix).map(([k,n])=>({id:+k,n,share:n/allMix10.n}));
-  return scrollyBlock('B','all') + block('B2', `
-    <h2>Fifteen kinds of work, and every move between them</h2>
-    <p class="lead">Each line is a move from a first-year kind of work to a year-ten kind that ten or more people made. Every pair is joined.</p>
-    <figure>
-      ${ringSVG(named.map(f=>[f[0],f[1]]),{anim:true,click:'dest',aria:'Every move between kinds of work',center:'Ten years in',center2:'touch a kind; open one to see who is in it'})}
-      <figcaption>Fig. 1. Fifteen kinds of work, grouped from job titles and federal occupation codes, in alphabetical order around the ring. Lines are the same weight whether ten people or a thousand made the move. Source: archetype build of ${D.generated}.</figcaption>
-    </figure>
-    ${kindCards(KIDS,{all:true,click:'dest'})}
-    ${numbersTable(rows,['Kind of work at year ten','Share'])}`);
+/* the question, as a sentence with blanks */
+function blankO(){ if(!S.o) return {t:'studied any humanities field',empty:true}; return {t:isKindOrigin(S.o)?'started out in '+klow(originKind(S.o)):'studied '+F[S.o].name}; }
+function blankD(){ return S.d?{t:'in '+klow(S.d)}:{t:'in any kind of work',empty:true}; }
+function blankS(){ const kindO=isKindOrigin(S.o); if(S.s==null) return {t:kindO?'from any field of study':'and started out anywhere',empty:true}; return {t:kindO?'and studied '+F[S.s].name:'and started out in '+klow(S.s)}; }
+function sentenceHTML(){
+  const o=blankO(), d=blankD(); const both=S.o&&S.d; const s=both?blankS():null;
+  const b=(x,key)=>`<button type="button" class="blank ${x.empty?'empty':''}" data-pick="${key}" aria-expanded="${pick===key}">${esc(x.t)}</button>`;
+  const tr=trail.length>1?`<div class="trail"><span>Trail</span>${trail.map((t,i)=>`<button type="button" data-trail="${i}" aria-current="${i===trailIdx}">${esc(t.label)}</button>`).join('')}</div>`:'';
+  return `<p class="ask">Follow people who ${b(o,'o')}${s?' '+b(s,'s'):''} to where they were ten years later, ${b(d,'d')}.</p>${pickerHTML()}${tr}`;
 }
-function narrowLine(){ return block('C', `<p class="note" style="margin:0">Narrow it down below, or keep looking around.</p>`); }
+function pickerHTML(){
+  if(!pick) return '';
+  const li=(label,attr,val,self,ti)=>`<li><button type="button" class="${self?'self':''}" data-${attr}="${esc(val)}">${esc(label)}${ti?`<span class="ti">${esc(ti)}</span>`:''}</button></li>`;
+  if(pick==='o'){
+    const cur=S.o;
+    return `<div class="picker" id="picker">
+      <div><h4>A field of study</h4><ul>${FK.map(k=>li(F[k].name,'origin',k,cur===k)).join('')}</ul></div>
+      <div><h4>Or a kind of work to start out in</h4><ul>${KIDS.map(k=>li(kname(k),'origin','k:'+k,cur==='k:'+k)).join('')}</ul></div>
+      <div class="foot">${cur?`<button type="button" data-clear="o">Anyone with a humanities degree</button>`:''}<button type="button" data-pick-close="1">Close</button></div></div>`;
+  }
+  if(pick==='d'){
+    return `<div class="picker" id="picker">
+      <div><h4>A kind of work</h4><ul>${KIDS.map(k=>li(kname(k),'dest',k,S.d===k,titles(k,3).join(', '))).join('')}</ul></div>
+      <div><h4>Or a job you are curious about</h4><input class="search" id="job-search" type="search" placeholder="Type a job title, for example editor or paralegal" aria-label="Search for a job"><div class="results" id="job-results"></div><p class="note">Any title held by ten or more people in this record. It opens the kind of work it sits inside.</p></div>
+      <div class="foot">${S.d?`<button type="button" data-clear="d">Any kind of work</button>`:''}<button type="button" data-pick-close="1">Close</button></div></div>`;
+  }
+  const kindO=isKindOrigin(S.o);
+  const rows = kindO ? FK.map(k=>li(F[k].name,'likeme',k,S.s===k)) : KIDS.map(k=>li(kname(k),'likeme',k,S.s===k));
+  return `<div class="picker" id="picker">
+    <div><h4>${kindO?'Only people who studied':'Only people who started out in'}</h4><ul>${rows.join('')}</ul></div>
+    <div class="foot">${S.s!=null?`<button type="button" data-clear="s">${kindO?'Any field of study':'Any first job'}</button>`:''}<button type="button" data-pick-close="1">Close</button></div></div>`;
+}
+function sentenceBlock(){ return block('D', sentenceHTML(), 'ask-block'); }
 
-function doorsBlock(compact){
-  return block('D', `
-    <h2 ${compact?'style="font-size:22px"':''}>${compact?'Start somewhere else':'Three ways in'}</h2>
-    <div class="doorrow"><h3>What I studied</h3>${cloud(FK.map(k=>({name:F[k].name,key:k})),{click:'origin'})}</div>
-    <div class="doorrow"><h3>Work I would want to start in</h3>${cloud(KIDS.map(k=>({id:k,key:'k:'+k})),{click:'origin'})}</div>
-    <div class="doorrow"><h3>A job I am curious about</h3><div><input class="search" id="job-search" type="search" placeholder="Type a job title, for example editor or paralegal" aria-label="Search for a job"><div class="results" id="job-results"></div></div></div>`);
+function fieldBlock(){
+  return block('B', `<h2>Ten years of work, a thousand people at a time</h2>` + scrollyHTML('all') + numbersTable(allRows10,['Kind of work at year ten','Share']));
 }
+function narrowLine(){ return block('C', `<p class="note" style="margin:0">Fill in either blank above to narrow it down, or keep looking around. Every row on the strip opens as a kind of work.</p>`, 'quiet'); }
 
 function q1Block(){
-  const o=S.o; const dd=destsFor(o); const named=dd.rows.filter(r=>r.id>0); const ids=named.map(r=>r.id);
-  const who=originName(o); let lead, ring;
-  if(isKindOrigin(o)){
-    const a=originKind(o); const outs=flowsFrom(ALL,a).filter(r=>r.to>0&&r.to!==a);
-    lead=`<p class="lead">From ${esc(klow(a))}, ${nw(outs.length)} other kinds of work were reached by ten or more people.</p>`;
-    ring=ringSVG(outs.map(r=>[a,r.to]),{click:'dest',self:new Set([a]),aria:'Routes out of '+kname(a),center:KIND[a].short,center2:'where people who started here were at year ten'});
-  } else {
-    const fd=F[o]; const moves=fd.flows.filter(f=>f[0]>0&&f[1]>0&&f[0]!==f[1]);
-    lead=`<p class="lead">${cap(who)} reached ${nw(ids.length)} kinds of work, and made ${fmt(moves.length)} different moves between them.</p>`;
-    ring=ringSVG(moves.map(f=>[f[0],f[1]]),{click:'dest',aria:'Routes from '+fd.name,center:fd.name,center2:'first-year kind to year-ten kind'});
-  }
-  return scrollyBlock('E',o) + block('F', `
-    <h2>Where <span class="acc">${esc(who)}</span> were, one to ten years later</h2>
-    ${lead}
-    <figure>${ring}<figcaption>Fig. 1. One line per move made by ten or more people, all at the same weight. Touch a kind to see its routes; open one to see the way in. Years count from the first job. Source: archetype build of ${D.generated}.</figcaption></figure>
-    ${kindCards(ids,{click:'dest'})}
-    ${numbersTable(named,['Kind of work at year ten','Share'])}`)
-    + block('H', `<p class="note" style="margin:0">Open a kind of work to see the route in.</p>`);
+  const o=S.o; const dd=destsFor(o); const named=dd.rows.filter(r=>r.id>0); const who=originName(o);
+  let lead;
+  if(isKindOrigin(o)){ const a=originKind(o); const outs=flowsFrom(ALL,a).filter(r=>r.to>0&&r.to!==a); lead=`From ${esc(klow(a))}, ${nw(outs.length)} other kinds of work were reached by ten or more people.`; }
+  else { const fd=F[o]; const moves=fd.flows.filter(f=>f[0]>0&&f[1]>0&&f[0]!==f[1]); lead=`${cap(who)} reached ${nw(named.length)} kinds of work, and made ${fmt(moves.length)} different moves between them.`; }
+  return block('E', `<h2>Where ${esc(who)} were, one to ten years later</h2>` + scrollyHTML(o))
+    + block('F', `<p class="lead">${lead}</p>${numbersTable(named,['Kind of work at year ten','Share'])}`, 'quiet')
+    + block('H', `<p class="note" style="margin:0">Open a kind of work to see the route in: a row on the strip, or the second blank in the sentence.</p>`, 'quiet');
 }
 
 function q3Block(){
   const d=S.d; const fields=fieldsInto(d); const named=fields.filter(f=>f.n>=BAR); const starts=flowsInto(ALL,d).filter(r=>r.from>0&&r.from!==d); const fe=ALL.first_entry[d]; const roles=titles(d,12);
   const n=allMix10.mix[d]||0;
+  const strip=routeStrip({fd:ALL, initRow:fieldInit(ALL), seed:'q3:'+d, want:q=>q[9]===d, lanes:{o:null,d}, aria:'Simulated careers that ended in '+kname(d),
+    figTitle:'A hundred careers that were in '+klow(d)+' at year ten', figDek:'Where they started, and the rows they crossed on the way.',
+    caption:'Simulated careers, drawn from the record\'s measured year-to-year moves until a hundred ended in this row. No line is a real person, and every rate behind it rests on ten or more people.'});
   return block('G', `
-    <h2>Who was already in <span class="acc">${esc(klow(d))}</span></h2>
+    <h2>Who was already in ${esc(klow(d))}</h2>
     <p class="lead">${cap(countWord(n))} people, from ${named.length===FK.length?'every field of study here':nw(named.length)+' fields of study'}, arriving from ${nw(starts.length)} other kinds of work${fe?', typically first entering it in '+yearWord(fe):''}.</p>
-    <figure>${ringSVG(starts.map(r=>[r.from,d]),{click:'startorigin',self:new Set([d]),aria:'Routes into '+kname(d),center:KIND[d].short,center2:'the first-year kinds people came from'})}<figcaption>Fig. 1. One line per first-year kind of work that ten or more people moved from into this one. Open a kind to follow the people who started there. Source: archetype build of ${D.generated}.</figcaption></figure>
+    ${strip}
     <div class="panels">
-      <div class="ph">What they studied</div><div class="pb">${cloud(byName(fields.map(f=>({name:f.name,key:f.k,sup:f.n<BAR}))),{click:'origin'})}${numbersTable(fields.map(f=>({name:f.name,n:f.n,share:f.share,sup:f.n<BAR})),['Field of study','Of that field'])}</div>
-      <div class="ph">What it was called</div><div class="pb"><div class="chips">${roles.map(r=>`<span>${esc(r)}</span>`).join('')}</div></div>
+      <div class="ph">What they studied</div><div class="pb">${links(byName(fields.map(f=>({name:f.name,key:f.k,sup:f.n<BAR}))),'origin')}${numbersTable(fields.map(f=>({name:f.name,n:f.n,share:f.share,sup:f.n<BAR})),['Field of study','Of that field'])}</div>
+      <div class="ph">Where they started out</div><div class="pb">${links(byName(starts.map(r=>({id:r.from,key:'k:'+r.from}))),'origin')}${numbersTable(starts.map(r=>({id:r.from,n:r.n})),['First-year kind of work'])}</div>
+      <div class="ph">What it was called</div><div class="pb">${run(roles)}</div>
     </div>`)
-    + block('H', `<p class="note" style="margin:0">Open a field of study to see how people got from there to ${esc(klow(d))}.</p>`);
+    + block('H', `<p class="note" style="margin:0">Open a field of study or a first job to see how people got from there to ${esc(klow(d))}.</p>`, 'quiet');
 }
 
 function q2Block(){
@@ -642,30 +632,38 @@ function q2Block(){
   else { n=mixAt(fd,10).mix[d]||0; ways=flowsInto(fd,d); fe=fd.first_entry[d]; }
   if(n<BAR){
     const pooled=allMix10.mix[d]||0; const near=byName(fieldsInto(d).filter(f=>f.n>=BAR)).slice(0,3);
-    return block('I', `<h2>From ${esc(originShort(o))} to <span class="acc">${esc(klow(d))}</span></h2>`)
-      + block('L', `<div class="thin-box">
-        <p>Fewer than ten ${esc(who)} were in ${esc(klow(d))} ten years later, too few to describe without describing individuals.</p>
-        <p>A wider view of the same route. ${cap(countWord(pooled))} people across all ten fields reached this work. ${near.length?'The nearest routes that were common enough to name ran from '+list(near.map(f=>f.name))+'.':''} The condition set aside was ${kindO?'the starting kind of work':'field of study'}. The button below restores it.</p>
-        <p class="row"><button type="button" class="btn quiet" data-clear="o">Show the wider answer</button><button type="button" class="btn quiet" data-clear="d">Keep ${esc(originShort(o))} and clear the destination</button></p>
+    const strip=routeStrip({fd:ALL, initRow:fieldInit(ALL), seed:'q3:'+d, want:q=>q[9]===d, lanes:{o:null,d}, aria:'Simulated careers that ended in '+kname(d),
+      figTitle:'The wider answer: a hundred careers from any field that were in '+klow(d)+' at year ten', figDek:'Shown in place of the route that is too thin to draw.',
+      caption:'Simulated careers from all ten fields, drawn from the record\'s measured year-to-year moves until a hundred ended in this row. No line is a real person.'});
+    return block('I', `<h2>How ${esc(who)} got to ${esc(klow(d))}</h2>`, 'quiet')
+      + block('L', `<div class="thin">
+        <p class="lead">Fewer than ten ${esc(who)} were in ${esc(klow(d))} ten years later, too few to describe without describing individuals.</p>
+        <p>A wider view of the same route. ${cap(countWord(pooled))} people across all ten fields reached this work. ${near.length?'The nearest routes that were common enough to name ran from '+esc(list(near.map(f=>f.name)))+'.':''} The condition set aside was ${kindO?'the first job':'field of study'}. The first button below restores it.</p>
+        <p class="row"><button type="button" class="btn quiet" data-clear="o">Show the wider answer</button><button type="button" class="btn quiet" data-clear="d">Keep ${esc(originShort(o))} and clear the kind of work</button></p>
+        ${strip}
       </div>`);
   }
   const waysOther=ways.filter(r=>r.from!==d&&r.from>0);
   const lead = kindO
-    ? `<p class="lead">${cap(countWord(n))} ${esc(who)} were in ${esc(klow(d))} ten years later${fe?', typically first entering it in '+yearWord(fe):''}.</p>`
-    : `<p class="lead">${cap(countWord(n))} ${esc(who)} were in ${esc(klow(d))} ten years later, arriving from ${nw(waysOther.length)} other kinds of work${fe?' and typically first entering it in '+yearWord(fe):''}.</p>`;
+    ? `${cap(countWord(n))} ${esc(who)} were in ${esc(klow(d))} ten years later${fe?', typically first entering it in '+yearWord(fe):''}.`
+    : `${cap(countWord(n))} ${esc(who)} were in ${esc(klow(d))} ten years later, arriving from ${nw(waysOther.length)} other kinds of work${fe?' and typically first entering it in '+yearWord(fe):''}.`;
   const roles=titles(d,10); const portal=(!kindO&&fd.portal)?D.portal[fd.portal]:null;
+  const strip=routeStrip({fd, initRow:kindO?oneHot(a):fieldInit(fd), seed:'q2:'+o+':'+d, want:q=>q[9]===d, lanes:{o:a,d}, aria:'Simulated routes from '+originShort(o)+' to '+kname(d),
+    figTitle:'A hundred careers, '+(kindO?'starting out in '+klow(a):'from '+fd.name)+', that were in '+klow(d)+' at year ten', figDek:'The rows they crossed on the way are the kinds of work they passed through.',
+    caption:'Simulated careers, drawn from the measured year-to-year moves of '+who+' until a hundred ended in this row. No line is a real person, and every rate behind it rests on ten or more people.'});
   const studied = kindO
-    ? (()=>{ const rows=FK.map(k=>({name:F[k].name,key:k,n:flowCell(F[k],a,d)})); const ok=rows.filter(r=>r.n>=BAR); return ok.length?cloud(byName(rows.map(r=>({name:r.name,key:r.key,sup:r.n<BAR}))),{click:'likeme'})+numbersTable(rows.map(r=>({name:r.name,n:r.n,sup:r.n<BAR})),['Field of study']):`<div class="empty">No single field of study sent ten or more people along this route.</div>`; })()
-    : `<p class="note" style="margin:0">Everyone here studied ${esc(F[o].name)}. Open ${esc(klow(d))} on its own from the trail to compare fields.</p>`;
+    ? (()=>{ const rows=FK.map(k=>({name:F[k].name,key:k,n:flowCell(F[k],a,d)})); const ok=rows.filter(r=>r.n>=BAR); return ok.length?links(byName(rows.map(r=>({name:r.name,key:r.key,sup:r.n<BAR}))),'likeme')+numbersTable(rows.map(r=>({name:r.name,n:r.n,sup:r.n<BAR})),['Field of study']):`<p class="note" style="margin:0">No single field of study sent ten or more people along this route.</p>`; })()
+    : `<p class="note" style="margin:0">Everyone here studied ${esc(F[o].name)}. Clear the first blank to compare fields.</p>`;
   return block('I', `
-    <h2>How ${esc(who)} got to <span class="acc">${esc(klow(d))}</span></h2>
-    ${lead}
+    <h2>How ${esc(who)} got to ${esc(klow(d))}</h2>
+    <p class="lead">${lead}</p>
+    ${strip}
     <div class="panels">
-      <div class="ph">Ways in</div><div class="pb">${kindO?`<p class="note" style="margin:0">Everyone here started in ${esc(klow(a))}. Narrow to a field of study below.</p>`:cloud(byName(ways.map(r=>({id:r.from,self:r.from===d}))),{click:'start'})+numbersTable(ways.map(r=>({id:r.from,n:r.n})),['First-year kind of work'])}</div>
-      <div class="ph">What it was called</div><div class="pb"><div class="chips">${roles.map(r=>`<span>${esc(r)}</span>`).join('')}</div><p class="note">A description of the work itself, composited from how people described their own jobs, is not yet written.</p></div>
+      <div class="ph">Ways in</div><div class="pb">${kindO?`<p class="note" style="margin:0">Everyone here started out in ${esc(klow(a))}. Narrow to a field of study in the sentence above.</p>`:links(byName(ways.map(r=>({id:r.from,self:r.from===d}))),'start')+`<p class="note">The kinds of work these people held in their first year. Open one to follow only the people who started there.</p>`+numbersTable(ways.map(r=>({id:r.from,n:r.n})),['First-year kind of work'])}</div>
+      <div class="ph">What it was called</div><div class="pb">${run(roles)}<p class="note">A description of the work itself, composited from how people described their own jobs, is not yet written.</p></div>
       <div class="ph">What they studied</div><div class="pb">${studied}</div>
-      <div class="ph">What they carried</div><div class="pb"><div class="empty">Certifications and licenses, named where ten or more held one. This record does not yet hold them.</div></div>
-      <div class="ph">Where it happened</div><div class="pb">${portal?`<div class="chips">${portal.employers.slice(0,10).map(e=>`<span>${esc(e.name)}</span>`).join('')}</div><p class="note">Employers of ${esc(F[o].name)} graduates in their first five years, where ten or more worked. Places where people worked, and not current openings.</p>`:`<div class="empty">Employers where ten or more worked. This record does not yet hold them for ${kindO?'a starting kind of work':esc(F[o].name)}.</div>`}
+      <div class="ph">What they carried</div><div class="pb"><p class="note" style="margin:0">Certifications and licenses, named where ten or more held one. This record does not yet hold them.</p></div>
+      <div class="ph">Where it happened</div><div class="pb">${portal?run(portal.employers.slice(0,10).map(e=>e.name))+`<p class="note">Employers of ${esc(F[o].name)} graduates in their first five years, where ten or more worked. Places where people worked, not current openings.</p>`:`<p class="note" style="margin:0">Employers where ten or more worked. This record does not yet hold them for ${kindO?'a first job':esc(F[o].name)}.</p>`}
         <details><summary>Does this work pay</summary><div class="body">
           <p>This record holds job titles, employers, industries, credentials and degrees. It does not hold pay, hours, benefits, or time out of work, so no figure on this site is an earnings figure.</p>
           <p style="margin:0">The kind of work maps onto federal occupation codes (${esc(KIND[d].soc)}). The Bureau of Labor Statistics publishes median wages for those codes, from a survey built to measure pay. This view stays open behind them.</p>
@@ -676,26 +674,22 @@ function q2Block(){
 function likeMeBlocks(){
   const o=S.o,d=S.d; const kindO=isKindOrigin(o); const a=kindO?originKind(o):null;
   const base = kindO ? flowCell(ALL,a,d) : (mixAt(F[o],10).mix[d]||0); if(base<BAR) return '';
-  let head, opts, cellN, fd, aa, fieldName;
-  if(kindO){
-    head=`<h2>Only people who studied what I study</h2>`;
-    opts = cloud(FK.map(k=>({name:F[k].name,key:k})),{click:'likeme'});
-    if(S.s!=null){ fd=F[S.s]; aa=a; fieldName=F[S.s].name; cellN=flowCell(fd,a,d); }
-  } else {
-    head=`<h2>Only people who started where I would start</h2>`;
-    opts = cloud(KIDS.map(k=>({id:k})),{click:'likeme'});
-    if(S.s!=null){ fd=F[o]; aa=S.s; fieldName=F[o].name; cellN=flowCell(fd,aa,d); }
-  }
-  let out = block('J', head + (S.s!=null
-    ? `<p class="row"><span class="chip filter">${kindO?'Studied':'Started in'} <b>${esc(kindO?F[S.s].name:kname(S.s))}</b><button type="button" data-clear="s" aria-label="Remove this condition">×</button></span></p>`
-    : opts));
+  let cellN, fd, aa, fieldName;
+  if(kindO){ if(S.s!=null){ fd=F[S.s]; aa=a; fieldName=F[S.s].name; cellN=flowCell(fd,a,d); } }
+  else { if(S.s!=null){ fd=F[o]; aa=S.s; fieldName=F[o].name; cellN=flowCell(fd,aa,d); } }
+  let out = block('J', S.s!=null
+    ? `<h2>${kindO?'Only people who studied what I study':'Only people who started out where I would start'}</h2><p class="filter">Showing only people who ${kindO?'studied '+esc(F[S.s].name):'started out in '+esc(klow(S.s))}.<button type="button" data-clear="s">Remove this condition</button></p>`
+    : `<h2>${kindO?'Only people who studied what I study':'Only people who started out where I would start'}</h2><p class="small">${kindO?'Pick a field of study':'Pick a first job'} in the third blank of the sentence, or here.</p>${kindO?links(FK.map(k=>({name:F[k].name,key:k})),'likeme'):links(KIDS.map(k=>({id:k})),'likeme')}`);
   if(S.s==null) return out;
   if(cellN>=BAR){
     const v=via5(fd,aa,d); const mids=v.filter(r=>r.at5!==aa&&r.at5!==d); const already=v.find(r=>r.at5===d); const still=v.find(r=>r.at5===aa);
     const parts=[]; if(already) parts.push('Some were already in '+klow(d)+' by year five.'); if(still) parts.push('Some were still in '+klow(aa)+' at year five.'); if(mids.length) parts.push('Others passed through '+list(byName(mids.map(r=>({id:r.at5}))).map(r=>klow(r.id)))+' on the way.');
+    const strip=routeStrip({fd, initRow:oneHot(aa), seed:'k:'+o+':'+aa+':'+d, want:q=>q[9]===d, lanes:{o:aa,d}, aria:'Simulated routes for the nearest group',
+      figTitle:'A hundred careers that studied '+fieldName+', started out in '+klow(aa)+', and were in '+klow(d)+' at year ten', figDek:'What they were doing at year five is where the lines sit halfway across.',
+      caption:'Simulated careers, drawn from the measured year-to-year moves of people who studied '+fieldName+' until a hundred ran this route. No line is a real person.'});
     out += block('K', `<h2>The nearest group in the record</h2>
-      <p class="lead">${cap(countWord(cellN))} people who studied ${esc(fieldName)} started in ${esc(klow(aa))} and were in ${esc(klow(d))} ten years later. ${parts.join(' ')}</p>
-      <figure>${pathwayMap(fd,aa,d)}<figcaption>Fig. 1. The same people at year one, year five and year ten. The middle column is every kind of work that ten or more of them held halfway along; the rest are pooled as elsewhere. Source: archetype build of ${D.generated}.</figcaption></figure>
+      <p class="lead">${cap(countWord(cellN))} people who studied ${esc(fieldName)} started out in ${esc(klow(aa))} and were in ${esc(klow(d))} ten years later. ${parts.join(' ')}</p>
+      ${strip}
       ${numbersTable(v.map(r=>({id:r.at5,n:r.n})).concat(cellN-v.reduce((s,r)=>s+r.n,0)>0?[{name:'Elsewhere, in kinds too small to name',n:cellN-v.reduce((s,r)=>s+r.n,0)}]:[]),['Kind of work at year five'])}`);
     return out;
   }
@@ -703,23 +697,23 @@ function likeMeBlocks(){
   const near = kindO
     ? byName(FK.map(k=>({name:F[k].name,key:k,n:flowCell(F[k],aa,d)})).filter(r=>r.n>=BAR)).slice(0,3)
     : byName(flowsInto(fd,d).filter(r=>r.from!==aa&&r.from>0).map(r=>({id:r.from,key:r.from}))).slice(0,3).map(r=>({name:klow(r.id),key:r.key}));
-  out += block('L', `<div class="thin-box">
-    <p>Fewer than ten people took this exact route. They studied ${esc(fieldName)}, started in ${esc(klow(aa))}, and were in ${esc(klow(d))} ten years later. That is too few to describe without describing individuals.</p>
-    <p>A wider view of the same route. ${cap(countWord(wide))} ${kindO?'people who started in '+esc(klow(aa))+', from every field of study,':'people who studied '+esc(fieldName)+', from every first job,'} reached this work. ${near.length?'The nearest routes that were common enough to name '+(kindO?'came from '+list(near.map(r=>r.name)):'began in '+list(near.map(r=>r.name)))+'.':''} The condition set aside was ${kindO?'field of study':'the first job'}. The button below restores it.</p>
+  out += block('L', `<div class="thin">
+    <p class="lead">Fewer than ten people took this exact route. They studied ${esc(fieldName)}, started out in ${esc(klow(aa))}, and were in ${esc(klow(d))} ten years later. That is too few to describe without describing individuals.</p>
+    <p>A wider view of the same route. ${cap(countWord(wide))} ${kindO?'people who started out in '+esc(klow(aa))+', from every field of study,':'people who studied '+esc(fieldName)+', from every first job,'} reached this work. ${near.length?'The nearest routes that were common enough to name '+(kindO?'came from '+esc(list(near.map(r=>r.name))):'began in '+esc(list(near.map(r=>r.name))))+'.':''} The condition set aside was ${kindO?'field of study':'the first job'}. The first button below restores it.</p>
     <p class="row"><button type="button" class="btn quiet" data-clear="s">Show the wider answer</button>${near.map(r=>`<button type="button" class="btn quiet" data-likeme="${esc(r.key)}">Follow ${esc(r.name)} instead</button>`).join('')}</p>
   </div>`);
   return out;
 }
 
-function nounNote(){ return block('P', `<p class="note" style="margin:0">Any kind of work, field of study or first job named on this screen opens as the next view.</p>`); }
+function nounNote(){ return block('P', `<p class="note" style="margin:0">Any kind of work, field of study or first job named on this screen opens as the next view.</p>`, 'quiet'); }
 
 function takeBlock(){
   const m=mode(S);
-  if(m==='Q0') return block('M', `<h2>Leave with something to do</h2><p class="note" style="margin:0">Set a starting point or a kind of work, and this becomes a short list of possible steps and questions to bring to an advisor.</p>`, 'take-block');
+  if(m==='Q0') return block('M', `<h2>Leave with something to do</h2><p class="note" style="margin:0">Fill in a starting point or a kind of work, and this becomes a short list of possible steps and questions to bring to an advisor.</p>`, 'take-block');
   const o=S.o,d=S.d; const kindO=o?isKindOrigin(o):false; const fd=(o&&!kindO)?F[o]:null; const portal=fd&&fd.portal?D.portal[fd.portal]:null;
   const steps=[];
   if(d){ const ways=byName((fd?flowsInto(fd,d):flowsInto(ALL,d)).filter(r=>r.from>0&&r.from!==d).map(r=>({id:r.from}))); const first=ways.slice(0,3).map(r=>klow(r.id)); const y1roles=ways.length?titles(ways[0].id,4):[];
-    steps.push(`<b>Entry-level work.</b> People who reached ${esc(klow(d))} started in ${esc(list(first))}${ways.length>3?', among others':''}.${y1roles.length?' First-year titles in '+esc(klow(ways[0].id))+' included '+esc(list(y1roles))+'.':''}`); }
+    steps.push(`<b>Entry-level work.</b> People who reached ${esc(klow(d))} started out in ${esc(list(first))}${ways.length>3?', among others':''}.${y1roles.length?' First-year titles in '+esc(klow(ways[0].id))+' included '+esc(list(y1roles))+'.':''}`); }
   else if(o){ const dd=byName(destsFor(o).rows.filter(r=>r.id>0)).slice(0,4); steps.push(`<b>Where this leads.</b> ${cap(originName(o))} reached ${esc(list(dd.map(r=>klow(r.id))))}, and more. Open one to see the route in.`); }
   if(portal&&portal.grad.by_type.length){ const g=portal.grad.by_type.map(t=>t.type); steps.push(`<b>A graduate option.</b> ${esc(fd.name)} graduates in this record went on to ${esc(list(g.slice(0,3)))}, among other programs, within five years. The program's own deadline belongs here when this is built.`); }
   else steps.push(`<b>A graduate option.</b> Which graduate steps people on this route took. In this record that is known for five fields of study. Set one of them to see it.`);
@@ -738,52 +732,44 @@ function takeBlock(){
       <div class="tb"><div class="label">Where this started</div><p style="margin:0">${esc(stateLabel(S))}. Ten fields of study, fifteen kinds of work, years counted from the first job. Anything named here was done by ten or more people. This record does not observe pay, hours, time out of work or satisfaction.</p></div>
       <div class="tb"><div class="label">Possible steps</div><ul>${steps.map(s=>`<li>${s}</li>`).join('')}</ul></div>
       <div class="tb"><div class="label">Questions to bring to a person</div><ol>${qs.slice(0,3).map(q=>`<li>${esc(q)}</li>`).join('')}</ol></div>
-      <div class="tb"><div class="label">Return code</div><p style="margin:0" class="ui num">${esc(location.origin+location.pathname+(location.hash||'#'))}</p></div>
+      <div class="tb"><div class="label">Return code</div><p class="code">${esc(location.origin+location.pathname+(location.hash||'#'))}</p></div>
     </div>
-    <p class="row" style="margin-top:10px"><button type="button" class="btn" id="print-btn">Print this page</button><span class="small muted">Bring it to an advisor as a starting point for the conversation.</span></p>`, 'take-block');
+    <p class="row" style="margin-top:12px"><button type="button" class="btn" id="print-btn">Print this page</button><span class="small muted">Bring it to an advisor as a starting point for the conversation.</span></p>`, 'take-block');
 }
 
 function returnBlock(){
   let last=null; try{ last=JSON.parse(localStorage.getItem('hw-last')||'null'); }catch(e){}
   if(!last||!last.h||last.h===(location.hash||'#')||sessionStorage.getItem('hw-ret-dismissed')) return '';
-  return block('N', `<div class="return"><p>This device last opened ${esc(last.label)}, on ${esc(last.date)}. Reopen it, or start somewhere else. Nothing was saved anywhere but this device.</p><button type="button" class="btn" data-reopen="${esc(last.h)}">Reopen it</button><button type="button" class="btn quiet" data-dismiss-return="1">Start somewhere else</button></div>`);
-}
-
-function polesBar(){
-  const o=S.o?`<span class="chip">${isKindOrigin(S.o)?'Started in':'Studied'} <b>${esc(isKindOrigin(S.o)?klow(originKind(S.o)):F[S.o].name)}</b><button type="button" data-clear="o" aria-label="Clear the starting point">×</button></span>`:`<span class="chip empty">Starting point: open</span>`;
-  const d=S.d?`<span class="chip">Kind of work <b>${esc(klow(S.d))}</b><button type="button" data-clear="d" aria-label="Clear the kind of work">×</button></span>`:`<span class="chip empty">Kind of work: open</span>`;
-  const s=S.s!=null?`<span class="chip filter">${isKindOrigin(S.o)?'Studied':'Started in'} <b>${esc(isKindOrigin(S.o)?F[S.s].name:klow(S.s))}</b><button type="button" data-clear="s" aria-label="Remove">×</button></span>`:'';
-  const swap=(S.o||S.d)?`<button type="button" class="btn quiet" style="padding:4px 9px;font-size:13px" data-startover="1">Start over</button>`:'';
-  const tr=trail.length>1?`<div class="trail" style="flex-basis:100%"><span>Trail</span>${trail.map((t,i)=>`<button type="button" data-trail="${i}" aria-current="${i===trailIdx}">${esc(t.label)}</button>`).join('')}</div>`:'';
-  return `<div class="poles"><span class="k">This view</span>${o}${d}${s}${swap}${tr}</div>`;
+  return block('N', `<div class="return"><p>This device last opened ${esc(last.label)}, on ${esc(last.date)}. Reopen it, or start somewhere else. Nothing was saved anywhere but this device.</p><button type="button" class="btn" data-reopen="${esc(last.h)}">Reopen it</button><button type="button" class="btn quiet" data-dismiss-return="1">Start somewhere else</button></div>`, 'quiet');
 }
 
 /* ---------- render ---------- */
 const canvas=document.getElementById('canvas');
 function render(){
   const m=mode(S); let html='';
-  if(m==='Q0'){ html += arrival(false) + returnBlock() + fieldBlock() + narrowLine() + doorsBlock(false) + takeBlock(); }
+  Object.keys(SPECS).forEach(k=>delete SPECS[k]);
+  if(m==='Q0'){ html += arrival(false) + returnBlock() + sentenceBlock() + fieldBlock() + narrowLine() + takeBlock(); }
   else {
-    html += arrival(true) + polesBar();
+    html += arrival(true) + sentenceBlock();
     if(m==='Q1') html += q1Block();
     if(m==='Q3') html += q3Block();
     if(m==='Q2') html += q2Block() + likeMeBlocks();
-    html += nounNote() + takeBlock() + doorsBlock(true);
+    html += nounNote() + takeBlock();
   }
   canvas.innerHTML=html;
-  wireSearch(); wireWebs(); wireScrolly(); observe();
+  wireSearch(); wireScrolly(); observe();
   try{ if(m!=='Q0'){ localStorage.setItem('hw-last',JSON.stringify({h:location.hash,label:stateLabel(S),date:new Date().toLocaleDateString('en-US',{day:'numeric',month:'long'})})); } }catch(e){}
   if(pendingScroll){ const el=document.getElementById('blk-'+pendingScroll); if(el) scrollSiteTo(el); pendingScroll=null; }
-  else if(m!=='Q0'){ const first=canvas.querySelector('.poles'); if(first) scrollSiteTo(first,true); }
+  else if(m!=='Q0'){ site.scrollTo({top:0}); }
   setActive(defaultNode(m));
 }
-function defaultNode(m){ return {Q0:'B',Q1:'F',Q3:'G',Q2:'I'}[m]; }
-const site=document.getElementById('site');
-function scrollSiteTo(el,top){
+function renderSentence(){ const el=document.getElementById('blk-D'); if(!el) return; el.innerHTML=el.querySelector('.stepno').outerHTML+sentenceHTML(); wireSearch(); if(pick){ setActive('D'); const p=document.getElementById('picker'); const f=p&&p.querySelector('input,button'); } }
+function defaultNode(m){ return {Q0:'B',Q1:'E',Q3:'G',Q2:'I'}[m]; }
+function scrollSiteTo(el){
   if(window.matchMedia('(max-width: 920px)').matches){ el.scrollIntoView({block:'start'}); return; }
-  const poles=canvas.querySelector('.poles'); const off=(poles&&!top)?poles.getBoundingClientRect().height+8:0;
-  const y=site.scrollTop+(el.getBoundingClientRect().top-site.getBoundingClientRect().top)-(top?0:12)-off; site.scrollTo({top:Math.max(0,y-10)});
+  const y=site.scrollTop+(el.getBoundingClientRect().top-site.getBoundingClientRect().top)-16; site.scrollTo({top:Math.max(0,y)});
 }
+window.matchMedia('(max-width: 660px)').addEventListener('change',()=>rebuildStrips());
 
 /* ---------- search: nearest title ---------- */
 function wireSearch(){
@@ -793,32 +779,35 @@ function wireSearch(){
     let hits=D.search.filter(([t])=>t.toLowerCase().includes(q));
     if(hits.length<4){ const words=q.split(/\s+/); hits=hits.concat(D.search.filter(h=>!hits.includes(h)&&words.some(w=>w.length>2&&h[0].toLowerCase().split(/[\s/,-]+/).some(tw=>tw.startsWith(w))))); }
     const kinds=KIDS.filter(k=>kname(k).toLowerCase().includes(q)).map(k=>`<button type="button" class="opt" data-dest="${k}"><span>${esc(kname(k))}</span><span class="in">a kind of work</span></button>`);
-    const items=hits.slice(0,8).map(([t,a])=>`<button type="button" class="opt" data-dest="${a}"><span>${esc(t)}</span><span class="in">sits inside ${esc(klow(a))}</span></button>`);
-    res.innerHTML=(kinds.concat(items).join(''))||`<div class="empty">No title in this record is close to that. Try a shorter word, or open the whole field above and start from a kind of work.</div>`;
+    const items=hits.slice(0,8).map(([t,a])=>`<button type="button" class="opt" data-dest="${a}"><span>${esc(t)}</span><span class="in">sits inside ${esc(KIND[a].short.toLowerCase())}</span></button>`);
+    res.innerHTML=(kinds.concat(items).join(''))||`<p class="note">No title in this record is close to that. Try a shorter word, or pick a kind of work on the left.</p>`;
   };
-  inp.addEventListener('input',list);
+  inp.addEventListener('input',list); inp.focus();
 }
 function openKind(k){ commit({d:k, s:null}, S.o?'I':'G'); }
 
 /* ---------- clicks ---------- */
 canvas.addEventListener('click',e=>{
-  const b=e.target.closest('button,[data-dest],[data-startorigin]'); if(!b) return; const ds=b.dataset;
+  const lane=e.target.closest('.lane[role="button"]'); if(lane){ openKind(+lane.dataset.lane); return; }
+  const b=e.target.closest('button,[data-dest]'); if(!b) return; const ds=b.dataset;
+  if(ds.pick){ pick = pick===ds.pick?null:ds.pick; renderSentence(); return; }
+  if(ds.pickClose){ pick=null; renderSentence(); return; }
   if(ds.origin){ commit({o:ds.origin, s:null, g:null}, S.d?'I':'E'); return; }
-  if(ds.startorigin){ commit({o:'k:'+ds.startorigin, s:null, g:null}, S.d?'I':'F'); return; }
   if(ds.dest!==undefined){ openKind(+ds.dest); return; }
-  if(ds.guess){ S.g=ds.guess; history.replaceState(null,'',writeHash(S)); const gid=+ds.guess; const dd=S.o?destsFor(S.o):{rows:Object.entries(allMix10.mix).map(([k,n])=>({id:+k,n,share:n/allMix10.n}))}; const named=dd.rows.filter(r=>r.id>0); const top=named.slice().sort((a,b)=>b.n-a.n)[0];
-    const txt = gid===top.id ? `${kname(gid)} was the largest single answer, at ${shareWord(top.share)}. The other kinds of work held the rest.` : `${kname(gid)} was one of the ${nw(named.length)} answers. The largest single answer was ${klow(top.id)}, at ${shareWord(top.share)}.`;
-    const rv=document.getElementById('reveal'); if(rv){ rv.textContent=txt; rv.hidden=false; } const gb=document.getElementById('guess-box'); if(gb) gb.innerHTML=`<summary>Your guess</summary><div class="body"><p class="small">${esc(kname(gid))}. Scroll on to year ten.</p></div>`; return; }
+  if(ds.guess){ S.g=ds.guess; history.replaceState(null,'',writeHash(S)); const gid=+ds.guess; const dd=S.o?destsFor(S.o):{rows:allRows10}; const named=dd.rows.filter(r=>r.id>0); const top=named.slice().sort((a,b)=>b.n-a.n)[0];
+    const txt = gid===top.id ? `${kname(gid)} was the fullest lane, at ${shareWord(top.share)}. The other kinds of work held the rest.` : `${kname(gid)} was one of the ${nw(named.length)} answers. The fullest lane was ${klow(top.id)}, at ${shareWord(top.share)}.`;
+    const rv=document.getElementById('reveal'); if(rv){ rv.textContent=txt; rv.hidden=false; } const gb=document.getElementById('guess-box'); if(gb) gb.innerHTML=`<p class="small">Your guess: ${esc(kname(gid))}. Scroll on to year ten.</p>`; return; }
   if(ds.start){ commit({s:+ds.start}, 'J'); return; }
   if(ds.likeme!==undefined){ commit({s:isKindOrigin(S.o)?ds.likeme:+ds.likeme}, 'J'); return; }
   if(ds.clear){ const p={}; p[ds.clear]=null; if(ds.clear==='o'){p.s=null;p.g=null;} if(ds.clear==='d'){p.s=null;} commit(p, ds.clear==='s'?'J':null); return; }
-  if(ds.startover){ commit({o:null,d:null,s:null,g:null}, 'B'); return; }
+  if(ds.startover){ commit({o:null,d:null,s:null,g:null}, 'A'); return; }
   if(ds.trail){ const i=+ds.trail; if(i!==trailIdx) history.go(i-trailIdx); return; }
   if(ds.reopen){ location.hash=ds.reopen; return; }
   if(ds.dismissReturn){ try{sessionStorage.setItem('hw-ret-dismissed','1');}catch(x){} render(); return; }
   if(ds.go){ goNode(ds.go); return; }
   if(b.id==='print-btn'){ window.print(); return; }
 });
+canvas.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ const lane=e.target.closest('.lane[role="button"]'); if(lane){ e.preventDefault(); openKind(+lane.dataset.lane); } } if(e.key==='Escape'&&pick){ pick=null; renderSentence(); } });
 canvas.addEventListener('mouseover',e=>{ const t=e.target.closest('[data-hover]'); if(t) hoverNode(t.dataset.hover); });
 canvas.addEventListener('mouseout',e=>{ const t=e.target.closest('[data-hover]'); if(t) hoverNode(null); });
 
@@ -874,7 +863,7 @@ function drawChart(){
   NODES.forEach(n=>{
     const c=COLS[n.col]; const cx=c.x+c.w/2; const cy=n.y+n.h/2; let shape,halo;
     const innerW = n.diamond ? n.hw*1.05 : c.w-16;
-    const bold='600 10.5px Archivo, sans-serif', reg='400 10.5px Archivo, sans-serif';
+    const bold='600 10.5px "Public Sans", sans-serif', reg='400 10.5px "Public Sans", sans-serif';
     let lines=[]; n.lines.forEach((t,i)=>{ const isT = i===0 && /^[A-Z]{3}/.test(t); wrap(t, n.diamond?innerW*0.9:innerW, isT?bold:reg).forEach(l=>lines.push({t:l,b:isT})); });
     const lh=13; const total=lines.length*lh; let y0=cy-total/2+10;
     if(n.diamond){ shape=`<polygon class="box" points="${cx},${n.y} ${cx+n.hw},${cy} ${cx},${n.y+n.h} ${cx-n.hw},${cy}"/>`; halo=`<polygon class="halo" points="${cx},${n.y} ${cx+n.hw},${cy} ${cx},${n.y+n.h} ${cx-n.hw},${cy}"/>`; }
@@ -885,7 +874,7 @@ function drawChart(){
   s+='</svg>';
   document.getElementById('map-scroll').innerHTML=s;
 }
-drawChart(); document.fonts && document.fonts.ready.then(()=>{ drawChart(); paint(); });
+drawChart(); document.fonts && document.fonts.ready.then(()=>{ drawChart(); paint(); rebuildStrips(); });
 
 /* ---------- sync ---------- */
 let active='A', hovered=null, present=new Set();
@@ -910,7 +899,7 @@ function observe(){
     const top = root ? root.getBoundingClientRect().top : 0;
     let best=null,bd=1e9; vis.forEach(b=>{ const r=b.getBoundingClientRect(); const d=Math.abs(r.top-top-40); if(r.bottom-top>120 && d<bd){bd=d;best=b;} });
     if(!best) best=vis[0];
-    if(best && best.dataset.node!==active) setActive(best.dataset.node);
+    if(best && best.dataset.node!==active && !pick) setActive(best.dataset.node);
   },{root, threshold:[0,0.2,0.5,1], rootMargin:'-10% 0px -40% 0px'});
   canvas.querySelectorAll('.block').forEach(b=>io.observe(b));
   paint();
@@ -918,19 +907,20 @@ function observe(){
 function goNode(id){
   const el=document.getElementById('blk-'+id);
   if(el){ scrollSiteTo(el); setActive(id); closeMapOnPhone(); return; }
-  const need = msg => { const target=document.getElementById('blk-D'); if(target){ scrollSiteTo(target); const h=document.createElement('div'); h.className='hint'; h.textContent=msg; target.insertBefore(h,target.firstChild.nextSibling); setTimeout(()=>h.remove(),6000); } };
+  const need = msg => { const target=document.getElementById('blk-D'); if(target){ scrollSiteTo(target); const h=document.createElement('div'); h.className='hint'; h.textContent=msg; target.appendChild(h); setTimeout(()=>h.remove(),6000); } };
   switch(id){
-    case 'A': case 'B': case 'C': case 'D': commit({o:null,d:null,s:null,g:null}, id); break;
-    case 'E': case 'F': case 'H': if(S.o){ commit({d:null,s:null}, id==='H'?'F':id); } else need('Pick a field of study or a kind of work to start in, and the site shows the ten years from there.'); break;
-    case 'G': if(S.d){ commit({o:null,s:null},'G'); } else need('Pick a job you are curious about, and this shows who was already in it.'); break;
-    case 'I': case 'J': case 'K': case 'L': case 'P': if(S.o&&S.d){ commit({}, id); } else need('Set both a starting point and a kind of work. The route runs between them.'); break;
+    case 'A': case 'B': case 'C': commit({o:null,d:null,s:null,g:null}, id); break;
+    case 'D': { const t=document.getElementById('blk-D'); if(t){ scrollSiteTo(t); setActive('D'); } break; }
+    case 'E': case 'F': case 'H': if(S.o){ commit({d:null,s:null}, id==='H'?'H':id); } else need('Fill in the first blank with a field of study or a first job, and the site shows the ten years from there.'); break;
+    case 'G': if(S.d){ commit({o:null,s:null},'G'); } else need('Fill in the second blank with a kind of work, and this shows who was already in it.'); break;
+    case 'I': case 'J': case 'K': case 'L': case 'P': if(S.o&&S.d){ commit({}, id); } else need('Fill in both blanks. The route runs between them.'); break;
     case 'M': case 'N': { const t=document.getElementById('blk-M'); if(t) scrollSiteTo(t); setActive(id); break; }
   }
   closeMapOnPhone();
 }
 document.getElementById('map-scroll').addEventListener('click',e=>{ const g=e.target.closest('.n'); if(g) goNode(g.dataset.node); });
 document.getElementById('map-scroll').addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ const g=e.target.closest('.n'); if(g){ e.preventDefault(); goNode(g.dataset.node); } } });
-document.getElementById('map-scroll').addEventListener('mouseover',e=>{ const g=e.target.closest('.n'); if(g){ const b=document.getElementById('blk-'+g.dataset.node); if(b) b.style.outline='1px solid var(--violet2)'; } });
+document.getElementById('map-scroll').addEventListener('mouseover',e=>{ const g=e.target.closest('.n'); if(g){ const b=document.getElementById('blk-'+g.dataset.node); if(b) b.style.outline='1px solid var(--rule2)'; } });
 document.getElementById('map-scroll').addEventListener('mouseout',e=>{ const g=e.target.closest('.n'); if(g){ const b=document.getElementById('blk-'+g.dataset.node); if(b) b.style.outline=''; } });
 
 /* phone drawer */
@@ -941,7 +931,7 @@ document.getElementById('map-head').addEventListener('click',()=>{ map.classList
 /* theme */
 document.getElementById('theme-btn').addEventListener('click',()=>{
   const r=document.documentElement; const cur=r.getAttribute('data-theme'); const sysDark=window.matchMedia('(prefers-color-scheme: dark)').matches;
-  r.setAttribute('data-theme', cur==='dark' ? 'light' : cur==='light' ? 'dark' : (sysDark?'light':'dark')); window.dispatchEvent(new Event('themechange'));
+  r.setAttribute('data-theme', cur==='dark' ? 'light' : cur==='light' ? 'dark' : (sysDark?'light':'dark'));
 });
 
 /* boot */
