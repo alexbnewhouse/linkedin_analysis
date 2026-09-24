@@ -37,6 +37,8 @@ wheels/
 # --- F1 hardening (2026-09-01 recovery/refactor) ---
 # Windows sidecar junk
 *Zone.Identifier
+# macOS Finder metadata
+.DS_Store
 # Backup debris
 *.bak
 # Industry LLM proposal cache (would be >2GB if re-fired; never committable)
