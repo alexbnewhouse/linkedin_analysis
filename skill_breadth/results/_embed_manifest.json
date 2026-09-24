@@ -1,0 +1,82 @@
+{
+  "n_roles_embedded": 88688,
+  "onet_release": "29.3",
+  "n_onet_soc_in_skills_table": 763,
+  "skill_columns": [
+    "Active Learning",
+    "Active Listening",
+    "Complex Problem Solving",
+    "Coordination",
+    "Critical Thinking",
+    "Equipment Maintenance",
+    "Equipment Selection",
+    "Installation",
+    "Instructing",
+    "Judgment and Decision Making",
+    "Learning Strategies",
+    "Management of Financial Resources",
+    "Management of Material Resources",
+    "Management of Personnel Resources",
+    "Mathematics",
+    "Monitoring",
+    "Negotiation",
+    "Operation and Control",
+    "Operations Analysis",
+    "Operations Monitoring",
+    "Persuasion",
+    "Programming",
+    "Quality Control Analysis",
+    "Reading Comprehension",
+    "Repairing",
+    "Science",
+    "Service Orientation",
+    "Social Perceptiveness",
+    "Speaking",
+    "Systems Analysis",
+    "Systems Evaluation",
+    "Technology Design",
+    "Time Management",
+    "Troubleshooting",
+    "Writing"
+  ],
+  "soc_source_share_by_group": {
+    "accounting": {
+      "n": 3220,
+      "pooled": 0.2919254658385093,
+      "nearest": 0.7080745341614907
+    },
+    "finance": {
+      "n": 2640,
+      "pooled": 0.18446969696969698,
+      "nearest": 0.815530303030303
+    },
+    "humanistic_social_sciences": {
+      "n": 23096,
+      "pooled": 0.18418773813647385,
+      "nearest": 0.8158122618635262
+    },
+    "humanities": {
+      "n": 25895,
+      "pooled": 0.1984553002510137,
+      "nearest": 0.8015446997489863
+    },
+    "nursing": {
+      "n": 2285,
+      "pooled": 0.4258205689277899,
+      "nearest": 0.57417943107221
+    },
+    "stem": {
+      "n": 31552,
+      "pooled": 0.17596348884381338,
+      "nearest": 0.8240365111561866
+    }
+  },
+  "median_nearest_cos_by_group": {
+    "accounting": 0.6738742291927338,
+    "finance": 0.6596710681915283,
+    "humanistic_social_sciences": 0.650842159986496,
+    "humanities": 0.6562192440032959,
+    "nursing": 0.678443431854248,
+    "stem": 0.6477612257003784
+  }
+}

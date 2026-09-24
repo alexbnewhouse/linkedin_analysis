@@ -6,8 +6,11 @@ DuckDB fixture (no parquet needed).
 
 from __future__ import annotations
 
+import numpy as np
+
 from . import build_cohort as B
 from . import common as C
+from . import onet_skills as O
 
 
 def check(name: str, cond: bool) -> None:
@@ -173,5 +176,37 @@ def main() -> None:
     print("skill_breadth logic tests passed")
 
 
+def check_onet() -> None:
+    check("SOC truncation: 8-digit O*NET-SOC detail code -> 6-digit SOC",
+          O.truncate_soc("15-1252.00") == "15-1252")
+    check("SOC truncation: already-6-digit code passes through unchanged",
+          O.truncate_soc("15-1252") == "15-1252")
+
+    fixture = np.array([
+        [1.0, 10.0, 100.0],
+        [2.0, 20.0, 100.0],
+        [3.0, 30.0, 400.0],
+        [4.0, 40.0, 400.0],
+    ])
+    expected_z = (fixture - fixture.mean(axis=0)) / fixture.std(axis=0, ddof=0)
+    expected_unit = expected_z / np.linalg.norm(expected_z, axis=1, keepdims=True)
+    actual = O.zscore_l2_normalize(fixture)
+    check("z-score + L2-normalize matches the column-zscore-then-row-unit-norm formula",
+          bool(np.allclose(actual, expected_unit)))
+    check("z-score + L2-normalize produces unit rows",
+          bool(np.allclose(np.linalg.norm(actual, axis=1), 1.0, atol=1e-6)))
+
+    valid = {"15-1252", "29-1141", "13-2011"}
+    check("a role with a known pooled SOC keeps it",
+          O.pooled_soc_assignment("29-1141", valid) == ("29-1141", "pooled"))
+    check("a role with a pooled SOC absent from the skills table falls back to nearest",
+          O.pooled_soc_assignment("99-9999", valid) == (None, "nearest"))
+    check("a role with no pooled SOC at all falls back to nearest",
+          O.pooled_soc_assignment(None, valid) == (None, "nearest"))
+
+    print("skill_breadth O*NET-mapping tests passed")
+
+
 if __name__ == "__main__":
     main()
+    check_onet()
