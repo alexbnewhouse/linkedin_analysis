@@ -204,27 +204,54 @@ def check_onet() -> None:
     check("a role with no pooled SOC at all falls back to nearest",
           O.pooled_soc_assignment(None, valid) == (None, "nearest"))
 
-    # nearest_soc: tiny fake (unit-vector) embeddings standing in for real
-    # title embeddings -- exercises the title-vs-title matcher's core
-    # argmax-of-cosine logic without calling the encoder. Candidate index 1
-    # ("Alternate Title for SOC B") is an exact match (cosine 1.0) for the
-    # query and must win over the SOC-A and SOC-C candidates.
-    cand_socs = ["15-1252", "29-1141", "13-2011"]
-    cand_vecs = np.array([
-        [1.0, 0.0, 0.0],  # SOC 15-1252's Title
-        [0.0, 1.0, 0.0],  # SOC 29-1141's Alternate Title
-        [0.0, 0.0, 1.0],  # SOC 13-2011's Title
-    ], dtype=np.float32)
-    query_vec = np.array([0.0, 1.0, 0.0], dtype=np.float32)  # title_raw embedding
-    soc, cos = O.nearest_soc(query_vec, cand_vecs, cand_socs)
-    check("nearest_soc: an exact-match alternate-title candidate wins, with cosine 1.0",
-          soc == "29-1141" and abs(cos - 1.0) < 1e-6)
+    # insert_imputed_soc: fixture standing in for the real 15-1252 case --
+    # "values" plays the role of the mean of the two O*NET 22.0 source rows
+    # (15-1132.00, 15-1133.00); the pure function's job is just correct
+    # insertion + sorted-position bookkeeping, not the mean itself (that's a
+    # plain duckdb avg(), exercised by the real build instead).
+    base_socs = ["11-1011", "13-2011"]
+    base_skills = ["Writing", "Mathematics"]
+    base_mat = np.array([[1.0, 2.0], [3.0, 4.0]])
+    imputed_values = {"Writing": 15.0, "Mathematics": 35.0}  # stand-in mean of two source rows
+    socs2, mat2 = O.insert_imputed_soc(base_socs, base_mat, base_skills, "15-1252", imputed_values)
+    check("insert_imputed_soc: new SOC lands in ascending sorted position",
+          socs2 == ["11-1011", "13-2011", "15-1252"])
+    check("insert_imputed_soc: inserted row equals the (stand-in) mean of the two source rows",
+          bool(np.allclose(mat2[2], [15.0, 35.0])))
+    check("insert_imputed_soc: existing rows/order untouched",
+          bool(np.array_equal(mat2[:2], base_mat)))
+    try:
+        O.insert_imputed_soc(base_socs, base_mat, base_skills, "11-1011", imputed_values)
+        check("insert_imputed_soc: rejects a SOC already present", False)
+    except ValueError:
+        check("insert_imputed_soc: rejects a SOC already present", True)
 
-    off_query = np.array([0.9, 0.1, 0.0], dtype=np.float32)
-    off_query = off_query / np.linalg.norm(off_query)
-    soc2, cos2 = O.nearest_soc(off_query, cand_vecs, cand_socs)
-    check("nearest_soc: a near-but-not-exact query still picks the closest candidate's SOC",
-          soc2 == "15-1252" and 0.0 < cos2 < 1.0)
+    # hybrid_nearest_soc: tiny fake (unit-vector) embeddings. Two SOCs whose
+    # title candidates are IDENTICAL (a tied title term, standing in for a
+    # generic title like "Founder" or "Owner" matching some unrelated SOC's
+    # alternate title just as well as the intended one) -- the description
+    # term must be the one that picks the correct SOC.
+    socs = ["11-1011", "29-1229"]  # sorted ascending
+    cand_socs = ["11-1011", "29-1229"]
+    cand_vecs = np.array([
+        [1.0, 0.0],  # SOC 11-1011's title candidate
+        [1.0, 0.0],  # SOC 29-1229's title candidate -- identical direction, ties the title term
+    ], dtype=np.float32)
+    title_vec = np.array([1.0, 0.0], dtype=np.float32)
+    soc_desc_vecs = np.array([
+        [1.0, 0.0],  # SOC 11-1011's description
+        [0.0, 1.0],  # SOC 29-1229's description -- matches desc_vec below, SOC 11-1011's doesn't
+    ], dtype=np.float32)
+    desc_vec = np.array([0.0, 1.0], dtype=np.float32)
+    soc, title_term, desc_term = O.hybrid_nearest_soc(title_vec, desc_vec, cand_vecs, cand_socs, soc_desc_vecs, socs)
+    check("hybrid_nearest_soc: title term ties across two SOCs; description term picks the right one",
+          soc == "29-1229" and abs(title_term - 1.0) < 1e-6 and abs(desc_term - 1.0) < 1e-6)
+
+    # Full tie on both terms -> deterministic tie-break toward the lowest SOC code.
+    tied_desc_vecs = np.array([[1.0, 0.0], [1.0, 0.0]], dtype=np.float32)
+    soc_tied, _, _ = O.hybrid_nearest_soc(title_vec, title_vec, cand_vecs, cand_socs, tied_desc_vecs, socs)
+    check("hybrid_nearest_soc: a full tie on both terms breaks toward the lowest SOC code",
+          soc_tied == "11-1011")
 
     print("skill_breadth O*NET-mapping tests passed")
 

@@ -1,9 +1,12 @@
 {
   "n_roles_embedded": 88688,
   "onet_release": "29.3",
-  "n_onet_soc_in_skills_table": 763,
-  "nearest_match_method": "title_raw vs O*NET Title + Alternate Title candidates (title-to-title)",
-  "n_candidate_titles": 49422,
+  "n_onet_soc_in_skills_table": 764,
+  "imputed_socs": [
+    "15-1252"
+  ],
+  "nearest_match_method": "hybrid: max title_raw-vs-(Title+AlternateTitle) cosine per SOC, plus role_text-vs-(Title. Description) cosine; argmax over SOCs",
+  "n_candidate_titles": 49558,
   "skill_columns": [
     "Active Learning",
     "Active Listening",
@@ -44,23 +47,23 @@
   "soc_source_share_by_group": {
     "accounting": {
       "n": 3220,
-      "pooled": 0.2919254658385093,
-      "nearest": 0.7080745341614907
+      "pooled": 0.29285714285714287,
+      "nearest": 0.7071428571428572
     },
     "finance": {
       "n": 2640,
-      "pooled": 0.18446969696969698,
-      "nearest": 0.815530303030303
+      "pooled": 0.18712121212121213,
+      "nearest": 0.8128787878787879
     },
     "humanistic_social_sciences": {
       "n": 23096,
-      "pooled": 0.18418773813647385,
-      "nearest": 0.8158122618635262
+      "pooled": 0.18501039140976794,
+      "nearest": 0.8149896085902321
     },
     "humanities": {
       "n": 25895,
-      "pooled": 0.1984553002510137,
-      "nearest": 0.8015446997489863
+      "pooled": 0.19980691253137672,
+      "nearest": 0.8001930874686233
     },
     "nursing": {
       "n": 2285,
@@ -69,16 +72,24 @@
     },
     "stem": {
       "n": 31552,
-      "pooled": 0.17596348884381338,
-      "nearest": 0.8240365111561866
+      "pooled": 0.258303752535497,
+      "nearest": 0.741696247464503
     }
   },
   "median_nearest_cos_by_group": {
-    "accounting": 0.8591360151767731,
-    "finance": 0.850787341594696,
-    "humanistic_social_sciences": 0.8593738079071045,
-    "humanities": 0.861487627029419,
-    "nursing": 0.8672170639038086,
-    "stem": 0.8624417185783386
+    "accounting": 0.846000611782074,
+    "finance": 0.8360990583896637,
+    "humanistic_social_sciences": 0.8459064364433289,
+    "humanities": 0.8479073643684387,
+    "nursing": 0.857637882232666,
+    "stem": 0.8526685535907745
+  },
+  "median_desc_cos_by_group": {
+    "accounting": 0.6486963033676147,
+    "finance": 0.6356506049633026,
+    "humanistic_social_sciences": 0.6289716362953186,
+    "humanities": 0.6357381939888,
+    "nursing": 0.6610551476478577,
+    "stem": 0.6303975582122803
   }
 }
