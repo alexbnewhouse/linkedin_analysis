@@ -43,7 +43,7 @@ profiles) so the ranking can be checked against writing style.
   `title_raw || '. ' || description`, truncated by the encoder at 256 tokens.
 - Breadth metric: Vendi score with cosine (linear, L2-normalized) kernel, computed as
   exp(Shannon entropy of the eigenvalues of X^T X / n), X = n×d normalized rows.
-  Equal-n bootstrap: each replicate samples `N_PEOPLE = 1500` people per group
+  Equal-n bootstrap: each replicate samples `N_PEOPLE = 500` people per group
   without replacement, then ONE random role per sampled person; `N_BOOT = 200`;
   seed 20260924. Report median and 2.5/97.5 percentiles.
 - O*NET skills basis: O*NET 29.3 `Skills.txt` (Importance scale, `Scale ID = 'IM'`),
