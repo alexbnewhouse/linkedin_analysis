@@ -204,6 +204,28 @@ def check_onet() -> None:
     check("a role with no pooled SOC at all falls back to nearest",
           O.pooled_soc_assignment(None, valid) == (None, "nearest"))
 
+    # nearest_soc: tiny fake (unit-vector) embeddings standing in for real
+    # title embeddings -- exercises the title-vs-title matcher's core
+    # argmax-of-cosine logic without calling the encoder. Candidate index 1
+    # ("Alternate Title for SOC B") is an exact match (cosine 1.0) for the
+    # query and must win over the SOC-A and SOC-C candidates.
+    cand_socs = ["15-1252", "29-1141", "13-2011"]
+    cand_vecs = np.array([
+        [1.0, 0.0, 0.0],  # SOC 15-1252's Title
+        [0.0, 1.0, 0.0],  # SOC 29-1141's Alternate Title
+        [0.0, 0.0, 1.0],  # SOC 13-2011's Title
+    ], dtype=np.float32)
+    query_vec = np.array([0.0, 1.0, 0.0], dtype=np.float32)  # title_raw embedding
+    soc, cos = O.nearest_soc(query_vec, cand_vecs, cand_socs)
+    check("nearest_soc: an exact-match alternate-title candidate wins, with cosine 1.0",
+          soc == "29-1141" and abs(cos - 1.0) < 1e-6)
+
+    off_query = np.array([0.9, 0.1, 0.0], dtype=np.float32)
+    off_query = off_query / np.linalg.norm(off_query)
+    soc2, cos2 = O.nearest_soc(off_query, cand_vecs, cand_socs)
+    check("nearest_soc: a near-but-not-exact query still picks the closest candidate's SOC",
+          soc2 == "15-1252" and 0.0 < cos2 < 1.0)
+
     print("skill_breadth O*NET-mapping tests passed")
 
 

@@ -2,6 +2,8 @@
   "n_roles_embedded": 88688,
   "onet_release": "29.3",
   "n_onet_soc_in_skills_table": 763,
+  "nearest_match_method": "title_raw vs O*NET Title + Alternate Title candidates (title-to-title)",
+  "n_candidate_titles": 49422,
   "skill_columns": [
     "Active Learning",
     "Active Listening",
@@ -72,11 +74,11 @@
     }
   },
   "median_nearest_cos_by_group": {
-    "accounting": 0.6738742291927338,
-    "finance": 0.6596710681915283,
-    "humanistic_social_sciences": 0.650842159986496,
-    "humanities": 0.6562192440032959,
-    "nursing": 0.678443431854248,
-    "stem": 0.6477612257003784
+    "accounting": 0.8591360151767731,
+    "finance": 0.850787341594696,
+    "humanistic_social_sciences": 0.8593738079071045,
+    "humanities": 0.861487627029419,
+    "nursing": 0.8672170639038086,
+    "stem": 0.8624417185783386
   }
 }
