@@ -52,7 +52,13 @@ SANITY_GROUPS = {
     "accounting": "cip_code LIKE '52.03%'",
     "liberal_arts": "cip_code LIKE '24.01%'",
 }
+SANITY_GROUP_LABELS = {
+    "nursing": "Nursing",
+    "accounting": "Accounting",
+    "liberal_arts": "Liberal arts (general)",
+}
 ALL_GROUPS = {**HEADLINE_GROUPS, **SANITY_GROUPS}
+ALL_GROUP_LABELS = {**GROUP_LABELS, **SANITY_GROUP_LABELS}
 
 COHORT_YEAR_MIN = 2000
 COHORT_YEAR_MAX = 2014

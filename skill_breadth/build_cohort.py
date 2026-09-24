@@ -2,6 +2,8 @@
 
 Builds:
   results/persons.parquet     -- linkedin_id, group, bachelor_end_year, bachelor_cip
+                                  (group ranges over all 7 groups: 4 headline
+                                  + 3 sanity-check -- see common.ALL_GROUPS)
   results/roles.parquet       -- linkedin_id, group, experience_idx, position_idx,
                                   start_year, title_raw, occupation_code_pooled, role_text
   results/_cohort_manifest.json
@@ -64,35 +66,38 @@ def group_assignment_relation(
     education_tbl: str = "education",
     education_person_tbl: str = "education_person",
 ) -> duckdb.DuckDBPyRelation:
-    """linkedin_id, group, bachelor_end_year, bachelor_cip for the 4-group cohort.
+    """linkedin_id, group, bachelor_end_year, bachelor_cip for the cohort.
+
+    `group` ranges over all 7 groups (4 headline + 3 sanity-check) -- Task 3
+    computes breadth for the sanity groups too, not just the headline 4.
 
     A person is included only if:
       - they have >= 1 bachelor's row (degree_level_pooled = 4, NOT is_duplicate)
-      - across ALL their bachelor rows, exactly one group is matched, among the
-        4 headline groups + 3 sanity groups -- a person hitting more than one
-        (even a headline group plus a sanity group) is excluded
-      - that one group is a headline group (humanities/humss/stem/finance)
+      - across ALL their bachelor rows, exactly one of the 7 groups is
+        matched -- a person hitting more than one (even a headline group plus
+        a sanity group, or two groups matched by the same row) is excluded
       - their bachelor_end_year (from education_person) falls in
         [COHORT_YEAR_MIN, COHORT_YEAR_MAX]
-    bachelor_cip is the smallest cip_code among that person's matching rows
-    (deterministic tiebreak; usually there is exactly one such row).
+
+    bachelor_cip is the smallest cip_code among the bachelor rows that
+    actually matched that person's assigned group (via `exploded`, not the
+    raw table) -- a person can also hold an unrelated bachelor's row that
+    matches no group at all, and that row's cip_code must not leak in here.
+    It comes out NULL for persons whose only matching row is an
+    nha_level_pooled-imputed row with no cip_code; see
+    persons_null_bachelor_cip_by_group in the manifest.
     """
-    headline_list = ", ".join(f"'{g}'" for g in C.HEADLINE_GROUPS)
     return con.sql(f"""
         WITH {_person_groups_cte(education_tbl)},
         single_group AS (
             SELECT linkedin_id, sole_group AS grp
             FROM person_groups
-            WHERE n_groups = 1 AND sole_group IN ({headline_list})
+            WHERE n_groups = 1
         ),
         bachelor_cip AS (
             SELECT e.linkedin_id, MIN(e.cip_code) AS bachelor_cip
-            FROM (
-                SELECT linkedin_id, cip_code, cip2_pooled, nha_level_pooled
-                FROM {education_tbl}
-                WHERE degree_level_pooled = 4 AND NOT is_duplicate
-            ) e
-            JOIN single_group s ON s.linkedin_id = e.linkedin_id
+            FROM exploded e
+            JOIN single_group s ON s.linkedin_id = e.linkedin_id AND s.grp = e.grp
             GROUP BY e.linkedin_id
         )
         SELECT s.linkedin_id, s.grp AS "group", ep.bachelor_end_year, b.bachelor_cip
@@ -127,6 +132,9 @@ def _joined_roles_sql(persons_tbl: str, career_steps_tbl: str) -> str:
     return f"""
         SELECT cs.linkedin_id, p."group", cs.experience_idx, cs.position_idx,
                cs.start_year, cs.title_raw, cs.occupation_code_pooled,
+               -- COALESCE(title_raw, '') deviates from the literal
+               -- title_raw || '. ' || description spec only to keep a NULL
+               -- title_raw from nulling out the whole role_text.
                COALESCE(cs.title_raw, '') || '. ' || cs.description AS role_text
         FROM {career_steps_tbl} cs
         JOIN {persons_tbl} p USING (linkedin_id)
@@ -191,21 +199,33 @@ def run() -> dict:
     roles_by_group = dict(con.sql(
         'SELECT "group", count(*) FROM roles GROUP BY 1 ORDER BY 1'
     ).fetchall())
+    persons_with_roles_by_group = dict(con.sql(
+        'SELECT "group", count(DISTINCT linkedin_id) FROM roles GROUP BY 1 ORDER BY 1'
+    ).fetchall())
+    persons_null_bachelor_cip_by_group = dict(con.sql(
+        'SELECT "group", count(*) FROM persons WHERE bachelor_cip IS NULL GROUP BY 1 ORDER BY 1'
+    ).fetchall())
     n_persons_total = sum(persons_by_group.values())
     n_roles_total = sum(roles_by_group.values())
 
-    for g in C.HEADLINE_GROUPS:
+    for g in C.ALL_GROUPS:
         persons_by_group.setdefault(g, 0)
         roles_by_group.setdefault(g, 0)
+        persons_with_roles_by_group.setdefault(g, 0)
+        persons_null_bachelor_cip_by_group.setdefault(g, 0)
 
     manifest = {
         "cohort_year_min": C.COHORT_YEAR_MIN,
         "cohort_year_max": C.COHORT_YEAR_MAX,
         "role_window_years": C.ROLE_WINDOW_YEARS,
         "min_description_len": C.MIN_DESCRIPTION_LEN,
-        "group_labels": C.GROUP_LABELS,
+        "headline_groups": list(C.HEADLINE_GROUPS),
+        "sanity_groups": list(C.SANITY_GROUPS),
+        "group_labels": C.ALL_GROUP_LABELS,
         "persons_by_group": persons_by_group,
         "roles_by_group": roles_by_group,
+        "persons_with_roles_by_group": persons_with_roles_by_group,
+        "persons_null_bachelor_cip_by_group": persons_null_bachelor_cip_by_group,
         "n_persons_total": n_persons_total,
         "n_roles_total": n_roles_total,
         "excluded_multi_group_persons": n_excluded_multi,
@@ -215,6 +235,8 @@ def run() -> dict:
     C.write_json(manifest, C.RESULTS / "_cohort_manifest.json")
     print(f"persons_by_group={persons_by_group}", flush=True)
     print(f"roles_by_group={roles_by_group}", flush=True)
+    print(f"persons_with_roles_by_group={persons_with_roles_by_group}", flush=True)
+    print(f"persons_null_bachelor_cip_by_group={persons_null_bachelor_cip_by_group}", flush=True)
     print(f"excluded_multi_group_persons={n_excluded_multi}", flush=True)
     print(f"roles_duplicate_role_keys_removed={n_roles_before_dedupe - n_roles_after_dedupe}", flush=True)
     return manifest
