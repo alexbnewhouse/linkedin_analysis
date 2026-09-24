@@ -1,0 +1,33 @@
+{
+  "cohort_year_min": 2000,
+  "cohort_year_max": 2014,
+  "role_window_years": 10,
+  "min_description_len": 50,
+  "group_labels": {
+    "humanities": "Humanities",
+    "humanistic_social_sciences": "Humanistic social sciences",
+    "stem": "STEM",
+    "finance": "Finance"
+  },
+  "persons_by_group": {
+    "finance": 1728,
+    "humanistic_social_sciences": 10833,
+    "humanities": 12204,
+    "stem": 18296
+  },
+  "roles_by_group": {
+    "finance": 2640,
+    "humanistic_social_sciences": 23096,
+    "humanities": 25895,
+    "stem": 31552
+  },
+  "n_persons_total": 43061,
+  "n_roles_total": 83183,
+  "excluded_multi_group_persons": 1617,
+  "roles_duplicate_role_keys_removed": 5,
+  "role_key": [
+    "linkedin_id",
+    "experience_idx",
+    "position_idx"
+  ]
+}

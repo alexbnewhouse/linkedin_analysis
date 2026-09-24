@@ -77,3 +77,9 @@ __pycache__/
 
 # Office lock files
 ~$*
+
+# skill_breadth embedding cache (regenerable)
+/skill_breadth/cache/
+# skill_breadth generated parquet outputs (26MB, over the 5MB commit bar;
+# regenerable via skill_breadth/build_cohort.py). Manifest JSON is kept.
+/skill_breadth/results/*.parquet
