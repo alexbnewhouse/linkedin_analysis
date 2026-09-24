@@ -4,57 +4,76 @@ Downloads (if absent):
   reference/onet_skills.txt                  -- O*NET 29.3 Skills.txt
   reference/onet_occupation_data_29_3.txt     -- O*NET 29.3 Occupation Data.txt
   reference/onet_alternate_titles_29_3.txt    -- O*NET 29.3 Alternate Titles.txt
-  reference/onet_skills_15_1252_imputed.txt   -- derived: O*NET 22.0 Skills.txt,
-      filtered to the IM-scale rows for 15-1132.00 and 15-1133.00 only (see
-      "15-1252 imputation" below). The full O*NET 22.0 Skills.txt is fetched
-      over the network to build this but is not itself saved to disk.
+  reference/onet_2010_to_2019_crosswalk.csv   -- O*NET-SOC 2010 -> 2019 crosswalk
+  reference/onet_skills_29_3_backfill_source.txt -- derived: O*NET 22.0
+      Skills.txt, filtered to just the IM-scale rows for the O*NET-SOC 2010
+      codes needed to backfill 2019-taxonomy SOCs missing from 29.3
+      Skills.txt (see "Skill-row backfill" below). The full O*NET 22.0
+      Skills.txt is fetched over the network to build this but is not
+      itself saved to disk.
 
 Builds:
   results/onet_skill_matrix.parquet -- one row per 6-digit SOC in the 29.3
-      skills table PLUS the imputed 15-1252 (764 SOCs total), columns soc +
-      the 35 skill element names (Element Name, Scale ID='IM'), mean-
-      aggregated from O*NET-SOC detail codes to 6-digit SOC, then z-scored
-      per skill across the 764-SOC table, then L2-normalized per row. Wide
-      format (not long) so Task 3 can join role_soc.soc -> this table
-      directly and use the 35 columns as a vector.
+      skills table PLUS every crosswalk-backfilled SOC, columns soc + the 35
+      skill element names (Element Name, Scale ID='IM'), mean-aggregated
+      from O*NET-SOC detail codes to 6-digit SOC, then z-scored per skill
+      across the full SOC table, then L2-normalized per row. Wide format
+      (not long) so Task 3 can join role_soc.soc -> this table directly and
+      use the 35 columns as a vector.
   results/role_soc.parquet -- one row per role key (linkedin_id,
-      experience_idx, position_idx): soc (6-digit, always one of the 764),
-      soc_source in {'pooled','nearest'}, nearest_cos (the title term of the
-      winning SOC's hybrid score), desc_cos (the description term). Both are
-      NULL for soc_source='pooled' (no search was run for those).
+      experience_idx, position_idx): soc, soc_source in {'pooled','nearest'},
+      nearest_cos (the title term of the winning SOC's hybrid score, or NULL
+      if the title term was dropped -- see "Generic-status titles" below),
+      desc_cos (the description term). Both NULL for soc_source='pooled'.
   results/_embed_manifest.json
 
-15-1252 imputation:
-  O*NET 25.1 through 29.3 Skills.txt have no rows at all for SOC 15-1252
-  ("Software Developers") -- confirmed by the Task 2 controller across every
-  release in that range. 15-1252's IM-scale skill ratings are imputed as the
-  mean of O*NET 22.0's 15-1132.00 and 15-1133.00 (the pre-split detail codes
-  that both crosswalk to 15-1252), fetched once into
-  reference/onet_skills_15_1252_imputed.txt. Its 29.3 Title/Alternate
-  Titles/Description are present as normal (only the Skills.txt row was
-  missing), so once inserted into the skill matrix, 15-1252 is a normal
-  matching candidate like any other SOC.
+Skill-row backfill (generalizes a 2026-09-24 round-2 fix that only handled
+  15-1252): many 2019-taxonomy SOCs present in 29.3 Occupation Data have no
+  rows at all in 29.3 Skills.txt -- 104 of them, confirmed by a direct
+  count. For each, this module finds every O*NET-SOC 2010 code that the
+  O*NET 2010->2019 crosswalk maps to it, and if any of those 2010 codes has
+  IM-scale skill rows in O*NET 22.0 (the last release built on the 2010
+  taxonomy), backfills the missing SOC's 35 ratings as the mean across all
+  such source rows, joined to 29.3 skill names by Element ID (Element Names
+  drift slightly between releases -- e.g. 22.0's "Operation Monitoring" is
+  29.3's "Operations Monitoring"). 15-1252 ("Software Developers") comes out
+  of this general mechanism the same way round 2 special-cased it: its two
+  2010 predecessors, 15-1132.00 and 15-1133.00, both crosswalk to it. Not
+  every missing SOC is backfillable this way -- see run()'s manifest output
+  for the current backfilled/unbackfillable split. The crosswalk CSV URL
+  actually used here (see CROSSWALK_URL below) differs from
+  .../taxonomy/2019/soc/2010_to_2019_Crosswalk.csv (which serves an HTML
+  page, or with ?fmt=csv a DIFFERENT crosswalk -- O*NET-SOC 2019 to 2018
+  SOC, not 2010 O*NET-SOC to 2019) -- the real 2010->2019 O*NET-SOC
+  crosswalk lives at .../taxonomy/2019/walk/2010_to_2019_Crosswalk.csv.
 
 Role -> SOC: hybrid title+description matching (2026-09-24 controller
-  ruling, round 2). occupation_code_pooled, truncated to 6 digits, when
-  present AND that 6-digit SOC is one of the 764 in the skill matrix ->
+  ruling, round 2, refined round 3). occupation_code_pooled, truncated to 6
+  digits, when present AND that 6-digit SOC is in the skill matrix ->
   soc_source='pooled'. Otherwise -> nearest by a HYBRID score per SOC:
       score(role, soc) = max_over_soc's_title_strings(cos(title_raw_emb, string_emb))
                         + cos(role_text_emb, soc_desc_emb)
   where "soc's title strings" are that SOC's O*NET 29.3 Title + Alternate
   Titles, and soc_desc_emb is that SOC's "Title. Description" embedding.
-  Argmax SOC wins; ties broken toward the lowest SOC code. This replaced a
-  round-1 title-only matcher (title_raw vs title strings only, no
-  description term) that the controller found failed on generic titles that
-  happen to collide with an unrelated occupation's alternate title --
-  "Intern"/"Owner" -> Physicians All Other, "Founder" -> Metal-Refining
-  Furnace Operators (Iron Founder), "Teacher" -> Business Teachers
-  Postsecondary, "Project Manager" -> Construction Managers -- and which
-  also produced observable near-tie flips from encoder batch noise (e.g.
-  "Software Engineer" split across two SOCs at cosine 0.902374 both ways).
-  The description term acts as a second, independent signal that breaks
-  these generic-title collisions in favor of the SOC whose actual job
-  description is closer to the role's.
+  Argmax SOC wins; ties broken toward the lowest SOC code. Round 1 was
+  title-only (no description term); round 2 added the description term but
+  still let "Owner"/"Intern"/"Founder"-style generic-status titles get
+  hijacked by an unrelated occupation's identically-worded alternate title,
+  since an exact (cosine ~1.0) title match is hard for any description term
+  to outweigh in an unweighted sum. Round 3's fix (below) removes the title
+  term outright for known generic-status titles rather than trying to
+  out-weigh it.
+
+Generic-status titles: for roles whose normalized title_raw is a member of
+  GENERIC_TITLES (career_clean.occupation._GENERIC_STATUS_TITLES -- "owner",
+  "founder", "consultant", "contractor", etc., titles that describe
+  someone's *employment status* rather than a specific occupation -- unioned
+  locally with {"intern", "internship", "summer intern", "volunteer"}), the
+  title term is dropped entirely: score(role, soc) = description term only.
+  These titles' surface form carries no real occupational signal (an
+  "Owner" could own any kind of business), so the title term for them is
+  pure noise that happens to spike to ~1.0 against whichever unrelated
+  occupation's alt-title lexicon contains that exact word.
 
     uv run python -m skill_breadth.onet_skills
 """
@@ -70,30 +89,33 @@ import pyarrow as pa
 import pyarrow.parquet as pq
 import torch
 
+from career_clean.occupation import _GENERIC_STATUS_TITLES, normalize
+
 from . import common as C
 
 ONET_SKILLS_URL = "https://www.onetcenter.org/dl_files/database/db_29_3_text/Skills.txt"
 ONET_OCC_URL = "https://www.onetcenter.org/dl_files/database/db_29_3_text/Occupation%20Data.txt"
 ONET_ALT_URL = "https://www.onetcenter.org/dl_files/database/db_29_3_text/Alternate%20Titles.txt"
 ONET_22_SKILLS_URL = "https://www.onetcenter.org/dl_files/database/db_22_0_text/Skills.txt"
+# The controller-specified .../taxonomy/2019/soc/2010_to_2019_Crosswalk.csv serves an
+# HTML page (or, with ?fmt=csv, a DIFFERENT crosswalk: O*NET-SOC 2019 -> 2018 SOC).
+# The real O*NET-SOC 2010 -> 2019 crosswalk is at this path instead (verified by content:
+# header "O*NET-SOC 2010 Code,O*NET-SOC 2010 Title,O*NET-SOC 2019 Code,O*NET-SOC 2019 Title").
+CROSSWALK_URL = "https://www.onetcenter.org/taxonomy/2019/walk/2010_to_2019_Crosswalk.csv?fmt=csv"
 
 ONET_SKILLS_PATH = C.ROOT / "reference" / "onet_skills.txt"
 ONET_OCC_PATH = C.ROOT / "reference" / "onet_occupation_data_29_3.txt"
 ONET_ALT_PATH = C.ROOT / "reference" / "onet_alternate_titles_29_3.txt"
-IMPUTED_15_1252_PATH = C.ROOT / "reference" / "onet_skills_15_1252_imputed.txt"
+CROSSWALK_PATH = C.ROOT / "reference" / "onet_2010_to_2019_crosswalk.csv"
+BACKFILL_SOURCE_PATH = C.ROOT / "reference" / "onet_skills_29_3_backfill_source.txt"
 
 N_SKILLS = 35
 NEAREST_BATCH = 4000  # query rows per GPU matmul batch against the candidate matrix
 
-IMPUTED_SOC = "15-1252"
-IMPUTE_SOURCE_CODES = ("15-1132.00", "15-1133.00")  # O*NET 22.0 pre-split codes -> 15-1252
-IMPUTED_HEADER_COMMENT = (
-    f"# Imputed for SOC {IMPUTED_SOC} (Software Developers): {ONET_22_SKILLS_URL} has no rows in "
-    f"any O*NET release 25.1-29.3, so this file holds the Scale ID='IM' rows for its O*NET 22.0 "
-    f"pre-split detail codes {' and '.join(IMPUTE_SOURCE_CODES)} (both crosswalk to {IMPUTED_SOC}). "
-    f"skill_breadth/onet_skills.py averages these two codes' Data Value per skill and inserts the "
-    f"result as {IMPUTED_SOC}'s row in the skill matrix before z-scoring. See reference/README.md."
-)
+# Titles whose surface form is an employment-status label, not an occupation --
+# career_clean.occupation's curated set (owner/founder/consultant/...), unioned with
+# internship- and volunteer-flavored titles per the 2026-09-24 round-3 controller ruling.
+GENERIC_TITLES: frozenset[str] = _GENERIC_STATUS_TITLES | {"intern", "internship", "summer intern", "volunteer"}
 
 
 def truncate_soc(onet_soc_code: str) -> str:
@@ -123,24 +145,32 @@ def pooled_soc_assignment(occupation_code_pooled: str | None, valid_socs: set[st
     return None, "nearest"
 
 
-def insert_imputed_soc(
-    socs: list[str], mat: np.ndarray, skills: list[str], soc: str, skill_values: dict[str, float]
+def insert_backfilled_socs(
+    socs: list[str], mat: np.ndarray, skills: list[str], backfill: dict[str, dict[str, float]]
 ) -> tuple[list[str], np.ndarray]:
-    """Pure insertion of one additional SOC row into the skill matrix,
+    """Pure insertion of N additional SOC rows into the skill matrix,
     keeping SOC order ascending (so downstream tie-breaks that rely on
-    sorted-ascending SOC order still hold). skill_values must name exactly
-    the skills in `skills` (order-independent). Used to fold the imputed
-    15-1252 row into the matrix before z-scoring, so it participates in the
+    sorted-ascending SOC order still hold). Each backfill[soc] must name
+    exactly the skills in `skills` (order-independent); backfill may be
+    empty (no-op). Generalizes round 2's single-SOC insert_imputed_soc to
+    every crosswalk-backfilled SOC at once, so they all participate in the
     same z-score population as every other SOC."""
-    if set(skill_values) != set(skills):
-        missing = set(skills) - set(skill_values)
-        extra = set(skill_values) - set(skills)
-        raise ValueError(f"imputed skill set mismatch for {soc}: missing={missing}, extra={extra}")
-    if soc in socs:
-        raise ValueError(f"{soc} is already in the skill matrix -- no imputation needed")
-    row = np.array([skill_values[s] for s in skills], dtype=mat.dtype)
-    socs2 = list(socs) + [soc]
-    mat2 = np.vstack([mat, row[None, :]])
+    if not backfill:
+        return list(socs), mat
+    overlap = set(backfill) & set(socs)
+    if overlap:
+        raise ValueError(f"SOCs already in the skill matrix: {sorted(overlap)}")
+    new_socs = sorted(backfill)
+    rows = []
+    for soc in new_socs:
+        values = backfill[soc]
+        if set(values) != set(skills):
+            missing = set(skills) - set(values)
+            extra = set(values) - set(skills)
+            raise ValueError(f"backfill skill set mismatch for {soc}: missing={missing}, extra={extra}")
+        rows.append([values[s] for s in skills])
+    socs2 = list(socs) + new_socs
+    mat2 = np.vstack([mat, np.array(rows, dtype=mat.dtype)])
     order = np.argsort(socs2)
     return [socs2[i] for i in order], mat2[order]
 
@@ -152,17 +182,20 @@ def hybrid_nearest_soc(
     cand_socs: Sequence[str],
     soc_desc_vecs: np.ndarray,
     socs: Sequence[str],
+    drop_title_term: bool = False,
 ) -> tuple[str, float, float]:
     """Pure single-query hybrid lookup (socs must be sorted ascending, same
     order as soc_desc_vecs' rows). For every soc in `socs`: title term = max
     cosine of title_vec against that soc's rows in (cand_vecs, cand_socs);
     desc term = cosine of desc_vec (role_text embedding) against
     soc_desc_vecs[soc's index] (that soc's Title. Description embedding).
-    Assigns argmax(title term + desc term); ties broken toward the lowest
-    SOC code via np.argmax's documented first-occurrence-on-ties behavior
-    (relies on `socs` being sorted ascending). Returns (soc, title_term,
-    desc_term) for the winner -- the same two numbers the bulk path records
-    as nearest_cos and desc_cos."""
+    Assigns argmax(title term + desc term) -- or argmax(desc term) alone
+    when drop_title_term is True, for generic-status titles whose title
+    term carries no real signal. Ties broken toward the lowest SOC code via
+    np.argmax's documented first-occurrence-on-ties behavior (relies on
+    `socs` being sorted ascending). Returns (soc, title_term, desc_term) for
+    the winner -- the title term is always computed and returned (for
+    diagnostics) even when drop_title_term excludes it from the score."""
     title_sims = cand_vecs @ title_vec
     title_max = np.full(len(socs), -np.inf)
     soc_pos = {s: i for i, s in enumerate(socs)}
@@ -171,7 +204,7 @@ def hybrid_nearest_soc(
         if sim > title_max[i]:
             title_max[i] = sim
     desc_sims = soc_desc_vecs @ desc_vec
-    scores = title_max + desc_sims
+    scores = desc_sims if drop_title_term else title_max + desc_sims
     best = int(np.argmax(scores))
     return socs[best], float(title_max[best]), float(desc_sims[best])
 
@@ -181,6 +214,7 @@ def download_if_absent() -> None:
         (ONET_SKILLS_PATH, ONET_SKILLS_URL),
         (ONET_OCC_PATH, ONET_OCC_URL),
         (ONET_ALT_PATH, ONET_ALT_URL),
+        (CROSSWALK_PATH, CROSSWALK_URL),
     ):
         if path.exists():
             continue
@@ -190,9 +224,17 @@ def download_if_absent() -> None:
         with urllib.request.urlopen(req) as resp:
             path.write_bytes(resp.read())
 
-    if IMPUTED_15_1252_PATH.exists():
+
+def ensure_backfill_source_file(needed_2010_codes: list[str]) -> None:
+    """Fetches O*NET 22.0 Skills.txt in full (not saved raw) and writes just
+    the Scale ID='IM' rows for `needed_2010_codes` to BACKFILL_SOURCE_PATH,
+    with a header comment explaining provenance. No-op if the file already
+    exists (idempotent, same pattern as download_if_absent, but the content
+    depends on which SOCs are missing from 29.3 Skills.txt, computed by the
+    caller, so it can't be a fixed-URL download)."""
+    if BACKFILL_SOURCE_PATH.exists():
         return
-    print(f"downloading {ONET_22_SKILLS_URL} to build {IMPUTED_15_1252_PATH.name}", flush=True)
+    print(f"downloading {ONET_22_SKILLS_URL} to build {BACKFILL_SOURCE_PATH.name}", flush=True)
     req = urllib.request.Request(ONET_22_SKILLS_URL, headers={"User-Agent": "Mozilla/5.0"})
     with urllib.request.urlopen(req) as resp:
         raw = resp.read().decode("utf-8")
@@ -200,48 +242,96 @@ def download_if_absent() -> None:
     header, rows = lines[0], lines[1:]
     cols = header.split("\t")
     soc_i, scale_i = cols.index("O*NET-SOC Code"), cols.index("Scale ID")
-    keep = [r for r in rows if r.split("\t")[soc_i] in IMPUTE_SOURCE_CODES and r.split("\t")[scale_i] == "IM"]
-    if len(keep) != len(IMPUTE_SOURCE_CODES) * N_SKILLS:
-        raise ValueError(
-            f"expected {len(IMPUTE_SOURCE_CODES) * N_SKILLS} IM rows for {IMPUTE_SOURCE_CODES}, found {len(keep)}"
-        )
-    IMPUTED_15_1252_PATH.write_text(IMPUTED_HEADER_COMMENT + "\n" + header + "\n" + "\n".join(keep) + "\n")
+    needed = set(needed_2010_codes)
+    keep = [r for r in rows if r.split("\t")[soc_i] in needed and r.split("\t")[scale_i] == "IM"]
+    comment = (
+        f"# O*NET 22.0 Skills.txt Scale ID='IM' rows for the {len(needed)} O*NET-SOC 2010 codes "
+        f"needed to backfill 2019-taxonomy SOCs with no rows in O*NET 29.3 Skills.txt (crosswalk: "
+        f"{CROSSWALK_URL}). skill_breadth/onet_skills.py averages, per missing SOC, all of its "
+        f"crosswalk-mapped 2010 codes' Data Value per skill (joined to 29.3 skill names by Element "
+        f"ID) and inserts the result as that SOC's row before z-scoring. See reference/README.md."
+    )
+    BACKFILL_SOURCE_PATH.write_text(comment + "\n" + header + "\n" + "\n".join(keep) + "\n")
 
 
-def load_imputed_15_1252_mean(con: duckdb.DuckDBPyConnection) -> dict[str, float]:
-    """Mean Data Value per skill from reference/onet_skills_15_1252_imputed.txt
-    (the O*NET 22.0 IM-scale rows for 15-1132.00 and 15-1133.00), keyed to
-    the 29.3 skill names via Element ID -- O*NET Element IDs are stable
-    across releases but a couple of Element Names drifted (22.0's
+def _load_29_3_element_id_to_name(con: duckdb.DuckDBPyConnection) -> dict[str, str]:
+    """Element ID -> 29.3 skill name, Scale ID='IM'. O*NET Element IDs are
+    stable across releases but a couple of Element Names drifted (22.0's
     "Operation Monitoring" is 29.3's "Operations Monitoring", same
-    2.B.3.g), so joining on name would silently miss a skill."""
-    id_to_name = con.sql(f"""
+    2.B.3.g), so joining backfill sources on name would silently miss a
+    skill -- always join on Element ID instead."""
+    rows = con.sql(f"""
         SELECT DISTINCT "Element ID" AS element_id, "Element Name" AS skill
         FROM read_csv('{ONET_SKILLS_PATH}', delim='\t', header=true, quote='')
         WHERE "Scale ID" = 'IM'
     """).arrow().read_all()
-    id_to_name = dict(zip(id_to_name.column("element_id").to_pylist(), id_to_name.column("skill").to_pylist()))
+    return dict(zip(rows.column("element_id").to_pylist(), rows.column("skill").to_pylist()))
 
-    rows = con.sql(f"""
-        SELECT "Element ID" AS element_id, avg("Data Value") AS value
-        FROM read_csv('{IMPUTED_15_1252_PATH}', delim='\t', header=true, quote='', skip=1)
+
+def build_crosswalk_backfill(
+    con: duckdb.DuckDBPyConnection, occ_socs: set[str], skill_socs: set[str]
+) -> tuple[dict[str, dict[str, float]], list[str]]:
+    """Returns (backfill_values, unbackfillable_socs) for every 6-digit SOC
+    in occ_socs (29.3 Occupation Data) that has no rows in skill_socs (29.3
+    Skills.txt). backfill_values[soc] is a full 35-skill dict, the mean IM
+    rating across the O*NET 22.0 rows of soc's O*NET-SOC 2010 crosswalk
+    sources; unbackfillable_socs are missing SOCs where none of their
+    crosswalk-mapped 2010 codes have any IM rows in O*NET 22.0 (a real,
+    expected outcome for many 2019-only "All Other"/newly split categories
+    and the military SOCs, not an error)."""
+    missing = sorted(occ_socs - skill_socs)
+    if not missing:
+        return {}, []
+
+    con.sql(f"""
+        CREATE OR REPLACE TEMP TABLE missing_socs_tbl AS
+        SELECT * FROM (VALUES {", ".join(f"('{s}')" for s in missing)}) AS t(soc)
+    """)
+    con.sql(f"""
+        CREATE OR REPLACE TEMP TABLE crosswalk_missing AS
+        SELECT "O*NET-SOC 2010 Code" AS soc2010, left("O*NET-SOC 2019 Code", 7) AS soc2019
+        FROM read_csv('{CROSSWALK_PATH}', header=true)
+        WHERE left("O*NET-SOC 2019 Code", 7) IN (SELECT soc FROM missing_socs_tbl)
+    """)
+    needed_2010 = con.sql("SELECT DISTINCT soc2010 FROM crosswalk_missing ORDER BY 1") \
+        .arrow().read_all().column("soc2010").to_pylist()
+
+    ensure_backfill_source_file(needed_2010)
+    id_to_name = _load_29_3_element_id_to_name(con)
+
+    con.sql(f"""
+        CREATE OR REPLACE TEMP TABLE backfill_src AS
+        SELECT "O*NET-SOC Code" AS soc2010, "Element ID" AS element_id, avg("Data Value") AS value
+        FROM read_csv('{BACKFILL_SOURCE_PATH}', delim='\t', header=true, quote='', skip=1)
         WHERE "Scale ID" = 'IM'
-        GROUP BY element_id
+        GROUP BY soc2010, element_id
+    """)
+    agg = con.sql("""
+        SELECT cm.soc2019 AS soc, bs.element_id, avg(bs.value) AS value
+        FROM crosswalk_missing cm
+        JOIN backfill_src bs ON bs.soc2010 = cm.soc2010
+        GROUP BY cm.soc2019, bs.element_id
     """).arrow().read_all()
-    out = {}
-    for element_id, value in zip(rows.column("element_id").to_pylist(), rows.column("value").to_pylist()):
-        if element_id not in id_to_name:
-            raise ValueError(f"imputed Element ID {element_id!r} has no match in the 29.3 skills table")
-        out[id_to_name[element_id]] = value
-    if len(out) != N_SKILLS:
-        raise ValueError(f"expected {N_SKILLS} imputed skills for {IMPUTED_SOC}, found {len(out)}")
-    return out
+
+    backfill_values: dict[str, dict[str, float]] = {}
+    for soc, element_id, value in zip(
+        agg.column("soc").to_pylist(), agg.column("element_id").to_pylist(), agg.column("value").to_pylist()
+    ):
+        if element_id in id_to_name:
+            backfill_values.setdefault(soc, {})[id_to_name[element_id]] = value
+
+    complete = {soc: vals for soc, vals in backfill_values.items() if len(vals) == N_SKILLS}
+    unbackfillable = sorted(set(missing) - set(complete))
+    return complete, unbackfillable
 
 
-def build_skill_matrix(con: duckdb.DuckDBPyConnection) -> tuple[list[str], np.ndarray, list[str]]:
-    """Returns (soc_list, matrix, skill_cols) -- matrix is [n_soc, 35]
-    z-scored then L2-normalized, including the imputed 15-1252 row. soc_list
-    order matches matrix row order (ascending SOC code)."""
+def build_skill_matrix(
+    con: duckdb.DuckDBPyConnection,
+) -> tuple[list[str], np.ndarray, list[str], list[str], list[str]]:
+    """Returns (soc_list, matrix, skill_cols, backfilled_socs,
+    unbackfillable_socs) -- matrix is [n_soc, 35] z-scored then
+    L2-normalized, including every crosswalk-backfilled SOC. soc_list order
+    matches matrix row order (ascending SOC code)."""
     con.sql(f"""
         CREATE OR REPLACE TEMP TABLE skills_raw AS
         SELECT
@@ -275,12 +365,16 @@ def build_skill_matrix(con: duckdb.DuckDBPyConnection) -> tuple[list[str], np.nd
     if np.isnan(mat).any():
         raise ValueError("skill matrix has missing (soc, skill) cells -- not every SOC has all 35 skills")
 
-    imputed_values = load_imputed_15_1252_mean(con)
-    socs, mat = insert_imputed_soc(socs, mat, skills, IMPUTED_SOC, imputed_values)
+    occ_socs = set(con.sql(f"""
+        SELECT DISTINCT left("O*NET-SOC Code", 7)
+        FROM read_csv('{ONET_OCC_PATH}', delim='\t', header=true, quote='')
+    """).arrow().read_all().column(0).to_pylist())
+    backfill_values, unbackfillable = build_crosswalk_backfill(con, occ_socs, set(socs))
+    socs, mat = insert_backfilled_socs(socs, mat, skills, backfill_values)
 
     unit = zscore_l2_normalize(mat)
 
-    return socs, unit.astype(np.float32), skills
+    return socs, unit.astype(np.float32), skills, sorted(backfill_values), unbackfillable
 
 
 def build_candidate_titles(con: duckdb.DuckDBPyConnection, valid_socs: set[str]) -> tuple[list[str], list[str]]:
@@ -364,6 +458,7 @@ def batched_hybrid_nearest(
     cand_soc_idx: np.ndarray,
     soc_desc_emb: np.ndarray,
     socs: Sequence[str],
+    drop_title_mask: np.ndarray,
     batch_size: int = NEAREST_BATCH,
 ) -> tuple[list[str], list[float], list[float]]:
     """Vectorized/batched form of hybrid_nearest_soc over many queries at
@@ -374,13 +469,18 @@ def batched_hybrid_nearest(
     `socs`) -- this is the "per-SOC max over strings" as a single vectorized
     op, no Python loop over roles or SOCs. desc_chunk @ soc_desc_emb.T gives
     [b, n_soc] description cosines directly (soc_desc_emb is already row-
-    aligned to `socs`). The two are summed and argmax'd per row on the CPU
-    (numpy.argmax's documented first-occurrence-on-ties behavior gives the
-    lowest-SOC-code tie-break, since `socs` is sorted ascending)."""
+    aligned to `socs`). drop_title_mask (bool, one per query row) zeroes out
+    the title term's contribution to the SCORE (via torch.where) for
+    generic-status-title roles, without discarding the title term itself --
+    it's still returned for diagnostics. The two are summed (or not) and
+    argmax'd per row on the CPU (numpy.argmax's documented
+    first-occurrence-on-ties behavior gives the lowest-SOC-code tie-break,
+    since `socs` is sorted ascending)."""
     device = "cuda" if torch.cuda.is_available() else "cpu"
     cand_t = torch.from_numpy(cand_emb).to(device)
     soc_desc_t = torch.from_numpy(soc_desc_emb).to(device)
     idx_t = torch.from_numpy(cand_soc_idx.astype(np.int64)).to(device)
+    drop_t = torch.from_numpy(drop_title_mask.astype(bool)).to(device)
     n_soc = len(socs)
 
     socs_out: list[str] = []
@@ -391,6 +491,7 @@ def batched_hybrid_nearest(
         for start in range(0, title_emb.shape[0], batch_size):
             title_chunk = torch.from_numpy(title_emb[start:start + batch_size]).to(device)
             desc_chunk = torch.from_numpy(desc_emb[start:start + batch_size]).to(device)
+            drop_chunk = drop_t[start:start + batch_size]
             b = title_chunk.shape[0]
 
             title_sims = title_chunk @ cand_t.T  # [b, n_cand]
@@ -399,7 +500,8 @@ def batched_hybrid_nearest(
             title_max.scatter_reduce_(1, index, title_sims, reduce="amax", include_self=True)
 
             desc_sims = desc_chunk @ soc_desc_t.T  # [b, n_soc]
-            scores = (title_max + desc_sims).cpu().numpy()
+            combined = title_max + desc_sims
+            scores = torch.where(drop_chunk.unsqueeze(1), desc_sims, combined).cpu().numpy()
             title_max_np = title_max.cpu().numpy()
             desc_sims_np = desc_sims.cpu().numpy()
 
@@ -416,9 +518,13 @@ def run() -> dict:
     con = C.connect()
 
     with C.Timer("skill matrix"):
-        socs, skill_mat, skill_cols = build_skill_matrix(con)
+        socs, skill_mat, skill_cols, backfilled_socs, unbackfillable_socs = build_skill_matrix(con)
     valid_socs = set(socs)
-    print(f"skill matrix: {len(socs)} SOCs x {len(skill_cols)} skills (incl. imputed {IMPUTED_SOC})", flush=True)
+    print(
+        f"skill matrix: {len(socs)} SOCs x {len(skill_cols)} skills "
+        f"({len(backfilled_socs)} crosswalk-backfilled, {len(unbackfillable_socs)} still unbackfillable)",
+        flush=True,
+    )
 
     C.RESULTS.mkdir(parents=True, exist_ok=True)
     matrix_table = pa.table(
@@ -460,6 +566,9 @@ def run() -> dict:
         "role_emb.npy row order doesn't match roles_df -- desc_emb would be misaligned"
     desc_emb = role_emb
 
+    generic_mask = np.array([normalize(t) in GENERIC_TITLES for t in title_texts])
+    print(f"generic-status titles (title term dropped): {int(generic_mask.sum())}/{n_roles} roles", flush=True)
+
     assignments = [pooled_soc_assignment(c, valid_socs) for c in pooled_codes]
     is_pooled = np.array([source == "pooled" for _, source in assignments])
 
@@ -477,7 +586,8 @@ def run() -> dict:
         nearest_idx = np.where(~is_pooled)[0]
         if len(nearest_idx):
             n_socs_out, n_title_cos, n_desc_cos = batched_hybrid_nearest(
-                title_emb[nearest_idx], desc_emb[nearest_idx], cand_emb, cand_soc_idx, soc_desc_emb, socs
+                title_emb[nearest_idx], desc_emb[nearest_idx], cand_emb, cand_soc_idx,
+                soc_desc_emb, socs, generic_mask[nearest_idx],
             )
             for j, i in enumerate(nearest_idx):
                 soc_out[i] = n_socs_out[j]
@@ -513,11 +623,16 @@ def run() -> dict:
     manifest = {
         "n_roles_embedded": n_roles,
         "onet_release": "29.3",
-        "n_onet_soc_in_skills_table": len(socs),
-        "imputed_socs": [IMPUTED_SOC],
+        "n_onet_soc_in_skill_matrix": len(socs),
+        "n_soc_crosswalk_backfilled": len(backfilled_socs),
+        "crosswalk_backfilled_socs": backfilled_socs,
+        "n_soc_unbackfillable": len(unbackfillable_socs),
+        "unbackfillable_socs": unbackfillable_socs,
+        "n_generic_status_title_roles": int(generic_mask.sum()),
         "nearest_match_method": (
             "hybrid: max title_raw-vs-(Title+AlternateTitle) cosine per SOC, "
-            "plus role_text-vs-(Title. Description) cosine; argmax over SOCs"
+            "plus role_text-vs-(Title. Description) cosine; argmax over SOCs; "
+            "title term dropped entirely for generic-status titles (GENERIC_TITLES)"
         ),
         "n_candidate_titles": len(cand_texts),
         "skill_columns": skill_cols,
