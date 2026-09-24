@@ -15,6 +15,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 RESULTS = HERE / "results" / "breadth.json"
+MANIFEST = HERE / "results" / "_cohort_manifest.json"
 OUT = HERE / "figure" / "index.html"
 
 SOURCE_LINE = (
@@ -73,6 +74,7 @@ def build_rows(d: dict) -> list[dict]:
 
 def caption_text(d: dict) -> str:
     meta = d["meta"]
+    man = json.loads(MANIFEST.read_text())
     dl = d["median_description_length_chars"]
     rho = d["spearman_rank_agreement"]["rho"]
     soc = d["soc_source_share"]
@@ -81,9 +83,12 @@ def caption_text(d: dict) -> str:
     words = {6: "six", 5: "five", 4: "four"}.get(n_groups, str(n_groups))
     return " ".join(
         [
-            "The sample is US-profile LinkedIn users with a bachelor's degree "
-            "finished between 2000 and 2014, counting the jobs they held in the "
-            "10 years after graduation that have a written description.",
+            "The sample is drawn from a 2.0-million-profile LinkedIn snapshot of "
+            "the US workforce: people who finished a bachelor's degree between "
+            f"{man['cohort_year_min']} and {man['cohort_year_max']}, and the jobs "
+            "they started in their graduation year or the "
+            f"{man['role_window_years']} years after, counting only jobs with a "
+            f"description of at least {man['min_description_len']} characters.",
             f"Each estimate draws {meta['n_people']} graduates per field with one "
             f"job each, and the draw is repeated {meta['n_boot']} times. Dots mark "
             "the middle value; lines span the middle 95 percent of draws.",
@@ -186,7 +191,7 @@ svg text{font-family:var(--sans)}
 .rl.ref{fill:var(--muted)}
 .rl.head{font-weight:500}
 .sec{font-size:12px;fill:var(--muted)}
-.val{font-size:12.5px;fill:var(--ink2);font-variant-numeric:tabular-nums}
+.val{font-size:12.5px;fill:var(--ink2);font-variant-numeric:tabular-nums;paint-order:stroke;stroke:var(--paper);stroke-width:3px;stroke-linejoin:round}
 .whisk{stroke-width:1.5;stroke-linecap:round}
 .dot{stroke:var(--paper);stroke-width:2}
 .accent .whisk{stroke:var(--line)} .accent .dot{fill:var(--line)}
@@ -222,19 +227,21 @@ td .sub{color:var(--muted);font-size:12px}
 tr.ref th,tr.ref td{color:var(--muted)}
 tr.first-ref th,tr.first-ref td{border-top:1px solid var(--rule2)}
 thead tr.grp th{border-bottom:none;padding-bottom:0}
+.scroll-cue{display:none;font-size:13px;color:var(--muted);margin:0 0 6px}
 .tbl-note{font-size:13px;color:var(--muted);margin:10px 0 0;max-width:62em}
 @media (max-width:720px){
   h1{font-size:30px}
   .panels{grid-template-columns:minmax(0,1fr);gap:28px}
   .fig-head,.tbl-head{grid-template-columns:minmax(0,1fr);gap:2px}
   .fig-title{font-size:21px}
+  .scroll-cue{display:block}
   .page{padding-top:24px}
 }
 </style>
 
 <main class="page">
   <h1>Humanities graduates go on to a broad range of work</h1>
-  <p class="lede">A comparison of how many distinct kinds of jobs graduates of four fields hold in their first ten years after a bachelor's degree.</p>
+  <p class="lede">A comparison of how many distinct kinds of jobs graduates of four fields hold in their first ten years after a bachelor's degree, with nursing and accounting for comparison.</p>
 
   <section class="howto" aria-labelledby="howto-h">
     <h2 id="howto-h">How to read this</h2>
@@ -278,6 +285,7 @@ thead tr.grp th{border-bottom:none;padding-bottom:0}
       <span class="fig-n">Table 1</span>
       <h2 id="t1-h">The numbers behind the figure</h2>
     </div>
+    <p class="scroll-cue">Scroll sideways for more columns.</p>
     <div class="tbl-wrap">
       <table>
         <thead>
@@ -378,7 +386,7 @@ const DATA = __DATA__;
       el("circle", {class:"dot", cx:X(v[0]), cy:cy, r:5}, g);
       el("rect", {class:"hit", x:X(v[1]) - 8, y:cy - 12, width:Math.max(24, X(v[2]) - X(v[1]) + 16), height:24}, g);
       if (r.section === "head")
-        el("text", {class:"val", x:X(v[2]) + 7, y:cy + 4.5, "aria-hidden":"true"}, g0, f1(v[0]));
+        el("text", {class:"val", x:X(v[2]) + 8, y:cy + 4.5, "aria-hidden":"true"}, g0, f1(v[0]));
       g.addEventListener("pointerenter", () => showTip(r, p, g.querySelector(".dot")));
       g.addEventListener("pointerleave", hideTip);
       g.addEventListener("focus", () => showTip(r, p, g.querySelector(".dot")));
@@ -416,6 +424,9 @@ def main() -> None:
     hum, stem = by["humanities"], by["stem"]
     assert hum["text"][1] > stem["text"][2], "title claim no longer holds (text)"
     assert hum["skills"][1] > stem["skills"][2], "title claim no longer holds (skills)"
+    fin = by["finance"]
+    assert hum["text"][1] > fin["text"][2], "title claim no longer holds (finance, text)"
+    assert hum["skills"][1] > fin["skills"][2], "title claim no longer holds (finance, skills)"
     fig_title = (
         "Humanities graduates hold a wider range of jobs than STEM or finance "
         "graduates"
