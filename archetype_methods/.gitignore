@@ -1,0 +1,6 @@
+cache/
+__pycache__/
+# Data-derived outputs stay local (public repo): gold sample/labels and all results
+gold/
+results/
+*.npy

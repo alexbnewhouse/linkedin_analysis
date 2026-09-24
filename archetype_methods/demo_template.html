@@ -1,0 +1,246 @@
+<title>Where Your Work Sits</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#F5F6F4; --panel:#FCFCFB; --ink:#0B0B0B; --ink2:#52514E; --muted:#898781; --line:#E1E0D9; --axis:#C3C2B7;
+  --accent:#0F6E74; --halo:rgba(252,252,251,0.85);
+  --c-communicators:#eb6834; --c-researchers:#2a78d6; --c-analysts:#4a3aa7; --c-advocates:#e34948; --c-helpers:#1baf7a;
+  --c-connectors:#eda100; --c-leaders:#008300; --c-builders:#e87ba4; --c-stewards:#0f6e74; --c-none:#898781;
+  --display:"Newsreader",Georgia,serif; --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0D0D0D; --panel:#1A1A19; --ink:#FFFFFF; --ink2:#C3C2B7; --muted:#898781; --line:#2C2C2A; --axis:#383835;
+  --accent:#5FC1C6; --halo:rgba(26,26,25,0.85);
+  --c-communicators:#d95926; --c-researchers:#3987e5; --c-analysts:#9085e9; --c-advocates:#e66767; --c-helpers:#199e70;
+  --c-connectors:#c98500; --c-leaders:#008300; --c-builders:#d55181; --c-stewards:#5fc1c6; --c-none:#898781;
+}}
+:root[data-theme="dark"]{
+  --bg:#0D0D0D; --panel:#1A1A19; --ink:#FFFFFF; --ink2:#C3C2B7; --muted:#898781; --line:#2C2C2A; --axis:#383835;
+  --accent:#5FC1C6; --halo:rgba(26,26,25,0.85);
+  --c-communicators:#d95926; --c-researchers:#3987e5; --c-analysts:#9085e9; --c-advocates:#e66767; --c-helpers:#199e70;
+  --c-connectors:#c98500; --c-leaders:#008300; --c-builders:#d55181; --c-stewards:#5fc1c6; --c-none:#898781;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;padding-block:22px;padding-inline:16px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 24px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(24px,3.2vw,34px);margin:0;letter-spacing:-.01em;text-wrap:balance}
+.lede{max-width:70ch;color:var(--ink2);margin:0}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+.mapbox{background:var(--panel);border:1px solid var(--line);border-radius:6px;position:relative;overflow:hidden}
+canvas{display:block;width:100%;height:auto;max-width:100%;cursor:crosshair}
+.tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:6px 9px;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.12);max-width:240px;display:none;z-index:2}
+.tip b{font-weight:600}
+.tip .fam{color:var(--ink2);font-size:12px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 6px;padding:8px 10px;border-top:1px solid var(--line)}
+.legend button{font:13px var(--body);color:var(--ink);background:none;border:1px solid transparent;border-radius:4px;padding:3px 8px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.legend button:hover{border-color:var(--line)}
+.legend button[aria-pressed="true"]{border-color:var(--ink)}
+.legend button.dim{opacity:.45}
+.swatch{width:10px;height:10px;border-radius:50%;display:inline-block;background:var(--k);flex:none}
+.legend .n{color:var(--muted);font-variant-numeric:tabular-nums;font-size:12px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.panel h2{font-family:var(--display);font-weight:500;font-size:20px;margin:0}
+label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--ink2)}
+input,textarea{font:15px var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--axis);border-radius:4px;padding:7px 9px;width:100%}
+textarea{min-height:76px;resize:vertical}
+input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.btn{font:600 14px var(--body);color:var(--ink);background:var(--panel);border:1px solid var(--axis);border-radius:4px;padding:8px 14px;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] .btn.primary{color:#0D0D0D}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.primary{color:#0D0D0D}}
+.btn.small{font-weight:400;font-size:13px;padding:4px 9px}
+.examples{font-size:13px;color:var(--ink2)}
+.doors{display:flex;flex-direction:column;gap:8px}
+.door{border-top:1px solid var(--line);padding-top:8px}
+.door .head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.door .head b{font-weight:600}
+.door .share{color:var(--ink2);font-variant-numeric:tabular-nums;font-size:13px}
+.bar{height:6px;background:var(--line);border-radius:3px;margin:5px 0 6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--k);width:0;transition:width 700ms cubic-bezier(.2,.7,.2,1)}
+.why{font-size:13px;color:var(--ink2);margin:0}
+.why span{white-space:nowrap}
+.neighbors{margin:0;padding:0;list-style:none;font-size:13px;display:flex;flex-direction:column;gap:2px}
+.neighbors li{display:flex;gap:6px;align-items:center}
+.neighbors .n{color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums}
+.note{font-size:12.5px;color:var(--muted);margin:0}
+footer{font-size:13px;color:var(--ink2);max-width:90ch}
+@media (prefers-reduced-motion: reduce){.bar i{transition:none}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">Career archetypes, interactive demo</div>
+      <h1>Where does your work sit among two million careers?</h1>
+    </div>
+  </header>
+  <p class="lede">Each dot is one of the 2,000 most common job titles in the LinkedIn snapshot, placed near titles whose holders describe similar work, sized by how many people hold it, and colored by the family a model assigned it from the NHA framework. Describe your own work and the page places you among your nearest titles and shows which families the evidence points to.</p>
+
+  <div class="grid">
+    <div class="mapbox">
+      <canvas id="map" width="1200" height="900" aria-label="Map of two thousand job titles clustered by similarity, colored by archetype family"></canvas>
+      <div class="tip" id="tip"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Your profile</h2>
+      <label>Your job title<input id="ptitle" placeholder="e.g. Grants Coordinator" autocomplete="off"></label>
+      <label>What you do, in a few sentences<textarea id="ptext" placeholder="Write proposals to foundations, track budgets, report to funders, coordinate with program staff."></textarea></label>
+      <label>What you studied (optional)<input id="pstudy" placeholder="e.g. History" autocomplete="off"></label>
+      <div class="row">
+        <button class="btn primary" id="place">Place me</button>
+        <button class="btn" id="clear">Clear</button>
+      </div>
+      <div class="examples">Try an example:
+        <div class="row" id="examples"></div>
+      </div>
+      <div id="result" hidden>
+        <p class="note" id="rsummary"></p>
+        <div class="doors" id="doors"></div>
+        <h2 style="font-size:16px;margin-top:8px">Nearest titles</h2>
+        <ul class="neighbors" id="neighbors"></ul>
+        <p class="note" id="rnote"></p>
+      </div>
+    </div>
+  </div>
+
+  <footer>Layout: t-SNE over sentence embeddings of each title and of what people wrote about the job. Family labels: a 27B model reading the framework, 81% agreement with a hand-sorted benchmark. Placement of your profile is a demonstration only: it matches your words against the titles and the framework's own vocabulary in the browser, so nothing you type leaves this page. A production version would embed your description with the same model as the map. Families and vocabulary from the NHA Career Skill Archetypes Framework.</footer>
+</div>
+
+<script>
+const ROLES = __ROLES__;
+const FW = __FRAMEWORK__;
+(function(){
+  const KEYS = ["communicators","researchers","analysts","advocates","helpers","connectors","leaders","builders","stewards","none"];
+  const LABEL = {communicators:"Communicators & Creators",researchers:"Researchers & Educators",analysts:"Analysts & Strategists",advocates:"Advocates & Advisors",helpers:"Helpers & Service Professionals",connectors:"Connectors & Relationship Builders",leaders:"Leaders & Organizers",builders:"Builders & Technologists",stewards:"Financial & Resource Stewards",none:"Outside the framework"};
+  const SHORT = {communicators:"Communicators",researchers:"Researchers",analysts:"Analysts",advocates:"Advocates",helpers:"Helpers",connectors:"Connectors",leaders:"Leaders",builders:"Builders",stewards:"Stewards",none:"Outside"};
+  const css = k => getComputedStyle(document.documentElement).getPropertyValue("--c-"+k).trim();
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ---------- text index ----------
+  const STOP = new Set("a an the and or of for to in on at with by from as is are be i my we our you your that this it its into over up out do does work working job role team teams people".split(" "));
+  function toks(s){ return (s||"").toLowerCase().replace(/&/g," and ").split(/[^a-z0-9]+/).filter(w=>w.length>1&&!STOP.has(w)).map(w=>w.replace(/(ies)$/,"y").replace(/s$/,"")); }
+  function grams(ts){ const out=[...ts]; for(let i=0;i+1<ts.length;i++){ out.push(ts[i]+"_"+ts[i+1]); out.push(ts[i]+"_"+ts[i+1]); } return out; }
+  const df = new Map();
+  ROLES.forEach(r=>{ r.t = grams(toks(r.title)); new Set(r.t).forEach(w=>df.set(w,(df.get(w)||0)+1)); });
+  const N = ROLES.length;
+  const idf = w => Math.log(1 + N/(1+(df.get(w)||0)));
+  ROLES.forEach(r=>{ const m=new Map(); r.t.forEach(w=>m.set(w,(m.get(w)||0)+idf(w))); let n=0; m.forEach(v=>n+=v*v); r.vec=m; r.norm=Math.sqrt(n)||1; r.generic = toks(r.title).length<2; });
+  // framework documents per family: skills, pathways, titles, orientation
+  const FVEC = {};
+  KEYS.forEach(k=>{ if(!FW[k]) return; const m=new Map(); const add=(s,w)=>grams(toks(s)).forEach(t=>m.set(t,(m.get(t)||0)+w));
+    FW[k].titles.forEach(t=>add(t,1.0)); FW[k].pathways.forEach(t=>add(t,1.2)); FW[k].skills.forEach(t=>add(t,0.8)); add(FW[k].orientation,0.6);
+    let n=0; m.forEach(v=>n+=v*v); FVEC[k]={vec:m,norm:Math.sqrt(n)||1}; });
+  function profileVec(title,text,study){ const m=new Map(); const add=(s,w)=>grams(toks(s)).forEach(t=>m.set(t,(m.get(t)||0)+w*idf(t)));
+    add(title,2.5); add(text,1.0); add(study,0.5); let n=0; m.forEach(v=>n+=v*v); return {vec:m,norm:Math.sqrt(n)||1}; }
+  function cos(a,b){ let s=0; a.vec.forEach((v,w)=>{ const u=b.vec.get(w); if(u) s+=v*u; }); return s/(a.norm*b.norm); }
+  function matchedTerms(p,f){ const out=[]; p.vec.forEach((v,w)=>{ if(f.vec.has(w)&&!w.includes("_")) out.push(w); }); return out; }
+
+  // ---------- map ----------
+  const cv=document.getElementById("map"), ctx=cv.getContext("2d"), tip=document.getElementById("tip");
+  const W=cv.width, H=cv.height, PAD=40;
+  const px = r => PAD + r.x*(W-2*PAD), py = r => PAD + (1-r.y)*(H-2*PAD);
+  const rad = r => Math.min(11, 2.2 + Math.sqrt(r.n)/18);
+  const counts = {}; KEYS.forEach(k=>counts[k]=0); ROLES.forEach(r=>counts[r.a]++);
+  const cent = {}; KEYS.forEach(k=>{ const xs=[],ys=[]; ROLES.forEach(r=>{ if(r.a===k){xs.push(px(r));ys.push(py(r));} }); if(xs.length){ xs.sort((a,b)=>a-b); ys.sort((a,b)=>a-b); cent[k]=[xs[xs.length>>1],ys[ys.length>>1]]; } });
+  let focus=null, you=null, hover=null;
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue("--panel"); ctx.fillRect(0,0,W,H);
+    for(const r of ROLES){
+      const dim = focus && r.a!==focus; ctx.globalAlpha = dim?0.12:0.82;
+      ctx.beginPath(); ctx.arc(px(r),py(r),rad(r),0,Math.PI*2); ctx.fillStyle=css(r.a); ctx.fill();
+    }
+    ctx.globalAlpha=1;
+    // family names at their medians, with a halo
+    ctx.font="600 20px 'Source Sans 3', system-ui, sans-serif"; ctx.textAlign="center"; ctx.textBaseline="middle";
+    for(const k of KEYS){ if(!cent[k]||k==="none") continue; const [x,y]=cent[k]; ctx.lineWidth=6; ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--halo"); ctx.strokeText(SHORT[k],x,y); ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue("--ink"); ctx.fillText(SHORT[k],x,y); }
+    if(hover){ ctx.beginPath(); ctx.arc(px(hover),py(hover),rad(hover)+3,0,Math.PI*2); ctx.lineWidth=2; ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--ink"); ctx.stroke(); }
+    if(you){
+      ctx.setLineDash([4,4]); ctx.lineWidth=1.2; ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--ink2");
+      for(const nb of you.rays){ ctx.beginPath(); ctx.moveTo(you.cx,you.cy); ctx.lineTo(px(nb),py(nb)); ctx.stroke(); }
+      ctx.setLineDash([]);
+      ctx.beginPath(); ctx.arc(you.cx,you.cy,10,0,Math.PI*2); ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue("--ink"); ctx.fill();
+      ctx.beginPath(); ctx.arc(you.cx,you.cy,10,0,Math.PI*2); ctx.lineWidth=3; ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--panel"); ctx.stroke();
+      ctx.font="600 16px 'Source Sans 3', system-ui, sans-serif"; ctx.textAlign="left"; ctx.lineWidth=5; ctx.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--halo");
+      ctx.strokeText("You", you.cx+14, you.cy); ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue("--ink"); ctx.fillText("You", you.cx+14, you.cy);
+    }
+  }
+  function nearest(mx,my){ let best=null,bd=14*14; for(const r of ROLES){ if(focus&&r.a!==focus) continue; const dx=px(r)-mx, dy=py(r)-my, d=dx*dx+dy*dy-rad(r)*rad(r); if(d<bd){bd=d;best=r;} } return best; }
+  cv.addEventListener("mousemove",e=>{ const b=cv.getBoundingClientRect(); const mx=(e.clientX-b.left)*W/b.width, my=(e.clientY-b.top)*H/b.height; const r=nearest(mx,my);
+    if(r!==hover){ hover=r; draw(); }
+    if(r){ tip.style.display="block"; tip.innerHTML=`<b>${r.title}</b><br><span class="fam">${LABEL[r.a]}${r.b?` · also ${SHORT[r.b]}`:""}</span><br><span class="fam">${r.n.toLocaleString()} people hold this title</span>`;
+      const left=e.clientX-b.left+14, top=e.clientY-b.top+14; tip.style.left=Math.min(left,b.width-250)+"px"; tip.style.top=top+"px"; }
+    else tip.style.display="none"; });
+  cv.addEventListener("mouseleave",()=>{ hover=null; tip.style.display="none"; draw(); });
+  // legend
+  const legend=document.getElementById("legend");
+  KEYS.forEach(k=>{ const b=document.createElement("button"); b.innerHTML=`<span class="swatch" style="--k:var(--c-${k})"></span>${LABEL[k]} <span class="n">${counts[k]}</span>`; b.setAttribute("aria-pressed","false");
+    b.addEventListener("click",()=>{ focus = focus===k?null:k; [...legend.children].forEach(c=>{ const on=c.dataset.k===focus; c.setAttribute("aria-pressed",on?"true":"false"); c.classList.toggle("dim",!!focus&&!on); }); draw(); });
+    b.dataset.k=k; legend.appendChild(b); });
+
+  // ---------- placement ----------
+  const EXAMPLES=[
+    {t:"Grants Coordinator",x:"Write proposals to foundations, track program budgets, report outcomes to funders, and coordinate with program staff at a museum.",s:"Art history"},
+    {t:"Content Strategist",x:"Plan and edit web content, write for different audiences, run the editorial calendar, and work with designers on campaigns.",s:"English"},
+    {t:"Paralegal",x:"Draft filings, research case law, manage discovery documents, and prepare attorneys for hearings; interested in moving into policy work.",s:"Political science"},
+  ];
+  const ex=document.getElementById("examples");
+  EXAMPLES.forEach(e=>{ const b=document.createElement("button"); b.className="btn small"; b.textContent=e.t; b.addEventListener("click",()=>{ ptitle.value=e.t; ptext.value=e.x; pstudy.value=e.s; place(); }); ex.appendChild(b); });
+  const ptitle=document.getElementById("ptitle"), ptext=document.getElementById("ptext"), pstudy=document.getElementById("pstudy");
+  const result=document.getElementById("result"), doors=document.getElementById("doors"), neighbors=document.getElementById("neighbors"), rsummary=document.getElementById("rsummary"), rnote=document.getElementById("rnote");
+
+  function place(){
+    const p = profileVec(ptitle.value, ptext.value, pstudy.value);
+    if(p.vec.size===0){ result.hidden=false; rsummary.textContent="Type a title or a few words about your work first."; doors.innerHTML=""; neighbors.innerHTML=""; rnote.textContent=""; return; }
+    const scored = ROLES.map(r=>({r, s:cos(p,r)*(r.generic?0.6:1)})).filter(o=>o.s>0).sort((a,b)=>b.s-a.s);
+    const top = scored.slice(0,10);
+    const votes={}; KEYS.forEach(k=>votes[k]=0); let vt=0; top.forEach(o=>{ const w=o.s*o.s; votes[o.r.a]+=w; if(o.r.b) votes[o.r.b]+=w*0.35; vt+=w*(o.r.b?1.35:1); });
+    const fscore={}; let ft=0; KEYS.forEach(k=>{ fscore[k]=FVEC[k]?cos(p,FVEC[k]):0; ft+=fscore[k]; });
+    const combined={}; KEYS.forEach(k=>{ combined[k] = (vt?0.6*votes[k]/vt:0) + (ft?0.4*fscore[k]/ft:0); });
+    const ranked = KEYS.filter(k=>combined[k]>0).sort((a,b)=>combined[b]-combined[a]).slice(0,3);
+    // position: weighted mean of the nearest titles, pulled a little toward the leading family
+    let cx=0,cy=0,ws=0; top.slice(0,8).forEach(o=>{ cx+=px(o.r)*o.s; cy+=py(o.r)*o.s; ws+=o.s; });
+    if(ws){ cx/=ws; cy/=ws; } else if(ranked[0]&&cent[ranked[0]]){ [cx,cy]=cent[ranked[0]]; }
+    if(ranked[0]&&cent[ranked[0]]&&ws){ cx=0.85*cx+0.15*cent[ranked[0]][0]; cy=0.85*cy+0.15*cent[ranked[0]][1]; }
+    const target={cx,cy,rays:top.slice(0,6).map(o=>o.r)};
+    animateTo(target);
+    // panel
+    result.hidden=false;
+    rsummary.textContent = top.length ? `Placed among ${top.length} nearest titles. The evidence points to these families, strongest first; treat them as ways in, not a verdict.` : "No title in the map shares your words; placed from the framework's vocabulary alone.";
+    doors.innerHTML="";
+    ranked.forEach(k=>{
+      const d=document.createElement("div"); d.className="door";
+      const nb = top.filter(o=>o.r.a===k).slice(0,3).map(o=>o.r.title);
+      const terms = FVEC[k]?matchedTerms(p,FVEC[k]).slice(0,5):[];
+      d.innerHTML=`<div class="head"><b>${LABEL[k]}</b><span class="share">${Math.round(100*combined[k]/ranked.reduce((a,x)=>a+combined[x],0))}% of the evidence</span></div>
+        <div class="bar"><i style="--k:var(--c-${k})"></i></div>
+        <p class="why">${nb.length?`Nearby titles: ${nb.join("; ")}. `:""}${terms.length?`Framework words you used: ${terms.map(t=>`<span>${t}</span>`).join(", ")}.`:""}</p>`;
+      doors.appendChild(d);
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{ d.querySelector(".bar i").style.width = Math.round(100*combined[k]/combined[ranked[0]])+"%"; }));
+    });
+    neighbors.innerHTML="";
+    top.slice(0,10).forEach(o=>{ const li=document.createElement("li"); li.innerHTML=`<span class="swatch" style="--k:var(--c-${o.r.a})"></span>${o.r.title}<span class="n">${o.r.n.toLocaleString()}</span>`; neighbors.appendChild(li); });
+    rnote.textContent = "Your point is the weighted center of the titles above, nudged toward the leading family. In a production version the same model that laid out the map would read your description directly.";
+  }
+  function animateTo(t){
+    if(reduced||!you){ you={...t}; draw(); return; }
+    const from={cx:you.cx,cy:you.cy}, t0=performance.now();
+    (function step(now){ const k=Math.min(1,(now-t0)/700), e=1-Math.pow(1-k,3); you={cx:from.cx+(t.cx-from.cx)*e, cy:from.cy+(t.cy-from.cy)*e, rays:t.rays}; draw(); if(k<1) requestAnimationFrame(step); })(t0);
+  }
+  document.getElementById("place").addEventListener("click",place);
+  document.getElementById("clear").addEventListener("click",()=>{ ptitle.value=""; ptext.value=""; pstudy.value=""; you=null; result.hidden=true; draw(); });
+  ptitle.addEventListener("keydown",e=>{ if(e.key==="Enter") place(); });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change",draw);
+  new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+  document.fonts?.ready.then(draw);
+  // open with an example placed, so the page reads at rest
+  ptitle.value=EXAMPLES[0].t; ptext.value=EXAMPLES[0].x; pstudy.value=EXAMPLES[0].s;
+  draw(); place();
+})();
+</script>

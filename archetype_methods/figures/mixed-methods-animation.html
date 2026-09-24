@@ -1,0 +1,265 @@
+<title>Sorting Two Million Careers</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#F2F4F6; --panel:#FFFFFF; --ink:#1B2128; --muted:#5B6570; --line:#C9D0D6; --line-soft:#E1E6EA;
+  --accent:#0E6B72; --accent-soft:#D6ECEC; --hold:#B8641C; --hold-soft:#F6E5D3; --out:#4A525B; --out-soft:#DDE1E5;
+  --reader:#3A4A9C; --reader-soft:#DEE2F4;
+  --display:"Newsreader",Georgia,"Times New Roman",serif; --body:"Source Sans 3","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#13181D; --panel:#1B2128; --ink:#ECEFF2; --muted:#A3ACB5; --line:#3A434C; --line-soft:#2A323A;
+  --accent:#5FC1C6; --accent-soft:#163D40; --hold:#E39A4F; --hold-soft:#3F2A15; --out:#B7BEC6; --out-soft:#2E353C;
+  --reader:#9AA7F0; --reader-soft:#252C4E;
+}}
+:root[data-theme="dark"]{
+  --bg:#13181D; --panel:#1B2128; --ink:#ECEFF2; --muted:#A3ACB5; --line:#3A434C; --line-soft:#2A323A;
+  --accent:#5FC1C6; --accent-soft:#163D40; --hold:#E39A4F; --hold-soft:#3F2A15; --out:#B7BEC6; --out-soft:#2E353C;
+  --reader:#9AA7F0; --reader-soft:#252C4E;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45;padding-block:24px;padding-inline:16px;margin:0}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(24px,3.4vw,34px);margin:0;letter-spacing:-0.01em;text-wrap:balance}
+.eyebrow{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)}
+.stage{background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden;position:relative}
+.stage svg{display:block;width:100%;height:auto;max-width:100%}
+.caption{display:grid;grid-template-columns:1fr auto;gap:8px 24px;align-items:start}
+.caption h2{font-family:var(--display);font-weight:500;font-size:clamp(19px,2.4vw,24px);margin:0 0 4px;text-wrap:balance}
+.caption p{margin:0;max-width:66ch;color:var(--ink)}
+.fact{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px;max-width:26ch;text-align:right;padding-top:6px}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+button{font:600 14px var(--body);color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:8px 14px;cursor:pointer}
+button:hover{border-color:var(--ink)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] button.primary{color:#0E1B1C}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) button.primary{color:#0E1B1C} }
+.dots{display:flex;gap:6px;margin-left:auto}
+.dots button{width:30px;height:30px;padding:0;border-radius:50%;font-size:12px;color:var(--muted)}
+.dots button[aria-current="step"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px;background:var(--k)}
+footer{font-size:13px;color:var(--muted);max-width:80ch}
+/* svg text */
+.t{font-family:var(--body);fill:var(--ink)}
+.t.small{font-size:11.5px}
+.t.muted{fill:var(--muted)}
+.t.label{font-size:12.5px;font-weight:600}
+.t.big{font-family:var(--display);font-size:30px;font-weight:500}
+.bin{fill:var(--panel);stroke:var(--line);stroke-width:1.2}
+.bin.out{stroke-dasharray:4 3;stroke:var(--out)}
+.chip{transition:transform 900ms cubic-bezier(.2,.7,.2,1),opacity 500ms;opacity:0}
+.chip rect{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1}
+.chip.seed rect{fill:var(--accent);stroke:var(--accent)}
+.chip.seed text{fill:#fff}
+.chip.hold rect{fill:var(--hold-soft);stroke:var(--hold)}
+.chip.out rect{fill:var(--out-soft);stroke:var(--out)}
+.chip text{font-family:var(--body);font-size:11px;fill:var(--ink)}
+.dot{transition:transform 700ms cubic-bezier(.2,.7,.2,1),opacity 400ms;opacity:0;fill:var(--accent)}
+.dot.hold{fill:var(--hold)} .dot.out{fill:var(--out)}
+.box{fill:var(--reader-soft);stroke:var(--reader);stroke-width:1.2}
+.box-t{font-family:var(--display);font-size:15px;fill:var(--ink)}
+.fade{transition:opacity 600ms}
+.bar{transition:width 1200ms cubic-bezier(.2,.7,.2,1)}
+@media (prefers-reduced-motion: reduce){ .chip,.dot,.fade,.bar{transition:none} }
+@media (max-width:600px){ .caption{grid-template-columns:1fr} .fact{text-align:left;max-width:none} .dots{margin-left:0} }
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">Career archetypes, mixed-methods pipeline</div>
+      <h1>How a job title finds its kind of work</h1>
+    </div>
+    <div class="eyebrow" id="stepcount">Step 1 of 6</div>
+  </header>
+
+  <div class="stage">
+    <svg id="stage" viewBox="0 0 1000 560" role="img" aria-labelledby="stagetitle">
+      <title id="stagetitle">Animated diagram of the mixed-methods archetype pipeline</title>
+      <g id="bins"></g>
+      <g id="layer"></g>
+    </svg>
+  </div>
+
+  <div class="caption">
+    <div><h2 id="ctitle"></h2><p id="ctext"></p></div>
+    <div class="fact" id="cfact"></div>
+  </div>
+
+  <div class="controls">
+    <button id="prev">Previous</button>
+    <button id="play" class="primary">Play</button>
+    <button id="next">Next</button>
+    <div class="dots" id="dots"></div>
+  </div>
+
+  <div class="legend">
+    <span style="--k:var(--accent)">a title placed in one of the nine families</span>
+    <span style="--k:var(--hold)">held back as unsure</span>
+    <span style="--k:var(--out)">outside the framework</span>
+    <span style="--k:var(--reader)">a reader or learner</span>
+  </div>
+
+  <footer>Families and example titles are from the NHA Career Skill Archetypes Framework. Accuracy figures come from the September 2026 benchmark on 400 hand-sorted titles from the LinkedIn snapshot; population shares are among people who hold titles held by five or more people.</footer>
+</div>
+
+<script>
+(function(){
+  const FAMILIES = [
+    ["Communicators","and Creators"],["Researchers","and Educators"],["Analysts","and Strategists"],
+    ["Advocates","and Advisors"],["Helpers","and Service Professionals"],["Connectors","and Relationship Builders"],
+    ["Leaders","and Organizers"],["Builders","and Technologists"],["Financial","and Resource Stewards"],
+  ];
+  const OUT = ["Outside the","framework"];
+  // bin geometry: two rows of five (nine families + the tenth bucket), bottom of the stage
+  const BIN_W=176, BIN_H=94, GAP=18, X0=(1000-(5*BIN_W+4*GAP))/2, Y_ROW1=334, Y_ROW2=456;
+  const BINS = [];
+  for(let i=0;i<10;i++){
+    const row=i<5?0:1, col=i%5;
+    BINS.push({x:X0+col*(BIN_W+GAP), y:row?Y_ROW2:Y_ROW1, w:BIN_W, h:BIN_H, i});
+  }
+  const svgNS="http://www.w3.org/2000/svg";
+  const el=(n,a={},txt)=>{const e=document.createElementNS(svgNS,n);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;return e;};
+  const stage=document.getElementById("stage"), binsG=document.getElementById("bins"), layer=document.getElementById("layer");
+  const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function drawBins(){
+    binsG.innerHTML="";
+    BINS.forEach((b,i)=>{
+      const isOut=i===9;
+      const g=el("g",{});
+      g.appendChild(el("rect",{x:b.x,y:b.y,width:b.w,height:b.h,rx:4,class:"bin"+(isOut?" out":"")}));
+      const name=isOut?OUT:FAMILIES[i];
+      g.appendChild(el("text",{x:b.x+10,y:b.y+20,class:"t label"},name[0]));
+      g.appendChild(el("text",{x:b.x+10,y:b.y+36,class:"t small muted"},name[1]));
+      binsG.appendChild(g);
+    });
+  }
+  // where chips settle inside a bin (a little grid)
+  const fill={};
+  function slot(bin){
+    fill[bin]=(fill[bin]||0)+1;
+    const n=fill[bin]-1, b=BINS[bin];
+    return [b.x+b.w/2, b.y+52+Math.min(n,2)*17+(n>2?4:0)];
+  }
+  function resetFill(){for(const k in fill)delete fill[k];}
+
+  // chip = labeled tile; dot = anonymous title
+  function chip(label,x,y,cls){
+    if(label.length>19) label=label.slice(0,18)+"\u2026";
+    const w=Math.max(54,label.length*6.2+14);
+    const g=el("g",{class:"chip "+(cls||""),transform:`translate(${x},${y})`});
+    g.appendChild(el("rect",{x:-w/2,y:-10,width:w,height:20,rx:3}));
+    g.appendChild(el("text",{x:0,y:4,"text-anchor":"middle"},label));
+    layer.appendChild(g); g._w=w; return g;
+  }
+  function moveTo(g,x,y){ g.setAttribute("transform",`translate(${x},${y})`); }
+  function show(g){ requestAnimationFrame(()=>requestAnimationFrame(()=>{g.style.opacity=1;})); }
+  function dot(x,y,cls){ const c=el("circle",{cx:0,cy:0,r:3.2,class:"dot "+(cls||""),transform:`translate(${x},${y})`}); layer.appendChild(c); return c; }
+  function text(x,y,str,cls,anchor){ const t=el("text",{x,y,class:"t fade "+(cls||""),"text-anchor":anchor||"start"},str); t.style.opacity=0; layer.appendChild(t); show(t); return t; }
+  function box(x,y,w,h,title,lines){
+    const g=el("g",{class:"fade"}); g.style.opacity=0;
+    g.appendChild(el("rect",{x,y,width:w,height:h,rx:5,class:"box"}));
+    g.appendChild(el("text",{x:x+14,y:y+24,class:"box-t"},title));
+    (lines||[]).forEach((l,i)=>g.appendChild(el("text",{x:x+14,y:y+44+i*15,class:"t small muted"},l)));
+    layer.appendChild(g); show(g); return g;
+  }
+  const timers=[]; function later(fn,ms){ timers.push(setTimeout(fn, reduced?0:ms)); }
+  function clearTimers(){ timers.forEach(clearTimeout); timers.length=0; }
+
+  // real titles from the data, with where they belong
+  const SEEDS=[["Copywriter",0],["Archivist",1],["Policy Analyst",2],["Paralegal",3],["Case Manager",4],["Recruiter",5],["Project Manager",6],["Web Developer",7],["Staff Accountant",8],["Museum Educator",1],["Grants Manager",8],["Sales Manager",5],["UX Designer",7],["Mediator",3],["Event Coordinator",6]];
+  const NOT_FOR=[["Registered Nurse",9],["Electrician",9],["Truck Driver",9],["Owner",9]];
+  const HEAD=[["Marketing Coordinator",0],["Adjunct Instructor",1],["Business Analyst",2],["Litigation Attorney",3],["Customer Success Manager",4],["Account Executive",5],["Operations Manager",6],["Java Developer",7],["Loan Officer",8],["Founder",9],["Pharmacy Technician",9],["Copy Editor",0],["Special Education Teacher",1],["Regional Sales Manager",5],["Executive Assistant",6],["Solutions Architect",7],["Credit Manager",8],["School Counselor",4],["Physician",9],["Warehouse Associate",9]];
+  const TAIL=[["Book Reviews Editor",0],["Physics Tutor",1],["Distribution Analyst",2],["Learner Services Advisor",3],["Health Concierge",4],["Individual Gifts Officer",5],["Village Manager",6],["Django Developer",7],["Loan Underwriter",8],["Auto Glass Technician",9],["Bridal Sales Consultant",-1],["Field Product Specialist",-1],["Owner/Artisan",9],["Platinum Consultant",-1]];
+
+  const SCENES=[
+    { title:"Nine kinds of work, and a stream of titles that have to find one.",
+      text:"The framework says every job belongs to one of nine families, whatever the industry or seniority. The LinkedIn snapshot holds two million careers and 110,000 distinct common titles. Each has to land in a family, and the tenth bin, drawn dashed, is for work the framework does not describe.",
+      fact:"2,000,000 careers. 110,344 titles held by five or more people.",
+      run(){
+        const all=[...HEAD.slice(0,12),...TAIL.slice(0,6)];
+        all.forEach((t,i)=>{ const g=chip(t[0],-80,60+((i*37)%230)); later(()=>{show(g); moveTo(g,120+((i*97)%620),60+((i*37)%230));},120*i); });
+        later(()=>text(500,320,"Which bin? The title alone often does not say.","muted",'middle'),2300);
+      }},
+    { title:"Step 1. The framework's own example titles are the seeds.",
+      text:"Your colleague listed about 390 representative titles under 75 pathways. Those go straight into their families. The framework also says what it is not for, so a short list of trades, clinical, transport, and placeholder titles seeds the tenth bin. Nothing is learned from the data yet.",
+      fact:"390 example titles. 75 pathways. 9 families plus one honest residual.",
+      run(){
+        SEEDS.forEach((t,i)=>{ const g=chip(t[0],500,40+((i*29)%180),"seed"); later(()=>{show(g); const [x,y]=slot(t[1]); moveTo(g,x,y);},150*i); });
+        NOT_FOR.forEach((t,i)=>{ const g=chip(t[0],820,60+i*30,"out"); later(()=>{show(g); const [x,y]=slot(9); moveTo(g,x,y);},2400+200*i); });
+        later(()=>text(500,300,"Seeds: the framework as written, with its stated boundary.","muted",'middle'),3400);
+      }},
+    { title:"Step 2. A large model reads the framework and sorts the common titles.",
+      text:"The titles that cover most people, about 8,200 of them, pass through a model running on our own hardware with the whole framework document as its instructions, including the guidance that a marketing manager belongs with Communicators and a sales manager with Connectors. It places each title, names a secondary family for hybrids, and says none when the work is outside the framework.",
+      fact:"81% of titles placed correctly. 93% among titles the framework describes plainly. About two hours of compute.",
+      run(){
+        box(390,40,220,110,"The reader",["a 27-billion-parameter model","instructions: the framework text","output: family, secondary, or none"]);
+        HEAD.forEach((t,i)=>{ const g=chip(t[0],-90,50+((i*23)%140)); later(()=>{show(g); moveTo(g,500,95);},120*i+300);
+          later(()=>{ g.classList.add(t[1]===9?"out":"seed"); const [x,y]=slot(t[1]); moveTo(g,x,y);},120*i+1000); });
+        later(()=>text(500,190,"8,200 titles cover half of all person-years","muted",'middle'),2800);
+      }},
+    { title:"Step 3. Those answers teach a classifier.",
+      text:"The model's labels and the seeds together become training examples. A plain statistical classifier learns how the family boundaries run, from the title's wording and three things the title does not say: the government occupation code, the employer's industry, and whether the person was self-employed. It is fast, free to run, and can be retrained whenever the framework changes.",
+      fact:"Learns from about 30,000 labeled titles. Runs on all 110,000 in under a minute.",
+      run(){
+        box(560,40,300,120,"The learner",["title wording","occupation code (SOC)","employer industry","self-employment share"]);
+        for(let i=0;i<60;i++){ const cls=i%9===0?"out":""; const d=dot(80+(i%12)*28,60+Math.floor(i/12)*22,cls); later(()=>{d.style.opacity=1; d.setAttribute("transform",`translate(${600+(i%14)*17},${180+Math.floor(i/14)*10})`);},40*i+400); }
+        later(()=>text(230,230,"labels from step 2 plus seeds from step 1","muted",'middle'),1200);
+        later(()=>text(710,215,"learns boundaries","muted",'middle'),2800);
+        later(()=>{ const g=chip("Distribution Analyst",300,290,""); show(g); later(()=>moveTo(g,710,100),300); later(()=>{g.classList.add("seed"); const [x,y]=slot(2); moveTo(g,x,y);},1300); },3200);
+      }},
+    { title:"Step 4. The classifier sorts the long tail, and admits when it is unsure.",
+      text:"The remaining 100,000 rarer titles stream through the classifier. Most land in a family. When its confidence is low, a title is held back rather than forced in, so a human or the model can look at it later. Titles it recognizes as outside the framework go to the tenth bin, not to the nearest family.",
+      fact:"69% correct on framework titles alone; expected to rise once trained on the model's answers. Held back: about one title in five at the strict setting.",
+      run(){
+        box(390,40,220,70,"The learner",["from step 3"]);
+        for(let i=0;i<90;i++){ const tgt=i%13===0?-1:(i%7===0?9:(i%9)); const cls=tgt===-1?"hold":(tgt===9?"out":""); const d=dot(-20,60+((i*17)%80),cls);
+          later(()=>{d.style.opacity=1; d.setAttribute("transform",`translate(500,75)`);},35*i+200);
+          later(()=>{ let x,y; if(tgt===-1){x=790+(i%8)*11;y=110+Math.floor(i/40)*10;} else {const b=BINS[tgt]; x=b.x+14+((i*13)%(b.w-28)); y=b.y+50+((i*7)%22);} d.setAttribute("transform",`translate(${x},${y})`);},35*i+700); }
+        later(()=>{ const g=el("g",{class:"fade"}); g.style.opacity=0; g.appendChild(el("rect",{x:770,y:88,width:130,height:50,rx:4,class:"bin",style:"stroke:var(--hold)"})); g.appendChild(el("text",{x:780,y:105,class:"t label",style:"fill:var(--hold)"},"Held for review")); layer.appendChild(g); show(g); },600);
+        TAIL.slice(0,4).forEach((t,i)=>{ const g=chip(t[0],-90,220+i*26); later(()=>{show(g); moveTo(g,500,75);},2400+300*i); later(()=>{g.classList.add(t[1]===9?"out":"seed"); const [x,y]=slot(t[1]); moveTo(g,x,y);},3100+300*i); });
+      }},
+    { title:"Step 5. Report the residual, and audit against what people said they did.",
+      text:"Two things keep the result honest. The tenth bin is reported, not hidden: a quarter of people work as owners, founders, clinicians, tradespeople, drivers, uniformed staff, or frontline retail and restaurant workers. And the families are checked against groups formed from people's own descriptions of their jobs, which show where the framework's cuts disagree with the data: sales, general management, and operations sit together there.",
+      fact:"Of people in common titles: 45% fit a family plainly, 30% by a stretch, 25% not at all.",
+      run(){
+        const parts=[["Fits plainly",45,"var(--accent)"],["Fits by a stretch",30,"var(--accent-soft)"],["Outside the framework",25,"var(--out)"]];
+        let x=120; const W=760;
+        text(120,52,"People whose common title the framework describes","label");
+        parts.forEach((p,i)=>{ const w=W*p[1]/100, x0=x; const r=el("rect",{x:x0,y:70,width:0,height:34,class:"bar",style:`fill:${p[2]}`}); layer.appendChild(r); later(()=>r.setAttribute("width",w),200+300*i);
+          later(()=>{ text(x0+w/2,126,`${p[0]} ${p[1]}%`,"small muted","middle"); },600+300*i); x+=w; });
+        later(()=>{ box(120,170,360,120,"The audit",["groups of jobs by what people wrote they did","54% of the framework recoverable from descriptions","39% from titles alone"]); },1600);
+        later(()=>{ box(520,170,360,120,"Where the data disagrees",["sales, general management, operations: one group","administration with accounting: one group","the framework separates each"]); },2100);
+        later(()=>{ const g=el("g",{class:"fade"}); g.style.opacity=0; const a=BINS[5], b=BINS[6];
+          g.appendChild(el("rect",{x:a.x-6,y:a.y-6,width:(b.x+b.w)-a.x+12,height:a.h+12,rx:8,fill:"none",stroke:"var(--reader)","stroke-width":1.5,"stroke-dasharray":"5 4"}));
+          g.appendChild(el("text",{x:(a.x+b.x+b.w)/2,y:a.y-11,class:"t small","text-anchor":"middle",style:"fill:var(--reader)"},"one group in the descriptions: sales, general management, operations"));
+          layer.appendChild(g); show(g); },2900);
+      }},
+  ];
+
+  // controls
+  let cur=0, playing=false, advanceTimer=null;
+  const ctitle=document.getElementById("ctitle"), ctext=document.getElementById("ctext"), cfact=document.getElementById("cfact"), stepcount=document.getElementById("stepcount");
+  const dotsBox=document.getElementById("dots");
+  SCENES.forEach((s,i)=>{ const b=document.createElement("button"); b.textContent=i+1; b.setAttribute("aria-label","Go to step "+(i+1)); b.addEventListener("click",()=>go(i)); dotsBox.appendChild(b); });
+  function go(i){
+    cur=(i+SCENES.length)%SCENES.length;
+    clearTimers(); clearTimeout(advanceTimer); layer.innerHTML=""; resetFill(); drawBins();
+    const s=SCENES[cur];
+    ctitle.textContent=s.title; ctext.textContent=s.text; cfact.textContent=s.fact; stepcount.textContent=`Step ${cur+1} of ${SCENES.length}`;
+    [...dotsBox.children].forEach((b,j)=>{ if(j===cur)b.setAttribute("aria-current","step"); else b.removeAttribute("aria-current"); });
+    s.run();
+    if(playing) advanceTimer=setTimeout(()=>go(cur+1), reduced?4000:9000);
+  }
+  const playBtn=document.getElementById("play");
+  playBtn.addEventListener("click",()=>{ playing=!playing; playBtn.textContent=playing?"Pause":"Play"; if(playing) advanceTimer=setTimeout(()=>go(cur+1), reduced?4000:9000); else clearTimeout(advanceTimer); });
+  document.getElementById("prev").addEventListener("click",()=>go(cur-1));
+  document.getElementById("next").addEventListener("click",()=>go(cur+1));
+  document.addEventListener("keydown",e=>{ if(e.key==="ArrowRight")go(cur+1); if(e.key==="ArrowLeft")go(cur-1); if(e.key===" "&&e.target===document.body){e.preventDefault();playBtn.click();} });
+  go(0);
+})();
+</script>
