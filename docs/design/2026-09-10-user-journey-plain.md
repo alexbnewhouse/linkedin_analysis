@@ -36,21 +36,21 @@ report.
 ```mermaid
 flowchart TD
 
-A["ARRIVES<br/>usually on a phone, often after being asked<br/>what they are going to do with their degree"]
-B["READS: every kind of work these graduates<br/>ended up in. All of it at once, nothing ranked"]
+A["USER ARRIVES"]
+B["READS entry points,<br/>optionally explores overall<br/>possibility space of careers"]
 C{"narrow it down,<br/>or keep looking around"}
 D{"WHERE TO START<br/>my major<br/>work I would want to be doing<br/>a job I am already curious about"}
-E["GUESSES first, then READS that the guess was wrong<br/>and so is everyone's: the largest single kind<br/>of work is about one in eight"]
-F["WHERE COULD I GO<br/>where people who started here actually were,<br/>ten years later"]
+E["CHALLENGES EXPECTATIONS:<br/>the largest single kind<br/>of work is about one in eight"]
+F["WHERE COULD I GO<br/>where people who started here actually were,<br/>one to ten years later"]
 G["WHO IS ALREADY DOING IT<br/>what the people in this job studied,<br/>and where they began"]
 H{"open a kind of work<br/>that looks interesting"}
 I["HOW WOULD I GET THERE<br/>the jobs people held on the way in, how long it took,<br/>what they studied and carried, and who employed them"]
 J{"show me only people<br/>who studied what I study"}
 K["READS: the same answer for a smaller group,<br/>with the number of people it rests on, on screen"]
-L["TOO FEW TO DESCRIBE<br/>reads the wider answer instead, and a plain sentence<br/>saying what was set aside and how to put it back"]
-M["LEAVES WITH<br/>a certificate they could start now<br/>a graduate step, and who took it<br/>employers in their state<br/>a page to bring to an advisor"]
+L["TOO FEW TO DESCRIBE<br/>reads the wider answer instead, and narrative<br/>explaining proximate paths"]
+M["LEAVES WITH<br/>a set of possible steps,<br/>such as employers,<br/>grad school, certifications"]
 N["COMES BACK<br/>picks up where they left off, or starts over"]
-P["Any job, employer, major or certificate on the screen<br/>becomes the new starting point. This is why the site<br/>has no last page"]
+P["Any job, employer, major or certificate on the screen<br/>becomes the new starting point."]
 
 A --> B --> C
 C -->|"keep looking"| B
