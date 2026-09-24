@@ -10,6 +10,7 @@ import numpy as np
 
 from . import build_cohort as B
 from . import common as C
+from . import metrics as M
 from . import onet_skills as O
 
 
@@ -308,6 +309,88 @@ def check_onet() -> None:
     print("skill_breadth O*NET-mapping tests passed")
 
 
+def check_metrics() -> None:
+    # vendi of n identical unit rows = 1 (rank-1 kernel, single eigenvalue 1).
+    row = np.array([3.0, 4.0]) / 5.0  # unit norm
+    identical = np.tile(row, (7, 1))
+    check("vendi of n identical rows = 1", abs(M.vendi(identical) - 1.0) < 1e-8)
+
+    # vendi of d orthonormal rows = d.
+    for d in (2, 5, 8):
+        check(f"vendi of {d} orthonormal rows = {d}",
+              abs(M.vendi(np.eye(d)) - d) < 1e-6)
+
+    # A single row is trivially rank 1 -> vendi = 1.
+    check("vendi of a single unit row = 1",
+          abs(M.vendi(np.array([[1.0, 0.0, 0.0]])) - 1.0) < 1e-8)
+
+    # bootstrap_vendi is deterministic given the seed, and its people/role
+    # sampling is paired: both bases must see the SAME chosen row per
+    # replicate. Rig it so basis "a" and basis "b" are identical arrays with
+    # rows keyed to a per-person "signature" (person index) rather than a
+    # generic value, then confirm both bases agree on which rows were drawn
+    # each replicate by checking their vendi scores match exactly (they can
+    # only match on every one of many replicates by chance if sampling truly
+    # is shared, since each replicate's vendi score is sensitive to which
+    # rows were drawn).
+    rng = np.random.default_rng(0)
+    n_people_fixture, d = 40, 6
+    person_rows: dict[int, list[int]] = {}
+    rows = []
+    for pid in range(n_people_fixture):
+        n_roles = 1 + (pid % 3)  # 1, 2, or 3 roles per person
+        idxs = []
+        for _ in range(n_roles):
+            v = rng.normal(size=d)
+            v /= np.linalg.norm(v)
+            idxs.append(len(rows))
+            rows.append(v)
+        person_rows[pid] = idxs
+    X = np.array(rows)
+    bases = {"a": X, "b": X.copy()}
+    boot1 = M.bootstrap_vendi(person_rows, bases, seed=42, n_people=20, n_boot=15)
+    boot2 = M.bootstrap_vendi(person_rows, bases, seed=42, n_people=20, n_boot=15)
+    check("bootstrap_vendi is deterministic given the seed",
+          bool(np.array_equal(boot1["a"], boot2["a"])) and bool(np.array_equal(boot1["b"], boot2["b"])))
+    check("bootstrap_vendi pairs the SAME sampled role across bases in every replicate "
+          "(identical-array bases must give bit-identical vendi scores)",
+          bool(np.array_equal(boot1["a"], boot1["b"])))
+    check("bootstrap_vendi varies across replicates (not a degenerate constant)",
+          bool(np.std(boot1["a"]) > 0))
+    try:
+        M.bootstrap_vendi(person_rows, bases, seed=42, n_people=1000, n_boot=1)
+        check("bootstrap_vendi rejects n_people larger than the available person pool", False)
+    except ValueError:
+        check("bootstrap_vendi rejects n_people larger than the available person pool", True)
+
+    # within_person_spread: two orthogonal unit vectors -> cosine distance 1;
+    # three identical unit vectors -> cosine distance 0; a 2-role person is
+    # excluded at the default min_roles=3.
+    text_fixture = np.array([
+        [1.0, 0.0],  # person 'p_orth' role 0
+        [0.0, 1.0],  # person 'p_orth' role 1
+        [0.0, 1.0],  # person 'p_orth' role 2 (3rd role so it clears min_roles)
+        [1.0, 0.0], [1.0, 0.0], [1.0, 0.0],  # person 'p_same': 3 identical roles
+        [1.0, 0.0], [0.0, 1.0],  # person 'p_two': only 2 roles -> excluded
+    ])
+    spread_person_rows = {
+        "p_orth": [0, 1, 2],
+        "p_same": [3, 4, 5],
+        "p_two": [6, 7],
+    }
+    spread = M.within_person_spread(spread_person_rows, text_fixture, min_roles=3)
+    check("within_person_spread excludes people below min_roles",
+          "p_two" not in spread and set(spread) == {"p_orth", "p_same"})
+    check("within_person_spread: 3 identical roles -> spread 0",
+          abs(spread["p_same"][1] - 0.0) < 1e-8 and spread["p_same"][0] == 3)
+    n_orth, spread_orth = spread["p_orth"]
+    check("within_person_spread: mix of orthogonal/identical roles -> spread strictly between 0 and 1",
+          n_orth == 3 and 0.0 < spread_orth < 1.0)
+
+    print("skill_breadth metrics tests passed")
+
+
 if __name__ == "__main__":
     main()
     check_onet()
+    check_metrics()

@@ -65,6 +65,11 @@ COHORT_YEAR_MAX = 2014
 ROLE_WINDOW_YEARS = 10
 MIN_DESCRIPTION_LEN = 50
 
+# Task 3 bootstrap constants (global-constraints.md).
+N_PEOPLE = 500
+N_BOOT = 200
+BOOT_SEED = 20260924
+
 
 def connect() -> duckdb.DuckDBPyConnection:
     con = duckdb.connect()
