@@ -1,5 +1,12 @@
 """Task 2 (part 1): embed every role_text in results/roles.parquet.
 
+Run order (each step reads the previous steps' outputs):
+    1. uv run python -m skill_breadth.build_cohort
+    2. uv run python -m skill_breadth.embed_roles  (this module)
+       uv run python -m skill_breadth.onet_skills
+    3. uv run python -m skill_breadth.run_breadth
+    4. uv run python -m skill_breadth.build_figure
+
 Writes, row-aligned in a fixed deterministic order (linkedin_id,
 experience_idx, position_idx):
   cache/role_emb.npy      -- float32 [n_roles, 768], L2-normalized (bge-base)

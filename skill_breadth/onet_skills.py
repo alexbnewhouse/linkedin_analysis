@@ -1,5 +1,12 @@
 """Task 2 (part 2): O*NET 29.3 skill matrix + role -> SOC mapping.
 
+Run order (each step reads the previous steps' outputs):
+    1. uv run python -m skill_breadth.build_cohort
+    2. uv run python -m skill_breadth.embed_roles
+       uv run python -m skill_breadth.onet_skills   (this module)
+    3. uv run python -m skill_breadth.run_breadth
+    4. uv run python -m skill_breadth.build_figure
+
 Downloads (if absent):
   reference/onet_skills.txt                  -- O*NET 29.3 Skills.txt
   reference/onet_occupation_data_29_3.txt     -- O*NET 29.3 Occupation Data.txt
@@ -22,8 +29,10 @@ Builds:
       use the 35 columns as a vector.
   results/role_soc.parquet -- one row per role key (linkedin_id,
       experience_idx, position_idx): soc, soc_source in {'pooled','nearest'},
-      nearest_cos (the title term of the winning SOC's hybrid score, or NULL
-      if the title term was dropped -- see "Generic-status titles" below),
+      nearest_cos (the title cosine of the winning SOC: max cosine of the
+      role's title_raw against that SOC's title strings; stored for every
+      nearest-matched role, including generic-status titles whose title term
+      was left out of the score -- see "Generic-status titles" below),
       desc_cos (the description term). Both NULL for soc_source='pooled'.
   results/_embed_manifest.json
 

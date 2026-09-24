@@ -1,5 +1,12 @@
 """Task 3: breadth metrics.
 
+Run order (each step reads the previous steps' outputs):
+    1. uv run python -m skill_breadth.build_cohort
+    2. uv run python -m skill_breadth.embed_roles
+       uv run python -m skill_breadth.onet_skills
+    3. uv run python -m skill_breadth.run_breadth  (this module)
+    4. uv run python -m skill_breadth.build_figure
+
 Reads Task 1/2 outputs (results/roles.parquet, results/role_soc.parquet,
 results/onet_skill_matrix.parquet, cache/role_emb.npy + cache/role_keys.parquet)
 and writes results/breadth.json: per group (4 headline + 2 sanity -- liberal_arts
@@ -10,10 +17,30 @@ within-person spread (text basis only), stratified by role count; median
 role description length per group; SOC source (pooled vs nearest) share per
 group.
 
+Two sensitivity runs go under "sensitivity":
+  length_150_600 -- both bases, restricted to roles whose true description
+      (career_steps.description, trimmed) is 150 to 600 characters, since
+      shorter texts can spread out more in embedding space.
+  onet_pooled_only -- O*NET basis only, restricted to roles whose SOC came
+      from occupation_code_pooled (soc_source = 'pooled'), since the nearest
+      SOC match reuses the same text embeddings as the text basis.
+
     uv run python -m skill_breadth.run_breadth
 """
 
 from __future__ import annotations
+
+import os
+
+# BLAS oversubscription (32 OpenBLAS threads on many small eigendecompositions)
+# made vendi() roughly 70x slower. Cap threads before numpy loads; threadpoolctl
+# (below) enforces the same cap at runtime when it is installed.
+BLAS_THREADS = 4
+for _v in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ.setdefault(_v, str(BLAS_THREADS))
+
+import math
+from contextlib import nullcontext
 
 import numpy as np
 import pyarrow as pa
@@ -23,8 +50,16 @@ from scipy.stats import spearmanr
 from . import common as C
 from . import metrics as M
 
+try:
+    from threadpoolctl import threadpool_limits
+except ImportError:  # env vars above still apply
+    threadpool_limits = None
+
 BASES = ("text", "onet_skills")
 STRATA = ("3", "4", "5+")
+
+LENGTH_MIN, LENGTH_MAX = 150, 600
+POOLED_MIN_PEOPLE = 100
 
 
 def _stratum(n_roles: int) -> str:
@@ -37,6 +72,7 @@ def load_role_matrices(con):
     same order as cache/role_emb.npy)."""
     role_keys_tbl = pq.read_table(C.CACHE / "role_keys.parquet")
     n = role_keys_tbl.num_rows
+    _check_role_keys_fresh(con, role_keys_tbl)
     row_idx = np.arange(n, dtype=np.int64)
     role_keys_tbl = role_keys_tbl.append_column("row_idx", pa.array(row_idx))
 
@@ -80,6 +116,79 @@ def load_role_matrices(con):
     return {"text": text_emb, "onet_skills": skill_emb}, group_arr, person_arr
 
 
+def _check_role_keys_fresh(con, role_keys_tbl) -> None:
+    """cache/role_keys.parquet must hold exactly the role keys of
+    results/roles.parquet. If build_cohort was rerun without rerunning the
+    embedding and SOC steps, the cached arrays describe a stale role table."""
+    con.register("rk_check", role_keys_tbl)
+    n_keys, n_roles, n_match = con.sql(f"""
+        SELECT (SELECT count(*) FROM rk_check),
+               (SELECT count(*) FROM read_parquet('{C.RESULTS / "roles.parquet"}')),
+               (SELECT count(*) FROM rk_check rk
+                JOIN read_parquet('{C.RESULTS / "roles.parquet"}') r
+                  ON rk.linkedin_id = r.linkedin_id
+                 AND rk.experience_idx = r.experience_idx
+                 AND rk.position_idx IS NOT DISTINCT FROM r.position_idx)
+    """).fetchone()
+    con.unregister("rk_check")
+    if not (n_keys == n_roles == n_match):
+        raise SystemExit(
+            f"cache/role_keys.parquet ({n_keys} rows) does not match results/roles.parquet "
+            f"({n_roles} rows, {n_match} shared keys). roles.parquet changed since the "
+            "embeddings were built: rerun `uv run python -m skill_breadth.embed_roles` and "
+            "`uv run python -m skill_breadth.onet_skills`, then run_breadth again.")
+
+
+def role_metadata(con) -> dict[str, np.ndarray]:
+    """Per-role metadata row-aligned to cache/role_keys.parquet: the true
+    description length (length(trim(career_steps.description)), the same
+    measure as the Task 1 filter) and soc_source. The description is re-joined
+    from career_steps on the NULL-safe role key plus the exact role_text, so
+    the de-duplicated row that Task 1 kept is the one measured."""
+    rk = pq.read_table(C.CACHE / "role_keys.parquet")
+    rk = rk.append_column("row_idx", pa.array(np.arange(rk.num_rows, dtype=np.int64)))
+    con.register("rk_meta", rk)
+    tbl = con.sql(f"""
+        WITH d AS (
+            SELECT r.linkedin_id, r.experience_idx, r.position_idx,
+                   min(length(trim(cs.description))) AS dlen
+            FROM read_parquet('{C.RESULTS / "roles.parquet"}') r
+            JOIN read_parquet('{C.CAREER_STEPS}') cs
+              ON cs.linkedin_id = r.linkedin_id
+             AND cs.experience_idx = r.experience_idx
+             AND cs.position_idx IS NOT DISTINCT FROM r.position_idx
+             AND NOT cs.is_duplicate
+             AND COALESCE(cs.title_raw, '') || '. ' || cs.description = r.role_text
+            GROUP BY 1, 2, 3
+        )
+        SELECT rk.row_idx, d.dlen, rs.soc_source
+        FROM rk_meta rk
+        LEFT JOIN d
+          ON d.linkedin_id = rk.linkedin_id
+         AND d.experience_idx = rk.experience_idx
+         AND d.position_idx IS NOT DISTINCT FROM rk.position_idx
+        LEFT JOIN read_parquet('{C.RESULTS / "role_soc.parquet"}') rs
+          ON rs.linkedin_id = rk.linkedin_id
+         AND rs.experience_idx = rk.experience_idx
+         AND rs.position_idx IS NOT DISTINCT FROM rk.position_idx
+        ORDER BY rk.row_idx
+    """).fetchnumpy()
+    con.unregister("rk_meta")
+    n = rk.num_rows
+    assert len(tbl["row_idx"]) == n and (tbl["row_idx"] == np.arange(n)).all(), \
+        "role metadata join is not 1:1 with role_keys"
+    dlen = tbl["dlen"]
+    n_missing = int(np.ma.count_masked(dlen)) if np.ma.isMaskedArray(dlen) else int(np.isnan(dlen.astype(float)).sum())
+    assert n_missing == 0, f"{n_missing} roles found no matching career_steps description"
+    return {"desc_len": np.asarray(dlen, dtype=np.int64),
+            "soc_source": np.asarray(tbl["soc_source"], dtype=object)}
+
+
+def _boot_summary(scores: np.ndarray) -> dict:
+    lo, hi = np.percentile(scores, [2.5, 97.5])
+    return {"median": float(np.median(scores)), "lo": float(lo), "hi": float(hi)}
+
+
 def person_rows_for_group(group_arr: np.ndarray, person_arr: np.ndarray, group: str) -> dict:
     idx = np.where(group_arr == group)[0]
     out: dict[str, list[int]] = {}
@@ -89,8 +198,15 @@ def person_rows_for_group(group_arr: np.ndarray, person_arr: np.ndarray, group: 
 
 
 def run() -> dict:
+    limit = threadpool_limits(BLAS_THREADS) if threadpool_limits else nullcontext()
+    with limit:
+        return _run()
+
+
+def _run() -> dict:
     con = C.connect()
     bases, group_arr, person_arr = load_role_matrices(con)
+    meta_rows = role_metadata(con)
 
     groups_present = sorted(set(group_arr.tolist()))
     headline = [g for g in C.HEADLINE_GROUPS if g in groups_present]
@@ -113,13 +229,7 @@ def run() -> dict:
             )
             entry = {"n_people_available": n_people_available}
             for basis in BASES:
-                scores = boot[basis]
-                lo, hi = np.percentile(scores, [2.5, 97.5])
-                entry[basis] = {
-                    "median": float(np.median(scores)),
-                    "lo": float(lo),
-                    "hi": float(hi),
-                }
+                entry[basis] = _boot_summary(boot[basis])
             vendi_out[g] = entry
 
             spread = M.within_person_spread(person_rows, bases["text"], min_roles=3)
@@ -138,25 +248,26 @@ def run() -> dict:
     # Spearman rank agreement between the two bases, across group medians.
     med_text = [vendi_out[g]["text"]["median"] for g in groups]
     med_skills = [vendi_out[g]["onet_skills"]["median"] for g in groups]
-    rho_res = spearmanr(med_text, med_skills)
+    rho = float(spearmanr(med_text, med_skills).statistic)
+    k = len(groups)
     spearman_out = {
         "groups_order": groups,
         "median_text": med_text,
         "median_onet_skills": med_skills,
-        "rho": float(rho_res.statistic),
-        "pvalue": float(rho_res.pvalue),
+        "rho": rho,
+        # Exact permutation p-value, only meaningful at rho = 1 (the single
+        # identical ordering out of k! equally likely ones). Six points and
+        # two text-derived measures; see sensitivity.onet_pooled_only.
+        "exact_permutation_p_if_rho_1": (1.0 / math.factorial(k)) if rho == 1.0 else None,
     }
 
-    # Median description length (chars) per group -- description = role_text
-    # minus its "title_raw. " prefix (role_text = title_raw || '. ' || description,
-    # see common.py docstring); untrimmed, so a close but not byte-exact proxy
-    # for length(trim(description)) used at the Task 1 filter stage.
-    desc_len_rows = con.sql(f"""
-        SELECT "group", median(length(role_text) - length(title_raw) - 2) AS median_len
-        FROM read_parquet('{C.RESULTS / "roles.parquet"}')
-        GROUP BY 1
-    """).fetchall()
-    median_desc_len = {g: float(v) for g, v in desc_len_rows}
+    # Median true description length (chars) per group: length(trim(description))
+    # from career_steps, re-joined on the NULL-safe role key (see role_metadata).
+    median_desc_len = {
+        g: float(np.median(meta_rows["desc_len"][group_arr == g])) for g in groups
+    }
+
+    sensitivity = _sensitivity(bases, group_arr, person_arr, meta_rows, groups, headline)
 
     # SOC source (pooled vs nearest) share per group.
     share_rows = con.sql(f"""
@@ -191,11 +302,72 @@ def run() -> dict:
         "within_person_spread": spread_out,
         "median_description_length_chars": median_desc_len,
         "soc_source_share": soc_share,
+        "sensitivity": sensitivity,
     }
     C.write_json(out, C.RESULTS / "breadth.json")
 
     _print_summary(groups, vendi_out, spread_out, median_desc_len, soc_share, spearman_out)
+    _print_sensitivity(sensitivity)
     return out
+
+
+def _sensitivity(bases, group_arr, person_arr, meta_rows, groups, headline) -> dict:
+    """Two restricted re-runs of the headline bootstrap (same seed, N_BOOT)."""
+    dlen, src = meta_rows["desc_len"], meta_rows["soc_source"]
+
+    def pools(mask):
+        return {g: person_rows_for_group(np.where(mask, group_arr, ""), person_arr, g) for g in groups}
+
+    # 1. Length-matched: both bases, roles with 150-600 char descriptions.
+    length_mask = (dlen >= LENGTH_MIN) & (dlen <= LENGTH_MAX)
+    length_out = {"description_chars": [LENGTH_MIN, LENGTH_MAX], "n_boot": C.N_BOOT, "groups": {}}
+    with C.Timer("sensitivity: length 150-600"):
+        for g, pr in pools(length_mask).items():
+            n_use = min(C.N_PEOPLE, len(pr))
+            e = {"n_people_available": len(pr), "n_people": n_use,
+                 "n_roles": int((length_mask & (group_arr == g)).sum())}
+            boot = M.bootstrap_vendi(pr, bases, seed=C.BOOT_SEED, n_people=n_use, n_boot=C.N_BOOT)
+            for basis in BASES:
+                e[basis] = _boot_summary(boot[basis])
+            length_out["groups"][g] = e
+
+    # 2. O*NET basis on pooled-SOC roles only (codes from occupation_code_pooled,
+    #    not from this module's embedding match). One common n across groups,
+    #    set by the smallest pooled pool among the headline groups.
+    pooled_mask = src == "pooled"
+    pooled_pools = pools(pooled_mask)
+    n_common = min(C.N_PEOPLE, min(len(pooled_pools[g]) for g in headline))
+    pooled_out = {"n_people": n_common, "n_boot": C.N_BOOT, "min_pool": POOLED_MIN_PEOPLE,
+                  "basis": "onet_skills", "groups": {}}
+    with C.Timer("sensitivity: pooled-SOC only"):
+        for g, pr in pooled_pools.items():
+            e = {"n_people_available": len(pr),
+                 "n_roles": int((pooled_mask & (group_arr == g)).sum())}
+            if len(pr) < POOLED_MIN_PEOPLE or len(pr) < n_common:
+                e["onet_skills"] = None
+            else:
+                boot = M.bootstrap_vendi(pr, {"onet_skills": bases["onet_skills"]},
+                                         seed=C.BOOT_SEED, n_people=n_common, n_boot=C.N_BOOT)
+                e["onet_skills"] = _boot_summary(boot["onet_skills"])
+            pooled_out["groups"][g] = e
+    return {"length_150_600": length_out, "onet_pooled_only": pooled_out}
+
+
+def _print_sensitivity(sens: dict) -> None:
+    L = sens["length_150_600"]
+    print(f"\n=== Sensitivity: descriptions {L['description_chars'][0]}-{L['description_chars'][1]} chars ===",
+          flush=True)
+    for g, e in L["groups"].items():
+        t, s = e["text"], e["onet_skills"]
+        print(f"{g:<28} pool={e['n_people_available']:>6} n={e['n_people']:>4}  "
+              f"text={t['median']:6.2f} [{t['lo']:5.2f},{t['hi']:5.2f}]  "
+              f"skills={s['median']:5.2f} [{s['lo']:5.2f},{s['hi']:5.2f}]", flush=True)
+    P = sens["onet_pooled_only"]
+    print(f"\n=== Sensitivity: O*NET basis, pooled-SOC roles only (n={P['n_people']}) ===", flush=True)
+    for g, e in P["groups"].items():
+        s = e["onet_skills"]
+        cell = "null (pool too small)" if s is None else f"{s['median']:5.2f} [{s['lo']:5.2f},{s['hi']:5.2f}]"
+        print(f"{g:<28} pool={e['n_people_available']:>6}  skills={cell}", flush=True)
 
 
 def _print_summary(groups, vendi_out, spread_out, median_desc_len, soc_share, spearman_out) -> None:
@@ -216,7 +388,7 @@ def _print_summary(groups, vendi_out, spread_out, median_desc_len, soc_share, sp
         print(f"{g:<28}{e['n_people_available']:>7}  {t_str:>26}  {s_str:>26}  {dl_str:>9}  {nearest_str:>12}",
               flush=True)
     print(f"\nSpearman rank agreement (text vs onet_skills, group medians): "
-          f"rho={spearman_out['rho']:.3f} p={spearman_out['pvalue']:.4f} "
+          f"rho={spearman_out['rho']:.3f} exact perm p (if rho=1)={spearman_out['exact_permutation_p_if_rho_1']} "
           f"(groups={spearman_out['groups_order']})", flush=True)
 
     print("\n=== Within-person spread (text basis, mean pairwise cosine distance), median by role-count stratum ===",

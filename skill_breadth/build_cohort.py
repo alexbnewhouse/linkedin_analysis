@@ -1,5 +1,12 @@
 """Task 1: cohort and role table.
 
+Run order (each step reads the previous steps' outputs):
+    1. uv run python -m skill_breadth.build_cohort  (this module)
+    2. uv run python -m skill_breadth.embed_roles
+       uv run python -m skill_breadth.onet_skills
+    3. uv run python -m skill_breadth.run_breadth
+    4. uv run python -m skill_breadth.build_figure
+
 Builds:
   results/persons.parquet     -- linkedin_id, group, bachelor_end_year, bachelor_cip
                                   (group ranges over all 7 groups: 4 headline

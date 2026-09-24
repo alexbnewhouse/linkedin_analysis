@@ -3,10 +3,10 @@
 vendi(X)            -- Vendi score of a set of L2-normalized row vectors.
 bootstrap_vendi(...) -- equal-n bootstrap over vendi(), paired across bases.
 within_person_spread(...) -- per-person mean pairwise cosine distance among
-    a person's role vectors (text basis only, per global-constraints.md).
+    a person's role vectors (text basis only, per the plan).
 
-See global-constraints.md and task-3-brief.md
-(.superpowers/sdd/2026-09-24-skill-breadth/) for the exact formulas.
+See docs/superpowers/plans/2026-09-24-skill-breadth.md for the exact
+formulas.
 """
 
 from __future__ import annotations
@@ -23,17 +23,18 @@ def vendi(X: np.ndarray) -> float:
     but the cosine-kernel Vendi score assumes they are unit-norm -- callers
     are responsible for that, matching the controller decision).
 
-    K = X^T X / n (d x d, d = X.shape[1]) shares its nonzero eigenvalues with
-    the usual n x n cosine-similarity kernel X X^T / n, trace 1 when rows are
-    unit-norm, so this is the standard Vendi score computed on the cheaper
-    matrix. Tiny negative eigenvalues (float error) are clipped to 0 and
-    exact zeros dropped before the Shannon-entropy sum.
+    The n x n Gram kernel X X^T / n and the d x d covariance X^T X / n share
+    their nonzero eigenvalues (trace 1 when rows are unit-norm), so this
+    eigendecomposes whichever is smaller: the Gram matrix when n < d (e.g.
+    500 draws of 768-dim text embeddings), the covariance otherwise (e.g.
+    35-dim skill vectors). Tiny negative eigenvalues (float error) are
+    clipped to 0 and near-zeros dropped before the Shannon-entropy sum.
     """
     X = np.asarray(X, dtype=np.float64)
-    n = X.shape[0]
+    n, d = X.shape
     if n == 0:
         return 0.0
-    M = (X.T @ X) / n
+    M = (X @ X.T) / n if n < d else (X.T @ X) / n
     eigs = np.linalg.eigvalsh(M)
     eigs = np.clip(eigs, 0.0, None)
     eigs = eigs[eigs > _EIG_ZERO_TOL]

@@ -1,5 +1,12 @@
 """Task 4: build the breadth figure page from results/breadth.json.
 
+Run order (each step reads the previous steps' outputs):
+    1. uv run python -m skill_breadth.build_cohort
+    2. uv run python -m skill_breadth.embed_roles
+       uv run python -m skill_breadth.onet_skills
+    3. uv run python -m skill_breadth.run_breadth
+    4. uv run python -m skill_breadth.build_figure  (this module)
+
 Writes skill_breadth/figure/index.html: a self-contained fragment (no doctype,
 html, head or body tags, because the claude.ai Artifact host wraps it) with the
 data inlined, a two-panel ranked dot plot drawn as SVG by a little vanilla JS,
@@ -72,15 +79,60 @@ def build_rows(d: dict) -> list[dict]:
     return head + ref
 
 
+def sensitivity_facts(d: dict) -> dict:
+    """Numbers the caption quotes from the two sensitivity runs, with asserts
+    for every claim the caption makes about them."""
+    sens = d["sensitivity"]
+    dl = d["median_description_length_chars"]
+    L = sens["length_150_600"]["groups"]
+    P = sens["onet_pooled_only"]
+    vendi = d["vendi"]
+    order_all = d["spearman_rank_agreement"]["groups_order"]
+
+    assert dl["humanities"] < dl["stem"], "caption says humanities descriptions are shorter"
+
+    # Length-matched run: the text gap narrows but the median order holds;
+    # the skill-profile gap holds with separated ranges.
+    lh, ls = L["humanities"], L["stem"]
+    assert lh["text"]["median"] > ls["text"]["median"], "length-matched text order flipped"
+    assert (lh["text"]["median"] - ls["text"]["median"]) < (
+        vendi["humanities"]["text"]["median"] - vendi["stem"]["text"]["median"]
+    ), "caption says the length-matched text gap narrows"
+    text_overlap = lh["text"]["lo"] <= ls["text"]["hi"]
+    assert lh["onet_skills"]["lo"] > ls["onet_skills"]["hi"], "length-matched skills gap no longer holds"
+
+    # Pooled-only run: every group estimated, and the six-field order matches
+    # the main skill-profile order.
+    pg = P["groups"]
+    assert all(pg[g]["onet_skills"] is not None for g in order_all), "pooled-only run has a null group"
+    main_order = sorted(order_all, key=lambda g: -vendi[g]["onet_skills"]["median"])
+    text_order = sorted(order_all, key=lambda g: -vendi[g]["text"]["median"])
+    assert main_order == text_order, "dek says both measures give the same order"
+    pooled_order = sorted(order_all, key=lambda g: -pg[g]["onet_skills"]["median"])
+    assert pooled_order == main_order, "caption says the order holds in the pooled-only run"
+    assert pg["humanities"]["onet_skills"]["lo"] > pg["stem"]["onet_skills"]["hi"], \
+        "pooled-only humanities vs STEM ranges overlap"
+    return {
+        "len_hum_text": lh["text"]["median"], "len_stem_text": ls["text"]["median"],
+        "len_hum_skills": lh["onet_skills"]["median"], "len_stem_skills": ls["onet_skills"]["median"],
+        "len_text_overlap": text_overlap,
+        "pooled_n": P["n_people"],
+        "pooled_hum": pg["humanities"]["onet_skills"]["median"],
+        "pooled_stem": pg["stem"]["onet_skills"]["median"],
+        "pooled_fin": pg["finance"]["onet_skills"]["median"],
+    }
+
+
 def caption_text(d: dict) -> str:
     meta = d["meta"]
     man = json.loads(MANIFEST.read_text())
     dl = d["median_description_length_chars"]
-    rho = d["spearman_rank_agreement"]["rho"]
     soc = d["soc_source_share"]
     nearest = [soc[g]["nearest"] for g in soc]
     n_groups = len(d["spearman_rank_agreement"]["groups_order"])
     words = {6: "six", 5: "five", 4: "four"}.get(n_groups, str(n_groups))
+    f = sensitivity_facts(d)
+    overlap = ", and their ranges now overlap" if f["len_text_overlap"] else ""
     return " ".join(
         [
             "The sample is drawn from a 2.0-million-profile LinkedIn snapshot of "
@@ -95,17 +147,29 @@ def caption_text(d: dict) -> str:
             "The right panel repeats the count using the O*NET skill ratings of "
             "each job's occupation instead of the description text.",
             "Humanities follows the NHA definition, except that general studies "
-            "and liberal arts majors are left out because they also match other "
-            "groups.",
-            "Humanities graduates write shorter job descriptions than STEM "
-            f"graduates (a median of {dl['humanities']:.0f} characters against "
-            f"{dl['stem']:.0f}), so wordier write-ups do not explain the gap.",
-            f"The two measures rank all {words} fields in the same order "
-            f"(Spearman rho = {rho:.2f}).",
-            "Most O*NET occupation codes were matched automatically from job "
-            f"titles and descriptions ({pct(min(nearest))} to {pct(max(nearest))} "
-            "percent of jobs, depending on the field); the rest came from "
-            "occupation codes already in the data.",
+            "and liberal arts majors (CIP 24.01) are left out because they also "
+            "match the humanities definition. People whose bachelor's degrees "
+            f"fall in more than one of the groups ({man['excluded_multi_group_persons']:,} "
+            "people) are excluded.",
+            "Humanities job descriptions are shorter than STEM ones (median "
+            f"{dl['humanities']:.0f} vs {dl['stem']:.0f} characters). Comparing "
+            "only descriptions of 150 to 600 characters narrows the "
+            f"job-description gap ({f['len_hum_text']:.1f} vs "
+            f"{f['len_stem_text']:.1f}{overlap}) but keeps the order. The "
+            f"skill-profile gap holds ({f['len_hum_skills']:.1f} vs "
+            f"{f['len_stem_skills']:.1f}).",
+            "Both panels start from the same job records. Each job's occupation "
+            "code either was already in the data, assigned by rule from the job "
+            "title, or was matched automatically from its title and "
+            f"description ({pct(min(nearest))} to {pct(max(nearest))} percent of "
+            "jobs, depending on the field). So the right panel is not an "
+            "independent sample. It shows the order survives when each job is "
+            "reduced to its occupation's skill ratings, which removes differences "
+            "in how people word their descriptions.",
+            f"The order of all {words} fields also holds among jobs whose code "
+            "was already in the data (humanities "
+            f"{f['pooled_hum']:.1f}, STEM {f['pooled_stem']:.1f}, finance "
+            f"{f['pooled_fin']:.1f}, in draws of {f['pooled_n']} graduates).",
         ]
     )
 
@@ -413,7 +477,9 @@ HOWTO = (
     "randomly drawn graduates were sorted into groups of truly different work, "
     "this is roughly how many groups you would get. A higher number means the "
     "field's graduates spread across a wider range of work. The thin line around "
-    "each dot shows how much the number moves when the draw of 500 is repeated."
+    "each dot shows how much the number moves when the draw of 500 is repeated. "
+    "The numbers are for comparing fields, not a literal count; the two panels "
+    "give different numbers for the same jobs."
 )
 
 
@@ -432,8 +498,8 @@ def main() -> None:
         "graduates"
     )
     fig_dek = (
-        "Humanistic social sciences follow close behind. Both measures put the "
-        "fields in the same order."
+        "Humanistic social sciences follow close behind. The order holds when "
+        "jobs are compared by occupation skill ratings instead of wording."
     )
     payload = {"rows": rows}
     page = (

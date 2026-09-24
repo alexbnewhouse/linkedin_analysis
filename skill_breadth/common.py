@@ -3,9 +3,9 @@
 Compares how broad the range of jobs held is for bachelor's graduates across
 four field groups -- Humanities, Humanistic social sciences, STEM, Finance --
 each defined from the person's bachelor's CIP/NHA coding in
-normalized/education.parquet. See global-constraints.md
-(.superpowers/sdd/2026-09-24-skill-breadth/) for the exact group predicates,
-cohort window, and role filters this module implements.
+normalized/education.parquet. See
+docs/superpowers/plans/2026-09-24-skill-breadth.md for the exact group
+predicates, cohort window, and role filters this module implements.
 """
 
 from __future__ import annotations
@@ -30,7 +30,7 @@ EDUCATION_PERSON = ROOT / "normalized" / "education_person.parquet"
 CAREER_STEPS = ROOT / "normalized" / "career_steps.parquet"
 
 # Field-group definitions: SQL boolean predicates over education row columns
-# (cip_code, cip2_pooled, nha_level_pooled). Verbatim from global-constraints.md.
+# (cip_code, cip2_pooled, nha_level_pooled). Verbatim from the plan (docs/superpowers/plans/2026-09-24-skill-breadth.md).
 HEADLINE_GROUPS = {
     "humanities": "nha_level_pooled = 1",
     "humanistic_social_sciences": "nha_level_pooled = 2",
@@ -65,7 +65,7 @@ COHORT_YEAR_MAX = 2014
 ROLE_WINDOW_YEARS = 10
 MIN_DESCRIPTION_LEN = 50
 
-# Task 3 bootstrap constants (global-constraints.md).
+# Task 3 bootstrap constants (see the plan, docs/superpowers/plans/2026-09-24-skill-breadth.md).
 N_PEOPLE = 500
 N_BOOT = 200
 BOOT_SEED = 20260924

@@ -324,6 +324,24 @@ def check_metrics() -> None:
     check("vendi of a single unit row = 1",
           abs(M.vendi(np.array([[1.0, 0.0, 0.0]])) - 1.0) < 1e-8)
 
+    # The Gram path (n < d, X X^T / n) and the covariance path (n >= d,
+    # X^T X / n) share nonzero eigenvalues, so they must give the same score.
+    # Compute both explicitly on the same random unit rows, and confirm
+    # vendi() matches them on either side of the n < d switch.
+    def _vendi_from(Mx):
+        e = np.clip(np.linalg.eigvalsh(Mx), 0.0, None)
+        e = e[e > 1e-10]
+        p = e / e.sum()
+        return float(np.exp(-np.sum(p * np.log(p))))
+    rng_g = np.random.default_rng(7)
+    for n_rows, dim in ((12, 40), (40, 12)):
+        Xg = rng_g.normal(size=(n_rows, dim))
+        Xg /= np.linalg.norm(Xg, axis=1, keepdims=True)
+        v_gram = _vendi_from(Xg @ Xg.T / n_rows)
+        v_cov = _vendi_from(Xg.T @ Xg / n_rows)
+        check(f"vendi: Gram and covariance kernels agree (n={n_rows}, d={dim})",
+              abs(v_gram - v_cov) < 1e-8 and abs(M.vendi(Xg) - v_gram) < 1e-8)
+
     # bootstrap_vendi is deterministic given the seed, and its people/role
     # sampling is paired: both bases must see the SAME chosen row per
     # replicate. Rig it so basis "a" and basis "b" are identical arrays with
