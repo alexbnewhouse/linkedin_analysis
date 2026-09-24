@@ -74,3 +74,6 @@ __pycache__/
 /persons/results/tables/
 # status-line task markers (scripts/track.sh; expire on their own)
 /.claude/tasks/
+
+# Office lock files
+~$*
