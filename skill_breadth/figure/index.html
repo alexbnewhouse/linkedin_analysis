@@ -1,0 +1,269 @@
+<title>Breadth of Work by Major</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --paper:#ffffff; --ink:#1c1c1c; --ink2:#4a4a46; --muted:#73736d;
+  --rule:#dedcd6; --rule2:#c4c2bb; --line:#3a6fb0; --focus:#1d4f8a;
+  --tip-bg:#ffffff; --tip-shadow:rgba(0,0,0,.10);
+  --serif:Newsreader,Georgia,"Times New Roman",serif;
+  --sans:"Public Sans","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --paper:#161615; --ink:#ebeae4; --ink2:#c3c2bb; --muted:#8e8d86;
+    --rule:#2f2f2c; --rule2:#484743; --line:#5b8dc9; --focus:#8fb8e6;
+    --tip-bg:#1e1e1c; --tip-shadow:rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:#161615; --ink:#ebeae4; --ink2:#c3c2bb; --muted:#8e8d86;
+  --rule:#2f2f2c; --rule2:#484743; --line:#5b8dc9; --focus:#8fb8e6;
+  --tip-bg:#1e1e1c; --tip-shadow:rgba(0,0,0,.4);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper)}
+body{color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+em,i,cite,var,address{font-style:normal}
+.page{max-width:1040px;margin:0 auto;padding:36px 16px 56px}
+h1{font-family:var(--serif);font-weight:500;font-size:40px;line-height:1.1;margin:0 0 12px;letter-spacing:-.01em;text-wrap:balance;max-width:18em}
+.lede{font-size:17px;color:var(--ink2);margin:0 0 28px;max-width:38em}
+h2{font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.25;margin:0 0 8px}
+.howto{border-top:1px solid var(--rule);padding-top:18px;margin:0 0 28px}
+.howto p{margin:0;max-width:40em;color:var(--ink)}
+figure{margin:0 0 40px;padding:0}
+.fig-head{display:grid;grid-template-columns:48px minmax(0,1fr);gap:8px;align-items:baseline;margin-bottom:18px;border-top:1px solid var(--rule);padding-top:18px}
+.fig-n{font-size:13px;color:var(--muted);font-weight:500}
+.fig-title{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.2;margin:0;text-wrap:balance}
+.fig-dek{margin:4px 0 0;font-size:15.5px;color:var(--ink2)}
+.panels{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 44px}
+.panel h3{font-family:var(--sans);font-weight:600;font-size:15px;margin:0 0 2px;color:var(--ink)}
+.panel .axis-note{font-size:13px;color:var(--muted);margin:0 0 6px}
+.panel svg{display:block;width:100%;overflow:visible}
+svg text{font-family:var(--sans)}
+.grid{stroke:var(--rule);stroke-width:1}
+.sep{stroke:var(--rule2);stroke-width:1}
+.tick{font-size:11.5px;fill:var(--muted);font-variant-numeric:tabular-nums}
+.axt{font-size:12px;fill:var(--muted)}
+.rl{font-size:13.5px;fill:var(--ink)}
+.rl.ref{fill:var(--muted)}
+.rl.head{font-weight:500}
+.sec{font-size:12px;fill:var(--muted)}
+.val{font-size:12.5px;fill:var(--ink2);font-variant-numeric:tabular-nums}
+.whisk{stroke-width:1.5;stroke-linecap:round}
+.dot{stroke:var(--paper);stroke-width:2}
+.accent .whisk{stroke:var(--line)} .accent .dot{fill:var(--line)}
+.base .whisk{stroke:var(--ink2)} .base .dot{fill:var(--ink2)}
+.ref .whisk{stroke:var(--muted)} .ref .dot{fill:var(--muted)}
+.hit{fill:transparent;cursor:default}
+.mark:focus{outline:none}
+.mark:focus .ring,.mark:hover .ring{stroke:var(--focus);stroke-width:1.5;fill:none}
+.ring{stroke:none;fill:none}
+.key{display:flex;flex-wrap:wrap;gap:4px 20px;font-size:13px;color:var(--ink2);margin:0 0 14px;padding:0;list-style:none}
+.key li{display:flex;align-items:center;gap:7px}
+.key svg{flex:none}
+figcaption{margin-top:18px;padding-top:10px;border-top:1px solid var(--rule);font-size:13px;color:var(--muted);line-height:1.55}
+figcaption p{margin:0 0 6px;max-width:62em}
+figcaption p:last-child{margin:0}
+.tip{position:fixed;z-index:10;pointer-events:none;background:var(--tip-bg);color:var(--ink);border:1px solid var(--rule2);border-radius:3px;padding:8px 10px;font-size:13px;line-height:1.45;box-shadow:0 4px 14px var(--tip-shadow);max-width:260px;opacity:0;transition:opacity .08s}
+.tip.on{opacity:1}
+.tip b{font-weight:600;display:block;margin-bottom:2px}
+.tip .k{color:var(--muted)}
+.tip span{font-variant-numeric:tabular-nums}
+.tbl-sec{border-top:1px solid var(--rule);padding-top:18px}
+.tbl-head{display:grid;grid-template-columns:48px minmax(0,1fr);gap:8px;align-items:baseline;margin-bottom:12px}
+.tbl-head h2{font-size:19px;margin:0}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:640px}
+th,td{padding:7px 10px;border-bottom:1px solid var(--rule);vertical-align:bottom}
+thead th{font-weight:500;color:var(--muted);font-size:12.5px;line-height:1.3;text-align:right;border-bottom:1px solid var(--rule2)}
+thead th:first-child{text-align:left;padding-left:0}
+tbody th{text-align:left;font-weight:500;padding-left:0;white-space:nowrap}
+td{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.rng{color:var(--ink2);padding-left:2px}
+td .sub{color:var(--muted);font-size:12px}
+tr.ref th,tr.ref td{color:var(--muted)}
+tr.first-ref th,tr.first-ref td{border-top:1px solid var(--rule2)}
+thead tr.grp th{border-bottom:none;padding-bottom:0}
+.tbl-note{font-size:13px;color:var(--muted);margin:10px 0 0;max-width:62em}
+@media (max-width:720px){
+  h1{font-size:30px}
+  .panels{grid-template-columns:minmax(0,1fr);gap:28px}
+  .fig-head,.tbl-head{grid-template-columns:minmax(0,1fr);gap:2px}
+  .fig-title{font-size:21px}
+  .page{padding-top:24px}
+}
+</style>
+
+<main class="page">
+  <h1>Humanities graduates go on to a broad range of work</h1>
+  <p class="lede">A comparison of how many distinct kinds of jobs graduates of four fields hold in their first ten years after a bachelor's degree.</p>
+
+  <section class="howto" aria-labelledby="howto-h">
+    <h2 id="howto-h">How to read this</h2>
+    <p>Each dot counts how many different kinds of work a field&#x27;s graduates hold. We call this the effective number of distinct jobs: if the jobs of 500 randomly drawn graduates were sorted into groups of truly different work, this is roughly how many groups you would get. A higher number means the field&#x27;s graduates spread across a wider range of work. The thin line around each dot shows how much the number moves when the draw of 500 is repeated.</p>
+  </section>
+
+  <figure aria-labelledby="fig1-title">
+    <div class="fig-head">
+      <span class="fig-n">Fig. 1</span>
+      <div>
+        <p class="fig-title" id="fig1-title">Humanities graduates hold a wider range of jobs than STEM or finance graduates</p>
+        <p class="fig-dek">Humanistic social sciences follow close behind. Both measures put the fields in the same order.</p>
+      </div>
+    </div>
+    <ul class="key" aria-label="Key">
+      <li><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="var(--line)"/></svg>Humanities fields</li>
+      <li><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="var(--ink2)"/></svg>STEM and finance</li>
+      <li><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="var(--muted)"/></svg>Included for comparison</li>
+      <li><svg width="30" height="14" aria-hidden="true"><line x1="2" y1="7" x2="28" y2="7" stroke="var(--ink2)" stroke-width="1.5" stroke-linecap="round"/></svg>Range across resamples</li>
+    </ul>
+    <div class="panels">
+      <div class="panel">
+        <h3>Job descriptions</h3>
+        <p class="axis-note">Effective number of distinct jobs</p>
+        <svg id="p-text" role="group" aria-label="Job descriptions: effective number of distinct jobs by field"></svg>
+      </div>
+      <div class="panel">
+        <h3>O*NET skill profiles</h3>
+        <p class="axis-note">Effective number of distinct skill profiles</p>
+        <svg id="p-skills" role="group" aria-label="O*NET skill profiles: effective number of distinct skill profiles by field"></svg>
+      </div>
+    </div>
+    <figcaption>
+      <p>Note: The sample is US-profile LinkedIn users with a bachelor&#x27;s degree finished between 2000 and 2014, counting the jobs they held in the 10 years after graduation that have a written description. Each estimate draws 500 graduates per field with one job each, and the draw is repeated 200 times. Dots mark the middle value; lines span the middle 95 percent of draws. The right panel repeats the count using the O*NET skill ratings of each job&#x27;s occupation instead of the description text. Humanities follows the NHA definition, except that general studies and liberal arts majors are left out because they also match other groups. Humanities graduates write shorter job descriptions than STEM graduates (a median of 307 characters against 439), so wordier write-ups do not explain the gap. The two measures rank all six fields in the same order (Spearman rho = 1.00). Most O*NET occupation codes were matched automatically from job titles and descriptions (57 to 81 percent of jobs, depending on the field); the rest came from occupation codes already in the data.</p>
+      <p>Source: LinkedIn profile sample (snapshot 2026-02-19; experience through Oct 2025); O*NET 29.3.</p>
+    </figcaption>
+  </figure>
+
+  <section class="tbl-sec" aria-labelledby="t1-h">
+    <div class="tbl-head">
+      <span class="fig-n">Table 1</span>
+      <h2 id="t1-h">The numbers behind the figure</h2>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Field</th>
+            <th scope="col">People in sample pool</th>
+            <th scope="col" colspan="2">Job-description breadth<br>and range</th>
+            <th scope="col" colspan="2">Skill-profile breadth<br>and range</th>
+            <th scope="col">Within-person spread, 5+ jobs (people)</th>
+            <th scope="col">Median description length (characters)</th>
+          </tr>
+        </thead>
+        <tbody>
+<tr class=""><th scope="row">Humanities</th><td>7,320</td><td>26.4</td><td class="rng">25.6–27.2</td><td>8.7</td><td class="rng">8.2–9.1</td><td>0.40 <span class="sub">(2,061)</span></td><td>307</td></tr>
+<tr class=""><th scope="row">Humanistic social sciences</th><td>6,418</td><td>25.7</td><td class="rng">25.0–26.6</td><td>7.7</td><td class="rng">7.3–8.2</td><td>0.40 <span class="sub">(1,837)</span></td><td>358</td></tr>
+<tr class=""><th scope="row">STEM</th><td>10,223</td><td>23.7</td><td class="rng">22.9–24.6</td><td>7.2</td><td class="rng">6.8–7.6</td><td>0.36 <span class="sub">(1,998)</span></td><td>439</td></tr>
+<tr class=""><th scope="row">Finance</th><td>1,009</td><td>19.8</td><td class="rng">19.2–20.6</td><td>5.6</td><td class="rng">5.3–5.9</td><td>0.36 <span class="sub">(96)</span></td><td>404</td></tr>
+<tr class="first-ref ref"><th scope="row">Accounting</th><td>1,167</td><td>18.6</td><td class="rng">17.9–19.3</td><td>5.3</td><td class="rng">5.0–5.6</td><td>0.35 <span class="sub">(170)</span></td><td>444</td></tr>
+<tr class="ref"><th scope="row">Nursing</th><td>859</td><td>16.1</td><td class="rng">15.5–16.7</td><td>3.1</td><td class="rng">2.8–3.3</td><td>0.34 <span class="sub">(142)</span></td><td>314</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-note">Breadth values are the middle of 200 draws of 500 graduates; the range spans the middle 95 percent of draws. Within-person spread is the average difference between the descriptions of one person's own jobs, from 0 for identical descriptions upward, for people with five or more described jobs. Nursing and Accounting are included for comparison.</p>
+  </section>
+</main>
+<div class="tip" id="tip" role="tooltip" aria-hidden="true"></div>
+
+<script>
+const DATA = {"rows":[{"key":"humanities","label":"Humanities","section":"head","role":"accent","n":7320,"text":[26.43529552048615,25.560442947451048,27.23271123255552],"skills":[8.673337737254304,8.162910890065891,9.058889461116102],"spread5":0.4014604687690735,"spread5_n":2061,"desc_len":307.0},{"key":"humanistic_social_sciences","label":"Humanistic social sciences","section":"head","role":"accent","n":6418,"text":[25.70462148209222,24.955429110944156,26.616149899906752],"skills":[7.708492034372206,7.305776368456054,8.236834401388936],"spread5":0.39783912897109985,"spread5_n":1837,"desc_len":358.0},{"key":"stem","label":"STEM","section":"head","role":"base","n":10223,"text":[23.747742566479555,22.908606230277055,24.605691140534795],"skills":[7.185851105104377,6.782822820207265,7.580396992162345],"spread5":0.35557013750076294,"spread5_n":1998,"desc_len":439.0},{"key":"finance","label":"Finance","section":"head","role":"base","n":1009,"text":[19.829067282906973,19.190404779218632,20.57012909247729],"skills":[5.615943163179985,5.349323483525214,5.898193119666003],"spread5":0.36367666721343994,"spread5_n":96,"desc_len":403.5},{"key":"accounting","label":"Accounting","section":"ref","role":"ref","n":1167,"text":[18.604392233389206,17.851547465483925,19.25750183305155],"skills":[5.277331244800974,4.995216217733911,5.634020758586585],"spread5":0.3472135365009308,"spread5_n":170,"desc_len":443.5},{"key":"nursing","label":"Nursing","section":"ref","role":"ref","n":859,"text":[16.065367076975782,15.543547040504752,16.650907424198234],"skills":[3.1070535164574298,2.844914792948721,3.3481516882722753],"spread5":0.3406403660774231,"spread5_n":142,"desc_len":314.0}]};
+(function(){
+  const NS = "http://www.w3.org/2000/svg";
+  const tip = document.getElementById("tip");
+  const f1 = x => x.toFixed(1);
+  const fint = n => n.toLocaleString("en-US");
+  const PANELS = [
+    {id:"p-text", key:"text", max:30, ticks:[0,10,20,30], unit:"distinct jobs"},
+    {id:"p-skills", key:"skills", max:10, ticks:[0,2,4,6,8,10], unit:"distinct skill profiles"}
+  ];
+  function el(tag, attrs, parent, text){
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function showTip(r, p, target){
+    const v = r[p.key];
+    tip.innerHTML = "<b></b><div><span class='k'>Middle value: </span><span></span></div>"
+      + "<div><span class='k'>Range: </span><span></span></div>"
+      + "<div><span class='k'>People in sample pool: </span><span></span></div>";
+    tip.querySelector("b").textContent = r.label;
+    const s = tip.querySelectorAll("div > span:not(.k)");
+    s[0].textContent = f1(v[0]) + " " + p.unit;
+    s[1].textContent = f1(v[1]) + " to " + f1(v[2]);
+    s[2].textContent = fint(r.n);
+    tip.classList.add("on");
+    const b = target.getBoundingClientRect(), t = tip.getBoundingClientRect();
+    let x = b.left + b.width/2 - t.width/2, y = b.top - t.height - 8;
+    if (y < 8) y = b.bottom + 8;
+    x = Math.max(8, Math.min(x, window.innerWidth - t.width - 8));
+    tip.style.left = x + "px"; tip.style.top = y + "px";
+  }
+  function hideTip(){ tip.classList.remove("on"); }
+
+  function draw(p){
+    const svg = document.getElementById(p.id);
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    const W = svg.clientWidth || svg.parentNode.clientWidth;
+    const narrow = W < 440;
+    const labelW = narrow ? 0 : 178;
+    const padR = 40;                      // room for the value label past the whisker
+    const x0 = labelW + 4, x1 = W - padR;
+    const X = v => x0 + (v / p.max) * (x1 - x0);
+    const rowH = narrow ? 46 : 32, secH = narrow ? 30 : 34, top = 6;
+    // Row positions: headline rows, then a separator block, then reference rows.
+    let y = top, ys = [], sepY = null;
+    DATA.rows.forEach((r, i) => {
+      if (r.section === "ref" && DATA.rows[i-1].section !== "ref"){ sepY = y; y += secH; }
+      ys.push(y + (narrow ? 32 : rowH/2)); y += rowH;
+    });
+    const plotBottom = y + 2, H = plotBottom + 40;
+    svg.setAttribute("height", H);
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    const g0 = el("g", {"aria-hidden":"true"}, svg);
+    p.ticks.forEach(t => {
+      el("line", {class:"grid", x1:X(t), x2:X(t), y1:top, y2:plotBottom}, g0);
+      el("text", {class:"tick", x:X(t), y:plotBottom + 16, "text-anchor":"middle"}, g0, t);
+    });
+    el("text", {class:"axt", x:x0, y:plotBottom + 34}, g0,
+       p.key === "text" ? "Effective number of distinct jobs" : "Effective number of distinct skill profiles");
+    if (sepY != null){
+      el("line", {class:"sep", x1:0, x2:W, y1:sepY + 6, y2:sepY + 6}, g0);
+      el("text", {class:"sec", x:0, y:sepY + 24}, g0, "Fields included for comparison");
+    }
+    DATA.rows.forEach((r, i) => {
+      const cy = ys[i], v = r[p.key];
+      const lab = el("text", {class:"rl " + r.section, x:0, y: narrow ? cy - 11 : cy + 4.5, "aria-hidden":"true"}, g0, r.label);
+      const g = el("g", {class:"mark " + r.role, tabindex:"0", role:"img",
+        "aria-label": r.label + ": " + f1(v[0]) + " " + p.unit + ", range " + f1(v[1]) + " to " + f1(v[2])
+          + ", " + fint(r.n) + " people in sample pool"}, svg);
+      el("line", {class:"whisk", x1:X(v[1]), x2:X(v[2]), y1:cy, y2:cy}, g);
+      el("circle", {class:"ring", cx:X(v[0]), cy:cy, r:9}, g);
+      el("circle", {class:"dot", cx:X(v[0]), cy:cy, r:5}, g);
+      el("rect", {class:"hit", x:X(v[1]) - 8, y:cy - 12, width:Math.max(24, X(v[2]) - X(v[1]) + 16), height:24}, g);
+      if (r.section === "head")
+        el("text", {class:"val", x:X(v[2]) + 7, y:cy + 4.5, "aria-hidden":"true"}, g0, f1(v[0]));
+      g.addEventListener("pointerenter", () => showTip(r, p, g.querySelector(".dot")));
+      g.addEventListener("pointerleave", hideTip);
+      g.addEventListener("focus", () => showTip(r, p, g.querySelector(".dot")));
+      g.addEventListener("blur", hideTip);
+    });
+  }
+  let raf = 0, lastW = 0;
+  function drawAll(){
+    const w = document.documentElement.clientWidth;
+    if (w === lastW) return; lastW = w;
+    PANELS.forEach(draw);
+  }
+  drawAll();
+  window.addEventListener("resize", () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(drawAll); });
+  window.addEventListener("scroll", hideTip, {passive:true});
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { lastW = 0; drawAll(); });
+})();
+</script>
