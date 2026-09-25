@@ -1,0 +1,434 @@
+{
+  "meta": {
+    "seed": 20260924,
+    "n_boot": 200,
+    "n_people": 500,
+    "headline_groups": [
+      "humanities",
+      "humanistic_social_sciences",
+      "stem",
+      "finance"
+    ],
+    "sanity_groups": [
+      "nursing",
+      "accounting"
+    ],
+    "dropped_sanity_groups_zero_people": [
+      "liberal_arts"
+    ],
+    "group_labels": {
+      "humanities": "Humanities",
+      "humanistic_social_sciences": "Humanistic social sciences",
+      "stem": "STEM",
+      "finance": "Finance",
+      "nursing": "Nursing",
+      "accounting": "Accounting"
+    },
+    "bases": [
+      "text",
+      "onet_skills"
+    ],
+    "role_count_strata": [
+      "3",
+      "4",
+      "5+"
+    ]
+  },
+  "vendi": {
+    "humanities": {
+      "n_people_available": 7320,
+      "text": {
+        "median": 26.435295520486164,
+        "lo": 25.560442947451058,
+        "hi": 27.232711232555474
+      },
+      "onet_skills": {
+        "median": 8.673337737254304,
+        "lo": 8.162910890065891,
+        "hi": 9.058889461116102
+      }
+    },
+    "humanistic_social_sciences": {
+      "n_people_available": 6418,
+      "text": {
+        "median": 25.7046214820922,
+        "lo": 24.955429110944134,
+        "hi": 26.616149899906716
+      },
+      "onet_skills": {
+        "median": 7.708492034372206,
+        "lo": 7.305776368456054,
+        "hi": 8.236834401388936
+      }
+    },
+    "stem": {
+      "n_people_available": 10223,
+      "text": {
+        "median": 23.747742566479523,
+        "lo": 22.908606230277066,
+        "hi": 24.605691140534773
+      },
+      "onet_skills": {
+        "median": 7.185851105104377,
+        "lo": 6.782822820207265,
+        "hi": 7.580396992162345
+      }
+    },
+    "finance": {
+      "n_people_available": 1009,
+      "text": {
+        "median": 19.829067282906948,
+        "lo": 19.190404779218603,
+        "hi": 20.570129092477263
+      },
+      "onet_skills": {
+        "median": 5.615943163179985,
+        "lo": 5.349323483525214,
+        "hi": 5.898193119666003
+      }
+    },
+    "nursing": {
+      "n_people_available": 859,
+      "text": {
+        "median": 16.065367076975768,
+        "lo": 15.543547040504738,
+        "hi": 16.650907424198238
+      },
+      "onet_skills": {
+        "median": 3.1070535164574298,
+        "lo": 2.844914792948721,
+        "hi": 3.3481516882722753
+      }
+    },
+    "accounting": {
+      "n_people_available": 1167,
+      "text": {
+        "median": 18.60439223338918,
+        "lo": 17.8515474654839,
+        "hi": 19.257501833051542
+      },
+      "onet_skills": {
+        "median": 5.277331244800974,
+        "lo": 4.995216217733911,
+        "hi": 5.634020758586585
+      }
+    }
+  },
+  "spearman_rank_agreement": {
+    "groups_order": [
+      "humanities",
+      "humanistic_social_sciences",
+      "stem",
+      "finance",
+      "nursing",
+      "accounting"
+    ],
+    "median_text": [
+      26.435295520486164,
+      25.7046214820922,
+      23.747742566479523,
+      19.829067282906948,
+      16.065367076975768,
+      18.60439223338918
+    ],
+    "median_onet_skills": [
+      8.673337737254304,
+      7.708492034372206,
+      7.185851105104377,
+      5.615943163179985,
+      3.1070535164574298,
+      5.277331244800974
+    ],
+    "rho": 1.0,
+    "exact_permutation_p_if_rho_1": 0.001388888888888889
+  },
+  "within_person_spread": {
+    "humanities": {
+      "3": {
+        "n_people": 1149,
+        "median_spread": 0.3756304383277893
+      },
+      "4": {
+        "n_people": 947,
+        "median_spread": 0.38852405548095703
+      },
+      "5+": {
+        "n_people": 2061,
+        "median_spread": 0.4014604687690735
+      }
+    },
+    "humanistic_social_sciences": {
+      "3": {
+        "n_people": 1052,
+        "median_spread": 0.3765345513820648
+      },
+      "4": {
+        "n_people": 933,
+        "median_spread": 0.38619834184646606
+      },
+      "5+": {
+        "n_people": 1837,
+        "median_spread": 0.39783912897109985
+      }
+    },
+    "stem": {
+      "3": {
+        "n_people": 2207,
+        "median_spread": 0.32899051904678345
+      },
+      "4": {
+        "n_people": 1594,
+        "median_spread": 0.329150915145874
+      },
+      "5+": {
+        "n_people": 1998,
+        "median_spread": 0.35557013750076294
+      }
+    },
+    "finance": {
+      "3": {
+        "n_people": 242,
+        "median_spread": 0.35206735134124756
+      },
+      "4": {
+        "n_people": 158,
+        "median_spread": 0.3507010340690613
+      },
+      "5+": {
+        "n_people": 96,
+        "median_spread": 0.36367666721343994
+      }
+    },
+    "nursing": {
+      "3": {
+        "n_people": 133,
+        "median_spread": 0.3392001986503601
+      },
+      "4": {
+        "n_people": 64,
+        "median_spread": 0.32161909341812134
+      },
+      "5+": {
+        "n_people": 142,
+        "median_spread": 0.3406403660774231
+      }
+    },
+    "accounting": {
+      "3": {
+        "n_people": 229,
+        "median_spread": 0.3330234885215759
+      },
+      "4": {
+        "n_people": 154,
+        "median_spread": 0.3588888645172119
+      },
+      "5+": {
+        "n_people": 170,
+        "median_spread": 0.3472135365009308
+      }
+    }
+  },
+  "median_description_length_chars": {
+    "humanities": 307.0,
+    "humanistic_social_sciences": 358.0,
+    "stem": 439.0,
+    "finance": 403.5,
+    "nursing": 314.0,
+    "accounting": 443.5
+  },
+  "soc_source_share": {
+    "finance": {
+      "n_roles": 2640,
+      "pooled": 0.2265151515151515,
+      "nearest": 0.7734848484848484
+    },
+    "humanities": {
+      "n_roles": 25895,
+      "pooled": 0.20173778721760957,
+      "nearest": 0.7982622127823904
+    },
+    "humanistic_social_sciences": {
+      "n_roles": 23096,
+      "pooled": 0.18782473155524765,
+      "nearest": 0.8121752684447523
+    },
+    "nursing": {
+      "n_roles": 2285,
+      "pooled": 0.42800875273522976,
+      "nearest": 0.5719912472647702
+    },
+    "accounting": {
+      "n_roles": 3220,
+      "pooled": 0.3024844720496894,
+      "nearest": 0.6975155279503106
+    },
+    "stem": {
+      "n_roles": 31552,
+      "pooled": 0.2598567444219067,
+      "nearest": 0.7401432555780934
+    }
+  },
+  "sensitivity": {
+    "length_150_600": {
+      "description_chars": [
+        150,
+        600
+      ],
+      "n_boot": 200,
+      "groups": {
+        "humanities": {
+          "n_people_available": 5568,
+          "n_people": 500,
+          "n_roles": 14989,
+          "text": {
+            "median": 25.453801339036346,
+            "lo": 24.650419235865403,
+            "hi": 26.103908769218553
+          },
+          "onet_skills": {
+            "median": 8.670650682613363,
+            "lo": 8.217909883662736,
+            "hi": 9.074280829120418
+          }
+        },
+        "humanistic_social_sciences": {
+          "n_people_available": 4975,
+          "n_people": 500,
+          "n_roles": 13535,
+          "text": {
+            "median": 24.917099818616897,
+            "lo": 24.174875603862795,
+            "hi": 25.690088572770932
+          },
+          "onet_skills": {
+            "median": 7.832267021680796,
+            "lo": 7.338605503622184,
+            "hi": 8.326713867784584
+          }
+        },
+        "stem": {
+          "n_people_available": 6818,
+          "n_people": 500,
+          "n_roles": 15187,
+          "text": {
+            "median": 24.38809777823628,
+            "lo": 23.76635173132477,
+            "hi": 25.09991261197903
+          },
+          "onet_skills": {
+            "median": 7.6590741497927395,
+            "lo": 7.25361805652567,
+            "hi": 8.042267444293948
+          }
+        },
+        "finance": {
+          "n_people_available": 727,
+          "n_people": 500,
+          "n_roles": 1558,
+          "text": {
+            "median": 19.303540714110618,
+            "lo": 18.76966388778273,
+            "hi": 19.848906391784574
+          },
+          "onet_skills": {
+            "median": 5.6714651809475445,
+            "lo": 5.3387899938350385,
+            "hi": 5.912446286118977
+          }
+        },
+        "nursing": {
+          "n_people_available": 536,
+          "n_people": 500,
+          "n_roles": 1174,
+          "text": {
+            "median": 15.783904223669682,
+            "lo": 15.479850322906874,
+            "hi": 16.11790139800305
+          },
+          "onet_skills": {
+            "median": 3.3773198833559617,
+            "lo": 3.1857923161158737,
+            "hi": 3.5565532253923227
+          }
+        },
+        "accounting": {
+          "n_people_available": 811,
+          "n_people": 500,
+          "n_roles": 1691,
+          "text": {
+            "median": 18.514488828016088,
+            "lo": 17.903877692279032,
+            "hi": 19.0584822894792
+          },
+          "onet_skills": {
+            "median": 5.348120381855503,
+            "lo": 5.069316579080579,
+            "hi": 5.632020303418934
+          }
+        }
+      }
+    },
+    "onet_pooled_only": {
+      "n_people": 446,
+      "n_boot": 200,
+      "min_pool": 100,
+      "basis": "onet_skills",
+      "groups": {
+        "humanities": {
+          "n_people_available": 3310,
+          "n_roles": 5224,
+          "onet_skills": {
+            "median": 8.467162004460581,
+            "lo": 8.003693328182532,
+            "hi": 8.881344729720912
+          }
+        },
+        "humanistic_social_sciences": {
+          "n_people_available": 2920,
+          "n_roles": 4338,
+          "onet_skills": {
+            "median": 7.324991561982493,
+            "lo": 6.968154011486282,
+            "hi": 7.754093460405068
+          }
+        },
+        "stem": {
+          "n_people_available": 4980,
+          "n_roles": 8199,
+          "onet_skills": {
+            "median": 5.786287419448177,
+            "lo": 5.392266080528971,
+            "hi": 6.167263742511198
+          }
+        },
+        "finance": {
+          "n_people_available": 446,
+          "n_roles": 598,
+          "onet_skills": {
+            "median": 4.75794954986229,
+            "lo": 4.6583386523383545,
+            "hi": 4.849891035663683
+          }
+        },
+        "nursing": {
+          "n_people_available": 549,
+          "n_roles": 978,
+          "onet_skills": {
+            "median": 2.0861624756366437,
+            "lo": 1.9593395080375382,
+            "hi": 2.1873676218042615
+          }
+        },
+        "accounting": {
+          "n_people_available": 620,
+          "n_roles": 974,
+          "onet_skills": {
+            "median": 3.3782124426343842,
+            "lo": 3.1916821825319115,
+            "hi": 3.55845164847871
+          }
+        }
+      }
+    }
+  }
+}

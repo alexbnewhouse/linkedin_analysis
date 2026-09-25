@@ -1,0 +1,71 @@
+{
+  "cohort_year_min": 2000,
+  "cohort_year_max": 2014,
+  "role_window_years": 10,
+  "min_description_len": 50,
+  "headline_groups": [
+    "humanities",
+    "humanistic_social_sciences",
+    "stem",
+    "finance"
+  ],
+  "sanity_groups": [
+    "nursing",
+    "accounting",
+    "liberal_arts"
+  ],
+  "group_labels": {
+    "humanities": "Humanities",
+    "humanistic_social_sciences": "Humanistic social sciences",
+    "stem": "STEM",
+    "finance": "Finance",
+    "nursing": "Nursing",
+    "accounting": "Accounting",
+    "liberal_arts": "Liberal arts (general)"
+  },
+  "persons_by_group": {
+    "accounting": 2436,
+    "finance": 1728,
+    "humanistic_social_sciences": 10833,
+    "humanities": 12204,
+    "nursing": 2171,
+    "stem": 18296,
+    "liberal_arts": 0
+  },
+  "roles_by_group": {
+    "accounting": 3220,
+    "finance": 2640,
+    "humanistic_social_sciences": 23096,
+    "humanities": 25895,
+    "nursing": 2285,
+    "stem": 31552,
+    "liberal_arts": 0
+  },
+  "persons_with_roles_by_group": {
+    "accounting": 1167,
+    "finance": 1009,
+    "humanistic_social_sciences": 6418,
+    "humanities": 7320,
+    "nursing": 859,
+    "stem": 10223,
+    "liberal_arts": 0
+  },
+  "persons_null_bachelor_cip_by_group": {
+    "humanistic_social_sciences": 3642,
+    "humanities": 4378,
+    "stem": 3709,
+    "finance": 0,
+    "nursing": 0,
+    "accounting": 0,
+    "liberal_arts": 0
+  },
+  "n_persons_total": 47668,
+  "n_roles_total": 88688,
+  "excluded_multi_group_persons": 1617,
+  "roles_duplicate_role_keys_removed": 5,
+  "role_key": [
+    "linkedin_id",
+    "experience_idx",
+    "position_idx"
+  ]
+}
